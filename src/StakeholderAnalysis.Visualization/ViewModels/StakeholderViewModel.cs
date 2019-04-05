@@ -1,12 +1,17 @@
 ﻿using System.ComponentModel;
+using System.Windows.Input;
 using StakeholderAnalysis.Data;
+using StakeholderAnalysis.Visualization.Commands;
 
 namespace StakeholderAnalysis.Visualization.ViewModels
 {
     public class StakeholderViewModel : PropertyChangedElement
     {
-        public StakeholderViewModel(Stakeholder stakeholder)
+        private readonly ISelectionRegister selectionRegister;
+
+        public StakeholderViewModel(Stakeholder stakeholder, ISelectionRegister selectionRegister)
         {
+            this.selectionRegister = selectionRegister;
             Stakeholder = stakeholder;
             if (Stakeholder != null)
             {
@@ -23,6 +28,8 @@ namespace StakeholderAnalysis.Visualization.ViewModels
         public double TopPercentage => Stakeholder.TopPercentage;
 
         public StakeholderType Type => Stakeholder.Type;
+
+        public ICommand StakeholderClickedCommand => new StakeholderClickedCommand(this);
 
         private void StakeholderPropertyChanged(object sender, PropertyChangedEventArgs e)
         {
@@ -41,6 +48,11 @@ namespace StakeholderAnalysis.Visualization.ViewModels
                     OnPropertyChanged(nameof(Type));
                     break;
             }
+        }
+
+        public void Select()
+        {
+            selectionRegister.Select(this);
         }
     }
 }

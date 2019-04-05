@@ -58,6 +58,7 @@
     <Compile Include="Converters\PercentageToCanvasLeftValueConverter.cs" />
     <Compile Include="Converters\PercentageToCanvasTopValueConverter.cs" />
     <Compile Include="Converters\PercentageToDimensionConverter.cs" />
+    <Compile Include="Converters\IsSelectedStakeholderConverter.cs" />
     <Compile Include="Properties\AssemblyInfo.cs">
       <SubType>Code</SubType>
     </Compile>
@@ -71,9 +72,11 @@
       <DependentUpon>Settings.settings</DependentUpon>
       <DesignTimeSharedInput>True</DesignTimeSharedInput>
     </Compile>
-    <Compile Include="TypeToBrushConverter.cs" />
+    <Compile Include="Converters\TypeToBrushConverter.cs" />
+    <Compile Include="ViewModels\ISelectionRegister.cs" />
     <Compile Include="ViewModels\MainWindowViewModel.cs" />
     <Compile Include="ViewModels\OnionRingViewModel.cs" />
+    <Compile Include="Commands\StakeholderClickedCommand.cs" />
     <Compile Include="ViewModels\StakeholderViewModel.cs" />
     <EmbeddedResource Include="Properties\Resources.resx">
       <Generator>ResXFileCodeGenerator</Generator>

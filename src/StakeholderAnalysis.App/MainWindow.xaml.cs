@@ -1,4 +1,5 @@
-﻿using System.Windows;
+﻿using System.Linq;
+using System.Windows;
 using System.Windows.Media;
 using StakeholderAnalysis.Data;
 using StakeholderAnalysis.Visualization.ViewModels;
@@ -21,7 +22,10 @@ namespace StakeholderAnalysis.App
             analysis.Stakeholders.Add(new Stakeholder("HHNK",0.3,0.6, StakeholderType.Waterschap));
             analysis.Stakeholders.Add(new Stakeholder("WVL", 0.5, 0.5, StakeholderType.Rijksoverheid));
 
-            DataContext = new MainWindowViewModel(analysis);
+            var mainWindowViewModel = new MainWindowViewModel(analysis);
+            mainWindowViewModel.SelectedStakeholder = mainWindowViewModel.Stakeholders.Last();
+            DataContext = mainWindowViewModel;
+            
         }
     }
 }

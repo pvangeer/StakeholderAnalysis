@@ -2,20 +2,52 @@
                     xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
                     xmlns:viewModels="clr-namespace:StakeholderAnalysis.Visualization.ViewModels"
                     xmlns:visualization="clr-namespace:StakeholderAnalysis.Visualization"
-                    xmlns:data="clr-namespace:StakeholderAnalysis.Data;assembly=StakeholderAnalysis.Data">
+                    xmlns:data="clr-namespace:StakeholderAnalysis.Data;assembly=StakeholderAnalysis.Data"
+                    xmlns:converters="clr-namespace:StakeholderAnalysis.Visualization.Converters">
 
-    <visualization:TypeToBrushConverter x:Key="TypeToBrushConverter" />
+    <converters:TypeToBrushConverter x:Key="TypeToBrushConverter" />
+    <converters:IsSelectedStakeholderConverter x:Key="IsSelectedStakeholderConverter" />
+
+    <DataTemplate x:Key="StakeholderPopupDataTemplate" DataType="viewModels:StakeholderViewModel">
+        <Border Background="AntiqueWhite" BorderBrush="Gray" BorderThickness="1">
+            <Grid Width="300" Height="400">
+                <TextBlock Text="{Binding Name}" HorizontalAlignment="Center"/>
+            </Grid>
+        </Border>
+    </DataTemplate>
 
     <DataTemplate x:Key="StakeholderDataTemplate" DataType="viewModels:StakeholderViewModel">
-        <Border CornerRadius="1" Background="{Binding Type, Converter={StaticResource TypeToBrushConverter}}" BorderBrush="Gray" BorderThickness="1">
+        <Border CornerRadius="1" 
+                Background="{Binding Type, Converter={StaticResource TypeToBrushConverter}}">
+            <Border.InputBindings>
+                <MouseBinding MouseAction="LeftClick" Command="{Binding StakeholderClickedCommand}" />
+            </Border.InputBindings>
+            <Border.Style>
+                <Style TargetType="{x:Type Border}">
+                    <Setter Property="BorderBrush" Value="Gray"/>
+                    <Setter Property="BorderThickness" Value="1"/>
+                    <Style.Triggers>
+                        <DataTrigger Value="True">
+                            <DataTrigger.Binding>
+                                <MultiBinding Converter="{StaticResource IsSelectedStakeholderConverter}">
+                                    <Binding ElementName="StakeholdersPresenter" Path="Content.SelectedStakeholder"/>
+                                    <Binding Path="Stakeholder"/>
+                                </MultiBinding>
+                            </DataTrigger.Binding>
+                            <Setter Property="BorderBrush" Value="DarkRed"/>
+                            <Setter Property="BorderThickness" Value="2"/>
+                        </DataTrigger>
+                    </Style.Triggers>
+                </Style>
+            </Border.Style>
             <Grid>
                 <Grid.RowDefinitions>
                     <RowDefinition Height="25"/>
                     <RowDefinition Height="Auto"/>
                 </Grid.RowDefinitions>
+
                 <TextBlock Grid.Row="0" Text="{Binding Name}" HorizontalAlignment="Center"/>
                 <Image Grid.Row="1" Margin="2" Width="30" Height="30">
-                    <!-- Source="pack://application:,,,/StakeholderAnalysis.Visualization;component/Resources/Waterschap.png"-->
                     <Image.Style>
                         <Style TargetType="{x:Type Image}">
                             <Style.Triggers>
@@ -35,6 +67,26 @@
                         </Style>
                     </Image.Style>
                 </Image>
+                <Popup Name="popLogFile"
+                       PlacementTarget="{Binding ElementName=btnLogFile}" Placement="MousePoint"
+                       HorizontalOffset="0" VerticalOffset="0"
+                       StaysOpen="False">
+                    <ContentPresenter Content="{Binding ElementName=StakeholdersPresenter, Path=SelectedStakeholder}" ContentTemplate="{StaticResource StakeholderPopupDataTemplate}"/>
+                </Popup>
+
+                <Grid.Triggers>
+                    <EventTrigger RoutedEvent="Mouse.MouseDown">
+                        <BeginStoryboard>
+                            <Storyboard TargetName="popLogFile" TargetProperty="IsOpen">
+                                <BooleanAnimationUsingKeyFrames  FillBehavior="HoldEnd">
+                                    <DiscreteBooleanKeyFrame
+                                        KeyTime="00:00:00"
+                                        Value="True" />
+                                </BooleanAnimationUsingKeyFrames>
+                            </Storyboard>
+                        </BeginStoryboard>
+                    </EventTrigger>
+                </Grid.Triggers>
             </Grid>
         </Border>
     </DataTemplate>

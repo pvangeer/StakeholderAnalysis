@@ -4,7 +4,7 @@ using System.Windows.Data;
 using System.Windows.Media;
 using StakeholderAnalysis.Data;
 
-namespace StakeholderAnalysis.Visualization
+namespace StakeholderAnalysis.Visualization.Converters
 {
     public class TypeToBrushConverter : IValueConverter
     {

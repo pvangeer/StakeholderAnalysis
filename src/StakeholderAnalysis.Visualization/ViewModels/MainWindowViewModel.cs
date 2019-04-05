@@ -5,8 +5,9 @@ using StakeholderAnalysis.Data;
 
 namespace StakeholderAnalysis.Visualization.ViewModels
 {
-    public class MainWindowViewModel
+    public class MainWindowViewModel : PropertyChangedElement, ISelectionRegister
     {
+        private StakeholderViewModel selectedStakeholder;
         public MainWindowViewModel() : this(new Analysis()) { }
 
         public MainWindowViewModel(Analysis analysis)
@@ -17,7 +18,7 @@ namespace StakeholderAnalysis.Visualization.ViewModels
             Asymmetry = 0.7;
 
             OnionRings = new ObservableCollection<OnionRingViewModel>(Analysis.Onion.Rings.Select(r => new OnionRingViewModel(r)));
-            Stakeholders = new ObservableCollection<StakeholderViewModel>(Analysis.Stakeholders.Select(stakeholder => new StakeholderViewModel(stakeholder)));
+            Stakeholders = new ObservableCollection<StakeholderViewModel>(Analysis.Stakeholders.Select(stakeholder => new StakeholderViewModel(stakeholder, this)));
             Margin = 10;
         }
 
@@ -30,6 +31,16 @@ namespace StakeholderAnalysis.Visualization.ViewModels
         public double Asymmetry { get; set; }
 
         public ObservableCollection<StakeholderViewModel> Stakeholders { get; }
+
+        public StakeholderViewModel SelectedStakeholder
+        {
+            get => selectedStakeholder;
+            set
+            {
+                selectedStakeholder = value;
+                OnPropertyChanged(nameof(SelectedStakeholder));
+            }
+        }
 
         private void RingsCollectionChanged(object sender, NotifyCollectionChangedEventArgs e)
         {
@@ -56,7 +67,7 @@ namespace StakeholderAnalysis.Visualization.ViewModels
             {
                 foreach (var item in e.NewItems.OfType<Stakeholder>())
                 {
-                    Stakeholders.Add(new StakeholderViewModel(item));
+                    Stakeholders.Add(new StakeholderViewModel(item, this));
                 }
             }
 
@@ -66,6 +77,14 @@ namespace StakeholderAnalysis.Visualization.ViewModels
                 {
                     Stakeholders.Remove(Stakeholders.FirstOrDefault(sh => sh.Stakeholder == stakeholder));
                 }
+            }
+        }
+
+        public void Select(object o)
+        {
+            if (o is StakeholderViewModel stakeholderViewModel)
+            {
+                SelectedStakeholder = stakeholderViewModel;
             }
         }
     }
