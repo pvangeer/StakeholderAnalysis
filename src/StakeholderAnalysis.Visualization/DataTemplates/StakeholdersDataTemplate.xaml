@@ -1,0 +1,46 @@
+﻿<ResourceDictionary xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+                    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+                    xmlns:viewModels="clr-namespace:StakeholderAnalysis.Visualization.ViewModels"
+                    xmlns:converters="clr-namespace:StakeholderAnalysis.Visualization.Converters">
+    
+    <ResourceDictionary.MergedDictionaries>
+        <ResourceDictionary Source="StakeholderDataTemplate.xaml"/>
+    </ResourceDictionary.MergedDictionaries>
+
+    <converters:PercentageToDimensionConverter x:Key="PercentageToDimensionConverter" />
+
+    <DataTemplate x:Key="StakeholdersDataTemplate" DataType="viewModels:MainWindowViewModel">
+        <Grid>
+            <ItemsControl ItemsSource="{Binding Stakeholders}"
+                          Margin="{Binding Margin}"
+                          Background="Transparent"
+                          ItemTemplate="{StaticResource StakeholderDataTemplate}">
+                <ItemsControl.ItemContainerStyle>
+                    <Style>
+                        <Setter Property="Canvas.Left">
+                            <Setter.Value>
+                                <MultiBinding Converter="{StaticResource PercentageToDimensionConverter}">
+                                    <Binding Path="LeftPercentage"/>
+                                    <Binding ElementName="Canvas" Path="ActualWidth"/>
+                                </MultiBinding>
+                            </Setter.Value>
+                        </Setter>
+                        <Setter Property="Canvas.Top">
+                            <Setter.Value>
+                                <MultiBinding Converter="{StaticResource PercentageToDimensionConverter}">
+                                    <Binding Path="TopPercentage"/>
+                                    <Binding ElementName="Canvas" Path="ActualHeight"/>
+                                </MultiBinding>
+                            </Setter.Value>
+                        </Setter>
+                    </Style>
+                </ItemsControl.ItemContainerStyle>
+                <ItemsControl.ItemsPanel>
+                    <ItemsPanelTemplate>
+                        <Canvas Name="Canvas" IsItemsHost="True" Margin="{Binding Margin}"/>
+                    </ItemsPanelTemplate>
+                </ItemsControl.ItemsPanel>
+            </ItemsControl>
+        </Grid>
+    </DataTemplate>
+</ResourceDictionary>
