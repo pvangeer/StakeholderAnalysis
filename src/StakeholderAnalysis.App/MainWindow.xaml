@@ -21,6 +21,7 @@
     </Window.Resources>
     <Grid>
         <ContentPresenter Name="OnionRingsPresenter" Content="{Binding}" ContentTemplate="{StaticResource OnionDataTemplate}"/>
+        <!--<ContentPresenter Name="ConnectorsPresenter" Content="{Binding}" ContentTemplate="{StaticResource ConnectorsPresenter}"/>-->
         <ContentPresenter Name="StakeholdersPresenter" Content="{Binding}" ContentTemplate="{StaticResource StakeholdersDataTemplate}"/>
     </Grid>
 </Window>

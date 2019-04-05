@@ -21,6 +21,7 @@
                             <Setter.Value>
                                 <MultiBinding Converter="{StaticResource PercentageToDimensionConverter}">
                                     <Binding Path="LeftPercentage"/>
+                                    <Binding RelativeSource="{RelativeSource Self}" Path="ActualWidth"/>
                                     <Binding ElementName="Canvas" Path="ActualWidth"/>
                                 </MultiBinding>
                             </Setter.Value>
@@ -29,6 +30,7 @@
                             <Setter.Value>
                                 <MultiBinding Converter="{StaticResource PercentageToDimensionConverter}">
                                     <Binding Path="TopPercentage"/>
+                                    <Binding RelativeSource="{RelativeSource Self}" Path="ActualHeight"/>
                                     <Binding ElementName="Canvas" Path="ActualHeight"/>
                                 </MultiBinding>
                             </Setter.Value>
