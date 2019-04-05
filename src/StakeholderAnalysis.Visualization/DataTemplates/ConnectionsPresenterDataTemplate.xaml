@@ -1,0 +1,54 @@
+﻿<ResourceDictionary xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+                    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"  
+                    xmlns:viewModels="clr-namespace:StakeholderAnalysis.Visualization.ViewModels"
+                    xmlns:converters="clr-namespace:StakeholderAnalysis.Visualization.Converters">
+
+    <converters:PercentageToDimensionConverter x:Key="PercentageToDimensionConverter" />
+
+    <DataTemplate x:Key="ConnectionDataTemplate" DataType="viewModels:StakeholderConnectionViewModel">
+        <Grid>
+            <Line 
+                Stroke="{Binding StrokeColor}">
+                <Line.X1>
+                    <MultiBinding Converter="{StaticResource PercentageToDimensionConverter}">
+                        <Binding Path="ConnectFromLeft"/>
+                        <Binding ElementName="LinesCanvas" Path="ActualWidth"/>
+                    </MultiBinding>
+                </Line.X1>
+                <Line.Y1>
+                    <MultiBinding Converter="{StaticResource PercentageToDimensionConverter}">
+                        <Binding Path="ConnectFromTop"/>
+                        <Binding ElementName="LinesCanvas" Path="ActualHeight"/>
+                    </MultiBinding>
+                </Line.Y1>
+                <Line.X2>
+                    <MultiBinding Converter="{StaticResource PercentageToDimensionConverter}">
+                        <Binding Path="ConnectToLeft"/>
+                        <Binding ElementName="LinesCanvas" Path="ActualWidth"/>
+                    </MultiBinding>
+                </Line.X2>
+                <Line.Y2>
+                    <MultiBinding Converter="{StaticResource PercentageToDimensionConverter}">
+                        <Binding Path="ConnectToTop"/>
+                        <Binding ElementName="LinesCanvas" Path="ActualHeight"/>
+                    </MultiBinding>
+                </Line.Y2>
+            </Line>
+        </Grid>
+    </DataTemplate>
+
+    <DataTemplate x:Key="ConnectionsPresenterDataTemplate" DataType="viewModels:MainWindowViewModel">
+        <Grid>
+            <ItemsControl ItemsSource="{Binding StakeholderConnections}"
+                          Margin="{Binding Margin}"
+                          Background="Transparent"
+                          ItemTemplate="{StaticResource ConnectionDataTemplate}">
+                <ItemsControl.ItemsPanel>
+                    <ItemsPanelTemplate>
+                        <Canvas Name="LinesCanvas" IsItemsHost="True" Margin="{Binding Margin}"/>
+                    </ItemsPanelTemplate>
+                </ItemsControl.ItemsPanel>
+            </ItemsControl>
+        </Grid>
+    </DataTemplate>    
+</ResourceDictionary>

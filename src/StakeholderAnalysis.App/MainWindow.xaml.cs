@@ -46,10 +46,12 @@ namespace StakeholderAnalysis.App
             analysis.Stakeholders.Add(new Stakeholder("ENW", 0.7, 0.6, StakeholderType.Stakeholdergroep));
             analysis.Stakeholders.Add(new Stakeholder("WWK/CWK", 0.5, 0.45, StakeholderType.Stakeholdergroep));
             analysis.Stakeholders.Add(new Stakeholder("AIO/DKI", 0.55, 0.48, StakeholderType.Stakeholdergroep));
-            analysis.Stakeholders.Add(new Stakeholder("Themagroep Kust", 0.45, 0.4, StakeholderType.Stakeholdergroep));
+            var coastGroupStakeholder = new Stakeholder("Themagroep Kust", 0.45, 0.4, StakeholderType.Stakeholdergroep);
+            analysis.Stakeholders.Add(coastGroupStakeholder);
 
             // Waterschappen
-            analysis.Stakeholders.Add(new Stakeholder("Hollands Noorderkwartier", 0.16, 0.8, StakeholderType.Waterschap));
+            var hhnk = new Stakeholder("Hollands Noorderkwartier", 0.16, 0.8, StakeholderType.Waterschap);
+            analysis.Stakeholders.Add(hhnk);
             analysis.Stakeholders.Add(new Stakeholder("Wetterskip", 0.14, 0.61, StakeholderType.Waterschap));
             analysis.Stakeholders.Add(new Stakeholder("Noordezijlvest", 0.1, 0.72, StakeholderType.Waterschap));
             analysis.Stakeholders.Add(new Stakeholder("Hunze en Aa's", 0.21, 0.16, StakeholderType.Waterschap));
@@ -68,6 +70,13 @@ namespace StakeholderAnalysis.App
             analysis.Stakeholders.Add(new Stakeholder("Scheldestromen", 0.44, 0.08, StakeholderType.Waterschap));
             analysis.Stakeholders.Add(new Stakeholder("Rivierenland", 0.48, 0.16, StakeholderType.Waterschap));
             analysis.Stakeholders.Add(new Stakeholder("Stichtse Rijnlanden", 0.5, 0.08, StakeholderType.Waterschap));
+
+            // Connectorgroepen
+            var coastGroup = new ConnectorGroup("Themagroep kust",Colors.DarkRed);
+
+            // Connections
+            analysis.Connections.Add(new StakeholderConnection(coastGroup, hhnk, coastGroupStakeholder));
+
             return analysis;
         }
     }

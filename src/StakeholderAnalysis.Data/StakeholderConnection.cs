@@ -2,11 +2,14 @@
 {
     public class StakeholderConnection
     {
-        public StakeholderConnection(Stakeholder connectFrom, Stakeholder connectTo)
+        public StakeholderConnection(ConnectorGroup group, Stakeholder connectFrom, Stakeholder connectTo)
         {
+            ConnectionGroup = group;
             ConnectFrom = connectFrom;
             ConnectTo = connectTo;
         }
+
+        public ConnectorGroup ConnectionGroup { get; }
 
         public Stakeholder ConnectFrom { get; }
 
