@@ -1,15 +1,15 @@
 ﻿namespace StakeholderAnalysis.Data
 {
-    public class StakeholderConnection
+    public class StakeholderConnection : PropertyChangedElement
     {
-        public StakeholderConnection(ConnectorGroup group, Stakeholder connectFrom, Stakeholder connectTo)
+        public StakeholderConnection(ConnectionGroup group, Stakeholder connectFrom, Stakeholder connectTo)
         {
             ConnectionGroup = group;
             ConnectFrom = connectFrom;
             ConnectTo = connectTo;
         }
 
-        public ConnectorGroup ConnectionGroup { get; }
+        public ConnectionGroup ConnectionGroup { get; }
 
         public Stakeholder ConnectFrom { get; }
 

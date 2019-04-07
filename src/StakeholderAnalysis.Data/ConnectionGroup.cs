@@ -7,16 +7,19 @@ using System.Windows.Media;
 
 namespace StakeholderAnalysis.Data
 {
-    public class ConnectorGroup : PropertyChangedElement
+    public class ConnectionGroup : PropertyChangedElement
     {
-        public ConnectorGroup(string name, Color color)
+        public ConnectionGroup(string name, Color color, bool visible = true)
         {
             this.Name = name;
             this.Color = color;
+            Visible = visible;
         }
 
         public string Name { get; set; }
 
         public Color Color { get; set; }
+
+        public bool Visible { get; set; }
     }
 }

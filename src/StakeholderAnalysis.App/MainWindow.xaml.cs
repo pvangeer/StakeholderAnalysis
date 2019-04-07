@@ -51,31 +51,44 @@ namespace StakeholderAnalysis.App
 
             // Waterschappen
             var hhnk = new Stakeholder("Hollands Noorderkwartier", 0.16, 0.8, StakeholderType.Waterschap);
+            var scheldestromen = new Stakeholder("Scheldestromen", 0.44, 0.08, StakeholderType.Waterschap);
+            var wetterskip = new Stakeholder("Wetterskip", 0.14, 0.61, StakeholderType.Waterschap);
+            var rijnland = new Stakeholder("Rijnland", 0.26, 0.26, StakeholderType.Waterschap);
+            var delfland = new Stakeholder("Delfland", 0.43, 0.2, StakeholderType.Waterschap);
+            var hollandseDelta = new Stakeholder("Hollandse Delta", 0.36, 0.1, StakeholderType.Waterschap);
+            var rws = new Stakeholder("RWS", 0.09, 0.47, StakeholderType.Waterschap);
+
             analysis.Stakeholders.Add(hhnk);
-            analysis.Stakeholders.Add(new Stakeholder("Wetterskip", 0.14, 0.61, StakeholderType.Waterschap));
+            analysis.Stakeholders.Add(wetterskip);
             analysis.Stakeholders.Add(new Stakeholder("Noordezijlvest", 0.1, 0.72, StakeholderType.Waterschap));
             analysis.Stakeholders.Add(new Stakeholder("Hunze en Aa's", 0.21, 0.16, StakeholderType.Waterschap));
             analysis.Stakeholders.Add(new Stakeholder("Drents Overijsselse Delta", 0.07, 0.60, StakeholderType.Waterschap));
             analysis.Stakeholders.Add(new Stakeholder("Zuiderzeeland", 0.14, 0.50, StakeholderType.Waterschap));
-            analysis.Stakeholders.Add(new Stakeholder("RWS", 0.09, 0.47, StakeholderType.Waterschap));
+            analysis.Stakeholders.Add(rws);
             analysis.Stakeholders.Add(new Stakeholder("Amstel Gooi en Vecht", 0.11, 0.36, StakeholderType.Waterschap));
             analysis.Stakeholders.Add(new Stakeholder("Vallei en Veluwen", 0.18, 0.39, StakeholderType.Waterschap));
             analysis.Stakeholders.Add(new Stakeholder("Rijn en IJssel", 0.21, 0.29, StakeholderType.Waterschap));
-            analysis.Stakeholders.Add(new Stakeholder("Rijnland", 0.26, 0.26, StakeholderType.Waterschap));
+            analysis.Stakeholders.Add(rijnland);
             analysis.Stakeholders.Add(new Stakeholder("Aa en Maas", 0.31, 0.23, StakeholderType.Waterschap));
             analysis.Stakeholders.Add(new Stakeholder("Limburg", 0.37, 0.22, StakeholderType.Waterschap));
             analysis.Stakeholders.Add(new Stakeholder("Brabantse Delta", 0.29, 0.11, StakeholderType.Waterschap));
-            analysis.Stakeholders.Add(new Stakeholder("Delfland", 0.43, 0.2, StakeholderType.Waterschap));
-            analysis.Stakeholders.Add(new Stakeholder("Hollandse Delta", 0.36, 0.1, StakeholderType.Waterschap));
-            analysis.Stakeholders.Add(new Stakeholder("Scheldestromen", 0.44, 0.08, StakeholderType.Waterschap));
+            analysis.Stakeholders.Add(delfland);
+            analysis.Stakeholders.Add(hollandseDelta);
+            analysis.Stakeholders.Add(scheldestromen);
             analysis.Stakeholders.Add(new Stakeholder("Rivierenland", 0.48, 0.16, StakeholderType.Waterschap));
             analysis.Stakeholders.Add(new Stakeholder("Stichtse Rijnlanden", 0.5, 0.08, StakeholderType.Waterschap));
 
-            // Connectorgroepen
-            var coastGroup = new ConnectorGroup("Themagroep kust",Colors.DarkRed);
+            // Connectiongroepen
+            var coastGroup = new ConnectionGroup("Themagroep kust",Colors.DarkRed);
 
             // Connections
             analysis.Connections.Add(new StakeholderConnection(coastGroup, hhnk, coastGroupStakeholder));
+            analysis.Connections.Add(new StakeholderConnection(coastGroup, scheldestromen, coastGroupStakeholder));
+            analysis.Connections.Add(new StakeholderConnection(coastGroup, wetterskip, coastGroupStakeholder));
+            analysis.Connections.Add(new StakeholderConnection(coastGroup, rijnland, coastGroupStakeholder));
+            analysis.Connections.Add(new StakeholderConnection(coastGroup, delfland, coastGroupStakeholder));
+            analysis.Connections.Add(new StakeholderConnection(coastGroup, hollandseDelta, coastGroupStakeholder));
+            analysis.Connections.Add(new StakeholderConnection(coastGroup, rws, coastGroupStakeholder));
 
             return analysis;
         }
