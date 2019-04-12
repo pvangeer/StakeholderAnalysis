@@ -1,9 +1,11 @@
-﻿<Window x:Class="StakeholderAnalysis.App.MainWindow"
+﻿<fluent:RibbonWindow x:Class="StakeholderAnalysis.App.MainWindow"
         xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
         xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:viewmodels="clr-namespace:StakeholderAnalysis.Visualization.ViewModels;assembly=StakeholderAnalysis.Visualization"
+        xmlns:fluent="urn:fluent-ribbon"
+        xmlns:xcad="http://schemas.xceed.com/wpf/xaml/avalondock"
         mc:Ignorable="d"
         Title="Stakeholderanalyse" 
         Height="900" 
@@ -14,15 +16,40 @@
     <Window.Resources>
         <ResourceDictionary>
             <ResourceDictionary.MergedDictionaries>
-                <ResourceDictionary Source="/StakeholderAnalysis.Visualization;Component/DataTemplates/OnionDataTemplate.xaml"/>
-                <ResourceDictionary Source="/StakeholderAnalysis.Visualization;Component/DataTemplates/StakeholdersDataTemplate.xaml"/>
-                <ResourceDictionary Source="/StakeholderAnalysis.Visualization;Component/DataTemplates/ConnectionsPresenterDataTemplate.xaml"/>
+                <ResourceDictionary Source="/Fluent;Component/Themes/generic.xaml"/>
+                <ResourceDictionary Source="/StakeholderAnalysis.Visualization;Component/DataTemplates/RibbonDataTemplate.xaml"/>
+                <ResourceDictionary Source="/StakeholderAnalysis.Visualization;Component/DataTemplates/OnionDiagramDataTemplate.xaml"/>
             </ResourceDictionary.MergedDictionaries>
         </ResourceDictionary>
     </Window.Resources>
     <Grid>
-        <ContentPresenter Name="OnionRingsPresenter" Content="{Binding}" ContentTemplate="{StaticResource OnionDataTemplate}"/>
-        <ContentPresenter Name="ConnectionsPresenter" Content="{Binding}" ContentTemplate="{StaticResource ConnectionsPresenterDataTemplate}"/>
-        <ContentPresenter Name="StakeholdersPresenter" Content="{Binding}" ContentTemplate="{StaticResource StakeholdersDataTemplate}"/>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="*"/>
+        </Grid.RowDefinitions>
+        <ContentPresenter Grid.Row="0" Content="{Binding}" ContentTemplate="{StaticResource RibbonDataTemplate}"/>
+        <xcad:DockingManager Grid.Row="1" AnchorablesSource="{Binding ViewsList}">
+            <xcad:DockingManager.LayoutItemTemplate>
+                <DataTemplate DataType="viewmodels:StakeholderViewInfo">
+                    <ContentPresenter Content="{Binding ViewModel}">
+                        <ContentPresenter.Style>
+                            <Style TargetType="{x:Type ContentPresenter}">
+                                <Setter Property="ContentTemplate" Value="{StaticResource OnionDiagramDataTemplate}"/>
+                                <Style.Triggers>
+                                    <DataTrigger Binding="{Binding Type}" Value="{x:Static viewmodels:StakeholderViewType.Onion}">
+                                        <Setter Property="ContentTemplate" Value="{StaticResource OnionDiagramDataTemplate}"/>
+                                    </DataTrigger>
+                                </Style.Triggers>
+                            </Style>
+                        </ContentPresenter.Style>
+                    </ContentPresenter>
+                </DataTemplate>
+            </xcad:DockingManager.LayoutItemTemplate>
+            <xcad:LayoutRoot>
+                <xcad:LayoutPanel Orientation="Horizontal">
+                    <xcad:LayoutAnchorablePane/>
+                </xcad:LayoutPanel>
+            </xcad:LayoutRoot>
+        </xcad:DockingManager>
     </Grid>
-</Window>
+</fluent:RibbonWindow>

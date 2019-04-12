@@ -1,17 +1,25 @@
 using System.Collections.ObjectModel;
 using System.Collections.Specialized;
 using System.Linq;
+using System.Windows.Input;
 using StakeholderAnalysis.Data;
+using StakeholderAnalysis.Visualization.Commands;
 
 namespace StakeholderAnalysis.Visualization.ViewModels
 {
     public class MainWindowViewModel : PropertyChangedElement, ISelectionRegister
     {
         private StakeholderViewModel selectedStakeholder;
+
         public MainWindowViewModel() : this(new Analysis()) { }
 
         public MainWindowViewModel(Analysis analysis)
         {
+            ViewsList = new ObservableCollection<StakeholderViewInfo>(new[]
+            {
+                new StakeholderViewInfo("Ui-diagram",StakeholderViewType.Onion, this)
+            });
+
             Analysis = analysis;
             Analysis.Onion.Rings.CollectionChanged += RingsCollectionChanged;
             Analysis.Stakeholders.CollectionChanged += StakeholdersCollectionChanged;
@@ -24,7 +32,6 @@ namespace StakeholderAnalysis.Visualization.ViewModels
             StakeholderConnections = new ObservableCollection<StakeholderConnectionViewModel>(Analysis.Connections.Select(c => new StakeholderConnectionViewModel(c)));
             Margin = 10;
         }
-
 
         public Analysis Analysis { get; }
 
@@ -47,6 +54,28 @@ namespace StakeholderAnalysis.Visualization.ViewModels
                 OnPropertyChanged(nameof(SelectedStakeholder));
             }
         }
+
+        public ICommand OpenCommand => new OpenFileCommand(this);
+
+        public ICommand SaveCommand => new SaveFileCommand(this);
+
+        public ICommand SaveAsCommand => new SaveFileAsCommand(this);
+
+        public ICommand NewCommand => new NewProjectCommand(this);
+
+        public ICommand ToggleOnionView => new ToggleViewCommand(this, StakeholderViewType.Onion);
+
+        public ICommand AddStakeholderCommand => new AddStakeholderCommand(this);
+
+        public bool IsOnionViewOpened
+        {
+            get => ViewsList.Any(vi => vi.Type == StakeholderViewType.Onion);
+            set { }
+        }
+
+        public ICommand CloseApplication => new CloseApplicationCommand();
+
+        public ObservableCollection<StakeholderViewInfo> ViewsList { get; }
 
         private void RingsCollectionChanged(object sender, NotifyCollectionChangedEventArgs e)
         {

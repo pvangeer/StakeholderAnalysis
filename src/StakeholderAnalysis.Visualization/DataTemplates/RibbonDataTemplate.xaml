@@ -1,0 +1,60 @@
+﻿<ResourceDictionary xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+                    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+                    xmlns:viewModels="clr-namespace:StakeholderAnalysis.Visualization.ViewModels"
+                    xmlns:fluent="urn:fluent-ribbon">
+    <DataTemplate x:Key="RibbonDataTemplate" DataType="viewModels:MainWindowViewModel">
+        <fluent:Ribbon Focusable="True" x:Name="Ribbon" AutomaticStateManagement="False">
+            <fluent:Ribbon.Menu>
+                <fluent:Backstage Background="#008fc5">
+
+                    <fluent:BackstageTabControl>
+                        <fluent:Button Header="Nieuw"
+                                       Icon="pack://application:,,,/StakeholderAnalysis.Visualization;component/Resources/DocumentHS.png"
+                                       fluent:KeyTip.Keys="N"
+                                       Command="{Binding NewCommand}"/>
+
+                        <fluent:Button Header="Opslaan" 
+                                       Icon="pack://application:,,,/StakeholderAnalysis.Visualization;component/Resources/saveHS.png"
+                                       fluent:KeyTip.Keys="S"
+                                       Command="{Binding SaveCommand}"/>
+
+                        <fluent:Button Header="Opslaan als"
+                                       Icon="pack://application:,,,/StakeholderAnalysis.Visualization;component/Resources/SaveAsHH.png"
+                                       fluent:KeyTip.Keys="A" 
+                                       Command="{Binding SaveAsCommand}"/>
+
+                        <fluent:Button Header="Openen"
+                                       Icon="pack://application:,,,/StakeholderAnalysis.Visualization;component/Resources/openfolderHS.png"
+                                       fluent:KeyTip.Keys="O"
+                                       Command="{Binding OpenCommand}"/>
+
+                        <fluent:SeparatorTabItem />
+
+                        <fluent:Button Header="Afsluiten"
+                                       Icon="pack://application:,,,/StakeholderAnalysis.Visualization;component/Resources/ClosePreviewHH.png"
+                                       fluent:KeyTip.Keys="X"
+                                       Command="{Binding CloseApplication}" />
+                    </fluent:BackstageTabControl>
+                </fluent:Backstage>
+            </fluent:Ribbon.Menu>
+
+            <fluent:RibbonTabItem Header="Start">
+                <fluent:RibbonGroupBox Header="Schermen">
+                    <fluent:ToggleButton 
+                        LargeIcon="pack://application:,,,/StakeholderAnalysis.Visualization;component/Resources/saveHS.png"
+                        IsChecked="{Binding IsOnionViewOpened}" 
+                        Command="{Binding ToggleOnionView}"/>
+
+                </fluent:RibbonGroupBox>
+
+                <fluent:RibbonGroupBox Header="Stakeholders">
+                    <fluent:Button 
+                        Header="Stakeholder toevoegen" 
+                        Command="{Binding AddStakeholderCommand}"/>
+
+                </fluent:RibbonGroupBox>
+            </fluent:RibbonTabItem>
+        </fluent:Ribbon>
+
+    </DataTemplate>
+</ResourceDictionary>
