@@ -27,6 +27,10 @@ namespace StakeholderAnalysis.Visualization.ViewModels
 
         public double TopPercentage => Stakeholder.TopPercentage;
 
+        public double Interest => Stakeholder.Interest;
+
+        public double Influence => 1-Stakeholder.Influence;
+
         public StakeholderType Type => Stakeholder.Type;
 
         public ICommand StakeholderClickedCommand => new StakeholderClickedCommand(this);
@@ -46,6 +50,12 @@ namespace StakeholderAnalysis.Visualization.ViewModels
                     break;
                 case nameof(Stakeholder.Type):
                     OnPropertyChanged(nameof(Type));
+                    break;
+                case nameof(Stakeholder.Interest):
+                    OnPropertyChanged(nameof(Interest));
+                    break;
+                case nameof(Stakeholder.Influence):
+                    OnPropertyChanged(nameof(Influence));
                     break;
             }
         }
