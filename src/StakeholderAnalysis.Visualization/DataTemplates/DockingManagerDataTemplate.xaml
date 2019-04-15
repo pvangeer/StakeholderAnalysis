@@ -1,0 +1,49 @@
+﻿<ResourceDictionary xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+                    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+                    xmlns:viewModels="clr-namespace:StakeholderAnalysis.Visualization.ViewModels"
+                    xmlns:xcad="http://schemas.xceed.com/wpf/xaml/avalondock"
+                    xmlns:converters="clr-namespace:StakeholderAnalysis.Visualization.Converters">
+    <ResourceDictionary.MergedDictionaries>
+        <ResourceDictionary Source="OnionDiagramDataTemplate.xaml"/>
+        <ResourceDictionary Source="CommunicationStrategyDataTemplate.xaml"/>
+        <ResourceDictionary Source="StakeholderForcesDataTemplate.xaml"/>
+        <ResourceDictionary Source="StakeholderTableDataTemplate.xaml"/>
+    </ResourceDictionary.MergedDictionaries>
+
+    <converters:IsStakeholderViewTypeConverter x:Key="IsStakeholderViewTypeConverter" />
+
+    <DataTemplate x:Key="DockingManagerDataTemplate" DataType="viewModels:MainWindowViewModel">
+        <xcad:DockingManager AnchorablesSource="{Binding ViewList}">
+            <xcad:DockingManager.LayoutItemTemplate>
+                <DataTemplate DataType="viewModels:StakeholderViewInfo">
+                    <ContentPresenter Name="Presenter" Content="{Binding ViewModel}"/>
+                    <DataTemplate.Triggers>
+                        <DataTrigger Binding="{Binding Type, Converter={StaticResource IsStakeholderViewTypeConverter}, ConverterParameter={x:Static viewModels:StakeholderViewType.Onion}}" Value="True">
+                            <Setter TargetName="Presenter" Property="ContentTemplate" Value="{StaticResource OnionDiagramDataTemplate}"/>
+                        </DataTrigger>
+                        <DataTrigger Binding="{Binding Type, Converter={StaticResource IsStakeholderViewTypeConverter}, ConverterParameter={x:Static viewModels:StakeholderViewType.CommunicationStrategy}}" Value="True">
+                            <Setter TargetName="Presenter" Property="ContentTemplate" Value="{StaticResource CommunicationStrategyDataTemplate}"/>
+                        </DataTrigger>
+                        <DataTrigger Binding="{Binding Type, Converter={StaticResource IsStakeholderViewTypeConverter}, ConverterParameter={x:Static viewModels:StakeholderViewType.StakeholderForces}}" Value="True">
+                            <Setter TargetName="Presenter" Property="ContentTemplate" Value="{StaticResource StakeholderForcesDataTemplate}"/>
+                        </DataTrigger>
+                        <DataTrigger Binding="{Binding Type, Converter={StaticResource IsStakeholderViewTypeConverter}, ConverterParameter={x:Static viewModels:StakeholderViewType.StakeholderTable}}" Value="True">
+                            <Setter TargetName="Presenter" Property="ContentTemplate" Value="{StaticResource StakeholderTableDataTemplate}"/>
+                        </DataTrigger>
+                    </DataTemplate.Triggers>
+                </DataTemplate>
+            </xcad:DockingManager.LayoutItemTemplate>
+            <xcad:DockingManager.LayoutItemContainerStyle>
+                <Style TargetType="xcad:LayoutItem">
+                    <Setter Property="CanClose" Value="True"/>
+                    <Setter Property="Title" Value="{Binding Model.Name}"/>
+                </Style>
+            </xcad:DockingManager.LayoutItemContainerStyle>
+            <xcad:LayoutRoot>
+                <xcad:LayoutPanel>
+                    <xcad:LayoutAnchorablePaneGroup/>
+                </xcad:LayoutPanel>
+            </xcad:LayoutRoot>
+        </xcad:DockingManager>
+    </DataTemplate>
+</ResourceDictionary>

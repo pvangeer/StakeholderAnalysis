@@ -5,8 +5,7 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:viewmodels="clr-namespace:StakeholderAnalysis.Visualization.ViewModels;assembly=StakeholderAnalysis.Visualization"
         xmlns:fluent="urn:fluent-ribbon"
-        xmlns:xcad="http://schemas.xceed.com/wpf/xaml/avalondock"
-        mc:Ignorable="d"
+                     mc:Ignorable="d"
         Title="Stakeholderanalyse" 
         Height="900" 
         Width="1500">
@@ -18,7 +17,7 @@
             <ResourceDictionary.MergedDictionaries>
                 <ResourceDictionary Source="/Fluent;Component/Themes/generic.xaml"/>
                 <ResourceDictionary Source="/StakeholderAnalysis.Visualization;Component/DataTemplates/RibbonDataTemplate.xaml"/>
-                <ResourceDictionary Source="/StakeholderAnalysis.Visualization;Component/DataTemplates/OnionDiagramDataTemplate.xaml"/>
+                <ResourceDictionary Source="/StakeholderAnalysis.Visualization;Component/DataTemplates/DockingManagerDataTemplate.xaml"/>
             </ResourceDictionary.MergedDictionaries>
         </ResourceDictionary>
     </Window.Resources>
@@ -28,28 +27,6 @@
             <RowDefinition Height="*"/>
         </Grid.RowDefinitions>
         <ContentPresenter Grid.Row="0" Content="{Binding}" ContentTemplate="{StaticResource RibbonDataTemplate}"/>
-        <xcad:DockingManager Grid.Row="1" AnchorablesSource="{Binding ViewsList}">
-            <xcad:DockingManager.LayoutItemTemplate>
-                <DataTemplate DataType="viewmodels:StakeholderViewInfo">
-                    <ContentPresenter Content="{Binding ViewModel}">
-                        <ContentPresenter.Style>
-                            <Style TargetType="{x:Type ContentPresenter}">
-                                <Setter Property="ContentTemplate" Value="{StaticResource OnionDiagramDataTemplate}"/>
-                                <Style.Triggers>
-                                    <DataTrigger Binding="{Binding Type}" Value="{x:Static viewmodels:StakeholderViewType.Onion}">
-                                        <Setter Property="ContentTemplate" Value="{StaticResource OnionDiagramDataTemplate}"/>
-                                    </DataTrigger>
-                                </Style.Triggers>
-                            </Style>
-                        </ContentPresenter.Style>
-                    </ContentPresenter>
-                </DataTemplate>
-            </xcad:DockingManager.LayoutItemTemplate>
-            <xcad:LayoutRoot>
-                <xcad:LayoutPanel Orientation="Horizontal">
-                    <xcad:LayoutAnchorablePane/>
-                </xcad:LayoutPanel>
-            </xcad:LayoutRoot>
-        </xcad:DockingManager>
+        <ContentPresenter Grid.Row="1" Content="{Binding}" ContentTemplate="{StaticResource DockingManagerDataTemplate}"/>
     </Grid>
 </fluent:RibbonWindow>

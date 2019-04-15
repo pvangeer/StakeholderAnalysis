@@ -8,6 +8,12 @@ namespace StakeholderAnalysis.Visualization.ViewModels
 {
     public enum StakeholderViewType
     {
-        Onion
+        Onion,
+
+        StakeholderTable,
+
+        StakeholderForces,
+
+        CommunicationStrategy
     }
 }

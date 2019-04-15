@@ -22,15 +22,15 @@ namespace StakeholderAnalysis.Visualization.Commands
 
         public void Execute(object parameter)
         {
-            var openView = mainWindowViewModel.ViewsList.FirstOrDefault(vi => vi.Type == viewType);
+            var openView = mainWindowViewModel.ViewList.FirstOrDefault(vi => vi.Type == viewType);
             if (openView == null)
             {
                 // TODO: Get correct name by viewtype
-                mainWindowViewModel.ViewsList.Add(new StakeholderViewInfo("UI-diagram", viewType, mainWindowViewModel));
+                mainWindowViewModel.ViewList.Add(new StakeholderViewInfo("UI-diagram", viewType, mainWindowViewModel));
             }
             else
             {
-                mainWindowViewModel.ViewsList.Remove(openView);
+                mainWindowViewModel.ViewList.Remove(openView);
             }
 
             mainWindowViewModel.OnPropertyChanged(nameof(MainWindowViewModel.IsOnionViewOpened));

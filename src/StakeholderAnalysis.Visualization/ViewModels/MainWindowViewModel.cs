@@ -15,9 +15,12 @@ namespace StakeholderAnalysis.Visualization.ViewModels
 
         public MainWindowViewModel(Analysis analysis)
         {
-            ViewsList = new ObservableCollection<StakeholderViewInfo>(new[]
+            ViewList = new ObservableCollection<StakeholderViewInfo>(new[]
             {
-                new StakeholderViewInfo("Ui-diagram",StakeholderViewType.Onion, this)
+                new StakeholderViewInfo("Ui-diagram", StakeholderViewType.Onion, this),
+                new StakeholderViewInfo("Stakeholder overzicht", StakeholderViewType.StakeholderTable, this),
+                new StakeholderViewInfo("Krachtenveld", StakeholderViewType.StakeholderForces, this),
+                new StakeholderViewInfo("Betrokkenheid", StakeholderViewType.CommunicationStrategy, this),
             });
 
             Analysis = analysis;
@@ -69,13 +72,13 @@ namespace StakeholderAnalysis.Visualization.ViewModels
 
         public bool IsOnionViewOpened
         {
-            get => ViewsList.Any(vi => vi.Type == StakeholderViewType.Onion);
+            get => ViewList.Any(vi => vi.Type == StakeholderViewType.Onion);
             set { }
         }
 
         public ICommand CloseApplication => new CloseApplicationCommand();
 
-        public ObservableCollection<StakeholderViewInfo> ViewsList { get; }
+        public ObservableCollection<StakeholderViewInfo> ViewList { get; }
 
         private void RingsCollectionChanged(object sender, NotifyCollectionChangedEventArgs e)
         {
