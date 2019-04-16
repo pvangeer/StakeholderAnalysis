@@ -5,6 +5,7 @@
         Waterschap,
         Kennisinstituut,
         Rijksoverheid,
-        Stakeholdergroep
+        Stakeholdergroep,
+        Overig
     }
 }

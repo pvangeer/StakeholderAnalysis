@@ -62,6 +62,9 @@
                                 <DataTrigger Binding="{Binding Type}" Value="{x:Static data:StakeholderType.Stakeholdergroep}">
                                     <Setter Property="Source" Value="pack://application:,,,/StakeholderAnalysis.Visualization;component/Resources/Group.png"/>
                                 </DataTrigger>
+                                <DataTrigger Binding="{Binding Type}" Value="{x:Static data:StakeholderType.Overig}">
+                                    <Setter Property="Source" Value="pack://application:,,,/StakeholderAnalysis.Visualization;component/Resources/Group.png"/>
+                                </DataTrigger>
                             </Style.Triggers>
                         </Style>
                     </Image.Style>
