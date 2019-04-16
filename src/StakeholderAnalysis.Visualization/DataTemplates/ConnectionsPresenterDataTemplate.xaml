@@ -5,9 +5,12 @@
 
     <converters:PercentageToDimensionConverter x:Key="PercentageToDimensionConverter" />
 
+    <BooleanToVisibilityConverter x:Key="BooleanToVisibilityConverter" />
+
     <DataTemplate x:Key="ConnectionDataTemplate" DataType="viewModels:StakeholderConnectionViewModel">
         <Grid>
             <Line 
+                Visibility="{Binding IsVisible, Converter={StaticResource BooleanToVisibilityConverter}}"
                 Stroke="{Binding StrokeColor}">
                 <Line.X1>
                     <MultiBinding Converter="{StaticResource PercentageToDimensionConverter}">

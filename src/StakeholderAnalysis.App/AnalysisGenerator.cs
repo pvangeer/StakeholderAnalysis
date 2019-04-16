@@ -102,7 +102,7 @@ namespace StakeholderAnalysis.App
             var aiodekiGroup = new ConnectionGroup("DKI/AIO", Colors.BlanchedAlmond);
             var kkpGroup = new ConnectionGroup("KKP netwerk",Colors.DarkGreen);
             var marketDevelopersGroup = new ConnectionGroup("Marktontwikkelaars", Colors.DeepPink);
-            var enwGroup = new ConnectionGroup("ENW", Colors.DarkCyan);
+            var enwGroup = new ConnectionGroup("ENW", Colors.DarkCyan,true);
 
             // Connections
             analysis.Connections.Add(new StakeholderConnection(coastGroup, hhnk, themagroepKust));

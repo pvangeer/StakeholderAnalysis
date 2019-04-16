@@ -63,10 +63,10 @@
                                     <Setter Property="Source" Value="pack://application:,,,/StakeholderAnalysis.Visualization;component/Resources/Group.png"/>
                                 </DataTrigger>
                                 <DataTrigger Binding="{Binding Type}" Value="{x:Static data:StakeholderType.Ingenieursbureaus}">
-                                    <Setter Property="Source" Value="pack://application:,,,/StakeholderAnalysis.Visualization;component/Resources/Group.png"/>
+                                    <Setter Property="Source" Value="pack://application:,,,/StakeholderAnalysis.Visualization;component/Resources/euro.png"/>
                                 </DataTrigger>
                                 <DataTrigger Binding="{Binding Type}" Value="{x:Static data:StakeholderType.Overig}">
-                                    <Setter Property="Source" Value="pack://application:,,,/StakeholderAnalysis.Visualization;component/Resources/Group.png"/>
+                                    <Setter Property="Source" Value="pack://application:,,,/StakeholderAnalysis.Visualization;component/Resources/other.png"/>
                                 </DataTrigger>
                             </Style.Triggers>
                         </Style>
