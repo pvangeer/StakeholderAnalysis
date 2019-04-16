@@ -7,13 +7,11 @@ namespace StakeholderAnalysis.Visualization.Commands
 {
     public class ToggleViewCommand : ICommand
     {
-        private readonly StakeholderViewType viewType;
         private readonly MainWindowViewModel mainWindowViewModel;
 
-        public ToggleViewCommand(MainWindowViewModel mainWindowViewModel, StakeholderViewType viewType)
+        public ToggleViewCommand(MainWindowViewModel mainWindowViewModel)
         {
             this.mainWindowViewModel = mainWindowViewModel;
-            this.viewType = viewType;
         }
 
         public event EventHandler CanExecuteChanged;
@@ -22,18 +20,25 @@ namespace StakeholderAnalysis.Visualization.Commands
 
         public void Execute(object parameter)
         {
+            if (!(parameter is StakeholderViewType))
+            {
+                return;
+            }
+
+            var viewType = (StakeholderViewType)parameter;
             var openView = mainWindowViewModel.ViewList.FirstOrDefault(vi => vi.Type == viewType);
             if (openView == null)
             {
                 // TODO: Get correct name by viewtype
-                mainWindowViewModel.ViewList.Add(new StakeholderViewInfo("UI-diagram", viewType, mainWindowViewModel));
-            }
-            else
-            {
-                mainWindowViewModel.ViewList.Remove(openView);
+                openView = new StakeholderViewInfo("UI-diagram", viewType, mainWindowViewModel);
+                mainWindowViewModel.ViewList.Add(openView);
             }
 
+            mainWindowViewModel.SelectedViewInfo = openView;
             mainWindowViewModel.OnPropertyChanged(nameof(MainWindowViewModel.IsOnionViewOpened));
+            mainWindowViewModel.OnPropertyChanged(nameof(MainWindowViewModel.IsCommunicationStrategyViewOpened));
+            mainWindowViewModel.OnPropertyChanged(nameof(MainWindowViewModel.IsForcesViewOpened));
+            mainWindowViewModel.OnPropertyChanged(nameof(MainWindowViewModel.IsTableViewOpened));
         }
     }
 }

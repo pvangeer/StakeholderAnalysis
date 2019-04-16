@@ -62,9 +62,6 @@
     <Reference Include="WindowsBase" />
     <Reference Include="PresentationCore" />
     <Reference Include="PresentationFramework" />
-    <Reference Include="Xceed.Wpf.AvalonDock">
-      <HintPath>..\..\packages\Xceed.Wpf.AvalonDock.3.8.19076.18510\lib\net40\Xceed.Wpf.AvalonDock.dll</HintPath>
-    </Reference>
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Commands\AddStakeholderCommand.cs" />
@@ -76,6 +73,7 @@
     <Compile Include="Converters\PercentageToCanvasTopValueConverter.cs" />
     <Compile Include="Converters\PercentageToDimensionConverter.cs" />
     <Compile Include="Converters\IsSelectedStakeholderConverter.cs" />
+    <Compile Include="Converters\SizeToHorizontalArrowPathDataConverter.cs" />
     <Compile Include="Properties\AssemblyInfo.cs">
       <SubType>Code</SubType>
     </Compile>

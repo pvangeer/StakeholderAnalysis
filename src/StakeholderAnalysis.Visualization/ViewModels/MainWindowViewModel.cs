@@ -10,6 +10,7 @@ namespace StakeholderAnalysis.Visualization.ViewModels
     public class MainWindowViewModel : PropertyChangedElement, ISelectionRegister
     {
         private StakeholderViewModel selectedStakeholder;
+        private StakeholderViewInfo selectedViewInfo;
 
         public MainWindowViewModel() : this(new Analysis()) { }
 
@@ -22,6 +23,7 @@ namespace StakeholderAnalysis.Visualization.ViewModels
                 new StakeholderViewInfo("Krachtenveld", StakeholderViewType.StakeholderForces, this),
                 new StakeholderViewInfo("Betrokkenheid", StakeholderViewType.CommunicationStrategy, this),
             });
+            SelectedViewInfo = ViewList.ElementAt(2);
 
             Analysis = analysis;
             Analysis.Onion.Rings.CollectionChanged += RingsCollectionChanged;
@@ -66,19 +68,49 @@ namespace StakeholderAnalysis.Visualization.ViewModels
 
         public ICommand NewCommand => new NewProjectCommand(this);
 
-        public ICommand ToggleOnionView => new ToggleViewCommand(this, StakeholderViewType.Onion);
+        public ICommand ToggleView => new ToggleViewCommand(this);
 
         public ICommand AddStakeholderCommand => new AddStakeholderCommand(this);
 
         public bool IsOnionViewOpened
         {
-            get => ViewList.Any(vi => vi.Type == StakeholderViewType.Onion);
+            get => SelectedViewInfo.Type == StakeholderViewType.Onion;
+            set { }
+        }
+
+        public bool IsTableViewOpened
+        {
+            get => SelectedViewInfo.Type == StakeholderViewType.StakeholderTable;
+            set { }
+        }
+
+        public bool IsCommunicationStrategyViewOpened
+        {
+            get => SelectedViewInfo.Type == StakeholderViewType.CommunicationStrategy;
+            set { }
+        }
+
+        public bool IsForcesViewOpened
+        {
+            get => SelectedViewInfo.Type == StakeholderViewType.StakeholderForces;
             set { }
         }
 
         public ICommand CloseApplication => new CloseApplicationCommand();
 
         public ObservableCollection<StakeholderViewInfo> ViewList { get; }
+
+        public StakeholderViewInfo SelectedViewInfo
+        {
+            get => selectedViewInfo;
+            set
+            {
+                selectedViewInfo = value;
+                OnPropertyChanged(nameof(SelectedViewInfo));
+            }
+        }
+
+
 
         private void RingsCollectionChanged(object sender, NotifyCollectionChangedEventArgs e)
         {

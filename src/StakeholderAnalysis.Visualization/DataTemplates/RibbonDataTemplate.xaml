@@ -41,9 +41,23 @@
             <fluent:RibbonTabItem Header="Start">
                 <fluent:RibbonGroupBox Header="Schermen">
                     <fluent:ToggleButton 
+                        Header="UI-diagram"
                         LargeIcon="pack://application:,,,/StakeholderAnalysis.Visualization;component/Resources/saveHS.png"
                         IsChecked="{Binding IsOnionViewOpened}" 
-                        Command="{Binding ToggleOnionView}"/>
+                        Command="{Binding ToggleView}" CommandParameter="{x:Static viewModels:StakeholderViewType.Onion}"/>
+                    <fluent:ToggleButton 
+                        Header=""
+                        LargeIcon="pack://application:,,,/StakeholderAnalysis.Visualization;component/Resources/saveHS.png"
+                        IsChecked="{Binding IsCommunicationStrategyViewOpened}" 
+                        Command="{Binding ToggleView}" CommandParameter="{x:Static viewModels:StakeholderViewType.CommunicationStrategy}"/>
+                    <fluent:ToggleButton 
+                        LargeIcon="pack://application:,,,/StakeholderAnalysis.Visualization;component/Resources/saveHS.png"
+                        IsChecked="{Binding IsForcesViewOpened}" 
+                        Command="{Binding ToggleView}" CommandParameter="{x:Static viewModels:StakeholderViewType.StakeholderForces}"/>
+                    <fluent:ToggleButton 
+                        LargeIcon="pack://application:,,,/StakeholderAnalysis.Visualization;component/Resources/saveHS.png"
+                        IsChecked="{Binding IsTableViewOpened}" 
+                        Command="{Binding ToggleView}" CommandParameter="{x:Static viewModels:StakeholderViewType.StakeholderTable}"/>
 
                 </fluent:RibbonGroupBox>
 
