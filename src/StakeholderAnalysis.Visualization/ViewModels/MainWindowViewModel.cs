@@ -18,10 +18,10 @@ namespace StakeholderAnalysis.Visualization.ViewModels
         {
             ViewList = new ObservableCollection<StakeholderViewInfo>(new[]
             {
-                new StakeholderViewInfo("Ui-diagram", StakeholderViewType.Onion, this),
-                new StakeholderViewInfo("Stakeholder overzicht", StakeholderViewType.StakeholderTable, this),
-                new StakeholderViewInfo("Krachtenveld", StakeholderViewType.StakeholderForces, this),
-                new StakeholderViewInfo("Betrokkenheid", StakeholderViewType.CommunicationStrategy, this),
+                new StakeholderViewInfo(StakeholderViewType.Onion, this),
+                new StakeholderViewInfo(StakeholderViewType.StakeholderTable, this),
+                new StakeholderViewInfo(StakeholderViewType.StakeholderForces, this),
+                new StakeholderViewInfo(StakeholderViewType.CommunicationStrategy, this),
             });
             SelectedViewInfo = ViewList.ElementAt(2);
 

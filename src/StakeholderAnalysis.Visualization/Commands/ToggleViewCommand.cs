@@ -29,8 +29,7 @@ namespace StakeholderAnalysis.Visualization.Commands
             var openView = mainWindowViewModel.ViewList.FirstOrDefault(vi => vi.Type == viewType);
             if (openView == null)
             {
-                // TODO: Get correct name by viewtype
-                openView = new StakeholderViewInfo("UI-diagram", viewType, mainWindowViewModel);
+                openView = new StakeholderViewInfo(viewType, mainWindowViewModel);
                 mainWindowViewModel.ViewList.Add(openView);
             }
 

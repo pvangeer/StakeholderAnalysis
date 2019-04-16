@@ -10,6 +10,7 @@
     </ResourceDictionary.MergedDictionaries>
     
     <converters:PercentageToDimensionConverter x:Key="PercentageToDimensionConverter" />
+    <converters:SizeToArrowsPathDataConverter x:Key="SizeToArrowsPathDataConverter" />
 
     <Style x:Key="TextBlockLabelStyle" TargetType="TextBlock">
         <Setter Property="Foreground" Value="Black"/>
@@ -19,8 +20,9 @@
         <Setter Property="VerticalAlignment" Value="Center"/>
         <Setter Property="Margin" Value="10"/>
     </Style>
-    <converters:SizeToHorizontalArrowPathDataConverter x:Key="SizeToHorizontalArrowPathDataConverter" />
+
     <DataTemplate x:Key="StakeholderForcesDataTemplate" DataType="viewModels:MainWindowViewModel">
+        <!--Main grid-->
         <Grid>
             <Grid.RowDefinitions>
                 <RowDefinition Height="*"/>
@@ -30,13 +32,16 @@
                 <ColumnDefinition Width="Auto"/>
                 <ColumnDefinition Width="*"/>
             </Grid.ColumnDefinitions>
+            <!--Diagram drawing grid (including twe canvasses-->
             <Grid Grid.Row="0" Grid.Column="1">
+                <!--TODO: Consider moving this to the canvas-->
                 <Grid.Background>
                     <LinearGradientBrush StartPoint="0,1" EndPoint="1,0">
                         <GradientStop Color="CornflowerBlue" Offset="0.0" />
                         <GradientStop Color="LightGreen" Offset="1.0" />
                     </LinearGradientBrush>
                 </Grid.Background>
+                <!--Canvas that draws the arrows of the diagram-->
                 <Canvas Name="LinesCanvas" Margin="{Binding Margin}" Background="Transparent">
                     <Canvas.Resources>
                         <system:Double x:Key="MinValue">0.0</system:Double>
@@ -45,65 +50,14 @@
                     </Canvas.Resources>
                     <Path Stroke="Black" StrokeThickness="3">
                         <Path.Data>
-                            <MultiBinding Converter="{StaticResource SizeToHorizontalArrowPathDataConverter}">
+                            <MultiBinding Converter="{StaticResource SizeToArrowsPathDataConverter}">
                                 <Binding ElementName="LinesCanvas" Path="ActualWidth"/>
                                 <Binding ElementName="LinesCanvas" Path="ActualHeight"/>
                             </MultiBinding>
                         </Path.Data>
                     </Path>
-                    <!--<Line Stroke="Black">
-                        <Line.X1>
-                            <MultiBinding Converter="{StaticResource PercentageToDimensionConverter}">
-                                <Binding Source="{StaticResource MiddleValue}"/>
-                                <Binding ElementName="LinesCanvas" Path="ActualWidth"/>
-                            </MultiBinding>
-                        </Line.X1>
-                        <Line.Y1>
-                            <MultiBinding Converter="{StaticResource PercentageToDimensionConverter}">
-                                <Binding Source="{StaticResource MinValue}"/>
-                                <Binding ElementName="LinesCanvas" Path="ActualHeight"/>
-                            </MultiBinding>
-                        </Line.Y1>
-                        <Line.X2>
-                            <MultiBinding Converter="{StaticResource PercentageToDimensionConverter}">
-                                <Binding Source="{StaticResource MiddleValue}"/>
-                                <Binding ElementName="LinesCanvas" Path="ActualWidth"/>
-                            </MultiBinding>
-                        </Line.X2>
-                        <Line.Y2>
-                            <MultiBinding Converter="{StaticResource PercentageToDimensionConverter}">
-                                <Binding Source="{StaticResource MaxValue}"/>
-                                <Binding ElementName="LinesCanvas" Path="ActualHeight"/>
-                            </MultiBinding>
-                        </Line.Y2>
-                    </Line>
-                    <Line Stroke="Black">
-                        <Line.X1>
-                            <MultiBinding Converter="{StaticResource PercentageToDimensionConverter}">
-                                <Binding Source="{StaticResource MinValue}"/>
-                                <Binding ElementName="LinesCanvas" Path="ActualWidth"/>
-                            </MultiBinding>
-                        </Line.X1>
-                        <Line.Y1>
-                            <MultiBinding Converter="{StaticResource PercentageToDimensionConverter}">
-                                <Binding Source="{StaticResource MiddleValue}"/>
-                                <Binding ElementName="LinesCanvas" Path="ActualHeight"/>
-                            </MultiBinding>
-                        </Line.Y1>
-                        <Line.X2>
-                            <MultiBinding Converter="{StaticResource PercentageToDimensionConverter}">
-                                <Binding Source="{StaticResource MaxValue}"/>
-                                <Binding ElementName="LinesCanvas" Path="ActualWidth"/>
-                            </MultiBinding>
-                        </Line.X2>
-                        <Line.Y2>
-                            <MultiBinding Converter="{StaticResource PercentageToDimensionConverter}">
-                                <Binding Source="{StaticResource MiddleValue}"/>
-                                <Binding ElementName="LinesCanvas" Path="ActualHeight"/>
-                            </MultiBinding>
-                        </Line.Y2>
-                    </Line>-->
                 </Canvas>
+                <!--Canvas that holds all stakeholders-->
                 <ItemsControl ItemsSource="{Binding Stakeholders}"
                           Margin="{Binding Margin}"
                           Background="Transparent"
@@ -136,6 +90,7 @@
                         </ItemsPanelTemplate>
                     </ItemsControl.ItemsPanel>
                 </ItemsControl>
+                <!--Grid that holds all tekst objects inside the diagram-->
                 <Grid>
                     <Grid.Resources>
                         <Style TargetType="TextBlock">
@@ -162,6 +117,7 @@
                     <TextBlock Grid.Row="0" Grid.Column="2" Text="Betrekken" TextAlignment="Right"/>
                 </Grid>
             </Grid>
+            <!--Grid that represents the labels next to the diagram-->
             <Grid Grid.Row="0" Grid.Column="0">
                 <Grid.RowDefinitions>
                     <RowDefinition Height="Auto"/>

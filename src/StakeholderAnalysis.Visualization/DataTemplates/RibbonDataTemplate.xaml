@@ -41,34 +41,36 @@
             <fluent:RibbonTabItem Header="Start">
                 <fluent:RibbonGroupBox Header="Schermen">
                     <fluent:ToggleButton 
-                        Header="UI-diagram"
-                        LargeIcon="pack://application:,,,/StakeholderAnalysis.Visualization;component/Resources/saveHS.png"
-                        IsChecked="{Binding IsOnionViewOpened}" 
-                        Command="{Binding ToggleView}" CommandParameter="{x:Static viewModels:StakeholderViewType.Onion}"/>
-                    <fluent:ToggleButton 
-                        Header=""
-                        LargeIcon="pack://application:,,,/StakeholderAnalysis.Visualization;component/Resources/saveHS.png"
-                        IsChecked="{Binding IsCommunicationStrategyViewOpened}" 
-                        Command="{Binding ToggleView}" CommandParameter="{x:Static viewModels:StakeholderViewType.CommunicationStrategy}"/>
-                    <fluent:ToggleButton 
-                        LargeIcon="pack://application:,,,/StakeholderAnalysis.Visualization;component/Resources/saveHS.png"
-                        IsChecked="{Binding IsForcesViewOpened}" 
-                        Command="{Binding ToggleView}" CommandParameter="{x:Static viewModels:StakeholderViewType.StakeholderForces}"/>
-                    <fluent:ToggleButton 
-                        LargeIcon="pack://application:,,,/StakeholderAnalysis.Visualization;component/Resources/saveHS.png"
+                        Header="Stakeholder overzicht"
+                        LargeIcon="pack://application:,,,/StakeholderAnalysis.Visualization;component/Resources/table.png"
                         IsChecked="{Binding IsTableViewOpened}" 
                         Command="{Binding ToggleView}" CommandParameter="{x:Static viewModels:StakeholderViewType.StakeholderTable}"/>
 
+                    <fluent:ToggleButton 
+                        Header="UI-diagram"
+                        LargeIcon="pack://application:,,,/StakeholderAnalysis.Visualization;component/Resources/onion.png"
+                        IsChecked="{Binding IsOnionViewOpened}" 
+                        Command="{Binding ToggleView}" CommandParameter="{x:Static viewModels:StakeholderViewType.Onion}"/>
+
+                    <fluent:ToggleButton 
+                        Header="Krachtenveld"
+                        LargeIcon="pack://application:,,,/StakeholderAnalysis.Visualization;component/Resources/forces.png"
+                        IsChecked="{Binding IsForcesViewOpened}" 
+                        Command="{Binding ToggleView}" CommandParameter="{x:Static viewModels:StakeholderViewType.StakeholderForces}"/>
+
+                    <fluent:ToggleButton 
+                        Header="Betrokkenheid"
+                        LargeIcon="pack://application:,,,/StakeholderAnalysis.Visualization;component/Resources/involvement.png"
+                        IsChecked="{Binding IsCommunicationStrategyViewOpened}" 
+                        Command="{Binding ToggleView}" CommandParameter="{x:Static viewModels:StakeholderViewType.CommunicationStrategy}"/>
                 </fluent:RibbonGroupBox>
 
                 <fluent:RibbonGroupBox Header="Stakeholders">
                     <fluent:Button 
                         Header="Stakeholder toevoegen" 
                         Command="{Binding AddStakeholderCommand}"/>
-
                 </fluent:RibbonGroupBox>
             </fluent:RibbonTabItem>
         </fluent:Ribbon>
-
     </DataTemplate>
 </ResourceDictionary>
