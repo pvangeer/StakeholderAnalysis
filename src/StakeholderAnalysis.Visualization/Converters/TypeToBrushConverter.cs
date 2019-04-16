@@ -25,6 +25,8 @@ namespace StakeholderAnalysis.Visualization.Converters
                     return new SolidColorBrush(Colors.MistyRose);
                 case StakeholderType.Stakeholdergroep:
                     return new SolidColorBrush(Colors.DarkGray);
+                case StakeholderType.Ingenieursbureaus:
+                    return new SolidColorBrush(Colors.CadetBlue);
                 case StakeholderType.Overig:
                     return new SolidColorBrush(Colors.Chocolate);
                 default:
