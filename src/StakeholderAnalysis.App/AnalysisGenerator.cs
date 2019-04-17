@@ -15,86 +15,86 @@ namespace StakeholderAnalysis.App
             analysis.Onion.Rings.Add(new OnionRing("", 0.3) { BackgroundColor = Colors.DarkSlateBlue });
 
             //Team
-            var wvl = AddStakeholder(analysis, "WVL", 0.5, 0.8, 0.7,1.0, StakeholderType.Rijksoverheid);
-            var dgwb = AddStakeholder(analysis, "DGWB", 0.45, 0.75,0.5,1.0, StakeholderType.Rijksoverheid);
-            var deltares = AddStakeholder(analysis, "Deltares", 0.55, 0.75, 0.7, 0.8, StakeholderType.Kennisinstituut);
-            var markt = AddStakeholder(analysis, "Ontwikkelaars (overig)", 0.5, 0.65, 0.75,0.7, StakeholderType.Kennisinstituut);
+            var wvl = AddStakeholder(analysis, "WVL", 0.5, 0.8, 0.9,1.0, StakeholderType.Rijksoverheid);
+            var dgwb = AddStakeholder(analysis, "DGWB", 0.45, 0.75,0.94,1.0, StakeholderType.Rijksoverheid);
+            var deltares = AddStakeholder(analysis, "Deltares", 0.55, 0.75, 0.9, 0.9, StakeholderType.Kennisinstituut);
+            var markt = AddStakeholder(analysis, "Ontwikkelaars (overig)", 0.5, 0.65, 0.8,0.8, StakeholderType.Kennisinstituut);
 
             // Groepen
             var kkp = AddStakeholder(analysis, "KKP", 0.5, 0.55, 1.0, 0.5, StakeholderType.Stakeholdergroep);
-            var enw = AddStakeholder(analysis, "ENW", 0.62, 0.6, 0.4, 0.4, StakeholderType.Stakeholdergroep);
-            var uvw = AddStakeholder(analysis, "UvW", 0.32, 0.67, 0.8, 0.6, StakeholderType.Stakeholdergroep);
-            var wwk = AddStakeholder(analysis, "WWK", 0.29, 0.75, 0.6, 0.5, StakeholderType.Stakeholdergroep);
-            var cwk = AddStakeholder(analysis, "CWK", 0.29, 0.84, 0.6, 0.5, StakeholderType.Stakeholdergroep);
-            var aio = AddStakeholder(analysis, "AIO", 0.4, 0.56, 0.5, 0.7, StakeholderType.Stakeholdergroep);
-            var dki = AddStakeholder(analysis, "DKI", 0.46, 0.42, 0.5, 0.7, StakeholderType.Stakeholdergroep);
-            var hwbp = AddStakeholder(analysis, "HWBP", 0.5, 0.45, 0.5, 0.7, StakeholderType.Overig);
+            var enw = AddStakeholder(analysis, "ENW", 0.62, 0.6, 0.6, 0.4, StakeholderType.Stakeholdergroep);
+            var uvw = AddStakeholder(analysis, "UvW", 0.32, 0.67, 0.9, 0.6, StakeholderType.Stakeholdergroep);
+            var wwk = AddStakeholder(analysis, "WWK", 0.29, 0.75, 0.85, 0.55, StakeholderType.Stakeholdergroep);
+            var cwk = AddStakeholder(analysis, "CWK", 0.29, 0.84, 0.85, 0.5, StakeholderType.Stakeholdergroep);
+            var aio = AddStakeholder(analysis, "AIO", 0.4, 0.56, 0.7, 0.7, StakeholderType.Stakeholdergroep);
+            var dki = AddStakeholder(analysis, "DKI", 0.46, 0.42, 0.6, 0.7, StakeholderType.Stakeholdergroep);
+            var hwbp = AddStakeholder(analysis, "HWBP", 0.5, 0.45, 0.5, 0.55, StakeholderType.Overig);
 
-            var ilt = AddStakeholder(analysis, "ILT", 0.4, 0.45, 0.5, 0.7, StakeholderType.Rijksoverheid);
-            var wateropleidingen = AddStakeholder(analysis, "Wateropleidingen", 0.5, 0.3, 0.5, 0.7, StakeholderType.Overig);
-            var kennisvoorkeringen = AddStakeholder(analysis, "Kennis voor keringen", 0.5, 0.9, 0.5, 0.7, StakeholderType.Kennisinstituut);
+            var ilt = AddStakeholder(analysis, "ILT", 0.4, 0.45, 0.8, 0.5, StakeholderType.Rijksoverheid);
+            var wateropleidingen = AddStakeholder(analysis, "Wateropleidingen", 0.5, 0.3, 0.6, 0.2, StakeholderType.Overig);
+            var kennisvoorkeringen = AddStakeholder(analysis, "Kennis voor keringen", 0.5, 0.9, 0.4, 0.6, StakeholderType.Kennisinstituut);
 
-            var themagroepKust = AddStakeholder(analysis, "Themagroep Kust", 0.35, 0.4, 0.7, 0.3, StakeholderType.Stakeholdergroep);
+            var themagroepKust = AddStakeholder(analysis, "Themagroep Kust", 0.35, 0.4, 0.9, 0.3, StakeholderType.Stakeholdergroep);
             var stowa = AddStakeholder(analysis, "STOWA", 0.3, 0.5, 0.7, 0.3, StakeholderType.Stakeholdergroep);
 
             // Waterschappen
-            var hhnk = AddStakeholder(analysis, "Hollands Noorderkwartier", 0.16, 0.8, 0.8, 0.4, StakeholderType.Waterschap);
-            var scheldestromen = AddStakeholder(analysis, "Scheldestromen", 0.44, 0.08, 0.8, 0.4, StakeholderType.Waterschap);
-            var wetterskip = AddStakeholder(analysis, "Wetterskip", 0.14, 0.61, 0.8, 0.4, StakeholderType.Waterschap);
-            var rijnland = AddStakeholder(analysis, "Rijnland", 0.26, 0.26, 0.8, 0.4, StakeholderType.Waterschap);
-            var delfland = AddStakeholder(analysis, "Delfland", 0.43, 0.2, 0.8, 0.4, StakeholderType.Waterschap);
-            var hollandseDelta = AddStakeholder(analysis, "Hollandse Delta", 0.36, 0.1, 0.8, 0.4, StakeholderType.Waterschap);
+            var hhnk = AddStakeholder(analysis, "Hollands Noorderkwartier", 0.16, 0.8, 0.8, 0.55, StakeholderType.Waterschap);
+            var scheldestromen = AddStakeholder(analysis, "Scheldestromen", 0.44, 0.08, 0.8, 0.5, StakeholderType.Waterschap);
+            var wetterskip = AddStakeholder(analysis, "Wetterskip", 0.14, 0.61, 0.8, 0.5, StakeholderType.Waterschap);
+            var rijnland = AddStakeholder(analysis, "Rijnland", 0.26, 0.26, 0.8, 0.5, StakeholderType.Waterschap);
+            var delfland = AddStakeholder(analysis, "Delfland", 0.43, 0.2, 0.8, 0.5, StakeholderType.Waterschap);
+            var hollandseDelta = AddStakeholder(analysis, "Hollandse Delta", 0.36, 0.1, 0.8, 0.5, StakeholderType.Waterschap);
             var rws = AddStakeholder(analysis, "RWS", 0.09, 0.47, 0.8, 0.4, StakeholderType.Waterschap);
 
             var nzv = AddStakeholder(analysis, "Noordezijlvest", 0.1, 0.72, 0.8, 0.4, StakeholderType.Waterschap);
             var hena = AddStakeholder(analysis, "Hunze en Aa's", 0.21, 0.16, 0.8, 0.4, StakeholderType.Waterschap);
             var dod = AddStakeholder(analysis, "Drents Overijsselse Delta", 0.07, 0.60, 0.8, 0.4, StakeholderType.Waterschap);
-            var zzl = AddStakeholder(analysis, "Zuiderzeeland", 0.14, 0.50, 0.8, 0.4, StakeholderType.Waterschap);
+            var zzl = AddStakeholder(analysis, "Zuiderzeeland", 0.14, 0.50, 0.8, 0.5, StakeholderType.Waterschap);
             var agenv = AddStakeholder(analysis, "Amstel Gooi en Vecht", 0.11, 0.36, 0.8, 0.4, StakeholderType.Waterschap);
-            var vv = AddStakeholder(analysis, "Vallei en Veluwen", 0.18, 0.39, 0.8, 0.4, StakeholderType.Waterschap);
-            var renij = AddStakeholder(analysis, "Rijn en IJssel", 0.21, 0.29, 0.8, 0.4, StakeholderType.Waterschap);
-            var aaenm = AddStakeholder(analysis, "Aa en Maas", 0.31, 0.23, 0.8, 0.4, StakeholderType.Waterschap);
-            var limburg = AddStakeholder(analysis, "Limburg", 0.37, 0.22, 0.8, 0.4, StakeholderType.Waterschap);
+            var vv = AddStakeholder(analysis, "Vallei en Veluwen", 0.18, 0.39, 0.8, 0.5, StakeholderType.Waterschap);
+            var renij = AddStakeholder(analysis, "Rijn en IJssel", 0.21, 0.29, 0.8, 0.5, StakeholderType.Waterschap);
+            var aaenm = AddStakeholder(analysis, "Aa en Maas", 0.31, 0.23, 0.8, 0.5, StakeholderType.Waterschap);
+            var limburg = AddStakeholder(analysis, "Limburg", 0.37, 0.22, 0.8, 0.55, StakeholderType.Waterschap);
             var bdelta = AddStakeholder(analysis, "Brabantse Delta", 0.29, 0.11, 0.8, 0.4, StakeholderType.Waterschap);
-            var rivierenland = AddStakeholder(analysis, "Rivierenland", 0.48, 0.16, 0.8, 0.4, StakeholderType.Waterschap);
+            var rivierenland = AddStakeholder(analysis, "Rivierenland", 0.48, 0.16, 0.8, 0.5, StakeholderType.Waterschap);
             var srij = AddStakeholder(analysis, "Stichtse Rijnlanden", 0.5, 0.08, 0.8, 0.4, StakeholderType.Waterschap);
 
-            var hkv = AddStakeholder(analysis, "HKV", 0.56, 0.25, 0.8, 0.4, StakeholderType.Ingenieursbureaus);
-            var rhdhv = AddStakeholder(analysis, "RHDHV", 0.62, 0.25, 0.8, 0.4, StakeholderType.Ingenieursbureaus);
-            var fugro = AddStakeholder(analysis, "Fugro", 0.59, 0.15, 0.8, 0.4, StakeholderType.Ingenieursbureaus);
-            var wibo = AddStakeholder(analysis, "Witteveen en Bos", 0.67, 0.3, 0.8, 0.4, StakeholderType.Ingenieursbureaus);
-            var arc = AddStakeholder(analysis, "Arcadis", 0.74, 0.36, 0.8, 0.4, StakeholderType.Ingenieursbureaus);
-            var wnet = AddStakeholder(analysis, "Waternet", 0.72, 0.25, 0.8, 0.4, StakeholderType.Ingenieursbureaus);
-            var ivInfa = AddStakeholder(analysis, "Iv - Infra", 0.79, 0.29, 0.8, 0.4, StakeholderType.Ingenieursbureaus);
-            var antea = AddStakeholder(analysis, "Antea Group", 0.85, 0.38, 0.8, 0.4, StakeholderType.Ingenieursbureaus);
-            var greenrivers = AddStakeholder(analysis, "Greenrivers", 0.78, 0.41, 0.8, 0.4, StakeholderType.Ingenieursbureaus);
-            var bwz = AddStakeholder(analysis, "BWZ Ingenieurs", 0.92, 0.35, 0.8, 0.4, StakeholderType.Ingenieursbureaus);
-            var infram = AddStakeholder(analysis, "Infram", 0.8, 0.5, 0.8, 0.4, StakeholderType.Ingenieursbureaus);
-            var sweco = AddStakeholder(analysis, "Sweco", 0.95, 0.54, 0.8, 0.4, StakeholderType.Ingenieursbureaus);
-            var tauw = AddStakeholder(analysis, "Tauw", 0.9, 0.53, 0.8, 0.4, StakeholderType.Ingenieursbureaus);
-            var movares = AddStakeholder(analysis, "Movares", 0.86, 0.48, 0.8, 0.4, StakeholderType.Ingenieursbureaus);
-            var cso = AddStakeholder(analysis, "CSO Lievense", 0.82, 0.60, 0.8, 0.4, StakeholderType.Ingenieursbureaus);
-            var hydrologic = AddStakeholder(analysis, "HydroLogic", 0.92, 0.62, 0.8, 0.4, StakeholderType.Ingenieursbureaus);
-            var aveco = AddStakeholder(analysis, "Aveco de Bondt", 0.94, 0.43, 0.8, 0.4, StakeholderType.Ingenieursbureaus);
-            var rps = AddStakeholder(analysis, "RPS", 0.53, 0.18, 0.8, 0.4, StakeholderType.Ingenieursbureaus);
-            var crux = AddStakeholder(analysis, "CRUX", 0.56, 0.1, 0.8, 0.4, StakeholderType.Ingenieursbureaus);
-            var nenS = AddStakeholder(analysis, "Nelen & Schuurmans", 0.65, 0.12, 0.8, 0.4, StakeholderType.Ingenieursbureaus);
-            var geobest = AddStakeholder(analysis, "Geobest", 0.71, 0.14, 0.8, 0.4, StakeholderType.Ingenieursbureaus);
-            var bzim = AddStakeholder(analysis, "BZIM", 0.77, 0.16, 0.8, 0.4, StakeholderType.Ingenieursbureaus);
-            var zzpers = AddStakeholder(analysis, "ZZPers", 0.83, 0.23, 0.8, 0.4, StakeholderType.Ingenieursbureaus);
+            var hkv = AddStakeholder(analysis, "HKV", 0.56, 0.25, 0.7, 0.65, StakeholderType.Ingenieursbureaus);
+            var rhdhv = AddStakeholder(analysis, "RHDHV", 0.62, 0.25, 0.64, 0.4, StakeholderType.Ingenieursbureaus);
+            var fugro = AddStakeholder(analysis, "Fugro", 0.59, 0.15, 0.5, 0.4, StakeholderType.Ingenieursbureaus);
+            var wibo = AddStakeholder(analysis, "Witteveen en Bos", 0.67, 0.3, 0.6, 0.5, StakeholderType.Ingenieursbureaus);
+            var arc = AddStakeholder(analysis, "Arcadis", 0.74, 0.36, 0.6, 0.6, StakeholderType.Ingenieursbureaus);
+            var wnet = AddStakeholder(analysis, "Waternet", 0.72, 0.25, 0.5, 0.2, StakeholderType.Ingenieursbureaus);
+            var ivInfa = AddStakeholder(analysis, "Iv - Infra", 0.79, 0.29, 0.5, 0.25, StakeholderType.Ingenieursbureaus);
+            var antea = AddStakeholder(analysis, "Antea Group", 0.85, 0.38, 0.6, 0.2, StakeholderType.Ingenieursbureaus);
+            var greenrivers = AddStakeholder(analysis, "Greenrivers", 0.78, 0.41, 0.7, 0.65, StakeholderType.Ingenieursbureaus);
+            var bwz = AddStakeholder(analysis, "BWZ Ingenieurs", 0.92, 0.35, 0.5, 0.2, StakeholderType.Ingenieursbureaus);
+            var infram = AddStakeholder(analysis, "Infram", 0.8, 0.5, 0.6, 0.5, StakeholderType.Ingenieursbureaus);
+            var sweco = AddStakeholder(analysis, "Sweco", 0.95, 0.54, 0.55, 0.5, StakeholderType.Ingenieursbureaus);
+            var tauw = AddStakeholder(analysis, "Tauw", 0.9, 0.53, 0.45, 0.35, StakeholderType.Ingenieursbureaus);
+            var movares = AddStakeholder(analysis, "Movares", 0.86, 0.48, 0.6, 0.5, StakeholderType.Ingenieursbureaus);
+            var cso = AddStakeholder(analysis, "CSO Lievense", 0.82, 0.60, 0.58, 0.55, StakeholderType.Ingenieursbureaus);
+            var hydrologic = AddStakeholder(analysis, "HydroLogic", 0.92, 0.62, 0.5, 0.22, StakeholderType.Ingenieursbureaus);
+            var aveco = AddStakeholder(analysis, "Aveco de Bondt", 0.94, 0.43, 0.5, 0.2, StakeholderType.Ingenieursbureaus);
+            var rps = AddStakeholder(analysis, "RPS", 0.53, 0.18, 0.56, 0.4, StakeholderType.Ingenieursbureaus);
+            var crux = AddStakeholder(analysis, "CRUX", 0.56, 0.1, 0.6, 0.15, StakeholderType.Ingenieursbureaus);
+            var nenS = AddStakeholder(analysis, "Nelen & Schuurmans", 0.65, 0.12, 0.45, 0.65, StakeholderType.Ingenieursbureaus);
+            var geobest = AddStakeholder(analysis, "Geobest", 0.71, 0.14, 0.57, 0.26, StakeholderType.Ingenieursbureaus);
+            var bzim = AddStakeholder(analysis, "BZIM", 0.77, 0.16, 0.54, 0.18, StakeholderType.Ingenieursbureaus);
+            var zzpers = AddStakeholder(analysis, "ZZPers", 0.83, 0.23, 0.6, 0.5, StakeholderType.Ingenieursbureaus);
 
-            var ihw = AddStakeholder(analysis, "IHW", 0.57, 0.48, 0.8, 0.4, StakeholderType.Overig);
-            var waterschapshuis = AddStakeholder(analysis, "Waterschapshuis", 0.58, 0.4, 0.8, 0.4, StakeholderType.Overig);
-            var technolution = AddStakeholder(analysis, "Technolution", 0.68, 0.94, 0.8, 0.4, StakeholderType.Kennisinstituut);
-            var vortech = AddStakeholder(analysis, "Vortech", 0.61, 0.93, 0.8, 0.4, StakeholderType.Kennisinstituut);
-            var alten = AddStakeholder(analysis, "Alten", 0.56, 0.89, 0.8, 0.4, StakeholderType.Kennisinstituut);
+            var ihw = AddStakeholder(analysis, "IHW", 0.57, 0.48, 0.3, 0.5, StakeholderType.Overig);
+            var waterschapshuis = AddStakeholder(analysis, "Waterschapshuis", 0.58, 0.4, 0.25, 0.4, StakeholderType.Overig);
+            var technolution = AddStakeholder(analysis, "Technolution", 0.68, 0.94, 0.1, 0.3, StakeholderType.Kennisinstituut);
+            var vortech = AddStakeholder(analysis, "Vortech", 0.61, 0.93, 0.2, 0.5, StakeholderType.Kennisinstituut);
+            var alten = AddStakeholder(analysis, "Alten", 0.56, 0.89, 0.14, 0.7, StakeholderType.Kennisinstituut);
 
-            var tud = AddStakeholder(analysis, "TU Delft", 0.73, 0.83, 0.8, 0.4, StakeholderType.Kennisinstituut);
-            var tut = AddStakeholder(analysis, "TU Twente", 0.84, 0.78, 0.8, 0.4, StakeholderType.Kennisinstituut);
-            var vu = AddStakeholder(analysis, "VU Amsterdam", 0.8, 0.87, 0.8, 0.4, StakeholderType.Kennisinstituut);
-            var uu = AddStakeholder(analysis, "UU", 0.85, 0.68, 0.8, 0.4, StakeholderType.Kennisinstituut);
-            var tno = AddStakeholder(analysis, "TNO", 0.67, 0.68, 0.8, 0.4, StakeholderType.Kennisinstituut);
-            var knmi = AddStakeholder(analysis, "KNMI", 0.67, 0.8, 0.8, 0.4, StakeholderType.Kennisinstituut);
+            var tud = AddStakeholder(analysis, "TU Delft", 0.73, 0.83, 0.25, 0.45, StakeholderType.Kennisinstituut);
+            var tut = AddStakeholder(analysis, "TU Twente", 0.84, 0.78, 0.25, 0.45, StakeholderType.Kennisinstituut);
+            var vu = AddStakeholder(analysis, "VU Amsterdam", 0.8, 0.87, 0.16, 0.15, StakeholderType.Kennisinstituut);
+            var uu = AddStakeholder(analysis, "UU", 0.85, 0.68, 0.15, 0.17, StakeholderType.Kennisinstituut);
+            var tno = AddStakeholder(analysis, "TNO", 0.67, 0.68, 0.23, 0.56, StakeholderType.Kennisinstituut);
+            var knmi = AddStakeholder(analysis, "KNMI", 0.67, 0.8, 0.6, 0.5, StakeholderType.Kennisinstituut);
 
             // Connectiongroepen
             var coastGroup = new ConnectionGroup("Themagroep kust",Colors.DarkRed);
