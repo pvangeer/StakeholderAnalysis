@@ -57,6 +57,33 @@
                         </Path.Data>
                     </Path>
                 </Canvas>
+
+                <!--Grid that holds all tekst objects inside the diagram-->
+                <Grid>
+                    <Grid.Resources>
+                        <Style TargetType="TextBlock">
+                            <Setter Property="Margin" Value="15"/>
+                            <Setter Property="FontWeight" Value="Bold"/>
+                            <Setter Property="Foreground" Value="DimGray"/>
+                            <Setter Property="FontStyle" Value="Italic"/>
+                            <Setter Property="FontSize" Value="64"/>
+                        </Style>
+                    </Grid.Resources>
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="Auto"/>
+                        <RowDefinition Height="*"/>
+                        <RowDefinition Height="Auto"/>
+                    </Grid.RowDefinitions>
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="Auto"/>
+                        <ColumnDefinition Width="*"/>
+                        <ColumnDefinition Width="Auto"/>
+                    </Grid.ColumnDefinitions>
+                    <TextBlock Grid.Row="0" Grid.Column="0" Text="Tevreden houden" TextAlignment="Left"/>
+                    <TextBlock Grid.Row="2" Grid.Column="0" Text="Monitoren" TextAlignment="Left"/>
+                    <TextBlock Grid.Row="2" Grid.Column="2" Text="Informeren"  TextAlignment="Right"/>
+                    <TextBlock Grid.Row="0" Grid.Column="2" Text="Betrekken" TextAlignment="Right"/>
+                </Grid>
                 <!--Canvas that holds all stakeholders-->
                 <ItemsControl ItemsSource="{Binding Stakeholders}"
                           Margin="{Binding Margin}"
@@ -90,32 +117,6 @@
                         </ItemsPanelTemplate>
                     </ItemsControl.ItemsPanel>
                 </ItemsControl>
-                <!--Grid that holds all tekst objects inside the diagram-->
-                <Grid>
-                    <Grid.Resources>
-                        <Style TargetType="TextBlock">
-                            <Setter Property="Margin" Value="15"/>
-                            <Setter Property="FontWeight" Value="Bold"/>
-                            <Setter Property="Foreground" Value="DimGray"/>
-                            <Setter Property="FontStyle" Value="Italic"/>
-                            <Setter Property="FontSize" Value="64"/>
-                        </Style>
-                    </Grid.Resources>
-                    <Grid.RowDefinitions>
-                        <RowDefinition Height="Auto"/>
-                        <RowDefinition Height="*"/>
-                        <RowDefinition Height="Auto"/>
-                    </Grid.RowDefinitions>
-                    <Grid.ColumnDefinitions>
-                        <ColumnDefinition Width="Auto"/>
-                        <ColumnDefinition Width="*"/>
-                        <ColumnDefinition Width="Auto"/>
-                    </Grid.ColumnDefinitions>
-                    <TextBlock Grid.Row="0" Grid.Column="0" Text="Tevreden houden" TextAlignment="Left"/>
-                    <TextBlock Grid.Row="2" Grid.Column="0" Text="Monitoren" TextAlignment="Left"/>
-                    <TextBlock Grid.Row="2" Grid.Column="2" Text="Informeren"  TextAlignment="Right"/>
-                    <TextBlock Grid.Row="0" Grid.Column="2" Text="Betrekken" TextAlignment="Right"/>
-                </Grid>
             </Grid>
             <!--Grid that represents the labels next to the diagram-->
             <Grid Grid.Row="0" Grid.Column="0">
