@@ -3,10 +3,9 @@
                     xmlns:viewModels="clr-namespace:StakeholderAnalysis.Visualization.ViewModels"
                     xmlns:fluent="urn:fluent-ribbon"
                     xmlns:converters="clr-namespace:StakeholderAnalysis.Visualization.Converters"
-                    xmlns:visualization="clr-namespace:StakeholderAnalysis.Visualization"
                     xmlns:controls="clr-namespace:StakeholderAnalysis.Visualization.Controls">
 
-    <converters:IsSelectedViewTypeConverter x:Key="IsSelectedViewTypeConverter" />
+    <converters:IsSelectedViewTypeToVisibilityConverter x:Key="IsSelectedViewTypeToVisibilityConverter" />
 
     <DataTemplate x:Key="RibbonDataTemplate" DataType="viewModels:MainWindowViewModel">
         <fluent:Ribbon Focusable="True" x:Name="Ribbon" AutomaticStateManagement="False">
@@ -48,7 +47,7 @@
                 <fluent:RibbonContextualTabGroup
                     x:Name="onionGroup"
                     Header="Ui-diagram"
-                    Visibility="{Binding SelectedViewInfo, Converter={StaticResource IsSelectedViewTypeConverter}, ConverterParameter={x:Static viewModels:StakeholderViewType.Onion}}"
+                    Visibility="{Binding SelectedViewInfo, Converter={StaticResource IsSelectedViewTypeToVisibilityConverter}, ConverterParameter={x:Static viewModels:StakeholderViewType.Onion}}"
                     Background="Green"
                     Foreground="DarkSeaGreen" />
             </fluent:Ribbon.ContextualGroups>

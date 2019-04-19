@@ -9,7 +9,7 @@
     </ResourceDictionary.MergedDictionaries>
 
     <converters:PercentageToDimensionConverter x:Key="PercentageToDimensionConverter" />
-    <converters:SizeToArrowsPathDataConverter x:Key="SizeToArrowsPathDataConverter" />
+    <converters:CanvasSizeToArrowsPathDataConverter x:Key="SizeToArrowsPathDataConverter" />
 
     <Style x:Key="TextBlockLabelStyle" TargetType="TextBlock">
         <Setter Property="Foreground" Value="Black" />

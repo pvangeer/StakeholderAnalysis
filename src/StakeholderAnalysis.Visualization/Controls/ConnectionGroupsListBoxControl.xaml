@@ -19,16 +19,19 @@
                             <ColumnDefinition Width="*" />
                             <ColumnDefinition Width="Auto" />
                         </Grid.ColumnDefinitions>
-                        <CheckBox Grid.Column="0"
-                                  IsChecked="{Binding IsGroupSelected, Mode=TwoWay}"
-                                  Margin="2" />
-                        <TextBlock Grid.Column="1"
-                                   Text="{Binding Name}"
-                                   Margin="2" />
-                        <xctk:ColorPicker Grid.Column="2"
-                                          Width="40"
-                                          DisplayColorAndName="False"
-                                          SelectedColor="{Binding Color}" />
+                        <CheckBox 
+                            Grid.Column="0"
+                            IsChecked="{Binding IsGroupSelected, Mode=TwoWay}"
+                            Margin="2" />
+                        <TextBlock 
+                            Grid.Column="1"
+                            Text="{Binding Name}"
+                            Margin="2" />
+                        <xctk:ColorPicker 
+                            Grid.Column="2"
+                            Width="40"
+                            DisplayColorAndName="False"
+                            SelectedColor="{Binding Color}" />
                     </Grid>
                 </DataTemplate>
             </ListBox.ItemTemplate>

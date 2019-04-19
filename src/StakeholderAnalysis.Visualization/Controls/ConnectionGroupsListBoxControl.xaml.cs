@@ -10,10 +10,11 @@ namespace StakeholderAnalysis.Visualization.Controls
     /// </summary>
     public partial class ConnectionGroupsListBoxControl : UserControl
     {
-        public static readonly DependencyProperty StakeholderConnectionsListProperty = DependencyProperty.Register(
-            "StakeholderConnectionsList", typeof(ObservableCollection<ConnectionGroupViewModel>),
-            typeof(ConnectionGroupsListBoxControl),
-            new PropertyMetadata(default(ObservableCollection<ConnectionGroupViewModel>)));
+        public static readonly DependencyProperty StakeholderConnectionsListProperty =
+            DependencyProperty.Register(
+                "StakeholderConnectionsList", typeof(ObservableCollection<ConnectionGroupViewModel>),
+                typeof(ConnectionGroupsListBoxControl),
+                new PropertyMetadata(default(ObservableCollection<ConnectionGroupViewModel>)));
 
         public ConnectionGroupsListBoxControl()
         {

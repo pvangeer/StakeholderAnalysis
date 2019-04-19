@@ -7,7 +7,7 @@ using Microsoft.Win32;
 
 namespace StakeholderAnalysis.Visualization.Commands
 {
-    public static class ContentPresenterExtensions
+    public static class FrameworkElementExtensions
     {
         public static void SaveToFile(this FrameworkElement frameworkElement, double scalingFactor = 3.0)
         {

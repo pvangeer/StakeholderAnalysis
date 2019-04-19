@@ -6,7 +6,7 @@ using StakeholderAnalysis.Visualization.ViewModels;
 
 namespace StakeholderAnalysis.Visualization.Converters
 {
-    public class IsSelectedViewTypeConverter : IValueConverter
+    public class IsSelectedViewTypeToVisibilityConverter : IValueConverter
     {
         public object Convert(object value, Type targetType, object parameter, CultureInfo culture)
         {

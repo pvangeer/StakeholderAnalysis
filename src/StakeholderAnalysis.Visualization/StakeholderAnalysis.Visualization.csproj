@@ -63,20 +63,23 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Commands\CloseApplicationCommand.cs" />
-    <Compile Include="Commands\OpenFileCommand.cs" />
+    <Compile Include="Commands\FileHandling\FileHandlingCommandBase.cs" />
+    <Compile Include="Commands\FileHandling\NewProjectCommand.cs" />
+    <Compile Include="Commands\FileHandling\OpenFileCommand.cs" />
     <Compile Include="Commands\RelayCommand.cs" />
-    <Compile Include="Commands\ContentPresenterExtensions.cs" />
+    <Compile Include="Commands\FrameworkElementExtensions.cs" />
+    <Compile Include="Commands\FileHandling\SaveFileAsCommand.cs" />
+    <Compile Include="Commands\FileHandling\SaveFileCommand.cs" />
     <Compile Include="Commands\ToggleViewCommand.cs" />
     <Compile Include="Controls\ConnectionGroupsListBoxControl.xaml.cs">
       <DependentUpon>ConnectionGroupsListBoxControl.xaml</DependentUpon>
     </Compile>
-    <Compile Include="Converters\IsSelectedViewTypeConverter.cs" />
-    <Compile Include="Converters\IsStakeholderViewTypeConverter.cs" />
+    <Compile Include="Converters\IsSelectedViewTypeToVisibilityConverter.cs" />
     <Compile Include="Converters\PercentageToCanvasLeftValueConverter.cs" />
     <Compile Include="Converters\PercentageToCanvasTopValueConverter.cs" />
     <Compile Include="Converters\PercentageToDimensionConverter.cs" />
     <Compile Include="Converters\IsSelectedStakeholderConverter.cs" />
-    <Compile Include="Converters\SizeToArrowsPathDataConverter.cs" />
+    <Compile Include="Converters\CanvasSizeToArrowsPathDataConverter.cs" />
     <Compile Include="Converters\StakeholderTypeToStringConverter.cs" />
     <Compile Include="Properties\AssemblyInfo.cs">
       <SubType>Code</SubType>
@@ -129,15 +132,11 @@
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
-    <Page Include="DataTemplates\OnionDataTemplate.xaml">
+    <Page Include="DataTemplates\OnionRingsDataTemplate.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="DataTemplates\OnionDiagramDataTemplate.xaml">
-      <SubType>Designer</SubType>
-      <Generator>MSBuild:Compile</Generator>
-    </Page>
-    <Page Include="DataTemplates\OnionRingDataTemplate.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>

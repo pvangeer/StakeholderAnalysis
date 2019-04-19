@@ -7,7 +7,7 @@ using System.Windows.Media;
 
 namespace StakeholderAnalysis.Visualization.Converters
 {
-    public class SizeToArrowsPathDataConverter : IMultiValueConverter
+    public class CanvasSizeToArrowsPathDataConverter : IMultiValueConverter
     {
         public object Convert(object[] values, Type targetType, object parameter, CultureInfo culture)
         {

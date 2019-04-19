@@ -2,7 +2,7 @@
                     xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
                     xmlns:viewModels="clr-namespace:StakeholderAnalysis.Visualization.ViewModels">
     <ResourceDictionary.MergedDictionaries>
-        <ResourceDictionary Source="/StakeholderAnalysis.Visualization;Component/DataTemplates/OnionDataTemplate.xaml" />
+        <ResourceDictionary Source="/StakeholderAnalysis.Visualization;Component/DataTemplates/OnionRingsDataTemplate.xaml" />
         <ResourceDictionary
             Source="/StakeholderAnalysis.Visualization;Component/DataTemplates/StakeholdersDataTemplate.xaml" />
         <ResourceDictionary
@@ -11,12 +11,18 @@
 
     <DataTemplate x:Key="OnionDiagramDataTemplate" DataType="viewModels:MainWindowViewModel">
         <Grid>
-            <ContentPresenter Name="OnionRingsPresenter" Content="{Binding}"
-                              ContentTemplate="{StaticResource OnionDataTemplate}" />
-            <ContentPresenter Name="ConnectionsPresenter" Content="{Binding}"
-                              ContentTemplate="{StaticResource ConnectionsPresenterDataTemplate}" />
-            <ContentPresenter Name="StakeholdersPresenter" Content="{Binding}"
-                              ContentTemplate="{StaticResource StakeholdersDataTemplate}" />
+            <ContentPresenter 
+                Name="OnionRingsPresenter" 
+                Content="{Binding}"
+                ContentTemplate="{StaticResource OnionRingsDataTemplate}" />
+            <ContentPresenter 
+                Name="ConnectionsPresenter" 
+                Content="{Binding}"
+                ContentTemplate="{StaticResource ConnectionsPresenterDataTemplate}" />
+            <ContentPresenter 
+                Name="StakeholdersPresenter" 
+                Content="{Binding}"
+                ContentTemplate="{StaticResource StakeholdersDataTemplate}" />
         </Grid>
     </DataTemplate>
 </ResourceDictionary>

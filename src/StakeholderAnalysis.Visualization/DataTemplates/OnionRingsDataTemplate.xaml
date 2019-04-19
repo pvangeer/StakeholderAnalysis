@@ -3,19 +3,38 @@
                     xmlns:viewModels="clr-namespace:StakeholderAnalysis.Visualization.ViewModels"
                     xmlns:converters="clr-namespace:StakeholderAnalysis.Visualization.Converters">
 
-    <ResourceDictionary.MergedDictionaries>
-        <ResourceDictionary Source="OnionRingDataTemplate.xaml" />
-    </ResourceDictionary.MergedDictionaries>
-
     <converters:PercentageToCanvasTopValueConverter x:Key="PercentageToCanvasTopValueConverter" />
     <converters:PercentageToCanvasLeftValueConverter x:Key="PercentageToCanvasLeftValueConverter" />
+    <converters:PercentageToDimensionConverter x:Key="PercentageToDimensionConverter" />
 
-    <DataTemplate x:Key="OnionDataTemplate" DataType="viewModels:MainWindowViewModel">
+    <DataTemplate x:Key="OnionRingsDataTemplate" DataType="viewModels:MainWindowViewModel">
         <Grid>
             <ItemsControl ItemsSource="{Binding OnionRings}"
                           Margin="{Binding Margin}"
-                          Background="Transparent"
-                          ItemTemplate="{StaticResource OnionRingDataTemplate}">
+                          Background="Transparent">
+                <ItemsControl.ItemTemplate>
+                    <DataTemplate DataType="viewModels:OnionRingViewModel">
+                        <Grid>
+                            <Ellipse Fill="{Binding BackgroundColor}" Stroke="{Binding StrokeColor}"
+                                     StrokeThickness="{Binding StrokeThickness}">
+                                <Ellipse.Width>
+                                    <MultiBinding Converter="{StaticResource PercentageToDimensionConverter}">
+                                        <Binding Path="Percentage" />
+                                        <Binding ElementName="Canvas" Path="ActualWidth" />
+                                    </MultiBinding>
+                                </Ellipse.Width>
+                                <Ellipse.Height>
+                                    <MultiBinding Converter="{StaticResource PercentageToDimensionConverter}">
+                                        <Binding Path="Percentage" />
+                                        <Binding ElementName="Canvas" Path="ActualHeight" />
+                                    </MultiBinding>
+                                </Ellipse.Height>
+                            </Ellipse>
+                            <TextBlock Text="{Binding Name}" HorizontalAlignment="Center" Margin="0,5,0,0" FontSize="24"
+                                       FontWeight="Bold" FontFamily="Arial" />
+                        </Grid>
+                    </DataTemplate>
+                </ItemsControl.ItemTemplate>
                 <ItemsControl.ItemContainerStyle>
                     <Style>
                         <Setter Property="Canvas.Left">

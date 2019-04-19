@@ -4,6 +4,7 @@ using System.Linq;
 using System.Windows.Input;
 using StakeholderAnalysis.Data;
 using StakeholderAnalysis.Visualization.Commands;
+using StakeholderAnalysis.Visualization.Commands.FileHandling;
 
 namespace StakeholderAnalysis.Visualization.ViewModels
 {
