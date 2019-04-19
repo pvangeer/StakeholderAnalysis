@@ -30,7 +30,11 @@ namespace StakeholderAnalysis.Visualization.ViewModels
             });
             SelectedViewInfo = ViewList.ElementAt(0);
 
+            Margin = 10;
+
             Analysis = analysis;
+
+            // TODO: Following code should be redirected to different viewmodels (that possibly partly have the same base)
             Analysis.OnionRings.CollectionChanged += RingsCollectionChanged;
             Analysis.Stakeholders.CollectionChanged += StakeholdersCollectionChanged;
             Analysis.Connections.CollectionChanged += ConnectorsCollectionChanged;
@@ -49,8 +53,6 @@ namespace StakeholderAnalysis.Visualization.ViewModels
             StakeholderConnectionGroups =
                 new ObservableCollection<ConnectionGroupViewModel>(
                     Analysis.ConnectionGroups.Select(g => new ConnectionGroupViewModel(g)));
-
-            Margin = 10;
         }
 
         private Analysis Analysis { get; }

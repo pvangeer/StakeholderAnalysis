@@ -34,6 +34,7 @@ namespace StakeholderAnalysis.Visualization.Commands
             }
 
             mainWindowViewModel.SelectedViewInfo = openView;
+            mainWindowViewModel.OnPropertyChanged(nameof(MainWindowViewModel.SelectedViewInfo));
         }
     }
 }
