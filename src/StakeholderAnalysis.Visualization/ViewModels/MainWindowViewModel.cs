@@ -11,6 +11,7 @@ namespace StakeholderAnalysis.Visualization.ViewModels
     {
         private StakeholderViewModel selectedStakeholder;
         private StakeholderViewInfo selectedViewInfo;
+        private bool isMagnifierActive;
 
         public MainWindowViewModel() : this(new Analysis()) { }
 
@@ -111,6 +112,16 @@ namespace StakeholderAnalysis.Visualization.ViewModels
         }
 
         public ObservableCollection<ConnectionGroupViewModel> StakeholderConnectionGroups { get; }
+
+        public bool IsMagnifierActive
+        {
+            get => isMagnifierActive;
+            set
+            {
+                isMagnifierActive = value;
+                OnPropertyChanged(nameof(IsMagnifierActive));
+            }
+        }
 
         private void RingsCollectionChanged(object sender, NotifyCollectionChangedEventArgs e)
         {

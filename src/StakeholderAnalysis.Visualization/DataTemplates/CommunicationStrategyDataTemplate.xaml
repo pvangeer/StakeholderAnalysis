@@ -34,9 +34,9 @@
                 <!--Diagram drawing grid (including twe canvasses-->
                 <Grid Grid.Row="0" Grid.Column="1">
                     <Grid.Background>
-                        <LinearGradientBrush StartPoint="0,1" EndPoint="1,0">
-                            <GradientStop Color="Beige" Offset="0.0" />
-                            <GradientStop Color="BlueViolet" Offset="1.0" />
+                        <LinearGradientBrush StartPoint="0,0" EndPoint="1,1">
+                            <GradientStop Color="LightYellow" Offset="0.0" />
+                            <GradientStop Color="PaleVioletRed" Offset="1.0" />
                         </LinearGradientBrush>
                     </Grid.Background>
                     <!--Canvas that draws the arrows of the diagram-->

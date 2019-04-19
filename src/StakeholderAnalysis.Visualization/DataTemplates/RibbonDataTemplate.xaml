@@ -79,7 +79,13 @@
                         IsChecked="{Binding IsCommunicationStrategyViewOpened}" 
                         Command="{Binding ToggleView}" CommandParameter="{x:Static viewModels:StakeholderViewType.CommunicationStrategy}"/>
                 </fluent:RibbonGroupBox>
-
+                <fluent:RibbonGroupBox Header="Beeld">
+                    <fluent:ToggleButton 
+                        Header="Vergrootglas" 
+                        Size="Large" 
+                        LargeIcon="pack://application:,,,/StakeholderAnalysis.Visualization;component/Resources/Magnifier.png"
+                        IsChecked="{Binding IsMagnifierActive}"/>
+                </fluent:RibbonGroupBox>
             </fluent:RibbonTabItem>
 
             <fluent:RibbonTabItem Header="Ui-diagram" Group="{Binding Source={x:Reference onionGroup}}">
