@@ -2,7 +2,7 @@
 {
     public enum StakeholderType
     {
-        Waterschap,
+        Waterkeringbeheerder,
         Kennisinstituut,
         Rijksoverheid,
         Stakeholdergroep,

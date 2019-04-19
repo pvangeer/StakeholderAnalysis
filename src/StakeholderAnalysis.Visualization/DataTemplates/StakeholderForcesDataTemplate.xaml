@@ -103,7 +103,7 @@
                             <Setter Property="Canvas.Top">
                                 <Setter.Value>
                                     <MultiBinding Converter="{StaticResource PercentageToDimensionConverter}">
-                                        <Binding Path="Influence"/>
+                                        <Binding Path="InfluenceLocation"/>
                                         <Binding RelativeSource="{RelativeSource Self}" Path="ActualHeight"/>
                                         <Binding ElementName="Canvas" Path="ActualHeight"/>
                                     </MultiBinding>

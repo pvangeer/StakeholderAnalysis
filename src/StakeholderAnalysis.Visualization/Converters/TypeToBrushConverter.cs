@@ -17,7 +17,7 @@ namespace StakeholderAnalysis.Visualization.Converters
 
             switch ((StakeholderType)value)
             {
-                case StakeholderType.Waterschap:
+                case StakeholderType.Waterkeringbeheerder:
                     return new SolidColorBrush(Colors.AliceBlue);
                 case StakeholderType.Kennisinstituut:
                     return new SolidColorBrush(Colors.DarkSeaGreen);

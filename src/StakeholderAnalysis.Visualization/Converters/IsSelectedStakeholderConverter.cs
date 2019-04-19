@@ -10,9 +10,8 @@ namespace StakeholderAnalysis.Visualization.Converters
     {
         public object Convert(object[] values, Type targetType, object parameter, CultureInfo culture)
         {
-            var selectedStakeholderViewModel = values[0] as StakeholderViewModel;
-            return selectedStakeholderViewModel != null &&
-                   selectedStakeholderViewModel.Stakeholder == values[1] as Stakeholder;
+            return values[0] is StakeholderViewModel selectedStakeholderViewModel &&
+                   selectedStakeholderViewModel.IsViewModelFor(values[1] as StakeholderViewModel);
         }
 
         public object[] ConvertBack(object value, Type[] targetTypes, object parameter, CultureInfo culture)

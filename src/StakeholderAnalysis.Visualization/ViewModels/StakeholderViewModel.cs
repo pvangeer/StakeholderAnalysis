@@ -19,17 +19,59 @@ namespace StakeholderAnalysis.Visualization.ViewModels
             }
         }
 
-        public Stakeholder Stakeholder { get; }
+        private Stakeholder Stakeholder { get; }
 
-        public string Name => Stakeholder.Name;
+        public string Name
+        {
+            get => Stakeholder.Name;
+            set
+            {
+                Stakeholder.Name = value;
+                Stakeholder.OnPropertyChanged(nameof(Stakeholder.Name));
+            }
+        }
 
-        public double LeftPercentage => Stakeholder.LeftPercentage;
+        public double LeftPercentage
+        {
+            get => Stakeholder.LeftPercentage;
+            set
+            {
+                Stakeholder.LeftPercentage = value;
+                Stakeholder.OnPropertyChanged(nameof(Stakeholder.LeftPercentage));
+            }
+        }
 
-        public double TopPercentage => Stakeholder.TopPercentage;
+        public double TopPercentage
+        {
+            get => Stakeholder.TopPercentage;
+            set
+            {
+                Stakeholder.TopPercentage = value;
+                Stakeholder.OnPropertyChanged(nameof(Stakeholder.TopPercentage));
+            }
+        }
 
-        public double Interest => Stakeholder.Interest;
+        public double Interest
+        {
+            get => Stakeholder.Interest;
+            set
+            {
+                Stakeholder.Interest = value;
+                OnPropertyChanged(nameof(Stakeholder.Interest));
+            }
+        }
 
-        public double Influence => 1-Stakeholder.Influence;
+        public double Influence
+        {
+            get => Stakeholder.Influence;
+            set
+            {
+                Stakeholder.Influence = value;
+                Stakeholder.OnPropertyChanged(nameof(Stakeholder.Influence));
+            }
+        }
+
+        public double InfluenceLocation => 1 - Stakeholder.Influence;
 
         public StakeholderType Type => Stakeholder.Type;
 
@@ -55,6 +97,7 @@ namespace StakeholderAnalysis.Visualization.ViewModels
                     OnPropertyChanged(nameof(Interest));
                     break;
                 case nameof(Stakeholder.Influence):
+                    OnPropertyChanged(nameof(InfluenceLocation));
                     OnPropertyChanged(nameof(Influence));
                     break;
             }
@@ -63,6 +106,16 @@ namespace StakeholderAnalysis.Visualization.ViewModels
         public void Select()
         {
             selectionRegister.Select(this);
+        }
+
+        public bool IsViewModelFor(Stakeholder stakeholder)
+        {
+            return Stakeholder == stakeholder;
+        }
+
+        public bool IsViewModelFor(StakeholderViewModel stakeholderViewModel)
+        {
+            return stakeholderViewModel.IsViewModelFor(Stakeholder);
         }
     }
 }

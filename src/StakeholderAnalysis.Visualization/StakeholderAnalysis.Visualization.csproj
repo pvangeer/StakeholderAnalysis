@@ -62,18 +62,26 @@
     <Reference Include="WindowsBase" />
     <Reference Include="PresentationCore" />
     <Reference Include="PresentationFramework" />
+    <Reference Include="Xceed.Wpf.Toolkit, Version=3.5.0.0, Culture=neutral, PublicKeyToken=3e4669d2f30244f4, processorArchitecture=MSIL">
+      <HintPath>..\..\packages\Extended.Wpf.Toolkit.3.5.0\lib\net40\Xceed.Wpf.Toolkit.dll</HintPath>
+    </Reference>
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Commands\AddStakeholderCommand.cs" />
     <Compile Include="Commands\CloseApplicationCommand.cs" />
     <Compile Include="Commands\OpenFileCommand.cs" />
     <Compile Include="Commands\ToggleViewCommand.cs" />
+    <Compile Include="Controls\ConnectionGroupsListBoxControl.xaml.cs">
+      <DependentUpon>ConnectionGroupsListBoxControl.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Converters\IsSelectedViewTypeConverter.cs" />
     <Compile Include="Converters\IsStakeholderViewTypeConverter.cs" />
     <Compile Include="Converters\PercentageToCanvasLeftValueConverter.cs" />
     <Compile Include="Converters\PercentageToCanvasTopValueConverter.cs" />
     <Compile Include="Converters\PercentageToDimensionConverter.cs" />
     <Compile Include="Converters\IsSelectedStakeholderConverter.cs" />
     <Compile Include="Converters\SizeToArrowsPathDataConverter.cs" />
+    <Compile Include="Converters\StakeholderTypeToStringConverter.cs" />
     <Compile Include="Properties\AssemblyInfo.cs">
       <SubType>Code</SubType>
     </Compile>
@@ -88,6 +96,7 @@
       <DesignTimeSharedInput>True</DesignTimeSharedInput>
     </Compile>
     <Compile Include="Converters\TypeToBrushConverter.cs" />
+    <Compile Include="ViewModels\ConnectionGroupViewModel.cs" />
     <Compile Include="ViewModels\ISelectionRegister.cs" />
     <Compile Include="ViewModels\MainWindowViewModel.cs" />
     <Compile Include="ViewModels\OnionRingViewModel.cs" />
@@ -107,6 +116,10 @@
     </None>
   </ItemGroup>
   <ItemGroup>
+    <Page Include="Controls\ConnectionGroupsListBoxControl.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
     <Page Include="DataTemplates\CommunicationStrategyDataTemplate.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
@@ -115,7 +128,7 @@
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
-    <Page Include="DataTemplates\DockingManagerDataTemplate.xaml">
+    <Page Include="DataTemplates\MainContentPresenterDataTemplate.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>

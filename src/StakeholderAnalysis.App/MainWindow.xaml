@@ -17,7 +17,7 @@
             <ResourceDictionary.MergedDictionaries>
                 <ResourceDictionary Source="/Fluent;Component/Themes/generic.xaml"/>
                 <ResourceDictionary Source="/StakeholderAnalysis.Visualization;Component/DataTemplates/RibbonDataTemplate.xaml"/>
-                <ResourceDictionary Source="/StakeholderAnalysis.Visualization;Component/DataTemplates/DockingManagerDataTemplate.xaml"/>
+                <ResourceDictionary Source="/StakeholderAnalysis.Visualization;Component/DataTemplates/MainContentPresenterDataTemplate.xaml"/>
             </ResourceDictionary.MergedDictionaries>
         </ResourceDictionary>
     </Window.Resources>
@@ -27,6 +27,6 @@
             <RowDefinition Height="*"/>
         </Grid.RowDefinitions>
         <ContentPresenter Grid.Row="0" Content="{Binding}" ContentTemplate="{StaticResource RibbonDataTemplate}"/>
-        <ContentPresenter Grid.Row="1" Content="{Binding}" ContentTemplate="{StaticResource DockingManagerDataTemplate}"/>
+        <ContentPresenter Grid.Row="1" Content="{Binding}" ContentTemplate="{StaticResource MainContentPresenterDataTemplate}"/>
     </Grid>
 </fluent:RibbonWindow>

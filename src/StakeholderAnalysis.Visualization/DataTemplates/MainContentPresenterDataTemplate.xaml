@@ -11,7 +11,7 @@
 
     <converters:IsStakeholderViewTypeConverter x:Key="IsStakeholderViewTypeConverter" />
 
-    <DataTemplate x:Key="DockingManagerDataTemplate" DataType="viewModels:MainWindowViewModel">
+    <DataTemplate x:Key="MainContentPresenterDataTemplate" DataType="viewModels:MainWindowViewModel">
         <ContentPresenter Name="Presenter" Content="{Binding SelectedViewInfo.ViewModel}"/>
         <DataTemplate.Triggers>
             <DataTrigger Binding="{Binding SelectedViewInfo.Type, Converter={StaticResource IsStakeholderViewTypeConverter}, ConverterParameter={x:Static viewModels:StakeholderViewType.Onion}}" Value="True">

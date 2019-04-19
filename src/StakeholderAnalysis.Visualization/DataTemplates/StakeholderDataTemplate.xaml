@@ -30,7 +30,7 @@
                             <DataTrigger.Binding>
                                 <MultiBinding Converter="{StaticResource IsSelectedStakeholderConverter}">
                                     <Binding ElementName="StakeholdersPresenter" Path="Content.SelectedStakeholder"/>
-                                    <Binding Path="Stakeholder"/>
+                                    <Binding/>
                                 </MultiBinding>
                             </DataTrigger.Binding>
                             <Setter Property="BorderBrush" Value="DarkRed"/>
@@ -50,7 +50,7 @@
                     <Image.Style>
                         <Style TargetType="{x:Type Image}">
                             <Style.Triggers>
-                                <DataTrigger Binding="{Binding Type}" Value="{x:Static data:StakeholderType.Waterschap}">
+                                <DataTrigger Binding="{Binding Type}" Value="{x:Static data:StakeholderType.Waterkeringbeheerder}">
                                     <Setter Property="Source" Value="pack://application:,,,/StakeholderAnalysis.Visualization;component/Resources/Waterschap.png"/>
                                 </DataTrigger>
                                 <DataTrigger Binding="{Binding Type}" Value="{x:Static data:StakeholderType.Kennisinstituut}">
