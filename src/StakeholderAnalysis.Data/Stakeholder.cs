@@ -1,6 +1,4 @@
-﻿using System.Dynamic;
-
-namespace StakeholderAnalysis.Data
+﻿namespace StakeholderAnalysis.Data
 {
     public class Stakeholder : PropertyChangedElement
     {
