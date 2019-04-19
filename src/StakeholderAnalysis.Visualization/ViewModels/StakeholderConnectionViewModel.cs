@@ -9,7 +9,7 @@ namespace StakeholderAnalysis.Visualization.ViewModels
         public StakeholderConnectionViewModel(StakeholderConnection connection)
         {
             StakeholderConnection = connection;
-            StakeholderConnection.ConnectionGroup.PropertyChanged += ConnectionGroupPropertyChanged;
+            StakeholderConnection.StakeholderConnectionGroup.PropertyChanged += ConnectionGroupPropertyChanged;
             StakeholderConnection.ConnectFrom.PropertyChanged += ConnectFromPropertyChanged;
             StakeholderConnection.ConnectTo.PropertyChanged += ConnectToPropertyChanged;
         }
@@ -17,9 +17,9 @@ namespace StakeholderAnalysis.Visualization.ViewModels
 
         public StakeholderConnection StakeholderConnection { get; }
 
-        public Brush StrokeColor => new SolidColorBrush(StakeholderConnection.ConnectionGroup.Color);
+        public Brush StrokeColor => new SolidColorBrush(StakeholderConnection.StakeholderConnectionGroup.Color);
 
-        public bool IsVisible => StakeholderConnection.ConnectionGroup.Visible;
+        public bool IsVisible => StakeholderConnection.StakeholderConnectionGroup.Visible;
 
         public double ConnectFromLeft => StakeholderConnection.ConnectFrom.LeftPercentage;
 
@@ -59,10 +59,10 @@ namespace StakeholderAnalysis.Visualization.ViewModels
         {
             switch (e.PropertyName)
             {
-                case nameof(ConnectionGroup.Color):
+                case nameof(StakeholderConnectionGroup.Color):
                     OnPropertyChanged(nameof(StrokeColor));
                     break;
-                case nameof(ConnectionGroup.Visible):
+                case nameof(StakeholderConnectionGroup.Visible):
                     OnPropertyChanged(nameof(IsVisible));
                     break;
             }

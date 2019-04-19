@@ -31,7 +31,7 @@ namespace StakeholderAnalysis.Visualization.ViewModels
             SelectedViewInfo = ViewList.ElementAt(0);
 
             Analysis = analysis;
-            Analysis.Onion.Rings.CollectionChanged += RingsCollectionChanged;
+            Analysis.OnionRings.CollectionChanged += RingsCollectionChanged;
             Analysis.Stakeholders.CollectionChanged += StakeholdersCollectionChanged;
             Analysis.Connections.CollectionChanged += ConnectorsCollectionChanged;
             Analysis.ConnectionGroups.CollectionChanged += ConnectionGroupsCollectionChanged;
@@ -40,7 +40,7 @@ namespace StakeholderAnalysis.Visualization.ViewModels
 
             OnionRings =
                 new ObservableCollection<OnionRingViewModel>(
-                    Analysis.Onion.Rings.Select(r => new OnionRingViewModel(r)));
+                    Analysis.OnionRings.Select(r => new OnionRingViewModel(r)));
             Stakeholders = new ObservableCollection<StakeholderViewModel>(
                 Analysis.Stakeholders.Select(stakeholder => new StakeholderViewModel(stakeholder, this)));
             StakeholderConnections =
@@ -205,13 +205,13 @@ namespace StakeholderAnalysis.Visualization.ViewModels
         private void ConnectionGroupsCollectionChanged(object sender, NotifyCollectionChangedEventArgs e)
         {
             if (e.Action == NotifyCollectionChangedAction.Add)
-                foreach (var item in e.NewItems.OfType<ConnectionGroup>())
+                foreach (var item in e.NewItems.OfType<StakeholderConnectionGroup>())
                     StakeholderConnectionGroups.Add(new ConnectionGroupViewModel(item));
 
             if (e.Action == NotifyCollectionChangedAction.Remove)
-                foreach (var connectionGroup in e.OldItems.OfType<ConnectionGroup>())
+                foreach (var connectionGroup in e.OldItems.OfType<StakeholderConnectionGroup>())
                     StakeholderConnectionGroups.Remove(
-                        StakeholderConnectionGroups.FirstOrDefault(vm => vm.ConnectionGroup == connectionGroup));
+                        StakeholderConnectionGroups.FirstOrDefault(vm => vm.StakeholderConnectionGroup == connectionGroup));
         }
     }
 }

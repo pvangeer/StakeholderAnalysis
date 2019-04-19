@@ -8,54 +8,54 @@ namespace StakeholderAnalysis.Visualization.ViewModels
 {
     public class ConnectionGroupViewModel : NotifyPropertyChangedObservable
     {
-        public ConnectionGroupViewModel(ConnectionGroup connectionGroup)
+        public ConnectionGroupViewModel(StakeholderConnectionGroup stakeholderConnectionGroup)
         {
-            ConnectionGroup = connectionGroup;
-            connectionGroup.PropertyChanged += ConnectionGroupPropertyChanged;
+            StakeholderConnectionGroup = stakeholderConnectionGroup;
+            stakeholderConnectionGroup.PropertyChanged += ConnectionGroupPropertyChanged;
         }
 
-        public ConnectionGroupViewModel() : this(new ConnectionGroup("test", Colors.DodgerBlue))
+        public ConnectionGroupViewModel() : this(new StakeholderConnectionGroup("test", Colors.DodgerBlue))
         {
         }
 
-        public ConnectionGroup ConnectionGroup { get; }
+        public StakeholderConnectionGroup StakeholderConnectionGroup { get; }
 
         public string Name
         {
-            get => ConnectionGroup.Name;
-            set => ConnectionGroup.Name = value;
+            get => StakeholderConnectionGroup.Name;
+            set => StakeholderConnectionGroup.Name = value;
         }
 
         public bool IsGroupSelected
         {
-            get => ConnectionGroup.Visible;
+            get => StakeholderConnectionGroup.Visible;
             set
             {
-                ConnectionGroup.Visible = value;
-                ConnectionGroup.OnPropertyChanged(nameof(ConnectionGroup.Visible));
+                StakeholderConnectionGroup.Visible = value;
+                StakeholderConnectionGroup.OnPropertyChanged(nameof(StakeholderConnectionGroup.Visible));
             }
         }
 
         public Color Color
         {
-            get => ConnectionGroup.Color;
+            get => StakeholderConnectionGroup.Color;
             set
             {
-                ConnectionGroup.Color = value;
-                ConnectionGroup.OnPropertyChanged(nameof(ConnectionGroup.Color));
+                StakeholderConnectionGroup.Color = value;
+                StakeholderConnectionGroup.OnPropertyChanged(nameof(StakeholderConnectionGroup.Color));
             }
         }
 
-        public ICommand ChangeColorCommand => new ChangeColorCommand(ConnectionGroup);
+        public ICommand ChangeColorCommand => new ChangeColorCommand(StakeholderConnectionGroup);
 
         private void ConnectionGroupPropertyChanged(object sender, PropertyChangedEventArgs e)
         {
             switch (e.PropertyName)
             {
-                case nameof(ConnectionGroup.Name):
+                case nameof(StakeholderConnectionGroup.Name):
                     OnPropertyChanged(nameof(Name));
                     break;
-                case nameof(ConnectionGroup.Visible):
+                case nameof(StakeholderConnectionGroup.Visible):
                     OnPropertyChanged(nameof(IsGroupSelected));
                     break;
             }
@@ -64,7 +64,7 @@ namespace StakeholderAnalysis.Visualization.ViewModels
 
     public class ChangeColorCommand : ICommand
     {
-        public ChangeColorCommand(ConnectionGroup connectionGroup)
+        public ChangeColorCommand(StakeholderConnectionGroup stakeholderConnectionGroup)
         {
             throw new NotImplementedException();
         }

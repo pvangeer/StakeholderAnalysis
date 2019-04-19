@@ -38,8 +38,7 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Analysis.cs" />
-    <Compile Include="ConnectionGroup.cs" />
-    <Compile Include="Onion.cs" />
+    <Compile Include="StakeholderConnectionGroup.cs" />
     <Compile Include="OnionRing.cs" />
     <Compile Include="Properties\Annotations.cs" />
     <Compile Include="NotifyPropertyChangedObservable.cs" />

@@ -2,14 +2,14 @@
 {
     public class StakeholderConnection : NotifyPropertyChangedObservable
     {
-        public StakeholderConnection(ConnectionGroup group, Stakeholder connectFrom, Stakeholder connectTo)
+        public StakeholderConnection(StakeholderConnectionGroup group, Stakeholder connectFrom, Stakeholder connectTo)
         {
-            ConnectionGroup = group;
+            StakeholderConnectionGroup = group;
             ConnectFrom = connectFrom;
             ConnectTo = connectTo;
         }
 
-        public ConnectionGroup ConnectionGroup { get; }
+        public StakeholderConnectionGroup StakeholderConnectionGroup { get; }
 
         public Stakeholder ConnectFrom { get; }
 

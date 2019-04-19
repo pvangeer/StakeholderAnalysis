@@ -4,22 +4,22 @@ namespace StakeholderAnalysis.Data
 {
     public class Analysis : NotifyPropertyChangedObservable
     {
-        public Analysis(Onion onion = null, ObservableCollection<Stakeholder> stakeholders = null,
+        public Analysis(ObservableCollection<OnionRing> onionRings = null, ObservableCollection<Stakeholder> stakeholders = null,
             ObservableCollection<StakeholderConnection> connections = null,
-            ObservableCollection<ConnectionGroup> connectionGroups = null)
+            ObservableCollection<StakeholderConnectionGroup> connectionGroups = null)
         {
-            Onion = onion ?? new Onion();
+            OnionRings = onionRings ?? new ObservableCollection<OnionRing>();
             Stakeholders = stakeholders ?? new ObservableCollection<Stakeholder>();
             Connections = connections ?? new ObservableCollection<StakeholderConnection>();
-            ConnectionGroups = connectionGroups ?? new ObservableCollection<ConnectionGroup>();
+            ConnectionGroups = connectionGroups ?? new ObservableCollection<StakeholderConnectionGroup>();
         }
 
-        public Onion Onion { get; }
+        public ObservableCollection<OnionRing> OnionRings { get; }
 
         public ObservableCollection<Stakeholder> Stakeholders { get; }
 
         public ObservableCollection<StakeholderConnection> Connections { get; }
 
-        public ObservableCollection<ConnectionGroup> ConnectionGroups { get; set; }
+        public ObservableCollection<StakeholderConnectionGroup> ConnectionGroups { get; set; }
     }
 }

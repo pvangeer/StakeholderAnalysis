@@ -1,4 +1,6 @@
-﻿namespace StakeholderAnalysis.Data
+﻿using System.Net.Mime;
+
+namespace StakeholderAnalysis.Data
 {
     public enum StakeholderType
     {
