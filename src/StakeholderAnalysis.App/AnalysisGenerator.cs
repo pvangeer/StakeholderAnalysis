@@ -12,9 +12,9 @@ namespace StakeholderAnalysis.App
         {
             var analysis = new Analysis();
             // Ringen
-            analysis.OnionRings.Add(new OnionRing("", 1.0) { BackgroundColor = Colors.LightBlue});
-            analysis.OnionRings.Add(new OnionRing("", 0.65) { BackgroundColor = Colors.CornflowerBlue });
-            analysis.OnionRings.Add(new OnionRing("", 0.3) { BackgroundColor = Colors.DarkSlateBlue });
+            analysis.OnionRings.Add(new OnionRing(1.0) { BackgroundColor = Colors.LightBlue});
+            analysis.OnionRings.Add(new OnionRing(0.65) { BackgroundColor = Colors.CornflowerBlue });
+            analysis.OnionRings.Add(new OnionRing(0.3) { BackgroundColor = Colors.DarkSlateBlue });
 
             //Team
             var wvl = AddStakeholder(analysis, "WVL", 0.5, 0.8, 0.9,1.0, 0.95, 0.9, StakeholderType.Rijksoverheid);

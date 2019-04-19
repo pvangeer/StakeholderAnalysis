@@ -6,6 +6,7 @@
                     xmlns:controls="clr-namespace:StakeholderAnalysis.Visualization.Controls">
 
     <converters:IsSelectedViewTypeToVisibilityConverter x:Key="IsSelectedViewTypeToVisibilityConverter" />
+    <converters:IsSelectedViewTypeConverter x:Key="IsSelectedViewTypeConverter" />
 
     <DataTemplate x:Key="RibbonDataTemplate" DataType="viewModels:MainWindowViewModel">
         <fluent:Ribbon Focusable="True" x:Name="Ribbon" AutomaticStateManagement="False">
@@ -57,28 +58,28 @@
                     <fluent:ToggleButton
                         Header="Stakeholder overzicht"
                         LargeIcon="pack://application:,,,/StakeholderAnalysis.Visualization;component/Resources/table.png"
-                        IsChecked="{Binding IsTableViewOpened}"
+                        IsChecked="{Binding SelectedViewInfo, Converter={StaticResource IsSelectedViewTypeConverter}, ConverterParameter={x:Static viewModels:StakeholderViewType.StakeholderTable}, Mode=OneWay}"
                         Command="{Binding ToggleView}"
                         CommandParameter="{x:Static viewModels:StakeholderViewType.StakeholderTable}" />
 
                     <fluent:ToggleButton
                         Header="UI-diagram"
                         LargeIcon="pack://application:,,,/StakeholderAnalysis.Visualization;component/Resources/onion.png"
-                        IsChecked="{Binding IsOnionViewOpened}"
+                        IsChecked="{Binding SelectedViewInfo, Converter={StaticResource IsSelectedViewTypeConverter}, ConverterParameter={x:Static viewModels:StakeholderViewType.Onion}, Mode=OneWay}"
                         Command="{Binding ToggleView}"
                         CommandParameter="{x:Static viewModels:StakeholderViewType.Onion}" />
 
                     <fluent:ToggleButton
                         Header="Krachtenveld"
                         LargeIcon="pack://application:,,,/StakeholderAnalysis.Visualization;component/Resources/forces.png"
-                        IsChecked="{Binding IsForcesViewOpened}"
+                        IsChecked="{Binding SelectedViewInfo, Converter={StaticResource IsSelectedViewTypeConverter}, ConverterParameter={x:Static viewModels:StakeholderViewType.StakeholderForces}, Mode=OneWay}"
                         Command="{Binding ToggleView}"
                         CommandParameter="{x:Static viewModels:StakeholderViewType.StakeholderForces}" />
 
                     <fluent:ToggleButton
                         Header="Betrokkenheid"
                         LargeIcon="pack://application:,,,/StakeholderAnalysis.Visualization;component/Resources/involvement.png"
-                        IsChecked="{Binding IsCommunicationStrategyViewOpened}"
+                        IsChecked="{Binding SelectedViewInfo, Converter={StaticResource IsSelectedViewTypeConverter}, ConverterParameter={x:Static viewModels:StakeholderViewType.CommunicationStrategy}, Mode=OneWay}"
                         Command="{Binding ToggleView}"
                         CommandParameter="{x:Static viewModels:StakeholderViewType.CommunicationStrategy}" />
                 </fluent:RibbonGroupBox>

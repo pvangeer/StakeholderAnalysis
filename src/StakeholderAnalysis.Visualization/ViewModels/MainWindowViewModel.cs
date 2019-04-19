@@ -14,7 +14,6 @@ namespace StakeholderAnalysis.Visualization.ViewModels
         private bool isSaveToImage;
         private RelayCommand saveCanvasCommand;
         private StakeholderViewModel selectedStakeholder;
-        private StakeholderViewInfo selectedViewInfo;
 
         public MainWindowViewModel() : this(new Analysis())
         {
@@ -50,10 +49,11 @@ namespace StakeholderAnalysis.Visualization.ViewModels
             StakeholderConnectionGroups =
                 new ObservableCollection<ConnectionGroupViewModel>(
                     Analysis.ConnectionGroups.Select(g => new ConnectionGroupViewModel(g)));
+
             Margin = 10;
         }
 
-        public Analysis Analysis { get; }
+        private Analysis Analysis { get; }
 
         public ObservableCollection<OnionRingViewModel> OnionRings { get; }
 
@@ -85,43 +85,11 @@ namespace StakeholderAnalysis.Visualization.ViewModels
 
         public ICommand ToggleView => new ToggleViewCommand(this);
 
-        public bool IsOnionViewOpened
-        {
-            get => SelectedViewInfo.Type == StakeholderViewType.Onion;
-            set { }
-        }
-
-        public bool IsTableViewOpened
-        {
-            get => SelectedViewInfo.Type == StakeholderViewType.StakeholderTable;
-            set { }
-        }
-
-        public bool IsCommunicationStrategyViewOpened
-        {
-            get => SelectedViewInfo.Type == StakeholderViewType.CommunicationStrategy;
-            set { }
-        }
-
-        public bool IsForcesViewOpened
-        {
-            get => SelectedViewInfo.Type == StakeholderViewType.StakeholderForces;
-            set { }
-        }
-
         public ICommand CloseApplication => new CloseApplicationCommand();
 
         public ObservableCollection<StakeholderViewInfo> ViewList { get; }
 
-        public StakeholderViewInfo SelectedViewInfo
-        {
-            get => selectedViewInfo;
-            set
-            {
-                selectedViewInfo = value;
-                OnPropertyChanged(nameof(SelectedViewInfo));
-            }
-        }
+        public StakeholderViewInfo SelectedViewInfo { get; set; }
 
         public ObservableCollection<ConnectionGroupViewModel> StakeholderConnectionGroups { get; }
 
@@ -139,14 +107,11 @@ namespace StakeholderAnalysis.Visualization.ViewModels
         {
             get
             {
-                if (saveCanvasCommand == null)
-                    saveCanvasCommand = new RelayCommand(() =>
-                    {
-                        IsSaveToImage = true;
-                        IsSaveToImage = false;
-                    });
-
-                return saveCanvasCommand;
+                return saveCanvasCommand ?? (saveCanvasCommand = new RelayCommand(() =>
+                {
+                    IsSaveToImage = true;
+                    IsSaveToImage = false;
+                }));
             }
         }
 
@@ -163,7 +128,10 @@ namespace StakeholderAnalysis.Visualization.ViewModels
 
         public void Select(object o)
         {
-            if (o is StakeholderViewModel stakeholderViewModel) SelectedStakeholder = stakeholderViewModel;
+            if (o is StakeholderViewModel stakeholderViewModel)
+            {
+                SelectedStakeholder = stakeholderViewModel;
+            }
         }
 
         private void RingsCollectionChanged(object sender, NotifyCollectionChangedEventArgs e)

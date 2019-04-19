@@ -18,8 +18,6 @@ namespace StakeholderAnalysis.Visualization.ViewModels
 
         public OnionRing Ring { get; }
 
-        public string Name => Ring.Name;
-
         public Brush BackgroundColor => new SolidColorBrush(Ring.BackgroundColor);
 
         public Brush StrokeColor => new SolidColorBrush(Ring.StrokeColor);
@@ -36,9 +34,6 @@ namespace StakeholderAnalysis.Visualization.ViewModels
         {
             switch (e.PropertyName)
             {
-                case nameof(OnionRing.Name):
-                    OnPropertyChanged(Name);
-                    break;
                 case nameof(OnionRing.BackgroundColor):
                     OnPropertyChanged(nameof(BackgroundColor));
                     break;

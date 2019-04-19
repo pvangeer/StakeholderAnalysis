@@ -30,8 +30,6 @@
                                     </MultiBinding>
                                 </Ellipse.Height>
                             </Ellipse>
-                            <TextBlock Text="{Binding Name}" HorizontalAlignment="Center" Margin="0,5,0,0" FontSize="24"
-                                       FontWeight="Bold" FontFamily="Arial" />
                         </Grid>
                     </DataTemplate>
                 </ItemsControl.ItemTemplate>

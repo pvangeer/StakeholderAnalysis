@@ -74,6 +74,7 @@
     <Compile Include="Controls\ConnectionGroupsListBoxControl.xaml.cs">
       <DependentUpon>ConnectionGroupsListBoxControl.xaml</DependentUpon>
     </Compile>
+    <Compile Include="Converters\IsSelectedViewTypeConverter.cs" />
     <Compile Include="Converters\IsSelectedViewTypeToVisibilityConverter.cs" />
     <Compile Include="Converters\PercentageToCanvasLeftValueConverter.cs" />
     <Compile Include="Converters\PercentageToCanvasTopValueConverter.cs" />

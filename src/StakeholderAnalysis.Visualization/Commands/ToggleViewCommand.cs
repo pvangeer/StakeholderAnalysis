@@ -34,10 +34,6 @@ namespace StakeholderAnalysis.Visualization.Commands
             }
 
             mainWindowViewModel.SelectedViewInfo = openView;
-            mainWindowViewModel.OnPropertyChanged(nameof(MainWindowViewModel.IsOnionViewOpened));
-            mainWindowViewModel.OnPropertyChanged(nameof(MainWindowViewModel.IsCommunicationStrategyViewOpened));
-            mainWindowViewModel.OnPropertyChanged(nameof(MainWindowViewModel.IsForcesViewOpened));
-            mainWindowViewModel.OnPropertyChanged(nameof(MainWindowViewModel.IsTableViewOpened));
         }
     }
 }
