@@ -69,6 +69,8 @@
   <ItemGroup>
     <Compile Include="Commands\CloseApplicationCommand.cs" />
     <Compile Include="Commands\OpenFileCommand.cs" />
+    <Compile Include="Commands\RelayCommand.cs" />
+    <Compile Include="Commands\ContentPresenterExtensions.cs" />
     <Compile Include="Commands\ToggleViewCommand.cs" />
     <Compile Include="Controls\ConnectionGroupsListBoxControl.xaml.cs">
       <DependentUpon>ConnectionGroupsListBoxControl.xaml</DependentUpon>
@@ -95,6 +97,7 @@
       <DesignTimeSharedInput>True</DesignTimeSharedInput>
     </Compile>
     <Compile Include="Converters\TypeToBrushConverter.cs" />
+    <Compile Include="SaveToImageBehaviours.cs" />
     <Compile Include="ViewModels\ConnectionGroupViewModel.cs" />
     <Compile Include="ViewModels\ISelectionRegister.cs" />
     <Compile Include="ViewModels\MainWindowViewModel.cs" />
@@ -199,6 +202,9 @@
   </ItemGroup>
   <ItemGroup>
     <Resource Include="Resources\Magnifier.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Resources\SaveImage.png" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

@@ -2,7 +2,8 @@
                     xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
                     xmlns:viewModels="clr-namespace:StakeholderAnalysis.Visualization.ViewModels"
                     xmlns:converters="clr-namespace:StakeholderAnalysis.Visualization.Converters"
-                    xmlns:xctk="http://schemas.xceed.com/wpf/xaml/toolkit">
+                    xmlns:xctk="http://schemas.xceed.com/wpf/xaml/toolkit"
+                    xmlns:visualization="clr-namespace:StakeholderAnalysis.Visualization">
     <ResourceDictionary.MergedDictionaries>
         <ResourceDictionary Source="OnionDiagramDataTemplate.xaml"/>
         <ResourceDictionary Source="CommunicationStrategyDataTemplate.xaml"/>
@@ -13,10 +14,19 @@
     <converters:IsStakeholderViewTypeConverter x:Key="IsStakeholderViewTypeConverter" />
 
     <DataTemplate x:Key="MainContentPresenterDataTemplate" DataType="viewModels:MainWindowViewModel">
-        <!--<xctk:Zoombox>
-            <ContentPresenter Width="1600" Height="1200" Name="Presenter" Content="{Binding SelectedViewInfo.ViewModel}"/>
-        </xctk:Zoombox>-->
-        <ContentPresenter Name="Presenter" Content="{Binding SelectedViewInfo.ViewModel}">
+        <ContentPresenter x:Name="Presenter" Content="{Binding SelectedViewInfo.ViewModel}">
+            <ContentPresenter.Style>
+                <Style TargetType="ContentPresenter">
+                    <Style.Triggers>
+                        <DataTrigger Binding="{Binding IsSaveToImage}" Value="True">
+                            <Setter Property="visualization:SaveToImageBehaviours.SaveToImage" Value="True"/>
+                        </DataTrigger>
+                        <DataTrigger Binding="{Binding IsSaveToImage}" Value="False">
+                            <Setter Property="visualization:SaveToImageBehaviours.SaveToImage" Value="False"/>
+                        </DataTrigger>
+                    </Style.Triggers>
+                </Style>
+            </ContentPresenter.Style>
             <xctk:MagnifierManager.Magnifier>
                 <xctk:Magnifier 
                     BorderBrush="Gray"

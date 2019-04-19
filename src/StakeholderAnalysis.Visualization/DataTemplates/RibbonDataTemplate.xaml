@@ -85,6 +85,11 @@
                         Size="Large" 
                         LargeIcon="pack://application:,,,/StakeholderAnalysis.Visualization;component/Resources/Magnifier.png"
                         IsChecked="{Binding IsMagnifierActive}"/>
+                    <fluent:Button
+                        Header="Afbeelding opslaan" 
+                        Size="Large" 
+                        LargeIcon="pack://application:,,,/StakeholderAnalysis.Visualization;component/Resources/SaveImage.png"
+                        Command="{Binding SaveImageCommand}"/>
                 </fluent:RibbonGroupBox>
             </fluent:RibbonTabItem>
 

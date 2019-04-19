@@ -12,6 +12,8 @@ namespace StakeholderAnalysis.Visualization.ViewModels
         private StakeholderViewModel selectedStakeholder;
         private StakeholderViewInfo selectedViewInfo;
         private bool isMagnifierActive;
+        private RelayCommand saveCanvasCommand;
+        private bool isSaveToImage;
 
         public MainWindowViewModel() : this(new Analysis()) { }
 
@@ -120,6 +122,30 @@ namespace StakeholderAnalysis.Visualization.ViewModels
             {
                 isMagnifierActive = value;
                 OnPropertyChanged(nameof(IsMagnifierActive));
+            }
+        }
+
+        public ICommand SaveImageCommand {
+            get
+            {
+                if (saveCanvasCommand == null)
+                    saveCanvasCommand = new RelayCommand(() =>
+                    {
+                        IsSaveToImage = true;
+                        IsSaveToImage = false;
+                    });
+
+                return saveCanvasCommand;
+            }
+        }
+
+        public bool IsSaveToImage
+        {
+            get => isSaveToImage;
+            set
+            {
+                isSaveToImage = value;
+                OnPropertyChanged(nameof(IsSaveToImage));
             }
         }
 

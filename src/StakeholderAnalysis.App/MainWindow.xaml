@@ -5,7 +5,8 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:viewmodels="clr-namespace:StakeholderAnalysis.Visualization.ViewModels;assembly=StakeholderAnalysis.Visualization"
         xmlns:fluent="urn:fluent-ribbon"
-                     mc:Ignorable="d"
+        xmlns:visualization="clr-namespace:StakeholderAnalysis.Visualization;assembly=StakeholderAnalysis.Visualization"
+        mc:Ignorable="d"
         Title="Stakeholderanalyse" 
         Height="900" 
         Width="1500">
