@@ -5,32 +5,37 @@
                      xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
                      xmlns:viewmodels="clr-namespace:StakeholderAnalysis.Visualization.ViewModels;assembly=StakeholderAnalysis.Visualization"
                      xmlns:fluent="urn:fluent-ribbon"
-                     xmlns:visualization="clr-namespace:StakeholderAnalysis.Visualization;assembly=StakeholderAnalysis.Visualization"
                      mc:Ignorable="d"
                      Title="Stakeholderanalyse"
                      Height="900"
                      Width="1500">
+
     <Window.DataContext>
         <viewmodels:MainWindowViewModel />
     </Window.DataContext>
+
     <Window.Resources>
         <ResourceDictionary>
             <ResourceDictionary.MergedDictionaries>
                 <ResourceDictionary Source="/Fluent;Component/Themes/generic.xaml" />
-                <ResourceDictionary
-                    Source="/StakeholderAnalysis.Visualization;Component/DataTemplates/RibbonDataTemplate.xaml" />
-                <ResourceDictionary
-                    Source="/StakeholderAnalysis.Visualization;Component/DataTemplates/MainContentPresenterDataTemplate.xaml" />
+                <ResourceDictionary Source="/StakeholderAnalysis.Visualization;Component/DataTemplates/RibbonDataTemplate.xaml" />
+                <ResourceDictionary Source="/StakeholderAnalysis.Visualization;Component/DataTemplates/MainContentPresenterDataTemplate.xaml" />
             </ResourceDictionary.MergedDictionaries>
         </ResourceDictionary>
     </Window.Resources>
+
     <Grid>
         <Grid.RowDefinitions>
             <RowDefinition Height="Auto" />
             <RowDefinition Height="*" />
         </Grid.RowDefinitions>
-        <ContentPresenter Grid.Row="0" Content="{Binding}" ContentTemplate="{StaticResource RibbonDataTemplate}" />
-        <ContentPresenter Grid.Row="1" Content="{Binding}"
-                          ContentTemplate="{StaticResource MainContentPresenterDataTemplate}" />
+        <ContentPresenter 
+            Grid.Row="0" 
+            Content="{Binding}" 
+            ContentTemplate="{StaticResource RibbonDataTemplate}" />
+        <ContentPresenter 
+            Grid.Row="1" 
+            Content="{Binding}"
+            ContentTemplate="{StaticResource MainContentPresenterDataTemplate}" />
     </Grid>
 </fluent:RibbonWindow>
