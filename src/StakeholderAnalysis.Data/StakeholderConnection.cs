@@ -1,6 +1,6 @@
 ﻿namespace StakeholderAnalysis.Data
 {
-    public class StakeholderConnection : PropertyChangedElement
+    public class StakeholderConnection : NotifyPropertyChangedObservable
     {
         public StakeholderConnection(ConnectionGroup group, Stakeholder connectFrom, Stakeholder connectTo)
         {

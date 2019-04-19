@@ -6,7 +6,7 @@ using StakeholderAnalysis.Data;
 
 namespace StakeholderAnalysis.Visualization.ViewModels
 {
-    public class ConnectionGroupViewModel : PropertyChangedElement
+    public class ConnectionGroupViewModel : NotifyPropertyChangedObservable
     {
         public ConnectionGroupViewModel(ConnectionGroup connectionGroup)
         {

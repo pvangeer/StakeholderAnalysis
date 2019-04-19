@@ -4,7 +4,7 @@ using StakeholderAnalysis.Data;
 
 namespace StakeholderAnalysis.Visualization.ViewModels
 {
-    public class StakeholderConnectionViewModel : PropertyChangedElement
+    public class StakeholderConnectionViewModel : NotifyPropertyChangedObservable
     {
         public StakeholderConnectionViewModel(StakeholderConnection connection)
         {

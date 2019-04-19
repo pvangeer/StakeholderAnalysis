@@ -2,7 +2,7 @@
 
 namespace StakeholderAnalysis.Data
 {
-    public class OnionRing : PropertyChangedElement
+    public class OnionRing : NotifyPropertyChangedObservable
     {
         public OnionRing(string name = "", double percentage = 1.0)
         {

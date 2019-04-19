@@ -7,7 +7,7 @@ using StakeholderAnalysis.Visualization.Commands;
 
 namespace StakeholderAnalysis.Visualization.ViewModels
 {
-    public class MainWindowViewModel : PropertyChangedElement, ISelectionRegister
+    public class MainWindowViewModel : NotifyPropertyChangedObservable, ISelectionRegister
     {
         private bool isMagnifierActive;
         private bool isSaveToImage;

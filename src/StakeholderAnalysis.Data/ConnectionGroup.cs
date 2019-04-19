@@ -2,7 +2,7 @@
 
 namespace StakeholderAnalysis.Data
 {
-    public class ConnectionGroup : PropertyChangedElement
+    public class ConnectionGroup : NotifyPropertyChangedObservable
     {
         public ConnectionGroup(string name, Color color, bool visible = true)
         {

@@ -4,7 +4,7 @@ using StakeholderAnalysis.Data;
 
 namespace StakeholderAnalysis.Visualization.ViewModels
 {
-    public class OnionRingViewModel : PropertyChangedElement
+    public class OnionRingViewModel : NotifyPropertyChangedObservable
     {
         public OnionRingViewModel() : this(new OnionRing())
         {

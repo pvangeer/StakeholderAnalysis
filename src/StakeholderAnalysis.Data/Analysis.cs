@@ -2,7 +2,7 @@
 
 namespace StakeholderAnalysis.Data
 {
-    public class Analysis : PropertyChangedElement
+    public class Analysis : NotifyPropertyChangedObservable
     {
         public Analysis(Onion onion = null, ObservableCollection<Stakeholder> stakeholders = null,
             ObservableCollection<StakeholderConnection> connections = null,

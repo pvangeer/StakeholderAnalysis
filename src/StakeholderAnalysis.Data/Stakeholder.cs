@@ -1,6 +1,6 @@
 ﻿namespace StakeholderAnalysis.Data
 {
-    public class Stakeholder : PropertyChangedElement
+    public class Stakeholder : NotifyPropertyChangedObservable
     {
         public Stakeholder(string name, double leftPercentage, double topPercentage, double interest, double influence,
             double attitude, double impact, StakeholderType type)

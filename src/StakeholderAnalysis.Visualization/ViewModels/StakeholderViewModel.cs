@@ -5,7 +5,7 @@ using StakeholderAnalysis.Visualization.Commands;
 
 namespace StakeholderAnalysis.Visualization.ViewModels
 {
-    public class StakeholderViewModel : PropertyChangedElement
+    public class StakeholderViewModel : NotifyPropertyChangedObservable
     {
         private readonly ISelectionRegister selectionRegister;
 

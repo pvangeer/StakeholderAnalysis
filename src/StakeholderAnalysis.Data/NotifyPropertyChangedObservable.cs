@@ -4,7 +4,7 @@ using StakeholderAnalysis.Data.Properties;
 
 namespace StakeholderAnalysis.Data
 {
-    public class PropertyChangedElement : INotifyPropertyChanged
+    public class NotifyPropertyChangedObservable : INotifyPropertyChanged
     {
         public event PropertyChangedEventHandler PropertyChanged;
 

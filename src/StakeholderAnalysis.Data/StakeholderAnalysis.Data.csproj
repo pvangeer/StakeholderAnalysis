@@ -42,7 +42,7 @@
     <Compile Include="Onion.cs" />
     <Compile Include="OnionRing.cs" />
     <Compile Include="Properties\Annotations.cs" />
-    <Compile Include="PropertyChangedElement.cs" />
+    <Compile Include="NotifyPropertyChangedObservable.cs" />
     <Compile Include="Stakeholder.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="StakeholderConnection.cs" />
