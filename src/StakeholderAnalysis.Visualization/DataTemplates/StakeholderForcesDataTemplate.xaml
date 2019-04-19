@@ -38,7 +38,7 @@
                 <Grid.Background>
                     <LinearGradientBrush StartPoint="0,1" EndPoint="1,0">
                         <GradientStop Color="CornflowerBlue" Offset="0.0" />
-                        <GradientStop Color="LightGreen" Offset="1.0" />
+                        <GradientStop Color="LimeGreen" Offset="1.0" />
                     </LinearGradientBrush>
                 </Grid.Background>
                 <!--Canvas that draws the arrows of the diagram-->

@@ -71,7 +71,30 @@ namespace StakeholderAnalysis.Visualization.ViewModels
             }
         }
 
+
+        public double Attitude
+        {
+            get => Stakeholder.Attitude;
+            set
+            {
+                Stakeholder.Attitude = value;
+                OnPropertyChanged(nameof(Stakeholder.Attitude));
+            }
+        }
+
+        public double Impact
+        {
+            get => Stakeholder.Impact;
+            set
+            {
+                Stakeholder.Impact = value;
+                Stakeholder.OnPropertyChanged(nameof(Stakeholder.Impact));
+            }
+        }
+
         public double InfluenceLocation => 1 - Stakeholder.Influence;
+
+        public double AttitudePosition => 1 - Stakeholder.Attitude;
 
         public StakeholderType Type => Stakeholder.Type;
 
@@ -99,6 +122,13 @@ namespace StakeholderAnalysis.Visualization.ViewModels
                 case nameof(Stakeholder.Influence):
                     OnPropertyChanged(nameof(InfluenceLocation));
                     OnPropertyChanged(nameof(Influence));
+                    break;
+                case nameof(Stakeholder.Attitude):
+                    OnPropertyChanged(nameof(Attitude));
+                    OnPropertyChanged(nameof(AttitudePosition));
+                    break;
+                case nameof(Stakeholder.Impact):
+                    OnPropertyChanged(nameof(Impact));
                     break;
             }
         }

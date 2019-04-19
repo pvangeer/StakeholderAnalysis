@@ -67,7 +67,6 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Commands\AddStakeholderCommand.cs" />
     <Compile Include="Commands\CloseApplicationCommand.cs" />
     <Compile Include="Commands\OpenFileCommand.cs" />
     <Compile Include="Commands\ToggleViewCommand.cs" />

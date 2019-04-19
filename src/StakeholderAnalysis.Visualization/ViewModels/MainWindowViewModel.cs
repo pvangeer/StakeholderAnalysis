@@ -72,8 +72,6 @@ namespace StakeholderAnalysis.Visualization.ViewModels
 
         public ICommand ToggleView => new ToggleViewCommand(this);
 
-        public ICommand AddStakeholderCommand => new AddStakeholderCommand(this);
-
         public bool IsOnionViewOpened
         {
             get => SelectedViewInfo.Type == StakeholderViewType.Onion;

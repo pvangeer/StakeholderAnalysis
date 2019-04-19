@@ -80,11 +80,6 @@
                         Command="{Binding ToggleView}" CommandParameter="{x:Static viewModels:StakeholderViewType.CommunicationStrategy}"/>
                 </fluent:RibbonGroupBox>
 
-                <fluent:RibbonGroupBox Header="Stakeholders">
-                    <fluent:Button 
-                        Header="Stakeholder toevoegen" 
-                        Command="{Binding AddStakeholderCommand}"/>
-                </fluent:RibbonGroupBox>
             </fluent:RibbonTabItem>
 
             <fluent:RibbonTabItem Header="Ui-diagram" Group="{Binding Source={x:Reference onionGroup}}">
