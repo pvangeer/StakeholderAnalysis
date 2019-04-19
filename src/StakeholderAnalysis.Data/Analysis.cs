@@ -4,7 +4,9 @@ namespace StakeholderAnalysis.Data
 {
     public class Analysis : PropertyChangedElement
     {
-        public Analysis(Onion onion = null, ObservableCollection<Stakeholder> stakeholders = null, ObservableCollection<StakeholderConnection> connections = null, ObservableCollection<ConnectionGroup> connectionGroups = null)
+        public Analysis(Onion onion = null, ObservableCollection<Stakeholder> stakeholders = null,
+            ObservableCollection<StakeholderConnection> connections = null,
+            ObservableCollection<ConnectionGroup> connectionGroups = null)
         {
             Onion = onion ?? new Onion();
             Stakeholders = stakeholders ?? new ObservableCollection<Stakeholder>();

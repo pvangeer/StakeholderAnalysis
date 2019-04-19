@@ -1,6 +1,6 @@
 ﻿using System.ComponentModel;
 using System.Runtime.CompilerServices;
-using StakeholderAnalysis.Data.Annotations;
+using StakeholderAnalysis.Data.Properties;
 
 namespace StakeholderAnalysis.Data
 {

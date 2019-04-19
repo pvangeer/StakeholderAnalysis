@@ -2,7 +2,8 @@
 {
     public class Stakeholder : PropertyChangedElement
     {
-        public Stakeholder(string name, double leftPercentage, double topPercentage, double interest, double influence, double attitude, double impact, StakeholderType type)
+        public Stakeholder(string name, double leftPercentage, double topPercentage, double interest, double influence,
+            double attitude, double impact, StakeholderType type)
         {
             Name = name;
             LeftPercentage = leftPercentage;

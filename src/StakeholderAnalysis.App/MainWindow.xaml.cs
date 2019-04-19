@@ -1,12 +1,11 @@
 ﻿using System.Linq;
-using System.Windows;
 using Fluent;
 using StakeholderAnalysis.Visualization.ViewModels;
 
 namespace StakeholderAnalysis.App
 {
     /// <summary>
-    /// Interaction logic for MainWindow.xaml
+    ///     Interaction logic for MainWindow.xaml
     /// </summary>
     public partial class MainWindow : RibbonWindow
     {
@@ -14,11 +13,10 @@ namespace StakeholderAnalysis.App
         {
             InitializeComponent();
             var analysis = AnalysisGenerator.GetAnalysis();
-            
+
             var mainWindowViewModel = new MainWindowViewModel(analysis);
             mainWindowViewModel.SelectedStakeholder = mainWindowViewModel.Stakeholders.Last();
             DataContext = mainWindowViewModel;
-            
         }
     }
 }

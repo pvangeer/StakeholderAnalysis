@@ -1,8 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Text;
-using System.Threading.Tasks;
-using System.Windows.Media;
+﻿using System.Windows.Media;
 
 namespace StakeholderAnalysis.Data
 {
@@ -10,8 +6,8 @@ namespace StakeholderAnalysis.Data
     {
         public ConnectionGroup(string name, Color color, bool visible = true)
         {
-            this.Name = name;
-            this.Color = color;
+            Name = name;
+            Color = color;
             Visible = visible;
         }
 
