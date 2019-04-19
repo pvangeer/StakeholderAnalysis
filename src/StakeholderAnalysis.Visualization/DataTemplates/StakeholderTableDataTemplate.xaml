@@ -7,22 +7,23 @@
 
     <DataTemplate x:Key="StakeholderTableDataTemplate" DataType="viewModels:MainWindowViewModel">
         <Grid>
-            <DataGrid 
-                ItemsSource="{Binding Stakeholders}" 
+            <DataGrid
+                ItemsSource="{Binding Stakeholders}"
                 AutoGenerateColumns="False"
                 SelectionMode="Extended"
                 CanUserAddRows="False"
                 CanUserDeleteRows="False"
                 SelectionUnit="CellOrRowHeader">
                 <DataGrid.Columns>
-                    <DataGridTextColumn Header="Naam" Binding="{Binding Name, Mode=TwoWay}"/>
-                    <DataGridTextColumn Header="Type" Binding="{Binding Type, Converter={StaticResource StakeholderTypeToStringConverter}, Mode=OneWay}"/>
-                    <DataGridTextColumn Header="Factor links" Binding="{Binding LeftPercentage}"/>
-                    <DataGridTextColumn Header="Factor boven" Binding="{Binding TopPercentage}"/>
-                    <DataGridTextColumn Header="Belang/Verantwoording" Binding="{Binding Interest}"/>
-                    <DataGridTextColumn Header="Invloed" Binding="{Binding Influence}"/>
-                    <DataGridTextColumn Header="Houding" Binding="{Binding Attitude}"/>
-                    <DataGridTextColumn Header="Impact" Binding="{Binding Impact}"/>
+                    <DataGridTextColumn Header="Naam" Binding="{Binding Name, Mode=TwoWay}" />
+                    <DataGridTextColumn Header="Type"
+                                        Binding="{Binding Type, Converter={StaticResource StakeholderTypeToStringConverter}, Mode=OneWay}" />
+                    <DataGridTextColumn Header="Factor links" Binding="{Binding LeftPercentage}" />
+                    <DataGridTextColumn Header="Factor boven" Binding="{Binding TopPercentage}" />
+                    <DataGridTextColumn Header="Belang/Verantwoording" Binding="{Binding Interest}" />
+                    <DataGridTextColumn Header="Invloed" Binding="{Binding Influence}" />
+                    <DataGridTextColumn Header="Houding" Binding="{Binding Attitude}" />
+                    <DataGridTextColumn Header="Impact" Binding="{Binding Impact}" />
                 </DataGrid.Columns>
             </DataGrid>
         </Grid>

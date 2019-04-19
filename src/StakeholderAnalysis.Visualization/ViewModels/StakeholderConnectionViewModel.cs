@@ -8,7 +8,7 @@ namespace StakeholderAnalysis.Visualization.ViewModels
     {
         public StakeholderConnectionViewModel(StakeholderConnection connection)
         {
-            this.StakeholderConnection = connection;
+            StakeholderConnection = connection;
             StakeholderConnection.ConnectionGroup.PropertyChanged += ConnectionGroupPropertyChanged;
             StakeholderConnection.ConnectFrom.PropertyChanged += ConnectFromPropertyChanged;
             StakeholderConnection.ConnectTo.PropertyChanged += ConnectToPropertyChanged;
@@ -28,7 +28,7 @@ namespace StakeholderAnalysis.Visualization.ViewModels
         public double ConnectToLeft => StakeholderConnection.ConnectTo.LeftPercentage;
 
         public double ConnectToTop => StakeholderConnection.ConnectTo.TopPercentage;
-        
+
         private void ConnectToPropertyChanged(object sender, PropertyChangedEventArgs e)
         {
             switch (e.PropertyName)

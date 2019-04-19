@@ -5,10 +5,10 @@
                     xmlns:xctk="http://schemas.xceed.com/wpf/xaml/toolkit"
                     xmlns:visualization="clr-namespace:StakeholderAnalysis.Visualization">
     <ResourceDictionary.MergedDictionaries>
-        <ResourceDictionary Source="OnionDiagramDataTemplate.xaml"/>
-        <ResourceDictionary Source="CommunicationStrategyDataTemplate.xaml"/>
-        <ResourceDictionary Source="StakeholderForcesDataTemplate.xaml"/>
-        <ResourceDictionary Source="StakeholderTableDataTemplate.xaml"/>
+        <ResourceDictionary Source="OnionDiagramDataTemplate.xaml" />
+        <ResourceDictionary Source="CommunicationStrategyDataTemplate.xaml" />
+        <ResourceDictionary Source="StakeholderForcesDataTemplate.xaml" />
+        <ResourceDictionary Source="StakeholderTableDataTemplate.xaml" />
     </ResourceDictionary.MergedDictionaries>
 
     <converters:IsStakeholderViewTypeConverter x:Key="IsStakeholderViewTypeConverter" />
@@ -19,36 +19,48 @@
                 <Style TargetType="ContentPresenter">
                     <Style.Triggers>
                         <DataTrigger Binding="{Binding IsSaveToImage}" Value="True">
-                            <Setter Property="visualization:SaveToImageBehaviours.SaveToImage" Value="True"/>
+                            <Setter Property="visualization:SaveToImageBehaviours.SaveToImage" Value="True" />
                         </DataTrigger>
                         <DataTrigger Binding="{Binding IsSaveToImage}" Value="False">
-                            <Setter Property="visualization:SaveToImageBehaviours.SaveToImage" Value="False"/>
+                            <Setter Property="visualization:SaveToImageBehaviours.SaveToImage" Value="False" />
                         </DataTrigger>
                     </Style.Triggers>
                 </Style>
             </ContentPresenter.Style>
             <xctk:MagnifierManager.Magnifier>
-                <xctk:Magnifier 
+                <xctk:Magnifier
                     BorderBrush="Gray"
                     BorderThickness="1"
-                    Radius="100" 
-                    ZoomFactor=".4" 
+                    Radius="100"
+                    ZoomFactor=".4"
                     Visibility="{Binding IsMagnifierActive, Converter={StaticResource BooleanToVisibilityConverter}}"
-                    FrameType="Circle"/>
+                    FrameType="Circle" />
             </xctk:MagnifierManager.Magnifier>
         </ContentPresenter>
         <DataTemplate.Triggers>
-            <DataTrigger Binding="{Binding SelectedViewInfo.Type, Converter={StaticResource IsStakeholderViewTypeConverter}, ConverterParameter={x:Static viewModels:StakeholderViewType.Onion}}" Value="True">
-                <Setter TargetName="Presenter" Property="ContentTemplate" Value="{StaticResource OnionDiagramDataTemplate}"/>
+            <DataTrigger
+                Binding="{Binding SelectedViewInfo.Type, Converter={StaticResource IsStakeholderViewTypeConverter}, ConverterParameter={x:Static viewModels:StakeholderViewType.Onion}}"
+                Value="True">
+                <Setter TargetName="Presenter" Property="ContentTemplate"
+                        Value="{StaticResource OnionDiagramDataTemplate}" />
             </DataTrigger>
-            <DataTrigger Binding="{Binding SelectedViewInfo.Type, Converter={StaticResource IsStakeholderViewTypeConverter}, ConverterParameter={x:Static viewModels:StakeholderViewType.CommunicationStrategy}}" Value="True">
-                <Setter TargetName="Presenter" Property="ContentTemplate" Value="{StaticResource CommunicationStrategyDataTemplate}"/>
+            <DataTrigger
+                Binding="{Binding SelectedViewInfo.Type, Converter={StaticResource IsStakeholderViewTypeConverter}, ConverterParameter={x:Static viewModels:StakeholderViewType.CommunicationStrategy}}"
+                Value="True">
+                <Setter TargetName="Presenter" Property="ContentTemplate"
+                        Value="{StaticResource CommunicationStrategyDataTemplate}" />
             </DataTrigger>
-            <DataTrigger Binding="{Binding SelectedViewInfo.Type, Converter={StaticResource IsStakeholderViewTypeConverter}, ConverterParameter={x:Static viewModels:StakeholderViewType.StakeholderForces}}" Value="True">
-                <Setter TargetName="Presenter" Property="ContentTemplate" Value="{StaticResource StakeholderForcesDataTemplate}"/>
+            <DataTrigger
+                Binding="{Binding SelectedViewInfo.Type, Converter={StaticResource IsStakeholderViewTypeConverter}, ConverterParameter={x:Static viewModels:StakeholderViewType.StakeholderForces}}"
+                Value="True">
+                <Setter TargetName="Presenter" Property="ContentTemplate"
+                        Value="{StaticResource StakeholderForcesDataTemplate}" />
             </DataTrigger>
-            <DataTrigger Binding="{Binding SelectedViewInfo.Type, Converter={StaticResource IsStakeholderViewTypeConverter}, ConverterParameter={x:Static viewModels:StakeholderViewType.StakeholderTable}}" Value="True">
-                <Setter TargetName="Presenter" Property="ContentTemplate" Value="{StaticResource StakeholderTableDataTemplate}"/>
+            <DataTrigger
+                Binding="{Binding SelectedViewInfo.Type, Converter={StaticResource IsStakeholderViewTypeConverter}, ConverterParameter={x:Static viewModels:StakeholderViewType.StakeholderTable}}"
+                Value="True">
+                <Setter TargetName="Presenter" Property="ContentTemplate"
+                        Value="{StaticResource StakeholderTableDataTemplate}" />
             </DataTrigger>
         </DataTemplate.Triggers>
     </DataTemplate>

@@ -17,22 +17,22 @@
                         <fluent:Button Header="Nieuw"
                                        Icon="pack://application:,,,/StakeholderAnalysis.Visualization;component/Resources/DocumentHS.png"
                                        fluent:KeyTip.Keys="N"
-                                       Command="{Binding NewCommand}"/>
+                                       Command="{Binding NewCommand}" />
 
-                        <fluent:Button Header="Opslaan" 
+                        <fluent:Button Header="Opslaan"
                                        Icon="pack://application:,,,/StakeholderAnalysis.Visualization;component/Resources/saveHS.png"
                                        fluent:KeyTip.Keys="S"
-                                       Command="{Binding SaveCommand}"/>
+                                       Command="{Binding SaveCommand}" />
 
                         <fluent:Button Header="Opslaan als"
                                        Icon="pack://application:,,,/StakeholderAnalysis.Visualization;component/Resources/SaveAsHH.png"
-                                       fluent:KeyTip.Keys="A" 
-                                       Command="{Binding SaveAsCommand}"/>
+                                       fluent:KeyTip.Keys="A"
+                                       Command="{Binding SaveAsCommand}" />
 
                         <fluent:Button Header="Openen"
                                        Icon="pack://application:,,,/StakeholderAnalysis.Visualization;component/Resources/openfolderHS.png"
                                        fluent:KeyTip.Keys="O"
-                                       Command="{Binding OpenCommand}"/>
+                                       Command="{Binding OpenCommand}" />
 
                         <fluent:SeparatorTabItem />
 
@@ -45,60 +45,64 @@
             </fluent:Ribbon.Menu>
 
             <fluent:Ribbon.ContextualGroups>
-                <fluent:RibbonContextualTabGroup 
+                <fluent:RibbonContextualTabGroup
                     x:Name="onionGroup"
                     Header="Ui-diagram"
-                    Visibility="{Binding SelectedViewInfo, Converter={StaticResource IsSelectedViewTypeConverter}, ConverterParameter={x:Static viewModels:StakeholderViewType.Onion}}" 
+                    Visibility="{Binding SelectedViewInfo, Converter={StaticResource IsSelectedViewTypeConverter}, ConverterParameter={x:Static viewModels:StakeholderViewType.Onion}}"
                     Background="Green"
-                    Foreground="DarkSeaGreen"/>
+                    Foreground="DarkSeaGreen" />
             </fluent:Ribbon.ContextualGroups>
 
             <fluent:RibbonTabItem Header="Start">
                 <fluent:RibbonGroupBox Header="Schermen">
-                    <fluent:ToggleButton 
+                    <fluent:ToggleButton
                         Header="Stakeholder overzicht"
                         LargeIcon="pack://application:,,,/StakeholderAnalysis.Visualization;component/Resources/table.png"
-                        IsChecked="{Binding IsTableViewOpened}" 
-                        Command="{Binding ToggleView}" CommandParameter="{x:Static viewModels:StakeholderViewType.StakeholderTable}"/>
+                        IsChecked="{Binding IsTableViewOpened}"
+                        Command="{Binding ToggleView}"
+                        CommandParameter="{x:Static viewModels:StakeholderViewType.StakeholderTable}" />
 
-                    <fluent:ToggleButton 
+                    <fluent:ToggleButton
                         Header="UI-diagram"
                         LargeIcon="pack://application:,,,/StakeholderAnalysis.Visualization;component/Resources/onion.png"
-                        IsChecked="{Binding IsOnionViewOpened}" 
-                        Command="{Binding ToggleView}" CommandParameter="{x:Static viewModels:StakeholderViewType.Onion}"/>
+                        IsChecked="{Binding IsOnionViewOpened}"
+                        Command="{Binding ToggleView}"
+                        CommandParameter="{x:Static viewModels:StakeholderViewType.Onion}" />
 
-                    <fluent:ToggleButton 
+                    <fluent:ToggleButton
                         Header="Krachtenveld"
                         LargeIcon="pack://application:,,,/StakeholderAnalysis.Visualization;component/Resources/forces.png"
-                        IsChecked="{Binding IsForcesViewOpened}" 
-                        Command="{Binding ToggleView}" CommandParameter="{x:Static viewModels:StakeholderViewType.StakeholderForces}"/>
+                        IsChecked="{Binding IsForcesViewOpened}"
+                        Command="{Binding ToggleView}"
+                        CommandParameter="{x:Static viewModels:StakeholderViewType.StakeholderForces}" />
 
-                    <fluent:ToggleButton 
+                    <fluent:ToggleButton
                         Header="Betrokkenheid"
                         LargeIcon="pack://application:,,,/StakeholderAnalysis.Visualization;component/Resources/involvement.png"
-                        IsChecked="{Binding IsCommunicationStrategyViewOpened}" 
-                        Command="{Binding ToggleView}" CommandParameter="{x:Static viewModels:StakeholderViewType.CommunicationStrategy}"/>
+                        IsChecked="{Binding IsCommunicationStrategyViewOpened}"
+                        Command="{Binding ToggleView}"
+                        CommandParameter="{x:Static viewModels:StakeholderViewType.CommunicationStrategy}" />
                 </fluent:RibbonGroupBox>
                 <fluent:RibbonGroupBox Header="Beeld">
-                    <fluent:ToggleButton 
-                        Header="Vergrootglas" 
-                        Size="Large" 
+                    <fluent:ToggleButton
+                        Header="Vergrootglas"
+                        Size="Large"
                         LargeIcon="pack://application:,,,/StakeholderAnalysis.Visualization;component/Resources/Magnifier.png"
-                        IsChecked="{Binding IsMagnifierActive}"/>
+                        IsChecked="{Binding IsMagnifierActive}" />
                     <fluent:Button
-                        Header="Afbeelding opslaan" 
-                        Size="Large" 
+                        Header="Afbeelding opslaan"
+                        Size="Large"
                         LargeIcon="pack://application:,,,/StakeholderAnalysis.Visualization;component/Resources/SaveImage.png"
-                        Command="{Binding SaveImageCommand}"/>
+                        Command="{Binding SaveImageCommand}" />
                 </fluent:RibbonGroupBox>
             </fluent:RibbonTabItem>
 
             <fluent:RibbonTabItem Header="Ui-diagram" Group="{Binding Source={x:Reference onionGroup}}">
                 <fluent:RibbonGroupBox Header="Verbindingsgroepen">
-                    <controls:ConnectionGroupsListBoxControl 
+                    <controls:ConnectionGroupsListBoxControl
                         Width="250"
                         Margin="0,2,0,0"
-                        StakeholderConnectionsList="{Binding StakeholderConnectionGroups}"/>
+                        StakeholderConnectionsList="{Binding StakeholderConnectionGroups}" />
                 </fluent:RibbonGroupBox>
             </fluent:RibbonTabItem>
         </fluent:Ribbon>

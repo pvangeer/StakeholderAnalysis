@@ -4,7 +4,7 @@
                     xmlns:converters="clr-namespace:StakeholderAnalysis.Visualization.Converters">
 
     <ResourceDictionary.MergedDictionaries>
-        <ResourceDictionary Source="OnionRingDataTemplate.xaml"/>
+        <ResourceDictionary Source="OnionRingDataTemplate.xaml" />
     </ResourceDictionary.MergedDictionaries>
 
     <converters:PercentageToCanvasTopValueConverter x:Key="PercentageToCanvasTopValueConverter" />
@@ -13,25 +13,25 @@
     <DataTemplate x:Key="OnionDataTemplate" DataType="viewModels:MainWindowViewModel">
         <Grid>
             <ItemsControl ItemsSource="{Binding OnionRings}"
-                      Margin="{Binding Margin}"
-                      Background="Transparent"
+                          Margin="{Binding Margin}"
+                          Background="Transparent"
                           ItemTemplate="{StaticResource OnionRingDataTemplate}">
                 <ItemsControl.ItemContainerStyle>
                     <Style>
                         <Setter Property="Canvas.Left">
                             <Setter.Value>
                                 <MultiBinding Converter="{StaticResource PercentageToCanvasLeftValueConverter}">
-                                    <Binding Path="Percentage"/>
-                                    <Binding ElementName="Canvas" Path="ActualWidth"/>
+                                    <Binding Path="Percentage" />
+                                    <Binding ElementName="Canvas" Path="ActualWidth" />
                                 </MultiBinding>
                             </Setter.Value>
                         </Setter>
                         <Setter Property="Canvas.Top">
                             <Setter.Value>
                                 <MultiBinding Converter="{StaticResource PercentageToCanvasTopValueConverter}">
-                                    <Binding Path="Percentage"/>
-                                    <Binding ElementName="OnionRingsPresenter" Path="Content.Asymmetry"/>
-                                    <Binding ElementName="Canvas" Path="ActualHeight"/>
+                                    <Binding Path="Percentage" />
+                                    <Binding ElementName="OnionRingsPresenter" Path="Content.Asymmetry" />
+                                    <Binding ElementName="Canvas" Path="ActualHeight" />
                                 </MultiBinding>
                             </Setter.Value>
                         </Setter>
@@ -39,7 +39,7 @@
                 </ItemsControl.ItemContainerStyle>
                 <ItemsControl.ItemsPanel>
                     <ItemsPanelTemplate>
-                        <Canvas Name="Canvas" IsItemsHost="True" Margin="{Binding Margin}"/>
+                        <Canvas Name="Canvas" IsItemsHost="True" Margin="{Binding Margin}" />
                     </ItemsPanelTemplate>
                 </ItemsControl.ItemsPanel>
             </ItemsControl>

@@ -1,5 +1,4 @@
-﻿using System;
-using System.Windows;
+﻿using System.Windows;
 using System.Windows.Controls;
 using StakeholderAnalysis.Visualization.Commands;
 
@@ -18,18 +17,14 @@ namespace StakeholderAnalysis.Visualization
 
         public static bool GetSaveToImage(DependencyObject obj)
         {
-            return (bool)obj.GetValue(SaveToImageProperty);
+            return (bool) obj.GetValue(SaveToImageProperty);
         }
 
         private static void OnSaveToImage(DependencyObject obj, DependencyPropertyChangedEventArgs e)
         {
-            if ((bool)e.NewValue)
+            if ((bool) e.NewValue)
             {
-                if (!(obj is ContentPresenter contentPresenter))
-                {
-                    return;
-                    // TODO: Give error
-                }
+                if (!(obj is ContentPresenter contentPresenter)) return;
 
                 contentPresenter.SaveToFile();
             }

@@ -1,9 +1,5 @@
 ﻿using System;
-using System.Collections.Generic;
 using System.ComponentModel;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using System.Windows.Input;
 using System.Windows.Media;
 using StakeholderAnalysis.Data;
@@ -14,25 +10,12 @@ namespace StakeholderAnalysis.Visualization.ViewModels
     {
         public ConnectionGroupViewModel(ConnectionGroup connectionGroup)
         {
-            this.ConnectionGroup = connectionGroup;
+            ConnectionGroup = connectionGroup;
             connectionGroup.PropertyChanged += ConnectionGroupPropertyChanged;
         }
 
-        public ConnectionGroupViewModel() : this(new ConnectionGroup("test",Colors.DodgerBlue))
+        public ConnectionGroupViewModel() : this(new ConnectionGroup("test", Colors.DodgerBlue))
         {
-        }
-
-        private void ConnectionGroupPropertyChanged(object sender, PropertyChangedEventArgs e)
-        {
-            switch (e.PropertyName)
-            {
-                case nameof(ConnectionGroup.Name):
-                    OnPropertyChanged(nameof(Name));
-                    break;
-                case nameof(ConnectionGroup.Visible):
-                    OnPropertyChanged(nameof(IsGroupSelected));
-                    break;
-            }
         }
 
         public ConnectionGroup ConnectionGroup { get; }
@@ -64,6 +47,19 @@ namespace StakeholderAnalysis.Visualization.ViewModels
         }
 
         public ICommand ChangeColorCommand => new ChangeColorCommand(ConnectionGroup);
+
+        private void ConnectionGroupPropertyChanged(object sender, PropertyChangedEventArgs e)
+        {
+            switch (e.PropertyName)
+            {
+                case nameof(ConnectionGroup.Name):
+                    OnPropertyChanged(nameof(Name));
+                    break;
+                case nameof(ConnectionGroup.Visible):
+                    OnPropertyChanged(nameof(IsGroupSelected));
+                    break;
+            }
+        }
     }
 
     public class ChangeColorCommand : ICommand

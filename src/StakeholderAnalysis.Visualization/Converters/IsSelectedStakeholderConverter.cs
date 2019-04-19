@@ -1,7 +1,6 @@
 using System;
 using System.Globalization;
 using System.Windows.Data;
-using StakeholderAnalysis.Data;
 using StakeholderAnalysis.Visualization.ViewModels;
 
 namespace StakeholderAnalysis.Visualization.Converters

@@ -9,10 +9,7 @@ namespace StakeholderAnalysis.Visualization.Converters
     {
         public object Convert(object value, Type targetType, object parameter, CultureInfo culture)
         {
-            if (!(value is StakeholderType))
-            {
-                return null;
-            }
+            if (!(value is StakeholderType)) return null;
 
             var stakeholderType = (StakeholderType) value;
             switch (stakeholderType)

@@ -7,21 +7,23 @@
 
     <DataTemplate x:Key="OnionRingDataTemplate" DataType="viewModels:OnionRingViewModel">
         <Grid>
-            <Ellipse Fill="{Binding BackgroundColor}" Stroke="{Binding StrokeColor}" StrokeThickness="{Binding StrokeThickness}">
+            <Ellipse Fill="{Binding BackgroundColor}" Stroke="{Binding StrokeColor}"
+                     StrokeThickness="{Binding StrokeThickness}">
                 <Ellipse.Width>
                     <MultiBinding Converter="{StaticResource PercentageToDimensionConverter}">
-                        <Binding Path="Percentage"/>
-                        <Binding ElementName="Canvas" Path="ActualWidth"/>
+                        <Binding Path="Percentage" />
+                        <Binding ElementName="Canvas" Path="ActualWidth" />
                     </MultiBinding>
                 </Ellipse.Width>
                 <Ellipse.Height>
                     <MultiBinding Converter="{StaticResource PercentageToDimensionConverter}">
-                        <Binding Path="Percentage"/>
-                        <Binding ElementName="Canvas" Path="ActualHeight"/>
+                        <Binding Path="Percentage" />
+                        <Binding ElementName="Canvas" Path="ActualHeight" />
                     </MultiBinding>
                 </Ellipse.Height>
             </Ellipse>
-            <TextBlock Text="{Binding Name}" HorizontalAlignment="Center" Margin="0,5,0,0" FontSize="24" FontWeight="Bold" FontFamily="Arial"/>
+            <TextBlock Text="{Binding Name}" HorizontalAlignment="Center" Margin="0,5,0,0" FontSize="24"
+                       FontWeight="Bold" FontFamily="Arial" />
         </Grid>
     </DataTemplate>
 </ResourceDictionary>

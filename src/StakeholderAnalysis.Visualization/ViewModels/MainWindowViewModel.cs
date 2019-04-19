@@ -9,13 +9,15 @@ namespace StakeholderAnalysis.Visualization.ViewModels
 {
     public class MainWindowViewModel : PropertyChangedElement, ISelectionRegister
     {
+        private bool isMagnifierActive;
+        private bool isSaveToImage;
+        private RelayCommand saveCanvasCommand;
         private StakeholderViewModel selectedStakeholder;
         private StakeholderViewInfo selectedViewInfo;
-        private bool isMagnifierActive;
-        private RelayCommand saveCanvasCommand;
-        private bool isSaveToImage;
 
-        public MainWindowViewModel() : this(new Analysis()) { }
+        public MainWindowViewModel() : this(new Analysis())
+        {
+        }
 
         public MainWindowViewModel(Analysis analysis)
         {
@@ -24,7 +26,7 @@ namespace StakeholderAnalysis.Visualization.ViewModels
                 new StakeholderViewInfo(StakeholderViewType.Onion, this),
                 new StakeholderViewInfo(StakeholderViewType.StakeholderTable, this),
                 new StakeholderViewInfo(StakeholderViewType.StakeholderForces, this),
-                new StakeholderViewInfo(StakeholderViewType.CommunicationStrategy, this),
+                new StakeholderViewInfo(StakeholderViewType.CommunicationStrategy, this)
             });
             SelectedViewInfo = ViewList.ElementAt(0);
 
@@ -36,10 +38,17 @@ namespace StakeholderAnalysis.Visualization.ViewModels
 
             Asymmetry = 0.7;
 
-            OnionRings = new ObservableCollection<OnionRingViewModel>(Analysis.Onion.Rings.Select(r => new OnionRingViewModel(r)));
-            Stakeholders = new ObservableCollection<StakeholderViewModel>(Analysis.Stakeholders.Select(stakeholder => new StakeholderViewModel(stakeholder, this)));
-            StakeholderConnections = new ObservableCollection<StakeholderConnectionViewModel>(Analysis.Connections.Select(c => new StakeholderConnectionViewModel(c)));
-            StakeholderConnectionGroups = new ObservableCollection<ConnectionGroupViewModel>(Analysis.ConnectionGroups.Select(g => new ConnectionGroupViewModel(g)));
+            OnionRings =
+                new ObservableCollection<OnionRingViewModel>(
+                    Analysis.Onion.Rings.Select(r => new OnionRingViewModel(r)));
+            Stakeholders = new ObservableCollection<StakeholderViewModel>(
+                Analysis.Stakeholders.Select(stakeholder => new StakeholderViewModel(stakeholder, this)));
+            StakeholderConnections =
+                new ObservableCollection<StakeholderConnectionViewModel>(
+                    Analysis.Connections.Select(c => new StakeholderConnectionViewModel(c)));
+            StakeholderConnectionGroups =
+                new ObservableCollection<ConnectionGroupViewModel>(
+                    Analysis.ConnectionGroups.Select(g => new ConnectionGroupViewModel(g)));
             Margin = 10;
         }
 
@@ -125,7 +134,8 @@ namespace StakeholderAnalysis.Visualization.ViewModels
             }
         }
 
-        public ICommand SaveImageCommand {
+        public ICommand SaveImageCommand
+        {
             get
             {
                 if (saveCanvasCommand == null)
@@ -149,90 +159,59 @@ namespace StakeholderAnalysis.Visualization.ViewModels
             }
         }
 
+
+        public void Select(object o)
+        {
+            if (o is StakeholderViewModel stakeholderViewModel) SelectedStakeholder = stakeholderViewModel;
+        }
+
         private void RingsCollectionChanged(object sender, NotifyCollectionChangedEventArgs e)
         {
             if (e.Action == NotifyCollectionChangedAction.Add)
-            {
                 foreach (var item in e.NewItems.OfType<OnionRing>())
-                {
-                    OnionRings.Insert(OnionRings.IndexOf(OnionRings.FirstOrDefault(r => r.Percentage >= item.Percentage)),new OnionRingViewModel(item));
-                }
-            }
+                    OnionRings.Insert(
+                        OnionRings.IndexOf(OnionRings.FirstOrDefault(r => r.Percentage >= item.Percentage)),
+                        new OnionRingViewModel(item));
 
             if (e.Action == NotifyCollectionChangedAction.Remove)
-            {
                 foreach (var onionRing in e.OldItems.OfType<OnionRing>())
-                {
                     OnionRings.Remove(OnionRings.FirstOrDefault(r => r.Ring == onionRing));
-                }
-            }
         }
 
         private void StakeholdersCollectionChanged(object sender, NotifyCollectionChangedEventArgs e)
         {
             if (e.Action == NotifyCollectionChangedAction.Add)
-            {
                 foreach (var item in e.NewItems.OfType<Stakeholder>())
-                {
                     Stakeholders.Add(new StakeholderViewModel(item, this));
-                }
-            }
 
             if (e.Action == NotifyCollectionChangedAction.Remove)
-            {
                 foreach (var stakeholder in e.OldItems.OfType<Stakeholder>())
-                {
-                    Stakeholders.Remove(Stakeholders.FirstOrDefault(viewModel => viewModel.IsViewModelFor(stakeholder)));
-                }
-            }
+                    Stakeholders.Remove(Stakeholders.FirstOrDefault(viewModel =>
+                        viewModel.IsViewModelFor(stakeholder)));
         }
 
         private void ConnectorsCollectionChanged(object sender, NotifyCollectionChangedEventArgs e)
         {
             if (e.Action == NotifyCollectionChangedAction.Add)
-            {
                 foreach (var item in e.NewItems.OfType<StakeholderConnection>())
-                {
                     StakeholderConnections.Add(new StakeholderConnectionViewModel(item));
-                }
-            }
 
             if (e.Action == NotifyCollectionChangedAction.Remove)
-            {
                 foreach (var stakeholder in e.OldItems.OfType<StakeholderConnection>())
-                {
-                    StakeholderConnections.Remove(StakeholderConnections.FirstOrDefault(vm => vm.StakeholderConnection == stakeholder));
-                }
-            }
+                    StakeholderConnections.Remove(
+                        StakeholderConnections.FirstOrDefault(vm => vm.StakeholderConnection == stakeholder));
         }
 
         private void ConnectionGroupsCollectionChanged(object sender, NotifyCollectionChangedEventArgs e)
         {
             if (e.Action == NotifyCollectionChangedAction.Add)
-            {
                 foreach (var item in e.NewItems.OfType<ConnectionGroup>())
-                {
                     StakeholderConnectionGroups.Add(new ConnectionGroupViewModel(item));
-                }
-            }
 
             if (e.Action == NotifyCollectionChangedAction.Remove)
-            {
                 foreach (var connectionGroup in e.OldItems.OfType<ConnectionGroup>())
-                {
                     StakeholderConnectionGroups.Remove(
                         StakeholderConnectionGroups.FirstOrDefault(vm => vm.ConnectionGroup == connectionGroup));
-                }
-            }
-        }
-
-
-        public void Select(object o)
-        {
-            if (o is StakeholderViewModel stakeholderViewModel)
-            {
-                SelectedStakeholder = stakeholderViewModel;
-            }
         }
     }
 }

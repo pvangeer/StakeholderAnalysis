@@ -11,12 +11,9 @@ namespace StakeholderAnalysis.Visualization.Commands
     {
         public static void SaveToFile(this FrameworkElement frameworkElement, double scalingFactor = 3.0)
         {
-            if (frameworkElement == null)
-            {
-                return;
-            }
+            if (frameworkElement == null) return;
 
-            SaveFileDialog saveFileDialog = new SaveFileDialog
+            var saveFileDialog = new SaveFileDialog
             {
                 Filter = "Afbeelding *.png|*.png"
             };
@@ -29,35 +26,31 @@ namespace StakeholderAnalysis.Visualization.Commands
 
         private static void Render(FrameworkElement presenter, string path, double scalingFactor)
         {
-            PresentationSource source = PresentationSource.FromVisual(presenter);
+            var source = PresentationSource.FromVisual(presenter);
 
-            double dpiX = double.NaN;
-            double dpiY = double.NaN;
+            var dpiX = double.NaN;
+            var dpiY = double.NaN;
             if (source?.CompositionTarget != null)
             {
                 dpiX = 96.0 * source.CompositionTarget.TransformToDevice.M11;
                 dpiY = 96.0 * source.CompositionTarget.TransformToDevice.M22;
             }
 
-            if (Math.Abs(dpiX - dpiY) > 1e-10)
-            {
-                return;
-                // Help???
-            }
+            if (Math.Abs(dpiX - dpiY) > 1e-10) return;
 
-            double dpi = dpiX * scalingFactor;
-            double scale = dpi / 96.0;
-            RenderTargetBitmap renderBitmap =
+            var dpi = dpiX * scalingFactor;
+            var scale = dpi / 96.0;
+            var renderBitmap =
                 new RenderTargetBitmap(
-                    (int)(presenter.ActualWidth * scale),
-                    (int)(presenter.ActualHeight * scale),
+                    (int) (presenter.ActualWidth * scale),
+                    (int) (presenter.ActualHeight * scale),
                     dpi,
                     dpi,
                     PixelFormats.Pbgra32);
             renderBitmap.Render(presenter);
 
             BitmapEncoder encoder = new PngBitmapEncoder();
-            using (FileStream outStream = new FileStream(path, FileMode.Create))
+            using (var outStream = new FileStream(path, FileMode.Create))
             {
                 encoder.Frames.Add(BitmapFrame.Create(renderBitmap));
                 encoder.Save(outStream);

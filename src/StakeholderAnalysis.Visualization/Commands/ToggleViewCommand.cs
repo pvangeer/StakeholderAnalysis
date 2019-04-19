@@ -16,16 +16,16 @@ namespace StakeholderAnalysis.Visualization.Commands
 
         public event EventHandler CanExecuteChanged;
 
-        public bool CanExecute(object parameter) => true;
+        public bool CanExecute(object parameter)
+        {
+            return true;
+        }
 
         public void Execute(object parameter)
         {
-            if (!(parameter is StakeholderViewType))
-            {
-                return;
-            }
+            if (!(parameter is StakeholderViewType)) return;
 
-            var viewType = (StakeholderViewType)parameter;
+            var viewType = (StakeholderViewType) parameter;
             var openView = mainWindowViewModel.ViewList.FirstOrDefault(vi => vi.Type == viewType);
             if (openView == null)
             {

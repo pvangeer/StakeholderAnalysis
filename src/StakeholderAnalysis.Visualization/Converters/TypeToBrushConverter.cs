@@ -10,12 +10,9 @@ namespace StakeholderAnalysis.Visualization.Converters
     {
         public object Convert(object value, Type targetType, object parameter, CultureInfo culture)
         {
-            if (!(value is StakeholderType))
-            {
-                return value;
-            }
+            if (!(value is StakeholderType)) return value;
 
-            switch ((StakeholderType)value)
+            switch ((StakeholderType) value)
             {
                 case StakeholderType.Waterkeringbeheerder:
                     return new SolidColorBrush(Colors.AliceBlue);

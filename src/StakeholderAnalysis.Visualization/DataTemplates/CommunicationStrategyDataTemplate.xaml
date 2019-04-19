@@ -5,144 +5,148 @@
                     xmlns:system="clr-namespace:System;assembly=mscorlib">
 
     <ResourceDictionary.MergedDictionaries>
-        <ResourceDictionary Source="StakeholderDataTemplate.xaml"/>
+        <ResourceDictionary Source="StakeholderDataTemplate.xaml" />
     </ResourceDictionary.MergedDictionaries>
 
     <converters:PercentageToDimensionConverter x:Key="PercentageToDimensionConverter" />
     <converters:SizeToArrowsPathDataConverter x:Key="SizeToArrowsPathDataConverter" />
 
     <Style x:Key="TextBlockLabelStyle" TargetType="TextBlock">
-        <Setter Property="Foreground" Value="Black"/>
-        <Setter Property="FontWeight" Value="Normal"/>
-        <Setter Property="FontSize" Value="24"/>
-        <Setter Property="TextAlignment" Value="Center"/>
-        <Setter Property="VerticalAlignment" Value="Center"/>
-        <Setter Property="Margin" Value="10"/>
+        <Setter Property="Foreground" Value="Black" />
+        <Setter Property="FontWeight" Value="Normal" />
+        <Setter Property="FontSize" Value="24" />
+        <Setter Property="TextAlignment" Value="Center" />
+        <Setter Property="VerticalAlignment" Value="Center" />
+        <Setter Property="Margin" Value="10" />
     </Style>
 
     <DataTemplate x:Key="CommunicationStrategyDataTemplate" DataType="viewModels:MainWindowViewModel">
         <!--Main grid-->
-            <Grid>
-                <Grid.RowDefinitions>
-                    <RowDefinition Height="*"/>
-                    <RowDefinition Height="Auto"/>
-                </Grid.RowDefinitions>
-                <Grid.ColumnDefinitions>
-                    <ColumnDefinition Width="Auto"/>
-                    <ColumnDefinition Width="*"/>
-                </Grid.ColumnDefinitions>
-                <!--Diagram drawing grid (including twe canvasses-->
-                <Grid Grid.Row="0" Grid.Column="1">
-                    <Grid.Background>
-                        <LinearGradientBrush StartPoint="0,0" EndPoint="1,1">
-                            <GradientStop Color="LightYellow" Offset="0.0" />
-                            <GradientStop Color="PaleVioletRed" Offset="1.0" />
-                        </LinearGradientBrush>
-                    </Grid.Background>
-                    <!--Canvas that draws the arrows of the diagram-->
-                    <Canvas Name="LinesCanvas" Margin="{Binding Margin}" Background="Transparent">
-                        <Canvas.Resources>
-                            <system:Double x:Key="MinValue">0.0</system:Double>
-                            <system:Double x:Key="MaxValue">1.0</system:Double>
-                            <system:Double x:Key="MiddleValue">0.5</system:Double>
-                        </Canvas.Resources>
-                        <Path Stroke="Black" StrokeThickness="3">
-                            <Path.Data>
-                                <MultiBinding Converter="{StaticResource SizeToArrowsPathDataConverter}">
-                                    <Binding ElementName="LinesCanvas" Path="ActualWidth"/>
-                                    <Binding ElementName="LinesCanvas" Path="ActualHeight"/>
-                                </MultiBinding>
-                            </Path.Data>
-                        </Path>
-                    </Canvas>
+        <Grid>
+            <Grid.RowDefinitions>
+                <RowDefinition Height="*" />
+                <RowDefinition Height="Auto" />
+            </Grid.RowDefinitions>
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="Auto" />
+                <ColumnDefinition Width="*" />
+            </Grid.ColumnDefinitions>
+            <!--Diagram drawing grid (including twe canvasses-->
+            <Grid Grid.Row="0" Grid.Column="1">
+                <Grid.Background>
+                    <LinearGradientBrush StartPoint="0,0" EndPoint="1,1">
+                        <GradientStop Color="LightYellow" Offset="0.0" />
+                        <GradientStop Color="PaleVioletRed" Offset="1.0" />
+                    </LinearGradientBrush>
+                </Grid.Background>
+                <!--Canvas that draws the arrows of the diagram-->
+                <Canvas Name="LinesCanvas" Margin="{Binding Margin}" Background="Transparent">
+                    <Canvas.Resources>
+                        <system:Double x:Key="MinValue">0.0</system:Double>
+                        <system:Double x:Key="MaxValue">1.0</system:Double>
+                        <system:Double x:Key="MiddleValue">0.5</system:Double>
+                    </Canvas.Resources>
+                    <Path Stroke="Black" StrokeThickness="3">
+                        <Path.Data>
+                            <MultiBinding Converter="{StaticResource SizeToArrowsPathDataConverter}">
+                                <Binding ElementName="LinesCanvas" Path="ActualWidth" />
+                                <Binding ElementName="LinesCanvas" Path="ActualHeight" />
+                            </MultiBinding>
+                        </Path.Data>
+                    </Path>
+                </Canvas>
 
-                    <!--Grid that holds all tekst objects inside the diagram-->
-                    <Grid>
-                        <Grid.Resources>
-                            <Style TargetType="TextBlock">
-                                <Setter Property="Margin" Value="15"/>
-                                <Setter Property="FontWeight" Value="Bold"/>
-                                <Setter Property="Foreground" Value="DimGray"/>
-                                <Setter Property="FontStyle" Value="Italic"/>
-                                <Setter Property="FontSize" Value="64"/>
-                            </Style>
-                        </Grid.Resources>
-                        <Grid.RowDefinitions>
-                            <RowDefinition Height="Auto"/>
-                            <RowDefinition Height="*"/>
-                            <RowDefinition Height="Auto"/>
-                        </Grid.RowDefinitions>
-                        <Grid.ColumnDefinitions>
-                            <ColumnDefinition Width="Auto"/>
-                            <ColumnDefinition Width="*"/>
-                            <ColumnDefinition Width="Auto"/>
-                        </Grid.ColumnDefinitions>
-                        <TextBlock Grid.Row="0" Grid.Column="0" Text="Informeren" TextAlignment="Left"/>
-                        <TextBlock Grid.Row="2" Grid.Column="0" Text="Monitoren" TextAlignment="Left"/>
-                        <TextBlock Grid.Row="2" Grid.Column="2" Text="Overtuigen"  TextAlignment="Right"/>
-                        <TextBlock Grid.Row="0" Grid.Column="2" Text="Betrekken" TextAlignment="Right"/>
-                    </Grid>
-                    <!--Canvas that holds all stakeholders-->
-                    <ItemsControl ItemsSource="{Binding Stakeholders}"
-                          Margin="{Binding Margin}"
-                          Background="Transparent"
-                          ItemTemplate="{StaticResource StakeholderDataTemplate}">
-                        <ItemsControl.ItemContainerStyle>
-                            <Style>
-                                <Setter Property="Canvas.Left">
-                                    <Setter.Value>
-                                        <MultiBinding Converter="{StaticResource PercentageToDimensionConverter}">
-                                            <Binding Path="Impact"/>
-                                            <Binding RelativeSource="{RelativeSource Self}" Path="ActualWidth"/>
-                                            <Binding ElementName="Canvas" Path="ActualWidth"/>
-                                        </MultiBinding>
-                                    </Setter.Value>
-                                </Setter>
-                                <Setter Property="Canvas.Top">
-                                    <Setter.Value>
-                                        <MultiBinding Converter="{StaticResource PercentageToDimensionConverter}">
-                                            <Binding Path="AttitudePosition"/>
-                                            <Binding RelativeSource="{RelativeSource Self}" Path="ActualHeight"/>
-                                            <Binding ElementName="Canvas" Path="ActualHeight"/>
-                                        </MultiBinding>
-                                    </Setter.Value>
-                                </Setter>
-                            </Style>
-                        </ItemsControl.ItemContainerStyle>
-                        <ItemsControl.ItemsPanel>
-                            <ItemsPanelTemplate>
-                                <Canvas Name="Canvas" IsItemsHost="True" Margin="{Binding Margin}"/>
-                            </ItemsPanelTemplate>
-                        </ItemsControl.ItemsPanel>
-                    </ItemsControl>
-                </Grid>
-                <!--Grid that represents the labels next to the diagram-->
-                <Grid Grid.Row="0" Grid.Column="0">
+                <!--Grid that holds all tekst objects inside the diagram-->
+                <Grid>
+                    <Grid.Resources>
+                        <Style TargetType="TextBlock">
+                            <Setter Property="Margin" Value="15" />
+                            <Setter Property="FontWeight" Value="Bold" />
+                            <Setter Property="Foreground" Value="DimGray" />
+                            <Setter Property="FontStyle" Value="Italic" />
+                            <Setter Property="FontSize" Value="64" />
+                        </Style>
+                    </Grid.Resources>
                     <Grid.RowDefinitions>
-                        <RowDefinition Height="Auto"/>
-                        <RowDefinition Height="*"/>
-                        <RowDefinition Height="Auto"/>
+                        <RowDefinition Height="Auto" />
+                        <RowDefinition Height="*" />
+                        <RowDefinition Height="Auto" />
                     </Grid.RowDefinitions>
-                    <TextBlock Grid.Row="0" Text="Positief" VerticalAlignment="Top" Style="{StaticResource TextBlockLabelStyle}">
-                        <TextBlock.LayoutTransform>
-                            <RotateTransform Angle="270"/>
-                        </TextBlock.LayoutTransform>
-                    </TextBlock>
-                    <TextBlock Grid.Row="2" Text="Negatief" VerticalAlignment="Bottom" Style="{StaticResource TextBlockLabelStyle}">
-                        <TextBlock.LayoutTransform>
-                            <RotateTransform Angle="270"/>
-                        </TextBlock.LayoutTransform>
-                    </TextBlock>
-                </Grid>
-                <Grid Grid.Row="1" Grid.Column="1">
                     <Grid.ColumnDefinitions>
-                        <ColumnDefinition Width="Auto"/>
-                        <ColumnDefinition Width="*"/>
-                        <ColumnDefinition Width="Auto"/>
+                        <ColumnDefinition Width="Auto" />
+                        <ColumnDefinition Width="*" />
+                        <ColumnDefinition Width="Auto" />
                     </Grid.ColumnDefinitions>
-                    <TextBlock Grid.Column="2" Text="Hoge impact" TextAlignment="Right" Style="{StaticResource TextBlockLabelStyle}"/>
-                    <TextBlock Grid.Column="0" Text="Lage impact" TextAlignment="Left" Style="{StaticResource TextBlockLabelStyle}"/>
+                    <TextBlock Grid.Row="0" Grid.Column="0" Text="Informeren" TextAlignment="Left" />
+                    <TextBlock Grid.Row="2" Grid.Column="0" Text="Monitoren" TextAlignment="Left" />
+                    <TextBlock Grid.Row="2" Grid.Column="2" Text="Overtuigen" TextAlignment="Right" />
+                    <TextBlock Grid.Row="0" Grid.Column="2" Text="Betrekken" TextAlignment="Right" />
                 </Grid>
+                <!--Canvas that holds all stakeholders-->
+                <ItemsControl ItemsSource="{Binding Stakeholders}"
+                              Margin="{Binding Margin}"
+                              Background="Transparent"
+                              ItemTemplate="{StaticResource StakeholderDataTemplate}">
+                    <ItemsControl.ItemContainerStyle>
+                        <Style>
+                            <Setter Property="Canvas.Left">
+                                <Setter.Value>
+                                    <MultiBinding Converter="{StaticResource PercentageToDimensionConverter}">
+                                        <Binding Path="Impact" />
+                                        <Binding RelativeSource="{RelativeSource Self}" Path="ActualWidth" />
+                                        <Binding ElementName="Canvas" Path="ActualWidth" />
+                                    </MultiBinding>
+                                </Setter.Value>
+                            </Setter>
+                            <Setter Property="Canvas.Top">
+                                <Setter.Value>
+                                    <MultiBinding Converter="{StaticResource PercentageToDimensionConverter}">
+                                        <Binding Path="AttitudePosition" />
+                                        <Binding RelativeSource="{RelativeSource Self}" Path="ActualHeight" />
+                                        <Binding ElementName="Canvas" Path="ActualHeight" />
+                                    </MultiBinding>
+                                </Setter.Value>
+                            </Setter>
+                        </Style>
+                    </ItemsControl.ItemContainerStyle>
+                    <ItemsControl.ItemsPanel>
+                        <ItemsPanelTemplate>
+                            <Canvas Name="Canvas" IsItemsHost="True" Margin="{Binding Margin}" />
+                        </ItemsPanelTemplate>
+                    </ItemsControl.ItemsPanel>
+                </ItemsControl>
             </Grid>
+            <!--Grid that represents the labels next to the diagram-->
+            <Grid Grid.Row="0" Grid.Column="0">
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="Auto" />
+                    <RowDefinition Height="*" />
+                    <RowDefinition Height="Auto" />
+                </Grid.RowDefinitions>
+                <TextBlock Grid.Row="0" Text="Positief" VerticalAlignment="Top"
+                           Style="{StaticResource TextBlockLabelStyle}">
+                    <TextBlock.LayoutTransform>
+                        <RotateTransform Angle="270" />
+                    </TextBlock.LayoutTransform>
+                </TextBlock>
+                <TextBlock Grid.Row="2" Text="Negatief" VerticalAlignment="Bottom"
+                           Style="{StaticResource TextBlockLabelStyle}">
+                    <TextBlock.LayoutTransform>
+                        <RotateTransform Angle="270" />
+                    </TextBlock.LayoutTransform>
+                </TextBlock>
+            </Grid>
+            <Grid Grid.Row="1" Grid.Column="1">
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="Auto" />
+                    <ColumnDefinition Width="*" />
+                    <ColumnDefinition Width="Auto" />
+                </Grid.ColumnDefinitions>
+                <TextBlock Grid.Column="2" Text="Hoge impact" TextAlignment="Right"
+                           Style="{StaticResource TextBlockLabelStyle}" />
+                <TextBlock Grid.Column="0" Text="Lage impact" TextAlignment="Left"
+                           Style="{StaticResource TextBlockLabelStyle}" />
+            </Grid>
+        </Grid>
     </DataTemplate>
 </ResourceDictionary>

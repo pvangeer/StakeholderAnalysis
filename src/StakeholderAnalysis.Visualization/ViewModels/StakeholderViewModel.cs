@@ -13,10 +13,7 @@ namespace StakeholderAnalysis.Visualization.ViewModels
         {
             this.selectionRegister = selectionRegister;
             Stakeholder = stakeholder;
-            if (Stakeholder != null)
-            {
-                Stakeholder.PropertyChanged += StakeholderPropertyChanged;
-            }
+            if (Stakeholder != null) Stakeholder.PropertyChanged += StakeholderPropertyChanged;
         }
 
         private Stakeholder Stakeholder { get; }

@@ -6,7 +6,9 @@ namespace StakeholderAnalysis.Visualization.ViewModels
 {
     public class OnionRingViewModel : PropertyChangedElement
     {
-        public OnionRingViewModel() :this(new OnionRing()) { }
+        public OnionRingViewModel() : this(new OnionRing())
+        {
+        }
 
         public OnionRingViewModel(OnionRing ring)
         {

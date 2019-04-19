@@ -11,7 +11,7 @@
     <DataTemplate x:Key="StakeholderPopupDataTemplate" DataType="viewModels:StakeholderViewModel">
         <Border Background="AntiqueWhite" BorderBrush="Gray" BorderThickness="1">
             <Grid Width="300" Height="400">
-                <TextBlock Text="{Binding Name}" HorizontalAlignment="Center"/>
+                <TextBlock Text="{Binding Name}" HorizontalAlignment="Center" />
             </Grid>
         </Border>
     </DataTemplate>
@@ -23,50 +23,62 @@
             </Border.InputBindings>
             <Border.Style>
                 <Style TargetType="{x:Type Border}">
-                    <Setter Property="BorderBrush" Value="Gray"/>
-                    <Setter Property="BorderThickness" Value="1"/>
+                    <Setter Property="BorderBrush" Value="Gray" />
+                    <Setter Property="BorderThickness" Value="1" />
                     <Style.Triggers>
                         <DataTrigger Value="True">
                             <DataTrigger.Binding>
                                 <MultiBinding Converter="{StaticResource IsSelectedStakeholderConverter}">
-                                    <Binding ElementName="StakeholdersPresenter" Path="Content.SelectedStakeholder"/>
-                                    <Binding/>
+                                    <Binding ElementName="StakeholdersPresenter" Path="Content.SelectedStakeholder" />
+                                    <Binding />
                                 </MultiBinding>
                             </DataTrigger.Binding>
-                            <Setter Property="BorderBrush" Value="DarkRed"/>
-                            <Setter Property="BorderThickness" Value="2"/>
+                            <Setter Property="BorderBrush" Value="DarkRed" />
+                            <Setter Property="BorderThickness" Value="2" />
                         </DataTrigger>
                     </Style.Triggers>
                 </Style>
             </Border.Style>
             <Grid Background="{Binding Type, Converter={StaticResource TypeToBrushConverter}}">
                 <Grid.RowDefinitions>
-                    <RowDefinition Height="Auto"/>
-                    <RowDefinition Height="Auto"/>
+                    <RowDefinition Height="Auto" />
+                    <RowDefinition Height="Auto" />
                 </Grid.RowDefinitions>
 
-                <TextBlock Grid.Row="0" Text="{Binding Name}" TextAlignment="Center" HorizontalAlignment="Center" Margin="1" MaxWidth="90" TextWrapping="Wrap"/>
+                <TextBlock Grid.Row="0" Text="{Binding Name}" TextAlignment="Center" HorizontalAlignment="Center"
+                           Margin="1" MaxWidth="90" TextWrapping="Wrap" />
                 <Image Grid.Row="1" Margin="2" Width="30" Height="30">
                     <Image.Style>
                         <Style TargetType="{x:Type Image}">
                             <Style.Triggers>
-                                <DataTrigger Binding="{Binding Type}" Value="{x:Static data:StakeholderType.Waterkeringbeheerder}">
-                                    <Setter Property="Source" Value="pack://application:,,,/StakeholderAnalysis.Visualization;component/Resources/Waterschap.png"/>
+                                <DataTrigger Binding="{Binding Type}"
+                                             Value="{x:Static data:StakeholderType.Waterkeringbeheerder}">
+                                    <Setter Property="Source"
+                                            Value="pack://application:,,,/StakeholderAnalysis.Visualization;component/Resources/Waterschap.png" />
                                 </DataTrigger>
-                                <DataTrigger Binding="{Binding Type}" Value="{x:Static data:StakeholderType.Kennisinstituut}">
-                                    <Setter Property="Source" Value="pack://application:,,,/StakeholderAnalysis.Visualization;component/Resources/Knowledge.png"/>
+                                <DataTrigger Binding="{Binding Type}"
+                                             Value="{x:Static data:StakeholderType.Kennisinstituut}">
+                                    <Setter Property="Source"
+                                            Value="pack://application:,,,/StakeholderAnalysis.Visualization;component/Resources/Knowledge.png" />
                                 </DataTrigger>
-                                <DataTrigger Binding="{Binding Type}" Value="{x:Static data:StakeholderType.Rijksoverheid}">
-                                    <Setter Property="Source" Value="pack://application:,,,/StakeholderAnalysis.Visualization;component/Resources/Pak.png"/>
+                                <DataTrigger Binding="{Binding Type}"
+                                             Value="{x:Static data:StakeholderType.Rijksoverheid}">
+                                    <Setter Property="Source"
+                                            Value="pack://application:,,,/StakeholderAnalysis.Visualization;component/Resources/Pak.png" />
                                 </DataTrigger>
-                                <DataTrigger Binding="{Binding Type}" Value="{x:Static data:StakeholderType.Stakeholdergroep}">
-                                    <Setter Property="Source" Value="pack://application:,,,/StakeholderAnalysis.Visualization;component/Resources/Group.png"/>
+                                <DataTrigger Binding="{Binding Type}"
+                                             Value="{x:Static data:StakeholderType.Stakeholdergroep}">
+                                    <Setter Property="Source"
+                                            Value="pack://application:,,,/StakeholderAnalysis.Visualization;component/Resources/Group.png" />
                                 </DataTrigger>
-                                <DataTrigger Binding="{Binding Type}" Value="{x:Static data:StakeholderType.Ingenieursbureaus}">
-                                    <Setter Property="Source" Value="pack://application:,,,/StakeholderAnalysis.Visualization;component/Resources/euro.png"/>
+                                <DataTrigger Binding="{Binding Type}"
+                                             Value="{x:Static data:StakeholderType.Ingenieursbureaus}">
+                                    <Setter Property="Source"
+                                            Value="pack://application:,,,/StakeholderAnalysis.Visualization;component/Resources/euro.png" />
                                 </DataTrigger>
                                 <DataTrigger Binding="{Binding Type}" Value="{x:Static data:StakeholderType.Overig}">
-                                    <Setter Property="Source" Value="pack://application:,,,/StakeholderAnalysis.Visualization;component/Resources/other.png"/>
+                                    <Setter Property="Source"
+                                            Value="pack://application:,,,/StakeholderAnalysis.Visualization;component/Resources/other.png" />
                                 </DataTrigger>
                             </Style.Triggers>
                         </Style>
@@ -76,13 +88,14 @@
                        PlacementTarget="{Binding ElementName=btnLogFile}" Placement="MousePoint"
                        HorizontalOffset="0" VerticalOffset="0"
                        StaysOpen="False">
-                    <ContentPresenter Content="{Binding ElementName=StakeholdersPresenter, Path=SelectedStakeholder}" ContentTemplate="{StaticResource StakeholderPopupDataTemplate}"/>
+                    <ContentPresenter Content="{Binding ElementName=StakeholdersPresenter, Path=SelectedStakeholder}"
+                                      ContentTemplate="{StaticResource StakeholderPopupDataTemplate}" />
                 </Popup>
                 <Grid.Triggers>
                     <EventTrigger RoutedEvent="Mouse.MouseDown">
                         <BeginStoryboard>
                             <Storyboard TargetName="popLogFile" TargetProperty="IsOpen">
-                                <BooleanAnimationUsingKeyFrames  FillBehavior="HoldEnd">
+                                <BooleanAnimationUsingKeyFrames FillBehavior="HoldEnd">
                                     <DiscreteBooleanKeyFrame
                                         KeyTime="00:00:00"
                                         Value="True" />
