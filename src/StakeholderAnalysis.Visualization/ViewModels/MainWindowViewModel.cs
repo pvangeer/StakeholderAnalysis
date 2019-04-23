@@ -8,12 +8,11 @@ using StakeholderAnalysis.Visualization.DataTemplates;
 
 namespace StakeholderAnalysis.Visualization.ViewModels
 {
-    public class MainWindowViewModel : NotifyPropertyChangedObservable, ISelectionRegister
+    public class MainWindowViewModel : NotifyPropertyChangedObservable
     {
         private bool isMagnifierActive;
         private bool isSaveToImage;
         private RelayCommand saveCanvasCommand;
-        private StakeholderViewModel selectedStakeholder;
         private readonly Analysis analysis;
 
         public MainWindowViewModel() : this(new Analysis())
@@ -37,16 +36,6 @@ namespace StakeholderAnalysis.Visualization.ViewModels
         }
 
         public double Margin { get; set; }
-
-        public StakeholderViewModel SelectedStakeholder // TODO: This should be registered per view
-        {
-            get => selectedStakeholder;
-            set
-            {
-                selectedStakeholder = value;
-                OnPropertyChanged(nameof(SelectedStakeholder));
-            }
-        }
 
         public ICommand OpenCommand => new OpenFileCommand(this);
 
@@ -100,22 +89,14 @@ namespace StakeholderAnalysis.Visualization.ViewModels
 
         public OnionConnectionsPresenterViewModel OnionConnectionsPresenterViewModel => new OnionConnectionsPresenterViewModel(analysis.OnionDiagrams.FirstOrDefault());
 
-        public OnionDiagramStakeholdersViewModel OnionDiagramStakeholdersViewModel => new OnionDiagramStakeholdersViewModel(analysis.OnionDiagrams.FirstOrDefault(), this);
+        public OnionDiagramStakeholdersViewModel OnionDiagramStakeholdersViewModel => new OnionDiagramStakeholdersViewModel(analysis.OnionDiagrams.FirstOrDefault());
 
-        public StakeholderTableViewModel StakeholderTableViewModel => new StakeholderTableViewModel(analysis, this);
+        public StakeholderTableViewModel StakeholderTableViewModel => new StakeholderTableViewModel(analysis);
 
-        public StakeholderForcesDiagramViewModel StakeholderForcesDiagramViewModel => new StakeholderForcesDiagramViewModel(analysis, this);
+        public StakeholderForcesDiagramViewModel StakeholderForcesDiagramViewModel => new StakeholderForcesDiagramViewModel(analysis);
 
-        public StakeholderAttitudeImpactDiagramViewModel StakeholderAttitudeImpactDiagramViewModel => new StakeholderAttitudeImpactDiagramViewModel(analysis, this);
+        public StakeholderAttitudeImpactDiagramViewModel StakeholderAttitudeImpactDiagramViewModel => new StakeholderAttitudeImpactDiagramViewModel(analysis);
 
         public RibbonStakeholderConnectionGroupsViewModel RibbonStakeholderConnectionGroupsViewModel => new RibbonStakeholderConnectionGroupsViewModel(analysis.OnionDiagrams.FirstOrDefault());
-
-        public void Select(object o)
-        {
-            if (o is StakeholderViewModel stakeholderViewModel)
-            {
-                SelectedStakeholder = stakeholderViewModel;
-            }
-        }
     }
 }

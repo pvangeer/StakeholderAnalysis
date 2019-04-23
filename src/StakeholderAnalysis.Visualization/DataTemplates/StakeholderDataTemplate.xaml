@@ -5,7 +5,6 @@
                     xmlns:converters="clr-namespace:StakeholderAnalysis.Visualization.Converters">
 
     <converters:TypeToBrushConverter x:Key="TypeToBrushConverter" />
-    <converters:IsSelectedStakeholderConverter x:Key="IsSelectedStakeholderConverter" />
 
     <DataTemplate x:Key="StakeholderPopupDataTemplate" DataType="viewModels:StakeholderViewModel">
         <Border Background="AntiqueWhite" BorderBrush="Gray" BorderThickness="1">
@@ -17,25 +16,10 @@
 
     <DataTemplate x:Key="StakeholderDataTemplate" DataType="viewModels:StakeholderViewModel">
         <Border CornerRadius="1">
-            <Border.InputBindings>
-                <MouseBinding MouseAction="LeftClick" Command="{Binding StakeholderClickedCommand}" />
-            </Border.InputBindings>
             <Border.Style>
                 <Style TargetType="{x:Type Border}">
                     <Setter Property="BorderBrush" Value="Gray" />
                     <Setter Property="BorderThickness" Value="1" />
-                    <Style.Triggers>
-                        <DataTrigger Value="True">
-                            <DataTrigger.Binding>
-                                <MultiBinding Converter="{StaticResource IsSelectedStakeholderConverter}">
-                                    <Binding ElementName="Presenter" Path="Content.SelectedStakeholder" />
-                                    <Binding />
-                                </MultiBinding>
-                            </DataTrigger.Binding>
-                            <Setter Property="BorderBrush" Value="DarkRed" />
-                            <Setter Property="BorderThickness" Value="2" />
-                        </DataTrigger>
-                    </Style.Triggers>
                 </Style>
             </Border.Style>
             <Grid Background="{Binding Type, Converter={StaticResource TypeToBrushConverter}}">

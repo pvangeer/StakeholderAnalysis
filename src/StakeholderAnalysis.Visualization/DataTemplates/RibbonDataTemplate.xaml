@@ -102,7 +102,7 @@
                     <controls:ConnectionGroupsListBoxControl
                         Width="250"
                         Margin="0,2,0,0"
-                        StakeholderConnectionsList="{Binding StakeholderConnectionGroups}" />
+                        StakeholderConnectionsList="{Binding RibbonStakeholderConnectionGroupsViewModel}" />
                 </fluent:RibbonGroupBox>
             </fluent:RibbonTabItem>
         </fluent:Ribbon>

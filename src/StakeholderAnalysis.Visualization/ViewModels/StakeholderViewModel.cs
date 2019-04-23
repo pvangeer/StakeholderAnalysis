@@ -9,11 +9,10 @@ namespace StakeholderAnalysis.Visualization.ViewModels
 {
     public class StakeholderViewModel : NotifyPropertyChangedObservable
     {
-        private readonly ISelectionRegister selectionRegister;
         private readonly OnionDiagramStakeholder onionDiagramStakeholder;
 
         // TODO: Split this into different viewmodels
-        public StakeholderViewModel(OnionDiagramStakeholder stakeholder, ISelectionRegister selectionRegister) : this(stakeholder.Stakeholder, selectionRegister)
+        public StakeholderViewModel(OnionDiagramStakeholder stakeholder) : this(stakeholder.Stakeholder)
         {
             onionDiagramStakeholder = stakeholder;
             if (onionDiagramStakeholder != null)
@@ -22,9 +21,8 @@ namespace StakeholderAnalysis.Visualization.ViewModels
             }
         }
 
-        public StakeholderViewModel(Stakeholder stakeholder, ISelectionRegister selectionRegister)
+        public StakeholderViewModel(Stakeholder stakeholder)
         {
-            this.selectionRegister = selectionRegister;
             Stakeholder = stakeholder;
             if (Stakeholder != null) Stakeholder.PropertyChanged += StakeholderPropertyChanged;
         }
@@ -108,8 +106,6 @@ namespace StakeholderAnalysis.Visualization.ViewModels
 
         public StakeholderType Type => Stakeholder.Type;
 
-        public ICommand StakeholderClickedCommand => new StakeholderClickedCommand(this);
-
         private void StakeholderPropertyChanged(object sender, PropertyChangedEventArgs e)
         {
             switch (e.PropertyName)
@@ -141,11 +137,6 @@ namespace StakeholderAnalysis.Visualization.ViewModels
                     OnPropertyChanged(nameof(Impact));
                     break;
             }
-        }
-
-        public void Select()
-        {
-            selectionRegister.Select(this);
         }
 
         public bool IsViewModelFor(OnionDiagramStakeholder stakeholder)

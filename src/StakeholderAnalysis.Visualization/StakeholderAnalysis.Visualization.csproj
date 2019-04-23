@@ -79,9 +79,9 @@
     <Compile Include="Converters\PercentageToCanvasLeftValueConverter.cs" />
     <Compile Include="Converters\PercentageToCanvasTopValueConverter.cs" />
     <Compile Include="Converters\PercentageToDimensionConverter.cs" />
-    <Compile Include="Converters\IsSelectedStakeholderConverter.cs" />
     <Compile Include="Converters\CanvasSizeToArrowsPathDataConverter.cs" />
     <Compile Include="Converters\StakeholderTypeToStringConverter.cs" />
+    <Compile Include="DataTemplates\RibbonStakeholderConnectionGroupsViewModel.cs" />
     <Compile Include="Properties\AssemblyInfo.cs">
       <SubType>Code</SubType>
     </Compile>
@@ -103,7 +103,6 @@
     <Compile Include="ViewModels\OnionDiagramStakeholdersViewModel.cs" />
     <Compile Include="ViewModels\OnionRingsCanvasViewModel.cs" />
     <Compile Include="ViewModels\OnionRingViewModel.cs" />
-    <Compile Include="Commands\StakeholderClickedCommand.cs" />
     <Compile Include="ViewModels\StakeholderConnectionViewModel.cs" />
     <Compile Include="ViewModels\StakeholderViewModelBase.cs" />
     <Compile Include="ViewModels\StakeholderViewInfo.cs" />
