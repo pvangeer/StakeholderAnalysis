@@ -1,6 +1,6 @@
 ﻿using System.Windows.Media;
 
-namespace StakeholderAnalysis.Data
+namespace StakeholderAnalysis.Data.OnionDiagrams
 {
     public class StakeholderConnectionGroup : NotifyPropertyChangedObservable
     {

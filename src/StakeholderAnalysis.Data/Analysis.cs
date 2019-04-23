@@ -1,25 +1,24 @@
 ﻿using System.Collections.ObjectModel;
+using StakeholderAnalysis.Data.AttitudeImpactDiagrams;
+using StakeholderAnalysis.Data.ForceFieldDiagrams;
+using StakeholderAnalysis.Data.OnionDiagrams;
 
 namespace StakeholderAnalysis.Data
 {
     public class Analysis : NotifyPropertyChangedObservable
     {
-        public Analysis(ObservableCollection<OnionRing> onionRings = null, ObservableCollection<Stakeholder> stakeholders = null,
-            ObservableCollection<StakeholderConnection> connections = null,
-            ObservableCollection<StakeholderConnectionGroup> connectionGroups = null)
+        public Analysis(ObservableCollection<Stakeholder> stakeholders = null)
         {
-            OnionRings = onionRings ?? new ObservableCollection<OnionRing>();
+            OnionDiagrams = new ObservableCollection<OnionDiagram>();
             Stakeholders = stakeholders ?? new ObservableCollection<Stakeholder>();
-            Connections = connections ?? new ObservableCollection<StakeholderConnection>();
-            ConnectionGroups = connectionGroups ?? new ObservableCollection<StakeholderConnectionGroup>();
         }
 
-        public ObservableCollection<OnionRing> OnionRings { get; }
+        public ObservableCollection<OnionDiagram> OnionDiagrams { get; }
+
+        public ObservableCollection<StakeholderForceFieldDiagram> ForceFieldDiagrams { get; }
+
+        public ObservableCollection<AttitudeImpactDiagram> AttitudeImpactDiagrams { get; }
 
         public ObservableCollection<Stakeholder> Stakeholders { get; }
-
-        public ObservableCollection<StakeholderConnection> Connections { get; }
-
-        public ObservableCollection<StakeholderConnectionGroup> ConnectionGroups { get; set; }
     }
 }

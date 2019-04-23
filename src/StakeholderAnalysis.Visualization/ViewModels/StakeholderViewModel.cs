@@ -1,6 +1,8 @@
-﻿using System.ComponentModel;
+﻿using System;
+using System.ComponentModel;
 using System.Windows.Input;
 using StakeholderAnalysis.Data;
+using StakeholderAnalysis.Data.OnionDiagrams;
 using StakeholderAnalysis.Visualization.Commands;
 
 namespace StakeholderAnalysis.Visualization.ViewModels
@@ -8,6 +10,17 @@ namespace StakeholderAnalysis.Visualization.ViewModels
     public class StakeholderViewModel : NotifyPropertyChangedObservable
     {
         private readonly ISelectionRegister selectionRegister;
+        private readonly OnionDiagramStakeholder onionDiagramStakeholder;
+
+        // TODO: Split this into different viewmodels
+        public StakeholderViewModel(OnionDiagramStakeholder stakeholder, ISelectionRegister selectionRegister) : this(stakeholder.Stakeholder, selectionRegister)
+        {
+            onionDiagramStakeholder = stakeholder;
+            if (onionDiagramStakeholder != null)
+            {
+                onionDiagramStakeholder.PropertyChanged += StakeholderPropertyChanged;
+            }
+        }
 
         public StakeholderViewModel(Stakeholder stakeholder, ISelectionRegister selectionRegister)
         {
@@ -30,21 +43,21 @@ namespace StakeholderAnalysis.Visualization.ViewModels
 
         public double LeftPercentage
         {
-            get => Stakeholder.LeftPercentage;
+            get => onionDiagramStakeholder?.Left ?? double.NaN;
             set
             {
-                Stakeholder.LeftPercentage = value;
-                Stakeholder.OnPropertyChanged(nameof(Stakeholder.LeftPercentage));
+                onionDiagramStakeholder.Left = value;
+                onionDiagramStakeholder.OnPropertyChanged(nameof(onionDiagramStakeholder.Left));
             }
         }
 
         public double TopPercentage
         {
-            get => Stakeholder.TopPercentage;
+            get => onionDiagramStakeholder?.Top ?? Double.NaN;
             set
             {
-                Stakeholder.TopPercentage = value;
-                Stakeholder.OnPropertyChanged(nameof(Stakeholder.TopPercentage));
+                onionDiagramStakeholder.Top = value;
+                Stakeholder.OnPropertyChanged(nameof(onionDiagramStakeholder.Top));
             }
         }
 
@@ -104,10 +117,10 @@ namespace StakeholderAnalysis.Visualization.ViewModels
                 case nameof(Stakeholder.Name):
                     OnPropertyChanged(nameof(Name));
                     break;
-                case nameof(Stakeholder.LeftPercentage):
+                case nameof(OnionDiagramStakeholder.Left):
                     OnPropertyChanged(nameof(LeftPercentage));
                     break;
-                case nameof(Stakeholder.TopPercentage):
+                case nameof(OnionDiagramStakeholder.Top):
                     OnPropertyChanged(nameof(TopPercentage));
                     break;
                 case nameof(Stakeholder.Type):
@@ -133,6 +146,11 @@ namespace StakeholderAnalysis.Visualization.ViewModels
         public void Select()
         {
             selectionRegister.Select(this);
+        }
+
+        public bool IsViewModelFor(OnionDiagramStakeholder stakeholder)
+        {
+            return IsViewModelFor(stakeholder.Stakeholder);
         }
 
         public bool IsViewModelFor(Stakeholder stakeholder)

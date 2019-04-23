@@ -1,6 +1,7 @@
 ﻿using System.ComponentModel;
 using System.Windows.Media;
 using StakeholderAnalysis.Data;
+using StakeholderAnalysis.Data.OnionDiagrams;
 
 namespace StakeholderAnalysis.Visualization.ViewModels
 {
@@ -21,22 +22,22 @@ namespace StakeholderAnalysis.Visualization.ViewModels
 
         public bool IsVisible => StakeholderConnection.StakeholderConnectionGroup.Visible;
 
-        public double ConnectFromLeft => StakeholderConnection.ConnectFrom.LeftPercentage;
+        public double ConnectFromLeft => StakeholderConnection.ConnectFrom.Left;
 
-        public double ConnectFromTop => StakeholderConnection.ConnectFrom.TopPercentage;
+        public double ConnectFromTop => StakeholderConnection.ConnectFrom.Top;
 
-        public double ConnectToLeft => StakeholderConnection.ConnectTo.LeftPercentage;
+        public double ConnectToLeft => StakeholderConnection.ConnectTo.Left;
 
-        public double ConnectToTop => StakeholderConnection.ConnectTo.TopPercentage;
+        public double ConnectToTop => StakeholderConnection.ConnectTo.Top;
 
         private void ConnectToPropertyChanged(object sender, PropertyChangedEventArgs e)
         {
             switch (e.PropertyName)
             {
-                case nameof(Stakeholder.LeftPercentage):
+                case nameof(OnionDiagramStakeholder.Left):
                     OnPropertyChanged(nameof(ConnectToLeft));
                     break;
-                case nameof(Stakeholder.TopPercentage):
+                case nameof(OnionDiagramStakeholder.Top):
                     OnPropertyChanged(nameof(ConnectToTop));
                     break;
             }
@@ -46,10 +47,10 @@ namespace StakeholderAnalysis.Visualization.ViewModels
         {
             switch (e.PropertyName)
             {
-                case nameof(Stakeholder.LeftPercentage):
+                case nameof(OnionDiagramStakeholder.Left):
                     OnPropertyChanged(nameof(ConnectFromLeft));
                     break;
-                case nameof(Stakeholder.TopPercentage):
+                case nameof(OnionDiagramStakeholder.Top):
                     OnPropertyChanged(nameof(ConnectFromTop));
                     break;
             }

@@ -1,8 +1,10 @@
+using System;
 using System.Collections.ObjectModel;
 using System.Collections.Specialized;
 using System.Linq;
 using System.Windows.Input;
 using StakeholderAnalysis.Data;
+using StakeholderAnalysis.Data.OnionDiagrams;
 using StakeholderAnalysis.Visualization.Commands;
 using StakeholderAnalysis.Visualization.Commands.FileHandling;
 
@@ -35,29 +37,30 @@ namespace StakeholderAnalysis.Visualization.ViewModels
             Analysis = analysis;
 
             // TODO: Following code should be redirected to different viewmodels (that possibly partly have the same base)
-            Analysis.OnionRings.CollectionChanged += RingsCollectionChanged;
-            Analysis.Stakeholders.CollectionChanged += StakeholdersCollectionChanged;
-            Analysis.Connections.CollectionChanged += ConnectorsCollectionChanged;
-            Analysis.ConnectionGroups.CollectionChanged += ConnectionGroupsCollectionChanged;
+            var diagram1 = Analysis.OnionDiagrams.FirstOrDefault();
+            if (diagram1 != null)
+            {
+                diagram1.OnionRings.CollectionChanged += RingsCollectionChanged;
+                // TODO: This wireing will not work correctly: split in different viewmodels etc.
+                Analysis.Stakeholders.CollectionChanged += StakeholdersCollectionChanged;
+                diagram1.Stakeholders.CollectionChanged += OnionDiagramStakeholdersCollectionChanged;
+                diagram1.Connections.CollectionChanged += ConnectorsCollectionChanged;
+                diagram1.ConnectionGroups.CollectionChanged += ConnectionGroupsCollectionChanged;
+                OnionRings = new ObservableCollection<OnionRingViewModel>(diagram1.OnionRings.Select(r => new OnionRingViewModel(r)));
+                Stakeholders = new ObservableCollection<StakeholderViewModel>(Analysis.Stakeholders.Select(stakeholder => new StakeholderViewModel(stakeholder, this)));
+                OnionDiagramStakeholders = new ObservableCollection<StakeholderViewModel>(diagram1.Stakeholders.Select(stakeholder => new StakeholderViewModel(stakeholder, this)));
+                StakeholderConnections = new ObservableCollection<StakeholderConnectionViewModel>(diagram1.Connections.Select(c => new StakeholderConnectionViewModel(c)));
+                StakeholderConnectionGroups = new ObservableCollection<ConnectionGroupViewModel>(diagram1.ConnectionGroups.Select(g => new ConnectionGroupViewModel(g)));
+            }
 
             Asymmetry = 0.7;
-
-            OnionRings =
-                new ObservableCollection<OnionRingViewModel>(
-                    Analysis.OnionRings.Select(r => new OnionRingViewModel(r)));
-            Stakeholders = new ObservableCollection<StakeholderViewModel>(
-                Analysis.Stakeholders.Select(stakeholder => new StakeholderViewModel(stakeholder, this)));
-            StakeholderConnections =
-                new ObservableCollection<StakeholderConnectionViewModel>(
-                    Analysis.Connections.Select(c => new StakeholderConnectionViewModel(c)));
-            StakeholderConnectionGroups =
-                new ObservableCollection<ConnectionGroupViewModel>(
-                    Analysis.ConnectionGroups.Select(g => new ConnectionGroupViewModel(g)));
         }
 
         private Analysis Analysis { get; }
 
         public ObservableCollection<OnionRingViewModel> OnionRings { get; }
+
+        public ObservableCollection<StakeholderViewModel> OnionDiagramStakeholders { get; }
 
         public ObservableCollection<StakeholderViewModel> Stakeholders { get; }
 
@@ -158,6 +161,18 @@ namespace StakeholderAnalysis.Visualization.ViewModels
             if (e.Action == NotifyCollectionChangedAction.Remove)
                 foreach (var stakeholder in e.OldItems.OfType<Stakeholder>())
                     Stakeholders.Remove(Stakeholders.FirstOrDefault(viewModel =>
+                        viewModel.IsViewModelFor(stakeholder)));
+        }
+
+        private void OnionDiagramStakeholdersCollectionChanged(object sender, NotifyCollectionChangedEventArgs e)
+        {
+            if (e.Action == NotifyCollectionChangedAction.Add)
+                foreach (var item in e.NewItems.OfType<OnionDiagramStakeholder>())
+                    OnionDiagramStakeholders.Add(new StakeholderViewModel(item, this));
+
+            if (e.Action == NotifyCollectionChangedAction.Remove)
+                foreach (var stakeholder in e.OldItems.OfType<OnionDiagramStakeholder>())
+                    OnionDiagramStakeholders.Remove(OnionDiagramStakeholders.FirstOrDefault(viewModel =>
                         viewModel.IsViewModelFor(stakeholder)));
         }
 
