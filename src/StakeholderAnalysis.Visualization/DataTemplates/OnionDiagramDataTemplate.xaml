@@ -17,7 +17,7 @@
                 ContentTemplate="{StaticResource OnionRingsDataTemplate}" />
             <ContentPresenter 
                 Name="ConnectionsPresenter" 
-                Content="{Binding}"
+                Content="{Binding OnionConnectionsPresenterViewModel}"
                 ContentTemplate="{StaticResource ConnectionsPresenterDataTemplate}" />
             <ContentPresenter 
                 Name="StakeholdersPresenter" 

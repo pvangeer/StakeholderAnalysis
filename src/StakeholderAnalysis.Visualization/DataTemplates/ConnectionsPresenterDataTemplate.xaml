@@ -40,15 +40,15 @@
         </Grid>
     </DataTemplate>
 
-    <DataTemplate x:Key="ConnectionsPresenterDataTemplate" DataType="viewModels:MainWindowViewModel">
+    <DataTemplate x:Key="ConnectionsPresenterDataTemplate" DataType="viewModels:OnionConnectionsPresenterViewModel">
         <Grid>
             <ItemsControl ItemsSource="{Binding StakeholderConnections}"
-                          Margin="{Binding Margin}"
+                          Margin="{Binding ElementName=Presenter, Path=Margin}"
                           Background="Transparent"
                           ItemTemplate="{StaticResource ConnectionDataTemplate}">
                 <ItemsControl.ItemsPanel>
                     <ItemsPanelTemplate>
-                        <Canvas Name="LinesCanvas" IsItemsHost="True" Margin="{Binding Margin}" />
+                        <Canvas Name="LinesCanvas" IsItemsHost="True" Margin="{Binding ElementName=Presenter, Path=Margin}" />
                     </ItemsPanelTemplate>
                 </ItemsControl.ItemsPanel>
             </ItemsControl>

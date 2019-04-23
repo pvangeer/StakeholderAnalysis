@@ -43,12 +43,10 @@ namespace StakeholderAnalysis.Visualization.ViewModels
                 // TODO: This wireing will not work correctly: split in different viewmodels etc.
                 Analysis.Stakeholders.CollectionChanged += StakeholdersCollectionChanged;
                 diagram1.Stakeholders.CollectionChanged += OnionDiagramStakeholdersCollectionChanged;
-                diagram1.Connections.CollectionChanged += ConnectorsCollectionChanged;
                 diagram1.ConnectionGroups.CollectionChanged += ConnectionGroupsCollectionChanged;
                 
                 Stakeholders = new ObservableCollection<StakeholderViewModel>(Analysis.Stakeholders.Select(stakeholder => new StakeholderViewModel(stakeholder, this)));
                 OnionDiagramStakeholders = new ObservableCollection<StakeholderViewModel>(diagram1.Stakeholders.Select(stakeholder => new StakeholderViewModel(stakeholder, this)));
-                StakeholderConnections = new ObservableCollection<StakeholderConnectionViewModel>(diagram1.Connections.Select(c => new StakeholderConnectionViewModel(c)));
                 StakeholderConnectionGroups = new ObservableCollection<ConnectionGroupViewModel>(diagram1.ConnectionGroups.Select(g => new ConnectionGroupViewModel(g)));
             }
         }
@@ -58,8 +56,6 @@ namespace StakeholderAnalysis.Visualization.ViewModels
         public ObservableCollection<StakeholderViewModel> OnionDiagramStakeholders { get; }
 
         public ObservableCollection<StakeholderViewModel> Stakeholders { get; }
-
-        public ObservableCollection<StakeholderConnectionViewModel> StakeholderConnections { get; }
 
         public double Margin { get; set; }
 
@@ -125,6 +121,8 @@ namespace StakeholderAnalysis.Visualization.ViewModels
 
         public OnionRingsCanvasViewModel OnionRingsCanvasViewModel => new OnionRingsCanvasViewModel(Analysis.OnionDiagrams.FirstOrDefault());
 
+        public OnionConnectionsPresenterViewModel OnionConnectionsPresenterViewModel => new OnionConnectionsPresenterViewModel(Analysis.OnionDiagrams.FirstOrDefault());
+
         public void Select(object o)
         {
             if (o is StakeholderViewModel stakeholderViewModel)
@@ -155,18 +153,6 @@ namespace StakeholderAnalysis.Visualization.ViewModels
                 foreach (var stakeholder in e.OldItems.OfType<OnionDiagramStakeholder>())
                     OnionDiagramStakeholders.Remove(OnionDiagramStakeholders.FirstOrDefault(viewModel =>
                         viewModel.IsViewModelFor(stakeholder)));
-        }
-
-        private void ConnectorsCollectionChanged(object sender, NotifyCollectionChangedEventArgs e)
-        {
-            if (e.Action == NotifyCollectionChangedAction.Add)
-                foreach (var item in e.NewItems.OfType<StakeholderConnection>())
-                    StakeholderConnections.Add(new StakeholderConnectionViewModel(item));
-
-            if (e.Action == NotifyCollectionChangedAction.Remove)
-                foreach (var stakeholder in e.OldItems.OfType<StakeholderConnection>())
-                    StakeholderConnections.Remove(
-                        StakeholderConnections.FirstOrDefault(vm => vm.StakeholderConnection == stakeholder));
         }
 
         private void ConnectionGroupsCollectionChanged(object sender, NotifyCollectionChangedEventArgs e)

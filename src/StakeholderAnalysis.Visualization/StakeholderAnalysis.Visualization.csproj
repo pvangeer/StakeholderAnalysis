@@ -99,6 +99,7 @@
     <Compile Include="SaveToImageBehaviours.cs" />
     <Compile Include="ViewModels\ConnectionGroupViewModel.cs" />
     <Compile Include="ViewModels\MainWindowViewModel.cs" />
+    <Compile Include="ViewModels\OnionConnectionsPresenterViewModel.cs" />
     <Compile Include="ViewModels\OnionRingsCanvasViewModel.cs" />
     <Compile Include="ViewModels\OnionRingViewModel.cs" />
     <Compile Include="Commands\StakeholderClickedCommand.cs" />
