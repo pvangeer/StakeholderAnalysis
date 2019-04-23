@@ -1,7 +1,6 @@
 ﻿<ResourceDictionary xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
                     xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
                     xmlns:viewModels="clr-namespace:StakeholderAnalysis.Visualization.ViewModels"
-                    xmlns:visualization="clr-namespace:StakeholderAnalysis.Visualization"
                     xmlns:data="clr-namespace:StakeholderAnalysis.Data;assembly=StakeholderAnalysis.Data"
                     xmlns:converters="clr-namespace:StakeholderAnalysis.Visualization.Converters">
 
@@ -29,7 +28,7 @@
                         <DataTrigger Value="True">
                             <DataTrigger.Binding>
                                 <MultiBinding Converter="{StaticResource IsSelectedStakeholderConverter}">
-                                    <Binding ElementName="StakeholdersPresenter" Path="Content.SelectedStakeholder" />
+                                    <Binding ElementName="Presenter" Path="Content.SelectedStakeholder" />
                                     <Binding />
                                 </MultiBinding>
                             </DataTrigger.Binding>
@@ -88,7 +87,7 @@
                        PlacementTarget="{Binding ElementName=btnLogFile}" Placement="MousePoint"
                        HorizontalOffset="0" VerticalOffset="0"
                        StaysOpen="False">
-                    <ContentPresenter Content="{Binding ElementName=StakeholdersPresenter, Path=SelectedStakeholder}"
+                    <ContentPresenter Content="{Binding ElementName=Presenter, Path=SelectedStakeholder}"
                                       ContentTemplate="{StaticResource StakeholderPopupDataTemplate}" />
                 </Popup>
                 <Grid.Triggers>

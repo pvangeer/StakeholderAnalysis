@@ -1,12 +1,10 @@
-using System;
 using System.Collections.ObjectModel;
-using System.Collections.Specialized;
 using System.Linq;
 using System.Windows.Input;
 using StakeholderAnalysis.Data;
-using StakeholderAnalysis.Data.OnionDiagrams;
 using StakeholderAnalysis.Visualization.Commands;
 using StakeholderAnalysis.Visualization.Commands.FileHandling;
+using StakeholderAnalysis.Visualization.DataTemplates;
 
 namespace StakeholderAnalysis.Visualization.ViewModels
 {
@@ -16,6 +14,7 @@ namespace StakeholderAnalysis.Visualization.ViewModels
         private bool isSaveToImage;
         private RelayCommand saveCanvasCommand;
         private StakeholderViewModel selectedStakeholder;
+        private readonly Analysis analysis;
 
         public MainWindowViewModel() : this(new Analysis())
         {
@@ -23,35 +22,23 @@ namespace StakeholderAnalysis.Visualization.ViewModels
 
         public MainWindowViewModel(Analysis analysis)
         {
+            this.analysis = analysis;
+
             ViewList = new ObservableCollection<StakeholderViewInfo>(new[]
             {
                 new StakeholderViewInfo(StakeholderViewType.Onion, this),
                 new StakeholderViewInfo(StakeholderViewType.StakeholderTable, this),
                 new StakeholderViewInfo(StakeholderViewType.StakeholderForces, this),
                 new StakeholderViewInfo(StakeholderViewType.AttitudeImpact, this)
-            });
-            SelectedViewInfo = ViewList.ElementAt(0);
+            }); // TODO: Move this property and list to a viewmanager
+            SelectedViewInfo = ViewList.ElementAt(0);// TODO: Move this property and list to a viewmanager
 
             Margin = 10;
-
-            Analysis = analysis;
-
-            // TODO: Following code should be redirected to different viewmodels (that possibly partly have the same base)
-            var diagram1 = Analysis.OnionDiagrams.FirstOrDefault();
-            if (diagram1 != null)
-            {
-                // TODO: This wireing will not work correctly: split in different viewmodels etc.
-                diagram1.ConnectionGroups.CollectionChanged += ConnectionGroupsCollectionChanged;
-                
-                StakeholderConnectionGroups = new ObservableCollection<ConnectionGroupViewModel>(diagram1.ConnectionGroups.Select(g => new ConnectionGroupViewModel(g)));
-            }
         }
-
-        private Analysis Analysis { get; }
 
         public double Margin { get; set; }
 
-        public StakeholderViewModel SelectedStakeholder
+        public StakeholderViewModel SelectedStakeholder // TODO: This should be registered per view
         {
             get => selectedStakeholder;
             set
@@ -76,8 +63,6 @@ namespace StakeholderAnalysis.Visualization.ViewModels
         public ObservableCollection<StakeholderViewInfo> ViewList { get; }
 
         public StakeholderViewInfo SelectedViewInfo { get; set; }
-
-        public ObservableCollection<ConnectionGroupViewModel> StakeholderConnectionGroups { get; }
 
         public bool IsMagnifierActive
         {
@@ -111,17 +96,19 @@ namespace StakeholderAnalysis.Visualization.ViewModels
             }
         }
 
-        public OnionRingsCanvasViewModel OnionRingsCanvasViewModel => new OnionRingsCanvasViewModel(Analysis.OnionDiagrams.FirstOrDefault());
+        public OnionRingsCanvasViewModel OnionRingsCanvasViewModel => new OnionRingsCanvasViewModel(analysis.OnionDiagrams.FirstOrDefault());
 
-        public OnionConnectionsPresenterViewModel OnionConnectionsPresenterViewModel => new OnionConnectionsPresenterViewModel(Analysis.OnionDiagrams.FirstOrDefault());
+        public OnionConnectionsPresenterViewModel OnionConnectionsPresenterViewModel => new OnionConnectionsPresenterViewModel(analysis.OnionDiagrams.FirstOrDefault());
 
-        public OnionDiagramStakeholdersViewModel OnionDiagramStakeholdersViewModel => new OnionDiagramStakeholdersViewModel(Analysis.OnionDiagrams.FirstOrDefault(), this);
+        public OnionDiagramStakeholdersViewModel OnionDiagramStakeholdersViewModel => new OnionDiagramStakeholdersViewModel(analysis.OnionDiagrams.FirstOrDefault(), this);
 
-        public StakeholderTableViewModel StakeholderTableViewModel => new StakeholderTableViewModel(Analysis, this);
+        public StakeholderTableViewModel StakeholderTableViewModel => new StakeholderTableViewModel(analysis, this);
 
-        public StakeholderForcesDiagramViewModel StakeholderForcesDiagramViewModel => new StakeholderForcesDiagramViewModel(Analysis, this);
+        public StakeholderForcesDiagramViewModel StakeholderForcesDiagramViewModel => new StakeholderForcesDiagramViewModel(analysis, this);
 
-        public StakeholderAttitudeImpactDiagramViewModel StakeholderAttitudeImpactDiagramViewModel => new StakeholderAttitudeImpactDiagramViewModel(Analysis, this);
+        public StakeholderAttitudeImpactDiagramViewModel StakeholderAttitudeImpactDiagramViewModel => new StakeholderAttitudeImpactDiagramViewModel(analysis, this);
+
+        public RibbonStakeholderConnectionGroupsViewModel RibbonStakeholderConnectionGroupsViewModel => new RibbonStakeholderConnectionGroupsViewModel(analysis.OnionDiagrams.FirstOrDefault());
 
         public void Select(object o)
         {
@@ -129,18 +116,6 @@ namespace StakeholderAnalysis.Visualization.ViewModels
             {
                 SelectedStakeholder = stakeholderViewModel;
             }
-        }
-
-        private void ConnectionGroupsCollectionChanged(object sender, NotifyCollectionChangedEventArgs e)
-        {
-            if (e.Action == NotifyCollectionChangedAction.Add)
-                foreach (var item in e.NewItems.OfType<StakeholderConnectionGroup>())
-                    StakeholderConnectionGroups.Add(new ConnectionGroupViewModel(item));
-
-            if (e.Action == NotifyCollectionChangedAction.Remove)
-                foreach (var connectionGroup in e.OldItems.OfType<StakeholderConnectionGroup>())
-                    StakeholderConnectionGroups.Remove(
-                        StakeholderConnectionGroups.FirstOrDefault(vm => vm.StakeholderConnectionGroup == connectionGroup));
         }
     }
 }
