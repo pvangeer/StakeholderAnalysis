@@ -2,6 +2,7 @@ using System.Collections.ObjectModel;
 using System.Linq;
 using System.Windows.Input;
 using StakeholderAnalysis.Data;
+using StakeholderAnalysis.Data.OnionDiagrams;
 using StakeholderAnalysis.Visualization.Commands;
 using StakeholderAnalysis.Visualization.Commands.FileHandling;
 using StakeholderAnalysis.Visualization.DataTemplates;
@@ -14,6 +15,7 @@ namespace StakeholderAnalysis.Visualization.ViewModels
         private bool isSaveToImage;
         private RelayCommand saveCanvasCommand;
         private readonly Analysis analysis;
+        private readonly OnionDiagram currentOnionDiagram;
 
         public MainWindowViewModel() : this(new Analysis())
         {
@@ -33,6 +35,12 @@ namespace StakeholderAnalysis.Visualization.ViewModels
             SelectedViewInfo = ViewList.ElementAt(0);// TODO: Move this property and list to a viewmanager
 
             Margin = 10;
+
+            //TODO: Move this to separate viewinfos (as part of a ViewInfo) and the ViewManager
+            if (analysis != null)
+            {
+                currentOnionDiagram = this.analysis.OnionDiagrams.FirstOrDefault();
+            }
         }
 
         public double Margin { get; set; }
@@ -85,11 +93,11 @@ namespace StakeholderAnalysis.Visualization.ViewModels
             }
         }
 
-        public OnionRingsCanvasViewModel OnionRingsCanvasViewModel => new OnionRingsCanvasViewModel(analysis.OnionDiagrams.FirstOrDefault());
+        public OnionRingsCanvasViewModel OnionRingsCanvasViewModel => new OnionRingsCanvasViewModel(currentOnionDiagram);
 
-        public OnionConnectionsPresenterViewModel OnionConnectionsPresenterViewModel => new OnionConnectionsPresenterViewModel(analysis.OnionDiagrams.FirstOrDefault());
+        public OnionConnectionsPresenterViewModel OnionConnectionsPresenterViewModel => new OnionConnectionsPresenterViewModel(currentOnionDiagram);
 
-        public OnionDiagramStakeholdersViewModel OnionDiagramStakeholdersViewModel => new OnionDiagramStakeholdersViewModel(analysis.OnionDiagrams.FirstOrDefault());
+        public OnionDiagramStakeholdersViewModel OnionDiagramStakeholdersViewModel => new OnionDiagramStakeholdersViewModel(currentOnionDiagram);
 
         public StakeholderTableViewModel StakeholderTableViewModel => new StakeholderTableViewModel(analysis);
 
@@ -97,6 +105,6 @@ namespace StakeholderAnalysis.Visualization.ViewModels
 
         public StakeholderAttitudeImpactDiagramViewModel StakeholderAttitudeImpactDiagramViewModel => new StakeholderAttitudeImpactDiagramViewModel(analysis);
 
-        public RibbonStakeholderConnectionGroupsViewModel RibbonStakeholderConnectionGroupsViewModel => new RibbonStakeholderConnectionGroupsViewModel(analysis.OnionDiagrams.FirstOrDefault());
+        public RibbonStakeholderConnectionGroupsViewModel RibbonStakeholderConnectionGroupsViewModel => new RibbonStakeholderConnectionGroupsViewModel(currentOnionDiagram);
     }
 }
