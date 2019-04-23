@@ -40,25 +40,20 @@ namespace StakeholderAnalysis.Visualization.ViewModels
             var diagram1 = Analysis.OnionDiagrams.FirstOrDefault();
             if (diagram1 != null)
             {
-                diagram1.OnionRings.CollectionChanged += RingsCollectionChanged;
                 // TODO: This wireing will not work correctly: split in different viewmodels etc.
                 Analysis.Stakeholders.CollectionChanged += StakeholdersCollectionChanged;
                 diagram1.Stakeholders.CollectionChanged += OnionDiagramStakeholdersCollectionChanged;
                 diagram1.Connections.CollectionChanged += ConnectorsCollectionChanged;
                 diagram1.ConnectionGroups.CollectionChanged += ConnectionGroupsCollectionChanged;
-                OnionRings = new ObservableCollection<OnionRingViewModel>(diagram1.OnionRings.Select(r => new OnionRingViewModel(r)));
+                
                 Stakeholders = new ObservableCollection<StakeholderViewModel>(Analysis.Stakeholders.Select(stakeholder => new StakeholderViewModel(stakeholder, this)));
                 OnionDiagramStakeholders = new ObservableCollection<StakeholderViewModel>(diagram1.Stakeholders.Select(stakeholder => new StakeholderViewModel(stakeholder, this)));
                 StakeholderConnections = new ObservableCollection<StakeholderConnectionViewModel>(diagram1.Connections.Select(c => new StakeholderConnectionViewModel(c)));
                 StakeholderConnectionGroups = new ObservableCollection<ConnectionGroupViewModel>(diagram1.ConnectionGroups.Select(g => new ConnectionGroupViewModel(g)));
             }
-
-            Asymmetry = 0.7;
         }
 
         private Analysis Analysis { get; }
-
-        public ObservableCollection<OnionRingViewModel> OnionRings { get; }
 
         public ObservableCollection<StakeholderViewModel> OnionDiagramStakeholders { get; }
 
@@ -67,8 +62,6 @@ namespace StakeholderAnalysis.Visualization.ViewModels
         public ObservableCollection<StakeholderConnectionViewModel> StakeholderConnections { get; }
 
         public double Margin { get; set; }
-
-        public double Asymmetry { get; set; }
 
         public StakeholderViewModel SelectedStakeholder
         {
@@ -130,6 +123,7 @@ namespace StakeholderAnalysis.Visualization.ViewModels
             }
         }
 
+        public OnionRingsCanvasViewModel OnionRingsCanvasViewModel => new OnionRingsCanvasViewModel(Analysis.OnionDiagrams.FirstOrDefault());
 
         public void Select(object o)
         {
@@ -137,19 +131,6 @@ namespace StakeholderAnalysis.Visualization.ViewModels
             {
                 SelectedStakeholder = stakeholderViewModel;
             }
-        }
-
-        private void RingsCollectionChanged(object sender, NotifyCollectionChangedEventArgs e)
-        {
-            if (e.Action == NotifyCollectionChangedAction.Add)
-                foreach (var item in e.NewItems.OfType<OnionRing>())
-                    OnionRings.Insert(
-                        OnionRings.IndexOf(OnionRings.FirstOrDefault(r => r.Percentage >= item.Percentage)),
-                        new OnionRingViewModel(item));
-
-            if (e.Action == NotifyCollectionChangedAction.Remove)
-                foreach (var onionRing in e.OldItems.OfType<OnionRing>())
-                    OnionRings.Remove(OnionRings.FirstOrDefault(r => r.Ring == onionRing));
         }
 
         private void StakeholdersCollectionChanged(object sender, NotifyCollectionChangedEventArgs e)

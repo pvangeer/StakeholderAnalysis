@@ -98,8 +98,8 @@
     <Compile Include="Converters\TypeToBrushConverter.cs" />
     <Compile Include="SaveToImageBehaviours.cs" />
     <Compile Include="ViewModels\ConnectionGroupViewModel.cs" />
-    <Compile Include="ViewModels\ISelectionRegister.cs" />
     <Compile Include="ViewModels\MainWindowViewModel.cs" />
+    <Compile Include="ViewModels\OnionRingsCanvasViewModel.cs" />
     <Compile Include="ViewModels\OnionRingViewModel.cs" />
     <Compile Include="Commands\StakeholderClickedCommand.cs" />
     <Compile Include="ViewModels\StakeholderConnectionViewModel.cs" />
@@ -166,6 +166,10 @@
     <ProjectReference Include="..\StakeholderAnalysis.Data\StakeholderAnalysis.Data.csproj">
       <Project>{96BE72A1-F5B6-4DA7-A7F7-CB0D3FA69DEC}</Project>
       <Name>StakeholderAnalysis.Data</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\StakeholderAnalysis.Gui\StakeholderAnalysis.Gui.csproj">
+      <Project>{B9D3E8F2-C9B7-4201-8E05-A1C2827822CD}</Project>
+      <Name>StakeholderAnalysis.Gui</Name>
     </ProjectReference>
   </ItemGroup>
   <ItemGroup>

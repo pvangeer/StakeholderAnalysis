@@ -18,7 +18,10 @@ namespace StakeholderAnalysis.App
                 new OnionRing(1.0) {BackgroundColor = Colors.LightBlue},
                 new OnionRing(0.65) {BackgroundColor = Colors.CornflowerBlue},
                 new OnionRing(0.3) {BackgroundColor = Colors.DarkSlateBlue}
-            });
+            })
+            {
+                Asymmetry = 0.7
+            };
             analysis.OnionDiagrams.Add(diagram1);
 
             //Team

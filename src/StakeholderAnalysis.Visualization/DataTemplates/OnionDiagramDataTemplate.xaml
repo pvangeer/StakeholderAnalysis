@@ -13,7 +13,7 @@
         <Grid>
             <ContentPresenter 
                 Name="OnionRingsPresenter" 
-                Content="{Binding}"
+                Content="{Binding OnionRingsCanvasViewModel}"
                 ContentTemplate="{StaticResource OnionRingsDataTemplate}" />
             <ContentPresenter 
                 Name="ConnectionsPresenter" 

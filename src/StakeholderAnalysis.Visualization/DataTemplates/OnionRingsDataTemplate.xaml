@@ -7,10 +7,10 @@
     <converters:PercentageToCanvasLeftValueConverter x:Key="PercentageToCanvasLeftValueConverter" />
     <converters:PercentageToDimensionConverter x:Key="PercentageToDimensionConverter" />
 
-    <DataTemplate x:Key="OnionRingsDataTemplate" DataType="viewModels:MainWindowViewModel">
+    <DataTemplate x:Key="OnionRingsDataTemplate" DataType="viewModels:OnionRingsCanvasViewModel">
         <Grid>
             <ItemsControl ItemsSource="{Binding OnionRings}"
-                          Margin="{Binding Margin}"
+                          Margin="{Binding ElementName=Presenter, Path=Margin}"
                           Background="Transparent">
                 <ItemsControl.ItemTemplate>
                     <DataTemplate DataType="viewModels:OnionRingViewModel">
@@ -56,7 +56,7 @@
                 </ItemsControl.ItemContainerStyle>
                 <ItemsControl.ItemsPanel>
                     <ItemsPanelTemplate>
-                        <Canvas Name="Canvas" IsItemsHost="True" Margin="{Binding Margin}" />
+                        <Canvas Name="Canvas" IsItemsHost="True" Margin="{Binding ElementName=Presenter, Path=Margin}" />
                     </ItemsPanelTemplate>
                 </ItemsControl.ItemsPanel>
             </ItemsControl>

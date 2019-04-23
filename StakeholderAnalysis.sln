@@ -13,6 +13,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "StakeholderAnalysis.Data", 
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "StakeholderAnalysis.Visualization", "src\StakeholderAnalysis.Visualization\StakeholderAnalysis.Visualization.csproj", "{A1B8304F-DB80-4144-918B-558887B97F3B}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "StakeholderAnalysis.Gui", "src\StakeholderAnalysis.Gui\StakeholderAnalysis.Gui.csproj", "{B9D3E8F2-C9B7-4201-8E05-A1C2827822CD}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|x64 = Debug|x64
@@ -31,6 +33,10 @@ Global
 		{A1B8304F-DB80-4144-918B-558887B97F3B}.Debug|x64.Build.0 = Debug|x64
 		{A1B8304F-DB80-4144-918B-558887B97F3B}.Release|x64.ActiveCfg = Release|x64
 		{A1B8304F-DB80-4144-918B-558887B97F3B}.Release|x64.Build.0 = Release|x64
+		{B9D3E8F2-C9B7-4201-8E05-A1C2827822CD}.Debug|x64.ActiveCfg = Debug|x64
+		{B9D3E8F2-C9B7-4201-8E05-A1C2827822CD}.Debug|x64.Build.0 = Debug|x64
+		{B9D3E8F2-C9B7-4201-8E05-A1C2827822CD}.Release|x64.ActiveCfg = Release|x64
+		{B9D3E8F2-C9B7-4201-8E05-A1C2827822CD}.Release|x64.Build.0 = Release|x64
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
@@ -39,6 +45,7 @@ Global
 		{B2DD8757-E9B5-42BF-9602-C9CABE7CB549} = {729C9A16-269E-4907-BB51-4A2985072B43}
 		{96BE72A1-F5B6-4DA7-A7F7-CB0D3FA69DEC} = {729C9A16-269E-4907-BB51-4A2985072B43}
 		{A1B8304F-DB80-4144-918B-558887B97F3B} = {729C9A16-269E-4907-BB51-4A2985072B43}
+		{B9D3E8F2-C9B7-4201-8E05-A1C2827822CD} = {729C9A16-269E-4907-BB51-4A2985072B43}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {82FE5DCB-03E1-485C-805E-B87D438D5DF9}
