@@ -79,9 +79,9 @@
                     <fluent:ToggleButton
                         Header="Betrokkenheid"
                         LargeIcon="pack://application:,,,/StakeholderAnalysis.Visualization;component/Resources/involvement.png"
-                        IsChecked="{Binding SelectedViewInfo, Converter={StaticResource IsSelectedViewTypeConverter}, ConverterParameter={x:Static viewModels:StakeholderViewType.CommunicationStrategy}, Mode=OneWay}"
+                        IsChecked="{Binding SelectedViewInfo, Converter={StaticResource IsSelectedViewTypeConverter}, ConverterParameter={x:Static viewModels:StakeholderViewType.AttitudeImpact}, Mode=OneWay}"
                         Command="{Binding ToggleView}"
-                        CommandParameter="{x:Static viewModels:StakeholderViewType.CommunicationStrategy}" />
+                        CommandParameter="{x:Static viewModels:StakeholderViewType.AttitudeImpact}" />
                 </fluent:RibbonGroupBox>
                 <fluent:RibbonGroupBox Header="Beeld">
                     <fluent:ToggleButton

@@ -105,6 +105,7 @@
     <Compile Include="ViewModels\OnionRingViewModel.cs" />
     <Compile Include="Commands\StakeholderClickedCommand.cs" />
     <Compile Include="ViewModels\StakeholderConnectionViewModel.cs" />
+    <Compile Include="ViewModels\StakeholderViewModelBase.cs" />
     <Compile Include="ViewModels\StakeholderViewInfo.cs" />
     <Compile Include="ViewModels\StakeholderViewModel.cs" />
     <Compile Include="ViewModels\StakeholderViewType.cs" />
@@ -123,7 +124,7 @@
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
-    <Page Include="DataTemplates\CommunicationStrategyDataTemplate.xaml">
+    <Page Include="DataTemplates\AttitudeImpactDiagramDataTemplate.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>

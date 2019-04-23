@@ -15,7 +15,7 @@ namespace StakeholderAnalysis.App
             var analysis = AnalysisGenerator.GetAnalysis();
 
             var mainWindowViewModel = new MainWindowViewModel(analysis);
-            mainWindowViewModel.SelectedStakeholder = mainWindowViewModel.Stakeholders.Last();
+            //mainWindowViewModel.SelectedStakeholder = mainWindowViewModel.Stakeholders.Last();
             DataContext = mainWindowViewModel;
         }
     }

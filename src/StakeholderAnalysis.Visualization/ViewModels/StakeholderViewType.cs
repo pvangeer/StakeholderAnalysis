@@ -8,6 +8,6 @@
 
         StakeholderForces,
 
-        CommunicationStrategy
+        AttitudeImpact
     }
 }

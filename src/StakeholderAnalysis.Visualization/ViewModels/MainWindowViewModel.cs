@@ -28,7 +28,7 @@ namespace StakeholderAnalysis.Visualization.ViewModels
                 new StakeholderViewInfo(StakeholderViewType.Onion, this),
                 new StakeholderViewInfo(StakeholderViewType.StakeholderTable, this),
                 new StakeholderViewInfo(StakeholderViewType.StakeholderForces, this),
-                new StakeholderViewInfo(StakeholderViewType.CommunicationStrategy, this)
+                new StakeholderViewInfo(StakeholderViewType.AttitudeImpact, this)
             });
             SelectedViewInfo = ViewList.ElementAt(0);
 
@@ -41,17 +41,13 @@ namespace StakeholderAnalysis.Visualization.ViewModels
             if (diagram1 != null)
             {
                 // TODO: This wireing will not work correctly: split in different viewmodels etc.
-                Analysis.Stakeholders.CollectionChanged += StakeholdersCollectionChanged;
                 diagram1.ConnectionGroups.CollectionChanged += ConnectionGroupsCollectionChanged;
                 
-                Stakeholders = new ObservableCollection<StakeholderViewModel>(Analysis.Stakeholders.Select(stakeholder => new StakeholderViewModel(stakeholder, this)));
                 StakeholderConnectionGroups = new ObservableCollection<ConnectionGroupViewModel>(diagram1.ConnectionGroups.Select(g => new ConnectionGroupViewModel(g)));
             }
         }
 
         private Analysis Analysis { get; }
-
-        public ObservableCollection<StakeholderViewModel> Stakeholders { get; }
 
         public double Margin { get; set; }
 
@@ -121,24 +117,18 @@ namespace StakeholderAnalysis.Visualization.ViewModels
 
         public OnionDiagramStakeholdersViewModel OnionDiagramStakeholdersViewModel => new OnionDiagramStakeholdersViewModel(Analysis.OnionDiagrams.FirstOrDefault(), this);
 
+        public StakeholderTableViewModel StakeholderTableViewModel => new StakeholderTableViewModel(Analysis, this);
+
+        public StakeholderForcesDiagramViewModel StakeholderForcesDiagramViewModel => new StakeholderForcesDiagramViewModel(Analysis, this);
+
+        public StakeholderAttitudeImpactDiagramViewModel StakeholderAttitudeImpactDiagramViewModel => new StakeholderAttitudeImpactDiagramViewModel(Analysis, this);
+
         public void Select(object o)
         {
             if (o is StakeholderViewModel stakeholderViewModel)
             {
                 SelectedStakeholder = stakeholderViewModel;
             }
-        }
-
-        private void StakeholdersCollectionChanged(object sender, NotifyCollectionChangedEventArgs e)
-        {
-            if (e.Action == NotifyCollectionChangedAction.Add)
-                foreach (var item in e.NewItems.OfType<Stakeholder>())
-                    Stakeholders.Add(new StakeholderViewModel(item, this));
-
-            if (e.Action == NotifyCollectionChangedAction.Remove)
-                foreach (var stakeholder in e.OldItems.OfType<Stakeholder>())
-                    Stakeholders.Remove(Stakeholders.FirstOrDefault(viewModel =>
-                        viewModel.IsViewModelFor(stakeholder)));
         }
 
         private void ConnectionGroupsCollectionChanged(object sender, NotifyCollectionChangedEventArgs e)

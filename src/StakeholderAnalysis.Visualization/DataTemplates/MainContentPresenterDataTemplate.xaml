@@ -5,7 +5,7 @@
                     xmlns:visualization="clr-namespace:StakeholderAnalysis.Visualization">
     <ResourceDictionary.MergedDictionaries>
         <ResourceDictionary Source="OnionDiagramDataTemplate.xaml" />
-        <ResourceDictionary Source="CommunicationStrategyDataTemplate.xaml" />
+        <ResourceDictionary Source="AttitudeImpactDiagramDataTemplate.xaml" />
         <ResourceDictionary Source="StakeholderForcesDataTemplate.xaml" />
         <ResourceDictionary Source="StakeholderTableDataTemplate.xaml" />
     </ResourceDictionary.MergedDictionaries>
@@ -38,8 +38,8 @@
             <DataTrigger Binding="{Binding SelectedViewInfo.Type}" Value="{x:Static viewModels:StakeholderViewType.Onion}">
                 <Setter TargetName="Presenter" Property="ContentTemplate" Value="{StaticResource OnionDiagramDataTemplate}" />
             </DataTrigger>
-            <DataTrigger Binding="{Binding SelectedViewInfo.Type}" Value="{x:Static viewModels:StakeholderViewType.CommunicationStrategy}">
-                <Setter TargetName="Presenter" Property="ContentTemplate" Value="{StaticResource CommunicationStrategyDataTemplate}" />
+            <DataTrigger Binding="{Binding SelectedViewInfo.Type}" Value="{x:Static viewModels:StakeholderViewType.AttitudeImpact}">
+                <Setter TargetName="Presenter" Property="ContentTemplate" Value="{StaticResource AttitudeImpactDiagramDataTemplate}" />
             </DataTrigger>
             <DataTrigger Binding="{Binding SelectedViewInfo.Type}" Value="{x:Static viewModels:StakeholderViewType.StakeholderForces}">
                 <Setter TargetName="Presenter" Property="ContentTemplate" Value="{StaticResource StakeholderForcesDataTemplate}" />
