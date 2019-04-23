@@ -9,10 +9,10 @@
 
     <converters:PercentageToDimensionConverter x:Key="PercentageToDimensionConverter" />
 
-    <DataTemplate x:Key="StakeholdersDataTemplate" DataType="viewModels:MainWindowViewModel">
+    <DataTemplate x:Key="StakeholdersDataTemplate" DataType="viewModels:OnionDiagramStakeholdersViewModel">
         <Grid>
             <ItemsControl ItemsSource="{Binding OnionDiagramStakeholders}"
-                          Margin="{Binding Margin}"
+                          Margin="{Binding ElementName=Presenter, Path=Margin}"
                           Background="Transparent"
                           ItemTemplate="{StaticResource StakeholderDataTemplate}">
                 <ItemsControl.ItemContainerStyle>
@@ -39,7 +39,7 @@
                 </ItemsControl.ItemContainerStyle>
                 <ItemsControl.ItemsPanel>
                     <ItemsPanelTemplate>
-                        <Canvas Name="Canvas" IsItemsHost="True" Margin="{Binding Margin}" />
+                        <Canvas Name="Canvas" IsItemsHost="True" Margin="{Binding ElementName=Presenter, Path=Margin}" />
                     </ItemsPanelTemplate>
                 </ItemsControl.ItemsPanel>
             </ItemsControl>

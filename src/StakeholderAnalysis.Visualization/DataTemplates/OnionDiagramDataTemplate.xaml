@@ -21,7 +21,7 @@
                 ContentTemplate="{StaticResource ConnectionsPresenterDataTemplate}" />
             <ContentPresenter 
                 Name="StakeholdersPresenter" 
-                Content="{Binding}"
+                Content="{Binding OnionDiagramStakeholdersViewModel}"
                 ContentTemplate="{StaticResource StakeholdersDataTemplate}" />
         </Grid>
     </DataTemplate>
