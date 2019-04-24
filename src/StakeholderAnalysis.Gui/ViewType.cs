@@ -1,4 +1,4 @@
-﻿namespace StakeholderAnalysis.Visualization.ViewModels
+﻿namespace StakeholderAnalysis.Gui
 {
     public enum StakeholderViewType
     {

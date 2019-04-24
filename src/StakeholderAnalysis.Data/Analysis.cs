@@ -10,6 +10,8 @@ namespace StakeholderAnalysis.Data
         public Analysis(ObservableCollection<Stakeholder> stakeholders = null)
         {
             OnionDiagrams = new ObservableCollection<OnionDiagram>();
+            ForceFieldDiagrams = new ObservableCollection<StakeholderForceFieldDiagram>();
+            AttitudeImpactDiagrams = new ObservableCollection<AttitudeImpactDiagram>();
             Stakeholders = stakeholders ?? new ObservableCollection<Stakeholder>();
         }
 

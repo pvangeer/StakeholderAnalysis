@@ -5,8 +5,7 @@
                     xmlns:converters="clr-namespace:StakeholderAnalysis.Visualization.Converters"
                     xmlns:controls="clr-namespace:StakeholderAnalysis.Visualization.Controls">
 
-    <converters:IsSelectedViewTypeToVisibilityConverter x:Key="IsSelectedViewTypeToVisibilityConverter" />
-    <converters:IsSelectedViewTypeConverter x:Key="IsSelectedViewTypeConverter" />
+    <converters:IsSelectedViewTypeToVisibilityConverter x:Key="IsSelectedViewInfoToVisibilityConverter" />
 
     <DataTemplate x:Key="RibbonDataTemplate" DataType="viewModels:MainWindowViewModel">
         <fluent:Ribbon Focusable="True" x:Name="Ribbon" AutomaticStateManagement="False">
@@ -48,52 +47,28 @@
                 <fluent:RibbonContextualTabGroup
                     x:Name="onionGroup"
                     Header="Ui-diagram"
-                    Visibility="{Binding SelectedViewInfo, Converter={StaticResource IsSelectedViewTypeToVisibilityConverter}, ConverterParameter={x:Static viewModels:StakeholderViewType.Onion}}"
                     Background="Green"
-                    Foreground="DarkSeaGreen" />
+                    Foreground="DarkSeaGreen">
+                    <fluent:RibbonContextualTabGroup.Visibility>
+                        <Binding Path="MainContentPresenterViewModel.ViewManager.CurrentViewInfo" 
+                                 Converter="{StaticResource IsSelectedViewInfoToVisibilityConverter}" 
+                                 UpdateSourceTrigger="PropertyChanged"/>
+                    </fluent:RibbonContextualTabGroup.Visibility>
+                </fluent:RibbonContextualTabGroup>
             </fluent:Ribbon.ContextualGroups>
 
             <fluent:RibbonTabItem Header="Start">
-                <fluent:RibbonGroupBox Header="Schermen">
-                    <fluent:ToggleButton
-                        Header="Stakeholder overzicht"
-                        LargeIcon="pack://application:,,,/StakeholderAnalysis.Visualization;component/Resources/table.png"
-                        IsChecked="{Binding SelectedViewInfo, Converter={StaticResource IsSelectedViewTypeConverter}, ConverterParameter={x:Static viewModels:StakeholderViewType.StakeholderTable}, Mode=OneWay}"
-                        Command="{Binding ToggleView}"
-                        CommandParameter="{x:Static viewModels:StakeholderViewType.StakeholderTable}" />
-
-                    <fluent:ToggleButton
-                        Header="UI-diagram"
-                        LargeIcon="pack://application:,,,/StakeholderAnalysis.Visualization;component/Resources/onion.png"
-                        IsChecked="{Binding SelectedViewInfo, Converter={StaticResource IsSelectedViewTypeConverter}, ConverterParameter={x:Static viewModels:StakeholderViewType.Onion}, Mode=OneWay}"
-                        Command="{Binding ToggleView}"
-                        CommandParameter="{x:Static viewModels:StakeholderViewType.Onion}" />
-
-                    <fluent:ToggleButton
-                        Header="Krachtenveld"
-                        LargeIcon="pack://application:,,,/StakeholderAnalysis.Visualization;component/Resources/forces.png"
-                        IsChecked="{Binding SelectedViewInfo, Converter={StaticResource IsSelectedViewTypeConverter}, ConverterParameter={x:Static viewModels:StakeholderViewType.StakeholderForces}, Mode=OneWay}"
-                        Command="{Binding ToggleView}"
-                        CommandParameter="{x:Static viewModels:StakeholderViewType.StakeholderForces}" />
-
-                    <fluent:ToggleButton
-                        Header="Betrokkenheid"
-                        LargeIcon="pack://application:,,,/StakeholderAnalysis.Visualization;component/Resources/involvement.png"
-                        IsChecked="{Binding SelectedViewInfo, Converter={StaticResource IsSelectedViewTypeConverter}, ConverterParameter={x:Static viewModels:StakeholderViewType.AttitudeImpact}, Mode=OneWay}"
-                        Command="{Binding ToggleView}"
-                        CommandParameter="{x:Static viewModels:StakeholderViewType.AttitudeImpact}" />
-                </fluent:RibbonGroupBox>
                 <fluent:RibbonGroupBox Header="Beeld">
                     <fluent:ToggleButton
                         Header="Vergrootglas"
                         Size="Large"
                         LargeIcon="pack://application:,,,/StakeholderAnalysis.Visualization;component/Resources/Magnifier.png"
-                        IsChecked="{Binding IsMagnifierActive}" />
+                        IsChecked="{Binding MainContentPresenterViewModel.IsMagnifierActive}" />
                     <fluent:Button
                         Header="Afbeelding opslaan"
                         Size="Large"
                         LargeIcon="pack://application:,,,/StakeholderAnalysis.Visualization;component/Resources/SaveImage.png"
-                        Command="{Binding SaveImageCommand}" />
+                        Command="{Binding MainContentPresenterViewModel.SaveImageCommand}" />
                 </fluent:RibbonGroupBox>
             </fluent:RibbonTabItem>
 
@@ -102,7 +77,7 @@
                     <controls:ConnectionGroupsListBoxControl
                         Width="250"
                         Margin="0,2,0,0"
-                        StakeholderConnectionsList="{Binding RibbonStakeholderConnectionGroupsViewModel}" />
+                        StakeholderConnectionsList="{Binding RibbonStakeholderConnectionGroupsViewModel.StakeholderConnectionGroups}" />
                 </fluent:RibbonGroupBox>
             </fluent:RibbonTabItem>
         </fluent:Ribbon>

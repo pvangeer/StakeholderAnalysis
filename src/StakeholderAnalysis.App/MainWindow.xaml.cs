@@ -1,5 +1,4 @@
-﻿using System.Linq;
-using Fluent;
+﻿using Fluent;
 using StakeholderAnalysis.Visualization.ViewModels;
 
 namespace StakeholderAnalysis.App
@@ -12,11 +11,7 @@ namespace StakeholderAnalysis.App
         public MainWindow()
         {
             InitializeComponent();
-            var analysis = AnalysisGenerator.GetAnalysis();
-
-            var mainWindowViewModel = new MainWindowViewModel(analysis);
-            //mainWindowViewModel.SelectedStakeholder = mainWindowViewModel.Stakeholders.Last();
-            DataContext = mainWindowViewModel;
+            DataContext = new MainWindowViewModel(AnalysisGenerator.GetAnalysis(),new Gui.Gui());
         }
     }
 }

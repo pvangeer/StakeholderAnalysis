@@ -5,31 +5,25 @@
 
     <converters:StakeholderTypeToStringConverter x:Key="StakeholderTypeToStringConverter" />
 
-    <DataTemplate x:Key="StakeholderTableDataTemplate" DataType="viewModels:MainWindowViewModel">
-        <ContentPresenter Content="{Binding StakeholderTableViewModel}">
-            <ContentPresenter.ContentTemplate>
-                <DataTemplate DataType="viewModels:StakeholderTableViewModel">
-                    <Grid>
-                        <DataGrid
-                            ItemsSource="{Binding Stakeholders}"
-                            AutoGenerateColumns="False"
-                            SelectionMode="Extended"
-                            CanUserAddRows="False"
-                            CanUserDeleteRows="False"
-                            SelectionUnit="CellOrRowHeader">
-                            <DataGrid.Columns>
-                                <DataGridTextColumn Header="Naam" Binding="{Binding Name, Mode=TwoWay}" />
-                                <DataGridTextColumn Header="Type"
+    <DataTemplate x:Key="StakeholderTableDataTemplate" DataType="viewModels:StakeholderTableViewModel">
+        <Grid>
+            <DataGrid
+                ItemsSource="{Binding Stakeholders}"
+                AutoGenerateColumns="False"
+                SelectionMode="Extended"
+                CanUserAddRows="False"
+                CanUserDeleteRows="False"
+                SelectionUnit="CellOrRowHeader">
+                <DataGrid.Columns>
+                    <DataGridTextColumn Header="Naam" Binding="{Binding Name, Mode=TwoWay}" />
+                    <DataGridTextColumn Header="Type"
                                     Binding="{Binding Type, Converter={StaticResource StakeholderTypeToStringConverter}, Mode=OneWay}" />
-                                <DataGridTextColumn Header="Belang/Verantwoording" Binding="{Binding Interest}" />
-                                <DataGridTextColumn Header="Invloed" Binding="{Binding Influence}" />
-                                <DataGridTextColumn Header="Houding" Binding="{Binding Attitude}" />
-                                <DataGridTextColumn Header="Impact" Binding="{Binding Impact}" />
-                            </DataGrid.Columns>
-                        </DataGrid>
-                    </Grid>
-                </DataTemplate>
-            </ContentPresenter.ContentTemplate>
-        </ContentPresenter>
+                    <DataGridTextColumn Header="Belang/Verantwoording" Binding="{Binding Interest}" />
+                    <DataGridTextColumn Header="Invloed" Binding="{Binding Influence}" />
+                    <DataGridTextColumn Header="Houding" Binding="{Binding Attitude}" />
+                    <DataGridTextColumn Header="Impact" Binding="{Binding Impact}" />
+                </DataGrid.Columns>
+            </DataGrid>
+        </Grid>
     </DataTemplate>
 </ResourceDictionary>

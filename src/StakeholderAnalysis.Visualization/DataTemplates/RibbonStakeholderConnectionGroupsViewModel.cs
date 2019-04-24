@@ -1,31 +1,65 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Collections.ObjectModel;
+﻿using System.Collections.ObjectModel;
 using System.Collections.Specialized;
+using System.ComponentModel;
 using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using StakeholderAnalysis.Data;
 using StakeholderAnalysis.Data.OnionDiagrams;
+using StakeholderAnalysis.Gui;
 using StakeholderAnalysis.Visualization.ViewModels;
 
 namespace StakeholderAnalysis.Visualization.DataTemplates
 {
     public class RibbonStakeholderConnectionGroupsViewModel : NotifyPropertyChangedObservable
     {
-        private readonly OnionDiagram onionDiagram;
+        private OnionDiagramViewModel onionDiagram;
+        private readonly ViewManager viewManager;
 
-        public RibbonStakeholderConnectionGroupsViewModel(OnionDiagram onionDiagram)
+        public RibbonStakeholderConnectionGroupsViewModel(ViewManager viewManager)
         {
-            this.onionDiagram = onionDiagram;
-            if (onionDiagram != null)
+            this.viewManager = viewManager;
+
+            viewManager.PropertyChanged += ViewManagerPropertyChanged;
+
+            if (viewManager?.CurrentViewInfo != null)
             {
-                onionDiagram.ConnectionGroups.CollectionChanged += ConnectionGroupsCollectionChanged;
-                StakeholderConnectionGroups = new ObservableCollection<ConnectionGroupViewModel>(onionDiagram.ConnectionGroups.Select(g => new ConnectionGroupViewModel(g)));
+                RegisterGroupsCollectionChanged(viewManager.CurrentViewInfo);
             }
         }
 
-        public ObservableCollection<ConnectionGroupViewModel> StakeholderConnectionGroups { get; }
+        private void ViewManagerPropertyChanged(object sender, PropertyChangedEventArgs e)
+        {
+            if (e.PropertyName == nameof(ViewManager.CurrentViewInfo))
+            {
+                if (onionDiagram != null)
+                {
+                    UnRegisterGroupsCollectionChanged();
+                }
+
+                if (viewManager?.CurrentViewInfo != null)
+                {
+                    RegisterGroupsCollectionChanged(viewManager.CurrentViewInfo);
+                }
+            }
+        }
+
+        private void RegisterGroupsCollectionChanged(IViewInfo viewInfo)
+        {
+            if (viewInfo.ViewModel is OnionDiagramViewModel diagramViewModel)
+            {
+                diagramViewModel.RegisterConnectionGroupsCollectionChanged(ConnectionGroupsCollectionChanged);
+                StakeholderConnectionGroups = diagramViewModel.GetConnectionGroupsViewModels();
+                OnPropertyChanged(nameof(StakeholderConnectionGroups));
+                onionDiagram = diagramViewModel;
+            }
+        }
+
+        private void UnRegisterGroupsCollectionChanged()
+        {
+            onionDiagram.UnRegisterConnectionGroupsCollectionChanged(ConnectionGroupsCollectionChanged);
+            onionDiagram = null;
+        }
+
+        public ObservableCollection<ConnectionGroupViewModel> StakeholderConnectionGroups { get; set; }
 
         private void ConnectionGroupsCollectionChanged(object sender, NotifyCollectionChangedEventArgs e)
         {

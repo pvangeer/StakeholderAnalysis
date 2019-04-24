@@ -2,6 +2,8 @@
 using System.Globalization;
 using System.Windows;
 using System.Windows.Data;
+using StakeholderAnalysis.Gui;
+using StakeholderAnalysis.Visualization.ViewModels;
 
 namespace StakeholderAnalysis.Visualization.Converters
 {
@@ -9,7 +11,8 @@ namespace StakeholderAnalysis.Visualization.Converters
     {
         public object Convert(object value, Type targetType, object parameter, CultureInfo culture)
         {
-            return (bool) new IsSelectedViewTypeConverter().Convert(value, targetType, parameter, culture)
+            return value is IViewInfo viewInfo &&
+                   viewInfo.ViewModel is OnionDiagramViewModel
                 ? Visibility.Visible
                 : Visibility.Collapsed;
         }

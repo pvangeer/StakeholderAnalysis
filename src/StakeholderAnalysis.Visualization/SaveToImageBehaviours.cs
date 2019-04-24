@@ -1,5 +1,4 @@
 ﻿using System.Windows;
-using System.Windows.Controls;
 using StakeholderAnalysis.Visualization.Commands;
 
 namespace StakeholderAnalysis.Visualization
@@ -24,9 +23,7 @@ namespace StakeholderAnalysis.Visualization
         {
             if ((bool) e.NewValue)
             {
-                if (!(obj is ContentPresenter contentPresenter)) return;
-
-                contentPresenter.SaveToFile();
+                if (obj is FrameworkElement frameworkElement) frameworkElement.SaveToFile();
             }
         }
     }

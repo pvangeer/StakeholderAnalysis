@@ -1,17 +1,119 @@
 ﻿<ResourceDictionary xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
                     xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
                     xmlns:viewModels="clr-namespace:StakeholderAnalysis.Visualization.ViewModels"
-                    xmlns:xctk="http://schemas.xceed.com/wpf/xaml/toolkit"
-                    xmlns:visualization="clr-namespace:StakeholderAnalysis.Visualization">
+                    xmlns:xcad="http://schemas.xceed.com/wpf/xaml/avalondock"
+                    xmlns:gui="clr-namespace:StakeholderAnalysis.Gui;assembly=StakeholderAnalysis.Gui"
+                    xmlns:system="clr-namespace:System;assembly=mscorlib"
+                    xmlns:converters="clr-namespace:StakeholderAnalysis.Visualization.Converters"
+                    xmlns:visualization="clr-namespace:StakeholderAnalysis.Visualization"
+                    xmlns:xctk="http://schemas.xceed.com/wpf/xaml/toolkit">
     <ResourceDictionary.MergedDictionaries>
         <ResourceDictionary Source="OnionDiagramDataTemplate.xaml" />
         <ResourceDictionary Source="AttitudeImpactDiagramDataTemplate.xaml" />
         <ResourceDictionary Source="StakeholderForcesDataTemplate.xaml" />
         <ResourceDictionary Source="StakeholderTableDataTemplate.xaml" />
+        <ResourceDictionary Source="ProjectExplorerDataTemplate.xaml" />
     </ResourceDictionary.MergedDictionaries>
 
-    <DataTemplate x:Key="MainContentPresenterDataTemplate" DataType="viewModels:MainWindowViewModel">
-        <ContentPresenter x:Name="Presenter" Content="{Binding SelectedViewInfo.ViewModel}">
+    <converters:ViewModelToTypeStringConverter x:Key="ViewModelToTypeStringConverter" />
+    <converters:IsProneToExportConverter x:Key="IsProneToExportConverter" />
+
+    <visualization:ViewTemplateSelector x:Key="ViewTemplateSelector" 
+                                        StakeholderTableViewTemplate="{StaticResource StakeholderTableDataTemplate}"
+                                        OnionDiagramViewTemplate="{StaticResource OnionDiagramDataTemplate}"
+                                        ProjectExplorerDataTemplate="{StaticResource ProjectExplorerDataTemplate}"
+                                        StakeholderForcesDiagramTemplate="{StaticResource StakeholderForcesDataTemplate}"
+                                        AttitudeImpactDiagramTemplate="{StaticResource AttitudeImpactDiagramDataTemplate}"/>
+
+    <visualization:TestConverter x:Key="TestConverter" />
+    
+    <DataTemplate x:Key="DocumentLayoutDataTemplate" DataType="gui:IViewInfo">
+        <ContentPresenter 
+            Content="{Binding ViewModel}" 
+            ContentTemplateSelector="{StaticResource ViewTemplateSelector}">
+            <ContentPresenter.Style>
+                <Style TargetType="ContentPresenter">
+                    <Style.Triggers>
+                        <DataTrigger Value="True">
+                            <DataTrigger.Binding>
+                                <MultiBinding Converter="{StaticResource IsProneToExportConverter}">
+                                    <Binding ElementName="DockingManager" Path="DataContext.IsSaveToImage"/>
+                                    <Binding ElementName="DockingManager" Path="DataContext.ViewManager.CurrentViewInfo"/>
+                                    <Binding/>
+                                </MultiBinding>
+                            </DataTrigger.Binding>
+                            <Setter Property="visualization:SaveToImageBehaviours.SaveToImage" Value="True" />
+                        </DataTrigger>
+                        <DataTrigger Binding="{Binding ElementName=DockingManager, Path=DataContext.IsSaveToImage}" Value="False">
+                            <Setter Property="visualization:SaveToImageBehaviours.SaveToImage" Value="False" />
+                        </DataTrigger>
+                    </Style.Triggers>
+                </Style>
+            </ContentPresenter.Style>
+            <xctk:MagnifierManager.Magnifier>
+                <xctk:Magnifier
+                    BorderBrush="Gray"
+                    BorderThickness="1"
+                    Radius="100"
+                    ZoomFactor=".4"
+                    FrameType="Circle" >
+                    <xctk:Magnifier.Visibility>
+                        <Binding Path="MainContentPresenterViewModel.IsMagnifierActive" Converter="{StaticResource BooleanToVisibilityConverter}" UpdateSourceTrigger="PropertyChanged"/>
+                    </xctk:Magnifier.Visibility>
+                </xctk:Magnifier>
+            </xctk:MagnifierManager.Magnifier>
+        </ContentPresenter>
+    </DataTemplate>
+
+    <DataTemplate x:Key="AnchorableLayoutDataTemplate" DataType="gui:IViewInfo">
+        <ContentPresenter 
+            Content="{Binding ViewModel}" 
+            ContentTemplateSelector="{StaticResource ViewTemplateSelector}">
+        </ContentPresenter>
+    </DataTemplate>
+
+    <DataTemplate x:Key="MainContentPresenterDataTemplate" DataType="viewModels:MainContentPresenterViewModel">
+        <Grid>
+            <xcad:DockingManager
+                Name="DockingManager"
+                DocumentsSource="{Binding ViewManager.Views}"
+                AnchorablesSource="{Binding ViewManager.ToolWindows}"
+                AllowMixedOrientation="True"
+                BorderBrush="Black"
+                ActiveContent="{Binding ViewManager.CurrentViewInfo, Mode=TwoWay}"
+                BorderThickness="1">
+                <xcad:DockingManager.DocumentHeaderTemplate>
+                    <DataTemplate DataType="xcad:LayoutDocument">
+                        <StackPanel Orientation="Horizontal">
+                            <!--<Image Source="{Binding}" Margin="0,0,4,0"/>-->
+                            <TextBlock Text="{Binding Content.Title}" />
+                        </StackPanel>
+                    </DataTemplate>
+                </xcad:DockingManager.DocumentHeaderTemplate>
+                <xcad:DockingManager.AnchorableHeaderTemplate>
+                    <DataTemplate DataType="xcad:LayoutAnchorable">
+                        <StackPanel Orientation="Horizontal" Background="AliceBlue">
+                            <!--<Image Source="{Binding}" Margin="0,0,4,0"/>-->
+                            <TextBlock Text="{Binding Content.Title}" />
+                        </StackPanel>
+                    </DataTemplate>
+                </xcad:DockingManager.AnchorableHeaderTemplate>
+
+                <xcad:DockingManager.LayoutItemTemplateSelector>
+                    <visualization:PresentationLayoutTemplateSelector
+                        DocumentLayoutTemplate ="{StaticResource DocumentLayoutDataTemplate}"
+                        AnchorableLayoutTemplate="{StaticResource AnchorableLayoutDataTemplate}"/>
+                </xcad:DockingManager.LayoutItemTemplateSelector>
+                <xcad:DockingManager.Theme>
+                    <xcad:MetroTheme />
+                </xcad:DockingManager.Theme>
+                <xcad:LayoutRoot/>
+            </xcad:DockingManager>
+        </Grid>
+    </DataTemplate>
+
+    <!--<DataTemplate x:Key="MainContentPresenterDataTemplate_Old" DataType="viewModels:MainWindowViewModel">
+    <ContentPresenter x:Name="Presenter" Content="{Binding SelectedViewInfo.ViewModel}">
             <ContentPresenter.Style>
                 <Style TargetType="ContentPresenter">
                     <Style.Triggers>
@@ -34,19 +136,5 @@
                     FrameType="Circle" />
             </xctk:MagnifierManager.Magnifier>
         </ContentPresenter>
-        <DataTemplate.Triggers>
-            <DataTrigger Binding="{Binding SelectedViewInfo.Type}" Value="{x:Static viewModels:StakeholderViewType.Onion}">
-                <Setter TargetName="Presenter" Property="ContentTemplate" Value="{StaticResource OnionDiagramDataTemplate}" />
-            </DataTrigger>
-            <DataTrigger Binding="{Binding SelectedViewInfo.Type}" Value="{x:Static viewModels:StakeholderViewType.AttitudeImpact}">
-                <Setter TargetName="Presenter" Property="ContentTemplate" Value="{StaticResource AttitudeImpactDiagramDataTemplate}" />
-            </DataTrigger>
-            <DataTrigger Binding="{Binding SelectedViewInfo.Type}" Value="{x:Static viewModels:StakeholderViewType.StakeholderForces}">
-                <Setter TargetName="Presenter" Property="ContentTemplate" Value="{StaticResource StakeholderForcesDataTemplate}" />
-            </DataTrigger>
-            <DataTrigger Binding="{Binding SelectedViewInfo.Type}" Value="{x:Static viewModels:StakeholderViewType.StakeholderTable}">
-                <Setter TargetName="Presenter" Property="ContentTemplate" Value="{StaticResource StakeholderTableDataTemplate}" />
-            </DataTrigger>
-        </DataTemplate.Triggers>
-    </DataTemplate>
+    </DataTemplate>-->
 </ResourceDictionary>

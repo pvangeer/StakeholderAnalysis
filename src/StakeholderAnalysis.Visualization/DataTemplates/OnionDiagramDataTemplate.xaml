@@ -9,7 +9,7 @@
             Source="/StakeholderAnalysis.Visualization;Component/DataTemplates/ConnectionsPresenterDataTemplate.xaml" />
     </ResourceDictionary.MergedDictionaries>
 
-    <DataTemplate x:Key="OnionDiagramDataTemplate" DataType="viewModels:MainWindowViewModel">
+    <DataTemplate x:Key="OnionDiagramDataTemplate" DataType="viewModels:OnionDiagramViewModel">
         <Grid>
             <ContentPresenter 
                 Name="OnionRingsPresenter" 
