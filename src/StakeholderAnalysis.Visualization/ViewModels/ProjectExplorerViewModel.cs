@@ -2,30 +2,32 @@
 using System.Collections.ObjectModel;
 using System.Collections.Specialized;
 using StakeholderAnalysis.Data;
+using StakeholderAnalysis.Gui;
 
 namespace StakeholderAnalysis.Visualization.ViewModels
 {
     public class ProjectExplorerViewModel : NotifyPropertyChangedObservable
     {
         private Analysis analysis;
+        private readonly ViewManager viewManager;
 
-        public ProjectExplorerViewModel(Analysis analysis)
+        public ProjectExplorerViewModel(Analysis analysis, ViewManager viewManager)
         {
+            this.viewManager = viewManager;
             this.analysis = analysis;
-            analysis.OnionDiagrams.CollectionChanged += OnionDiagramsCollectionChanged;
             analysis.AttitudeImpactDiagrams.CollectionChanged += AttitudeImpactDiagramsCollectionChanged;
             analysis.ForceFieldDiagrams.CollectionChanged += ForceFieldDiagramsCollectionChanged;
 
-            OnionDiagrams = new ObservableCollection<OnionDiagramViewModel>();
             ForceFieldDiagrams = new ObservableCollection<StakeholderForcesDiagramViewModel>();
             AttitudeImpactDiagrams = new ObservableCollection<StakeholderAttitudeImpactDiagramViewModel>();
         }
 
         public ObservableCollection<StakeholderAttitudeImpactDiagramViewModel> AttitudeImpactDiagrams { get; }
 
-        public ObservableCollection<OnionDiagramViewModel> OnionDiagrams { get; }
-
+        
         public ObservableCollection<StakeholderForcesDiagramViewModel> ForceFieldDiagrams { get; }
+
+        public ProjectExplorerOnionDiagramsViewModel OnionDiagramsViewModel => new ProjectExplorerOnionDiagramsViewModel(analysis, viewManager);
 
         private void ForceFieldDiagramsCollectionChanged(object sender, NotifyCollectionChangedEventArgs e)
         {
@@ -37,9 +39,6 @@ namespace StakeholderAnalysis.Visualization.ViewModels
             throw new NotImplementedException();
         }
 
-        private void OnionDiagramsCollectionChanged(object sender, NotifyCollectionChangedEventArgs e)
-        {
-            throw new NotImplementedException();
-        }
+        
     }
 }

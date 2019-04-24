@@ -72,7 +72,6 @@
     <Compile Include="ToolWindowViewInfo.cs" />
     <Compile Include="ViewInfo.cs" />
     <Compile Include="ViewManager.cs" />
-    <Compile Include="ViewType.cs" />
     <EmbeddedResource Include="Properties\Resources.resx">
       <Generator>ResXFileCodeGenerator</Generator>
       <LastGenOutput>Resources.Designer.cs</LastGenOutput>

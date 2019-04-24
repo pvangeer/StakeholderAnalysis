@@ -23,13 +23,10 @@ namespace StakeholderAnalysis.Visualization.ViewModels
 
             this.gui = gui;
 
-            var onionViewInfo = new ViewInfo("UI-diagram", new OnionDiagramViewModel(this.analysis.OnionDiagrams.FirstOrDefault()));
-            this.gui.ViewManager.OpenView(onionViewInfo);
             this.gui.ViewManager.OpenView(new ViewInfo("Krachtenveld", new StakeholderForcesDiagramViewModel(analysis)));
             this.gui.ViewManager.OpenView(new ViewInfo("Tabel", new StakeholderTableViewModel(analysis)));
             this.gui.ViewManager.OpenView(new ViewInfo("Impact/houding", new StakeholderAttitudeImpactDiagramViewModel(analysis)));
-            this.gui.ViewManager.OpenToolWindow(new ToolWindowViewInfo("Projectgegevens", new ProjectExplorerViewModel(analysis)));
-            this.gui.ViewManager.BringToFront(onionViewInfo);
+            this.gui.ViewManager.OpenToolWindow(new ToolWindowViewInfo("Projectgegevens", new ProjectExplorerViewModel(analysis, gui.ViewManager)));
             MainContentPresenterViewModel = new MainContentPresenterViewModel(this.gui);
         }
 

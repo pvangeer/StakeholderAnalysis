@@ -13,7 +13,7 @@ namespace StakeholderAnalysis.App
         {
             var analysis = new Analysis();
 
-            var diagram1 = new OnionDiagram(new ObservableCollection<OnionRing>()
+            var diagram1 = new OnionDiagram("Beoordelen",new ObservableCollection<OnionRing>()
             {
                 new OnionRing(1.0) {BackgroundColor = Colors.LightBlue},
                 new OnionRing(0.65) {BackgroundColor = Colors.CornflowerBlue},

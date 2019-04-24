@@ -6,15 +6,18 @@ namespace StakeholderAnalysis.Data.OnionDiagrams
 {
     public class OnionDiagram : NotifyPropertyChangedObservable
     {
-        public OnionDiagram(ObservableCollection<OnionRing> onionRings = null, 
+        public OnionDiagram(string name, ObservableCollection<OnionRing> onionRings = null, 
             ObservableCollection<StakeholderConnection> connections = null,
             ObservableCollection<StakeholderConnectionGroup> connectionGroups = null)
         {
+            Name = name;
             OnionRings = onionRings ?? new ObservableCollection<OnionRing>();
             Stakeholders = new ObservableCollection<OnionDiagramStakeholder>();
             Connections = connections ?? new ObservableCollection<StakeholderConnection>();
             ConnectionGroups = connectionGroups ?? new ObservableCollection<StakeholderConnectionGroup>();
         }
+
+        public string Name { get; set; }
 
         public double Asymmetry { get; set; }
 
