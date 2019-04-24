@@ -10,8 +10,8 @@
         <Setter Property="Template">
             <Setter.Value>
                 <ControlTemplate TargetType="Button">
-                    <Image Width="24" 
-                           Height="24">
+                    <Image Width="16" 
+                           Height="16">
                         <Image.Style>
                             <Style TargetType="Image">
                                 <Style.Triggers>
@@ -34,8 +34,10 @@
         <Setter Property="Template">
             <Setter.Value>
                 <ControlTemplate TargetType="Button">
-                    <Image Width="24" 
-                           Height="24"
+                    <Image Width="16" 
+                           Height="16"
+                           VerticalAlignment="Center"
+                           HorizontalAlignment="Center"
                            Source="pack://application:,,,/StakeholderAnalysis.Visualization;component/Resources/plus.png"/>
                 </ControlTemplate>
             </Setter.Value>
@@ -46,8 +48,10 @@
         <Setter Property="Template">
             <Setter.Value>
                 <ControlTemplate TargetType="Button">
-                    <Image Width="24" 
-                           Height="24"
+                    <Image Width="16" 
+                           Height="16"
+                           VerticalAlignment="Center"
+                           HorizontalAlignment="Center"
                            Source="pack://application:,,,/StakeholderAnalysis.Visualization;component/Resources/remove.png"/>
                 </ControlTemplate>
             </Setter.Value>
@@ -56,7 +60,7 @@
 
     <DataTemplate x:Key="ProjectExplorerOnionDiagramsDataTemplate" DataType="viewModels:ProjectExplorerOnionDiagramsViewModel">
         <StackPanel Orientation="Vertical">
-            <Border BorderThickness="1" BorderBrush="Gray">
+            <Border BorderThickness="0">
                 <Grid Margin="2">
                     <Grid.ColumnDefinitions>
                         <ColumnDefinition Width="24"/>
@@ -72,7 +76,8 @@
                         Grid.Column="1" 
                         Text="Ui-diagrammen" 
                         HorizontalAlignment="Stretch"
-                        FontSize="16"/>
+                        VerticalAlignment="Center"
+                        FontSize="12"/>
                     <Button
                         Grid.Column="2"
                         Command="{Binding AddOnionDiagramCommand}"
@@ -85,7 +90,7 @@
                                 <Setter Property="Background" Value="CornflowerBlue"/>
                             </Trigger>
                             <Trigger Property="IsMouseOver" Value="False">
-                                <Setter Property="Background" Value="Transparent"/>
+                                <Setter Property="Background" Value="GhostWhite"/>
                             </Trigger>
                         </Style.Triggers>
                     </Style>
@@ -99,7 +104,7 @@
                 <ItemsControl Grid.Column="1" ItemsSource="{Binding OnionDiagrams}">
                     <ItemsControl.ItemTemplate>
                         <DataTemplate DataType="viewModels:OnionDiagramViewModel">
-                            <Border BorderThickness="1" BorderBrush="Gray" Margin="0,1,0,1">
+                            <Border BorderThickness="0" Margin="0,1,0,1">
                                 <Border.InputBindings>
                                     <MouseBinding Gesture="LeftDoubleClick" Command="{Binding OpenOnionDiagramCommand}" />
                                 </Border.InputBindings>
@@ -121,7 +126,7 @@
                                         HorizontalContentAlignment="Left"
                                         Grid.Column="1" 
                                         Text="{Binding Name, UpdateSourceTrigger=PropertyChanged}"
-                                        FontSize="16"/>
+                                        FontSize="12"/>
                                     <Button
                                         Grid.Column="2"
                                         Command="{Binding RemoveOnionDiagramCommand}"
@@ -134,7 +139,7 @@
                                                 <Setter Property="Background" Value="CornflowerBlue"/>
                                             </Trigger>
                                             <Trigger Property="IsMouseOver" Value="False">
-                                                <Setter Property="Background" Value="Transparent"/>
+                                                <Setter Property="Background" Value="GhostWhite"/>
                                             </Trigger>
                                         </Style.Triggers>
                                     </Style>
@@ -150,7 +155,9 @@
     <DataTemplate x:Key="ProjectExplorerDataTemplate" DataType="viewModels:ProjectExplorerViewModel">
         <Grid>
             <StackPanel Orientation="Vertical">
-                <ContentPresenter Content="{Binding OnionDiagramsViewModel}" ContentTemplate="{StaticResource ProjectExplorerOnionDiagramsDataTemplate}"/>
+                <ContentPresenter 
+                    Content="{Binding OnionDiagramsViewModel}" 
+                    ContentTemplate="{StaticResource ProjectExplorerOnionDiagramsDataTemplate}"/>
             </StackPanel>
         </Grid>
     </DataTemplate>

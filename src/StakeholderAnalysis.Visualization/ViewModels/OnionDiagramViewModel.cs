@@ -53,7 +53,7 @@ namespace StakeholderAnalysis.Visualization.ViewModels
 
         public OnionDiagramStakeholdersViewModel OnionDiagramStakeholdersViewModel => new OnionDiagramStakeholdersViewModel(diagram);
 
-        public ICommand RemoveOnionDiagramCommand => new RemoveOnionDiagramCommand(analysis, diagram);
+        public ICommand RemoveOnionDiagramCommand => new RemoveOnionDiagramCommand(this);
 
         public ICommand OpenOnionDiagramCommand => new OpenOnionDiagramCommand(this);
 
@@ -85,9 +85,19 @@ namespace StakeholderAnalysis.Visualization.ViewModels
 
         public void OpenDiagramInDocumentView()
         {
-            var viewInfo = new ViewInfo(diagram.Name, new OnionDiagramViewModel(analysis,diagram,viewManager), "pack://application:,,,/StakeholderAnalysis.Visualization;component/Resources/onion.png");
+            var viewInfo = new ViewInfo(diagram.Name, new OnionDiagramViewModel(analysis, diagram, viewManager),
+                "pack://application:,,,/StakeholderAnalysis.Visualization;component/Resources/onion.png");
             viewManager.OpenView(viewInfo);
             viewManager.BringToFront(viewInfo);
+        }
+
+        public void RemoveOnionDiagram()
+        {
+            if (viewManager != null)
+            {
+                viewManager.CloseView(viewManager.Views.FirstOrDefault(vi => vi.ViewModel is OnionDiagramViewModel diagramViewModel1 && diagramViewModel1.IsViewModelFor(diagram)));
+                analysis.OnionDiagrams.Remove(diagram);
+            }
         }
     }
 }

@@ -12,13 +12,11 @@ namespace StakeholderAnalysis.Visualization.Commands
 {
     public class RemoveOnionDiagramCommand : ICommand
     {
-        private readonly Analysis analysis;
-        private readonly OnionDiagram onionDiagramViewModel;
+        private readonly OnionDiagramViewModel viewModel;
 
-        public RemoveOnionDiagramCommand(Analysis analysis, OnionDiagram onionDiagramViewModel)
+        public RemoveOnionDiagramCommand(OnionDiagramViewModel viewModel)
         {
-            this.analysis = analysis;
-            this.onionDiagramViewModel = onionDiagramViewModel;
+            this.viewModel = viewModel;
         }
 
         public bool CanExecute(object parameter)
@@ -28,7 +26,7 @@ namespace StakeholderAnalysis.Visualization.Commands
 
         public void Execute(object parameter)
         {
-            analysis.OnionDiagrams.Remove(onionDiagramViewModel);
+            viewModel.RemoveOnionDiagram();
         }
 
         public event EventHandler CanExecuteChanged;
