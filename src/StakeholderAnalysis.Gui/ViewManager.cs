@@ -7,20 +7,20 @@ using StakeholderAnalysis.Gui.Annotations;
 
 namespace StakeholderAnalysis.Gui
 {
-    public class ViewManager : IViewManager, INotifyPropertyChanged
+    public class ViewManager : INotifyPropertyChanged
     {
-        private IViewInfo currentViewInfo;
+        private ViewInfo currentViewInfo;
 
         public ViewManager()
         {
-            Views = new ObservableCollection<IViewInfo>();
-            ToolWindows = new ObservableCollection<IViewInfo>();
+            Views = new ObservableCollection<ViewInfo>();
+            ToolWindows = new ObservableCollection<ViewInfo>();
             ActiveDocument = null;
         }
 
-        public ObservableCollection<IViewInfo> Views { get; }
+        public ObservableCollection<ViewInfo> Views { get; }
 
-        public IViewInfo CurrentViewInfo
+        public ViewInfo CurrentViewInfo
         {
             get => currentViewInfo;
             set
@@ -43,11 +43,11 @@ namespace StakeholderAnalysis.Gui
             }
         }
 
-        public IViewInfo ActiveDocument { get; set; }
+        public ViewInfo ActiveDocument { get; set; }
 
-        public ObservableCollection<IViewInfo> ToolWindows { get; }
+        public ObservableCollection<ViewInfo> ToolWindows { get; }
 
-        public void OpenView(IViewInfo viewInfo)
+        public void OpenView(ViewInfo viewInfo)
         {
             if (!Views.Contains(viewInfo))
             {
@@ -55,7 +55,7 @@ namespace StakeholderAnalysis.Gui
             }
         }
 
-        public void CloseView(IViewInfo viewInfo)
+        public void CloseView(ViewInfo viewInfo)
         {
             if (Views.Contains(viewInfo))
             {
@@ -63,7 +63,7 @@ namespace StakeholderAnalysis.Gui
             }
         }
 
-        public void BringToFront(IViewInfo viewInfo)
+        public void BringToFront(ViewInfo viewInfo)
         {
             if (!Views.Contains(viewInfo))
             {

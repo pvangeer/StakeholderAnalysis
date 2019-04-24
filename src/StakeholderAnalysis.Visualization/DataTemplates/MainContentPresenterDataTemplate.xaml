@@ -27,7 +27,7 @@
 
     <visualization:TestConverter x:Key="TestConverter" />
     
-    <DataTemplate x:Key="DocumentLayoutDataTemplate" DataType="gui:IViewInfo">
+    <DataTemplate x:Key="DocumentLayoutDataTemplate" DataType="gui:ViewInfo">
         <ContentPresenter 
             Content="{Binding ViewModel}" 
             ContentTemplateSelector="{StaticResource ViewTemplateSelector}">
@@ -65,7 +65,7 @@
         </ContentPresenter>
     </DataTemplate>
 
-    <DataTemplate x:Key="AnchorableLayoutDataTemplate" DataType="gui:IViewInfo">
+    <DataTemplate x:Key="AnchorableLayoutDataTemplate" DataType="gui:ViewInfo">
         <ContentPresenter 
             Content="{Binding ViewModel}" 
             ContentTemplateSelector="{StaticResource ViewTemplateSelector}">

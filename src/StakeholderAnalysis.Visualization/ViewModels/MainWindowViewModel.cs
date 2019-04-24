@@ -12,8 +12,7 @@ namespace StakeholderAnalysis.Visualization.ViewModels
     public class MainWindowViewModel : NotifyPropertyChangedObservable
     {
         private readonly Analysis analysis;
-        private readonly OnionDiagram currentOnionDiagram;
-
+        
         public MainWindowViewModel() : this(new Analysis(), new Gui.Gui()){ }
 
         public MainWindowViewModel(Analysis analysis, Gui.Gui gui)
@@ -22,27 +21,21 @@ namespace StakeholderAnalysis.Visualization.ViewModels
 
             Margin = 10;
 
-            Gui = gui;
+            this.gui = gui;
 
-            //TODO: Move this to appropriate ModelView
-            if (analysis != null)
-            {
-                currentOnionDiagram = this.analysis.OnionDiagrams.FirstOrDefault();
-            }
-
-            var onionViewInfo = new ViewInfo("UI-diagram", new OnionDiagramViewModel(currentOnionDiagram));
-            Gui.ViewManager.OpenView(onionViewInfo);
-            Gui.ViewManager.OpenView(new ViewInfo("Krachtenveld", new StakeholderForcesDiagramViewModel(analysis)));
-            Gui.ViewManager.OpenView(new ViewInfo("Tabel", new StakeholderTableViewModel(analysis)));
-            Gui.ViewManager.OpenView(new ViewInfo("Impact/houding", new StakeholderAttitudeImpactDiagramViewModel(analysis)));
-            Gui.ViewManager.OpenToolWindow(new ToolWindowViewInfo("Projectgegevens", new ProjectExplorerViewModel(analysis)));
-            Gui.ViewManager.BringToFront(onionViewInfo);
-            MainContentPresenterViewModel = new MainContentPresenterViewModel(Gui);
+            var onionViewInfo = new ViewInfo("UI-diagram", new OnionDiagramViewModel(this.analysis.OnionDiagrams.FirstOrDefault()));
+            this.gui.ViewManager.OpenView(onionViewInfo);
+            this.gui.ViewManager.OpenView(new ViewInfo("Krachtenveld", new StakeholderForcesDiagramViewModel(analysis)));
+            this.gui.ViewManager.OpenView(new ViewInfo("Tabel", new StakeholderTableViewModel(analysis)));
+            this.gui.ViewManager.OpenView(new ViewInfo("Impact/houding", new StakeholderAttitudeImpactDiagramViewModel(analysis)));
+            this.gui.ViewManager.OpenToolWindow(new ToolWindowViewInfo("Projectgegevens", new ProjectExplorerViewModel(analysis)));
+            this.gui.ViewManager.BringToFront(onionViewInfo);
+            MainContentPresenterViewModel = new MainContentPresenterViewModel(this.gui);
         }
 
         public double Margin { get; set; }
 
-        public Gui.Gui Gui { get; }
+        private Gui.Gui gui;
 
         public ICommand OpenCommand => new OpenFileCommand(this);
 
@@ -54,7 +47,7 @@ namespace StakeholderAnalysis.Visualization.ViewModels
 
         public ICommand CloseApplication => new CloseApplicationCommand();
 
-        public RibbonStakeholderConnectionGroupsViewModel RibbonStakeholderConnectionGroupsViewModel => new RibbonStakeholderConnectionGroupsViewModel(Gui.ViewManager);
+        public RibbonStakeholderConnectionGroupsViewModel RibbonStakeholderConnectionGroupsViewModel => new RibbonStakeholderConnectionGroupsViewModel(gui.ViewManager);
 
         public MainContentPresenterViewModel MainContentPresenterViewModel { get; }
     }

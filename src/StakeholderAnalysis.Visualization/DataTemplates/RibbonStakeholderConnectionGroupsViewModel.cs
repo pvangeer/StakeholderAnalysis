@@ -42,7 +42,7 @@ namespace StakeholderAnalysis.Visualization.DataTemplates
             }
         }
 
-        private void RegisterGroupsCollectionChanged(IViewInfo viewInfo)
+        private void RegisterGroupsCollectionChanged(ViewInfo viewInfo)
         {
             if (viewInfo.ViewModel is OnionDiagramViewModel diagramViewModel)
             {

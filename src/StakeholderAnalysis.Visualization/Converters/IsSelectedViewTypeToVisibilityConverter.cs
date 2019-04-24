@@ -11,7 +11,7 @@ namespace StakeholderAnalysis.Visualization.Converters
     {
         public object Convert(object value, Type targetType, object parameter, CultureInfo culture)
         {
-            return value is IViewInfo viewInfo &&
+            return value is ViewInfo viewInfo &&
                    viewInfo.ViewModel is OnionDiagramViewModel
                 ? Visibility.Visible
                 : Visibility.Collapsed;

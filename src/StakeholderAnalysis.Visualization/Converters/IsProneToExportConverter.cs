@@ -14,7 +14,7 @@ namespace StakeholderAnalysis.Visualization.Converters
         public object Convert(object[] values, Type targetType, object parameter, CultureInfo culture)
         {
             return (bool) values[0] &&
-                   values[1] is IViewInfo viewInfo && 
+                   values[1] is ViewInfo viewInfo && 
                    values[2] != null && 
                    viewInfo.ViewModel == values[2];
         }

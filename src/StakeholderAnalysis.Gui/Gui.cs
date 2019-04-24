@@ -4,7 +4,7 @@ using StakeholderAnalysis.Gui.Annotations;
 
 namespace StakeholderAnalysis.Gui
 {
-    public class Gui : IGui, INotifyPropertyChanged
+    public class Gui : INotifyPropertyChanged
     {
         public Gui()
         {

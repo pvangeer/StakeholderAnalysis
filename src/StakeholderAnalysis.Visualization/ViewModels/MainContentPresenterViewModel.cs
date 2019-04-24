@@ -31,7 +31,7 @@ namespace StakeholderAnalysis.Visualization.ViewModels
             }
         }
 
-        public IViewManager ViewManager => gui.ViewManager;
+        public ViewManager ViewManager => gui.ViewManager;
 
         public ICommand SaveImageCommand
         {
