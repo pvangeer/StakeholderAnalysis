@@ -3,6 +3,8 @@ using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using System.Windows.Media;
 using StakeholderAnalysis.Data;
+using StakeholderAnalysis.Data.AttitudeImpactDiagrams;
+using StakeholderAnalysis.Data.ForceFieldDiagrams;
 using StakeholderAnalysis.Data.OnionDiagrams;
 
 namespace StakeholderAnalysis.App
@@ -283,6 +285,20 @@ namespace StakeholderAnalysis.App
             // Hogeschool Rotterdam
             // GPO
             // WL Vlaanderen
+
+            var forceFieldDiagram = new ForceFieldDiagram("BOI-krachtenveld");
+            foreach (var stakeholder in analysis.Stakeholders)
+            {
+                forceFieldDiagram.Stakeholders.Add(stakeholder);
+            }
+            analysis.ForceFieldDiagrams.Add(forceFieldDiagram);
+
+            var attitudeImpactDiagram = new AttitudeImpactDiagram("BOI-houding/impact");
+            foreach (var stakeholder in analysis.Stakeholders)
+            {
+                attitudeImpactDiagram.Stakeholders.Add(stakeholder);
+            }
+            analysis.AttitudeImpactDiagrams.Add(attitudeImpactDiagram);
 
             return analysis;
         }

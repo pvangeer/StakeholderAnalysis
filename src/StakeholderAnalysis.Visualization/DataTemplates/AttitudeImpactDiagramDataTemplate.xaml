@@ -20,7 +20,7 @@
         <Setter Property="Margin" Value="10" />
     </Style>
 
-    <DataTemplate x:Key="AttitudeImpactDiagramDataTemplate" DataType="viewModels:StakeholderAttitudeImpactDiagramViewModel">
+    <DataTemplate x:Key="AttitudeImpactDiagramDataTemplate" DataType="viewModels:AttitudeImpactDiagramViewModel">
         <!--Main grid-->
         <Grid>
             <Grid.RowDefinitions>

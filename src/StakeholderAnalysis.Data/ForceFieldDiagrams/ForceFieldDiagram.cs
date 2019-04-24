@@ -3,12 +3,15 @@ using System.Collections.ObjectModel;
 
 namespace StakeholderAnalysis.Data.ForceFieldDiagrams
 {
-    public class StakeholderForceFieldDiagram : NotifyPropertyChangedObservable
+    public class ForceFieldDiagram : NotifyPropertyChangedObservable
     {
-        public StakeholderForceFieldDiagram()
+        public ForceFieldDiagram(string name)
         {
+            Name = name;
             Stakeholders = new ObservableCollection<Stakeholder>();
         }
+
+        public string Name { get; set; }
 
         public ObservableCollection<Stakeholder> Stakeholders { get; }
 

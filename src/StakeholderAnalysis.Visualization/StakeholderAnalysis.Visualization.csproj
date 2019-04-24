@@ -136,6 +136,7 @@
     <Compile Include="Converters\TypeToBrushConverter.cs" />
     <Compile Include="SaveToImageBehaviours.cs" />
     <Compile Include="TestConverter.cs" />
+    <Compile Include="ViewModels\AttitudeImpactDiagramViewModel.cs" />
     <Compile Include="ViewModels\ConnectionGroupViewModel.cs" />
     <Compile Include="ViewModels\MainContentPresenterViewModel.cs" />
     <Compile Include="ViewModels\ProjectExplorerOnionDiagramsViewModel.cs" />
@@ -147,6 +148,7 @@
     <Compile Include="ViewModels\OnionRingsCanvasViewModel.cs" />
     <Compile Include="ViewModels\OnionRingViewModel.cs" />
     <Compile Include="ViewModels\StakeholderConnectionViewModel.cs" />
+    <Compile Include="ViewModels\StakeholderForcesDiagramViewModel.cs" />
     <Compile Include="ViewModels\StakeholderViewModelBase.cs" />
     <Compile Include="ViewModels\StakeholderViewModel.cs" />
     <Compile Include="ViewTemplateSelector.cs" />

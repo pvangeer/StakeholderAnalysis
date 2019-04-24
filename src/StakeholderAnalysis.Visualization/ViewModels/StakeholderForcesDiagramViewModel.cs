@@ -2,21 +2,22 @@
 using System.Collections.Specialized;
 using System.Linq;
 using StakeholderAnalysis.Data;
+using StakeholderAnalysis.Data.ForceFieldDiagrams;
 
 namespace StakeholderAnalysis.Visualization.ViewModels
 {
-    public abstract class StakeholderViewModelBase : NotifyPropertyChangedObservable
+    public class StakeholderForcesDiagramViewModel
     {
-        private readonly Analysis analysis;
-        
-        protected StakeholderViewModelBase(Analysis analysis)
-        {
-            this.analysis = analysis;
+        private readonly ForceFieldDiagram diagram;
 
-            if (analysis != null)
+        public StakeholderForcesDiagramViewModel(ForceFieldDiagram diagram)
+        {
+            this.diagram = diagram;
+
+            if (diagram != null)
             {
-                analysis.Stakeholders.CollectionChanged += StakeholdersCollectionChanged;
-                Stakeholders = new ObservableCollection<StakeholderViewModel>(analysis.Stakeholders.Select(stakeholder => new StakeholderViewModel(stakeholder)));
+                diagram.Stakeholders.CollectionChanged += StakeholdersCollectionChanged;
+                Stakeholders = new ObservableCollection<StakeholderViewModel>(diagram.Stakeholders.Select(stakeholder => new StakeholderViewModel(stakeholder)));
             }
         }
 
@@ -32,13 +33,6 @@ namespace StakeholderAnalysis.Visualization.ViewModels
                 foreach (var stakeholder in e.OldItems.OfType<Stakeholder>())
                     Stakeholders.Remove(Stakeholders.FirstOrDefault(viewModel =>
                         viewModel.IsViewModelFor(stakeholder)));
-        }
-    }
-
-    public class StakeholderTableViewModel : StakeholderViewModelBase
-    {
-        public StakeholderTableViewModel(Analysis analysis) : base(analysis)
-        {
         }
     }
 }

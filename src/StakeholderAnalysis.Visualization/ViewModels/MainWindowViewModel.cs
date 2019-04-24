@@ -1,8 +1,6 @@
-using System.Collections.Specialized;
 using System.Linq;
 using System.Windows.Input;
 using StakeholderAnalysis.Data;
-using StakeholderAnalysis.Data.OnionDiagrams;
 using StakeholderAnalysis.Gui;
 using StakeholderAnalysis.Visualization.Commands;
 using StakeholderAnalysis.Visualization.Commands.FileHandling;
@@ -13,7 +11,8 @@ namespace StakeholderAnalysis.Visualization.ViewModels
     public class MainWindowViewModel : NotifyPropertyChangedObservable
     {
         private readonly Analysis analysis;
-        
+        private readonly Gui.Gui gui;
+
         public MainWindowViewModel() : this(new Analysis(), new Gui.Gui()){ }
 
         public MainWindowViewModel(Analysis analysis, Gui.Gui gui)
@@ -24,16 +23,24 @@ namespace StakeholderAnalysis.Visualization.ViewModels
 
             this.gui = gui;
 
-            this.gui.ViewManager.OpenView(new ViewInfo("Krachtenveld", new StakeholderForcesDiagramViewModel(analysis), "pack://application:,,,/StakeholderAnalysis.Visualization;component/Resources/forces.png"));
+            foreach (var forceFieldDiagram in analysis.ForceFieldDiagrams)
+            {
+                this.gui.ViewManager.OpenView(new ViewInfo(forceFieldDiagram.Name, new StakeholderForcesDiagramViewModel(forceFieldDiagram), "pack://application:,,,/StakeholderAnalysis.Visualization;component/Resources/forces.png"));
+            }
+            foreach (var attitudeImpactDiagram in analysis.AttitudeImpactDiagrams)
+            {
+                this.gui.ViewManager.OpenView(new ViewInfo(attitudeImpactDiagram.Name, new AttitudeImpactDiagramViewModel(attitudeImpactDiagram), "pack://application:,,,/StakeholderAnalysis.Visualization;component/Resources/involvement.png"));
+            }
+            foreach (var onionDiagram in analysis.OnionDiagrams)
+            {
+                this.gui.ViewManager.OpenView(new ViewInfo(onionDiagram.Name, new OnionDiagramViewModel(analysis, onionDiagram, gui.ViewManager), "pack://application:,,,/StakeholderAnalysis.Visualization;component/Resources/onion.png"));
+            }
             this.gui.ViewManager.OpenView(new ViewInfo("Tabel", new StakeholderTableViewModel(analysis), "pack://application:,,,/StakeholderAnalysis.Visualization;component/Resources/table.png"));
-            this.gui.ViewManager.OpenView(new ViewInfo("Impact/houding", new StakeholderAttitudeImpactDiagramViewModel(analysis), "pack://application:,,,/StakeholderAnalysis.Visualization;component/Resources/involvement.png"));
             this.gui.ViewManager.OpenToolWindow(new ToolWindowViewInfo("Projectgegevens", new ProjectExplorerViewModel(analysis, gui.ViewManager), "pack://application:,,,/StakeholderAnalysis.Visualization;component/Resources/SaveImage.png"));
             MainContentPresenterViewModel = new MainContentPresenterViewModel(this.gui);
         }
 
         public double Margin { get; set; }
-
-        private Gui.Gui gui;
 
         public ICommand OpenCommand => new OpenFileCommand(this);
 

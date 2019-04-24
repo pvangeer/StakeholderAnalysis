@@ -42,7 +42,7 @@ namespace StakeholderAnalysis.Visualization
             {
                 return StakeholderForcesDiagramTemplate;
             }
-            if (item is StakeholderAttitudeImpactDiagramViewModel)
+            if (item is AttitudeImpactDiagramViewModel)
             {
                 return AttitudeImpactDiagramTemplate;
             }

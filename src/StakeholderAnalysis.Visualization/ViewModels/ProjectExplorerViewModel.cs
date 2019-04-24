@@ -19,10 +19,10 @@ namespace StakeholderAnalysis.Visualization.ViewModels
             analysis.ForceFieldDiagrams.CollectionChanged += ForceFieldDiagramsCollectionChanged;
 
             ForceFieldDiagrams = new ObservableCollection<StakeholderForcesDiagramViewModel>();
-            AttitudeImpactDiagrams = new ObservableCollection<StakeholderAttitudeImpactDiagramViewModel>();
+            AttitudeImpactDiagrams = new ObservableCollection<AttitudeImpactDiagramViewModel>();
         }
 
-        public ObservableCollection<StakeholderAttitudeImpactDiagramViewModel> AttitudeImpactDiagrams { get; }
+        public ObservableCollection<AttitudeImpactDiagramViewModel> AttitudeImpactDiagrams { get; }
 
         
         public ObservableCollection<StakeholderForcesDiagramViewModel> ForceFieldDiagrams { get; }
