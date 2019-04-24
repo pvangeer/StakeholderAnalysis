@@ -85,7 +85,7 @@ namespace StakeholderAnalysis.Visualization.ViewModels
 
         public void OpenDiagramInDocumentView()
         {
-            var viewInfo = new ViewInfo(diagram.Name, new OnionDiagramViewModel(analysis,diagram,viewManager));
+            var viewInfo = new ViewInfo(diagram.Name, new OnionDiagramViewModel(analysis,diagram,viewManager), "pack://application:,,,/StakeholderAnalysis.Visualization;component/Resources/onion.png");
             viewManager.OpenView(viewInfo);
             viewManager.BringToFront(viewInfo);
         }

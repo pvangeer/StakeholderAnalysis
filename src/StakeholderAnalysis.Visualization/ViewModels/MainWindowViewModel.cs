@@ -23,10 +23,10 @@ namespace StakeholderAnalysis.Visualization.ViewModels
 
             this.gui = gui;
 
-            this.gui.ViewManager.OpenView(new ViewInfo("Krachtenveld", new StakeholderForcesDiagramViewModel(analysis)));
-            this.gui.ViewManager.OpenView(new ViewInfo("Tabel", new StakeholderTableViewModel(analysis)));
-            this.gui.ViewManager.OpenView(new ViewInfo("Impact/houding", new StakeholderAttitudeImpactDiagramViewModel(analysis)));
-            this.gui.ViewManager.OpenToolWindow(new ToolWindowViewInfo("Projectgegevens", new ProjectExplorerViewModel(analysis, gui.ViewManager)));
+            this.gui.ViewManager.OpenView(new ViewInfo("Krachtenveld", new StakeholderForcesDiagramViewModel(analysis), "pack://application:,,,/StakeholderAnalysis.Visualization;component/Resources/forces.png"));
+            this.gui.ViewManager.OpenView(new ViewInfo("Tabel", new StakeholderTableViewModel(analysis), "pack://application:,,,/StakeholderAnalysis.Visualization;component/Resources/table.png"));
+            this.gui.ViewManager.OpenView(new ViewInfo("Impact/houding", new StakeholderAttitudeImpactDiagramViewModel(analysis), "pack://application:,,,/StakeholderAnalysis.Visualization;component/Resources/involvement.png"));
+            this.gui.ViewManager.OpenToolWindow(new ToolWindowViewInfo("Projectgegevens", new ProjectExplorerViewModel(analysis, gui.ViewManager), "pack://application:,,,/StakeholderAnalysis.Visualization;component/Resources/SaveImage.png"));
             MainContentPresenterViewModel = new MainContentPresenterViewModel(this.gui);
         }
 

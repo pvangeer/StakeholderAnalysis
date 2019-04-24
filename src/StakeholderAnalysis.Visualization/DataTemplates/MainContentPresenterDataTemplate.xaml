@@ -85,7 +85,7 @@
                 <xcad:DockingManager.DocumentHeaderTemplate>
                     <DataTemplate DataType="xcad:LayoutDocument">
                         <StackPanel Orientation="Horizontal">
-                            <!--<Image Source="{Binding}" Margin="0,0,4,0"/>-->
+                            <Image Source="{Binding Content.IconReference}" Margin="0,0,4,0" Height="16" Width="16"/>
                             <TextBlock Text="{Binding Content.Title}" />
                         </StackPanel>
                     </DataTemplate>
@@ -93,7 +93,7 @@
                 <xcad:DockingManager.AnchorableHeaderTemplate>
                     <DataTemplate DataType="xcad:LayoutAnchorable">
                         <StackPanel Orientation="Horizontal" Background="AliceBlue">
-                            <!--<Image Source="{Binding}" Margin="0,0,4,0"/>-->
+                            <Image Source="{Binding Content.IconReference}" Margin="0,0,4,0" Height="16" Width="16"/>
                             <TextBlock Text="{Binding Content.Title}" />
                         </StackPanel>
                     </DataTemplate>
@@ -111,30 +111,4 @@
             </xcad:DockingManager>
         </Grid>
     </DataTemplate>
-
-    <!--<DataTemplate x:Key="MainContentPresenterDataTemplate_Old" DataType="viewModels:MainWindowViewModel">
-    <ContentPresenter x:Name="Presenter" Content="{Binding SelectedViewInfo.ViewModel}">
-            <ContentPresenter.Style>
-                <Style TargetType="ContentPresenter">
-                    <Style.Triggers>
-                        <DataTrigger Binding="{Binding IsSaveToImage}" Value="True">
-                            <Setter Property="visualization:SaveToImageBehaviours.SaveToImage" Value="True" />
-                        </DataTrigger>
-                        <DataTrigger Binding="{Binding IsSaveToImage}" Value="False">
-                            <Setter Property="visualization:SaveToImageBehaviours.SaveToImage" Value="False" />
-                        </DataTrigger>
-                    </Style.Triggers>
-                </Style>
-            </ContentPresenter.Style>
-            <xctk:MagnifierManager.Magnifier>
-                <xctk:Magnifier
-                    BorderBrush="Gray"
-                    BorderThickness="1"
-                    Radius="100"
-                    ZoomFactor=".4"
-                    Visibility="{Binding IsMagnifierActive, Converter={StaticResource BooleanToVisibilityConverter}}"
-                    FrameType="Circle" />
-            </xctk:MagnifierManager.Magnifier>
-        </ContentPresenter>
-    </DataTemplate>-->
 </ResourceDictionary>
