@@ -1,38 +1,56 @@
 ﻿using System.Collections.ObjectModel;
 using System.Collections.Specialized;
 using System.Linq;
+using System.Windows;
+using System.Windows.Media;
 using StakeholderAnalysis.Data;
 using StakeholderAnalysis.Data.AttitudeImpactDiagrams;
+using StakeholderAnalysis.Visualization.DataTemplates.TwoAxisDiagrams;
+using StakeholderAnalysis.Visualization.ViewModels.TwoAxisDiagrams;
 
 namespace StakeholderAnalysis.Visualization.ViewModels.AttitudeImpactDiagramView
 {
-    public class AttitudeImpactDiagramViewModel
+    public class AttitudeImpactDiagramViewModel : ITwoAxisDiagramViewModel
     {
-        private readonly AttitudeImpactDiagram diagram;
-
         public AttitudeImpactDiagramViewModel(AttitudeImpactDiagram attitudeImpactDiagram)
         {
-            this.diagram = attitudeImpactDiagram;
-
-            if (diagram != null)
+            if (attitudeImpactDiagram != null)
             {
-                diagram.Stakeholders.CollectionChanged += StakeholdersCollectionChanged;
-                Stakeholders = new ObservableCollection<AttitudeImpactDiagramStakeholderViewModel>(diagram.Stakeholders.Select(stakeholder => new AttitudeImpactDiagramStakeholderViewModel(stakeholder)));
+                attitudeImpactDiagram.Stakeholders.CollectionChanged += StakeholdersCollectionChanged;
+                PositionedStakeholders = new ObservableCollection<IPositionedStakeholderViewModel>(attitudeImpactDiagram.Stakeholders.Select(stakeholder => new AttitudeImpactDiagramStakeholderViewModel(stakeholder)));
             }
         }
 
-        public ObservableCollection<AttitudeImpactDiagramStakeholderViewModel> Stakeholders { get; }
+        public ObservableCollection<IPositionedStakeholderViewModel> PositionedStakeholders { get; }
 
         private void StakeholdersCollectionChanged(object sender, NotifyCollectionChangedEventArgs e)
         {
             if (e.Action == NotifyCollectionChangedAction.Add)
                 foreach (var item in e.NewItems.OfType<Stakeholder>())
-                    Stakeholders.Add(new AttitudeImpactDiagramStakeholderViewModel(item));
+                    PositionedStakeholders.Add(new AttitudeImpactDiagramStakeholderViewModel(item));
 
             if (e.Action == NotifyCollectionChangedAction.Remove)
                 foreach (var stakeholder in e.OldItems.OfType<Stakeholder>())
-                    Stakeholders.Remove(Stakeholders.FirstOrDefault(viewModel =>
+                    PositionedStakeholders.Remove(PositionedStakeholders.FirstOrDefault(viewModel =>
                         viewModel.IsViewModelFor(stakeholder)));
         }
+
+        public Brush BackgroundBrush => new LinearGradientBrush(Colors.LightYellow, Colors.PaleVioletRed, new Point(0,0), new Point(1,1));
+
+        public string BackgroundTextLeftTop => "Informeren";
+
+        public string BackgroundTextRightTop => "Betrekken";
+
+        public string BackgroundTextLeftBottom => "Monitoren";
+
+        public string BackgroundTextRightBottom => "Overtuigen";
+
+        public string YAxisMaxLabel => "Positief";
+
+        public string YAxisMinLabel => "Negatief";
+
+        public string XAxisMaxLabel => "Hoge impact";
+
+        public string XAxisMinLabel => "Lage impact";
     }
 }

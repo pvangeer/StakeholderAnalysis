@@ -6,19 +6,12 @@
 
     <ResourceDictionary.MergedDictionaries>
         <ResourceDictionary Source="StakeholderDataTemplate.xaml" />
+        <ResourceDictionary Source="TwoAxisDiagrams/CanvasBackgroundTextStyle.xaml"/>
+        <ResourceDictionary Source="TwoAxisDiagrams/AxisLabelTextStyle.xaml"/>
     </ResourceDictionary.MergedDictionaries>
 
     <converters:PercentageToDimensionConverter x:Key="PercentageToDimensionConverter" />
     <converters:CanvasSizeToArrowsPathDataConverter x:Key="SizeToArrowsPathDataConverter" />
-
-    <Style x:Key="TextBlockLabelStyle" TargetType="TextBlock">
-        <Setter Property="Foreground" Value="Black" />
-        <Setter Property="FontWeight" Value="Normal" />
-        <Setter Property="FontSize" Value="24" />
-        <Setter Property="TextAlignment" Value="Center" />
-        <Setter Property="VerticalAlignment" Value="Center" />
-        <Setter Property="Margin" Value="10" />
-    </Style>
 
     <DataTemplate x:Key="StakeholderForcesDataTemplate" DataType="forceFieldDiagramView:ForceFieldDiagramViewModel">
         <!--Main grid-->
@@ -124,13 +117,13 @@
                     <RowDefinition Height="Auto" />
                 </Grid.RowDefinitions>
                 <TextBlock Grid.Row="0" Text="Veel invloed" VerticalAlignment="Top"
-                           Style="{StaticResource TextBlockLabelStyle}">
+                           Style="{StaticResource AxisLabelTextStyle}">
                     <TextBlock.LayoutTransform>
                         <RotateTransform Angle="270" />
                     </TextBlock.LayoutTransform>
                 </TextBlock>
                 <TextBlock Grid.Row="2" Text="Weinig invloed" VerticalAlignment="Bottom"
-                           Style="{StaticResource TextBlockLabelStyle}">
+                           Style="{StaticResource AxisLabelTextStyle}">
                     <TextBlock.LayoutTransform>
                         <RotateTransform Angle="270" />
                     </TextBlock.LayoutTransform>
@@ -143,9 +136,9 @@
                     <ColumnDefinition Width="Auto" />
                 </Grid.ColumnDefinitions>
                 <TextBlock Grid.Column="2" Text="Veel belang" TextAlignment="Right"
-                           Style="{StaticResource TextBlockLabelStyle}" />
+                           Style="{StaticResource AxisLabelTextStyle}" />
                 <TextBlock Grid.Column="0" Text="Weinig belang" TextAlignment="Left"
-                           Style="{StaticResource TextBlockLabelStyle}" />
+                           Style="{StaticResource AxisLabelTextStyle}" />
             </Grid>
         </Grid>
     </DataTemplate>

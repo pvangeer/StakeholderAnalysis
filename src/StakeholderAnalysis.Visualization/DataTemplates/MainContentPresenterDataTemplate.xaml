@@ -8,7 +8,7 @@
                     xmlns:xctk="http://schemas.xceed.com/wpf/xaml/toolkit">
     <ResourceDictionary.MergedDictionaries>
         <ResourceDictionary Source="OnionDiagramDataTemplate.xaml" />
-        <ResourceDictionary Source="AttitudeImpactDiagramDataTemplate.xaml" />
+        <ResourceDictionary Source="TwoAxisDiagrams/TwoAxisDiagramDataTemplate.xaml" />
         <ResourceDictionary Source="StakeholderForcesDataTemplate.xaml" />
         <ResourceDictionary Source="StakeholderTableDataTemplate.xaml" />
         <ResourceDictionary Source="ProjectExplorer/ProjectExplorerDataTemplate.xaml" />
@@ -21,7 +21,7 @@
                                         OnionDiagramViewTemplate="{StaticResource OnionDiagramDataTemplate}"
                                         ProjectExplorerDataTemplate="{StaticResource ProjectExplorerDataTemplate}"
                                         StakeholderForcesDiagramTemplate="{StaticResource StakeholderForcesDataTemplate}"
-                                        AttitudeImpactDiagramTemplate="{StaticResource AttitudeImpactDiagramDataTemplate}"/>
+                                        AttitudeImpactDiagramTemplate="{StaticResource TwoAxisDiagramDataTemplate}"/>
 
     <visualization:TestConverter x:Key="TestConverter" />
     <DataTemplate x:Key="DocumentLayoutDataTemplate" DataType="gui:ViewInfo">

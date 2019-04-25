@@ -20,8 +20,6 @@
                                     Binding="{Binding Type, Converter={StaticResource StakeholderTypeToStringConverter}, Mode=OneWay}" />
                     <DataGridTextColumn Header="Belang/Verantwoording" Binding="{Binding Interest}" />
                     <DataGridTextColumn Header="Invloed" Binding="{Binding Influence}" />
-                    <DataGridTextColumn Header="Houding" Binding="{Binding Attitude}" />
-                    <DataGridTextColumn Header="Impact" Binding="{Binding Impact}" />
                 </DataGrid.Columns>
             </DataGrid>
         </Grid>
