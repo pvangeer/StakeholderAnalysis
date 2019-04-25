@@ -7,7 +7,7 @@
                     xmlns:visualization="clr-namespace:StakeholderAnalysis.Visualization"
                     xmlns:xctk="http://schemas.xceed.com/wpf/xaml/toolkit">
     <ResourceDictionary.MergedDictionaries>
-        <ResourceDictionary Source="OnionDiagramDataTemplate.xaml" />
+        <ResourceDictionary Source="OnionDiagram/OnionDiagramDataTemplate.xaml" />
         <ResourceDictionary Source="TwoAxisDiagrams/TwoAxisDiagramDataTemplate.xaml" />
         <ResourceDictionary Source="StakeholderTable/StakeholderTableDataTemplate.xaml" />
         <ResourceDictionary Source="ProjectExplorer/ProjectExplorerDataTemplate.xaml" />

@@ -4,7 +4,7 @@
                     xmlns:onionDiagramView="clr-namespace:StakeholderAnalysis.Visualization.ViewModels.OnionDiagramView">
 
     <ResourceDictionary.MergedDictionaries>
-        <ResourceDictionary Source="StakeholderDataTemplate.xaml" />
+        <ResourceDictionary Source="/StakeholderAnalysis.Visualization;Component/DataTemplates/StakeholderDataTemplate.xaml" />
     </ResourceDictionary.MergedDictionaries>
 
     <converters:PercentageToDimensionConverter x:Key="PercentageToDimensionConverter" />

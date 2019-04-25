@@ -95,18 +95,18 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Commands\AddOnionDiagramCommand.cs" />
+    <Compile Include="Commands\ProjectExplorer\AddOnionDiagramCommand.cs" />
     <Compile Include="Commands\CloseApplicationCommand.cs" />
     <Compile Include="Commands\FileHandling\FileHandlingCommandBase.cs" />
     <Compile Include="Commands\FileHandling\NewProjectCommand.cs" />
     <Compile Include="Commands\FileHandling\OpenFileCommand.cs" />
-    <Compile Include="Commands\OpenOnionDiagramCommand.cs" />
+    <Compile Include="Commands\ProjectExplorer\OpenOnionDiagramCommand.cs" />
     <Compile Include="Commands\RelayCommand.cs" />
     <Compile Include="Commands\FrameworkElementExtensions.cs" />
     <Compile Include="Commands\FileHandling\SaveFileAsCommand.cs" />
     <Compile Include="Commands\FileHandling\SaveFileCommand.cs" />
-    <Compile Include="Commands\RemoveOnionDiagramCommand.cs" />
-    <Compile Include="Commands\ToggleOnionsListCommand.cs" />
+    <Compile Include="Commands\ProjectExplorer\RemoveOnionDiagramCommand.cs" />
+    <Compile Include="Commands\ProjectExplorer\ToggleOnionsListCommand.cs" />
     <Compile Include="Controls\ConnectionGroupsListBoxControl.xaml.cs">
       <DependentUpon>ConnectionGroupsListBoxControl.xaml</DependentUpon>
     </Compile>
@@ -178,7 +178,7 @@
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
-    <Page Include="DataTemplates\ConnectionsPresenterDataTemplate.xaml">
+    <Page Include="DataTemplates\OnionDiagram\ConnectionsPresenterDataTemplate.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
@@ -194,11 +194,11 @@
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
-    <Page Include="DataTemplates\OnionRingsDataTemplate.xaml">
+    <Page Include="DataTemplates\OnionDiagram\OnionDiagramRingsDataTemplate.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
-    <Page Include="DataTemplates\OnionDiagramDataTemplate.xaml">
+    <Page Include="DataTemplates\OnionDiagram\OnionDiagramDataTemplate.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
@@ -226,7 +226,7 @@
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
-    <Page Include="DataTemplates\StakeholdersDataTemplate.xaml">
+    <Page Include="DataTemplates\OnionDiagram\OnionDiagramStakeholdersDataTemplate.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>

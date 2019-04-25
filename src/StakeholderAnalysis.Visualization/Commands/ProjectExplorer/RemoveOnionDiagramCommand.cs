@@ -2,7 +2,7 @@
 using System.Windows.Input;
 using StakeholderAnalysis.Visualization.ViewModels.ProjectExplorer;
 
-namespace StakeholderAnalysis.Visualization.Commands
+namespace StakeholderAnalysis.Visualization.Commands.ProjectExplorer
 {
     public class RemoveOnionDiagramCommand : ICommand
     {

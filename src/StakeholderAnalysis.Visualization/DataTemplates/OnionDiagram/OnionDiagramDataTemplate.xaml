@@ -2,9 +2,9 @@
                     xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
                     xmlns:onionDiagramView="clr-namespace:StakeholderAnalysis.Visualization.ViewModels.OnionDiagramView">
     <ResourceDictionary.MergedDictionaries>
-        <ResourceDictionary Source="/StakeholderAnalysis.Visualization;Component/DataTemplates/OnionRingsDataTemplate.xaml" />
-        <ResourceDictionary Source="/StakeholderAnalysis.Visualization;Component/DataTemplates/StakeholdersDataTemplate.xaml" />
-        <ResourceDictionary Source="/StakeholderAnalysis.Visualization;Component/DataTemplates/ConnectionsPresenterDataTemplate.xaml" />
+        <ResourceDictionary Source="/StakeholderAnalysis.Visualization;Component/DataTemplates/OnionDiagram/OnionDiagramRingsDataTemplate.xaml" />
+        <ResourceDictionary Source="/StakeholderAnalysis.Visualization;Component/DataTemplates/OnionDiagram/OnionDiagramStakeholdersDataTemplate.xaml" />
+        <ResourceDictionary Source="/StakeholderAnalysis.Visualization;Component/DataTemplates/OnionDiagram/ConnectionsPresenterDataTemplate.xaml" />
     </ResourceDictionary.MergedDictionaries>
 
     <DataTemplate x:Key="OnionDiagramDataTemplate" DataType="onionDiagramView:OnionDiagramViewModel">
