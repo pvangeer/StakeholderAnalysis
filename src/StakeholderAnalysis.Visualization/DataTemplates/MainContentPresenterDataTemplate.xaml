@@ -97,11 +97,6 @@
                         </StackPanel>
                     </DataTemplate>
                 </xcad:DockingManager.AnchorableHeaderTemplate>
-                <xcad:DockingManager.LayoutItemContainerStyle>
-                    <Style TargetType="xcad:LayoutItem">
-                        <Setter Property="CloseCommand" Value="{Binding Content.CloseDocumentComand}"/>
-                    </Style>
-                </xcad:DockingManager.LayoutItemContainerStyle>
 
                 <xcad:DockingManager.LayoutItemTemplateSelector>
                     <visualization:PresentationLayoutTemplateSelector

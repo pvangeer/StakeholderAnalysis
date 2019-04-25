@@ -57,15 +57,21 @@ namespace StakeholderAnalysis.Gui
 
         public void OpenView(ViewInfo viewInfo)
         {
-            if (!Views.Any(v => v == viewInfo || v.ViewModel == viewInfo.ViewModel))
+            if (IsAvailableView(viewInfo))
             {
-                Views.Add(viewInfo);
+                Views.Remove(viewInfo);
             }
+            Views.Add(viewInfo);
+        }
+
+        private bool IsAvailableView(ViewInfo viewInfo)
+        {
+            return Views.Any(v => v == viewInfo || v.ViewModel == viewInfo.ViewModel);
         }
 
         public void CloseView(ViewInfo viewInfo)
         {
-            if (Views.Contains(viewInfo))
+            if (IsAvailableView(viewInfo))
             {
                 Views.Remove(viewInfo);
             }
@@ -73,10 +79,14 @@ namespace StakeholderAnalysis.Gui
 
         public void BringToFront(ViewInfo viewInfo)
         {
-            if (!Views.Contains(viewInfo))
+            if (!IsAvailableView(viewInfo))
             {
                 throw new ArgumentException();
             }
+
+            // TODO: Hack since closing a document or anchorable will actually only hide the view and not give us any event to work with
+            CloseView(viewInfo);
+            OpenView(viewInfo);
 
             CurrentViewInfo = viewInfo;
             OnPropertyChanged(nameof(CurrentViewInfo));
