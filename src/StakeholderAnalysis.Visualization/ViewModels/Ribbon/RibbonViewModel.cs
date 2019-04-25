@@ -59,7 +59,7 @@ namespace StakeholderAnalysis.Visualization.ViewModels.Ribbon
                     gui.OnPropertyChanged(nameof(Gui.Gui.IsSaveToImage));
                     gui.IsSaveToImage = false;
                     gui.OnPropertyChanged(nameof(Gui.Gui.IsSaveToImage));
-                }));
+                }, () => ActiveDocument != null));
             }
         }
 

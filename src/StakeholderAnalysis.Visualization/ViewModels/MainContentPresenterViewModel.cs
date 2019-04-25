@@ -1,5 +1,4 @@
 ﻿using System.ComponentModel;
-using System.Windows.Input;
 using StakeholderAnalysis.Data;
 using StakeholderAnalysis.Gui;
 using StakeholderAnalysis.Visualization.Commands;

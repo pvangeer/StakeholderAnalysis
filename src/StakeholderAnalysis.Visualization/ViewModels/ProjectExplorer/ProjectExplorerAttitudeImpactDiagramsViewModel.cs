@@ -44,7 +44,7 @@ namespace StakeholderAnalysis.Visualization.ViewModels.ProjectExplorer
 
         public ICommand AddElementCommand => new AddAttitudeImpactDiagramCommand(analysis);
 
-        public string Name => "Omgeving";
+        public string Name => "Houding - impact";
 
         private void AttitudeImpactDiagramsCollectionChanged(object sender, NotifyCollectionChangedEventArgs e)
         {

@@ -12,6 +12,7 @@ namespace StakeholderAnalysis.Gui
     public class ViewManager : INotifyPropertyChanged
     {
         private ViewInfo currentViewInfo;
+        private ViewInfo activeDocument;
 
         public ViewManager()
         {
@@ -51,7 +52,18 @@ namespace StakeholderAnalysis.Gui
             }
         }
 
-        public ViewInfo ActiveDocument { get; set; }
+        public ViewInfo ActiveDocument
+        {
+            get
+            {
+                if (currentViewInfo == null)
+                {
+                    activeDocument = null;
+                }
+                return activeDocument;
+            }
+            set => activeDocument = value;
+        }
 
         public ObservableCollection<ViewInfo> ToolWindows { get; }
 
