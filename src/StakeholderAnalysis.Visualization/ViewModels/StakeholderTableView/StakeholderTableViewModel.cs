@@ -3,15 +3,15 @@ using System.Collections.Specialized;
 using System.Linq;
 using StakeholderAnalysis.Data;
 
-namespace StakeholderAnalysis.Visualization.ViewModels
+namespace StakeholderAnalysis.Visualization.ViewModels.StakeholderTableView
 {
-    public abstract class StakeholderViewModelBase : NotifyPropertyChangedObservable
+    public class StakeholderTableViewModel
     {
         private readonly Analysis analysis;
-        
-        protected StakeholderViewModelBase(Analysis analysis)
+
+        public StakeholderTableViewModel(Analysis analysisInput)
         {
-            this.analysis = analysis;
+            this.analysis = analysisInput;
 
             if (analysis != null)
             {
@@ -32,13 +32,6 @@ namespace StakeholderAnalysis.Visualization.ViewModels
                 foreach (var stakeholder in e.OldItems.OfType<Stakeholder>())
                     Stakeholders.Remove(Stakeholders.FirstOrDefault(viewModel =>
                         viewModel.IsViewModelFor(stakeholder)));
-        }
-    }
-
-    public class StakeholderTableViewModel : StakeholderViewModelBase
-    {
-        public StakeholderTableViewModel(Analysis analysis) : base(analysis)
-        {
         }
     }
 }

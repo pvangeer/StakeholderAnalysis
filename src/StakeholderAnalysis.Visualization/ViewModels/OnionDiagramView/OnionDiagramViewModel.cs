@@ -3,8 +3,9 @@ using System.Collections.Specialized;
 using System.Linq;
 using StakeholderAnalysis.Data;
 using StakeholderAnalysis.Data.OnionDiagrams;
+using StakeholderAnalysis.Visualization.ViewModels.Ribbon;
 
-namespace StakeholderAnalysis.Visualization.ViewModels
+namespace StakeholderAnalysis.Visualization.ViewModels.OnionDiagramView
 {
     public class OnionDiagramViewModel: NotifyPropertyChangedObservable
     {
@@ -15,9 +16,9 @@ namespace StakeholderAnalysis.Visualization.ViewModels
             diagram = onionDiagram;
         }
 
-        public OnionRingsCanvasViewModel OnionRingsCanvasViewModel => new OnionRingsCanvasViewModel(diagram);
+        public OnionDiagramRingsCanvasViewModel OnionDiagramRingsCanvasViewModel => new OnionDiagramRingsCanvasViewModel(diagram);
 
-        public OnionConnectionsPresenterViewModel OnionConnectionsPresenterViewModel => new OnionConnectionsPresenterViewModel(diagram);
+        public OnionDiagramConnectionsPresenterViewModel OnionDiagramConnectionsPresenterViewModel => new OnionDiagramConnectionsPresenterViewModel(diagram);
 
         public OnionDiagramStakeholdersViewModel OnionDiagramStakeholdersViewModel => new OnionDiagramStakeholdersViewModel(diagram);
 
@@ -41,6 +42,11 @@ namespace StakeholderAnalysis.Visualization.ViewModels
         public ObservableCollection<ConnectionGroupViewModel> GetConnectionGroupsViewModels()
         {
             return new ObservableCollection<ConnectionGroupViewModel>(diagram.ConnectionGroups.Select(g => new ConnectionGroupViewModel(g)));
+        }
+
+        public bool IsViewModelFor(OnionDiagram otherDiagram)
+        {
+            return diagram == otherDiagram;
         }
     }
 }

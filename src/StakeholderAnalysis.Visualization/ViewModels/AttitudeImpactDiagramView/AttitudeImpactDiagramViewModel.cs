@@ -2,32 +2,32 @@
 using System.Collections.Specialized;
 using System.Linq;
 using StakeholderAnalysis.Data;
-using StakeholderAnalysis.Data.ForceFieldDiagrams;
+using StakeholderAnalysis.Data.AttitudeImpactDiagrams;
 
-namespace StakeholderAnalysis.Visualization.ViewModels
+namespace StakeholderAnalysis.Visualization.ViewModels.AttitudeImpactDiagramView
 {
-    public class StakeholderForcesDiagramViewModel
+    public class AttitudeImpactDiagramViewModel
     {
-        private readonly ForceFieldDiagram diagram;
+        private readonly AttitudeImpactDiagram diagram;
 
-        public StakeholderForcesDiagramViewModel(ForceFieldDiagram diagram)
+        public AttitudeImpactDiagramViewModel(AttitudeImpactDiagram attitudeImpactDiagram)
         {
-            this.diagram = diagram;
+            this.diagram = attitudeImpactDiagram;
 
             if (diagram != null)
             {
                 diagram.Stakeholders.CollectionChanged += StakeholdersCollectionChanged;
-                Stakeholders = new ObservableCollection<StakeholderViewModel>(diagram.Stakeholders.Select(stakeholder => new StakeholderViewModel(stakeholder)));
+                Stakeholders = new ObservableCollection<AttitudeImpactDiagramStakeholderViewModel>(diagram.Stakeholders.Select(stakeholder => new AttitudeImpactDiagramStakeholderViewModel(stakeholder)));
             }
         }
 
-        public ObservableCollection<StakeholderViewModel> Stakeholders { get; }
+        public ObservableCollection<AttitudeImpactDiagramStakeholderViewModel> Stakeholders { get; }
 
         private void StakeholdersCollectionChanged(object sender, NotifyCollectionChangedEventArgs e)
         {
             if (e.Action == NotifyCollectionChangedAction.Add)
                 foreach (var item in e.NewItems.OfType<Stakeholder>())
-                    Stakeholders.Add(new StakeholderViewModel(item));
+                    Stakeholders.Add(new AttitudeImpactDiagramStakeholderViewModel(item));
 
             if (e.Action == NotifyCollectionChangedAction.Remove)
                 foreach (var stakeholder in e.OldItems.OfType<Stakeholder>())

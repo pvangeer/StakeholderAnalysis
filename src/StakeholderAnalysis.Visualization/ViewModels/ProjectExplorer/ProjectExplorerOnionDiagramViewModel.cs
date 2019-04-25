@@ -5,6 +5,7 @@ using StakeholderAnalysis.Data;
 using StakeholderAnalysis.Data.OnionDiagrams;
 using StakeholderAnalysis.Gui;
 using StakeholderAnalysis.Visualization.Commands;
+using StakeholderAnalysis.Visualization.ViewModels.OnionDiagramView;
 
 namespace StakeholderAnalysis.Visualization.ViewModels.ProjectExplorer
 {
@@ -56,9 +57,14 @@ namespace StakeholderAnalysis.Visualization.ViewModels.ProjectExplorer
 
         public void OpenDiagramInDocumentView()
         {
-            var viewInfo = new ViewInfo(diagram.Name, new OnionDiagramViewModel(diagram),
-                "pack://application:,,,/StakeholderAnalysis.Visualization;component/Resources/onion.png");
-            viewManager.OpenView(viewInfo);
+            var viewInfo = viewManager.Views.FirstOrDefault(v =>
+                v.ViewModel is OnionDiagramViewModel diagramViewModel && diagramViewModel.IsViewModelFor(diagram));
+            if (viewInfo == null)
+            {
+                viewInfo = new ViewInfo(diagram.Name, new OnionDiagramViewModel(diagram),
+                    "pack://application:,,,/StakeholderAnalysis.Visualization;component/Resources/onion.png");
+                viewManager.OpenView(viewInfo);
+            }
             viewManager.BringToFront(viewInfo);
         }
 

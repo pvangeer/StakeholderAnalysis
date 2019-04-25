@@ -2,32 +2,32 @@
 using System.Collections.Specialized;
 using System.Linq;
 using StakeholderAnalysis.Data;
-using StakeholderAnalysis.Data.AttitudeImpactDiagrams;
+using StakeholderAnalysis.Data.ForceFieldDiagrams;
 
-namespace StakeholderAnalysis.Visualization.ViewModels
+namespace StakeholderAnalysis.Visualization.ViewModels.ForceFieldDiagramView
 {
-    public class AttitudeImpactDiagramViewModel
+    public class ForceFieldDiagramViewModel
     {
-        private readonly AttitudeImpactDiagram diagram;
+        private readonly ForceFieldDiagram diagram;
 
-        public AttitudeImpactDiagramViewModel(AttitudeImpactDiagram diagram)
+        public ForceFieldDiagramViewModel(ForceFieldDiagram forceFieldDiagram)
         {
-            this.diagram = diagram;
+            this.diagram = forceFieldDiagram;
 
             if (diagram != null)
             {
                 diagram.Stakeholders.CollectionChanged += StakeholdersCollectionChanged;
-                Stakeholders = new ObservableCollection<StakeholderViewModel>(diagram.Stakeholders.Select(stakeholder => new StakeholderViewModel(stakeholder)));
+                Stakeholders = new ObservableCollection<ForceFieldDiagramStakeholderViewModel>(diagram.Stakeholders.Select(stakeholder => new ForceFieldDiagramStakeholderViewModel(stakeholder)));
             }
         }
 
-        public ObservableCollection<StakeholderViewModel> Stakeholders { get; }
+        public ObservableCollection<ForceFieldDiagramStakeholderViewModel> Stakeholders { get; }
 
         private void StakeholdersCollectionChanged(object sender, NotifyCollectionChangedEventArgs e)
         {
             if (e.Action == NotifyCollectionChangedAction.Add)
                 foreach (var item in e.NewItems.OfType<Stakeholder>())
-                    Stakeholders.Add(new StakeholderViewModel(item));
+                    Stakeholders.Add(new ForceFieldDiagramStakeholderViewModel(item));
 
             if (e.Action == NotifyCollectionChangedAction.Remove)
                 foreach (var stakeholder in e.OldItems.OfType<Stakeholder>())

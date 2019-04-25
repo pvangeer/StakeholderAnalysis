@@ -5,15 +5,15 @@ using System.Linq;
 using StakeholderAnalysis.Data;
 using StakeholderAnalysis.Data.OnionDiagrams;
 
-namespace StakeholderAnalysis.Visualization.ViewModels
+namespace StakeholderAnalysis.Visualization.ViewModels.OnionDiagramView
 {
-    public class OnionRingsCanvasViewModel : NotifyPropertyChangedObservable
+    public class OnionDiagramRingsCanvasViewModel : NotifyPropertyChangedObservable
     {
         private readonly OnionDiagram onionDiagram;
 
-        public OnionRingsCanvasViewModel() : this(null){ }
+        public OnionDiagramRingsCanvasViewModel() : this(null){ }
 
-        public OnionRingsCanvasViewModel(OnionDiagram diagram)
+        public OnionDiagramRingsCanvasViewModel(OnionDiagram diagram)
         {
             this.onionDiagram = diagram;
             if (diagram != null)

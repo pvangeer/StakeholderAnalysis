@@ -1,11 +1,11 @@
 ﻿<ResourceDictionary xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
                     xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
-                    xmlns:viewModels="clr-namespace:StakeholderAnalysis.Visualization.ViewModels"
-                    xmlns:converters="clr-namespace:StakeholderAnalysis.Visualization.Converters">
+                    xmlns:converters="clr-namespace:StakeholderAnalysis.Visualization.Converters"
+                    xmlns:stakeholderTableView="clr-namespace:StakeholderAnalysis.Visualization.ViewModels.StakeholderTableView">
 
     <converters:StakeholderTypeToStringConverter x:Key="StakeholderTypeToStringConverter" />
 
-    <DataTemplate x:Key="StakeholderTableDataTemplate" DataType="viewModels:StakeholderTableViewModel">
+    <DataTemplate x:Key="StakeholderTableDataTemplate" DataType="stakeholderTableView:StakeholderTableViewModel">
         <Grid>
             <DataGrid
                 ItemsSource="{Binding Stakeholders}"

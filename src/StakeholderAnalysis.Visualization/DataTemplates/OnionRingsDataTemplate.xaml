@@ -1,19 +1,19 @@
 ﻿<ResourceDictionary xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
                     xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
-                    xmlns:viewModels="clr-namespace:StakeholderAnalysis.Visualization.ViewModels"
-                    xmlns:converters="clr-namespace:StakeholderAnalysis.Visualization.Converters">
+                    xmlns:converters="clr-namespace:StakeholderAnalysis.Visualization.Converters"
+                    xmlns:onionDiagramView="clr-namespace:StakeholderAnalysis.Visualization.ViewModels.OnionDiagramView">
 
     <converters:PercentageToCanvasTopValueConverter x:Key="PercentageToCanvasTopValueConverter" />
     <converters:PercentageToCanvasLeftValueConverter x:Key="PercentageToCanvasLeftValueConverter" />
     <converters:PercentageToDimensionConverter x:Key="PercentageToDimensionConverter" />
 
-    <DataTemplate x:Key="OnionRingsDataTemplate" DataType="viewModels:OnionRingsCanvasViewModel">
+    <DataTemplate x:Key="OnionDiagramRingsDataTemplate" DataType="onionDiagramView:OnionDiagramRingsCanvasViewModel">
         <Grid>
             <ItemsControl ItemsSource="{Binding OnionRings}"
                           Margin="{Binding ElementName=Presenter, Path=Margin}"
                           Background="Transparent">
                 <ItemsControl.ItemTemplate>
-                    <DataTemplate DataType="viewModels:OnionRingViewModel">
+                    <DataTemplate DataType="onionDiagramView:OnionRingViewModel">
                         <Grid>
                             <Ellipse Fill="{Binding BackgroundColor}" Stroke="{Binding StrokeColor}"
                                      StrokeThickness="{Binding StrokeThickness}">

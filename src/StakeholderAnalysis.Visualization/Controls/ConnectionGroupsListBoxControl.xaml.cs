@@ -1,7 +1,7 @@
 ﻿using System.Collections.ObjectModel;
 using System.Windows;
 using System.Windows.Controls;
-using StakeholderAnalysis.Visualization.ViewModels;
+using StakeholderAnalysis.Visualization.ViewModels.Ribbon;
 
 namespace StakeholderAnalysis.Visualization.Controls
 {

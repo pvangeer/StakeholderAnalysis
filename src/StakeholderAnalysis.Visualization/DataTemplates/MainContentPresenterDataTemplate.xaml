@@ -15,7 +15,6 @@
         <ResourceDictionary Source="ProjectExplorerDataTemplate.xaml" />
     </ResourceDictionary.MergedDictionaries>
 
-    <converters:ViewModelToTypeStringConverter x:Key="ViewModelToTypeStringConverter" />
     <converters:IsProneToExportConverter x:Key="IsProneToExportConverter" />
 
     <visualization:ViewTemplateSelector x:Key="ViewTemplateSelector" 
@@ -98,6 +97,11 @@
                         </StackPanel>
                     </DataTemplate>
                 </xcad:DockingManager.AnchorableHeaderTemplate>
+                <xcad:DockingManager.LayoutItemContainerStyle>
+                    <Style TargetType="xcad:LayoutItem">
+                        <Setter Property="CloseCommand" Value="{Binding Content.CloseDocumentComand}"/>
+                    </Style>
+                </xcad:DockingManager.LayoutItemContainerStyle>
 
                 <xcad:DockingManager.LayoutItemTemplateSelector>
                     <visualization:PresentationLayoutTemplateSelector

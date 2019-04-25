@@ -1,8 +1,10 @@
 ﻿using System;
 using System.Collections.ObjectModel;
+using System.Collections.Specialized;
 using System.ComponentModel;
 using System.Linq;
 using System.Runtime.CompilerServices;
+using System.Windows.Input;
 using StakeholderAnalysis.Gui.Annotations;
 
 namespace StakeholderAnalysis.Gui
@@ -14,8 +16,14 @@ namespace StakeholderAnalysis.Gui
         public ViewManager()
         {
             Views = new ObservableCollection<ViewInfo>();
+            Views.CollectionChanged += ViewsCollectionChanged;
             ToolWindows = new ObservableCollection<ViewInfo>();
             ActiveDocument = null;
+        }
+
+        private void ViewsCollectionChanged(object sender, NotifyCollectionChangedEventArgs e)
+        {
+            
         }
 
         public ObservableCollection<ViewInfo> Views { get; }
@@ -49,7 +57,7 @@ namespace StakeholderAnalysis.Gui
 
         public void OpenView(ViewInfo viewInfo)
         {
-            if (!Views.Contains(viewInfo))
+            if (!Views.Any(v => v == viewInfo || v.ViewModel == viewInfo.ViewModel))
             {
                 Views.Add(viewInfo);
             }

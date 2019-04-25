@@ -117,8 +117,10 @@
     <Compile Include="Converters\PercentageToDimensionConverter.cs" />
     <Compile Include="Converters\CanvasSizeToArrowsPathDataConverter.cs" />
     <Compile Include="Converters\StakeholderTypeToStringConverter.cs" />
-    <Compile Include="Converters\ViewModelToTypeStringConverter.cs" />
-    <Compile Include="DataTemplates\RibbonStakeholderConnectionGroupsViewModel.cs" />
+    <Compile Include="ViewModels\AttitudeImpactDiagramView\AttitudeImpactDiagramStakeholderViewModel.cs" />
+    <Compile Include="ViewModels\ForceFieldDiagramView\ForceFieldDiagramStakeholderViewModel.cs" />
+    <Compile Include="ViewModels\OnionDiagramView\OnionDiagramStakeholderViewModel.cs" />
+    <Compile Include="ViewModels\Ribbon\RibbonStakeholderConnectionGroupsViewModel.cs" />
     <Compile Include="PresentationLayoutTemplateSelector.cs" />
     <Compile Include="Properties\AssemblyInfo.cs">
       <SubType>Code</SubType>
@@ -136,21 +138,21 @@
     <Compile Include="Converters\TypeToBrushConverter.cs" />
     <Compile Include="SaveToImageBehaviours.cs" />
     <Compile Include="TestConverter.cs" />
-    <Compile Include="ViewModels\AttitudeImpactDiagramViewModel.cs" />
-    <Compile Include="ViewModels\ConnectionGroupViewModel.cs" />
+    <Compile Include="ViewModels\AttitudeImpactDiagramView\AttitudeImpactDiagramViewModel.cs" />
+    <Compile Include="ViewModels\Ribbon\ConnectionGroupViewModel.cs" />
     <Compile Include="ViewModels\MainContentPresenterViewModel.cs" />
     <Compile Include="ViewModels\ProjectExplorer\ProjectExplorerOnionDiagramsViewModel.cs" />
     <Compile Include="ViewModels\ProjectExplorer\ProjectExplorerOnionDiagramViewModel.cs" />
     <Compile Include="ViewModels\ProjectExplorer\ProjectExplorerViewModel.cs" />
     <Compile Include="ViewModels\MainWindowViewModel.cs" />
-    <Compile Include="ViewModels\OnionConnectionsPresenterViewModel.cs" />
-    <Compile Include="ViewModels\OnionDiagramStakeholdersViewModel.cs" />
-    <Compile Include="ViewModels\OnionDiagramViewModel.cs" />
-    <Compile Include="ViewModels\OnionRingsCanvasViewModel.cs" />
-    <Compile Include="ViewModels\OnionRingViewModel.cs" />
-    <Compile Include="ViewModels\StakeholderConnectionViewModel.cs" />
-    <Compile Include="ViewModels\StakeholderForcesDiagramViewModel.cs" />
-    <Compile Include="ViewModels\StakeholderViewModelBase.cs" />
+    <Compile Include="ViewModels\OnionDiagramView\OnionDiagramConnectionsPresenterViewModel.cs" />
+    <Compile Include="ViewModels\OnionDiagramView\OnionDiagramStakeholdersViewModel.cs" />
+    <Compile Include="ViewModels\OnionDiagramView\OnionDiagramViewModel.cs" />
+    <Compile Include="ViewModels\OnionDiagramView\OnionDiagramRingsCanvasViewModel.cs" />
+    <Compile Include="ViewModels\OnionDiagramView\OnionRingViewModel.cs" />
+    <Compile Include="ViewModels\OnionDiagramView\StakeholderConnectionViewModel.cs" />
+    <Compile Include="ViewModels\ForceFieldDiagramView\ForceFieldDiagramViewModel.cs" />
+    <Compile Include="ViewModels\StakeholderTableView\StakeholderTableViewModel.cs" />
     <Compile Include="ViewModels\StakeholderViewModel.cs" />
     <Compile Include="ViewTemplateSelector.cs" />
     <EmbeddedResource Include="Properties\Resources.resx">
@@ -266,11 +268,6 @@
   <ItemGroup>
     <Resource Include="Resources\remove.png" />
   </ItemGroup>
-  <ItemGroup>
-    <Folder Include="ViewModels\AttitudeImpactDiagramView\" />
-    <Folder Include="ViewModels\ForceFieldDiagramView\" />
-    <Folder Include="ViewModels\OnionDiagramView\" />
-    <Folder Include="ViewModels\StakeholderTableView\" />
-  </ItemGroup>
+  <ItemGroup />
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

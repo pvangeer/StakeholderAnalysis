@@ -1,11 +1,14 @@
-using System.Linq;
 using System.Windows.Input;
 using StakeholderAnalysis.Data;
 using StakeholderAnalysis.Gui;
 using StakeholderAnalysis.Visualization.Commands;
 using StakeholderAnalysis.Visualization.Commands.FileHandling;
-using StakeholderAnalysis.Visualization.DataTemplates;
+using StakeholderAnalysis.Visualization.ViewModels.AttitudeImpactDiagramView;
+using StakeholderAnalysis.Visualization.ViewModels.ForceFieldDiagramView;
+using StakeholderAnalysis.Visualization.ViewModels.OnionDiagramView;
 using StakeholderAnalysis.Visualization.ViewModels.ProjectExplorer;
+using StakeholderAnalysis.Visualization.ViewModels.Ribbon;
+using StakeholderAnalysis.Visualization.ViewModels.StakeholderTableView;
 
 namespace StakeholderAnalysis.Visualization.ViewModels
 {
@@ -26,7 +29,7 @@ namespace StakeholderAnalysis.Visualization.ViewModels
 
             foreach (var forceFieldDiagram in analysis.ForceFieldDiagrams)
             {
-                this.gui.ViewManager.OpenView(new ViewInfo(forceFieldDiagram.Name, new StakeholderForcesDiagramViewModel(forceFieldDiagram), "pack://application:,,,/StakeholderAnalysis.Visualization;component/Resources/forces.png"));
+                this.gui.ViewManager.OpenView(new ViewInfo(forceFieldDiagram.Name, new ForceFieldDiagramViewModel(forceFieldDiagram), "pack://application:,,,/StakeholderAnalysis.Visualization;component/Resources/forces.png"));
             }
             foreach (var attitudeImpactDiagram in analysis.AttitudeImpactDiagrams)
             {

@@ -1,20 +1,16 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Collections.ObjectModel;
+﻿using System.Collections.ObjectModel;
 using System.Collections.Specialized;
 using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using StakeholderAnalysis.Data;
 using StakeholderAnalysis.Data.OnionDiagrams;
 
-namespace StakeholderAnalysis.Visualization.ViewModels
+namespace StakeholderAnalysis.Visualization.ViewModels.OnionDiagramView
 {
-    public class OnionConnectionsPresenterViewModel : NotifyPropertyChangedObservable
+    public class OnionDiagramConnectionsPresenterViewModel : NotifyPropertyChangedObservable
     {
         private readonly OnionDiagram diagram;
 
-        public OnionConnectionsPresenterViewModel(OnionDiagram onionDiagram)
+        public OnionDiagramConnectionsPresenterViewModel(OnionDiagram onionDiagram)
         {
             this.diagram = onionDiagram;
 

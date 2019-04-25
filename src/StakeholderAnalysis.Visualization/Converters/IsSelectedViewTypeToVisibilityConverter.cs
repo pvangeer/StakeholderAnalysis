@@ -4,6 +4,7 @@ using System.Windows;
 using System.Windows.Data;
 using StakeholderAnalysis.Gui;
 using StakeholderAnalysis.Visualization.ViewModels;
+using StakeholderAnalysis.Visualization.ViewModels.OnionDiagramView;
 
 namespace StakeholderAnalysis.Visualization.Converters
 {

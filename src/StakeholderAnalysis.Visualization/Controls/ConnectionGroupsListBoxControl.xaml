@@ -3,8 +3,8 @@
              xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
-             xmlns:viewModels="clr-namespace:StakeholderAnalysis.Visualization.ViewModels"
              xmlns:xctk="http://schemas.xceed.com/wpf/xaml/toolkit"
+             xmlns:ribbon="clr-namespace:StakeholderAnalysis.Visualization.ViewModels.Ribbon"
              mc:Ignorable="d"
              d:DesignHeight="450" d:DesignWidth="800">
     <Grid>
@@ -12,7 +12,7 @@
             ItemsSource="{Binding StakeholderConnectionsList, RelativeSource={RelativeSource FindAncestor, AncestorType={x:Type UserControl}}}"
             HorizontalContentAlignment="Stretch">
             <ListBox.ItemTemplate>
-                <DataTemplate DataType="viewModels:ConnectionGroupViewModel">
+                <DataTemplate DataType="ribbon:ConnectionGroupViewModel">
                     <Grid>
                         <Grid.ColumnDefinitions>
                             <ColumnDefinition Width="Auto" />

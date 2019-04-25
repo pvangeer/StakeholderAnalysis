@@ -1,13 +1,14 @@
 ﻿<ResourceDictionary xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
                     xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
                     xmlns:viewModels="clr-namespace:StakeholderAnalysis.Visualization.ViewModels"
-                    xmlns:converters="clr-namespace:StakeholderAnalysis.Visualization.Converters">
+                    xmlns:converters="clr-namespace:StakeholderAnalysis.Visualization.Converters"
+                    xmlns:onionDiagramView="clr-namespace:StakeholderAnalysis.Visualization.ViewModels.OnionDiagramView">
 
     <converters:PercentageToDimensionConverter x:Key="PercentageToDimensionConverter" />
 
     <BooleanToVisibilityConverter x:Key="BooleanToVisibilityConverter" />
 
-    <DataTemplate x:Key="ConnectionDataTemplate" DataType="viewModels:StakeholderConnectionViewModel">
+    <DataTemplate x:Key="ConnectionDataTemplate" DataType="onionDiagramView:StakeholderConnectionViewModel">
         <Grid>
             <Line
                 Visibility="{Binding IsVisible, Converter={StaticResource BooleanToVisibilityConverter}}"
@@ -40,7 +41,7 @@
         </Grid>
     </DataTemplate>
 
-    <DataTemplate x:Key="ConnectionsPresenterDataTemplate" DataType="viewModels:OnionConnectionsPresenterViewModel">
+    <DataTemplate x:Key="OnionDiagramConnectionsPresenterDataTemplate" DataType="onionDiagramView:OnionDiagramConnectionsPresenterViewModel">
         <Grid>
             <ItemsControl ItemsSource="{Binding StakeholderConnections}"
                           Margin="{Binding ElementName=Presenter, Path=Margin}"

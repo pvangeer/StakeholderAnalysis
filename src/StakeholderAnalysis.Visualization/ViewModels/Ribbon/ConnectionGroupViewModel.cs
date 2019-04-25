@@ -5,7 +5,7 @@ using System.Windows.Media;
 using StakeholderAnalysis.Data;
 using StakeholderAnalysis.Data.OnionDiagrams;
 
-namespace StakeholderAnalysis.Visualization.ViewModels
+namespace StakeholderAnalysis.Visualization.ViewModels.Ribbon
 {
     public class ConnectionGroupViewModel : NotifyPropertyChangedObservable
     {

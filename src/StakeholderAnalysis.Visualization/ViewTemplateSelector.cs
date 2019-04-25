@@ -1,13 +1,11 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using System.Windows;
+﻿using System.Windows;
 using System.Windows.Controls;
-using StakeholderAnalysis.Gui;
 using StakeholderAnalysis.Visualization.ViewModels;
+using StakeholderAnalysis.Visualization.ViewModels.AttitudeImpactDiagramView;
+using StakeholderAnalysis.Visualization.ViewModels.ForceFieldDiagramView;
+using StakeholderAnalysis.Visualization.ViewModels.OnionDiagramView;
 using StakeholderAnalysis.Visualization.ViewModels.ProjectExplorer;
+using StakeholderAnalysis.Visualization.ViewModels.StakeholderTableView;
 
 namespace StakeholderAnalysis.Visualization
 {
@@ -15,7 +13,7 @@ namespace StakeholderAnalysis.Visualization
     {
         public DataTemplate OnionDiagramViewTemplate { get; set; }
 
-        public DataTemplate DefaultnDataTemplate { get; set; }
+        public DataTemplate DefaultDataTemplate { get; set; }
 
         public DataTemplate ProjectExplorerDataTemplate { get; set; }
 
@@ -39,7 +37,7 @@ namespace StakeholderAnalysis.Visualization
             {
                 return StakeholderTableViewTemplate;
             }
-            if (item is StakeholderForcesDiagramViewModel)
+            if (item is ForceFieldDiagramViewModel)
             {
                 return StakeholderForcesDiagramTemplate;
             }
@@ -48,7 +46,7 @@ namespace StakeholderAnalysis.Visualization
                 return AttitudeImpactDiagramTemplate;
             }
 
-            return DefaultnDataTemplate;
+            return DefaultDataTemplate;
         }
     }
 }

@@ -5,9 +5,9 @@ using System.Linq;
 using StakeholderAnalysis.Data;
 using StakeholderAnalysis.Data.OnionDiagrams;
 using StakeholderAnalysis.Gui;
-using StakeholderAnalysis.Visualization.ViewModels;
+using StakeholderAnalysis.Visualization.ViewModels.OnionDiagramView;
 
-namespace StakeholderAnalysis.Visualization.DataTemplates
+namespace StakeholderAnalysis.Visualization.ViewModels.Ribbon
 {
     public class RibbonStakeholderConnectionGroupsViewModel : NotifyPropertyChangedObservable
     {

@@ -1,9 +1,8 @@
 ﻿<ResourceDictionary xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
                     xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
-                    xmlns:viewModels="clr-namespace:StakeholderAnalysis.Visualization.ViewModels"
-                    xmlns:oxy="http://oxyplot.org/wpf"
                     xmlns:system="clr-namespace:System;assembly=mscorlib"
-                    xmlns:converters="clr-namespace:StakeholderAnalysis.Visualization.Converters">
+                    xmlns:converters="clr-namespace:StakeholderAnalysis.Visualization.Converters"
+                    xmlns:forceFieldDiagramView="clr-namespace:StakeholderAnalysis.Visualization.ViewModels.ForceFieldDiagramView">
 
     <ResourceDictionary.MergedDictionaries>
         <ResourceDictionary Source="StakeholderDataTemplate.xaml" />
@@ -21,7 +20,7 @@
         <Setter Property="Margin" Value="10" />
     </Style>
 
-    <DataTemplate x:Key="StakeholderForcesDataTemplate" DataType="viewModels:StakeholderForcesDiagramViewModel">
+    <DataTemplate x:Key="StakeholderForcesDataTemplate" DataType="forceFieldDiagramView:ForceFieldDiagramViewModel">
         <!--Main grid-->
         <Grid>
             <Grid.RowDefinitions>
