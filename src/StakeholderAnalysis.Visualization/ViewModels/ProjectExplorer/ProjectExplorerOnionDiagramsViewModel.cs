@@ -21,14 +21,14 @@ namespace StakeholderAnalysis.Visualization.ViewModels.ProjectExplorer
             this.analysis = analysis;
             analysis.OnionDiagrams.CollectionChanged += OnionDiagramsCollectionChanged;
 
-            OnionDiagrams = new ObservableCollection<ProjectExplorerOnionDiagramViewModel>();
+            Elements = new ObservableCollection<IProjectExplorerDiagramViewModel>();
             foreach (var analysisOnionDiagram in analysis.OnionDiagrams)
             {
-                OnionDiagrams.Add(new ProjectExplorerOnionDiagramViewModel(analysis,analysisOnionDiagram, viewManager));
+                Elements.Add(new ProjectExplorerOnionDiagramViewModel(analysis,analysisOnionDiagram, viewManager));
             }
         }
 
-        public ObservableCollection<ProjectExplorerOnionDiagramViewModel> OnionDiagrams { get; }
+        public ObservableCollection<IProjectExplorerDiagramViewModel> Elements { get; }
 
         public bool IsExpanded
         {
@@ -52,7 +52,7 @@ namespace StakeholderAnalysis.Visualization.ViewModels.ProjectExplorer
             {
                 foreach (var onionDiagram in e.NewItems.OfType<OnionDiagram>())
                 {
-                    OnionDiagrams.Add(new ProjectExplorerOnionDiagramViewModel(analysis,onionDiagram, viewManager));
+                    Elements.Add(new ProjectExplorerOnionDiagramViewModel(analysis,onionDiagram, viewManager));
                 }
             }
 
@@ -60,10 +60,10 @@ namespace StakeholderAnalysis.Visualization.ViewModels.ProjectExplorer
             {
                 foreach (var onionDiagram in e.OldItems.OfType<OnionDiagram>())
                 {
-                    var diagramToRemove = OnionDiagrams.FirstOrDefault(d => d.IsViewModelFor(onionDiagram));
+                    var diagramToRemove = Elements.FirstOrDefault(d => d.IsViewModelFor(onionDiagram));
                     if (diagramToRemove != null)
                     {
-                        OnionDiagrams.Remove(diagramToRemove);
+                        Elements.Remove(diagramToRemove);
                     }
                 }
             }

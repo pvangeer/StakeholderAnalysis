@@ -121,6 +121,7 @@
     <Compile Include="Converters\PercentageToDimensionConverter.cs" />
     <Compile Include="Converters\CanvasSizeToArrowsPathDataConverter.cs" />
     <Compile Include="Converters\StakeholderTypeToStringConverter.cs" />
+    <Compile Include="ViewModels\ProjectExplorer\IProjectExplorerDiagramViewModel.cs" />
     <Compile Include="ViewModels\ProjectExplorer\ProjectExplorerForceFieldDiagramsViewModel.cs" />
     <Compile Include="ViewModels\ProjectExplorer\ProjectExplorerForceFieldDiagramViewModel.cs" />
     <Compile Include="ViewModels\TwoAxisDiagrams\ITwoAxisDiagramViewModel.cs" />
@@ -180,7 +181,7 @@
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
-    <Page Include="DataTemplates\ProjectExplorer\ProjectExplorerForceFieldDiagramsDataTemplate.xaml">
+    <Page Include="DataTemplates\ProjectExplorer\ProjectExplorerExpandableContentGroupDataTemplate.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </Page>
@@ -221,10 +222,6 @@
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="DataTemplates\ProjectExplorer\ProjectExplorerButtonStyles.xaml">
-      <SubType>Designer</SubType>
-      <Generator>MSBuild:Compile</Generator>
-    </Page>
-    <Page Include="DataTemplates\ProjectExplorer\ProjectExplorerOnionDiagramsDataTemplate.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>

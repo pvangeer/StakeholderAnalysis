@@ -9,7 +9,7 @@
 
     <xcad:BoolToVisibilityConverter x:Key="BoolToVisibilityConverter" />
 
-    <DataTemplate x:Key="ProjectExplorerOnionDiagramsDataTemplate" DataType="projectExplorer:ProjectExplorerOnionDiagramsViewModel">
+    <DataTemplate x:Key="ProjectExplorerExpandableContentGroupDataTemplate" DataType="projectExplorer:IExpandableContentGroup">
         <StackPanel Orientation="Vertical">
             <ContentPresenter 
                 Content="{Binding}" 
@@ -19,12 +19,12 @@
                     <ColumnDefinition Width="24"/>
                     <ColumnDefinition Width="*"/>
                 </Grid.ColumnDefinitions>
-                <ItemsControl Grid.Column="1" ItemsSource="{Binding OnionDiagrams}">
+                <ItemsControl Grid.Column="1" ItemsSource="{Binding Elements}">
                     <ItemsControl.ItemTemplate>
-                        <DataTemplate DataType="projectExplorer:ProjectExplorerOnionDiagramViewModel">
+                        <DataTemplate DataType="projectExplorer:ProjectExplorerForceFieldDiagramViewModel">
                             <Border BorderThickness="0" Margin="0,1,0,1">
                                 <Border.InputBindings>
-                                    <MouseBinding Gesture="LeftDoubleClick" Command="{Binding OpenOnionDiagramCommand}" />
+                                    <MouseBinding Gesture="LeftDoubleClick" Command="{Binding OpenViewForDiagramCommand}" />
                                 </Border.InputBindings>
                                 <Grid>
                                     <Grid.ColumnDefinitions>
@@ -36,7 +36,7 @@
                                         Grid.Column="0" 
                                         Width="20"
                                         Height="20"
-                                        Source="pack://application:,,,/StakeholderAnalysis.Visualization;component/Resources/onion.png"/>
+                                        Source="{Binding IconSourceString}"/>
                                     <TextBox 
                                         Background="Transparent"
                                         BorderBrush="Transparent"
@@ -47,7 +47,7 @@
                                         FontSize="12"/>
                                     <Button
                                         Grid.Column="2"
-                                        Command="{Binding RemoveOnionDiagramCommand}"
+                                        Command="{Binding RemoveDiagramCommand}"
                                         Style="{StaticResource RemoveButtonStyle}"/>
                                 </Grid>
                                 <Border.Style>

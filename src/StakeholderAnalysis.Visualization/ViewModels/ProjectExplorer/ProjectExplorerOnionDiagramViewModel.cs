@@ -10,7 +10,7 @@ using StakeholderAnalysis.Visualization.ViewModels.OnionDiagramView;
 
 namespace StakeholderAnalysis.Visualization.ViewModels.ProjectExplorer
 {
-    public class ProjectExplorerOnionDiagramViewModel : NotifyPropertyChangedObservable
+    public class ProjectExplorerOnionDiagramViewModel : NotifyPropertyChangedObservable, IProjectExplorerDiagramViewModel
     {
         private readonly OnionDiagram diagram;
         private readonly Analysis analysis;
@@ -47,14 +47,16 @@ namespace StakeholderAnalysis.Visualization.ViewModels.ProjectExplorer
             }
         }
 
-        public ICommand RemoveOnionDiagramCommand => new RemoveOnionDiagramCommand(this);
+        public ICommand RemoveDiagramCommand => new RemoveOnionDiagramCommand(this);
 
-        public ICommand OpenOnionDiagramCommand => new OpenOnionDiagramCommand(this);
+        public ICommand OpenViewForDiagramCommand => new OpenOnionDiagramCommand(this);
 
-        public bool IsViewModelFor(OnionDiagram onionDiagram)
+        public bool IsViewModelFor(object otherObject)
         {
-            return onionDiagram == this.diagram;
+            return otherObject as OnionDiagram == this.diagram;
         }
+
+        public string IconSourceString => "pack://application:,,,/StakeholderAnalysis.Visualization;component/Resources/onion.png";
 
         public void OpenDiagramInDocumentView()
         {
@@ -75,8 +77,8 @@ namespace StakeholderAnalysis.Visualization.ViewModels.ProjectExplorer
             if (viewInfo != null)
             {
                 viewManager.CloseView(viewInfo);
-                analysis.OnionDiagrams.Remove(diagram);
             }
+            analysis.OnionDiagrams.Remove(diagram);
         }
     }
 }

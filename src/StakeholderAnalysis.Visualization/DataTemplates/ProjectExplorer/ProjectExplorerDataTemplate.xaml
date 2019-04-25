@@ -3,8 +3,7 @@
                     xmlns:projectExplorer="clr-namespace:StakeholderAnalysis.Visualization.ViewModels.ProjectExplorer">
 
     <ResourceDictionary.MergedDictionaries>
-        <ResourceDictionary Source="ProjectExplorerOnionDiagramsDataTemplate.xaml"/>
-        <ResourceDictionary Source="ProjectExplorerForceFieldDiagramsDataTemplate.xaml"/>
+        <ResourceDictionary Source="ProjectExplorerExpandableContentGroupDataTemplate.xaml"/>
     </ResourceDictionary.MergedDictionaries>
 
     <DataTemplate x:Key="ProjectExplorerDataTemplate" DataType="projectExplorer:ProjectExplorerViewModel">
@@ -12,10 +11,10 @@
             <StackPanel Orientation="Vertical">
                 <ContentPresenter 
                     Content="{Binding OnionDiagramsViewModel}" 
-                    ContentTemplate="{StaticResource ProjectExplorerOnionDiagramsDataTemplate}"/>
+                    ContentTemplate="{StaticResource ProjectExplorerExpandableContentGroupDataTemplate}"/>
                 <ContentPresenter 
                     Content="{Binding ForceFieldDiagramsViewModel}" 
-                    ContentTemplate="{StaticResource ProjectExplorerForceFieldDiagramsDataTemplate}"/>
+                    ContentTemplate="{StaticResource ProjectExplorerExpandableContentGroupDataTemplate}"/>
             </StackPanel>
         </Grid>
     </DataTemplate>

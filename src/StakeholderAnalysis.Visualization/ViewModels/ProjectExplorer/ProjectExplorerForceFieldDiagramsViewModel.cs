@@ -21,14 +21,14 @@ namespace StakeholderAnalysis.Visualization.ViewModels.ProjectExplorer
             this.analysis = analysis;
             analysis.ForceFieldDiagrams.CollectionChanged += ForceFieldDiagramsCollectionChanged;
 
-            ForceFieldDiagrams = new ObservableCollection<ProjectExplorerForceFieldDiagramViewModel>();
+            Elements = new ObservableCollection<IProjectExplorerDiagramViewModel>();
             foreach (var forceFieldDiagram in analysis.ForceFieldDiagrams)
             {
-                ForceFieldDiagrams.Add(new ProjectExplorerForceFieldDiagramViewModel(analysis, forceFieldDiagram, viewManager));
+                Elements.Add(new ProjectExplorerForceFieldDiagramViewModel(analysis, forceFieldDiagram, viewManager));
             }
         }
 
-        public ObservableCollection<ProjectExplorerForceFieldDiagramViewModel> ForceFieldDiagrams { get; }
+        public ObservableCollection<IProjectExplorerDiagramViewModel> Elements { get; }
 
         public bool IsExpanded
         {
@@ -52,7 +52,7 @@ namespace StakeholderAnalysis.Visualization.ViewModels.ProjectExplorer
             {
                 foreach (var forceFieldDiagram in e.NewItems.OfType<ForceFieldDiagram>())
                 {
-                    ForceFieldDiagrams.Add(new ProjectExplorerForceFieldDiagramViewModel(analysis, forceFieldDiagram, viewManager));
+                    Elements.Add(new ProjectExplorerForceFieldDiagramViewModel(analysis, forceFieldDiagram, viewManager));
                 }
             }
 
@@ -60,10 +60,10 @@ namespace StakeholderAnalysis.Visualization.ViewModels.ProjectExplorer
             {
                 foreach (var forceFieldDiagram in e.OldItems.OfType<ForceFieldDiagram>())
                 {
-                    var diagramToRemove = ForceFieldDiagrams.FirstOrDefault(d => d.IsViewModelFor(forceFieldDiagram));
+                    var diagramToRemove = Elements.FirstOrDefault(d => d.IsViewModelFor(forceFieldDiagram));
                     if (diagramToRemove != null)
                     {
-                        ForceFieldDiagrams.Remove(diagramToRemove);
+                        Elements.Remove(diagramToRemove);
                     }
                 }
             }

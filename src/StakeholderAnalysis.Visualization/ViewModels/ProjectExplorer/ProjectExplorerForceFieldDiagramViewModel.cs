@@ -5,12 +5,11 @@ using StakeholderAnalysis.Data;
 using StakeholderAnalysis.Data.ForceFieldDiagrams;
 using StakeholderAnalysis.Gui;
 using StakeholderAnalysis.Visualization.Commands.ProjectExplorer;
-using StakeholderAnalysis.Visualization.ViewModels.OnionDiagramView;
 using StakeholderAnalysis.Visualization.ViewModels.TwoAxisDiagrams;
 
 namespace StakeholderAnalysis.Visualization.ViewModels.ProjectExplorer
 {
-    public class ProjectExplorerForceFieldDiagramViewModel : NotifyPropertyChangedObservable
+    public class ProjectExplorerForceFieldDiagramViewModel : NotifyPropertyChangedObservable, IProjectExplorerDiagramViewModel
     {
         private readonly ForceFieldDiagram diagram;
         private readonly Analysis analysis;
@@ -47,13 +46,15 @@ namespace StakeholderAnalysis.Visualization.ViewModels.ProjectExplorer
             }
         }
 
-        public ICommand RemoveForceFieldDiagramCommand => new RemoveForceFieldDiagramCommand(this);
+        public ICommand RemoveDiagramCommand => new RemoveForceFieldDiagramCommand(this);
 
-        public ICommand OpenForceFieldDiagramCommand => new OpenForceFieldDiagramCommand(this);
+        public ICommand OpenViewForDiagramCommand => new OpenForceFieldDiagramCommand(this);
 
-        public bool IsViewModelFor(ForceFieldDiagram otherDiagram)
+        public string IconSourceString => "pack://application:,,,/StakeholderAnalysis.Visualization;component/Resources/forces.png";
+
+        public bool IsViewModelFor(object otherObject)
         {
-            return otherDiagram == this.diagram;
+            return otherObject as ForceFieldDiagram == diagram;
         }
 
         public void OpenDiagramInDocumentView()
@@ -75,8 +76,8 @@ namespace StakeholderAnalysis.Visualization.ViewModels.ProjectExplorer
             if (viewInfo != null)
             {
                 viewManager.CloseView(viewInfo);
-                analysis.ForceFieldDiagrams.Remove(diagram);
             }
+            analysis.ForceFieldDiagrams.Remove(diagram);
         }
     }
 }
