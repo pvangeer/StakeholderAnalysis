@@ -20,8 +20,8 @@ namespace StakeholderAnalysis.Visualization.Commands
 
         public void Execute(object parameter)
         {
-            projectExplorerOnionDiagramsViewModel.IsOnionDiagramsExpanded =
-                !projectExplorerOnionDiagramsViewModel.IsOnionDiagramsExpanded;
+            projectExplorerOnionDiagramsViewModel.IsExpanded =
+                !projectExplorerOnionDiagramsViewModel.IsExpanded;
         }
 
         public event EventHandler CanExecuteChanged;

@@ -121,6 +121,7 @@
     <Compile Include="ViewModels\AttitudeImpactDiagramView\AttitudeImpactDiagramStakeholderViewModel.cs" />
     <Compile Include="ViewModels\ForceFieldDiagramView\ForceFieldDiagramStakeholderViewModel.cs" />
     <Compile Include="ViewModels\OnionDiagramView\OnionDiagramStakeholderViewModel.cs" />
+    <Compile Include="ViewModels\ProjectExplorer\IExpandableContentGroup.cs" />
     <Compile Include="ViewModels\Ribbon\RibbonStakeholderConnectionGroupsViewModel.cs" />
     <Compile Include="PresentationLayoutTemplateSelector.cs" />
     <Compile Include="Properties\AssemblyInfo.cs">
@@ -191,7 +192,19 @@
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
-    <Page Include="DataTemplates\ProjectExplorerDataTemplate.xaml">
+    <Page Include="DataTemplates\ProjectExplorer\ExpandableElementDataTemplate.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="DataTemplates\ProjectExplorer\ProjectExplorerDataTemplate.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="DataTemplates\ProjectExplorer\ProjectExplorerButtonStyles.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="DataTemplates\ProjectExplorer\ProjectExplorerOnionDiagramsDataTemplate.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>

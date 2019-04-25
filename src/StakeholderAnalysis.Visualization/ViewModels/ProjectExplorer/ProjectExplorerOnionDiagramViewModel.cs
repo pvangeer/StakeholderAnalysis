@@ -70,9 +70,10 @@ namespace StakeholderAnalysis.Visualization.ViewModels.ProjectExplorer
 
         public void RemoveOnionDiagram()
         {
-            if (viewManager != null)
+            var viewInfo = viewManager?.Views.FirstOrDefault(vi => vi.ViewModel is OnionDiagramViewModel diagramViewModel1 && diagramViewModel1.IsViewModelFor(diagram));
+            if (viewInfo != null)
             {
-                viewManager.CloseView(viewManager.Views.FirstOrDefault(vi => vi.ViewModel is ProjectExplorerOnionDiagramViewModel diagramViewModel1 && diagramViewModel1.IsViewModelFor(diagram)));
+                viewManager.CloseView(viewInfo);
                 analysis.OnionDiagrams.Remove(diagram);
             }
         }

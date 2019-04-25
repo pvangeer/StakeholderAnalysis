@@ -11,7 +11,7 @@
         <ResourceDictionary Source="AttitudeImpactDiagramDataTemplate.xaml" />
         <ResourceDictionary Source="StakeholderForcesDataTemplate.xaml" />
         <ResourceDictionary Source="StakeholderTableDataTemplate.xaml" />
-        <ResourceDictionary Source="ProjectExplorerDataTemplate.xaml" />
+        <ResourceDictionary Source="ProjectExplorer/ProjectExplorerDataTemplate.xaml" />
     </ResourceDictionary.MergedDictionaries>
 
     <converters:IsProneToExportConverter x:Key="IsProneToExportConverter" />

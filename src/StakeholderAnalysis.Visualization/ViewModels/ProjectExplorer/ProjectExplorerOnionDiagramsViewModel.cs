@@ -9,10 +9,10 @@ using StakeholderAnalysis.Visualization.Commands;
 
 namespace StakeholderAnalysis.Visualization.ViewModels.ProjectExplorer
 {
-    public class ProjectExplorerOnionDiagramsViewModel : NotifyPropertyChangedObservable
+    public class ProjectExplorerOnionDiagramsViewModel : NotifyPropertyChangedObservable, IExpandableContentGroup
     {
         private readonly Analysis analysis;
-        private bool isOnionDiagramsExpanded = true;
+        private bool isExpanded = true;
         private readonly ViewManager viewManager;
 
         public ProjectExplorerOnionDiagramsViewModel(Analysis analysis, ViewManager viewManager)
@@ -30,19 +30,21 @@ namespace StakeholderAnalysis.Visualization.ViewModels.ProjectExplorer
 
         public ObservableCollection<ProjectExplorerOnionDiagramViewModel> OnionDiagrams { get; }
 
-        public bool IsOnionDiagramsExpanded
+        public bool IsExpanded
         {
-            get => isOnionDiagramsExpanded;
+            get => isExpanded;
             set
             {
-                isOnionDiagramsExpanded = value;
-                OnPropertyChanged(nameof(IsOnionDiagramsExpanded));
+                isExpanded = value;
+                OnPropertyChanged(nameof(IsExpanded));
             }
         }
 
-        public ICommand ToggleOnionsListCommand => new ToggleOnionsListCommand(this);
+        public ICommand ToggleElementsCommand => new ToggleOnionsListCommand(this);
 
-        public ICommand AddOnionDiagramCommand => new AddOnionDiagramCommand(analysis);
+        public ICommand AddElementCommand => new AddOnionDiagramCommand(analysis);
+
+        public string Name => "Ui-diagrammen";
 
         private void OnionDiagramsCollectionChanged(object sender, NotifyCollectionChangedEventArgs e)
         {
