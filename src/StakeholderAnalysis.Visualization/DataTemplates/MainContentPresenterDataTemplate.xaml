@@ -3,7 +3,6 @@
                     xmlns:viewModels="clr-namespace:StakeholderAnalysis.Visualization.ViewModels"
                     xmlns:xcad="http://schemas.xceed.com/wpf/xaml/avalondock"
                     xmlns:gui="clr-namespace:StakeholderAnalysis.Gui;assembly=StakeholderAnalysis.Gui"
-                    xmlns:system="clr-namespace:System;assembly=mscorlib"
                     xmlns:converters="clr-namespace:StakeholderAnalysis.Visualization.Converters"
                     xmlns:visualization="clr-namespace:StakeholderAnalysis.Visualization"
                     xmlns:xctk="http://schemas.xceed.com/wpf/xaml/toolkit">
@@ -24,8 +23,6 @@
                                         StakeholderForcesDiagramTemplate="{StaticResource StakeholderForcesDataTemplate}"
                                         AttitudeImpactDiagramTemplate="{StaticResource AttitudeImpactDiagramDataTemplate}"/>
 
-    <visualization:TestConverter x:Key="TestConverter" />
-    
     <DataTemplate x:Key="DocumentLayoutDataTemplate" DataType="gui:ViewInfo">
         <ContentPresenter 
             Content="{Binding ViewModel}" 

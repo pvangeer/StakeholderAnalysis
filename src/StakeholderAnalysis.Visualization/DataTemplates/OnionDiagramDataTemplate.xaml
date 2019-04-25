@@ -8,7 +8,7 @@
     </ResourceDictionary.MergedDictionaries>
 
     <DataTemplate x:Key="OnionDiagramDataTemplate" DataType="onionDiagramView:OnionDiagramViewModel">
-        <Grid>
+        <Grid Margin="10">
             <ContentPresenter 
                 Name="OnionRingsPresenter" 
                 Content="{Binding OnionDiagramRingsCanvasViewModel}"

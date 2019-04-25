@@ -40,7 +40,7 @@
                     </LinearGradientBrush>
                 </Grid.Background>
                 <!--Canvas that draws the arrows of the diagram-->
-                <Canvas Name="LinesCanvas" Margin="{Binding Margin}" Background="Transparent">
+                <Canvas Name="LinesCanvas" Background="Transparent">
                     <Canvas.Resources>
                         <system:Double x:Key="MinValue">0.0</system:Double>
                         <system:Double x:Key="MaxValue">1.0</system:Double>
@@ -84,7 +84,6 @@
                 </Grid>
                 <!--Canvas that holds all stakeholders-->
                 <ItemsControl ItemsSource="{Binding Stakeholders}"
-                              Margin="{Binding ElementName=Presenter, Path=Content.Margin}"
                               Background="Transparent"
                               ItemTemplate="{StaticResource StakeholderDataTemplate}">
                     <ItemsControl.ItemContainerStyle>
@@ -111,7 +110,7 @@
                     </ItemsControl.ItemContainerStyle>
                     <ItemsControl.ItemsPanel>
                         <ItemsPanelTemplate>
-                            <Canvas Name="Canvas" IsItemsHost="True" Margin="{Binding ElementName=Presenter, Path=Content.Margin}" />
+                            <Canvas Name="Canvas" IsItemsHost="True"/>
                         </ItemsPanelTemplate>
                     </ItemsControl.ItemsPanel>
                 </ItemsControl>

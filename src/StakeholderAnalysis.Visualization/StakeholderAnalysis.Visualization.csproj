@@ -137,7 +137,6 @@
     </Compile>
     <Compile Include="Converters\TypeToBrushConverter.cs" />
     <Compile Include="SaveToImageBehaviours.cs" />
-    <Compile Include="TestConverter.cs" />
     <Compile Include="ViewModels\AttitudeImpactDiagramView\AttitudeImpactDiagramViewModel.cs" />
     <Compile Include="ViewModels\Ribbon\ConnectionGroupViewModel.cs" />
     <Compile Include="ViewModels\MainContentPresenterViewModel.cs" />

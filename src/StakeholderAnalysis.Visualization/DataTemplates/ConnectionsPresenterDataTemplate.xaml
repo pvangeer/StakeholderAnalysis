@@ -44,12 +44,11 @@
     <DataTemplate x:Key="OnionDiagramConnectionsPresenterDataTemplate" DataType="onionDiagramView:OnionDiagramConnectionsPresenterViewModel">
         <Grid>
             <ItemsControl ItemsSource="{Binding StakeholderConnections}"
-                          Margin="{Binding ElementName=Presenter, Path=Margin}"
                           Background="Transparent"
                           ItemTemplate="{StaticResource ConnectionDataTemplate}">
                 <ItemsControl.ItemsPanel>
                     <ItemsPanelTemplate>
-                        <Canvas Name="LinesCanvas" IsItemsHost="True" Margin="{Binding ElementName=Presenter, Path=Margin}" />
+                        <Canvas Name="LinesCanvas" IsItemsHost="True"/>
                     </ItemsPanelTemplate>
                 </ItemsControl.ItemsPanel>
             </ItemsControl>

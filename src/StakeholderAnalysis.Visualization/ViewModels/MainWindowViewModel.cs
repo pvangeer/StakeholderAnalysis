@@ -23,8 +23,6 @@ namespace StakeholderAnalysis.Visualization.ViewModels
         {
             this.analysis = analysis;
 
-            Margin = 10;
-
             this.gui = gui;
 
             foreach (var forceFieldDiagram in analysis.ForceFieldDiagrams)
@@ -43,8 +41,6 @@ namespace StakeholderAnalysis.Visualization.ViewModels
             this.gui.ViewManager.OpenToolWindow(new ToolWindowViewInfo("Projectgegevens", new ProjectExplorerViewModel(analysis, gui.ViewManager), "pack://application:,,,/StakeholderAnalysis.Visualization;component/Resources/SaveImage.png"));
             MainContentPresenterViewModel = new MainContentPresenterViewModel(this.gui);
         }
-
-        public double Margin { get; set; }
 
         public ICommand OpenCommand => new OpenFileCommand(this);
 

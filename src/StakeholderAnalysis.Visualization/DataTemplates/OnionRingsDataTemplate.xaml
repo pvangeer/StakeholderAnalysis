@@ -10,7 +10,6 @@
     <DataTemplate x:Key="OnionDiagramRingsDataTemplate" DataType="onionDiagramView:OnionDiagramRingsCanvasViewModel">
         <Grid>
             <ItemsControl ItemsSource="{Binding OnionRings}"
-                          Margin="{Binding ElementName=Presenter, Path=Margin}"
                           Background="Transparent">
                 <ItemsControl.ItemTemplate>
                     <DataTemplate DataType="onionDiagramView:OnionRingViewModel">
@@ -56,7 +55,7 @@
                 </ItemsControl.ItemContainerStyle>
                 <ItemsControl.ItemsPanel>
                     <ItemsPanelTemplate>
-                        <Canvas Name="Canvas" IsItemsHost="True" Margin="{Binding ElementName=Presenter, Path=Margin}" />
+                        <Canvas Name="Canvas" IsItemsHost="True"/>
                     </ItemsPanelTemplate>
                 </ItemsControl.ItemsPanel>
             </ItemsControl>
