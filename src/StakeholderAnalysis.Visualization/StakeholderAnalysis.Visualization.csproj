@@ -117,6 +117,7 @@
     <Compile Include="Converters\PercentageToDimensionConverter.cs" />
     <Compile Include="Converters\CanvasSizeToArrowsPathDataConverter.cs" />
     <Compile Include="Converters\StakeholderTypeToStringConverter.cs" />
+    <Compile Include="TestConverter.cs" />
     <Compile Include="ViewModels\AttitudeImpactDiagramView\AttitudeImpactDiagramStakeholderViewModel.cs" />
     <Compile Include="ViewModels\ForceFieldDiagramView\ForceFieldDiagramStakeholderViewModel.cs" />
     <Compile Include="ViewModels\OnionDiagramView\OnionDiagramStakeholderViewModel.cs" />
@@ -151,6 +152,7 @@
     <Compile Include="ViewModels\OnionDiagramView\OnionRingViewModel.cs" />
     <Compile Include="ViewModels\OnionDiagramView\StakeholderConnectionViewModel.cs" />
     <Compile Include="ViewModels\ForceFieldDiagramView\ForceFieldDiagramViewModel.cs" />
+    <Compile Include="ViewModels\Ribbon\RibbonViewModel.cs" />
     <Compile Include="ViewModels\StakeholderTableView\StakeholderTableViewModel.cs" />
     <Compile Include="ViewModels\StakeholderViewModel.cs" />
     <Compile Include="ViewTemplateSelector.cs" />
@@ -193,7 +195,7 @@
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
-    <Page Include="DataTemplates\RibbonDataTemplate.xaml">
+    <Page Include="DataTemplates\Ribbon\RibbonDataTemplate.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>

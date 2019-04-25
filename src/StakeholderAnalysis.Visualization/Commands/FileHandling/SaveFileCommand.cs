@@ -1,11 +1,12 @@
 ﻿using System;
 using StakeholderAnalysis.Visualization.ViewModels;
+using StakeholderAnalysis.Visualization.ViewModels.Ribbon;
 
 namespace StakeholderAnalysis.Visualization.Commands.FileHandling
 {
     public class SaveFileCommand : FileHandlingCommandBase
     {
-        public SaveFileCommand(MainWindowViewModel mainWindowViewModel) : base(mainWindowViewModel)
+        public SaveFileCommand(RibbonViewModel ribbonViewModel) : base(ribbonViewModel)
         {
         }
 

@@ -1,16 +1,16 @@
 ﻿using System;
 using System.Windows.Input;
-using StakeholderAnalysis.Visualization.ViewModels;
+using StakeholderAnalysis.Visualization.ViewModels.Ribbon;
 
 namespace StakeholderAnalysis.Visualization.Commands.FileHandling
 {
     public abstract class FileHandlingCommandBase : ICommand
     {
-        private MainWindowViewModel mainWindowViewModel;
+        protected RibbonViewModel ribbonViewModel;
 
-        protected FileHandlingCommandBase(MainWindowViewModel mainWindowViewModel)
+        protected FileHandlingCommandBase(RibbonViewModel ribbonViewModel)
         {
-            this.mainWindowViewModel = mainWindowViewModel;
+            this.ribbonViewModel = ribbonViewModel;
         }
 
         public virtual bool CanExecute(object parameter)

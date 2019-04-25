@@ -1,11 +1,11 @@
 ﻿using System;
-using StakeholderAnalysis.Visualization.ViewModels;
+using StakeholderAnalysis.Visualization.ViewModels.Ribbon;
 
 namespace StakeholderAnalysis.Visualization.Commands.FileHandling
 {
     public class OpenFileCommand : FileHandlingCommandBase
     {
-        public OpenFileCommand(MainWindowViewModel mainWindowViewModel) : base(mainWindowViewModel)
+        public OpenFileCommand(RibbonViewModel ribbonViewModel) : base(ribbonViewModel)
         {
         }
 

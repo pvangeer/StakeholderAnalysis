@@ -18,7 +18,7 @@
         <ResourceDictionary>
             <ResourceDictionary.MergedDictionaries>
                 <ResourceDictionary Source="/Fluent;Component/Themes/generic.xaml" />
-                <ResourceDictionary Source="/StakeholderAnalysis.Visualization;Component/DataTemplates/RibbonDataTemplate.xaml" />
+                <ResourceDictionary Source="/StakeholderAnalysis.Visualization;Component/DataTemplates/Ribbon/RibbonDataTemplate.xaml" />
                 <ResourceDictionary Source="/StakeholderAnalysis.Visualization;Component/DataTemplates/MainContentPresenterDataTemplate.xaml" />
             </ResourceDictionary.MergedDictionaries>
         </ResourceDictionary>
@@ -31,7 +31,7 @@
         </Grid.RowDefinitions>
         <ContentPresenter 
             Grid.Row="0" 
-            Content="{Binding}" 
+            Content="{Binding RibbonViewModel}" 
             ContentTemplate="{StaticResource RibbonDataTemplate}" />
         <ContentPresenter 
             Grid.Row="1" 

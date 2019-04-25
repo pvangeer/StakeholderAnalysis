@@ -23,6 +23,7 @@
                                         StakeholderForcesDiagramTemplate="{StaticResource StakeholderForcesDataTemplate}"
                                         AttitudeImpactDiagramTemplate="{StaticResource AttitudeImpactDiagramDataTemplate}"/>
 
+    <visualization:TestConverter x:Key="TestConverter" />
     <DataTemplate x:Key="DocumentLayoutDataTemplate" DataType="gui:ViewInfo">
         <ContentPresenter 
             Content="{Binding ViewModel}" 
@@ -34,7 +35,7 @@
                             <DataTrigger.Binding>
                                 <MultiBinding Converter="{StaticResource IsProneToExportConverter}">
                                     <Binding ElementName="DockingManager" Path="DataContext.IsSaveToImage"/>
-                                    <Binding ElementName="DockingManager" Path="DataContext.ViewManager.CurrentViewInfo"/>
+                                    <Binding ElementName="DockingManager" Path="DataContext.ViewManager.ActiveDocument"/>
                                     <Binding/>
                                 </MultiBinding>
                             </DataTrigger.Binding>
@@ -54,7 +55,7 @@
                     ZoomFactor=".4"
                     FrameType="Circle" >
                     <xctk:Magnifier.Visibility>
-                        <Binding Path="MainContentPresenterViewModel.IsMagnifierActive" Converter="{StaticResource BooleanToVisibilityConverter}" UpdateSourceTrigger="PropertyChanged"/>
+                        <Binding Path="MainContentPresenterViewModel.IsMagnifierActive" Converter="{StaticResource TestConverter}" UpdateSourceTrigger="PropertyChanged"/>
                     </xctk:Magnifier.Visibility>
                 </xctk:Magnifier>
             </xctk:MagnifierManager.Magnifier>

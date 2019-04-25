@@ -15,6 +15,7 @@ namespace StakeholderAnalysis.Gui
         public ViewManager ViewManager { get; set; }
 
         public bool IsMagnifierActive { get; set; }
+        public bool IsSaveToImage { get; set; }
 
         public event PropertyChangedEventHandler PropertyChanged;
 

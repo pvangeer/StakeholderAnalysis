@@ -1,13 +1,13 @@
 ﻿<ResourceDictionary xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
                     xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
-                    xmlns:viewModels="clr-namespace:StakeholderAnalysis.Visualization.ViewModels"
                     xmlns:fluent="urn:fluent-ribbon"
                     xmlns:converters="clr-namespace:StakeholderAnalysis.Visualization.Converters"
-                    xmlns:controls="clr-namespace:StakeholderAnalysis.Visualization.Controls">
+                    xmlns:controls="clr-namespace:StakeholderAnalysis.Visualization.Controls"
+                    xmlns:ribbon="clr-namespace:StakeholderAnalysis.Visualization.ViewModels.Ribbon">
 
     <converters:IsSelectedViewTypeToVisibilityConverter x:Key="IsSelectedViewInfoToVisibilityConverter" />
 
-    <DataTemplate x:Key="RibbonDataTemplate" DataType="viewModels:MainWindowViewModel">
+    <DataTemplate x:Key="RibbonDataTemplate" DataType="ribbon:RibbonViewModel">
         <fluent:Ribbon Focusable="True" x:Name="Ribbon" AutomaticStateManagement="False">
             <fluent:Ribbon.Menu>
                 <fluent:Backstage Background="#008fc5">
@@ -50,9 +50,10 @@
                     Background="Green"
                     Foreground="DarkSeaGreen">
                     <fluent:RibbonContextualTabGroup.Visibility>
-                        <Binding Path="MainContentPresenterViewModel.ViewManager.CurrentViewInfo" 
-                                 Converter="{StaticResource IsSelectedViewInfoToVisibilityConverter}" 
-                                 UpdateSourceTrigger="PropertyChanged"/>
+                        <Binding 
+                            Path="RibbonViewModel.ActiveDocument"
+                            Converter="{StaticResource IsSelectedViewInfoToVisibilityConverter}" 
+                            UpdateSourceTrigger="PropertyChanged"/>
                     </fluent:RibbonContextualTabGroup.Visibility>
                 </fluent:RibbonContextualTabGroup>
             </fluent:Ribbon.ContextualGroups>
@@ -63,12 +64,12 @@
                         Header="Vergrootglas"
                         Size="Large"
                         LargeIcon="pack://application:,,,/StakeholderAnalysis.Visualization;component/Resources/Magnifier.png"
-                        IsChecked="{Binding MainContentPresenterViewModel.IsMagnifierActive}" />
+                        IsChecked="{Binding IsMagnifierActive}" />
                     <fluent:Button
                         Header="Afbeelding opslaan"
                         Size="Large"
                         LargeIcon="pack://application:,,,/StakeholderAnalysis.Visualization;component/Resources/SaveImage.png"
-                        Command="{Binding MainContentPresenterViewModel.SaveImageCommand}" />
+                        Command="{Binding SaveImageCommand}" />
                 </fluent:RibbonGroupBox>
             </fluent:RibbonTabItem>
 

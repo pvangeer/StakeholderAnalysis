@@ -28,30 +28,21 @@ namespace StakeholderAnalysis.Visualization.ViewModels
                 case nameof(Gui.Gui.IsMagnifierActive):
                     OnPropertyChanged(nameof(IsMagnifierActive));
                     break;
+                case nameof(Gui.Gui.IsSaveToImage):
+                    OnPropertyChanged(nameof(IsSaveToImage));
+                    break;
             }
         }
 
         public ViewManager ViewManager => gui.ViewManager;
 
-        public ICommand SaveImageCommand
-        {
-            get
-            {
-                return saveCanvasCommand ?? (saveCanvasCommand = new RelayCommand(() =>
-                {
-                    IsSaveToImage = true;
-                    IsSaveToImage = false;
-                }));
-            }
-        }
-
         public bool IsSaveToImage
         {
-            get => isSaveToImage;
+            get => gui.IsSaveToImage;
             set
             {
-                isSaveToImage = value;
-                OnPropertyChanged(nameof(IsSaveToImage));
+                gui.IsSaveToImage = value;
+                gui.OnPropertyChanged(nameof(gui.IsSaveToImage));
             }
         }
 
