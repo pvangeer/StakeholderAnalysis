@@ -5,6 +5,7 @@ using StakeholderAnalysis.Gui;
 using StakeholderAnalysis.Visualization.Commands;
 using StakeholderAnalysis.Visualization.Commands.FileHandling;
 using StakeholderAnalysis.Visualization.DataTemplates;
+using StakeholderAnalysis.Visualization.ViewModels.ProjectExplorer;
 
 namespace StakeholderAnalysis.Visualization.ViewModels
 {
@@ -33,7 +34,7 @@ namespace StakeholderAnalysis.Visualization.ViewModels
             }
             foreach (var onionDiagram in analysis.OnionDiagrams)
             {
-                this.gui.ViewManager.OpenView(new ViewInfo(onionDiagram.Name, new OnionDiagramViewModel(analysis, onionDiagram, gui.ViewManager), "pack://application:,,,/StakeholderAnalysis.Visualization;component/Resources/onion.png"));
+                this.gui.ViewManager.OpenView(new ViewInfo(onionDiagram.Name, new OnionDiagramViewModel(onionDiagram), "pack://application:,,,/StakeholderAnalysis.Visualization;component/Resources/onion.png"));
             }
             this.gui.ViewManager.OpenView(new ViewInfo("Tabel", new StakeholderTableViewModel(analysis), "pack://application:,,,/StakeholderAnalysis.Visualization;component/Resources/table.png"));
             this.gui.ViewManager.OpenToolWindow(new ToolWindowViewInfo("Projectgegevens", new ProjectExplorerViewModel(analysis, gui.ViewManager), "pack://application:,,,/StakeholderAnalysis.Visualization;component/Resources/SaveImage.png"));

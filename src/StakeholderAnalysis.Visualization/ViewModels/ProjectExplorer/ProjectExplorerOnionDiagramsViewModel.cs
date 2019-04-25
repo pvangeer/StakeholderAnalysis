@@ -1,5 +1,4 @@
-﻿using System;
-using System.Collections.ObjectModel;
+﻿using System.Collections.ObjectModel;
 using System.Collections.Specialized;
 using System.Linq;
 using System.Windows.Input;
@@ -8,11 +7,11 @@ using StakeholderAnalysis.Data.OnionDiagrams;
 using StakeholderAnalysis.Gui;
 using StakeholderAnalysis.Visualization.Commands;
 
-namespace StakeholderAnalysis.Visualization.ViewModels
+namespace StakeholderAnalysis.Visualization.ViewModels.ProjectExplorer
 {
     public class ProjectExplorerOnionDiagramsViewModel : NotifyPropertyChangedObservable
     {
-        private Analysis analysis;
+        private readonly Analysis analysis;
         private bool isOnionDiagramsExpanded = true;
         private readonly ViewManager viewManager;
 
@@ -22,14 +21,14 @@ namespace StakeholderAnalysis.Visualization.ViewModels
             this.analysis = analysis;
             analysis.OnionDiagrams.CollectionChanged += OnionDiagramsCollectionChanged;
 
-            OnionDiagrams = new ObservableCollection<OnionDiagramViewModel>();
+            OnionDiagrams = new ObservableCollection<ProjectExplorerOnionDiagramViewModel>();
             foreach (var analysisOnionDiagram in analysis.OnionDiagrams)
             {
-                OnionDiagrams.Add(new OnionDiagramViewModel(analysis,analysisOnionDiagram, viewManager));
+                OnionDiagrams.Add(new ProjectExplorerOnionDiagramViewModel(analysis,analysisOnionDiagram, viewManager));
             }
         }
 
-        public ObservableCollection<OnionDiagramViewModel> OnionDiagrams { get; }
+        public ObservableCollection<ProjectExplorerOnionDiagramViewModel> OnionDiagrams { get; }
 
         public bool IsOnionDiagramsExpanded
         {
@@ -51,7 +50,7 @@ namespace StakeholderAnalysis.Visualization.ViewModels
             {
                 foreach (var onionDiagram in e.NewItems.OfType<OnionDiagram>())
                 {
-                    OnionDiagrams.Add(new OnionDiagramViewModel(analysis,onionDiagram, viewManager));
+                    OnionDiagrams.Add(new ProjectExplorerOnionDiagramViewModel(analysis,onionDiagram, viewManager));
                 }
             }
 

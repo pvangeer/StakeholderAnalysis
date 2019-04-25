@@ -139,8 +139,9 @@
     <Compile Include="ViewModels\AttitudeImpactDiagramViewModel.cs" />
     <Compile Include="ViewModels\ConnectionGroupViewModel.cs" />
     <Compile Include="ViewModels\MainContentPresenterViewModel.cs" />
-    <Compile Include="ViewModels\ProjectExplorerOnionDiagramsViewModel.cs" />
-    <Compile Include="ViewModels\ProjectExplorerViewModel.cs" />
+    <Compile Include="ViewModels\ProjectExplorer\ProjectExplorerOnionDiagramsViewModel.cs" />
+    <Compile Include="ViewModels\ProjectExplorer\ProjectExplorerOnionDiagramViewModel.cs" />
+    <Compile Include="ViewModels\ProjectExplorer\ProjectExplorerViewModel.cs" />
     <Compile Include="ViewModels\MainWindowViewModel.cs" />
     <Compile Include="ViewModels\OnionConnectionsPresenterViewModel.cs" />
     <Compile Include="ViewModels\OnionDiagramStakeholdersViewModel.cs" />
@@ -264,6 +265,12 @@
   </ItemGroup>
   <ItemGroup>
     <Resource Include="Resources\remove.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Folder Include="ViewModels\AttitudeImpactDiagramView\" />
+    <Folder Include="ViewModels\ForceFieldDiagramView\" />
+    <Folder Include="ViewModels\OnionDiagramView\" />
+    <Folder Include="ViewModels\StakeholderTableView\" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

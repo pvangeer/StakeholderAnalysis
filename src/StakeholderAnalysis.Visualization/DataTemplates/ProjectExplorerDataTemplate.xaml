@@ -2,7 +2,8 @@
                     xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
                     xmlns:local="clr-namespace:StakeholderAnalysis.Visualization.DataTemplates"
                     xmlns:viewModels="clr-namespace:StakeholderAnalysis.Visualization.ViewModels"
-                    xmlns:xcad="http://schemas.xceed.com/wpf/xaml/avalondock">
+                    xmlns:xcad="http://schemas.xceed.com/wpf/xaml/avalondock"
+                    xmlns:projectExplorer="clr-namespace:StakeholderAnalysis.Visualization.ViewModels.ProjectExplorer">
 
     <xcad:BoolToVisibilityConverter x:Key="BoolToVisibilityConverter" />
 
@@ -58,7 +59,7 @@
         </Setter>
     </Style>
 
-    <DataTemplate x:Key="ProjectExplorerOnionDiagramsDataTemplate" DataType="viewModels:ProjectExplorerOnionDiagramsViewModel">
+    <DataTemplate x:Key="ProjectExplorerOnionDiagramsDataTemplate" DataType="projectExplorer:ProjectExplorerOnionDiagramsViewModel">
         <StackPanel Orientation="Vertical">
             <Border BorderThickness="0">
                 <Grid Margin="2">
@@ -103,7 +104,7 @@
                 </Grid.ColumnDefinitions>
                 <ItemsControl Grid.Column="1" ItemsSource="{Binding OnionDiagrams}">
                     <ItemsControl.ItemTemplate>
-                        <DataTemplate DataType="viewModels:OnionDiagramViewModel">
+                        <DataTemplate DataType="projectExplorer:ProjectExplorerOnionDiagramViewModel">
                             <Border BorderThickness="0" Margin="0,1,0,1">
                                 <Border.InputBindings>
                                     <MouseBinding Gesture="LeftDoubleClick" Command="{Binding OpenOnionDiagramCommand}" />
@@ -152,7 +153,7 @@
         </StackPanel>
     </DataTemplate>
 
-    <DataTemplate x:Key="ProjectExplorerDataTemplate" DataType="viewModels:ProjectExplorerViewModel">
+    <DataTemplate x:Key="ProjectExplorerDataTemplate" DataType="projectExplorer:ProjectExplorerViewModel">
         <Grid>
             <StackPanel Orientation="Vertical">
                 <ContentPresenter 

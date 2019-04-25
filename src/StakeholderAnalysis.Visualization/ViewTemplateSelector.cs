@@ -7,6 +7,7 @@ using System.Windows;
 using System.Windows.Controls;
 using StakeholderAnalysis.Gui;
 using StakeholderAnalysis.Visualization.ViewModels;
+using StakeholderAnalysis.Visualization.ViewModels.ProjectExplorer;
 
 namespace StakeholderAnalysis.Visualization
 {

@@ -7,14 +7,15 @@ using System.Windows.Input;
 using StakeholderAnalysis.Data;
 using StakeholderAnalysis.Data.OnionDiagrams;
 using StakeholderAnalysis.Visualization.ViewModels;
+using StakeholderAnalysis.Visualization.ViewModels.ProjectExplorer;
 
 namespace StakeholderAnalysis.Visualization.Commands
 {
     public class RemoveOnionDiagramCommand : ICommand
     {
-        private readonly OnionDiagramViewModel viewModel;
+        private readonly ProjectExplorerOnionDiagramViewModel viewModel;
 
-        public RemoveOnionDiagramCommand(OnionDiagramViewModel viewModel)
+        public RemoveOnionDiagramCommand(ProjectExplorerOnionDiagramViewModel viewModel)
         {
             this.viewModel = viewModel;
         }

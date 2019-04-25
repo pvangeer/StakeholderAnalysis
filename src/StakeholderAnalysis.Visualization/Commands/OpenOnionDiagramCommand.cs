@@ -1,20 +1,14 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using System.Windows.Input;
-using StakeholderAnalysis.Data.OnionDiagrams;
-using StakeholderAnalysis.Gui;
-using StakeholderAnalysis.Visualization.ViewModels;
+using StakeholderAnalysis.Visualization.ViewModels.ProjectExplorer;
 
 namespace StakeholderAnalysis.Visualization.Commands
 {
     public class OpenOnionDiagramCommand : ICommand
     {
-        private readonly OnionDiagramViewModel onionDiagramViewModel;
+        private readonly ProjectExplorerOnionDiagramViewModel onionDiagramViewModel;
 
-        public OpenOnionDiagramCommand(OnionDiagramViewModel onionDiagramViewModel)
+        public OpenOnionDiagramCommand(ProjectExplorerOnionDiagramViewModel onionDiagramViewModel)
         {
             this.onionDiagramViewModel = onionDiagramViewModel;
         }
