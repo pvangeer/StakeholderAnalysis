@@ -4,13 +4,13 @@ using StakeholderAnalysis.Visualization.ViewModels.ProjectExplorer;
 
 namespace StakeholderAnalysis.Visualization.Commands.ProjectExplorer
 {
-    public class ToggleOnionsListCommand : ICommand
+    public class ToggleAttitudeImpactDiagramsListCommand : ICommand
     {
-        private readonly ProjectExplorerOnionDiagramsViewModel projectExplorerOnionDiagramsViewModel;
+        private readonly ProjectExplorerAttitudeImpactDiagramsViewModel projectExplorerAttitudeImpactDiagramsViewModel;
 
-        public ToggleOnionsListCommand(ProjectExplorerOnionDiagramsViewModel projectExplorerOnionDiagramsViewModel)
+        public ToggleAttitudeImpactDiagramsListCommand(ProjectExplorerAttitudeImpactDiagramsViewModel projectExplorerAttitudeImpactDiagramsViewModel)
         {
-            this.projectExplorerOnionDiagramsViewModel = projectExplorerOnionDiagramsViewModel;
+            this.projectExplorerAttitudeImpactDiagramsViewModel = projectExplorerAttitudeImpactDiagramsViewModel;
         }
 
         public bool CanExecute(object parameter)
@@ -20,8 +20,8 @@ namespace StakeholderAnalysis.Visualization.Commands.ProjectExplorer
 
         public void Execute(object parameter)
         {
-            projectExplorerOnionDiagramsViewModel.IsExpanded =
-                !projectExplorerOnionDiagramsViewModel.IsExpanded;
+            projectExplorerAttitudeImpactDiagramsViewModel.IsExpanded =
+                !projectExplorerAttitudeImpactDiagramsViewModel.IsExpanded;
         }
 
         public event EventHandler CanExecuteChanged;

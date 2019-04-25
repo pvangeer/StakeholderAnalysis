@@ -97,14 +97,18 @@
   <ItemGroup>
     <Compile Include="Commands\ProjectExplorer\AddForceFieldDiagramCommand.cs" />
     <Compile Include="Commands\ProjectExplorer\AddOnionDiagramCommand.cs" />
+    <Compile Include="Commands\ProjectExplorer\AddAttitudeImpactDiagramCommand.cs" />
     <Compile Include="Commands\CloseApplicationCommand.cs" />
     <Compile Include="Commands\FileHandling\FileHandlingCommandBase.cs" />
     <Compile Include="Commands\FileHandling\NewProjectCommand.cs" />
     <Compile Include="Commands\FileHandling\OpenFileCommand.cs" />
     <Compile Include="Commands\ProjectExplorer\OpenForceFieldDiagramCommand.cs" />
+    <Compile Include="Commands\ProjectExplorer\OpenAttitudeImpactDiagramCommand.cs" />
     <Compile Include="Commands\ProjectExplorer\OpenOnionDiagramCommand.cs" />
     <Compile Include="Commands\ProjectExplorer\RemoveForceFieldDiagramCommand.cs" />
+    <Compile Include="Commands\ProjectExplorer\RemoveAttitudeImpactDiagramCommand.cs" />
     <Compile Include="Commands\ProjectExplorer\ToggleForceFieldsListCommand.cs" />
+    <Compile Include="Commands\ProjectExplorer\ToggleAttitudeImpactDiagramsListCommand.cs" />
     <Compile Include="Commands\RelayCommand.cs" />
     <Compile Include="Commands\FrameworkElementExtensions.cs" />
     <Compile Include="Commands\FileHandling\SaveFileAsCommand.cs" />
@@ -122,7 +126,9 @@
     <Compile Include="Converters\CanvasSizeToArrowsPathDataConverter.cs" />
     <Compile Include="Converters\StakeholderTypeToStringConverter.cs" />
     <Compile Include="ViewModels\ProjectExplorer\IProjectExplorerDiagramViewModel.cs" />
+    <Compile Include="ViewModels\ProjectExplorer\ProjectExplorerAttitudeImpactDiagramsViewModel.cs" />
     <Compile Include="ViewModels\ProjectExplorer\ProjectExplorerForceFieldDiagramsViewModel.cs" />
+    <Compile Include="ViewModels\ProjectExplorer\ProjectExplorerAttitudeImpactDiagramViewModel.cs" />
     <Compile Include="ViewModels\ProjectExplorer\ProjectExplorerForceFieldDiagramViewModel.cs" />
     <Compile Include="ViewModels\TwoAxisDiagrams\ITwoAxisDiagramViewModel.cs" />
     <Compile Include="TestConverter.cs" />

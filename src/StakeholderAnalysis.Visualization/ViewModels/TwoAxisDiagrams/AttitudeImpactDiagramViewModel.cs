@@ -10,8 +10,11 @@ namespace StakeholderAnalysis.Visualization.ViewModels.TwoAxisDiagrams
 {
     public class AttitudeImpactDiagramViewModel : ITwoAxisDiagramViewModel
     {
+        private AttitudeImpactDiagram diagram;
+
         public AttitudeImpactDiagramViewModel(AttitudeImpactDiagram attitudeImpactDiagram)
         {
+            diagram = attitudeImpactDiagram;
             if (attitudeImpactDiagram != null)
             {
                 attitudeImpactDiagram.Stakeholders.CollectionChanged += StakeholdersCollectionChanged;
@@ -50,5 +53,10 @@ namespace StakeholderAnalysis.Visualization.ViewModels.TwoAxisDiagrams
         public string XAxisMaxLabel => "Hoge impact";
 
         public string XAxisMinLabel => "Lage impact";
+
+        public bool IsViewModelFor(AttitudeImpactDiagram otherDiagram)
+        {
+            return otherDiagram == diagram;
+        }
     }
 }

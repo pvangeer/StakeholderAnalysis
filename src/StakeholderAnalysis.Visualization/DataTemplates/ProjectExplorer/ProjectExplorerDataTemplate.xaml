@@ -15,6 +15,9 @@
                 <ContentPresenter 
                     Content="{Binding ForceFieldDiagramsViewModel}" 
                     ContentTemplate="{StaticResource ProjectExplorerExpandableContentGroupDataTemplate}"/>
+                <ContentPresenter 
+                    Content="{Binding AttitudeImpactDiagramsViewModel}" 
+                    ContentTemplate="{StaticResource ProjectExplorerExpandableContentGroupDataTemplate}"/>
             </StackPanel>
         </Grid>
     </DataTemplate>

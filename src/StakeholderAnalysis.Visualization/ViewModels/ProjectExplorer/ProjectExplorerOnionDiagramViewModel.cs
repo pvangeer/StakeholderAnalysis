@@ -64,8 +64,7 @@ namespace StakeholderAnalysis.Visualization.ViewModels.ProjectExplorer
                 v.ViewModel is OnionDiagramViewModel diagramViewModel && diagramViewModel.IsViewModelFor(diagram));
             if (viewInfo == null)
             {
-                viewInfo = new ViewInfo(diagram.Name, new OnionDiagramViewModel(diagram),
-                    "pack://application:,,,/StakeholderAnalysis.Visualization;component/Resources/onion.png");
+                viewInfo = new ViewInfo(diagram.Name, new OnionDiagramViewModel(diagram),IconSourceString);
                 viewManager.OpenView(viewInfo);
             }
             viewManager.BringToFront(viewInfo);

@@ -2,6 +2,7 @@
 using System.Linq;
 using System.Windows.Input;
 using StakeholderAnalysis.Data;
+using StakeholderAnalysis.Data.AttitudeImpactDiagrams;
 using StakeholderAnalysis.Data.ForceFieldDiagrams;
 using StakeholderAnalysis.Gui;
 using StakeholderAnalysis.Visualization.Commands.ProjectExplorer;
@@ -9,17 +10,17 @@ using StakeholderAnalysis.Visualization.ViewModels.TwoAxisDiagrams;
 
 namespace StakeholderAnalysis.Visualization.ViewModels.ProjectExplorer
 {
-    public class ProjectExplorerForceFieldDiagramViewModel : NotifyPropertyChangedObservable, IProjectExplorerDiagramViewModel
+    public class ProjectExplorerAttitudeImpactDiagramViewModel : NotifyPropertyChangedObservable, IProjectExplorerDiagramViewModel
     {
-        private readonly ForceFieldDiagram diagram;
+        private readonly AttitudeImpactDiagram diagram;
         private readonly Analysis analysis;
         private readonly ViewManager viewManager;
 
-        public ProjectExplorerForceFieldDiagramViewModel(Analysis analysis, ForceFieldDiagram forceFieldDiagram, ViewManager viewManager)
+        public ProjectExplorerAttitudeImpactDiagramViewModel(Analysis analysis, AttitudeImpactDiagram attitudeImpactDiagram, ViewManager viewManager)
         {
             this.viewManager = viewManager;
             this.analysis = analysis;
-            diagram = forceFieldDiagram;
+            diagram = attitudeImpactDiagram;
             if (diagram != null)
             {
                 diagram.PropertyChanged += DiagramPropertyChanged;
@@ -46,37 +47,37 @@ namespace StakeholderAnalysis.Visualization.ViewModels.ProjectExplorer
             }
         }
 
-        public ICommand RemoveDiagramCommand => new RemoveForceFieldDiagramCommand(this);
+        public ICommand RemoveDiagramCommand => new RemoveAttitudeImpactDiagramCommand(this);
 
-        public ICommand OpenViewForDiagramCommand => new OpenForceFieldDiagramCommand(this);
+        public ICommand OpenViewForDiagramCommand => new OpenAttitudeImpactDiagramCommand(this);
 
-        public string IconSourceString => "pack://application:,,,/StakeholderAnalysis.Visualization;component/Resources/forces.png";
+        public string IconSourceString => "pack://application:,,,/StakeholderAnalysis.Visualization;component/Resources/involvement.png";
 
         public bool IsViewModelFor(object otherObject)
         {
-            return otherObject as ForceFieldDiagram == diagram;
+            return otherObject as AttitudeImpactDiagram == diagram;
         }
 
         public void OpenDiagramInDocumentView()
         {
             var viewInfo = viewManager.Views.FirstOrDefault(v =>
-                v.ViewModel is ForceFieldDiagramViewModel diagramViewModel && diagramViewModel.IsViewModelFor(diagram));
+                v.ViewModel is AttitudeImpactDiagramViewModel diagramViewModel && diagramViewModel.IsViewModelFor(diagram));
             if (viewInfo == null)
             {
-                viewInfo = new ViewInfo(diagram.Name, new ForceFieldDiagramViewModel(diagram),IconSourceString);
+                viewInfo = new ViewInfo(diagram.Name, new AttitudeImpactDiagramViewModel(diagram),IconSourceString);
                 viewManager.OpenView(viewInfo);
             }
             viewManager.BringToFront(viewInfo);
         }
 
-        public void RemoveForceFieldDiagram()
+        public void RemoveAttitudeImpactDiagram()
         {
-            var viewInfo = viewManager?.Views.FirstOrDefault(vi => vi.ViewModel is ForceFieldDiagramViewModel diagramViewModel1 && diagramViewModel1.IsViewModelFor(diagram));
+            var viewInfo = viewManager?.Views.FirstOrDefault(vi => vi.ViewModel is AttitudeImpactDiagramViewModel diagramViewModel1 && diagramViewModel1.IsViewModelFor(diagram));
             if (viewInfo != null)
             {
                 viewManager.CloseView(viewInfo);
             }
-            analysis.ForceFieldDiagrams.Remove(diagram);
+            analysis.AttitudeImpactDiagrams.Remove(diagram);
         }
     }
 }

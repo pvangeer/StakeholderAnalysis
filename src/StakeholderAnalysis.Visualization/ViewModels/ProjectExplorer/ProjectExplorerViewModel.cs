@@ -18,5 +18,7 @@ namespace StakeholderAnalysis.Visualization.ViewModels.ProjectExplorer
 
 
         public ProjectExplorerForceFieldDiagramsViewModel ForceFieldDiagramsViewModel => new ProjectExplorerForceFieldDiagramsViewModel(analysis, viewManager);
+
+        public ProjectExplorerAttitudeImpactDiagramsViewModel AttitudeImpactDiagramsViewModel => new ProjectExplorerAttitudeImpactDiagramsViewModel(analysis, viewManager);
     }
 }
