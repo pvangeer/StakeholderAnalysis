@@ -9,8 +9,7 @@
     <ResourceDictionary.MergedDictionaries>
         <ResourceDictionary Source="OnionDiagramDataTemplate.xaml" />
         <ResourceDictionary Source="TwoAxisDiagrams/TwoAxisDiagramDataTemplate.xaml" />
-        <ResourceDictionary Source="StakeholderForcesDataTemplate.xaml" />
-        <ResourceDictionary Source="StakeholderTableDataTemplate.xaml" />
+        <ResourceDictionary Source="StakeholderTable/StakeholderTableDataTemplate.xaml" />
         <ResourceDictionary Source="ProjectExplorer/ProjectExplorerDataTemplate.xaml" />
     </ResourceDictionary.MergedDictionaries>
 
@@ -20,7 +19,7 @@
                                         StakeholderTableViewTemplate="{StaticResource StakeholderTableDataTemplate}"
                                         OnionDiagramViewTemplate="{StaticResource OnionDiagramDataTemplate}"
                                         ProjectExplorerDataTemplate="{StaticResource ProjectExplorerDataTemplate}"
-                                        StakeholderForcesDiagramTemplate="{StaticResource StakeholderForcesDataTemplate}"
+                                        StakeholderForcesDiagramTemplate="{StaticResource TwoAxisDiagramDataTemplate}"
                                         AttitudeImpactDiagramTemplate="{StaticResource TwoAxisDiagramDataTemplate}"/>
 
     <visualization:TestConverter x:Key="TestConverter" />

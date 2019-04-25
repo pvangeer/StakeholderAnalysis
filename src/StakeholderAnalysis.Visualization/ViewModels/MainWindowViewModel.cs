@@ -3,12 +3,11 @@ using StakeholderAnalysis.Data;
 using StakeholderAnalysis.Gui;
 using StakeholderAnalysis.Visualization.Commands;
 using StakeholderAnalysis.Visualization.Commands.FileHandling;
-using StakeholderAnalysis.Visualization.ViewModels.AttitudeImpactDiagramView;
-using StakeholderAnalysis.Visualization.ViewModels.ForceFieldDiagramView;
 using StakeholderAnalysis.Visualization.ViewModels.OnionDiagramView;
 using StakeholderAnalysis.Visualization.ViewModels.ProjectExplorer;
 using StakeholderAnalysis.Visualization.ViewModels.Ribbon;
 using StakeholderAnalysis.Visualization.ViewModels.StakeholderTableView;
+using StakeholderAnalysis.Visualization.ViewModels.TwoAxisDiagrams;
 
 namespace StakeholderAnalysis.Visualization.ViewModels
 {

@@ -7,12 +7,8 @@ namespace StakeholderAnalysis.Visualization.ViewModels.StakeholderTableView
 {
     public class StakeholderTableViewModel
     {
-        private readonly Analysis analysis;
-
-        public StakeholderTableViewModel(Analysis analysisInput)
+        public StakeholderTableViewModel(Analysis analysis)
         {
-            this.analysis = analysisInput;
-
             if (analysis != null)
             {
                 analysis.Stakeholders.CollectionChanged += StakeholdersCollectionChanged;

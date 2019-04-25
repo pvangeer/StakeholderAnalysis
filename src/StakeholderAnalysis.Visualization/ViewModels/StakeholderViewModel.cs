@@ -13,6 +13,11 @@ namespace StakeholderAnalysis.Visualization.ViewModels
 
         protected Stakeholder Stakeholder { get; }
 
+        public bool IsViewModelFor(Stakeholder stakeholder)
+        {
+            return Stakeholder == stakeholder;
+        }
+
         public string Name
         {
             get => Stakeholder.Name;
@@ -22,28 +27,6 @@ namespace StakeholderAnalysis.Visualization.ViewModels
                 Stakeholder.OnPropertyChanged(nameof(Stakeholder.Name));
             }
         }
-
-        public double Interest
-        {
-            get => Stakeholder.Interest;
-            set
-            {
-                Stakeholder.Interest = value;
-                OnPropertyChanged(nameof(Stakeholder.Interest));
-            }
-        }
-
-        public double Influence
-        {
-            get => Stakeholder.Influence;
-            set
-            {
-                Stakeholder.Influence = value;
-                Stakeholder.OnPropertyChanged(nameof(Stakeholder.Influence));
-            }
-        }
-
-        public double InfluenceLocation => 1 - Stakeholder.Influence;
 
         public StakeholderType Type => Stakeholder.Type;
 
@@ -57,24 +40,7 @@ namespace StakeholderAnalysis.Visualization.ViewModels
                 case nameof(Stakeholder.Type):
                     OnPropertyChanged(nameof(Type));
                     break;
-                case nameof(Stakeholder.Interest):
-                    OnPropertyChanged(nameof(Interest));
-                    break;
-                case nameof(Stakeholder.Influence):
-                    OnPropertyChanged(nameof(InfluenceLocation));
-                    OnPropertyChanged(nameof(Influence));
-                    break;
             }
-        }
-
-        public bool IsViewModelFor(Stakeholder stakeholder)
-        {
-            return Stakeholder == stakeholder;
-        }
-
-        public bool IsViewModelFor(StakeholderViewModel stakeholderViewModel)
-        {
-            return stakeholderViewModel.IsViewModelFor(Stakeholder);
         }
     }
 }

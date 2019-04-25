@@ -1,11 +1,9 @@
 ﻿using System.Windows;
 using System.Windows.Controls;
-using StakeholderAnalysis.Visualization.ViewModels;
-using StakeholderAnalysis.Visualization.ViewModels.AttitudeImpactDiagramView;
-using StakeholderAnalysis.Visualization.ViewModels.ForceFieldDiagramView;
 using StakeholderAnalysis.Visualization.ViewModels.OnionDiagramView;
 using StakeholderAnalysis.Visualization.ViewModels.ProjectExplorer;
 using StakeholderAnalysis.Visualization.ViewModels.StakeholderTableView;
+using StakeholderAnalysis.Visualization.ViewModels.TwoAxisDiagrams;
 
 namespace StakeholderAnalysis.Visualization
 {

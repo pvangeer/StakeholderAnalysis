@@ -16,10 +16,7 @@
                 SelectionUnit="CellOrRowHeader">
                 <DataGrid.Columns>
                     <DataGridTextColumn Header="Naam" Binding="{Binding Name, Mode=TwoWay}" />
-                    <DataGridTextColumn Header="Type"
-                                    Binding="{Binding Type, Converter={StaticResource StakeholderTypeToStringConverter}, Mode=OneWay}" />
-                    <DataGridTextColumn Header="Belang/Verantwoording" Binding="{Binding Interest}" />
-                    <DataGridTextColumn Header="Invloed" Binding="{Binding Influence}" />
+                    <DataGridTextColumn Header="Type" Binding="{Binding Type, Converter={StaticResource StakeholderTypeToStringConverter}, Mode=OneWay}" />
                 </DataGrid.Columns>
             </DataGrid>
         </Grid>

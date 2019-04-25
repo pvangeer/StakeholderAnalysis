@@ -1,8 +1,7 @@
 ﻿using System.ComponentModel;
 using StakeholderAnalysis.Data;
-using StakeholderAnalysis.Visualization.ViewModels.TwoAxisDiagrams;
 
-namespace StakeholderAnalysis.Visualization.ViewModels.AttitudeImpactDiagramView
+namespace StakeholderAnalysis.Visualization.ViewModels.TwoAxisDiagrams
 {
     public class AttitudeImpactDiagramStakeholderViewModel : StakeholderViewModel, IPositionedStakeholderViewModel
     {
@@ -38,9 +37,11 @@ namespace StakeholderAnalysis.Visualization.ViewModels.AttitudeImpactDiagramView
                 case nameof(Stakeholder.Impact):
                     OnPropertyChanged(nameof(RelativePositionLeft));
                     break;
+                case nameof(Stakeholder.Attitude):
+                    OnPropertyChanged(nameof(RelativePositionTop));
+                    break;
             }
-            base.StakeholderPropertyChanged(sender, e);
+            base.StakeholderPropertyChanged(sender,e);
         }
-
     }
 }

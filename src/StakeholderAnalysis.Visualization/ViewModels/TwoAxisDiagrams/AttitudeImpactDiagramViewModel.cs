@@ -5,10 +5,8 @@ using System.Windows;
 using System.Windows.Media;
 using StakeholderAnalysis.Data;
 using StakeholderAnalysis.Data.AttitudeImpactDiagrams;
-using StakeholderAnalysis.Visualization.DataTemplates.TwoAxisDiagrams;
-using StakeholderAnalysis.Visualization.ViewModels.TwoAxisDiagrams;
 
-namespace StakeholderAnalysis.Visualization.ViewModels.AttitudeImpactDiagramView
+namespace StakeholderAnalysis.Visualization.ViewModels.TwoAxisDiagrams
 {
     public class AttitudeImpactDiagramViewModel : ITwoAxisDiagramViewModel
     {

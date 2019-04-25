@@ -37,7 +37,7 @@ namespace StakeholderAnalysis.Visualization.ViewModels.OnionDiagramView
             }
         }
 
-        private void StakeholderPropertyChanged(object sender, PropertyChangedEventArgs e)
+        protected override void StakeholderPropertyChanged(object sender, PropertyChangedEventArgs e)
         {
             switch (e.PropertyName)
             {
@@ -48,6 +48,7 @@ namespace StakeholderAnalysis.Visualization.ViewModels.OnionDiagramView
                     OnPropertyChanged(nameof(TopPercentage));
                     break;
             }
+            base.StakeholderPropertyChanged(sender,e);
         }
 
         public bool IsViewModelFor(OnionDiagramStakeholder stakeholder)
