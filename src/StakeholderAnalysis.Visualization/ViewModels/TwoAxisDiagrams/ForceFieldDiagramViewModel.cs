@@ -10,8 +10,12 @@ namespace StakeholderAnalysis.Visualization.ViewModels.TwoAxisDiagrams
 {
     public class ForceFieldDiagramViewModel : ITwoAxisDiagramViewModel
     {
+        private ForceFieldDiagram diagram;
+
         public ForceFieldDiagramViewModel(ForceFieldDiagram diagram)
         {
+            this.diagram = diagram;
+
             if (diagram != null)
             {
                 diagram.Stakeholders.CollectionChanged += StakeholdersCollectionChanged;
@@ -42,10 +46,15 @@ namespace StakeholderAnalysis.Visualization.ViewModels.TwoAxisDiagrams
         public string BackgroundTextLeftBottom => "Monitoren";
 
         public string BackgroundTextRightBottom => "Informeren";
-        
-        public string YAxisMaxLabel { get; }
-        public string YAxisMinLabel { get; }
-        public string XAxisMaxLabel { get; }
-        public string XAxisMinLabel { get; }
+
+        public string YAxisMaxLabel => "Veel invloed";
+        public string YAxisMinLabel => "Weinig invloed";
+        public string XAxisMaxLabel => "Groot belang";
+        public string XAxisMinLabel => "Klein belang";
+
+        public bool IsViewModelFor(ForceFieldDiagram otherDiagram)
+        {
+            return otherDiagram == diagram;
+        }
     }
 }

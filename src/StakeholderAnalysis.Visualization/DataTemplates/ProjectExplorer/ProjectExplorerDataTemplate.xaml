@@ -4,6 +4,7 @@
 
     <ResourceDictionary.MergedDictionaries>
         <ResourceDictionary Source="ProjectExplorerOnionDiagramsDataTemplate.xaml"/>
+        <ResourceDictionary Source="ProjectExplorerForceFieldDiagramsDataTemplate.xaml"/>
     </ResourceDictionary.MergedDictionaries>
 
     <DataTemplate x:Key="ProjectExplorerDataTemplate" DataType="projectExplorer:ProjectExplorerViewModel">
@@ -12,6 +13,9 @@
                 <ContentPresenter 
                     Content="{Binding OnionDiagramsViewModel}" 
                     ContentTemplate="{StaticResource ProjectExplorerOnionDiagramsDataTemplate}"/>
+                <ContentPresenter 
+                    Content="{Binding ForceFieldDiagramsViewModel}" 
+                    ContentTemplate="{StaticResource ProjectExplorerForceFieldDiagramsDataTemplate}"/>
             </StackPanel>
         </Grid>
     </DataTemplate>

@@ -15,5 +15,8 @@ namespace StakeholderAnalysis.Visualization.ViewModels.ProjectExplorer
         }
 
         public ProjectExplorerOnionDiagramsViewModel OnionDiagramsViewModel => new ProjectExplorerOnionDiagramsViewModel(analysis, viewManager);
+
+
+        public ProjectExplorerForceFieldDiagramsViewModel ForceFieldDiagramsViewModel => new ProjectExplorerForceFieldDiagramsViewModel(analysis, viewManager);
     }
 }

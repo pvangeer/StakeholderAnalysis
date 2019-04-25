@@ -22,7 +22,6 @@
                                         StakeholderForcesDiagramTemplate="{StaticResource TwoAxisDiagramDataTemplate}"
                                         AttitudeImpactDiagramTemplate="{StaticResource TwoAxisDiagramDataTemplate}"/>
 
-    <visualization:TestConverter x:Key="TestConverter" />
     <DataTemplate x:Key="DocumentLayoutDataTemplate" DataType="gui:ViewInfo">
         <ContentPresenter 
             Content="{Binding ViewModel}" 
@@ -50,11 +49,11 @@
                 <xctk:Magnifier
                     BorderBrush="Gray"
                     BorderThickness="1"
-                    Radius="100"
+                    Radius="150"
                     ZoomFactor=".4"
                     FrameType="Circle" >
                     <xctk:Magnifier.Visibility>
-                        <Binding Path="MainContentPresenterViewModel.IsMagnifierActive" Converter="{StaticResource TestConverter}" UpdateSourceTrigger="PropertyChanged"/>
+                        <Binding Path="MainContentPresenterViewModel.IsMagnifierActive" Converter="{StaticResource BooleanToVisibilityConverter}" UpdateSourceTrigger="PropertyChanged"/>
                     </xctk:Magnifier.Visibility>
                 </xctk:Magnifier>
             </xctk:MagnifierManager.Magnifier>
