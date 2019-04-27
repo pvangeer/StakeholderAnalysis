@@ -9,7 +9,7 @@
 
     <xcad:BoolToVisibilityConverter x:Key="BoolToVisibilityConverter" />
 
-    <DataTemplate x:Key="ProjectExplorerExpandableContentGroupDataTemplate" DataType="projectExplorer:IExpandableContentGroup">
+    <DataTemplate x:Key="ProjectExplorerExpandableContentGroupDataTemplate" DataType="projectExplorer:IExpandableContentGroupViewModel">
         <StackPanel Orientation="Vertical">
             <ContentPresenter 
                 Content="{Binding}" 
@@ -19,7 +19,7 @@
                     <ColumnDefinition Width="24"/>
                     <ColumnDefinition Width="*"/>
                 </Grid.ColumnDefinitions>
-                <ItemsControl Grid.Column="1" ItemsSource="{Binding Elements}">
+                <ItemsControl Grid.Column="1" ItemsSource="{Binding Diagrams}">
                     <ItemsControl.ItemTemplate>
                         <DataTemplate DataType="projectExplorer:ProjectExplorerForceFieldDiagramViewModel">
                             <Border BorderThickness="0" Margin="0,1,0,1">

@@ -9,7 +9,7 @@ using StakeholderAnalysis.Visualization.Commands.ProjectExplorer;
 
 namespace StakeholderAnalysis.Visualization.ViewModels.ProjectExplorer
 {
-    public class ProjectExplorerAttitudeImpactDiagramsViewModel : NotifyPropertyChangedObservable, IExpandableContentGroup
+    public class ProjectExplorerAttitudeImpactDiagramsViewModel : NotifyPropertyChangedObservable, IExpandableContentGroupViewModel
     {
         private readonly Analysis analysis;
         private bool isExpanded = true;
@@ -21,14 +21,14 @@ namespace StakeholderAnalysis.Visualization.ViewModels.ProjectExplorer
             this.analysis = analysis;
             analysis.AttitudeImpactDiagrams.CollectionChanged += AttitudeImpactDiagramsCollectionChanged;
 
-            Elements = new ObservableCollection<IProjectExplorerDiagramViewModel>();
+            Diagrams = new ObservableCollection<IProjectExplorerDiagramViewModel>();
             foreach (var forceFieldDiagram in analysis.AttitudeImpactDiagrams)
             {
-                Elements.Add(new ProjectExplorerAttitudeImpactDiagramViewModel(analysis, forceFieldDiagram, viewManager));
+                Diagrams.Add(new ProjectExplorerDiagramViewModel(analysis, forceFieldDiagram, viewManager));
             }
         }
 
-        public ObservableCollection<IProjectExplorerDiagramViewModel> Elements { get; }
+        public ObservableCollection<IProjectExplorerDiagramViewModel> Diagrams { get; }
 
         public bool IsExpanded
         {
@@ -40,11 +40,16 @@ namespace StakeholderAnalysis.Visualization.ViewModels.ProjectExplorer
             }
         }
 
-        public ICommand ToggleElementsCommand => new ToggleAttitudeImpactDiagramsListCommand(this);
+        public ICommand ToggleIsExpandedCommand => new ToggleIsExpandedCommand(this);
 
-        public ICommand AddElementCommand => new AddAttitudeImpactDiagramCommand(analysis);
+        public ICommand AddNewDiagramCommand => new AddNewDiagramCommand(this);
 
         public string Name => "Houding - impact";
+
+        public void AddNewDiagram()
+        {
+            analysis.AttitudeImpactDiagrams.Add(new AttitudeImpactDiagram("Nieuw diagram"));
+        }
 
         private void AttitudeImpactDiagramsCollectionChanged(object sender, NotifyCollectionChangedEventArgs e)
         {
@@ -52,7 +57,7 @@ namespace StakeholderAnalysis.Visualization.ViewModels.ProjectExplorer
             {
                 foreach (var attitudeImpactDiagram in e.NewItems.OfType<AttitudeImpactDiagram>())
                 {
-                    Elements.Add(new ProjectExplorerAttitudeImpactDiagramViewModel(analysis, attitudeImpactDiagram, viewManager));
+                    Diagrams.Add(new ProjectExplorerDiagramViewModel(analysis, attitudeImpactDiagram, viewManager));
                 }
             }
 
@@ -60,10 +65,10 @@ namespace StakeholderAnalysis.Visualization.ViewModels.ProjectExplorer
             {
                 foreach (var attitudeImpactDiagram in e.OldItems.OfType<AttitudeImpactDiagram>())
                 {
-                    var diagramToRemove = Elements.FirstOrDefault(d => d.IsViewModelFor(attitudeImpactDiagram));
+                    var diagramToRemove = Diagrams.FirstOrDefault(d => d.IsViewModelFor(attitudeImpactDiagram));
                     if (diagramToRemove != null)
                     {
-                        Elements.Remove(diagramToRemove);
+                        Diagrams.Remove(diagramToRemove);
                     }
                 }
             }

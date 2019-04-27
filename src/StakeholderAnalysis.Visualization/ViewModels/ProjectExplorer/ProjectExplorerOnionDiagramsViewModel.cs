@@ -9,7 +9,7 @@ using StakeholderAnalysis.Visualization.Commands.ProjectExplorer;
 
 namespace StakeholderAnalysis.Visualization.ViewModels.ProjectExplorer
 {
-    public class ProjectExplorerOnionDiagramsViewModel : NotifyPropertyChangedObservable, IExpandableContentGroup
+    public class ProjectExplorerOnionDiagramsViewModel : NotifyPropertyChangedObservable, IExpandableContentGroupViewModel
     {
         private readonly Analysis analysis;
         private bool isExpanded = true;
@@ -21,14 +21,14 @@ namespace StakeholderAnalysis.Visualization.ViewModels.ProjectExplorer
             this.analysis = analysis;
             analysis.OnionDiagrams.CollectionChanged += OnionDiagramsCollectionChanged;
 
-            Elements = new ObservableCollection<IProjectExplorerDiagramViewModel>();
+            Diagrams = new ObservableCollection<IProjectExplorerDiagramViewModel>();
             foreach (var analysisOnionDiagram in analysis.OnionDiagrams)
             {
-                Elements.Add(new ProjectExplorerOnionDiagramViewModel(analysis,analysisOnionDiagram, viewManager));
+                Diagrams.Add(new ProjectExplorerOnionDiagramViewModel(analysis,analysisOnionDiagram, viewManager));
             }
         }
 
-        public ObservableCollection<IProjectExplorerDiagramViewModel> Elements { get; }
+        public ObservableCollection<IProjectExplorerDiagramViewModel> Diagrams { get; }
 
         public bool IsExpanded
         {
@@ -40,11 +40,16 @@ namespace StakeholderAnalysis.Visualization.ViewModels.ProjectExplorer
             }
         }
 
-        public ICommand ToggleElementsCommand => new ToggleOnionsListCommand(this);
+        public ICommand ToggleIsExpandedCommand => new ToggleIsExpandedCommand(this);
 
-        public ICommand AddElementCommand => new AddOnionDiagramCommand(analysis);
+        public ICommand AddNewDiagramCommand => new AddNewDiagramCommand(this);
 
         public string Name => "Ui-diagrammen";
+
+        public void AddNewDiagram()
+        {
+            analysis.OnionDiagrams.Add(new OnionDiagram("Nieuw diagram"));
+        }
 
         private void OnionDiagramsCollectionChanged(object sender, NotifyCollectionChangedEventArgs e)
         {
@@ -52,7 +57,7 @@ namespace StakeholderAnalysis.Visualization.ViewModels.ProjectExplorer
             {
                 foreach (var onionDiagram in e.NewItems.OfType<OnionDiagram>())
                 {
-                    Elements.Add(new ProjectExplorerOnionDiagramViewModel(analysis,onionDiagram, viewManager));
+                    Diagrams.Add(new ProjectExplorerOnionDiagramViewModel(analysis,onionDiagram, viewManager));
                 }
             }
 
@@ -60,10 +65,10 @@ namespace StakeholderAnalysis.Visualization.ViewModels.ProjectExplorer
             {
                 foreach (var onionDiagram in e.OldItems.OfType<OnionDiagram>())
                 {
-                    var diagramToRemove = Elements.FirstOrDefault(d => d.IsViewModelFor(onionDiagram));
+                    var diagramToRemove = Diagrams.FirstOrDefault(d => d.IsViewModelFor(onionDiagram));
                     if (diagramToRemove != null)
                     {
-                        Elements.Remove(diagramToRemove);
+                        Diagrams.Remove(diagramToRemove);
                     }
                 }
             }

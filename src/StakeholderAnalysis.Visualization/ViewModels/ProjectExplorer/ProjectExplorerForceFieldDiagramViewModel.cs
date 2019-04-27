@@ -46,9 +46,9 @@ namespace StakeholderAnalysis.Visualization.ViewModels.ProjectExplorer
             }
         }
 
-        public ICommand RemoveDiagramCommand => new RemoveForceFieldDiagramCommand(this);
+        public ICommand RemoveDiagramCommand => new RemoveDiagramCommand(this);
 
-        public ICommand OpenViewForDiagramCommand => new OpenForceFieldDiagramCommand(this);
+        public ICommand OpenViewForDiagramCommand => new OpenDiagramCommand(this);
 
         public string IconSourceString => "pack://application:,,,/StakeholderAnalysis.Visualization;component/Resources/forces.png";
 
@@ -69,7 +69,7 @@ namespace StakeholderAnalysis.Visualization.ViewModels.ProjectExplorer
             viewManager.BringToFront(viewInfo);
         }
 
-        public void RemoveForceFieldDiagram()
+        public void RemoveDiagram()
         {
             var viewInfo = viewManager?.Views.FirstOrDefault(vi => vi.ViewModel is ForceFieldDiagramViewModel diagramViewModel1 && diagramViewModel1.IsViewModelFor(diagram));
             if (viewInfo != null)

@@ -4,13 +4,13 @@ using StakeholderAnalysis.Visualization.ViewModels.ProjectExplorer;
 
 namespace StakeholderAnalysis.Visualization.Commands.ProjectExplorer
 {
-    public class RemoveOnionDiagramCommand : ICommand
+    public class ToggleIsExpandedCommand : ICommand
     {
-        private readonly ProjectExplorerOnionDiagramViewModel viewModel;
+        private readonly IExpandableContentGroupViewModel expandableGroupViewModel;
 
-        public RemoveOnionDiagramCommand(ProjectExplorerOnionDiagramViewModel viewModel)
+        public ToggleIsExpandedCommand(IExpandableContentGroupViewModel expandableGroupViewModel)
         {
-            this.viewModel = viewModel;
+            this.expandableGroupViewModel = expandableGroupViewModel;
         }
 
         public bool CanExecute(object parameter)
@@ -20,7 +20,8 @@ namespace StakeholderAnalysis.Visualization.Commands.ProjectExplorer
 
         public void Execute(object parameter)
         {
-            viewModel.RemoveOnionDiagram();
+            expandableGroupViewModel.IsExpanded =
+                !expandableGroupViewModel.IsExpanded;
         }
 
         public event EventHandler CanExecuteChanged;

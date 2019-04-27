@@ -4,11 +4,11 @@ using StakeholderAnalysis.Visualization.ViewModels.ProjectExplorer;
 
 namespace StakeholderAnalysis.Visualization.Commands.ProjectExplorer
 {
-    public class RemoveForceFieldDiagramCommand : ICommand
+    public class RemoveDiagramCommand : ICommand
     {
-        private readonly ProjectExplorerForceFieldDiagramViewModel viewModel;
+        private readonly IProjectExplorerDiagramViewModel viewModel;
 
-        public RemoveForceFieldDiagramCommand(ProjectExplorerForceFieldDiagramViewModel viewModel)
+        public RemoveDiagramCommand(IProjectExplorerDiagramViewModel viewModel)
         {
             this.viewModel = viewModel;
         }
@@ -20,7 +20,7 @@ namespace StakeholderAnalysis.Visualization.Commands.ProjectExplorer
 
         public void Execute(object parameter)
         {
-            viewModel.RemoveForceFieldDiagram();
+            viewModel.RemoveDiagram();
         }
 
         public event EventHandler CanExecuteChanged;

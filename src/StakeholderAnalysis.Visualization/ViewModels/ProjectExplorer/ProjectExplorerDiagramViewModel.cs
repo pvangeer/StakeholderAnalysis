@@ -10,13 +10,13 @@ using StakeholderAnalysis.Visualization.ViewModels.TwoAxisDiagrams;
 
 namespace StakeholderAnalysis.Visualization.ViewModels.ProjectExplorer
 {
-    public class ProjectExplorerAttitudeImpactDiagramViewModel : NotifyPropertyChangedObservable, IProjectExplorerDiagramViewModel
+    public class ProjectExplorerDiagramViewModel : NotifyPropertyChangedObservable, IProjectExplorerDiagramViewModel
     {
         private readonly AttitudeImpactDiagram diagram;
         private readonly Analysis analysis;
         private readonly ViewManager viewManager;
 
-        public ProjectExplorerAttitudeImpactDiagramViewModel(Analysis analysis, AttitudeImpactDiagram attitudeImpactDiagram, ViewManager viewManager)
+        public ProjectExplorerDiagramViewModel(Analysis analysis, AttitudeImpactDiagram attitudeImpactDiagram, ViewManager viewManager)
         {
             this.viewManager = viewManager;
             this.analysis = analysis;
@@ -47,9 +47,9 @@ namespace StakeholderAnalysis.Visualization.ViewModels.ProjectExplorer
             }
         }
 
-        public ICommand RemoveDiagramCommand => new RemoveAttitudeImpactDiagramCommand(this);
+        public ICommand RemoveDiagramCommand => new RemoveDiagramCommand(this);
 
-        public ICommand OpenViewForDiagramCommand => new OpenAttitudeImpactDiagramCommand(this);
+        public ICommand OpenViewForDiagramCommand => new OpenDiagramCommand(this);
 
         public string IconSourceString => "pack://application:,,,/StakeholderAnalysis.Visualization;component/Resources/involvement.png";
 
@@ -70,7 +70,7 @@ namespace StakeholderAnalysis.Visualization.ViewModels.ProjectExplorer
             viewManager.BringToFront(viewInfo);
         }
 
-        public void RemoveAttitudeImpactDiagram()
+        public void RemoveDiagram()
         {
             var viewInfo = viewManager?.Views.FirstOrDefault(vi => vi.ViewModel is AttitudeImpactDiagramViewModel diagramViewModel1 && diagramViewModel1.IsViewModelFor(diagram));
             if (viewInfo != null)

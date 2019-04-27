@@ -6,7 +6,7 @@
         <ResourceDictionary Source="ProjectExplorerButtonStyles.xaml"/>
     </ResourceDictionary.MergedDictionaries>
 
-    <DataTemplate x:Key="ExpandableElementDataTemplate" DataType="projectExplorer:IExpandableContentGroup">
+    <DataTemplate x:Key="ExpandableElementDataTemplate" DataType="projectExplorer:IExpandableContentGroupViewModel">
         <Border BorderThickness="0">
             <Grid Margin="2">
                 <Grid.ColumnDefinitions>
@@ -16,7 +16,7 @@
                 </Grid.ColumnDefinitions>
                 <Button 
                     Grid.Column="0"
-                    Command="{Binding ToggleElementsCommand}"
+                    Command="{Binding ToggleIsExpandedCommand}"
                     Style="{StaticResource ExpandCollapseButtonStyle}"/>
                 <TextBlock 
                     TextAlignment="Left"
@@ -27,7 +27,7 @@
                     FontSize="12"/>
                 <Button
                     Grid.Column="2"
-                    Command="{Binding AddElementCommand}"
+                    Command="{Binding AddNewDiagramCommand}"
                     Style="{StaticResource AddButtonStyle}"/>
             </Grid>
             <Border.Style>

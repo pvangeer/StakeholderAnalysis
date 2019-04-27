@@ -47,9 +47,9 @@ namespace StakeholderAnalysis.Visualization.ViewModels.ProjectExplorer
             }
         }
 
-        public ICommand RemoveDiagramCommand => new RemoveOnionDiagramCommand(this);
+        public ICommand RemoveDiagramCommand => new RemoveDiagramCommand(this);
 
-        public ICommand OpenViewForDiagramCommand => new OpenOnionDiagramCommand(this);
+        public ICommand OpenViewForDiagramCommand => new OpenDiagramCommand(this);
 
         public bool IsViewModelFor(object otherObject)
         {
@@ -70,7 +70,7 @@ namespace StakeholderAnalysis.Visualization.ViewModels.ProjectExplorer
             viewManager.BringToFront(viewInfo);
         }
 
-        public void RemoveOnionDiagram()
+        public void RemoveDiagram()
         {
             var viewInfo = viewManager?.Views.FirstOrDefault(vi => vi.ViewModel is OnionDiagramViewModel diagramViewModel1 && diagramViewModel1.IsViewModelFor(diagram));
             if (viewInfo != null)

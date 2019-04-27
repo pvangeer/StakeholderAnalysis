@@ -4,13 +4,13 @@ using StakeholderAnalysis.Visualization.ViewModels.ProjectExplorer;
 
 namespace StakeholderAnalysis.Visualization.Commands.ProjectExplorer
 {
-    public class OpenOnionDiagramCommand : ICommand
+    public class AddNewDiagramCommand : ICommand
     {
-        private readonly ProjectExplorerOnionDiagramViewModel onionDiagramViewModel;
+        private readonly IExpandableContentGroupViewModel expandableContentGroupViewModel;
 
-        public OpenOnionDiagramCommand(ProjectExplorerOnionDiagramViewModel onionDiagramViewModel)
+        public AddNewDiagramCommand(IExpandableContentGroupViewModel expandableContentGroupViewModel)
         {
-            this.onionDiagramViewModel = onionDiagramViewModel;
+            this.expandableContentGroupViewModel = expandableContentGroupViewModel;
         }
 
         public bool CanExecute(object parameter)
@@ -20,8 +20,7 @@ namespace StakeholderAnalysis.Visualization.Commands.ProjectExplorer
 
         public void Execute(object parameter)
         {
-            onionDiagramViewModel.OpenDiagramInDocumentView();
-            
+            expandableContentGroupViewModel.AddNewDiagram();
         }
 
         public event EventHandler CanExecuteChanged;

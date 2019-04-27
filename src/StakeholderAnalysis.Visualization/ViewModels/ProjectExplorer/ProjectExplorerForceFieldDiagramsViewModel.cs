@@ -9,7 +9,7 @@ using StakeholderAnalysis.Visualization.Commands.ProjectExplorer;
 
 namespace StakeholderAnalysis.Visualization.ViewModels.ProjectExplorer
 {
-    public class ProjectExplorerForceFieldDiagramsViewModel : NotifyPropertyChangedObservable, IExpandableContentGroup
+    public class ProjectExplorerForceFieldDiagramsViewModel : NotifyPropertyChangedObservable, IExpandableContentGroupViewModel
     {
         private readonly Analysis analysis;
         private bool isExpanded = true;
@@ -21,14 +21,14 @@ namespace StakeholderAnalysis.Visualization.ViewModels.ProjectExplorer
             this.analysis = analysis;
             analysis.ForceFieldDiagrams.CollectionChanged += ForceFieldDiagramsCollectionChanged;
 
-            Elements = new ObservableCollection<IProjectExplorerDiagramViewModel>();
+            Diagrams = new ObservableCollection<IProjectExplorerDiagramViewModel>();
             foreach (var forceFieldDiagram in analysis.ForceFieldDiagrams)
             {
-                Elements.Add(new ProjectExplorerForceFieldDiagramViewModel(analysis, forceFieldDiagram, viewManager));
+                Diagrams.Add(new ProjectExplorerForceFieldDiagramViewModel(analysis, forceFieldDiagram, viewManager));
             }
         }
 
-        public ObservableCollection<IProjectExplorerDiagramViewModel> Elements { get; }
+        public ObservableCollection<IProjectExplorerDiagramViewModel> Diagrams { get; }
 
         public bool IsExpanded
         {
@@ -40,11 +40,16 @@ namespace StakeholderAnalysis.Visualization.ViewModels.ProjectExplorer
             }
         }
 
-        public ICommand ToggleElementsCommand => new ToggleForceFieldsListCommand(this);
+        public ICommand ToggleIsExpandedCommand => new ToggleIsExpandedCommand(this);
 
-        public ICommand AddElementCommand => new AddForceFieldDiagramCommand(analysis);
+        public ICommand AddNewDiagramCommand => new AddNewDiagramCommand(this);
 
         public string Name => "Krachtenveld diagrammen";
+
+        public void AddNewDiagram()
+        {
+            analysis.ForceFieldDiagrams.Add(new ForceFieldDiagram("Nieuw diagram"));
+        }
 
         private void ForceFieldDiagramsCollectionChanged(object sender, NotifyCollectionChangedEventArgs e)
         {
@@ -52,7 +57,7 @@ namespace StakeholderAnalysis.Visualization.ViewModels.ProjectExplorer
             {
                 foreach (var forceFieldDiagram in e.NewItems.OfType<ForceFieldDiagram>())
                 {
-                    Elements.Add(new ProjectExplorerForceFieldDiagramViewModel(analysis, forceFieldDiagram, viewManager));
+                    Diagrams.Add(new ProjectExplorerForceFieldDiagramViewModel(analysis, forceFieldDiagram, viewManager));
                 }
             }
 
@@ -60,10 +65,10 @@ namespace StakeholderAnalysis.Visualization.ViewModels.ProjectExplorer
             {
                 foreach (var forceFieldDiagram in e.OldItems.OfType<ForceFieldDiagram>())
                 {
-                    var diagramToRemove = Elements.FirstOrDefault(d => d.IsViewModelFor(forceFieldDiagram));
+                    var diagramToRemove = Diagrams.FirstOrDefault(d => d.IsViewModelFor(forceFieldDiagram));
                     if (diagramToRemove != null)
                     {
-                        Elements.Remove(diagramToRemove);
+                        Diagrams.Remove(diagramToRemove);
                     }
                 }
             }

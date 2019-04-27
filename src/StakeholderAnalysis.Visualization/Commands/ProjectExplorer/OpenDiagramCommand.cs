@@ -4,13 +4,13 @@ using StakeholderAnalysis.Visualization.ViewModels.ProjectExplorer;
 
 namespace StakeholderAnalysis.Visualization.Commands.ProjectExplorer
 {
-    public class OpenForceFieldDiagramCommand : ICommand
+    public class OpenDiagramCommand : ICommand
     {
-        private readonly ProjectExplorerForceFieldDiagramViewModel forceFieldDiagramViewModel;
+        private readonly IProjectExplorerDiagramViewModel diagramViewModel;
 
-        public OpenForceFieldDiagramCommand(ProjectExplorerForceFieldDiagramViewModel forceFieldDiagramViewModel)
+        public OpenDiagramCommand(IProjectExplorerDiagramViewModel diagramViewModel)
         {
-            this.forceFieldDiagramViewModel = forceFieldDiagramViewModel;
+            this.diagramViewModel = diagramViewModel;
         }
 
         public bool CanExecute(object parameter)
@@ -20,7 +20,7 @@ namespace StakeholderAnalysis.Visualization.Commands.ProjectExplorer
 
         public void Execute(object parameter)
         {
-            forceFieldDiagramViewModel.OpenDiagramInDocumentView();
+            diagramViewModel.OpenDiagramInDocumentView();
             
         }
 
