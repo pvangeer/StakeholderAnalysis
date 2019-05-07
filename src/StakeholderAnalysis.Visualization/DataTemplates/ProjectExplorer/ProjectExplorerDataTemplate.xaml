@@ -4,6 +4,7 @@
 
     <ResourceDictionary.MergedDictionaries>
         <ResourceDictionary Source="ProjectExplorerExpandableContentGroupDataTemplate.xaml"/>
+        <ResourceDictionary Source="ProjectExplorerStakeholderOverviewTableDataTemplate.xaml"/>
     </ResourceDictionary.MergedDictionaries>
 
     <DataTemplate x:Key="ProjectExplorerDataTemplate" DataType="projectExplorer:ProjectExplorerViewModel">
@@ -18,6 +19,9 @@
                 <ContentPresenter 
                     Content="{Binding AttitudeImpactDiagramsViewModel}" 
                     ContentTemplate="{StaticResource ProjectExplorerExpandableContentGroupDataTemplate}"/>
+                <ContentPresenter
+                    Content="{Binding StakeholderOverviewTableViewModel}"
+                    ContentTemplate="{StaticResource ProjectExplorerStakeholderOverviewTableDataTemplate}"/>
             </StackPanel>
         </Grid>
     </DataTemplate>
