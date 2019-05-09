@@ -7,6 +7,7 @@
 
     <converters:IsSelectedViewTypeToVisibilityConverter x:Key="IsSelectedViewInfoToVisibilityConverter" />
 
+    <converters:ValueToSameConverter x:Key="DummyConverter" />
     <DataTemplate x:Key="RibbonDataTemplate" DataType="ribbon:RibbonViewModel">
         <fluent:Ribbon Focusable="True" x:Name="Ribbon" AutomaticStateManagement="False">
             <fluent:Ribbon.Menu>
@@ -74,6 +75,21 @@
             </fluent:RibbonTabItem>
 
             <fluent:RibbonTabItem Header="Ui-diagram" Group="{Binding Source={x:Reference onionGroup}}">
+                <fluent:RibbonGroupBox Header="Ringen">
+                    <fluent:Button 
+                        Header="Ring toevoegen" 
+                        Command="{Binding RibbonSelectedOnionDiagramViewModel.AddOnionRingCommand, Converter={StaticResource DummyConverter}}"
+                        Size="Middle"
+                        Icon="pack://application:,,,/StakeholderAnalysis.Visualization;component/Resources/plus.png"/>
+                    <fluent:Spinner 
+                        Value="{Binding RibbonSelectedOnionDiagramViewModel.Asymmetry, Converter={StaticResource DummyConverter}}" 
+                        Header="Asymmetrie"
+                        Format="0.#####"
+                        Minimum="0.0" 
+                        Maximum="1.0" 
+                        Increment="0.1"/>
+                </fluent:RibbonGroupBox>
+
                 <fluent:RibbonGroupBox Header="Verbindingsgroepen">
                     <controls:ConnectionGroupsListBoxControl
                         Width="250"

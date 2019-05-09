@@ -95,6 +95,7 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Commands\AddOnionRingCommand.cs" />
     <Compile Include="Commands\ProjectExplorer\AddNewDiagramCommand.cs" />
     <Compile Include="Commands\CloseApplicationCommand.cs" />
     <Compile Include="Commands\FileHandling\FileHandlingCommandBase.cs" />
@@ -117,12 +118,14 @@
     <Compile Include="Converters\PercentageToDimensionConverter.cs" />
     <Compile Include="Converters\CanvasSizeToArrowsPathDataConverter.cs" />
     <Compile Include="Converters\StakeholderTypeToStringConverter.cs" />
+    <Compile Include="Converters\ValueToSameConverter.cs" />
     <Compile Include="ViewModels\ProjectExplorer\IProjectExplorerDiagramViewModel.cs" />
     <Compile Include="ViewModels\ProjectExplorer\ProjectExplorerAttitudeImpactDiagramsViewModel.cs" />
     <Compile Include="ViewModels\ProjectExplorer\ProjectExplorerForceFieldDiagramsViewModel.cs" />
     <Compile Include="ViewModels\ProjectExplorer\ProjectExplorerDiagramViewModel.cs" />
     <Compile Include="ViewModels\ProjectExplorer\ProjectExplorerForceFieldDiagramViewModel.cs" />
     <Compile Include="ViewModels\ProjectExplorer\ProjectExplorerStakeholderOverviewTableViewModel.cs" />
+    <Compile Include="ViewModels\Ribbon\RibbonSelectedOnionDiagramViewModel.cs" />
     <Compile Include="ViewModels\TwoAxisDiagrams\ITwoAxisDiagramViewModel.cs" />
     <Compile Include="TestConverter.cs" />
     <Compile Include="ViewModels\TwoAxisDiagrams\AttitudeImpactDiagramStakeholderViewModel.cs" />

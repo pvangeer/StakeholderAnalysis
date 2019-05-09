@@ -28,14 +28,14 @@ namespace StakeholderAnalysis.Visualization.ViewModels.Ribbon
 
         private void ViewManagerPropertyChanged(object sender, PropertyChangedEventArgs e)
         {
-            if (e.PropertyName == nameof(ViewManager.CurrentViewInfo))
+            if (e.PropertyName == nameof(ViewManager.ActiveDocument))
             {
                 if (onionDiagram != null)
                 {
                     UnRegisterGroupsCollectionChanged();
                 }
 
-                if (viewManager?.CurrentViewInfo != null)
+                if (viewManager?.ActiveDocument != null)
                 {
                     RegisterGroupsCollectionChanged(viewManager.CurrentViewInfo);
                 }

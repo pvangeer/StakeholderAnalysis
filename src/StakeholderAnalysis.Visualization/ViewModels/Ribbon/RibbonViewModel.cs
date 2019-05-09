@@ -1,9 +1,11 @@
 ﻿using System.ComponentModel;
 using System.Windows.Input;
 using StakeholderAnalysis.Data;
+using StakeholderAnalysis.Data.OnionDiagrams;
 using StakeholderAnalysis.Gui;
 using StakeholderAnalysis.Visualization.Commands;
 using StakeholderAnalysis.Visualization.Commands.FileHandling;
+using StakeholderAnalysis.Visualization.ViewModels.OnionDiagramView;
 
 namespace StakeholderAnalysis.Visualization.ViewModels.Ribbon
 {
@@ -63,12 +65,18 @@ namespace StakeholderAnalysis.Visualization.ViewModels.Ribbon
             }
         }
 
+        public RibbonSelectedOnionDiagramViewModel RibbonSelectedOnionDiagramViewModel =>
+            gui?.ViewManager?.ActiveDocument?.ViewModel is OnionDiagramViewModel viewModel
+                ? new RibbonSelectedOnionDiagramViewModel(viewModel.GetDiagram())
+                : null;
+
         private void ViewManagerPropertyChanged(object sender, PropertyChangedEventArgs e)
         {
             switch (e.PropertyName)
             {
                 case nameof(ViewManager.ActiveDocument):
                     OnPropertyChanged(nameof(ActiveDocument));
+                    OnPropertyChanged(nameof(RibbonSelectedOnionDiagramViewModel));
                     break;
             }
         }

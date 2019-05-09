@@ -1,15 +1,24 @@
 ﻿<ResourceDictionary xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
                     xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
                     xmlns:converters="clr-namespace:StakeholderAnalysis.Visualization.Converters"
-                    xmlns:onionDiagramView="clr-namespace:StakeholderAnalysis.Visualization.ViewModels.OnionDiagramView">
+                    xmlns:onionDiagramView="clr-namespace:StakeholderAnalysis.Visualization.ViewModels.OnionDiagramView"
+                    xmlns:componentModel="clr-namespace:System.ComponentModel;assembly=WindowsBase">
 
     <converters:PercentageToCanvasTopValueConverter x:Key="PercentageToCanvasTopValueConverter" />
     <converters:PercentageToCanvasLeftValueConverter x:Key="PercentageToCanvasLeftValueConverter" />
     <converters:PercentageToDimensionConverter x:Key="PercentageToDimensionConverter" />
 
     <DataTemplate x:Key="OnionDiagramRingsDataTemplate" DataType="onionDiagramView:OnionDiagramRingsCanvasViewModel">
+        
         <Grid>
-            <ItemsControl ItemsSource="{Binding OnionRings}"
+            <Grid.Resources>
+                <CollectionViewSource x:Key="SortedOnionRings" Source="{Binding OnionRings}">
+                    <CollectionViewSource.SortDescriptions>
+                        <componentModel:SortDescription PropertyName="Percentage"  Direction="Descending"/>
+                    </CollectionViewSource.SortDescriptions>
+                </CollectionViewSource>
+            </Grid.Resources>
+            <ItemsControl ItemsSource="{Binding Source={StaticResource SortedOnionRings}}"
                           Background="Transparent">
                 <ItemsControl.ItemTemplate>
                     <DataTemplate DataType="onionDiagramView:OnionRingViewModel">

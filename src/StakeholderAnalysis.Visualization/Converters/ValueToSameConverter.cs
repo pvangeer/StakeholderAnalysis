@@ -1,11 +1,10 @@
-using System;
+﻿using System;
 using System.Globalization;
-using System.Windows;
 using System.Windows.Data;
 
-namespace StakeholderAnalysis.Visualization
+namespace StakeholderAnalysis.Visualization.Converters
 {
-    public class TestConverter : IValueConverter
+    public class ValueToSameConverter : IValueConverter
     {
         public object Convert(object value, Type targetType, object parameter, CultureInfo culture)
         {
@@ -14,7 +13,7 @@ namespace StakeholderAnalysis.Visualization
 
         public object ConvertBack(object value, Type targetType, object parameter, CultureInfo culture)
         {
-            throw new NotImplementedException();
+            return value;
         }
     }
 }

@@ -45,10 +45,12 @@ namespace StakeholderAnalysis.Visualization.ViewModels.OnionDiagramView
         private void RingsCollectionChanged(object sender, NotifyCollectionChangedEventArgs e)
         {
             if (e.Action == NotifyCollectionChangedAction.Add)
+            {
                 foreach (var item in e.NewItems.OfType<OnionRing>())
-                    OnionRings.Insert(
-                        OnionRings.IndexOf(OnionRings.FirstOrDefault(r => r.Percentage >= item.Percentage)),
-                        new OnionRingViewModel(item));
+                {
+                    OnionRings.Add(new OnionRingViewModel(item));
+                }
+            }
 
             if (e.Action == NotifyCollectionChangedAction.Remove)
                 foreach (var onionRing in e.OldItems.OfType<OnionRing>())

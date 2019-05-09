@@ -48,5 +48,10 @@ namespace StakeholderAnalysis.Visualization.ViewModels.OnionDiagramView
         {
             return diagram == otherDiagram;
         }
+
+        public OnionDiagram GetDiagram()
+        {
+            return diagram;
+        }
     }
 }
