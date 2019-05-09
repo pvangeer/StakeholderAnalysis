@@ -1,14 +1,10 @@
-﻿using System.Collections.Specialized;
-using System.ComponentModel;
-using System.Linq;
+﻿using System.ComponentModel;
 using System.Windows.Input;
 using StakeholderAnalysis.Data;
-using StakeholderAnalysis.Gui;
 using StakeholderAnalysis.Visualization.Commands;
 using StakeholderAnalysis.Visualization.Commands.FileHandling;
 using StakeholderAnalysis.Visualization.Commands.ProjectExplorer;
 using StakeholderAnalysis.Visualization.ViewModels.OnionDiagramView;
-using StakeholderAnalysis.Visualization.ViewModels.ProjectExplorer;
 
 namespace StakeholderAnalysis.Visualization.ViewModels.Ribbon
 {
@@ -22,17 +18,13 @@ namespace StakeholderAnalysis.Visualization.ViewModels.Ribbon
         {
             gui = guiInput;
             analysis = analysisInput;
-            // TODO: Move this to separate viewmodel
+
+            ViewManagerViewModel = new ViewManagerViewModel(gui.ViewManager);
             gui.ViewManager.PropertyChanged += ViewManagerPropertyChanged;
-            gui.ViewManager.ToolWindows.CollectionChanged += ToolwindowsCollectionChanged;
             gui.PropertyChanged += GuiPropertyChanged;
         }
 
-        // TODO: Move this to separate viewmodel
-        private void ToolwindowsCollectionChanged(object sender, NotifyCollectionChangedEventArgs e)
-        {
-            OnPropertyChanged(nameof(IsProjectDataToolWindowActive));
-        }
+        public ViewManagerViewModel ViewManagerViewModel { get; }
 
         public ICommand OpenCommand => new OpenFileCommand(this);
 
@@ -46,12 +38,6 @@ namespace StakeholderAnalysis.Visualization.ViewModels.Ribbon
 
         public RibbonStakeholderConnectionGroupsViewModel RibbonStakeholderConnectionGroupsViewModel => new RibbonStakeholderConnectionGroupsViewModel(gui.ViewManager);
 
-        // TODO: Move this to separate viewmodel
-        public ViewInfo ActiveDocument
-        {
-            get => gui.ViewManager.ActiveDocument;
-            set => gui.ViewManager.ActiveDocument = value;
-        }
 
         public bool IsMagnifierActive
         {
@@ -73,7 +59,7 @@ namespace StakeholderAnalysis.Visualization.ViewModels.Ribbon
                     gui.OnPropertyChanged(nameof(Gui.Gui.IsSaveToImage));
                     gui.IsSaveToImage = false;
                     gui.OnPropertyChanged(nameof(Gui.Gui.IsSaveToImage));
-                }, () => ActiveDocument != null));
+                }, () => gui.ViewManager.ActiveDocument != null));
             }
         }
 
@@ -82,24 +68,7 @@ namespace StakeholderAnalysis.Visualization.ViewModels.Ribbon
                 ? new RibbonSelectedOnionDiagramViewModel(viewModel.GetDiagram())
                 : null;
 
-        public bool IsProjectDataToolWindowActive
-        {
-            get => gui.ViewManager.ToolWindows.Any(i => i.ViewModel is ProjectExplorerViewModel);
-            set {}
-        }
-
         public ICommand ToggleToolWindowCommand => new ToggleProjectExplorerCommand(analysis, gui.ViewManager);
-
-        private void ViewManagerPropertyChanged(object sender, PropertyChangedEventArgs e)
-        {
-            switch (e.PropertyName)
-            {
-                case nameof(ViewManager.ActiveDocument):
-                    OnPropertyChanged(nameof(ActiveDocument));
-                    OnPropertyChanged(nameof(RibbonSelectedOnionDiagramViewModel));
-                    break;
-            }
-        }
 
         private void GuiPropertyChanged(object sender, PropertyChangedEventArgs e)
         {
@@ -107,6 +76,16 @@ namespace StakeholderAnalysis.Visualization.ViewModels.Ribbon
             {
                 case nameof(Gui.Gui.IsMagnifierActive):
                     OnPropertyChanged(nameof(IsMagnifierActive));
+                    break;
+            }
+        }
+
+        private void ViewManagerPropertyChanged(object sender, PropertyChangedEventArgs e)
+        {
+            switch (e.PropertyName)
+            {
+                case nameof(gui.ViewManager.ActiveDocument):
+                    OnPropertyChanged(nameof(RibbonSelectedOnionDiagramViewModel));
                     break;
             }
         }

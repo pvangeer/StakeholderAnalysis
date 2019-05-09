@@ -9,8 +9,6 @@ namespace StakeholderAnalysis.Gui
 {
     public class ViewManager : INotifyPropertyChanged
     {
-        private ViewInfo currentViewInfo;
-
         public ViewManager()
         {
             Views = new ObservableCollection<ViewInfo>();
@@ -21,41 +19,6 @@ namespace StakeholderAnalysis.Gui
         public ObservableCollection<ViewInfo> Views { get; }
 
         public ObservableCollection<ViewInfo> ToolWindows { get; }
-
-        public ViewInfo CurrentViewInfo
-        {
-            get => currentViewInfo;
-            set
-            {
-                // TODO: This should be in a separate viewmodel since this logic is needed because it is being used as a binding property. In fact, this property shouldn't even be in the viewManager.
-                currentViewInfo = value;
-                OnPropertyChanged(nameof(CurrentViewInfo));
-                if (currentViewInfo == null)
-                {
-                    if (ActiveDocument != null)
-                    {
-                        ActiveDocument = null;
-                        OnPropertyChanged(nameof(ActiveDocument));
-                    }
-                }
-                else if (currentViewInfo.IsDocumentView)
-                {
-                    if (!Views.Any())
-                    {
-                        if (ActiveDocument != null)
-                        {
-                            ActiveDocument = null;
-                            OnPropertyChanged(nameof(ActiveDocument));
-                        }
-                    }
-                    else if (Views.Contains(CurrentViewInfo))
-                    {
-                        ActiveDocument = CurrentViewInfo;
-                        OnPropertyChanged(nameof(ActiveDocument));
-                    }
-                }
-            }
-        }
 
         public ViewInfo ActiveDocument { get; set; }
 
@@ -88,7 +51,8 @@ namespace StakeholderAnalysis.Gui
                 OpenView(viewInfo);
             }
 
-            CurrentViewInfo = viewInfo;
+            ActiveDocument = viewInfo;
+            OnPropertyChanged(nameof(ActiveDocument));
         }
 
         public void OpenToolWindow(ViewInfo viewInfo)
@@ -117,7 +81,7 @@ namespace StakeholderAnalysis.Gui
         public event PropertyChangedEventHandler PropertyChanged;
 
         [NotifyPropertyChangedInvocator]
-        protected virtual void OnPropertyChanged([CallerMemberName] string propertyName = null)
+        public void OnPropertyChanged([CallerMemberName] string propertyName = null)
         {
             PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(propertyName));
         }

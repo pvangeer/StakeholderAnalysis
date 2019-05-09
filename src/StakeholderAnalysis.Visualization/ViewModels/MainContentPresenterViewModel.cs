@@ -1,6 +1,5 @@
 ﻿using System.ComponentModel;
 using StakeholderAnalysis.Data;
-using StakeholderAnalysis.Gui;
 using StakeholderAnalysis.Visualization.Commands;
 
 namespace StakeholderAnalysis.Visualization.ViewModels
@@ -33,8 +32,7 @@ namespace StakeholderAnalysis.Visualization.ViewModels
             }
         }
 
-        // TODO: this property should be wrapped by a viewmodel
-        public ViewManager ViewManager => gui.ViewManager;
+        public ViewManagerViewModel ViewManager => new ViewManagerViewModel(gui.ViewManager);
 
         public bool IsSaveToImage
         {

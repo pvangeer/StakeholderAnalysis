@@ -168,6 +168,7 @@
     <Compile Include="ViewModels\StakeholderTableView\StakeholderTableViewModel.cs" />
     <Compile Include="ViewModels\StakeholderViewModel.cs" />
     <Compile Include="ViewModels\TwoAxisDiagrams\PositionedStakeholderViewModel.cs" />
+    <Compile Include="ViewModels\ViewManagerViewModel.cs" />
     <Compile Include="ViewTemplateSelector.cs" />
     <EmbeddedResource Include="Properties\Resources.resx">
       <Generator>ResXFileCodeGenerator</Generator>

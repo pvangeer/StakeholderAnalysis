@@ -52,7 +52,7 @@
                     Foreground="DarkSeaGreen">
                     <fluent:RibbonContextualTabGroup.Visibility>
                         <Binding 
-                            Path="RibbonViewModel.ActiveDocument"
+                            Path="RibbonViewModel.ViewManagerViewModel.ActiveDocument"
                             Converter="{StaticResource IsSelectedViewInfoToVisibilityConverter}" 
                             UpdateSourceTrigger="PropertyChanged"/>
                     </fluent:RibbonContextualTabGroup.Visibility>
@@ -65,7 +65,7 @@
                         Size="Middle"
                         Header="Projectgegevens" 
                         Icon="pack://application:,,,/StakeholderAnalysis.Visualization;component/Resources/document.png"
-                        IsChecked="{Binding IsProjectDataToolWindowActive}" 
+                        IsChecked="{Binding ViewManagerViewModel.IsProjectDataToolWindowActive}" 
                         Command="{Binding ToggleToolWindowCommand}"/>
                     <fluent:ToggleButton
                         Header="Vergrootglas"

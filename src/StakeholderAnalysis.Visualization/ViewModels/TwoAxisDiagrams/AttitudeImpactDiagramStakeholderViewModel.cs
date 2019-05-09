@@ -11,7 +11,6 @@ namespace StakeholderAnalysis.Visualization.ViewModels.TwoAxisDiagrams
 
         public double RelativePositionLeft
         {
-            // TODO Pull position members up. See also comments in ForceFieldDiagramStakeholderViewModel
             get => Stakeholder.Impact;
             set
             {

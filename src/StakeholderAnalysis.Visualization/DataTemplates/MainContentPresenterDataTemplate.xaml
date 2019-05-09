@@ -102,6 +102,12 @@
                         AnchorableLayoutTemplate="{StaticResource AnchorableLayoutDataTemplate}"/>
                 </xcad:DockingManager.LayoutItemTemplateSelector>
 
+                <xcad:DockingManager.LayoutItemContainerStyle>
+                    <Style TargetType="xcad:LayoutItem">
+                        <Setter Property="CloseCommand" Value="{Binding Model.CloseViewCommand}"/>
+                    </Style>
+                </xcad:DockingManager.LayoutItemContainerStyle>
+
                 <xcad:DockingManager.Theme>
                     <xcad:MetroTheme />
                 </xcad:DockingManager.Theme>
