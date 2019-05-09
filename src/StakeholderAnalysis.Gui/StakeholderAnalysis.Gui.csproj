@@ -54,6 +54,7 @@
     <Reference Include="PresentationFramework" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="CloseViewCommand.cs" />
     <Compile Include="Gui.cs" />
     <Compile Include="Properties\Annotations.cs" />
     <Compile Include="Properties\AssemblyInfo.cs">
@@ -69,7 +70,6 @@
       <DependentUpon>Settings.settings</DependentUpon>
       <DesignTimeSharedInput>True</DesignTimeSharedInput>
     </Compile>
-    <Compile Include="ToolWindowViewInfo.cs" />
     <Compile Include="ViewInfo.cs" />
     <Compile Include="ViewManager.cs" />
     <EmbeddedResource Include="Properties\Resources.resx">

@@ -96,6 +96,7 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Commands\AddOnionRingCommand.cs" />
+    <Compile Include="Commands\ProjectExplorer\ToggleProjectExplorerCommand.cs" />
     <Compile Include="Commands\ProjectExplorer\AddNewDiagramCommand.cs" />
     <Compile Include="Commands\CloseApplicationCommand.cs" />
     <Compile Include="Commands\FileHandling\FileHandlingCommandBase.cs" />
@@ -301,6 +302,8 @@
   <ItemGroup>
     <Resource Include="Resources\remove.png" />
   </ItemGroup>
-  <ItemGroup />
+  <ItemGroup>
+    <Resource Include="Resources\document.png" />
+  </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

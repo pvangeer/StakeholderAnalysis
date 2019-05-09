@@ -33,6 +33,7 @@ namespace StakeholderAnalysis.Visualization.ViewModels
             }
         }
 
+        // TODO: this property should be wrapped by a viewmodel
         public ViewManager ViewManager => gui.ViewManager;
 
         public bool IsSaveToImage

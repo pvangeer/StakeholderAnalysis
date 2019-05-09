@@ -25,7 +25,7 @@ namespace StakeholderAnalysis.Visualization.ViewModels.ProjectExplorer
             var viewInfo = viewManager.Views.FirstOrDefault(v => v.ViewModel is StakeholderTableViewModel);
             if (viewInfo == null)
             {
-                viewInfo = new ViewInfo("Tabel", new StakeholderTableViewModel(analysis), "pack://application:,,,/StakeholderAnalysis.Visualization;component/Resources/table.png");
+                viewInfo = new ViewInfo("Tabel", new StakeholderTableViewModel(analysis), "pack://application:,,,/StakeholderAnalysis.Visualization;component/Resources/table.png", true);
                 viewManager.OpenView(viewInfo);
             }
             viewManager.BringToFront(viewInfo);

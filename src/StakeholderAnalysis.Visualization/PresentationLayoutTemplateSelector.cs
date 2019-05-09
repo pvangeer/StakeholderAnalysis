@@ -8,14 +8,9 @@ namespace StakeholderAnalysis.Visualization
     {
         public override DataTemplate SelectTemplate(object item, DependencyObject container)
         {
-            if (item is ToolWindowViewInfo)
+            if (item is ViewInfo viewInfo)
             {
-                return AnchorableLayoutTemplate;
-            }
-
-            if (item is ViewInfo)
-            {
-                return DocumentLayoutTemplate;
+                return viewInfo.IsDocumentView ? DocumentLayoutTemplate : AnchorableLayoutTemplate;
             }
 
             return base.SelectTemplate(item, container);

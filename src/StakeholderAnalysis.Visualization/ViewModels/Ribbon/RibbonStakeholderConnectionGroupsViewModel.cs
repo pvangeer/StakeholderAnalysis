@@ -20,9 +20,9 @@ namespace StakeholderAnalysis.Visualization.ViewModels.Ribbon
 
             viewManager.PropertyChanged += ViewManagerPropertyChanged;
 
-            if (viewManager?.CurrentViewInfo != null)
+            if (viewManager?.ActiveDocument != null)
             {
-                RegisterGroupsCollectionChanged(viewManager.CurrentViewInfo);
+                RegisterGroupsCollectionChanged(viewManager.ActiveDocument);
             }
         }
 
@@ -37,7 +37,7 @@ namespace StakeholderAnalysis.Visualization.ViewModels.Ribbon
 
                 if (viewManager?.ActiveDocument != null)
                 {
-                    RegisterGroupsCollectionChanged(viewManager.CurrentViewInfo);
+                    RegisterGroupsCollectionChanged(viewManager.ActiveDocument);
                 }
             }
         }

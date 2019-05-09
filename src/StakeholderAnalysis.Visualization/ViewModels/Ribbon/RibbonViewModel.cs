@@ -1,26 +1,37 @@
-﻿using System.ComponentModel;
+﻿using System.Collections.Specialized;
+using System.ComponentModel;
+using System.Linq;
 using System.Windows.Input;
 using StakeholderAnalysis.Data;
-using StakeholderAnalysis.Data.OnionDiagrams;
 using StakeholderAnalysis.Gui;
 using StakeholderAnalysis.Visualization.Commands;
 using StakeholderAnalysis.Visualization.Commands.FileHandling;
+using StakeholderAnalysis.Visualization.Commands.ProjectExplorer;
 using StakeholderAnalysis.Visualization.ViewModels.OnionDiagramView;
+using StakeholderAnalysis.Visualization.ViewModels.ProjectExplorer;
 
 namespace StakeholderAnalysis.Visualization.ViewModels.Ribbon
 {
     public class RibbonViewModel : NotifyPropertyChangedObservable
     {
-        private Gui.Gui gui;
-        private Analysis analysis; // In future needed to save project data
+        private readonly Gui.Gui gui;
+        private readonly Analysis analysis;
         private RelayCommand saveCanvasCommand;
 
         public RibbonViewModel(Analysis analysisInput, Gui.Gui guiInput)
         {
             gui = guiInput;
             analysis = analysisInput;
+            // TODO: Move this to separate viewmodel
             gui.ViewManager.PropertyChanged += ViewManagerPropertyChanged;
+            gui.ViewManager.ToolWindows.CollectionChanged += ToolwindowsCollectionChanged;
             gui.PropertyChanged += GuiPropertyChanged;
+        }
+
+        // TODO: Move this to separate viewmodel
+        private void ToolwindowsCollectionChanged(object sender, NotifyCollectionChangedEventArgs e)
+        {
+            OnPropertyChanged(nameof(IsProjectDataToolWindowActive));
         }
 
         public ICommand OpenCommand => new OpenFileCommand(this);
@@ -35,6 +46,7 @@ namespace StakeholderAnalysis.Visualization.ViewModels.Ribbon
 
         public RibbonStakeholderConnectionGroupsViewModel RibbonStakeholderConnectionGroupsViewModel => new RibbonStakeholderConnectionGroupsViewModel(gui.ViewManager);
 
+        // TODO: Move this to separate viewmodel
         public ViewInfo ActiveDocument
         {
             get => gui.ViewManager.ActiveDocument;
@@ -69,6 +81,14 @@ namespace StakeholderAnalysis.Visualization.ViewModels.Ribbon
             gui?.ViewManager?.ActiveDocument?.ViewModel is OnionDiagramViewModel viewModel
                 ? new RibbonSelectedOnionDiagramViewModel(viewModel.GetDiagram())
                 : null;
+
+        public bool IsProjectDataToolWindowActive
+        {
+            get => gui.ViewManager.ToolWindows.Any(i => i.ViewModel is ProjectExplorerViewModel);
+            set {}
+        }
+
+        public ICommand ToggleToolWindowCommand => new ToggleProjectExplorerCommand(analysis, gui.ViewManager);
 
         private void ViewManagerPropertyChanged(object sender, PropertyChangedEventArgs e)
         {

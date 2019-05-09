@@ -1,10 +1,8 @@
 ﻿using System;
 using System.Collections.ObjectModel;
-using System.Collections.Specialized;
 using System.ComponentModel;
 using System.Linq;
 using System.Runtime.CompilerServices;
-using System.Windows.Input;
 using StakeholderAnalysis.Gui.Annotations;
 
 namespace StakeholderAnalysis.Gui
@@ -12,31 +10,27 @@ namespace StakeholderAnalysis.Gui
     public class ViewManager : INotifyPropertyChanged
     {
         private ViewInfo currentViewInfo;
-        private ViewInfo activeDocument;
 
         public ViewManager()
         {
             Views = new ObservableCollection<ViewInfo>();
-            Views.CollectionChanged += ViewsCollectionChanged;
             ToolWindows = new ObservableCollection<ViewInfo>();
             ActiveDocument = null;
         }
 
-        private void ViewsCollectionChanged(object sender, NotifyCollectionChangedEventArgs e)
-        {
-            
-        }
-
         public ObservableCollection<ViewInfo> Views { get; }
+
+        public ObservableCollection<ViewInfo> ToolWindows { get; }
 
         public ViewInfo CurrentViewInfo
         {
             get => currentViewInfo;
             set
             {
+                // TODO: This should be in a separate viewmodel since this logic is needed because it is being used as a binding property. In fact, this property shouldn't even be in the viewManager.
                 currentViewInfo = value;
                 OnPropertyChanged(nameof(CurrentViewInfo));
-                if (!Views.Any())
+                if (currentViewInfo == null)
                 {
                     if (ActiveDocument != null)
                     {
@@ -44,48 +38,46 @@ namespace StakeholderAnalysis.Gui
                         OnPropertyChanged(nameof(ActiveDocument));
                     }
                 }
-                else if (Views.Contains(CurrentViewInfo))
+                else if (currentViewInfo.IsDocumentView)
                 {
-                    ActiveDocument = CurrentViewInfo;
-                    OnPropertyChanged(nameof(ActiveDocument));
+                    if (!Views.Any())
+                    {
+                        if (ActiveDocument != null)
+                        {
+                            ActiveDocument = null;
+                            OnPropertyChanged(nameof(ActiveDocument));
+                        }
+                    }
+                    else if (Views.Contains(CurrentViewInfo))
+                    {
+                        ActiveDocument = CurrentViewInfo;
+                        OnPropertyChanged(nameof(ActiveDocument));
+                    }
                 }
             }
         }
 
-        public ViewInfo ActiveDocument
-        {
-            get
-            {
-                if (currentViewInfo == null)
-                {
-                    activeDocument = null;
-                }
-                return activeDocument;
-            }
-            set => activeDocument = value;
-        }
-
-        public ObservableCollection<ViewInfo> ToolWindows { get; }
+        public ViewInfo ActiveDocument { get; set; }
 
         public void OpenView(ViewInfo viewInfo)
         {
             if (IsAvailableView(viewInfo))
             {
-                Views.Remove(viewInfo);
+                BringToFront(viewInfo);
+                return;
             }
+
+            viewInfo.CloseViewCommand = new CloseViewCommand(this, viewInfo);
             Views.Add(viewInfo);
         }
 
-        private bool IsAvailableView(ViewInfo viewInfo)
-        {
-            return Views.Any(v => v == viewInfo || v.ViewModel == viewInfo.ViewModel);
-        }
 
         public void CloseView(ViewInfo viewInfo)
         {
             if (IsAvailableView(viewInfo))
             {
                 Views.Remove(viewInfo);
+                OnPropertyChanged(nameof(ActiveDocument));
             }
         }
 
@@ -93,30 +85,32 @@ namespace StakeholderAnalysis.Gui
         {
             if (!IsAvailableView(viewInfo))
             {
+                OpenView(viewInfo);
+            }
+
+            CurrentViewInfo = viewInfo;
+        }
+
+        public void OpenToolWindow(ViewInfo viewInfo)
+        {
+            if (viewInfo.IsDocumentView)
+            {
                 throw new ArgumentException();
             }
 
-            // TODO: Hack since closing a document or anchorable will actually only hide the view and not give us any event to work with
-            CloseView(viewInfo);
-            OpenView(viewInfo);
-
-            CurrentViewInfo = viewInfo;
-            OnPropertyChanged(nameof(CurrentViewInfo));
-        }
-
-        public void OpenToolWindow(ToolWindowViewInfo viewInfo)
-        {
             if (!ToolWindows.Contains(viewInfo))
             {
+                viewInfo.CloseViewCommand = new CloseViewCommand(this, viewInfo);
                 ToolWindows.Add(viewInfo);
             }
         }
 
-        public void CloseToolWindow(ToolWindowViewInfo viewInfo)
+        public void CloseToolWindow(ViewInfo viewInfo)
         {
             if (ToolWindows.Contains(viewInfo))
             {
                 ToolWindows.Remove(viewInfo);
+                OnPropertyChanged(nameof(ActiveDocument));
             }
         }
 
@@ -126,6 +120,11 @@ namespace StakeholderAnalysis.Gui
         protected virtual void OnPropertyChanged([CallerMemberName] string propertyName = null)
         {
             PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(propertyName));
+        }
+
+        private bool IsAvailableView(ViewInfo viewInfo)
+        {
+            return Views.Any(v => v == viewInfo || v.ViewModel == viewInfo.ViewModel);
         }
     }
 }

@@ -77,6 +77,7 @@
                 BorderBrush="Black"
                 ActiveContent="{Binding ViewManager.CurrentViewInfo, Mode=TwoWay}"
                 BorderThickness="1">
+
                 <xcad:DockingManager.DocumentHeaderTemplate>
                     <DataTemplate DataType="xcad:LayoutDocument">
                         <StackPanel Orientation="Horizontal">
@@ -85,6 +86,7 @@
                         </StackPanel>
                     </DataTemplate>
                 </xcad:DockingManager.DocumentHeaderTemplate>
+
                 <xcad:DockingManager.AnchorableHeaderTemplate>
                     <DataTemplate DataType="xcad:LayoutAnchorable">
                         <StackPanel Orientation="Horizontal" Background="AliceBlue">
@@ -99,10 +101,11 @@
                         DocumentLayoutTemplate ="{StaticResource DocumentLayoutDataTemplate}"
                         AnchorableLayoutTemplate="{StaticResource AnchorableLayoutDataTemplate}"/>
                 </xcad:DockingManager.LayoutItemTemplateSelector>
+
                 <xcad:DockingManager.Theme>
                     <xcad:MetroTheme />
                 </xcad:DockingManager.Theme>
-                <xcad:LayoutRoot/>
+                <xcad:LayoutRoot />
             </xcad:DockingManager>
         </Grid>
     </DataTemplate>
