@@ -68,7 +68,7 @@ namespace StakeholderAnalysis.Visualization.ViewModels.Ribbon
                 ? new RibbonSelectedOnionDiagramViewModel(viewModel.GetDiagram())
                 : null;
 
-        public ICommand ToggleToolWindowCommand => new ToggleProjectExplorerCommand(analysis, gui.ViewManager);
+        public ICommand ShowToolWindowCommand => new ShowProjectExplorerCommand(analysis, gui.ViewManager);
 
         private void GuiPropertyChanged(object sender, PropertyChangedEventArgs e)
         {

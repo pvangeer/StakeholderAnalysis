@@ -19,7 +19,6 @@ namespace StakeholderAnalysis.Visualization.ViewModels
             this.viewManager = viewManager;
 
             viewManager.PropertyChanged += ViewManagerPropertyChanged;
-            viewManager.ToolWindows.CollectionChanged += ToolwindowsCollectionChanged;
         }
 
         public ViewInfo CurrentViewInfo
@@ -67,20 +66,9 @@ namespace StakeholderAnalysis.Visualization.ViewModels
             }
         }
 
-        public bool IsProjectDataToolWindowActive
-        {
-            get => viewManager.ToolWindows.Any(i => i.ViewModel is ProjectExplorerViewModel);
-            set { }
-        }
-
         public ObservableCollection<ViewInfo> Views => viewManager.Views;
 
         public ObservableCollection<ViewInfo> ToolWindows => viewManager.ToolWindows;
-
-        private void ToolwindowsCollectionChanged(object sender, NotifyCollectionChangedEventArgs e)
-        {
-            OnPropertyChanged(nameof(IsProjectDataToolWindowActive));
-        }
 
         private void ViewManagerPropertyChanged(object sender, PropertyChangedEventArgs e)
         {

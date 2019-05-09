@@ -7,12 +7,12 @@ using StakeholderAnalysis.Visualization.ViewModels.ProjectExplorer;
 
 namespace StakeholderAnalysis.Visualization.Commands.ProjectExplorer
 {
-    public class ToggleProjectExplorerCommand : ICommand
+    public class ShowProjectExplorerCommand : ICommand
     {
         private readonly ViewManager viewManager;
         private readonly Analysis analysis;
 
-        public ToggleProjectExplorerCommand(Analysis analysis, ViewManager viewManager)
+        public ShowProjectExplorerCommand(Analysis analysis, ViewManager viewManager)
         {
             this.analysis = analysis;
             this.viewManager = viewManager;
@@ -30,10 +30,7 @@ namespace StakeholderAnalysis.Visualization.Commands.ProjectExplorer
             {
                 viewManager.CloseToolWindow(projectExplorerInfo);
             }
-            else
-            {
-                viewManager.OpenToolWindow(new ViewInfo("Projectgegevens", new ProjectExplorerViewModel(analysis, viewManager), "pack://application:,,,/StakeholderAnalysis.Visualization;component/Resources/document.png", false));
-            }
+            viewManager.OpenToolWindow(new ViewInfo("Projectgegevens", new ProjectExplorerViewModel(analysis, viewManager), "pack://application:,,,/StakeholderAnalysis.Visualization;component/Resources/document.png", false));
         }
 
         public event EventHandler CanExecuteChanged;
