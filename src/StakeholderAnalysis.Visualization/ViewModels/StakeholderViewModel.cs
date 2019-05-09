@@ -3,7 +3,7 @@ using StakeholderAnalysis.Data;
 
 namespace StakeholderAnalysis.Visualization.ViewModels
 {
-    public class StakeholderViewModel : NotifyPropertyChangedObservable
+    public class StakeholderViewModel : NotifyPropertyChangedObservable, IDropHandler
     {
         public StakeholderViewModel(Stakeholder stakeholder)
         {
@@ -42,5 +42,7 @@ namespace StakeholderAnalysis.Visualization.ViewModels
                     break;
             }
         }
+
+        public virtual void Moved(double xRelativeNew, double yRelativeNew) { }
     }
 }

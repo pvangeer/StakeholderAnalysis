@@ -37,10 +37,10 @@
                                     <Binding/>
                                 </MultiBinding>
                             </DataTrigger.Binding>
-                            <Setter Property="visualization:SaveToImageBehaviours.SaveToImage" Value="True" />
+                            <Setter Property="visualization:SaveToImageBehavior.SaveToImage" Value="True" />
                         </DataTrigger>
                         <DataTrigger Binding="{Binding ElementName=DockingManager, Path=DataContext.IsSaveToImage}" Value="False">
-                            <Setter Property="visualization:SaveToImageBehaviours.SaveToImage" Value="False" />
+                            <Setter Property="visualization:SaveToImageBehavior.SaveToImage" Value="False" />
                         </DataTrigger>
                     </Style.Triggers>
                 </Style>

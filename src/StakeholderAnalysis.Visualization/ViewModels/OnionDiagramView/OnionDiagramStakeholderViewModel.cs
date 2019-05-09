@@ -1,4 +1,5 @@
-﻿using System.ComponentModel;
+﻿using System;
+using System.ComponentModel;
 using StakeholderAnalysis.Data.OnionDiagrams;
 using static System.Double;
 
@@ -35,6 +36,12 @@ namespace StakeholderAnalysis.Visualization.ViewModels.OnionDiagramView
                 onionDiagramStakeholder.Top = value;
                 onionDiagramStakeholder.OnPropertyChanged(nameof(onionDiagramStakeholder.Top));
             }
+        }
+
+        public override void Moved(double xRelativeNew, double yRelativeNew)
+        {
+            LeftPercentage = Math.Min(1.0,Math.Max(0.0,xRelativeNew));
+            TopPercentage = Math.Min(1.0, Math.Max(0.0, yRelativeNew));
         }
 
         protected override void StakeholderPropertyChanged(object sender, PropertyChangedEventArgs e)

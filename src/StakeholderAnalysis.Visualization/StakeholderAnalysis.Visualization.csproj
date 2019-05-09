@@ -120,6 +120,8 @@
     <Compile Include="Converters\CanvasSizeToArrowsPathDataConverter.cs" />
     <Compile Include="Converters\StakeholderTypeToStringConverter.cs" />
     <Compile Include="Converters\ValueToSameConverter.cs" />
+    <Compile Include="DragOnCanvasBehavior.cs" />
+    <Compile Include="IDropHandler.cs" />
     <Compile Include="ViewModels\ProjectExplorer\IProjectExplorerDiagramViewModel.cs" />
     <Compile Include="ViewModels\ProjectExplorer\ProjectExplorerAttitudeImpactDiagramsViewModel.cs" />
     <Compile Include="ViewModels\ProjectExplorer\ProjectExplorerForceFieldDiagramsViewModel.cs" />
@@ -149,7 +151,7 @@
       <DesignTimeSharedInput>True</DesignTimeSharedInput>
     </Compile>
     <Compile Include="Converters\TypeToBrushConverter.cs" />
-    <Compile Include="SaveToImageBehaviours.cs" />
+    <Compile Include="SaveToImageBehavior.cs" />
     <Compile Include="ViewModels\TwoAxisDiagrams\AttitudeImpactDiagramViewModel.cs" />
     <Compile Include="ViewModels\Ribbon\ConnectionGroupViewModel.cs" />
     <Compile Include="ViewModels\MainContentPresenterViewModel.cs" />

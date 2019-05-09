@@ -1,4 +1,5 @@
-﻿using System.ComponentModel;
+﻿using System;
+using System.ComponentModel;
 using StakeholderAnalysis.Data;
 
 namespace StakeholderAnalysis.Visualization.ViewModels.TwoAxisDiagrams
@@ -27,6 +28,12 @@ namespace StakeholderAnalysis.Visualization.ViewModels.TwoAxisDiagrams
                 Stakeholder.Attitude = 1 - value;
                 Stakeholder.OnPropertyChanged(nameof(Stakeholder.Attitude));
             }
+        }
+
+        public override void Moved(double xRelativeNew, double yRelativeNew)
+        {
+            RelativePositionLeft = Math.Min(1.0, Math.Max(0.0, xRelativeNew));
+            RelativePositionTop = Math.Min(1.0, Math.Max(0.0, yRelativeNew));
         }
 
         protected override void StakeholderPropertyChanged(object sender, PropertyChangedEventArgs e)

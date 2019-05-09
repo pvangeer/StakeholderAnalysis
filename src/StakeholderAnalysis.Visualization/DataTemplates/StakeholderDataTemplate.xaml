@@ -2,7 +2,8 @@
                     xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
                     xmlns:viewModels="clr-namespace:StakeholderAnalysis.Visualization.ViewModels"
                     xmlns:data="clr-namespace:StakeholderAnalysis.Data;assembly=StakeholderAnalysis.Data"
-                    xmlns:converters="clr-namespace:StakeholderAnalysis.Visualization.Converters">
+                    xmlns:converters="clr-namespace:StakeholderAnalysis.Visualization.Converters"
+                    xmlns:visualization="clr-namespace:StakeholderAnalysis.Visualization">
 
     <converters:TypeToBrushConverter x:Key="TypeToBrushConverter" />
 
@@ -15,7 +16,7 @@
     </DataTemplate>
 
     <DataTemplate x:Key="StakeholderDataTemplate" DataType="viewModels:StakeholderViewModel">
-        <Border CornerRadius="1">
+        <Border CornerRadius="1" visualization:DragOnCanvasBehavior.DropHandler="{Binding }">
             <Border.Style>
                 <Style TargetType="{x:Type Border}">
                     <Setter Property="BorderBrush" Value="Gray" />
@@ -75,7 +76,7 @@
                                       ContentTemplate="{StaticResource StakeholderPopupDataTemplate}" />
                 </Popup>
                 <Grid.Triggers>
-                    <EventTrigger RoutedEvent="Mouse.MouseDown">
+                    <EventTrigger RoutedEvent="Button.ContextMenuOpening">
                         <BeginStoryboard>
                             <Storyboard TargetName="popLogFile" TargetProperty="IsOpen">
                                 <BooleanAnimationUsingKeyFrames FillBehavior="HoldEnd">
