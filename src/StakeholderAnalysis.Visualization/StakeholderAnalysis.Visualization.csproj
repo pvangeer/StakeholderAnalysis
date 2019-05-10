@@ -95,7 +95,7 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Commands\AddOnionRingCommand.cs" />
+    <Compile Include="Commands\Ribbon\AddOnionRingCommand.cs" />
     <Compile Include="Commands\ProjectExplorer\ToggleProjectExplorerCommand.cs" />
     <Compile Include="Commands\ProjectExplorer\AddNewDiagramCommand.cs" />
     <Compile Include="Commands\CloseApplicationCommand.cs" />
@@ -109,8 +109,12 @@
     <Compile Include="Commands\FrameworkElementExtensions.cs" />
     <Compile Include="Commands\FileHandling\SaveFileAsCommand.cs" />
     <Compile Include="Commands\FileHandling\SaveFileCommand.cs" />
+    <Compile Include="Commands\Ribbon\AddStakeholdersToDiagramCommand.cs" />
     <Compile Include="Controls\ConnectionGroupsListBoxControl.xaml.cs">
       <DependentUpon>ConnectionGroupsListBoxControl.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Controls\SelectStakeholdersDialog.xaml.cs">
+      <DependentUpon>SelectStakeholdersDialog.xaml</DependentUpon>
     </Compile>
     <Compile Include="Converters\IsProneToExportConverter.cs" />
     <Compile Include="Converters\IsSelectedViewTypeToVisibilityConverter.cs" />
@@ -130,6 +134,7 @@
     <Compile Include="ViewModels\ProjectExplorer\ProjectExplorerForceFieldDiagramViewModel.cs" />
     <Compile Include="ViewModels\ProjectExplorer\ProjectExplorerStakeholderOverviewTableViewModel.cs" />
     <Compile Include="ViewModels\Ribbon\RibbonSelectedOnionDiagramViewModel.cs" />
+    <Compile Include="ViewModels\StakeholderSelectionDialogViewModel.cs" />
     <Compile Include="ViewModels\TwoAxisDiagrams\ITwoAxisDiagramViewModel.cs" />
     <Compile Include="TestConverter.cs" />
     <Compile Include="ViewModels\TwoAxisDiagrams\AttitudeImpactDiagramStakeholderViewModel.cs" />
@@ -185,6 +190,10 @@
   </ItemGroup>
   <ItemGroup>
     <Page Include="Controls\ConnectionGroupsListBoxControl.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Controls\SelectStakeholdersDialog.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>

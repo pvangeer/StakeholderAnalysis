@@ -3,7 +3,7 @@ using System.Linq;
 using System.Windows.Input;
 using StakeholderAnalysis.Data.OnionDiagrams;
 
-namespace StakeholderAnalysis.Visualization.Commands
+namespace StakeholderAnalysis.Visualization.Commands.Ribbon
 {
     public class AddOnionRingCommand : ICommand
     {

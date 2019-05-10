@@ -1,16 +1,20 @@
 ﻿using System.Windows.Input;
+using StakeholderAnalysis.Data;
 using StakeholderAnalysis.Data.OnionDiagrams;
 using StakeholderAnalysis.Visualization.Commands;
+using StakeholderAnalysis.Visualization.Commands.Ribbon;
 
 namespace StakeholderAnalysis.Visualization.ViewModels.Ribbon
 {
     public class RibbonSelectedOnionDiagramViewModel
     {
         private readonly OnionDiagram onionDiagram;
+        private readonly Analysis analysis;
 
-        public RibbonSelectedOnionDiagramViewModel(OnionDiagram onionDiagram)
+        public RibbonSelectedOnionDiagramViewModel(OnionDiagram onionDiagram, Analysis analysis)
         {
             this.onionDiagram = onionDiagram;
+            this.analysis = analysis;
         }
 
         public ICommand AddOnionRingCommand => new AddOnionRingCommand(onionDiagram);
@@ -24,5 +28,7 @@ namespace StakeholderAnalysis.Visualization.ViewModels.Ribbon
                 onionDiagram.OnPropertyChanged(nameof(OnionDiagram.Asymmetry));
             }
         }
+
+        public ICommand AddStakeholdersCommand => new AddStakeholdersToDiagramCommand(onionDiagram, analysis);
     }
 }

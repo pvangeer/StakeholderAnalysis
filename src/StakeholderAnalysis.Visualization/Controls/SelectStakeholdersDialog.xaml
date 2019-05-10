@@ -1,0 +1,94 @@
+﻿<Window x:Class="StakeholderAnalysis.Visualization.Controls.SelectStakeholdersDialog"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:viewModels="clr-namespace:StakeholderAnalysis.Visualization.ViewModels"
+        xmlns:data="clr-namespace:StakeholderAnalysis.Data;assembly=StakeholderAnalysis.Data"
+        mc:Ignorable="d"
+        Title="Selecteer stakeholder(s)" Height="450" Width="400">
+
+    <Grid>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="*"/>
+            <RowDefinition Height="Auto"/>
+        </Grid.RowDefinitions>
+
+        <ListBox 
+            Name="ListBox"
+            Margin="20,10,20,10" 
+            HorizontalContentAlignment="Stretch"
+            SelectionMode="Extended">
+            <ListBox.ItemTemplate>
+                <DataTemplate DataType="viewModels:StakeholderViewModel">
+                    <Border BorderThickness="1" BorderBrush="Gray" HorizontalAlignment="Stretch">
+                        <StackPanel Orientation="Horizontal" HorizontalAlignment="Stretch">
+                            <Image Margin="2,0,2,0" Width="20" Height="20">
+                                <Image.Style>
+                                    <Style TargetType="{x:Type Image}">
+                                        <Style.Triggers>
+                                            <DataTrigger Binding="{Binding Type}"
+                                             Value="{x:Static data:StakeholderType.Waterkeringbeheerder}">
+                                                <Setter Property="Source"
+                                            Value="pack://application:,,,/StakeholderAnalysis.Visualization;component/Resources/Waterschap.png" />
+                                            </DataTrigger>
+                                            <DataTrigger Binding="{Binding Type}"
+                                             Value="{x:Static data:StakeholderType.Kennisinstituut}">
+                                                <Setter Property="Source"
+                                            Value="pack://application:,,,/StakeholderAnalysis.Visualization;component/Resources/Knowledge.png" />
+                                            </DataTrigger>
+                                            <DataTrigger Binding="{Binding Type}"
+                                             Value="{x:Static data:StakeholderType.Rijksoverheid}">
+                                                <Setter Property="Source"
+                                            Value="pack://application:,,,/StakeholderAnalysis.Visualization;component/Resources/Pak.png" />
+                                            </DataTrigger>
+                                            <DataTrigger Binding="{Binding Type}"
+                                             Value="{x:Static data:StakeholderType.Stakeholdergroep}">
+                                                <Setter Property="Source"
+                                            Value="pack://application:,,,/StakeholderAnalysis.Visualization;component/Resources/Group.png" />
+                                            </DataTrigger>
+                                            <DataTrigger Binding="{Binding Type}"
+                                             Value="{x:Static data:StakeholderType.Ingenieursbureaus}">
+                                                <Setter Property="Source"
+                                            Value="pack://application:,,,/StakeholderAnalysis.Visualization;component/Resources/euro.png" />
+                                            </DataTrigger>
+                                            <DataTrigger Binding="{Binding Type}" Value="{x:Static data:StakeholderType.Overig}">
+                                                <Setter Property="Source"
+                                            Value="pack://application:,,,/StakeholderAnalysis.Visualization;component/Resources/other.png" />
+                                            </DataTrigger>
+                                        </Style.Triggers>
+                                    </Style>
+                                </Image.Style>
+                            </Image>
+                            <TextBlock 
+                            Text="{Binding Name}" 
+                            TextAlignment="Left" 
+                            VerticalAlignment="Center"
+                            Margin="1" 
+                            TextWrapping="NoWrap" />
+                        </StackPanel>
+                    </Border>
+                </DataTemplate>
+            </ListBox.ItemTemplate>
+        </ListBox>
+
+        <Border Grid.Row="1" Background="AliceBlue" >
+            <StackPanel Orientation="Horizontal" HorizontalAlignment="Right">
+                <Button 
+                    Width="90" 
+                    Style="{StaticResource {x:Static ToolBar.ButtonStyleKey}}"
+                    Content="OK" 
+                    Margin="5,5,20,5" 
+                    HorizontalAlignment="Right" 
+                    Click="ButtonOkClicked"/>
+                <Button 
+                    Width="90" 
+                    Style="{StaticResource {x:Static ToolBar.ButtonStyleKey}}"
+                    Content="Annuleren"  
+                    Margin="5,5,5,5" 
+                    HorizontalAlignment="Right" 
+                    Click="ButtonCancelClicked"/>
+            </StackPanel>
+        </Border>
+    </Grid>
+</Window>

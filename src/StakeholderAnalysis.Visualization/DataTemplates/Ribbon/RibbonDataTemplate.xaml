@@ -95,6 +95,11 @@
                         Minimum="0.0" 
                         Maximum="1.0" 
                         Increment="0.1"/>
+                    <fluent:Button 
+                        Header="Stakeholder(s) toevoegen" 
+                        Command="{Binding RibbonSelectedOnionDiagramViewModel.AddStakeholdersCommand, Converter={StaticResource DummyConverter}}"
+                        Size="Middle"
+                        Icon="pack://application:,,,/StakeholderAnalysis.Visualization;component/Resources/plus.png"/>
                 </fluent:RibbonGroupBox>
 
                 <fluent:RibbonGroupBox Header="Verbindingsgroepen">

@@ -69,7 +69,7 @@ namespace StakeholderAnalysis.Visualization.ViewModels.Ribbon
 
         public RibbonSelectedOnionDiagramViewModel RibbonSelectedOnionDiagramViewModel =>
             gui?.ViewManager?.ActiveDocument?.ViewModel is OnionDiagramViewModel viewModel
-                ? new RibbonSelectedOnionDiagramViewModel(viewModel.GetDiagram())
+                ? new RibbonSelectedOnionDiagramViewModel(viewModel.GetDiagram(), analysis)
                 : null;
 
         public ICommand ToggleToolWindowCommand => new ToggleProjectExplorerCommand(analysis, gui.ViewManager);

@@ -47,8 +47,6 @@ namespace StakeholderAnalysis.Visualization.ViewModels.Ribbon
             }
         }
 
-        public ICommand ChangeColorCommand => new ChangeColorCommand(StakeholderConnectionGroup);
-
         private void ConnectionGroupPropertyChanged(object sender, PropertyChangedEventArgs e)
         {
             switch (e.PropertyName)
@@ -61,25 +59,5 @@ namespace StakeholderAnalysis.Visualization.ViewModels.Ribbon
                     break;
             }
         }
-    }
-
-    public class ChangeColorCommand : ICommand
-    {
-        public ChangeColorCommand(StakeholderConnectionGroup stakeholderConnectionGroup)
-        {
-            throw new NotImplementedException();
-        }
-
-        public bool CanExecute(object parameter)
-        {
-            throw new NotImplementedException();
-        }
-
-        public void Execute(object parameter)
-        {
-            throw new NotImplementedException();
-        }
-
-        public event EventHandler CanExecuteChanged;
     }
 }
