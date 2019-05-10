@@ -1,10 +1,13 @@
-﻿using System.ComponentModel;
+﻿using System.Collections.Specialized;
+using System.ComponentModel;
+using System.Linq;
 using System.Windows.Input;
 using StakeholderAnalysis.Data;
 using StakeholderAnalysis.Visualization.Commands;
 using StakeholderAnalysis.Visualization.Commands.FileHandling;
 using StakeholderAnalysis.Visualization.Commands.ProjectExplorer;
 using StakeholderAnalysis.Visualization.ViewModels.OnionDiagramView;
+using StakeholderAnalysis.Visualization.ViewModels.ProjectExplorer;
 
 namespace StakeholderAnalysis.Visualization.ViewModels.Ribbon
 {
@@ -21,6 +24,7 @@ namespace StakeholderAnalysis.Visualization.ViewModels.Ribbon
 
             ViewManagerViewModel = new ViewManagerViewModel(gui.ViewManager);
             gui.ViewManager.PropertyChanged += ViewManagerPropertyChanged;
+            gui.ViewManager.ToolWindows.CollectionChanged += ToolwindowsCollectionChanged;
             gui.PropertyChanged += GuiPropertyChanged;
         }
 
@@ -68,7 +72,18 @@ namespace StakeholderAnalysis.Visualization.ViewModels.Ribbon
                 ? new RibbonSelectedOnionDiagramViewModel(viewModel.GetDiagram())
                 : null;
 
-        public ICommand ShowToolWindowCommand => new ShowProjectExplorerCommand(analysis, gui.ViewManager);
+        public ICommand ToggleToolWindowCommand => new ToggleProjectExplorerCommand(analysis, gui.ViewManager);
+
+        private void ToolwindowsCollectionChanged(object sender, NotifyCollectionChangedEventArgs e)
+        {
+            OnPropertyChanged(nameof(IsProjectExplorerToolwindowActive));
+        }
+
+        public bool IsProjectExplorerToolwindowActive
+        {
+            get => gui.ViewManager.ToolWindows.Any(vi => vi.ViewModel is ProjectExplorerViewModel);
+            set { }
+        }
 
         private void GuiPropertyChanged(object sender, PropertyChangedEventArgs e)
         {

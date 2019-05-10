@@ -96,7 +96,7 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Commands\AddOnionRingCommand.cs" />
-    <Compile Include="Commands\ProjectExplorer\ShowProjectExplorerCommand.cs" />
+    <Compile Include="Commands\ProjectExplorer\ToggleProjectExplorerCommand.cs" />
     <Compile Include="Commands\ProjectExplorer\AddNewDiagramCommand.cs" />
     <Compile Include="Commands\CloseApplicationCommand.cs" />
     <Compile Include="Commands\FileHandling\FileHandlingCommandBase.cs" />

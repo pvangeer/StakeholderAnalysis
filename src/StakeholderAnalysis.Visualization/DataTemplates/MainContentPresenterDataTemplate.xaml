@@ -6,6 +6,7 @@
                     xmlns:converters="clr-namespace:StakeholderAnalysis.Visualization.Converters"
                     xmlns:visualization="clr-namespace:StakeholderAnalysis.Visualization"
                     xmlns:xctk="http://schemas.xceed.com/wpf/xaml/toolkit">
+
     <ResourceDictionary.MergedDictionaries>
         <ResourceDictionary Source="OnionDiagram/OnionDiagramDataTemplate.xaml" />
         <ResourceDictionary Source="TwoAxisDiagrams/TwoAxisDiagramDataTemplate.xaml" />
@@ -21,6 +22,15 @@
                                         ProjectExplorerDataTemplate="{StaticResource ProjectExplorerDataTemplate}"
                                         StakeholderForcesDiagramTemplate="{StaticResource TwoAxisDiagramDataTemplate}"
                                         AttitudeImpactDiagramTemplate="{StaticResource TwoAxisDiagramDataTemplate}"/>
+
+    <Style x:Key="LayoutDocumentItemContainerStyle" TargetType="xcad:LayoutItem" >
+        <Setter Property="CloseCommand" Value="{Binding Model.CloseViewCommand}"/>
+    </Style>
+
+    <Style x:Key="LayoutAnchorableItemContainerStyle" TargetType="xcad:LayoutAnchorableItem" BasedOn="{StaticResource LayoutDocumentItemContainerStyle}">
+        <Setter Property="Title" Value="{Binding Model.Title }"/>
+        <Setter Property="HideCommand" Value="{Binding Model.CloseViewCommand}"/>
+    </Style>
 
     <DataTemplate x:Key="DocumentLayoutDataTemplate" DataType="gui:ViewInfo">
         <ContentPresenter 
@@ -67,15 +77,6 @@
         </ContentPresenter>
     </DataTemplate>
 
-    <Style x:Key="LayoutDocumentItemContainerStyle" TargetType="xcad:LayoutItem" >
-        <Setter Property="CloseCommand" Value="{Binding Model.CloseViewCommand}"/>
-    </Style>
-
-    <Style x:Key="LayoutAnchorableItemContainerStyle" TargetType="xcad:LayoutAnchorableItem" BasedOn="{StaticResource LayoutDocumentItemContainerStyle}">
-        <Setter Property="Title" Value="{Binding Model.Title }"/>
-        <Setter Property="HideCommand" Value="{Binding Model.CloseViewCommand}"/>
-    </Style>
-
     <DataTemplate x:Key="MainContentPresenterDataTemplate" DataType="viewModels:MainContentPresenterViewModel">
         <Grid>
             <xcad:DockingManager
@@ -86,6 +87,10 @@
                 BorderBrush="Black"
                 ActiveContent="{Binding ViewManager.CurrentViewInfo, Mode=TwoWay}"
                 BorderThickness="1">
+
+                <xcad:DockingManager.Theme>
+                    <xcad:MetroTheme />
+                </xcad:DockingManager.Theme>
 
                 <xcad:DockingManager.DocumentHeaderTemplate>
                     <DataTemplate DataType="xcad:LayoutDocument">
@@ -107,10 +112,8 @@
                         AnchorableContainerStyle="{StaticResource LayoutAnchorableItemContainerStyle}"
                         DocumentContainerStyle="{StaticResource LayoutDocumentItemContainerStyle}"/>
                 </xcad:DockingManager.LayoutItemContainerStyleSelector>
-                <xcad:DockingManager.Theme>
-                    <xcad:MetroTheme />
-                </xcad:DockingManager.Theme>
-                <xcad:LayoutRoot />
+
+                <xcad:LayoutRoot/>
             </xcad:DockingManager>
         </Grid>
     </DataTemplate>

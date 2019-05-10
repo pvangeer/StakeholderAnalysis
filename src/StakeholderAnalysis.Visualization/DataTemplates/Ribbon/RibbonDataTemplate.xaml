@@ -61,11 +61,12 @@
 
             <fluent:RibbonTabItem Header="Start">
                 <fluent:RibbonGroupBox Header="Beeld">
-                    <fluent:Button 
+                    <fluent:ToggleButton 
                         Size="Middle"
                         Header="Projectgegevens tonen" 
                         Icon="pack://application:,,,/StakeholderAnalysis.Visualization;component/Resources/document.png"
-                        Command="{Binding ShowToolWindowCommand}"/>
+                        IsChecked="{Binding IsProjectExplorerToolwindowActive}"
+                        Command="{Binding ToggleToolWindowCommand}"/>
                     <fluent:ToggleButton
                         Header="Vergrootglas"
                         Size="Large"

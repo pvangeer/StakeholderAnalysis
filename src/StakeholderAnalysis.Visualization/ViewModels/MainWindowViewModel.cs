@@ -14,7 +14,7 @@ namespace StakeholderAnalysis.Visualization.ViewModels
         {
             analysis = analysisInput;
             gui = guiInput;
-            RibbonViewModel.ShowToolWindowCommand.Execute(null);
+            RibbonViewModel.ToggleToolWindowCommand.Execute(null);
         }
 
         public MainContentPresenterViewModel MainContentPresenterViewModel => new MainContentPresenterViewModel(gui);
