@@ -18,7 +18,7 @@ namespace StakeholderAnalysis.Gui
 
         public object ViewModel { get; }
 
-        public CloseViewCommand CloseViewCommand { get; set; }
+        public ICommand CloseViewCommand { get; set; }
 
         public bool IsDocumentView { get; }
     }

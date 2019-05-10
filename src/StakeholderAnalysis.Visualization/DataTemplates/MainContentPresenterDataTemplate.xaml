@@ -67,6 +67,15 @@
         </ContentPresenter>
     </DataTemplate>
 
+    <Style x:Key="LayoutDocumentItemContainerStyle" TargetType="xcad:LayoutItem" >
+        <Setter Property="CloseCommand" Value="{Binding Model.CloseViewCommand}"/>
+    </Style>
+
+    <Style x:Key="LayoutAnchorableItemContainerStyle" TargetType="xcad:LayoutAnchorableItem" BasedOn="{StaticResource LayoutDocumentItemContainerStyle}">
+        <Setter Property="Title" Value="{Binding Model.Title }"/>
+        <Setter Property="HideCommand" Value="{Binding Model.CloseViewCommand}"/>
+    </Style>
+
     <DataTemplate x:Key="MainContentPresenterDataTemplate" DataType="viewModels:MainContentPresenterViewModel">
         <Grid>
             <xcad:DockingManager
@@ -87,27 +96,17 @@
                     </DataTemplate>
                 </xcad:DockingManager.DocumentHeaderTemplate>
 
-                <xcad:DockingManager.AnchorableHeaderTemplate>
-                    <DataTemplate DataType="xcad:LayoutAnchorable">
-                        <StackPanel Orientation="Horizontal" Background="AliceBlue">
-                            <Image Source="{Binding Content.IconReference}" Margin="0,0,4,0" Height="16" Width="16"/>
-                            <TextBlock Text="{Binding Content.Title}" />
-                        </StackPanel>
-                    </DataTemplate>
-                </xcad:DockingManager.AnchorableHeaderTemplate>
-
                 <xcad:DockingManager.LayoutItemTemplateSelector>
                     <visualization:PresentationLayoutTemplateSelector
                         DocumentLayoutTemplate ="{StaticResource DocumentLayoutDataTemplate}"
                         AnchorableLayoutTemplate="{StaticResource AnchorableLayoutDataTemplate}"/>
                 </xcad:DockingManager.LayoutItemTemplateSelector>
 
-                <xcad:DockingManager.LayoutItemContainerStyle>
-                    <Style TargetType="xcad:LayoutItem">
-                        <Setter Property="CloseCommand" Value="{Binding Model.CloseViewCommand}"/>
-                    </Style>
-                </xcad:DockingManager.LayoutItemContainerStyle>
-
+                <xcad:DockingManager.LayoutItemContainerStyleSelector>
+                    <visualization:LayouItemContainerStyleSelector
+                        AnchorableContainerStyle="{StaticResource LayoutAnchorableItemContainerStyle}"
+                        DocumentContainerStyle="{StaticResource LayoutDocumentItemContainerStyle}"/>
+                </xcad:DockingManager.LayoutItemContainerStyleSelector>
                 <xcad:DockingManager.Theme>
                     <xcad:MetroTheme />
                 </xcad:DockingManager.Theme>

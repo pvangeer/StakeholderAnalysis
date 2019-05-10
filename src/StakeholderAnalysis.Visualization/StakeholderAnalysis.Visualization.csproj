@@ -122,6 +122,7 @@
     <Compile Include="Converters\ValueToSameConverter.cs" />
     <Compile Include="DragOnCanvasBehavior.cs" />
     <Compile Include="IDropHandler.cs" />
+    <Compile Include="LayouItemContainerStyleSelector.cs" />
     <Compile Include="ViewModels\ProjectExplorer\IProjectExplorerDiagramViewModel.cs" />
     <Compile Include="ViewModels\ProjectExplorer\ProjectExplorerAttitudeImpactDiagramsViewModel.cs" />
     <Compile Include="ViewModels\ProjectExplorer\ProjectExplorerForceFieldDiagramsViewModel.cs" />

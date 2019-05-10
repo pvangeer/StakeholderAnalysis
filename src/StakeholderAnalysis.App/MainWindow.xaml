@@ -6,6 +6,7 @@
                      xmlns:viewmodels="clr-namespace:StakeholderAnalysis.Visualization.ViewModels;assembly=StakeholderAnalysis.Visualization"
                      xmlns:fluent="urn:fluent-ribbon"
                      mc:Ignorable="d"
+                     Loaded="MainWindow_OnLoaded"
                      Title="Stakeholderanalyse"
                      Height="900"
                      Width="1500">
