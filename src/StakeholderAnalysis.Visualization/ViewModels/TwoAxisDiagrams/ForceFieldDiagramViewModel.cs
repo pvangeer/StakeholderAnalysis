@@ -3,7 +3,6 @@ using System.Collections.Specialized;
 using System.Linq;
 using System.Windows;
 using System.Windows.Media;
-using StakeholderAnalysis.Data;
 using StakeholderAnalysis.Data.ForceFieldDiagrams;
 
 namespace StakeholderAnalysis.Visualization.ViewModels.TwoAxisDiagrams
@@ -28,13 +27,13 @@ namespace StakeholderAnalysis.Visualization.ViewModels.TwoAxisDiagrams
         private void StakeholdersCollectionChanged(object sender, NotifyCollectionChangedEventArgs e)
         {
             if (e.Action == NotifyCollectionChangedAction.Add)
-                foreach (var item in e.NewItems.OfType<Stakeholder>())
+                foreach (var item in e.NewItems.OfType<ForceFieldDiagramStakeholder>())
                     PositionedStakeholders.Add(new ForceFieldDiagramStakeholderViewModel(item));
 
             if (e.Action == NotifyCollectionChangedAction.Remove)
-                foreach (var stakeholder in e.OldItems.OfType<Stakeholder>())
+                foreach (var stakeholder in e.OldItems.OfType<ForceFieldDiagramStakeholder>())
                     PositionedStakeholders.Remove(PositionedStakeholders.FirstOrDefault(viewModel =>
-                        viewModel.IsViewModelFor(stakeholder)));
+                        viewModel.IsViewModelFor(stakeholder.Stakeholder)));
         }
 
         public Brush BackgroundBrush => new LinearGradientBrush(Colors.CornflowerBlue, Colors.LimeGreen, new Point(0,1), new Point(1,0));

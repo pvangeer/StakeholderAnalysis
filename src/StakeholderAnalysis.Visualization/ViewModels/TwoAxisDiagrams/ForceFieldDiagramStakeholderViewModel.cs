@@ -1,32 +1,39 @@
 ﻿using System;
 using System.ComponentModel;
-using StakeholderAnalysis.Data;
+using StakeholderAnalysis.Data.ForceFieldDiagrams;
 
 namespace StakeholderAnalysis.Visualization.ViewModels.TwoAxisDiagrams
 {
     public class ForceFieldDiagramStakeholderViewModel : StakeholderViewModel, IPositionedStakeholderViewModel
     {
-        public ForceFieldDiagramStakeholderViewModel(Stakeholder stakeholder) : base(stakeholder)
+        private readonly ForceFieldDiagramStakeholder firceFieldDiagramStakeholder;
+
+        public ForceFieldDiagramStakeholderViewModel(ForceFieldDiagramStakeholder stakeholder) : base(stakeholder?.Stakeholder)
         {
+            firceFieldDiagramStakeholder = stakeholder;
+            if (firceFieldDiagramStakeholder != null)
+            {
+                firceFieldDiagramStakeholder.PropertyChanged += StakeholderPropertyChanged;
+            }
         }
 
         public double RelativePositionLeft
         {
-            get => Stakeholder.Interest;
+            get => firceFieldDiagramStakeholder.Interest;
             set
             {
-                Stakeholder.Interest = value;
-                Stakeholder.OnPropertyChanged(nameof(Stakeholder.Interest));
+                firceFieldDiagramStakeholder.Interest = value;
+                firceFieldDiagramStakeholder.OnPropertyChanged(nameof(firceFieldDiagramStakeholder.Interest));
             }
         }
 
         public double RelativePositionTop
         {
-            get => 1 - Stakeholder.Influence;
+            get => 1 - firceFieldDiagramStakeholder.Influence;
             set
             {
-                Stakeholder.Influence = 1 - value;
-                Stakeholder.OnPropertyChanged(nameof(Stakeholder.Influence));
+                firceFieldDiagramStakeholder.Influence = 1 - value;
+                firceFieldDiagramStakeholder.OnPropertyChanged(nameof(firceFieldDiagramStakeholder.Influence));
             }
         }
 
@@ -40,10 +47,10 @@ namespace StakeholderAnalysis.Visualization.ViewModels.TwoAxisDiagrams
         {
             switch (e.PropertyName)
             {
-                case nameof(Stakeholder.Interest):
+                case nameof(firceFieldDiagramStakeholder.Interest):
                     OnPropertyChanged(nameof(RelativePositionLeft));
                     break;
-                case nameof(Stakeholder.Influence):
+                case nameof(firceFieldDiagramStakeholder.Influence):
                     OnPropertyChanged(nameof(RelativePositionTop));
                     break;
             }

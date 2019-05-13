@@ -27,13 +27,13 @@ namespace StakeholderAnalysis.Visualization.ViewModels.TwoAxisDiagrams
         private void StakeholdersCollectionChanged(object sender, NotifyCollectionChangedEventArgs e)
         {
             if (e.Action == NotifyCollectionChangedAction.Add)
-                foreach (var item in e.NewItems.OfType<Stakeholder>())
+                foreach (var item in e.NewItems.OfType<AttitudeImpactDiagramStakeholder>())
                     PositionedStakeholders.Add(new AttitudeImpactDiagramStakeholderViewModel(item));
 
             if (e.Action == NotifyCollectionChangedAction.Remove)
-                foreach (var stakeholder in e.OldItems.OfType<Stakeholder>())
+                foreach (var stakeholder in e.OldItems.OfType<AttitudeImpactDiagramStakeholder>())
                     PositionedStakeholders.Remove(PositionedStakeholders.FirstOrDefault(viewModel =>
-                        viewModel.IsViewModelFor(stakeholder)));
+                        viewModel.IsViewModelFor(stakeholder.Stakeholder)));
         }
 
         public Brush BackgroundBrush => new LinearGradientBrush(Colors.LightYellow, Colors.PaleVioletRed, new Point(0,0), new Point(1,1));

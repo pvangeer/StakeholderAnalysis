@@ -39,9 +39,11 @@
   <ItemGroup>
     <Compile Include="Analysis.cs" />
     <Compile Include="AttitudeImpactDiagrams\AttitudeImpactDiagram.cs" />
+    <Compile Include="AttitudeImpactDiagrams\AttitudeImpactDiagramStakeholder.cs" />
     <Compile Include="Exceptions\NaNValueException.cs" />
     <Compile Include="Exceptions\ValueOutOfBoundsException.cs" />
     <Compile Include="ForceFieldDiagrams\ForceFieldDiagram.cs" />
+    <Compile Include="ForceFieldDiagrams\ForceFieldDiagramStakeholder.cs" />
     <Compile Include="OnionDiagrams\OnionDiagram.cs" />
     <Compile Include="OnionDiagrams\OnionDiagramStakeholder.cs" />
     <Compile Include="OnionDiagrams\StakeholderConnectionGroup.cs" />

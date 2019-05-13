@@ -8,12 +8,12 @@ namespace StakeholderAnalysis.Data.ForceFieldDiagrams
         public ForceFieldDiagram(string name)
         {
             Name = name;
-            Stakeholders = new ObservableCollection<Stakeholder>();
+            Stakeholders = new ObservableCollection<ForceFieldDiagramStakeholder>();
         }
 
         public string Name { get; set; }
 
-        public ObservableCollection<Stakeholder> Stakeholders { get; }
+        public ObservableCollection<ForceFieldDiagramStakeholder> Stakeholders { get; }
 
     }
 }

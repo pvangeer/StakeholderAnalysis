@@ -7,11 +7,11 @@ namespace StakeholderAnalysis.Data.AttitudeImpactDiagrams
         public AttitudeImpactDiagram(string name)
         {
             Name = name;
-            Stakeholders = new ObservableCollection<Stakeholder>();
+            Stakeholders = new ObservableCollection<AttitudeImpactDiagramStakeholder>();
         }
 
         public string Name { get; set; }
 
-        public ObservableCollection<Stakeholder> Stakeholders { get; }
+        public ObservableCollection<AttitudeImpactDiagramStakeholder> Stakeholders { get; }
     }
 }

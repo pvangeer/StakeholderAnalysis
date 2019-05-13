@@ -1,32 +1,39 @@
 ﻿using System;
 using System.ComponentModel;
-using StakeholderAnalysis.Data;
+using StakeholderAnalysis.Data.AttitudeImpactDiagrams;
 
 namespace StakeholderAnalysis.Visualization.ViewModels.TwoAxisDiagrams
 {
     public class AttitudeImpactDiagramStakeholderViewModel : StakeholderViewModel, IPositionedStakeholderViewModel
     {
-        public AttitudeImpactDiagramStakeholderViewModel(Stakeholder stakeholder) : base(stakeholder)
+        private readonly AttitudeImpactDiagramStakeholder attitudeImpactDiagramStakeholder;
+
+        public AttitudeImpactDiagramStakeholderViewModel(AttitudeImpactDiagramStakeholder stakeholder) : base(stakeholder?.Stakeholder)
         {
+            attitudeImpactDiagramStakeholder = stakeholder;
+            if (attitudeImpactDiagramStakeholder != null)
+            {
+                attitudeImpactDiagramStakeholder.PropertyChanged += StakeholderPropertyChanged;
+            }
         }
 
         public double RelativePositionLeft
         {
-            get => Stakeholder.Impact;
+            get => attitudeImpactDiagramStakeholder.Impact;
             set
             {
-                Stakeholder.Impact = value;
-                Stakeholder.OnPropertyChanged(nameof(Stakeholder.Impact));
+                attitudeImpactDiagramStakeholder.Impact = value;
+                attitudeImpactDiagramStakeholder.OnPropertyChanged(nameof(attitudeImpactDiagramStakeholder.Impact));
             }
         }
 
         public double RelativePositionTop
         {
-            get => 1-Stakeholder.Attitude;
+            get => 1- attitudeImpactDiagramStakeholder.Attitude;
             set
             {
-                Stakeholder.Attitude = 1 - value;
-                Stakeholder.OnPropertyChanged(nameof(Stakeholder.Attitude));
+                attitudeImpactDiagramStakeholder.Attitude = 1 - value;
+                attitudeImpactDiagramStakeholder.OnPropertyChanged(nameof(attitudeImpactDiagramStakeholder.Attitude));
             }
         }
 
@@ -40,10 +47,10 @@ namespace StakeholderAnalysis.Visualization.ViewModels.TwoAxisDiagrams
         {
             switch (e.PropertyName)
             {
-                case nameof(Stakeholder.Impact):
+                case nameof(attitudeImpactDiagramStakeholder.Impact):
                     OnPropertyChanged(nameof(RelativePositionLeft));
                     break;
-                case nameof(Stakeholder.Attitude):
+                case nameof(attitudeImpactDiagramStakeholder.Attitude):
                     OnPropertyChanged(nameof(RelativePositionTop));
                     break;
             }
