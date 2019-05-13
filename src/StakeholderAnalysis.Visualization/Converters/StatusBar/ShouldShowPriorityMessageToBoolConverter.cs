@@ -3,7 +3,7 @@ using System.Globalization;
 using System.Windows.Data;
 using StakeholderAnalysis.Messaging;
 
-namespace StakeholderAnalysis.Visualization.Converters
+namespace StakeholderAnalysis.Visualization.Converters.StatusBar
 {
     public class ShouldShowPriorityMessageToBoolConverter : IValueConverter
     {

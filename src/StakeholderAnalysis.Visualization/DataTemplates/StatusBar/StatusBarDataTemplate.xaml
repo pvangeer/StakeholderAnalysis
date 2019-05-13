@@ -10,7 +10,7 @@
     </ResourceDictionary.MergedDictionaries>
 
     <statusBar1:MessageListToLabelConverter x:Key="MessageListToLabelConverter" />
-    <converters:ShouldShowPriorityMessageToBoolConverter x:Key="ShouldShowPriorityMessageToBoolConverter" />
+    <statusBar1:ShouldShowPriorityMessageToBoolConverter x:Key="ShouldShowPriorityMessageToBoolConverter" />
 
     <DataTemplate x:Key="StatusBarDataTemplate" DataType="statusBar:StatusBarViewModel">
         <fluent:StatusBar>
