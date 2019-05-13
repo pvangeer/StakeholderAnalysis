@@ -42,6 +42,9 @@
     <Reference Include="Fluent, Version=6.1.0.326, Culture=neutral, processorArchitecture=MSIL">
       <HintPath>..\..\packages\Fluent.Ribbon.6.1.0.326\lib\net45\Fluent.dll</HintPath>
     </Reference>
+    <Reference Include="log4net, Version=2.0.8.0, Culture=neutral, PublicKeyToken=669e0ddf0bb1aa2a, processorArchitecture=MSIL">
+      <HintPath>..\..\packages\log4net.2.0.8\lib\net45-full\log4net.dll</HintPath>
+    </Reference>
     <Reference Include="System" />
     <Reference Include="System.Windows.Interactivity, Version=4.5.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
       <HintPath>..\..\packages\ControlzEx.3.0.2.4\lib\net45\System.Windows.Interactivity.dll</HintPath>
@@ -145,6 +148,10 @@
     <ProjectReference Include="..\StakeholderAnalysis.Gui\StakeholderAnalysis.Gui.csproj">
       <Project>{b9d3e8f2-c9b7-4201-8e05-a1c2827822cd}</Project>
       <Name>StakeholderAnalysis.Gui</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\StakeholderAnalysis.Messaging\StakeholderAnalysis.Messaging.csproj">
+      <Project>{1d562df9-df35-46fa-b33a-b8aef5fc7cf0}</Project>
+      <Name>StakeholderAnalysis.Messaging</Name>
     </ProjectReference>
     <ProjectReference Include="..\StakeholderAnalysis.Visualization\StakeholderAnalysis.Visualization.csproj">
       <Project>{a1b8304f-db80-4144-918b-558887b97f3b}</Project>

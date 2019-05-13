@@ -1,5 +1,6 @@
 ﻿using System.ComponentModel;
 using StakeholderAnalysis.Data;
+using StakeholderAnalysis.Gui;
 using StakeholderAnalysis.Visualization.Commands;
 
 namespace StakeholderAnalysis.Visualization.ViewModels
@@ -8,9 +9,9 @@ namespace StakeholderAnalysis.Visualization.ViewModels
     {
         private bool isSaveToImage;
         private RelayCommand saveCanvasCommand;
-        private readonly Gui.Gui gui;
+        private readonly Gui.StakeholderAnalysisGui gui;
 
-        public MainContentPresenterViewModel(Gui.Gui gui)
+        public MainContentPresenterViewModel(StakeholderAnalysisGui gui)
         {
             this.gui = gui;
             if (gui != null)
@@ -23,10 +24,10 @@ namespace StakeholderAnalysis.Visualization.ViewModels
         {
             switch (e.PropertyName)
             {
-                case nameof(Gui.Gui.IsMagnifierActive):
+                case nameof(StakeholderAnalysisGui.IsMagnifierActive):
                     OnPropertyChanged(nameof(IsMagnifierActive));
                     break;
-                case nameof(Gui.Gui.IsSaveToImage):
+                case nameof(StakeholderAnalysisGui.IsSaveToImage):
                     OnPropertyChanged(nameof(IsSaveToImage));
                     break;
             }
@@ -50,7 +51,7 @@ namespace StakeholderAnalysis.Visualization.ViewModels
             set
             {
                 gui.IsMagnifierActive = value;
-                gui.OnPropertyChanged(nameof(Gui.Gui.IsMagnifierActive));
+                gui.OnPropertyChanged(nameof(StakeholderAnalysisGui.IsMagnifierActive));
             }
         }
     }

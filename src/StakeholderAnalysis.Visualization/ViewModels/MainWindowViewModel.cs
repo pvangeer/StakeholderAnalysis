@@ -1,16 +1,18 @@
 using StakeholderAnalysis.Data;
+using StakeholderAnalysis.Gui;
 using StakeholderAnalysis.Visualization.ViewModels.Ribbon;
+using StakeholderAnalysis.Visualization.ViewModels.StatusBar;
 
 namespace StakeholderAnalysis.Visualization.ViewModels
 {
     public class MainWindowViewModel : NotifyPropertyChangedObservable
     {
         private readonly Analysis analysis;
-        private readonly Gui.Gui gui;
+        private readonly StakeholderAnalysisGui gui;
 
-        public MainWindowViewModel() : this(new Analysis(), new Gui.Gui()){ }
+        public MainWindowViewModel() : this(new Analysis(), new StakeholderAnalysisGui()){ }
 
-        public MainWindowViewModel(Analysis analysisInput, Gui.Gui guiInput)
+        public MainWindowViewModel(Analysis analysisInput, StakeholderAnalysisGui guiInput)
         {
             analysis = analysisInput;
             gui = guiInput;
@@ -20,5 +22,7 @@ namespace StakeholderAnalysis.Visualization.ViewModels
         public MainContentPresenterViewModel MainContentPresenterViewModel => new MainContentPresenterViewModel(gui);
 
         public RibbonViewModel RibbonViewModel => new RibbonViewModel(analysis,gui);
+
+        public StatusBarViewModel StatusBarViewModel => new StatusBarViewModel(analysis, gui);
     }
 }

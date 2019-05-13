@@ -3,6 +3,7 @@ using System.ComponentModel;
 using System.Linq;
 using System.Windows.Input;
 using StakeholderAnalysis.Data;
+using StakeholderAnalysis.Gui;
 using StakeholderAnalysis.Visualization.Commands;
 using StakeholderAnalysis.Visualization.Commands.FileHandling;
 using StakeholderAnalysis.Visualization.Commands.ProjectExplorer;
@@ -13,11 +14,11 @@ namespace StakeholderAnalysis.Visualization.ViewModels.Ribbon
 {
     public class RibbonViewModel : NotifyPropertyChangedObservable
     {
-        private readonly Gui.Gui gui;
+        private readonly StakeholderAnalysisGui gui;
         private readonly Analysis analysis;
         private RelayCommand saveCanvasCommand;
 
-        public RibbonViewModel(Analysis analysisInput, Gui.Gui guiInput)
+        public RibbonViewModel(Analysis analysisInput, StakeholderAnalysisGui guiInput)
         {
             gui = guiInput;
             analysis = analysisInput;
@@ -49,7 +50,7 @@ namespace StakeholderAnalysis.Visualization.ViewModels.Ribbon
             set
             {
                 gui.IsMagnifierActive = value;
-                gui.OnPropertyChanged(nameof(Gui.Gui.IsMagnifierActive));
+                gui.OnPropertyChanged(nameof(StakeholderAnalysisGui.IsMagnifierActive));
             }
         }
 
@@ -60,9 +61,9 @@ namespace StakeholderAnalysis.Visualization.ViewModels.Ribbon
                 return saveCanvasCommand ?? (saveCanvasCommand = new RelayCommand(() =>
                 {
                     gui.IsSaveToImage = true;
-                    gui.OnPropertyChanged(nameof(Gui.Gui.IsSaveToImage));
+                    gui.OnPropertyChanged(nameof(StakeholderAnalysisGui.IsSaveToImage));
                     gui.IsSaveToImage = false;
-                    gui.OnPropertyChanged(nameof(Gui.Gui.IsSaveToImage));
+                    gui.OnPropertyChanged(nameof(StakeholderAnalysisGui.IsSaveToImage));
                 }, () => gui.ViewManager.ActiveDocument != null));
             }
         }
@@ -89,7 +90,7 @@ namespace StakeholderAnalysis.Visualization.ViewModels.Ribbon
         {
             switch (e.PropertyName)
             {
-                case nameof(Gui.Gui.IsMagnifierActive):
+                case nameof(StakeholderAnalysisGui.IsMagnifierActive):
                     OnPropertyChanged(nameof(IsMagnifierActive));
                     break;
             }

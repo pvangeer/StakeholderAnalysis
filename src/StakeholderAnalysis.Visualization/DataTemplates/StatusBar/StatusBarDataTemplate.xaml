@@ -1,0 +1,51 @@
+﻿<ResourceDictionary xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+                    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+                    xmlns:statusBar="clr-namespace:StakeholderAnalysis.Visualization.ViewModels.StatusBar"
+                    xmlns:fluent="urn:fluent-ribbon"
+                    xmlns:statusBar1="clr-namespace:StakeholderAnalysis.Visualization.Converters.StatusBar"
+                    xmlns:converters="clr-namespace:StakeholderAnalysis.Visualization.Converters">
+    
+    <ResourceDictionary.MergedDictionaries>
+        <ResourceDictionary Source="MessageDataTemplates.xaml"></ResourceDictionary>
+    </ResourceDictionary.MergedDictionaries>
+
+    <statusBar1:MessageListToLabelConverter x:Key="MessageListToLabelConverter" />
+    <converters:ShouldShowPriorityMessageToBoolConverter x:Key="ShouldShowPriorityMessageToBoolConverter" />
+
+    <DataTemplate x:Key="StatusBarDataTemplate" DataType="statusBar:StatusBarViewModel">
+        <fluent:StatusBar>
+            <fluent:StatusBarItem
+                HorizontalAlignment="Right">
+                <StackPanel>
+                    <Label Name="MessagesLabel" VerticalAlignment="Center">
+                        <Hyperlink 
+                            Command="{Binding ShowMessageListCommand}" 
+                            Foreground="AliceBlue">
+                            <TextBlock Text="{Binding MessagesViewModel, Converter={StaticResource MessageListToLabelConverter}}"/>
+                        </Hyperlink>
+                    </Label>
+                    <Popup IsOpen="{Binding ShowMessages}"
+                           PlacementTarget="{Binding ElementName=MessagesLabel}"
+                           AllowsTransparency="True"
+                           HorizontalOffset="-250"
+                           Placement="Top"
+                           StaysOpen="False"
+                           PopupAnimation="Slide">
+                        <ContentPresenter Content="{Binding MessagesViewModel}" ContentTemplate="{StaticResource MessageListTemplate}"/>
+                    </Popup>
+                </StackPanel>
+            </fluent:StatusBarItem>
+
+            <Separator HorizontalAlignment="Right"/>
+
+            <Popup IsOpen="{Binding PriorityMessage, Converter={StaticResource ShouldShowPriorityMessageToBoolConverter}}"
+                   PlacementTarget="{Binding ElementName=StatusBarItem}"
+                   HorizontalOffset="-290"
+                   AllowsTransparency="True"
+                   Placement="Top"
+                   PopupAnimation="Slide">
+                <ContentPresenter Content="{Binding}" ContentTemplate="{StaticResource PopupErrorMessageTemplate}"/>
+            </Popup>
+        </fluent:StatusBar>
+    </DataTemplate>
+</ResourceDictionary>

@@ -1,5 +1,6 @@
 ﻿using System.Windows;
 using Fluent;
+using StakeholderAnalysis.Gui;
 using StakeholderAnalysis.Visualization.ViewModels;
 
 namespace StakeholderAnalysis.App
@@ -16,7 +17,7 @@ namespace StakeholderAnalysis.App
 
         private void MainWindow_OnLoaded(object sender, RoutedEventArgs e)
         {
-            DataContext = new MainWindowViewModel(AnalysisGenerator.GetAnalysis(), new Gui.Gui());
+            DataContext = new MainWindowViewModel(AnalysisGenerator.GetAnalysis(), new StakeholderAnalysisGui());
         }
     }
 }

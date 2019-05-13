@@ -21,6 +21,7 @@
                 <ResourceDictionary Source="/Fluent;Component/Themes/generic.xaml" />
                 <ResourceDictionary Source="/StakeholderAnalysis.Visualization;Component/DataTemplates/Ribbon/RibbonDataTemplate.xaml" />
                 <ResourceDictionary Source="/StakeholderAnalysis.Visualization;Component/DataTemplates/MainContentPresenterDataTemplate.xaml" />
+                <ResourceDictionary Source="/StakeholderAnalysis.Visualization;Component/DataTemplates/StatusBar/StatusBarDataTemplate.xaml" />
             </ResourceDictionary.MergedDictionaries>
         </ResourceDictionary>
     </Window.Resources>
@@ -29,6 +30,7 @@
         <Grid.RowDefinitions>
             <RowDefinition Height="Auto" />
             <RowDefinition Height="*" />
+            <RowDefinition Height="Auto" />
         </Grid.RowDefinitions>
         <ContentPresenter 
             Grid.Row="0" 
@@ -38,5 +40,9 @@
             Grid.Row="1" 
             Content="{Binding MainContentPresenterViewModel}"
             ContentTemplate="{StaticResource MainContentPresenterDataTemplate}" />
+        <ContentPresenter 
+            Grid.Row="2"
+            Content="{Binding StatusBarViewModel}"
+            ContentTemplate="{StaticResource StatusBarDataTemplate}"/>
     </Grid>
 </fluent:RibbonWindow>
