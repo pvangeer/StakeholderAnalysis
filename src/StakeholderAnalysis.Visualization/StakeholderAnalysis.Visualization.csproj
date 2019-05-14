@@ -98,7 +98,9 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Commands\RemoveOnionRingCommand.cs" />
+    <Compile Include="Commands\OnionDiagramProperties\AddConnectionGroupCommand.cs" />
+    <Compile Include="Commands\OnionDiagramProperties\RemoveConnectionGroupCommand.cs" />
+    <Compile Include="Commands\OnionDiagramProperties\RemoveOnionRingCommand.cs" />
     <Compile Include="Commands\Ribbon\AddOnionRingCommand.cs" />
     <Compile Include="Commands\ProjectExplorer\ToggleToolWindowCommand.cs" />
     <Compile Include="Commands\ProjectExplorer\AddNewDiagramCommand.cs" />
@@ -138,8 +140,10 @@
     <Compile Include="IDropHandler.cs" />
     <Compile Include="LayouItemContainerStyleSelector.cs" />
     <Compile Include="ViewModels\IExpandableContentViewModel.cs" />
+    <Compile Include="ViewModels\OnionDiagramProperties\ConnectionGroupPropertiesViewModel.cs" />
     <Compile Include="ViewModels\OnionDiagramProperties\OnionDiagramPropertiesViewModel.cs" />
     <Compile Include="ViewModels\OnionDiagramProperties\OnionRingPropertiesViewModel.cs" />
+    <Compile Include="ViewModels\OnionDiagramProperties\ConnectionGroupsPropertiesViewModel.cs" />
     <Compile Include="ViewModels\OnionDiagramProperties\OnionRingsPropertiesViewModel.cs" />
     <Compile Include="ViewModels\ProjectExplorer\IProjectExplorerDiagramViewModel.cs" />
     <Compile Include="ViewModels\ProjectExplorer\ProjectExplorerAttitudeImpactDiagramsViewModel.cs" />
@@ -215,6 +219,10 @@
     <Page Include="DataTemplates\OnionDiagramProperties\OnionDiagramPropertiesDataTemplate.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="DataTemplates\OnionDiagramProperties\ConnectionGroupsPropertiesDataTemplate.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
     </Page>
     <Page Include="DataTemplates\OnionDiagramProperties\OnionRingsPropertiesDataTemplate.xaml">
       <SubType>Designer</SubType>

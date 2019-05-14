@@ -42,5 +42,7 @@ namespace StakeholderAnalysis.Visualization.ViewModels.OnionDiagramProperties
         public OnionRingsPropertiesViewModel OnionRingsViewModel => new OnionRingsPropertiesViewModel(viewManager);
 
         private OnionDiagram SelectedOnionDiagram => (viewManager?.ActiveDocument?.ViewModel as OnionDiagramViewModel)?.GetDiagram();
+
+        public ConnectionGroupsPropertiesViewModel ConnectionGroupsViewModel => new ConnectionGroupsPropertiesViewModel(viewManager);
     }
 }

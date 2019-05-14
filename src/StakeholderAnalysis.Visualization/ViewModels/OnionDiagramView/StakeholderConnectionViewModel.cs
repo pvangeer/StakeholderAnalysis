@@ -20,6 +20,8 @@ namespace StakeholderAnalysis.Visualization.ViewModels.OnionDiagramView
 
         public Brush StrokeColor => new SolidColorBrush(StakeholderConnection.StakeholderConnectionGroup.Color);
 
+        public double StrokeThickness => StakeholderConnection.StakeholderConnectionGroup.StrokeThickness;
+
         public bool IsVisible => StakeholderConnection.StakeholderConnectionGroup.Visible;
 
         public double ConnectFromLeft => StakeholderConnection.ConnectFrom.Left;
@@ -65,6 +67,9 @@ namespace StakeholderAnalysis.Visualization.ViewModels.OnionDiagramView
                     break;
                 case nameof(StakeholderConnectionGroup.Visible):
                     OnPropertyChanged(nameof(IsVisible));
+                    break;
+                case nameof(StakeholderConnectionGroup.StrokeThickness):
+                    OnPropertyChanged(nameof(StrokeThickness));
                     break;
             }
         }

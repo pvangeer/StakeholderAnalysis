@@ -486,7 +486,7 @@ namespace StakeholderAnalysis.App
 
         private static StakeholderConnectionGroup AddConnectionGroup(OnionDiagram diagram, string groupName, Color groupColor, bool isVisible = true)
         {
-            var coastGroup = new StakeholderConnectionGroup(groupName, groupColor, isVisible);
+            var coastGroup = new StakeholderConnectionGroup(groupName, groupColor, 1.0, isVisible);
             diagram.ConnectionGroups.Add(coastGroup);
             return coastGroup;
         }

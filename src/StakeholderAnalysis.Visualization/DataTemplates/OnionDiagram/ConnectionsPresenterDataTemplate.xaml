@@ -11,7 +11,8 @@
         <Grid>
             <Line
                 Visibility="{Binding IsVisible, Converter={StaticResource BooleanToVisibilityConverter}}"
-                Stroke="{Binding StrokeColor}">
+                Stroke="{Binding StrokeColor}"
+                StrokeThickness="{Binding StrokeThickness}">
                 <Line.X1>
                     <MultiBinding Converter="{StaticResource PercentageToDimensionConverter}">
                         <Binding Path="ConnectFromLeft" />
