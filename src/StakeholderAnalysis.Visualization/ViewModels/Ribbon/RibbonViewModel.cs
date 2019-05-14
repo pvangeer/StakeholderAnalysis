@@ -1,6 +1,6 @@
-﻿using System.Collections.Specialized;
+﻿using System.Collections.ObjectModel;
+using System.Collections.Specialized;
 using System.ComponentModel;
-using System.Linq;
 using System.Windows.Input;
 using StakeholderAnalysis.Data;
 using StakeholderAnalysis.Gui;
@@ -8,7 +8,6 @@ using StakeholderAnalysis.Visualization.Commands;
 using StakeholderAnalysis.Visualization.Commands.FileHandling;
 using StakeholderAnalysis.Visualization.Commands.ProjectExplorer;
 using StakeholderAnalysis.Visualization.ViewModels.OnionDiagramView;
-using StakeholderAnalysis.Visualization.ViewModels.ProjectExplorer;
 
 namespace StakeholderAnalysis.Visualization.ViewModels.Ribbon
 {
@@ -25,7 +24,7 @@ namespace StakeholderAnalysis.Visualization.ViewModels.Ribbon
 
             ViewManagerViewModel = new ViewManagerViewModel(gui.ViewManager);
             gui.ViewManager.PropertyChanged += ViewManagerPropertyChanged;
-            gui.ViewManager.ToolWindows.CollectionChanged += ToolwindowsCollectionChanged;
+            gui.ViewManager.ToolWindows.CollectionChanged += ToolWindowsCollectionChanged;
             gui.PropertyChanged += GuiPropertyChanged;
         }
 
@@ -73,17 +72,17 @@ namespace StakeholderAnalysis.Visualization.ViewModels.Ribbon
                 ? new RibbonSelectedOnionDiagramViewModel(viewModel.GetDiagram(), analysis)
                 : null;
 
-        public ICommand ToggleToolWindowCommand => new ToggleProjectExplorerCommand(analysis, gui.ViewManager);
+        public ICommand ToggleToolWindowCommand => new ToggleToolWindowCommand(analysis, gui.ViewManager);
 
-        private void ToolwindowsCollectionChanged(object sender, NotifyCollectionChangedEventArgs e)
+        public ObservableCollection<ViewInfo> ToolWindows
         {
-            OnPropertyChanged(nameof(IsProjectExplorerToolwindowActive));
+            get => ViewManagerViewModel.ToolWindows;
+            set { }
         }
 
-        public bool IsProjectExplorerToolwindowActive
+        private void ToolWindowsCollectionChanged(object sender, NotifyCollectionChangedEventArgs e)
         {
-            get => gui.ViewManager.ToolWindows.Any(vi => vi.ViewModel is ProjectExplorerViewModel);
-            set { }
+            OnPropertyChanged(nameof(ToolWindows));
         }
 
         private void GuiPropertyChanged(object sender, PropertyChangedEventArgs e)

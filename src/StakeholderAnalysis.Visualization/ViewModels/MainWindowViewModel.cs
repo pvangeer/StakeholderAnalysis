@@ -1,5 +1,6 @@
 using StakeholderAnalysis.Data;
 using StakeholderAnalysis.Gui;
+using StakeholderAnalysis.Visualization.ViewModels.ProjectExplorer;
 using StakeholderAnalysis.Visualization.ViewModels.Ribbon;
 using StakeholderAnalysis.Visualization.ViewModels.StatusBar;
 
@@ -16,7 +17,7 @@ namespace StakeholderAnalysis.Visualization.ViewModels
         {
             analysis = analysisInput;
             gui = guiInput;
-            RibbonViewModel.ToggleToolWindowCommand.Execute(null);
+            RibbonViewModel.ToggleToolWindowCommand.Execute(typeof(ProjectExplorerViewModel));
         }
 
         public MainContentPresenterViewModel MainContentPresenterViewModel => new MainContentPresenterViewModel(gui);

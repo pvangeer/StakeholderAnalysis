@@ -3,11 +3,14 @@
                     xmlns:fluent="urn:fluent-ribbon"
                     xmlns:converters="clr-namespace:StakeholderAnalysis.Visualization.Converters"
                     xmlns:controls="clr-namespace:StakeholderAnalysis.Visualization.Controls"
-                    xmlns:ribbon="clr-namespace:StakeholderAnalysis.Visualization.ViewModels.Ribbon">
+                    xmlns:ribbon="clr-namespace:StakeholderAnalysis.Visualization.ViewModels.Ribbon"
+                    xmlns:projectExplorer="clr-namespace:StakeholderAnalysis.Visualization.ViewModels.ProjectExplorer">
 
     <converters:IsSelectedViewTypeToVisibilityConverter x:Key="IsSelectedViewInfoToVisibilityConverter" />
 
     <converters:ValueToSameConverter x:Key="DummyConverter" />
+    <converters:IsActiveToolWindowConverter x:Key="IsActiveToolWindowConverter" />
+
     <DataTemplate x:Key="RibbonDataTemplate" DataType="ribbon:RibbonViewModel">
         <fluent:Ribbon Focusable="True" x:Name="Ribbon" AutomaticStateManagement="False">
             <fluent:Ribbon.Menu>
@@ -65,8 +68,9 @@
                         Size="Middle"
                         Header="Projectgegevens tonen" 
                         Icon="pack://application:,,,/StakeholderAnalysis.Visualization;component/Resources/document.png"
-                        IsChecked="{Binding IsProjectExplorerToolwindowActive}"
-                        Command="{Binding ToggleToolWindowCommand}"/>
+                        IsChecked="{Binding ToolWindows, Converter={StaticResource IsActiveToolWindowConverter}, ConverterParameter={x:Type projectExplorer:ProjectExplorerViewModel}}"
+                        Command="{Binding ToggleToolWindowCommand}"
+                        CommandParameter="{x:Type projectExplorer:ProjectExplorerViewModel}"/>
                     <fluent:ToggleButton
                         Header="Vergrootglas"
                         Size="Large"

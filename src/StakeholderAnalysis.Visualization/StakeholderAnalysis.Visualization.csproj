@@ -99,7 +99,7 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Commands\Ribbon\AddOnionRingCommand.cs" />
-    <Compile Include="Commands\ProjectExplorer\ToggleProjectExplorerCommand.cs" />
+    <Compile Include="Commands\ProjectExplorer\ToggleToolWindowCommand.cs" />
     <Compile Include="Commands\ProjectExplorer\AddNewDiagramCommand.cs" />
     <Compile Include="Commands\CloseApplicationCommand.cs" />
     <Compile Include="Commands\FileHandling\FileHandlingCommandBase.cs" />
@@ -122,6 +122,7 @@
     <Compile Include="Controls\SelectStakeholdersDialog.xaml.cs">
       <DependentUpon>SelectStakeholdersDialog.xaml</DependentUpon>
     </Compile>
+    <Compile Include="Converters\IsActiveToolWindowConverter.cs" />
     <Compile Include="Converters\IsProneToExportConverter.cs" />
     <Compile Include="Converters\IsSelectedViewTypeToVisibilityConverter.cs" />
     <Compile Include="Converters\PercentageToCanvasLeftValueConverter.cs" />
