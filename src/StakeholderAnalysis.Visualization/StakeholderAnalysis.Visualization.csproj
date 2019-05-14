@@ -128,7 +128,7 @@
     <Compile Include="Converters\PercentageToCanvasTopValueConverter.cs" />
     <Compile Include="Converters\PercentageToDimensionConverter.cs" />
     <Compile Include="Converters\CanvasSizeToArrowsPathDataConverter.cs" />
-    <Compile Include="Converters\ShouldShowPriorityMessageToBoolConverter.cs" />
+    <Compile Include="Converters\StatusBar\ShouldShowPriorityMessageToBoolConverter.cs" />
     <Compile Include="Converters\StakeholderTypeToStringConverter.cs" />
     <Compile Include="Converters\StatusBar\MessageListToLabelConverter.cs" />
     <Compile Include="Converters\ValueToSameConverter.cs" />
