@@ -32,6 +32,7 @@
             </Grid>
             <Border.Style>
                 <Style TargetType="{x:Type Border}">
+                    <!--TODO: Move this part (and dubplicates) to an application wide style part-->
                     <Style.Triggers>
                         <Trigger Property="IsMouseOver" Value="True">
                             <Setter Property="Background" Value="CornflowerBlue"/>

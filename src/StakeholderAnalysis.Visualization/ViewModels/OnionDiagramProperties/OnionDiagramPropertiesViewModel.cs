@@ -16,6 +16,17 @@ namespace StakeholderAnalysis.Visualization.ViewModels.OnionDiagramProperties
             viewManager.PropertyChanged += ViewManagerPropertyChanged;
         }
 
+        private void ViewManagerPropertyChanged(object sender, PropertyChangedEventArgs e)
+        {
+            switch (e.PropertyName)
+            {
+                case nameof(ViewManager.ActiveDocument):
+                    OnPropertyChanged(Name);
+                    break;
+            }
+        }
+
+
         public string Name
         {
             get => SelectedOnionDiagram?.Name ?? "";
@@ -28,16 +39,8 @@ namespace StakeholderAnalysis.Visualization.ViewModels.OnionDiagramProperties
             }
         }
 
-        public OnionDiagram SelectedOnionDiagram => (viewManager?.ActiveDocument?.ViewModel as OnionDiagramViewModel)?.GetDiagram();
+        public OnionRingsPropertiesViewModel OnionRingsViewModel => new OnionRingsPropertiesViewModel(viewManager);
 
-        private void ViewManagerPropertyChanged(object sender, PropertyChangedEventArgs e)
-        {
-            switch (e.PropertyName)
-            {
-                case nameof(ViewManager.ActiveDocument):
-                    OnPropertyChanged(nameof(Name));
-                    break;
-            }
-        }
+        private OnionDiagram SelectedOnionDiagram => (viewManager?.ActiveDocument?.ViewModel as OnionDiagramViewModel)?.GetDiagram();
     }
 }

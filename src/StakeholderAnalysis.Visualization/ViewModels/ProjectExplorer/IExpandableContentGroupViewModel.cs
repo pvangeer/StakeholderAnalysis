@@ -3,10 +3,8 @@ using System.Windows.Input;
 
 namespace StakeholderAnalysis.Visualization.ViewModels.ProjectExplorer
 {
-    public interface IExpandableContentGroupViewModel
+    public interface IExpandableContentGroupViewModel : IExpandableContentViewModel
     {
-        bool IsExpanded { get; set; }
-
         ObservableCollection<IProjectExplorerDiagramViewModel> Diagrams { get; }
 
         ICommand ToggleIsExpandedCommand { get; }

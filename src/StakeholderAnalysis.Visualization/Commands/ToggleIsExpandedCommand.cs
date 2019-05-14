@@ -1,14 +1,14 @@
 ﻿using System;
 using System.Windows.Input;
-using StakeholderAnalysis.Visualization.ViewModels.ProjectExplorer;
+using StakeholderAnalysis.Visualization.ViewModels;
 
-namespace StakeholderAnalysis.Visualization.Commands.ProjectExplorer
+namespace StakeholderAnalysis.Visualization.Commands
 {
     public class ToggleIsExpandedCommand : ICommand
     {
-        private readonly IExpandableContentGroupViewModel expandableGroupViewModel;
+        private readonly IExpandableContentViewModel expandableGroupViewModel;
 
-        public ToggleIsExpandedCommand(IExpandableContentGroupViewModel expandableGroupViewModel)
+        public ToggleIsExpandedCommand(IExpandableContentViewModel expandableGroupViewModel)
         {
             this.expandableGroupViewModel = expandableGroupViewModel;
         }

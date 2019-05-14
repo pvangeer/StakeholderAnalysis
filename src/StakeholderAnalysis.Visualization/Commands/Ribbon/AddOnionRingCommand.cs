@@ -7,7 +7,7 @@ namespace StakeholderAnalysis.Visualization.Commands.Ribbon
 {
     public class AddOnionRingCommand : ICommand
     {
-        private OnionDiagram onionDiagram;
+        private readonly OnionDiagram onionDiagram;
 
         public AddOnionRingCommand(OnionDiagram onionDiagram)
         {

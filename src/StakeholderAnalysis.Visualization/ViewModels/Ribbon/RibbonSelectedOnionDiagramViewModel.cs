@@ -1,7 +1,6 @@
 ﻿using System.Windows.Input;
 using StakeholderAnalysis.Data;
 using StakeholderAnalysis.Data.OnionDiagrams;
-using StakeholderAnalysis.Visualization.Commands;
 using StakeholderAnalysis.Visualization.Commands.Ribbon;
 
 namespace StakeholderAnalysis.Visualization.ViewModels.Ribbon

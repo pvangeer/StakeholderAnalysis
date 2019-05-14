@@ -98,6 +98,7 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Commands\RemoveOnionRingCommand.cs" />
     <Compile Include="Commands\Ribbon\AddOnionRingCommand.cs" />
     <Compile Include="Commands\ProjectExplorer\ToggleToolWindowCommand.cs" />
     <Compile Include="Commands\ProjectExplorer\AddNewDiagramCommand.cs" />
@@ -107,7 +108,7 @@
     <Compile Include="Commands\FileHandling\OpenFileCommand.cs" />
     <Compile Include="Commands\ProjectExplorer\OpenDiagramCommand.cs" />
     <Compile Include="Commands\ProjectExplorer\RemoveDiagramCommand.cs" />
-    <Compile Include="Commands\ProjectExplorer\ToggleIsExpandedCommand.cs" />
+    <Compile Include="Commands\ToggleIsExpandedCommand.cs" />
     <Compile Include="Commands\RelayCommand.cs" />
     <Compile Include="Commands\FrameworkElementExtensions.cs" />
     <Compile Include="Commands\FileHandling\SaveFileAsCommand.cs" />
@@ -136,7 +137,10 @@
     <Compile Include="DragOnCanvasBehavior.cs" />
     <Compile Include="IDropHandler.cs" />
     <Compile Include="LayouItemContainerStyleSelector.cs" />
+    <Compile Include="ViewModels\IExpandableContentViewModel.cs" />
     <Compile Include="ViewModels\OnionDiagramProperties\OnionDiagramPropertiesViewModel.cs" />
+    <Compile Include="ViewModels\OnionDiagramProperties\OnionRingPropertiesViewModel.cs" />
+    <Compile Include="ViewModels\OnionDiagramProperties\OnionRingsPropertiesViewModel.cs" />
     <Compile Include="ViewModels\ProjectExplorer\IProjectExplorerDiagramViewModel.cs" />
     <Compile Include="ViewModels\ProjectExplorer\ProjectExplorerAttitudeImpactDiagramsViewModel.cs" />
     <Compile Include="ViewModels\ProjectExplorer\ProjectExplorerForceFieldDiagramsViewModel.cs" />
@@ -209,6 +213,10 @@
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="DataTemplates\OnionDiagramProperties\OnionDiagramPropertiesDataTemplate.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="DataTemplates\OnionDiagramProperties\OnionRingsPropertiesDataTemplate.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
