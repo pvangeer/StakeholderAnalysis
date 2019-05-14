@@ -10,7 +10,7 @@ using StakeholderAnalysis.Visualization.Commands.ProjectExplorer;
 
 namespace StakeholderAnalysis.Visualization.ViewModels.ProjectExplorer
 {
-    public class ProjectExplorerForceFieldDiagramsViewModel : NotifyPropertyChangedObservable, IExpandableContentGroupViewModel
+    public class ProjectExplorerForceFieldDiagramsViewModel : NotifyPropertyChangedObservable, IExpandableDiagramCollectionViewModel
     {
         private readonly Analysis analysis;
         private bool isExpanded = true;
@@ -45,7 +45,7 @@ namespace StakeholderAnalysis.Visualization.ViewModels.ProjectExplorer
 
         public ICommand AddNewDiagramCommand => new AddNewDiagramCommand(this);
 
-        public string Name => "Krachtenveld diagrammen";
+        public string DisplayName => "Krachtenveld diagrammen";
 
         public void AddNewDiagram()
         {

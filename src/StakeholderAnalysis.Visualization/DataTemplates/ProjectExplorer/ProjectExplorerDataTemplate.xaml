@@ -12,13 +12,13 @@
             <StackPanel Orientation="Vertical">
                 <ContentPresenter 
                     Content="{Binding OnionDiagramsViewModel}" 
-                    ContentTemplate="{StaticResource ProjectExplorerExpandableContentGroupDataTemplate}"/>
+                    ContentTemplate="{StaticResource ProjectExplorerExpandableDiagramCollectionDataTemplate}"/>
                 <ContentPresenter 
                     Content="{Binding ForceFieldDiagramsViewModel}" 
-                    ContentTemplate="{StaticResource ProjectExplorerExpandableContentGroupDataTemplate}"/>
+                    ContentTemplate="{StaticResource ProjectExplorerExpandableDiagramCollectionDataTemplate}"/>
                 <ContentPresenter 
                     Content="{Binding AttitudeImpactDiagramsViewModel}" 
-                    ContentTemplate="{StaticResource ProjectExplorerExpandableContentGroupDataTemplate}"/>
+                    ContentTemplate="{StaticResource ProjectExplorerExpandableDiagramCollectionDataTemplate}"/>
                 <ContentPresenter
                     Content="{Binding StakeholderOverviewTableViewModel}"
                     ContentTemplate="{StaticResource ProjectExplorerStakeholderOverviewTableDataTemplate}"/>

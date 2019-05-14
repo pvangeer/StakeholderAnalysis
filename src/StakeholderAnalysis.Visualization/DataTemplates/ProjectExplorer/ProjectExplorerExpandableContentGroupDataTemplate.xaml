@@ -9,7 +9,7 @@
 
     <xcad:BoolToVisibilityConverter x:Key="BoolToVisibilityConverter" />
 
-    <DataTemplate x:Key="ProjectExplorerExpandableContentGroupDataTemplate" DataType="projectExplorer:IExpandableContentGroupViewModel">
+    <DataTemplate x:Key="ProjectExplorerExpandableDiagramCollectionDataTemplate" DataType="projectExplorer:IExpandableDiagramCollectionViewModel">
         <StackPanel Orientation="Vertical">
             <ContentPresenter 
                 Content="{Binding}" 
@@ -22,7 +22,7 @@
                 <ItemsControl Grid.Column="1" ItemsSource="{Binding Diagrams}">
                     <ItemsControl.ItemTemplate>
                         <DataTemplate DataType="projectExplorer:ProjectExplorerForceFieldDiagramViewModel">
-                            <Border BorderThickness="0" Margin="0,1,0,1">
+                            <Border BorderThickness="0" Style="{StaticResource ExpandableElementBorderStyle}">
                                 <Border.InputBindings>
                                     <MouseBinding Gesture="LeftDoubleClick" Command="{Binding OpenViewForDiagramCommand}" />
                                 </Border.InputBindings>
@@ -50,18 +50,6 @@
                                         Command="{Binding RemoveDiagramCommand}"
                                         Style="{StaticResource RemoveButtonStyle}"/>
                                 </Grid>
-                                <Border.Style>
-                                    <Style TargetType="{x:Type Border}">
-                                        <Style.Triggers>
-                                            <Trigger Property="IsMouseOver" Value="True">
-                                                <Setter Property="Background" Value="CornflowerBlue"/>
-                                            </Trigger>
-                                            <Trigger Property="IsMouseOver" Value="False">
-                                                <Setter Property="Background" Value="GhostWhite"/>
-                                            </Trigger>
-                                        </Style.Triggers>
-                                    </Style>
-                                </Border.Style>
                             </Border>
                         </DataTemplate>
                     </ItemsControl.ItemTemplate>

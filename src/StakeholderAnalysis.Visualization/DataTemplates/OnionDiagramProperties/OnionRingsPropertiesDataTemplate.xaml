@@ -9,7 +9,7 @@
     </ResourceDictionary.MergedDictionaries>
 
     <DataTemplate x:Key="ExpandablePropertyDataTemplate" DataType="onionDiagramProperties:OnionRingsPropertiesViewModel">
-        <Border BorderThickness="0">
+        <Border BorderThickness="0" Style="{StaticResource ExpandableElementBorderStyle}">
             <Grid Margin="2">
                 <Grid.ColumnDefinitions>
                     <ColumnDefinition Width="24"/>
@@ -23,7 +23,7 @@
                 <TextBlock 
                     TextAlignment="Left"
                     Grid.Column="1" 
-                    Text="{Binding Name}" 
+                    Text="{Binding DisplayName}" 
                     HorizontalAlignment="Stretch"
                     VerticalAlignment="Center"
                     FontSize="12"/>
@@ -32,18 +32,6 @@
                     Command="{Binding AddNewRingCommand}"
                     Style="{StaticResource AddButtonStyle}"/>
             </Grid>
-            <Border.Style>
-                <Style TargetType="{x:Type Border}">
-                    <Style.Triggers>
-                        <Trigger Property="IsMouseOver" Value="True">
-                            <Setter Property="Background" Value="CornflowerBlue"/>
-                        </Trigger>
-                        <Trigger Property="IsMouseOver" Value="False">
-                            <Setter Property="Background" Value="GhostWhite"/>
-                        </Trigger>
-                    </Style.Triggers>
-                </Style>
-            </Border.Style>
         </Border>
     </DataTemplate>
 
@@ -63,12 +51,12 @@
                     <ItemsControl.ItemTemplate>
                         <DataTemplate DataType="onionDiagramProperties:OnionRingPropertiesViewModel">
                             <StackPanel Orientation="Vertical">
-                                <Border BorderThickness="0" Margin="0,1,0,1">
+                                <Border BorderThickness="0" Style="{StaticResource ExpandableElementBorderStyle}">
                                     <Grid>
                                         <Grid.ColumnDefinitions>
-                                            <ColumnDefinition Width="30"/>
+                                            <ColumnDefinition Width="24"/>
                                             <ColumnDefinition Width="*"/>
-                                            <ColumnDefinition Width="30"/>
+                                            <ColumnDefinition Width="24"/>
                                         </Grid.ColumnDefinitions>
                                         <Button 
                                             Grid.Column="0"
@@ -78,29 +66,17 @@
                                             Background="Transparent"
                                             HorizontalAlignment="Stretch"
                                             Grid.Column="1" 
-                                            Text="{Binding Percentage, UpdateSourceTrigger=PropertyChanged}"
+                                            Text="{Binding DisplayName, UpdateSourceTrigger=PropertyChanged}"
                                             FontSize="12"/>
                                         <Button
                                             Grid.Column="2"
                                             Command="{Binding RemoveRingCommand}"
                                             Style="{StaticResource RemoveButtonStyle}"/>
                                     </Grid>
-                                    <Border.Style>
-                                        <Style TargetType="{x:Type Border}">
-                                            <Style.Triggers>
-                                                <Trigger Property="IsMouseOver" Value="True">
-                                                    <Setter Property="Background" Value="CornflowerBlue"/>
-                                                </Trigger>
-                                                <Trigger Property="IsMouseOver" Value="False">
-                                                    <Setter Property="Background" Value="GhostWhite"/>
-                                                </Trigger>
-                                            </Style.Triggers>
-                                        </Style>
-                                    </Border.Style>
                                 </Border>
                                 <Grid Visibility="{Binding IsExpanded, Converter={StaticResource BoolToVisibilityConverter}}">
                                     <Grid.ColumnDefinitions>
-                                        <ColumnDefinition Width="30"/>
+                                        <ColumnDefinition Width="24"/>
                                         <ColumnDefinition Width="*"/>
                                         <ColumnDefinition Width="5" />
                                         <ColumnDefinition Width="*"/>
@@ -111,62 +87,18 @@
                                         <RowDefinition Height="Auto"/>
                                         <RowDefinition Height="Auto"/>
                                     </Grid.RowDefinitions>
-                                    <Border Grid.Row="0" Grid.Column="1" Grid.ColumnSpan="3" BorderThickness="0" Margin="0,1,0,1">
-                                        <Border.Style>
-                                            <Style TargetType="{x:Type Border}">
-                                                <Style.Triggers>
-                                                    <Trigger Property="IsMouseOver" Value="True">
-                                                        <Setter Property="Background" Value="CornflowerBlue"/>
-                                                    </Trigger>
-                                                    <Trigger Property="IsMouseOver" Value="False">
-                                                        <Setter Property="Background" Value="GhostWhite"/>
-                                                    </Trigger>
-                                                </Style.Triggers>
-                                            </Style>
-                                        </Border.Style>
-                                    </Border>
-                                    <Border Grid.Row="1" Grid.Column="1" Grid.ColumnSpan="3" BorderThickness="0" Margin="0,1,0,1">
-                                        <Border.Style>
-                                            <Style TargetType="{x:Type Border}">
-                                                <Style.Triggers>
-                                                    <Trigger Property="IsMouseOver" Value="True">
-                                                        <Setter Property="Background" Value="CornflowerBlue"/>
-                                                    </Trigger>
-                                                    <Trigger Property="IsMouseOver" Value="False">
-                                                        <Setter Property="Background" Value="GhostWhite"/>
-                                                    </Trigger>
-                                                </Style.Triggers>
-                                            </Style>
-                                        </Border.Style>
-                                    </Border>
-                                    <Border Grid.Row="2" Grid.Column="1" Grid.ColumnSpan="3" BorderThickness="0" Margin="0,1,0,1">
-                                        <Border.Style>
-                                            <Style TargetType="{x:Type Border}">
-                                                <Style.Triggers>
-                                                    <Trigger Property="IsMouseOver" Value="True">
-                                                        <Setter Property="Background" Value="CornflowerBlue"/>
-                                                    </Trigger>
-                                                    <Trigger Property="IsMouseOver" Value="False">
-                                                        <Setter Property="Background" Value="GhostWhite"/>
-                                                    </Trigger>
-                                                </Style.Triggers>
-                                            </Style>
-                                        </Border.Style>
-                                    </Border>
-                                    <Border Grid.Row="3" Grid.Column="1" Grid.ColumnSpan="3" BorderThickness="0" Margin="0,1,0,1">
-                                        <Border.Style>
-                                            <Style TargetType="{x:Type Border}">
-                                                <Style.Triggers>
-                                                    <Trigger Property="IsMouseOver" Value="True">
-                                                        <Setter Property="Background" Value="CornflowerBlue"/>
-                                                    </Trigger>
-                                                    <Trigger Property="IsMouseOver" Value="False">
-                                                        <Setter Property="Background" Value="GhostWhite"/>
-                                                    </Trigger>
-                                                </Style.Triggers>
-                                            </Style>
-                                        </Border.Style>
-                                    </Border>
+                                    <Border Grid.Row="0" Grid.Column="1" Grid.ColumnSpan="3" 
+                                            Style="{StaticResource ExpandableElementBorderStyle}"
+                                            BorderThickness="0"/>
+                                    <Border Grid.Row="1" Grid.Column="1" Grid.ColumnSpan="3" 
+                                            Style="{StaticResource ExpandableElementBorderStyle}"
+                                            BorderThickness="0"/>
+                                    <Border Grid.Row="2" Grid.Column="1" Grid.ColumnSpan="3" 
+                                            Style="{StaticResource ExpandableElementBorderStyle}"
+                                            BorderThickness="0"/>
+                                    <Border Grid.Row="3" Grid.Column="1" Grid.ColumnSpan="3" 
+                                            Style="{StaticResource ExpandableElementBorderStyle}"
+                                            BorderThickness="0"/>
                                     <TextBlock Grid.Column="1" Grid.Row="0" Text="Grootte" IsHitTestVisible="False"/>
                                     <TextBlock Grid.Column="1" Grid.Row="1" Text="Achtergrondkleur" IsHitTestVisible="False"/>
                                     <TextBlock Grid.Column="1" Grid.Row="2" Text="Lijnkleur" IsHitTestVisible="False"/>

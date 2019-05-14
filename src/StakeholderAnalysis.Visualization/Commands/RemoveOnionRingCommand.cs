@@ -1,10 +1,5 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using System.Windows.Input;
-using StakeholderAnalysis.Data.OnionDiagrams;
 using StakeholderAnalysis.Visualization.ViewModels.OnionDiagramProperties;
 
 namespace StakeholderAnalysis.Visualization.Commands
@@ -25,7 +20,7 @@ namespace StakeholderAnalysis.Visualization.Commands
 
         public void Execute(object parameter)
         {
-            onionRingPropertiesViewModel.RemoveRing();
+            onionRingPropertiesViewModel.RemoveOnionRing();
         }
 
         public event EventHandler CanExecuteChanged;

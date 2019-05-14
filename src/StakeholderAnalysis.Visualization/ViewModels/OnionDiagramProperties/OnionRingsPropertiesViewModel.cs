@@ -35,7 +35,7 @@ namespace StakeholderAnalysis.Visualization.ViewModels.OnionDiagramProperties
             }
         }
 
-        public string Name => "Ringen";
+        public string DisplayName => "Ringen";
 
         private OnionDiagram SelectedOnionDiagram { get; set; }
 

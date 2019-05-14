@@ -155,7 +155,7 @@
     <Compile Include="ViewModels\TwoAxisDiagrams\AttitudeImpactDiagramStakeholderViewModel.cs" />
     <Compile Include="ViewModels\TwoAxisDiagrams\ForceFieldDiagramStakeholderViewModel.cs" />
     <Compile Include="ViewModels\OnionDiagramView\OnionDiagramStakeholderViewModel.cs" />
-    <Compile Include="ViewModels\ProjectExplorer\IExpandableContentGroupViewModel.cs" />
+    <Compile Include="ViewModels\ProjectExplorer\IExpandableDiagramCollectionViewModel.cs" />
     <Compile Include="ViewModels\Ribbon\RibbonStakeholderConnectionGroupsViewModel.cs" />
     <Compile Include="PresentationLayoutTemplateSelector.cs" />
     <Compile Include="Properties\AssemblyInfo.cs">

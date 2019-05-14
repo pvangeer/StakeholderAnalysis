@@ -6,11 +6,11 @@ namespace StakeholderAnalysis.Visualization.Commands.ProjectExplorer
 {
     public class AddNewDiagramCommand : ICommand
     {
-        private readonly IExpandableContentGroupViewModel expandableContentGroupViewModel;
+        private readonly IExpandableDiagramCollectionViewModel expandableDiagramCollectionViewModel;
 
-        public AddNewDiagramCommand(IExpandableContentGroupViewModel expandableContentGroupViewModel)
+        public AddNewDiagramCommand(IExpandableDiagramCollectionViewModel expandableDiagramCollectionViewModel)
         {
-            this.expandableContentGroupViewModel = expandableContentGroupViewModel;
+            this.expandableDiagramCollectionViewModel = expandableDiagramCollectionViewModel;
         }
 
         public bool CanExecute(object parameter)
@@ -20,7 +20,7 @@ namespace StakeholderAnalysis.Visualization.Commands.ProjectExplorer
 
         public void Execute(object parameter)
         {
-            expandableContentGroupViewModel.AddNewDiagram();
+            expandableDiagramCollectionViewModel.AddNewDiagram();
         }
 
         public event EventHandler CanExecuteChanged;

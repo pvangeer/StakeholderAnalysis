@@ -10,7 +10,7 @@ using StakeholderAnalysis.Visualization.Commands.ProjectExplorer;
 
 namespace StakeholderAnalysis.Visualization.ViewModels.ProjectExplorer
 {
-    public class ProjectExplorerOnionDiagramsViewModel : NotifyPropertyChangedObservable, IExpandableContentGroupViewModel
+    public class ProjectExplorerOnionDiagramsViewModel : NotifyPropertyChangedObservable, IExpandableDiagramCollectionViewModel
     {
         private readonly Analysis analysis;
         private bool isExpanded = true;
@@ -45,7 +45,7 @@ namespace StakeholderAnalysis.Visualization.ViewModels.ProjectExplorer
 
         public ICommand AddNewDiagramCommand => new AddNewDiagramCommand(this);
 
-        public string Name => "Ui-diagrammen";
+        public string DisplayName => "Ui-diagrammen";
 
         public void AddNewDiagram()
         {

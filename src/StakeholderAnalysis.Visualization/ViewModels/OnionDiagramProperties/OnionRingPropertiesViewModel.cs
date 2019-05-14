@@ -55,6 +55,7 @@ namespace StakeholderAnalysis.Visualization.ViewModels.OnionDiagramProperties
             {
                 ring.Percentage = value;
                 ring.OnPropertyChanged(nameof(OnionRing.Percentage));
+                OnPropertyChanged(nameof(DisplayName));
             }
         }
 
@@ -67,10 +68,12 @@ namespace StakeholderAnalysis.Visualization.ViewModels.OnionDiagramProperties
             return ringViewModel == ring;
         }
 
-        public void RemoveRing()
+        public void RemoveOnionRing()
         {
             diagram.OnionRings.Remove(ring);
         }
+
+        public string DisplayName => Percentage.ToString("0.####");
 
         public bool IsExpanded
         {
