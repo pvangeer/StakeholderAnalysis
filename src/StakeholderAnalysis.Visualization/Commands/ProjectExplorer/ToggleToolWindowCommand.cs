@@ -3,6 +3,7 @@ using System.Linq;
 using System.Windows.Input;
 using StakeholderAnalysis.Data;
 using StakeholderAnalysis.Gui;
+using StakeholderAnalysis.Visualization.ViewModels.OnionDiagramProperties;
 using StakeholderAnalysis.Visualization.ViewModels.ProjectExplorer;
 
 namespace StakeholderAnalysis.Visualization.Commands.ProjectExplorer
@@ -46,6 +47,11 @@ namespace StakeholderAnalysis.Visualization.Commands.ProjectExplorer
             if (type == typeof(ProjectExplorerViewModel))
             {
                 return new ViewInfo("Projectgegevens", new ProjectExplorerViewModel(analysis, viewManager), "pack://application:,,,/StakeholderAnalysis.Visualization;component/Resources/document.png", false);
+            }
+
+            if (type == typeof(OnionDiagramPropertiesViewModel))
+            {
+                return new ViewInfo("UI-diagram", new OnionDiagramPropertiesViewModel(analysis, viewManager), "pack://application:,,,/StakeholderAnalysis.Visualization;component/Resources/onion.png", false);
             }
 
             return null;

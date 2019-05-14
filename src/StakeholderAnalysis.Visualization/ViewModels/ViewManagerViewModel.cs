@@ -1,11 +1,8 @@
-﻿using System;
-using System.Collections.ObjectModel;
-using System.Collections.Specialized;
+﻿using System.Collections.ObjectModel;
 using System.ComponentModel;
 using System.Linq;
 using StakeholderAnalysis.Data;
 using StakeholderAnalysis.Gui;
-using StakeholderAnalysis.Visualization.ViewModels.ProjectExplorer;
 
 namespace StakeholderAnalysis.Visualization.ViewModels
 {

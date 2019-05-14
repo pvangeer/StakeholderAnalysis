@@ -136,6 +136,7 @@
     <Compile Include="DragOnCanvasBehavior.cs" />
     <Compile Include="IDropHandler.cs" />
     <Compile Include="LayouItemContainerStyleSelector.cs" />
+    <Compile Include="ViewModels\OnionDiagramProperties\OnionDiagramPropertiesViewModel.cs" />
     <Compile Include="ViewModels\ProjectExplorer\IProjectExplorerDiagramViewModel.cs" />
     <Compile Include="ViewModels\ProjectExplorer\ProjectExplorerAttitudeImpactDiagramsViewModel.cs" />
     <Compile Include="ViewModels\ProjectExplorer\ProjectExplorerForceFieldDiagramsViewModel.cs" />
@@ -204,6 +205,10 @@
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="Controls\SelectStakeholdersDialog.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="DataTemplates\OnionDiagramProperties\OnionDiagramPropertiesDataTemplate.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>

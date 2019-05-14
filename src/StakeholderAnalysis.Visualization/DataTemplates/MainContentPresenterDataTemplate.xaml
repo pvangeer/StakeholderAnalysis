@@ -9,6 +9,7 @@
 
     <ResourceDictionary.MergedDictionaries>
         <ResourceDictionary Source="OnionDiagram/OnionDiagramDataTemplate.xaml" />
+        <ResourceDictionary Source="OnionDiagramProperties/OnionDiagramPropertiesDataTemplate.xaml" />
         <ResourceDictionary Source="TwoAxisDiagrams/TwoAxisDiagramDataTemplate.xaml" />
         <ResourceDictionary Source="StakeholderTable/StakeholderTableDataTemplate.xaml" />
         <ResourceDictionary Source="ProjectExplorer/ProjectExplorerDataTemplate.xaml" />
@@ -21,7 +22,8 @@
                                         OnionDiagramViewTemplate="{StaticResource OnionDiagramDataTemplate}"
                                         ProjectExplorerDataTemplate="{StaticResource ProjectExplorerDataTemplate}"
                                         StakeholderForcesDiagramTemplate="{StaticResource TwoAxisDiagramDataTemplate}"
-                                        AttitudeImpactDiagramTemplate="{StaticResource TwoAxisDiagramDataTemplate}"/>
+                                        AttitudeImpactDiagramTemplate="{StaticResource TwoAxisDiagramDataTemplate}"
+                                        OnionDiagramPropertiesTemplate="{StaticResource OnionDiagramPropertiesDataTemplate}"/>
 
     <Style x:Key="LayoutDocumentItemContainerStyle" TargetType="xcad:LayoutItem" >
         <Setter Property="CloseCommand" Value="{Binding Model.CloseViewCommand}"/>

@@ -1,5 +1,6 @@
 ﻿using System.Windows;
 using System.Windows.Controls;
+using StakeholderAnalysis.Visualization.ViewModels.OnionDiagramProperties;
 using StakeholderAnalysis.Visualization.ViewModels.OnionDiagramView;
 using StakeholderAnalysis.Visualization.ViewModels.ProjectExplorer;
 using StakeholderAnalysis.Visualization.ViewModels.StakeholderTableView;
@@ -20,6 +21,8 @@ namespace StakeholderAnalysis.Visualization
         public DataTemplate StakeholderForcesDiagramTemplate { get; set; }
 
         public DataTemplate AttitudeImpactDiagramTemplate { get; set; }
+
+        public DataTemplate OnionDiagramPropertiesTemplate { get; set; }
 
         public override DataTemplate SelectTemplate(object item, DependencyObject container)
         {
@@ -42,6 +45,10 @@ namespace StakeholderAnalysis.Visualization
             if (item is AttitudeImpactDiagramViewModel)
             {
                 return AttitudeImpactDiagramTemplate;
+            }
+            if (item is OnionDiagramPropertiesViewModel)
+            {
+                return OnionDiagramPropertiesTemplate;
             }
 
             return DefaultDataTemplate;
