@@ -27,6 +27,6 @@ namespace StakeholderAnalysis.Data.OnionDiagrams
 
         public ObservableCollection<StakeholderConnection> Connections { get; }
 
-        public ObservableCollection<StakeholderConnectionGroup> ConnectionGroups { get; set; }
+        public ObservableCollection<StakeholderConnectionGroup> ConnectionGroups { get; }
     }
 }
