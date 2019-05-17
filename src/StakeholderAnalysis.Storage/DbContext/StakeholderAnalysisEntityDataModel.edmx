@@ -27,8 +27,8 @@
           <Property Name="AttitudeImpactDiagramStakeholderEntityId" Type="integer" StoreGeneratedPattern="Identity" Nullable="false" />
           <Property Name="AttitudeImpactDiagramEntityId" Type="integer" Nullable="false" />
           <Property Name="StakeholderEntityId" Type="integer" Nullable="false" />
-          <Property Name="Attitude" Type="real" Nullable="false" />
-          <Property Name="Impact" Type="real" Nullable="false" />
+          <Property Name="Attitude" Type="real" />
+          <Property Name="Impact" Type="real" />
           <Property Name="Order" Type="integer" Nullable="false" />
         </EntityType>
         <EntityType Name="ForceFieldDiagramEntity">
@@ -47,8 +47,8 @@
           <Property Name="ForceFieldDiagramStakeholderEntityId" Type="integer" StoreGeneratedPattern="Identity" Nullable="false" />
           <Property Name="StakeholderEntityId" Type="integer" Nullable="false" />
           <Property Name="ForceFieldDiagramEntityId" Type="integer" Nullable="false" />
-          <Property Name="Interest" Type="real" Nullable="false" />
-          <Property Name="Influence" Type="real" Nullable="false" />
+          <Property Name="Interest" Type="real" />
+          <Property Name="Influence" Type="real" />
           <Property Name="Order" Type="integer" Nullable="false" />
         </EntityType>
         <EntityType Name="OnionDiagramEntity">
@@ -58,7 +58,7 @@
           <Property Name="OnionDiagramId" Type="integer" StoreGeneratedPattern="Identity" Nullable="false" />
           <Property Name="AnalysisEntityId" Type="integer" Nullable="false" />
           <Property Name="Name" Type="nvarchar" MaxLength="2147483647" Nullable="false" />
-          <Property Name="Asymmetry" Type="real" Nullable="false" />
+          <Property Name="Asymmetry" Type="real" />
           <Property Name="Order" Type="integer" Nullable="false" />
         </EntityType>
         <EntityType Name="OnionDiagramStakeholderEntity">
@@ -68,8 +68,8 @@
           <Property Name="OnionDiagramStakeholderEntityId" Type="integer" StoreGeneratedPattern="Identity" Nullable="false" />
           <Property Name="StakeholderEntityId" Type="integer" Nullable="false" />
           <Property Name="OnionDiagramId" Type="integer" Nullable="false" />
-          <Property Name="Left" Type="real" Nullable="false" />
-          <Property Name="Top" Type="real" Nullable="false" />
+          <Property Name="Left" Type="real" />
+          <Property Name="Top" Type="real" />
           <Property Name="Order" Type="integer" Nullable="false" />
         </EntityType>
         <EntityType Name="OnionRingEntity">
@@ -78,10 +78,10 @@
           </Key>
           <Property Name="OnrionRingEntityId" Type="integer" StoreGeneratedPattern="Identity" Nullable="false" />
           <Property Name="OnionDiagramId" Type="integer" Nullable="false" />
-          <Property Name="Percentage" Type="real" Nullable="false" />
+          <Property Name="Percentage" Type="real" />
           <Property Name="BackgroundColor" Type="nvarchar" MaxLength="2147483647" Nullable="false" />
           <Property Name="StrokeColor" Type="nvarchar" MaxLength="2147483647" Nullable="false" />
-          <Property Name="StrokeThickness" Type="real" Nullable="false" />
+          <Property Name="StrokeThickness" Type="real" />
           <Property Name="Order" Type="integer" Nullable="false" />
         </EntityType>
         <EntityType Name="StakeholderConnectionEntity">
@@ -104,7 +104,7 @@
           <Property Name="Name" Type="nvarchar" MaxLength="2147483647" Nullable="false" />
           <Property Name="Color" Type="nvarchar" MaxLength="2147483647" Nullable="false" />
           <Property Name="Visible" Type="tinyint" Nullable="false" />
-          <Property Name="StrokeThickness" Type="real" Nullable="false" />
+          <Property Name="StrokeThickness" Type="real" />
           <Property Name="Order" Type="integer" Nullable="false" />
         </EntityType>
         <EntityType Name="StakeholderEntity">
@@ -506,8 +506,8 @@
           <Property Name="AttitudeImpactDiagramStakeholderEntityId" Type="Int64" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
           <Property Name="AttitudeImpactDiagramEntityId" Type="Int64" Nullable="false" />
           <Property Name="StakeholderEntityId" Type="Int64" Nullable="false" />
-          <Property Name="Attitude" Type="Double" Nullable="false" />
-          <Property Name="Impact" Type="Double" Nullable="false" />
+          <Property Name="Attitude" Type="Double" />
+          <Property Name="Impact" Type="Double" />
           <Property Name="Order" Type="Int64" Nullable="false" />
           <NavigationProperty Name="AttitudeImpactDiagramEntity" Relationship="StakeholderAnalysisEntities.FK_AttitudeImpactDiagramStakeholderEntity_1_0" FromRole="AttitudeImpactDiagramStakeholderEntity" ToRole="AttitudeImpactDiagramEntity" />
           <NavigationProperty Name="StakeholderEntity" Relationship="StakeholderAnalysisEntities.FK_AttitudeImpactDiagramStakeholderEntity_0_0" FromRole="AttitudeImpactDiagramStakeholderEntity" ToRole="StakeholderEntity" />
@@ -530,8 +530,8 @@
           <Property Name="ForceFieldDiagramStakeholderEntityId" Type="Int64" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
           <Property Name="StakeholderEntityId" Type="Int64" Nullable="false" />
           <Property Name="ForceFieldDiagramEntityId" Type="Int64" Nullable="false" />
-          <Property Name="Interest" Type="Double" Nullable="false" />
-          <Property Name="Influence" Type="Double" Nullable="false" />
+          <Property Name="Interest" Type="Double" />
+          <Property Name="Influence" Type="Double" />
           <Property Name="Order" Type="Int64" Nullable="false" />
           <NavigationProperty Name="ForceFieldDiagramEntity" Relationship="StakeholderAnalysisEntities.FK_ForceFieldDiagramStakeholderEntity_1_0" FromRole="ForceFieldDiagramStakeholderEntity" ToRole="ForceFieldDiagramEntity" />
           <NavigationProperty Name="StakeholderEntity" Relationship="StakeholderAnalysisEntities.FK_ForceFieldDiagramStakeholderEntity_0_0" FromRole="ForceFieldDiagramStakeholderEntity" ToRole="StakeholderEntity" />
@@ -543,7 +543,7 @@
           <Property Name="OnionDiagramId" Type="Int64" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
           <Property Name="AnalysisEntityId" Type="Int64" Nullable="false" />
           <Property Name="Name" Type="String" Nullable="false" MaxLength="2147483647" FixedLength="false" Unicode="true" />
-          <Property Name="Asymmetry" Type="Double" Nullable="false" />
+          <Property Name="Asymmetry" Type="Double" />
           <Property Name="Order" Type="Int64" Nullable="false" />
           <NavigationProperty Name="AnalysisEntity" Relationship="StakeholderAnalysisEntities.FK_OnionDiagramEntity_0_0" FromRole="OnionDiagramEntity" ToRole="AnalysisEntity" />
           <NavigationProperty Name="OnionDiagramStakeholderEntities" Relationship="StakeholderAnalysisEntities.FK_OnionDiagramStakeholderEntity_1_0" FromRole="OnionDiagramEntity" ToRole="OnionDiagramStakeholderEntity" />
@@ -558,8 +558,8 @@
           <Property Name="OnionDiagramStakeholderEntityId" Type="Int64" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
           <Property Name="StakeholderEntityId" Type="Int64" Nullable="false" />
           <Property Name="OnionDiagramId" Type="Int64" Nullable="false" />
-          <Property Name="Left" Type="Double" Nullable="false" />
-          <Property Name="Top" Type="Double" Nullable="false" />
+          <Property Name="Left" Type="Double" />
+          <Property Name="Top" Type="Double" />
           <Property Name="Order" Type="Int64" Nullable="false" />
           <NavigationProperty Name="OnionDiagramEntity" Relationship="StakeholderAnalysisEntities.FK_OnionDiagramStakeholderEntity_1_0" FromRole="OnionDiagramStakeholderEntity" ToRole="OnionDiagramEntity" />
           <NavigationProperty Name="StakeholderEntity" Relationship="StakeholderAnalysisEntities.FK_OnionDiagramStakeholderEntity_0_0" FromRole="OnionDiagramStakeholderEntity" ToRole="StakeholderEntity" />
@@ -572,10 +572,10 @@
           </Key>
           <Property Name="OnrionRingEntityId" Type="Int64" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
           <Property Name="OnionDiagramId" Type="Int64" Nullable="false" />
-          <Property Name="Percentage" Type="Double" Nullable="false" />
+          <Property Name="Percentage" Type="Double" />
           <Property Name="BackgroundColor" Type="String" Nullable="false" MaxLength="2147483647" FixedLength="false" Unicode="true" />
           <Property Name="StrokeColor" Type="String" Nullable="false" MaxLength="2147483647" FixedLength="false" Unicode="true" />
-          <Property Name="StrokeThickness" Type="Double" Nullable="false" />
+          <Property Name="StrokeThickness" Type="Double" />
           <Property Name="Order" Type="Int64" Nullable="false" />
           <NavigationProperty Name="OnionDiagramEntity" Relationship="StakeholderAnalysisEntities.FK_OnionRingEntity_0_0" FromRole="OnionRingEntity" ToRole="OnionDiagramEntity" />
         </EntityType>
@@ -603,7 +603,7 @@
           <Property Name="Name" Type="String" Nullable="false" MaxLength="2147483647" FixedLength="false" Unicode="true" />
           <Property Name="Color" Type="String" Nullable="false" MaxLength="2147483647" FixedLength="false" Unicode="true" />
           <Property Name="Visible" Type="Byte" Nullable="false" />
-          <Property Name="StrokeThickness" Type="Double" Nullable="false" />
+          <Property Name="StrokeThickness" Type="Double" />
           <Property Name="Order" Type="Int64" Nullable="false" />
           <NavigationProperty Name="OnionDiagramEntity" Relationship="StakeholderAnalysisEntities.FK_StakeholderConnectionGroupEntity_0_0" FromRole="StakeholderConnectionGroupEntity" ToRole="OnionDiagramEntity" />
           <NavigationProperty Name="StakeholderConnectionEntities" Relationship="StakeholderAnalysisEntities.FK_StakeholderConnectionEntity_0_0" FromRole="StakeholderConnectionGroupEntity" ToRole="StakeholderConnectionEntity" />

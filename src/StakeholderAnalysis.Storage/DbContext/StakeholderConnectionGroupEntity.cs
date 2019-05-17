@@ -25,7 +25,7 @@ namespace StakeholderAnalysis.Storage.DbContext
         public string Name { get; set; }
         public string Color { get; set; }
         public byte Visible { get; set; }
-        public double StrokeThickness { get; set; }
+        public Nullable<double> StrokeThickness { get; set; }
         public long Order { get; set; }
     
         public virtual OnionDiagramEntity OnionDiagramEntity { get; set; }

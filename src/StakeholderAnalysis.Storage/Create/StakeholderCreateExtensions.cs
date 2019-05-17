@@ -13,11 +13,18 @@ namespace StakeholderAnalysis.Storage.Create
                 throw new ArgumentNullException(nameof(registry));
             }
 
+            if (registry.Contains(stakeholder))
+            {
+                return registry.Get(stakeholder);
+            }
+
             var entity = new StakeholderEntity
             {
                 Name = stakeholder.Name.DeepClone(),
                 Type = Convert.ToByte(stakeholder.Type)
             };
+
+            registry.Register(stakeholder, entity);
 
             return entity;
         }

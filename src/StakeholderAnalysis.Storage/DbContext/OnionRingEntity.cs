@@ -16,10 +16,10 @@ namespace StakeholderAnalysis.Storage.DbContext
     {
         public long OnrionRingEntityId { get; set; }
         public long OnionDiagramId { get; set; }
-        public double Percentage { get; set; }
+        public Nullable<double> Percentage { get; set; }
         public string BackgroundColor { get; set; }
         public string StrokeColor { get; set; }
-        public double StrokeThickness { get; set; }
+        public Nullable<double> StrokeThickness { get; set; }
         public long Order { get; set; }
     
         public virtual OnionDiagramEntity OnionDiagramEntity { get; set; }

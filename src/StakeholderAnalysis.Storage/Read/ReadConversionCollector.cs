@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using StakeholderAnalysis.Data;
+using StakeholderAnalysis.Data.AttitudeImpactDiagrams;
 using StakeholderAnalysis.Data.OnionDiagrams;
 using StakeholderAnalysis.Storage.DbContext;
 
@@ -10,6 +11,8 @@ namespace StakeholderAnalysis.Storage.Read
     {
         private readonly Dictionary<StakeholderEntity, Stakeholder> stakeholders = CreateDictionary<StakeholderEntity, Stakeholder>();
         private readonly Dictionary<OnionDiagramEntity, OnionDiagram> onionDiagrams = CreateDictionary<OnionDiagramEntity, OnionDiagram>();
+        private readonly Dictionary<AttitudeImpactDiagramEntity, AttitudeImpactDiagram> attitudeImpactDiagrams = CreateDictionary<AttitudeImpactDiagramEntity, AttitudeImpactDiagram>();
+        private readonly Dictionary<AttitudeImpactDiagramStakeholderEntity, AttitudeImpactDiagramStakeholder> attitudeImpactDiagramStakeholders = CreateDictionary<AttitudeImpactDiagramStakeholderEntity, AttitudeImpactDiagramStakeholder>(); 
 
         internal void Collect(StakeholderEntity entity, Stakeholder model)
         {
@@ -18,6 +21,14 @@ namespace StakeholderAnalysis.Storage.Read
         internal void Collect(OnionDiagramEntity entity, OnionDiagram model)
         {
             Collect(onionDiagrams, entity, model);
+        }
+        internal void Collect(AttitudeImpactDiagramEntity entity, AttitudeImpactDiagram model)
+        {
+            Collect(attitudeImpactDiagrams, entity, model);
+        }
+        internal void Collect(AttitudeImpactDiagramStakeholderEntity entity, AttitudeImpactDiagramStakeholder model)
+        {
+            Collect(attitudeImpactDiagramStakeholders, entity, model);
         }
 
         internal bool Contains(StakeholderEntity entity)
@@ -28,6 +39,14 @@ namespace StakeholderAnalysis.Storage.Read
         {
             return Contains(onionDiagrams, entity);
         }
+        internal bool Contains(AttitudeImpactDiagramEntity entity)
+        {
+            return Contains(attitudeImpactDiagrams, entity);
+        }
+        internal bool Contains(AttitudeImpactDiagramStakeholderEntity entity)
+        {
+            return Contains(attitudeImpactDiagramStakeholders, entity);
+        }
 
         internal Stakeholder Get(StakeholderEntity entity)
         {
@@ -36,6 +55,14 @@ namespace StakeholderAnalysis.Storage.Read
         internal OnionDiagram Get(OnionDiagramEntity entity)
         {
             return Get(onionDiagrams, entity);
+        }
+        internal AttitudeImpactDiagram Get(AttitudeImpactDiagramEntity entity)
+        {
+            return Get(attitudeImpactDiagrams, entity);
+        }
+        internal AttitudeImpactDiagramStakeholder Get(AttitudeImpactDiagramStakeholderEntity entity)
+        {
+            return Get(attitudeImpactDiagramStakeholders, entity);
         }
 
         #region helpers

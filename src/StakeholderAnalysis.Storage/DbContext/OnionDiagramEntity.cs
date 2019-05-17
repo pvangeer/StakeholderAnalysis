@@ -26,7 +26,7 @@ namespace StakeholderAnalysis.Storage.DbContext
         public long OnionDiagramId { get; set; }
         public long AnalysisEntityId { get; set; }
         public string Name { get; set; }
-        public double Asymmetry { get; set; }
+        public Nullable<double> Asymmetry { get; set; }
         public long Order { get; set; }
     
         public virtual AnalysisEntity AnalysisEntity { get; set; }

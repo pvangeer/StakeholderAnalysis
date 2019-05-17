@@ -24,8 +24,8 @@ namespace StakeholderAnalysis.Storage.DbContext
         public long OnionDiagramStakeholderEntityId { get; set; }
         public long StakeholderEntityId { get; set; }
         public long OnionDiagramId { get; set; }
-        public double Left { get; set; }
-        public double Top { get; set; }
+        public Nullable<double> Left { get; set; }
+        public Nullable<double> Top { get; set; }
         public long Order { get; set; }
     
         public virtual OnionDiagramEntity OnionDiagramEntity { get; set; }

@@ -42,7 +42,6 @@
     </Reference>
     <Reference Include="PresentationCore" />
     <Reference Include="System" />
-    <Reference Include="System.ComponentModel.DataAnnotations" />
     <Reference Include="System.Core" />
     <Reference Include="System.Data.SQLite, Version=1.0.109.0, Culture=neutral, PublicKeyToken=db937bc2d44ff139, processorArchitecture=MSIL">
       <HintPath>..\..\packages\System.Data.SQLite.Core.1.0.109.2\lib\net45\System.Data.SQLite.dll</HintPath>
@@ -51,13 +50,9 @@
       <HintPath>..\..\packages\System.Data.SQLite.EF6.1.0.109.0\lib\net45\System.Data.SQLite.EF6.dll</HintPath>
     </Reference>
     <Reference Include="System.Runtime.Serialization" />
-    <Reference Include="System.Security" />
     <Reference Include="System.ServiceModel" />
-    <Reference Include="System.Xml.Linq" />
     <Reference Include="System.Data.DataSetExtensions" />
-    <Reference Include="Microsoft.CSharp" />
     <Reference Include="System.Data" />
-    <Reference Include="System.Net.Http" />
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
@@ -65,6 +60,7 @@
     <Compile Include="ColorConversionExtensions.cs" />
     <Compile Include="Create\AnalysisCreateExtensions.cs" />
     <Compile Include="Create\AttitudeImpactDiagramCreateExtensions.cs" />
+    <Compile Include="Create\AttitudeImpactDiagramStakeholderCreateExtensions.cs" />
     <Compile Include="Create\PersistenceRegistry.cs" />
     <Compile Include="Create\StakeholderCreateExtensions.cs" />
     <Compile Include="DbContext\AnalysisEntity.cs">
@@ -130,6 +126,8 @@
       <DependentUpon>Resources.resx</DependentUpon>
     </Compile>
     <Compile Include="Read\AnalysisEntityReadExtensions.cs" />
+    <Compile Include="Read\AttitudeImpactDiagramEntityReadExtensions.cs" />
+    <Compile Include="Read\AttitudeImpactDiagramStakeholderEntityReadExtensions.cs" />
     <Compile Include="Read\ReadConversionCollector.cs" />
     <Compile Include="Read\StakeholderEntityReadExtensions.cs" />
     <Compile Include="ReferenceEqualityComparer.cs" />

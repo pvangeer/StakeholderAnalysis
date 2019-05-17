@@ -10,6 +10,8 @@ namespace StakeholderAnalysis.Data.AttitudeImpactDiagrams
             Stakeholders = new ObservableCollection<AttitudeImpactDiagramStakeholder>();
         }
 
+        public AttitudeImpactDiagram() : this("") { }
+
         public string Name { get; set; }
 
         public ObservableCollection<AttitudeImpactDiagramStakeholder> Stakeholders { get; }
