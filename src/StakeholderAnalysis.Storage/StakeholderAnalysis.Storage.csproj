@@ -61,6 +61,8 @@
     <Compile Include="Create\AnalysisCreateExtensions.cs" />
     <Compile Include="Create\AttitudeImpactDiagramCreateExtensions.cs" />
     <Compile Include="Create\AttitudeImpactDiagramStakeholderCreateExtensions.cs" />
+    <Compile Include="Create\ForceFieldDiagramCreateExtensions.cs" />
+    <Compile Include="Create\ForceFieldDiagramStakeholderCreateExtensions.cs" />
     <Compile Include="Create\PersistenceRegistry.cs" />
     <Compile Include="Create\StakeholderCreateExtensions.cs" />
     <Compile Include="DbContext\AnalysisEntity.cs">
@@ -128,6 +130,8 @@
     <Compile Include="Read\AnalysisEntityReadExtensions.cs" />
     <Compile Include="Read\AttitudeImpactDiagramEntityReadExtensions.cs" />
     <Compile Include="Read\AttitudeImpactDiagramStakeholderEntityReadExtensions.cs" />
+    <Compile Include="Read\ForceFieldDiagramEntityReadExtensions.cs" />
+    <Compile Include="Read\ForceFieldDiagramStakeholderEntityReadExtensions.cs" />
     <Compile Include="Read\ReadConversionCollector.cs" />
     <Compile Include="Read\StakeholderEntityReadExtensions.cs" />
     <Compile Include="ReferenceEqualityComparer.cs" />

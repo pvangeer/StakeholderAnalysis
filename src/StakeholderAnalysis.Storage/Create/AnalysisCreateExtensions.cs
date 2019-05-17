@@ -35,7 +35,12 @@ namespace StakeholderAnalysis.Storage.Create
 
         private static void AddEntitiesForForceDiagrams(Analysis analysis, AnalysisEntity entity, PersistenceRegistry registry)
         {
-            // TODO
+            for (var index = 0; index < analysis.ForceFieldDiagrams.Count; index++)
+            {
+                var forceFieldDiagramEntity = analysis.ForceFieldDiagrams[index].Create(registry);
+                forceFieldDiagramEntity.Order = index;
+                entity.ForceFieldDiagramEntities.Add(forceFieldDiagramEntity);
+            }
         }
 
         private static void AddEntitiesForOnionDiagrams(Analysis analysis, AnalysisEntity entity, PersistenceRegistry registry)

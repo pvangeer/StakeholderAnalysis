@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using StakeholderAnalysis.Data;
 using StakeholderAnalysis.Data.AttitudeImpactDiagrams;
+using StakeholderAnalysis.Data.ForceFieldDiagrams;
 using StakeholderAnalysis.Storage.DbContext;
 
 namespace StakeholderAnalysis.Storage.Create
@@ -10,6 +11,8 @@ namespace StakeholderAnalysis.Storage.Create
     public class PersistenceRegistry
     {
         private readonly Dictionary<Stakeholder, StakeholderEntity> stakeholders = CreateDictionary<Stakeholder, StakeholderEntity>();
+        private readonly Dictionary<ForceFieldDiagram, ForceFieldDiagramEntity> forceFieldDiagrams = CreateDictionary<ForceFieldDiagram, ForceFieldDiagramEntity>();
+        private readonly Dictionary<ForceFieldDiagramStakeholder, ForceFieldDiagramStakeholderEntity> forceFieldDiagramStakeholders = CreateDictionary<ForceFieldDiagramStakeholder, ForceFieldDiagramStakeholderEntity>();
         private readonly Dictionary<AttitudeImpactDiagram, AttitudeImpactDiagramEntity> attitudeImpactDiagrams = CreateDictionary<AttitudeImpactDiagram, AttitudeImpactDiagramEntity>();
         private readonly Dictionary<AttitudeImpactDiagramStakeholder, AttitudeImpactDiagramStakeholderEntity> attitudeImpactDiagramStakeholders = CreateDictionary<AttitudeImpactDiagramStakeholder, AttitudeImpactDiagramStakeholderEntity>();
 
@@ -18,6 +21,14 @@ namespace StakeholderAnalysis.Storage.Create
         internal void Register(Stakeholder model, StakeholderEntity entity)
         {
             Register(stakeholders, model, entity);
+        }
+        internal void Register(ForceFieldDiagram model, ForceFieldDiagramEntity entity)
+        {
+            Register(forceFieldDiagrams, model, entity);
+        }
+        internal void Register(ForceFieldDiagramStakeholder model, ForceFieldDiagramStakeholderEntity entity)
+        {
+            Register(forceFieldDiagramStakeholders, model, entity);
         }
         internal void Register(AttitudeImpactDiagram model, AttitudeImpactDiagramEntity entity)
         {
@@ -36,6 +47,14 @@ namespace StakeholderAnalysis.Storage.Create
         {
             return ContainsValue(stakeholders, model);
         }
+        internal bool Contains(ForceFieldDiagram model)
+        {
+            return ContainsValue(forceFieldDiagrams, model);
+        }
+        internal bool Contains(ForceFieldDiagramStakeholder model)
+        {
+            return ContainsValue(forceFieldDiagramStakeholders, model);
+        }
         internal bool Contains(AttitudeImpactDiagram model)
         {
             return ContainsValue(attitudeImpactDiagrams, model);
@@ -50,6 +69,14 @@ namespace StakeholderAnalysis.Storage.Create
         public StakeholderEntity Get(Stakeholder model)
         {
             return Get(stakeholders, model);
+        }
+        public ForceFieldDiagramEntity Get(ForceFieldDiagram model)
+        {
+            return Get(forceFieldDiagrams, model);
+        }
+        public ForceFieldDiagramStakeholderEntity Get(ForceFieldDiagramStakeholder model)
+        {
+            return Get(forceFieldDiagramStakeholders, model);
         }
         public AttitudeImpactDiagramEntity Get(AttitudeImpactDiagram model)
         {

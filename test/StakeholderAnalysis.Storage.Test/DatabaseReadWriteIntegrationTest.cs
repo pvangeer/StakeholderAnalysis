@@ -5,6 +5,7 @@ using NUnit.Framework;
 using StakeholderAnalysis.App;
 using StakeholderAnalysis.Data;
 using StakeholderAnalysis.Data.AttitudeImpactDiagrams;
+using StakeholderAnalysis.Data.ForceFieldDiagrams;
 
 namespace StakeholderAnalysis.Storage.Test
 {
@@ -42,7 +43,33 @@ namespace StakeholderAnalysis.Storage.Test
         private void AssertEqualAnalysis(Analysis analysis, Analysis analysis2C)
         {
             AssertEqualStakeholders(analysis.Stakeholders, analysis2C.Stakeholders);
+            AssertEqualForceFieldDiagrams(analysis.ForceFieldDiagrams, analysis2C.ForceFieldDiagrams);
             AssertEqualAttitudeImpactDiagrams(analysis.AttitudeImpactDiagrams, analysis2C.AttitudeImpactDiagrams);
+        }
+
+        private void AssertEqualForceFieldDiagrams(ObservableCollection<ForceFieldDiagram> forceFieldDiagrams, ObservableCollection<ForceFieldDiagram> twoCForceFieldDiagrams)
+        {
+            Assert.AreEqual(forceFieldDiagrams.Count, twoCForceFieldDiagrams.Count);
+            for (int i = 0; i < forceFieldDiagrams.Count; i++)
+            {
+                var attitudeImpactDiagram = forceFieldDiagrams[i];
+                var twoCAttitudeImpactDiagram = twoCForceFieldDiagrams[i];
+                Assert.AreEqual(attitudeImpactDiagram.Name, twoCAttitudeImpactDiagram.Name);
+                AssertAreEqualForceFieldDiagramStakeholders(attitudeImpactDiagram.Stakeholders, twoCAttitudeImpactDiagram.Stakeholders);
+            }
+        }
+
+        private void AssertAreEqualForceFieldDiagramStakeholders(ObservableCollection<ForceFieldDiagramStakeholder> stakeholders, ObservableCollection<ForceFieldDiagramStakeholder> twoCStakeholders)
+        {
+            Assert.AreEqual(stakeholders.Count, twoCStakeholders.Count);
+            for (int i = 0; i < stakeholders.Count; i++)
+            {
+                var stakeholder1 = stakeholders[i];
+                var stakeholder2 = twoCStakeholders[i];
+                Assert.AreEqual(stakeholder1.Influence, stakeholder2.Influence);
+                Assert.AreEqual(stakeholder1.Interest, stakeholder2.Interest);
+                AssertAreEqualStakeholders(stakeholder1.Stakeholder, stakeholder2.Stakeholder);
+            }
         }
 
         private void AssertEqualAttitudeImpactDiagrams(ObservableCollection<AttitudeImpactDiagram> attitudeImpactDiagrams, ObservableCollection<AttitudeImpactDiagram> twoCAttitudeImpactDiagrams)

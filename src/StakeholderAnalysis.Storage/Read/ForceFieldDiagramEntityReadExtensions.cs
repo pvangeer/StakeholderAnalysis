@@ -1,13 +1,13 @@
 ﻿using System;
 using System.Linq;
-using StakeholderAnalysis.Data.AttitudeImpactDiagrams;
+using StakeholderAnalysis.Data.ForceFieldDiagrams;
 using StakeholderAnalysis.Storage.DbContext;
 
 namespace StakeholderAnalysis.Storage.Read
 {
-    internal static class AttitudeImpactDiagramEntityReadExtensions
+    internal static class ForceFieldDiagramEntityReadExtensions
     {
-        internal static AttitudeImpactDiagram Read(this AttitudeImpactDiagramEntity entity, ReadConversionCollector collector)
+        internal static ForceFieldDiagram Read(this ForceFieldDiagramEntity entity, ReadConversionCollector collector)
         {
             if (entity == null)
             {
@@ -23,21 +23,21 @@ namespace StakeholderAnalysis.Storage.Read
                 return collector.Get(entity);
             }
 
-            var stakeholders = entity.AttitudeImpactDiagramStakeholderEntities.OrderBy(e => e.Order).Select(e => e.Read(collector));
+            var stakeholders = entity.ForceFieldDiagramStakeholderEntities.OrderBy(e => e.Order).Select(e => e.Read(collector));
 
-            var attitudeImpactDiagram = new AttitudeImpactDiagram
+            var forceFieldDiagram = new ForceFieldDiagram
             {
                 Name = entity.Name
             };
 
             foreach (var stakeholder in stakeholders)
             {
-                attitudeImpactDiagram.Stakeholders.Add(stakeholder);
+                forceFieldDiagram.Stakeholders.Add(stakeholder);
             }
 
-            collector.Collect(entity, attitudeImpactDiagram);
+            collector.Collect(entity, forceFieldDiagram);
 
-            return attitudeImpactDiagram;
+            return forceFieldDiagram;
         }
     }
 }

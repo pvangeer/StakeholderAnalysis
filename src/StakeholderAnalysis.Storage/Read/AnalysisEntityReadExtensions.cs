@@ -20,7 +20,7 @@ namespace StakeholderAnalysis.Storage.Read
 
             var stakeholders = entity.StakeholderEntities.OrderBy(e => e.Order).Select(e => e.Read(collector));
             //var onionDiagrams = entity.OnionDiagramEntities.OrderBy(e => e.Order).Select(e => e.Read(collector));
-            //var forceFieldDiagrams = entity.ForceFieldDiagramEntities.OrderBy(e => e.Order).Select(e => e.Read(collector));
+            var forceFieldDiagrams = entity.ForceFieldDiagramEntities.OrderBy(e => e.Order).Select(e => e.Read(collector));
             var attitudeImpactDiagrams = entity.AttitudeImpactDiagramEntities.OrderBy(e => e.Order).Select(e => e.Read(collector));
 
             var analysis = new Analysis();
@@ -33,12 +33,12 @@ namespace StakeholderAnalysis.Storage.Read
             /*foreach (var onionDiagram in onionDiagrams)
             {
                 analysis.OnionDiagrams.Add(onionDiagram);
-            }
+            }*/
 
             foreach (var forceFieldDiagram in forceFieldDiagrams)
             {
                 analysis.ForceFieldDiagrams.Add(forceFieldDiagram);
-            }*/
+            }
 
             foreach (var attitudeImpactDiagram in attitudeImpactDiagrams)
             {

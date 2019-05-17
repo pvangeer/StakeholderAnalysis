@@ -11,6 +11,8 @@ namespace StakeholderAnalysis.Data.ForceFieldDiagrams
             Stakeholders = new ObservableCollection<ForceFieldDiagramStakeholder>();
         }
 
+        public ForceFieldDiagram() : this("") { }
+
         public string Name { get; set; }
 
         public ObservableCollection<ForceFieldDiagramStakeholder> Stakeholders { get; }

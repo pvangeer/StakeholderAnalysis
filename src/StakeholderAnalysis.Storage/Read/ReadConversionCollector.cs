@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using StakeholderAnalysis.Data;
 using StakeholderAnalysis.Data.AttitudeImpactDiagrams;
+using StakeholderAnalysis.Data.ForceFieldDiagrams;
 using StakeholderAnalysis.Data.OnionDiagrams;
 using StakeholderAnalysis.Storage.DbContext;
 
@@ -11,6 +12,8 @@ namespace StakeholderAnalysis.Storage.Read
     {
         private readonly Dictionary<StakeholderEntity, Stakeholder> stakeholders = CreateDictionary<StakeholderEntity, Stakeholder>();
         private readonly Dictionary<OnionDiagramEntity, OnionDiagram> onionDiagrams = CreateDictionary<OnionDiagramEntity, OnionDiagram>();
+        private readonly Dictionary<ForceFieldDiagramEntity, ForceFieldDiagram> forceFieldDiagrams = CreateDictionary<ForceFieldDiagramEntity, ForceFieldDiagram>();
+        private readonly Dictionary<ForceFieldDiagramStakeholderEntity, ForceFieldDiagramStakeholder> forceFieldDiagramStakeholders = CreateDictionary<ForceFieldDiagramStakeholderEntity, ForceFieldDiagramStakeholder>();
         private readonly Dictionary<AttitudeImpactDiagramEntity, AttitudeImpactDiagram> attitudeImpactDiagrams = CreateDictionary<AttitudeImpactDiagramEntity, AttitudeImpactDiagram>();
         private readonly Dictionary<AttitudeImpactDiagramStakeholderEntity, AttitudeImpactDiagramStakeholder> attitudeImpactDiagramStakeholders = CreateDictionary<AttitudeImpactDiagramStakeholderEntity, AttitudeImpactDiagramStakeholder>(); 
 
@@ -21,6 +24,14 @@ namespace StakeholderAnalysis.Storage.Read
         internal void Collect(OnionDiagramEntity entity, OnionDiagram model)
         {
             Collect(onionDiagrams, entity, model);
+        }
+        internal void Collect(ForceFieldDiagramEntity entity, ForceFieldDiagram model)
+        {
+            Collect(forceFieldDiagrams, entity, model);
+        }
+        internal void Collect(ForceFieldDiagramStakeholderEntity entity, ForceFieldDiagramStakeholder model)
+        {
+            Collect(forceFieldDiagramStakeholders, entity, model);
         }
         internal void Collect(AttitudeImpactDiagramEntity entity, AttitudeImpactDiagram model)
         {
@@ -39,6 +50,14 @@ namespace StakeholderAnalysis.Storage.Read
         {
             return Contains(onionDiagrams, entity);
         }
+        internal bool Contains(ForceFieldDiagramEntity entity)
+        {
+            return Contains(forceFieldDiagrams, entity);
+        }
+        internal bool Contains(ForceFieldDiagramStakeholderEntity entity)
+        {
+            return Contains(forceFieldDiagramStakeholders, entity);
+        }
         internal bool Contains(AttitudeImpactDiagramEntity entity)
         {
             return Contains(attitudeImpactDiagrams, entity);
@@ -55,6 +74,14 @@ namespace StakeholderAnalysis.Storage.Read
         internal OnionDiagram Get(OnionDiagramEntity entity)
         {
             return Get(onionDiagrams, entity);
+        }
+        internal ForceFieldDiagram Get(ForceFieldDiagramEntity entity)
+        {
+            return Get(forceFieldDiagrams, entity);
+        }
+        internal ForceFieldDiagramStakeholder Get(ForceFieldDiagramStakeholderEntity entity)
+        {
+            return Get(forceFieldDiagramStakeholders, entity);
         }
         internal AttitudeImpactDiagram Get(AttitudeImpactDiagramEntity entity)
         {
