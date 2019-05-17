@@ -62,11 +62,26 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="DatabaseReadWriteIntegrationTest.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="App.config" />
     <None Include="packages.config" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\..\src\StakeholderAnalysis.App\StakeholderAnalysis.App.csproj">
+      <Project>{B2DD8757-E9B5-42BF-9602-C9CABE7CB549}</Project>
+      <Name>StakeholderAnalysis.App</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\..\src\StakeholderAnalysis.Data\StakeholderAnalysis.Data.csproj">
+      <Project>{96BE72A1-F5B6-4DA7-A7F7-CB0D3FA69DEC}</Project>
+      <Name>StakeholderAnalysis.Data</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\..\src\StakeholderAnalysis.Storage\StakeholderAnalysis.Storage.csproj">
+      <Project>{89C312EB-73EC-4254-A6B2-336BA0448B04}</Project>
+      <Name>StakeholderAnalysis.Storage</Name>
+    </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <Target Name="EnsureNuGetPackageBuildImports" BeforeTargets="PrepareForBuild">

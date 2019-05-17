@@ -1,0 +1,61 @@
+﻿using System;
+using System.Collections.Generic;
+using System.Globalization;
+using System.Linq;
+using System.Text;
+using System.Threading.Tasks;
+using StakeholderAnalysis.Data;
+using StakeholderAnalysis.Storage.DbContext;
+
+namespace StakeholderAnalysis.Storage.Create
+{
+    internal static class AnalysisCreateExtensions
+    {
+        internal static AnalysisEntity Create(this Analysis analysis, PersistenceRegistry registry)
+        {
+            if (registry == null)
+            {
+                throw new ArgumentNullException(nameof(registry));
+            }
+
+            var entity = new AnalysisEntity();
+
+            AddEntitiesForStakeholders(analysis, entity, registry);
+            AddEntitiesForOnionDiagrams(analysis, entity, registry);
+            AddEntitiesForForceDiagrams(analysis, entity, registry);
+            AddEntitiesForAttitudeImpactDiagrams(analysis, entity, registry);
+
+            return entity;
+        }
+
+        private static void AddEntitiesForAttitudeImpactDiagrams(Analysis analysis, AnalysisEntity entity, PersistenceRegistry registry)
+        {
+            for (var index = 0; index < analysis.AttitudeImpactDiagrams.Count; index++)
+            {
+                var attitudeImpactDiagramEntity = analysis.AttitudeImpactDiagrams[index].Create(registry);
+                attitudeImpactDiagramEntity.Order = index;
+                entity.AttitudeImpactDiagramEntities.Add(attitudeImpactDiagramEntity);
+            }
+        }
+
+        private static void AddEntitiesForForceDiagrams(Analysis analysis, AnalysisEntity entity, PersistenceRegistry registry)
+        {
+            // TODO
+        }
+
+        private static void AddEntitiesForOnionDiagrams(Analysis analysis, AnalysisEntity entity, PersistenceRegistry registry)
+        {
+            // TODO
+        }
+
+        private static void AddEntitiesForStakeholders(Analysis analysis, AnalysisEntity entity, PersistenceRegistry registry)
+        {
+            for (var index = 0; index < analysis.Stakeholders.Count; index++)
+            {
+                var stakeholderEntity = analysis.Stakeholders[index].Create(registry);
+                stakeholderEntity.Order = index;
+                entity.StakeholderEntities.Add(stakeholderEntity);
+            }
+        }
+    }
+}
