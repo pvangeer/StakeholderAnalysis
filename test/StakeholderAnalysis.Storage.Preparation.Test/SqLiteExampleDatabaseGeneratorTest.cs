@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Data.SQLite;
 using System.IO;
+using System.Reflection;
 using NUnit.Framework;
 using StakeholderAnalysis.Storage.Preparation.Test.Properties;
 
@@ -14,23 +15,27 @@ namespace StakeholderAnalysis.Storage.Preparation.Test
         public void CreateSampleDatabase()
         {
             // Setup
-            string storageFile = GetPathToStorageFile();
-            if (File.Exists(storageFile))
+            string targetStorageFile = GetPathToStorageFile();
+            if (File.Exists(targetStorageFile))
             {
-                TestDelegate precondition = () => File.Delete(storageFile);
-                Assert.DoesNotThrow(precondition, "Precondition failed: file could not be deleted: '{0}'", storageFile);
+                TestDelegate precondition = () => File.Delete(targetStorageFile);
+                Assert.DoesNotThrow(precondition, "Precondition failed: file could not be deleted: '{0}'", targetStorageFile);
             }
 
             // Call
-            CreateDatabaseFile(storageFile, Resources.StakeholderAnalysisDatabaseDesign);
+            CreateDatabaseFile(targetStorageFile, Resources.StakeholderAnalysisDatabaseDesign);
 
             // Assert
-            Assert.IsTrue(File.Exists(storageFile));
+            Assert.IsTrue(File.Exists(targetStorageFile));
         }
 
         private static string GetPathToStorageFile()
         {
-            return @"C:\src\StakeholderAnalysis\design\StakeholderAnalysisDatabaseDesign.sqlite";
+            var slnDirectory = Directory
+                .GetParent(Assembly.GetAssembly(typeof(SqLiteExampleDatabaseGeneratorTest)).Location)?.Parent?.Parent?
+                .Parent?.Parent?.Parent?.FullName;
+            Assert.IsNotNull(slnDirectory);
+            return Path.Combine(slnDirectory,"design", "StakeholderAnalysisDatabaseDesign.sqlite");
         }
 
         public static void CreateDatabaseFile(string databaseFilePath, string databaseSchemaQuery)
