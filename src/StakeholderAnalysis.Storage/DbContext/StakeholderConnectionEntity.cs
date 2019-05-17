@@ -15,10 +15,10 @@ namespace StakeholderAnalysis.Storage.DbContext
     public partial class StakeholderConnectionEntity
     {
         public long StakeholderConnectionEntityId { get; set; }
-        public Nullable<long> StakeholderConnectionGroupEntityId { get; set; }
-        public Nullable<long> StakeholderFromEntityId { get; set; }
-        public Nullable<long> StakeholderToEntityId { get; set; }
-        public Nullable<long> OnionDiagramId { get; set; }
+        public long StakeholderConnectionGroupEntityId { get; set; }
+        public long StakeholderFromEntityId { get; set; }
+        public long StakeholderToEntityId { get; set; }
+        public long OnionDiagramId { get; set; }
         public long Order { get; set; }
     
         public virtual OnionDiagramEntity OnionDiagramEntity { get; set; }

@@ -17,16 +17,16 @@ namespace StakeholderAnalysis.Storage.DbContext
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
         public ForceFieldDiagramEntity()
         {
-            this.ForceFieldDiagramStakeholderEntity = new HashSet<ForceFieldDiagramStakeholderEntity>();
+            this.ForceFieldDiagramStakeholderEntities = new HashSet<ForceFieldDiagramStakeholderEntity>();
         }
     
         public long ForceFieldDiagramEntityId { get; set; }
-        public Nullable<long> AnalysisEntityId { get; set; }
+        public long AnalysisEntityId { get; set; }
         public string Name { get; set; }
-        public Nullable<long> Order { get; set; }
+        public long Order { get; set; }
     
         public virtual AnalysisEntity AnalysisEntity { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<ForceFieldDiagramStakeholderEntity> ForceFieldDiagramStakeholderEntity { get; set; }
+        public virtual ICollection<ForceFieldDiagramStakeholderEntity> ForceFieldDiagramStakeholderEntities { get; set; }
     }
 }

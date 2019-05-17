@@ -4,62 +4,60 @@
   <edmx:Runtime>
     <!-- SSDL content -->
     <edmx:StorageModels>
-      <Schema Namespace="StakeholderAnalysisMainEntities.Store" Provider="System.Data.SQLite.EF6" ProviderManifestToken="Data Source=C:\src\StakeholderAnalysis\design\StakeholderAnalysisDatabaseDesign.sqlite" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+    <Schema Namespace="StakeholderAnalysisEntities.Store" Provider="System.Data.SQLite.EF6" ProviderManifestToken="Data Source=C:\src\StakeholderAnalysis\design\StakeholderAnalysisDatabaseDesign.sqlite" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
         <EntityType Name="AnalysisEntity">
           <Key>
             <PropertyRef Name="AnalysisEntityId" />
           </Key>
           <Property Name="AnalysisEntityId" Type="integer" StoreGeneratedPattern="Identity" Nullable="false" />
-          <Property Name="StakeholderId" Type="integer" />
         </EntityType>
         <EntityType Name="AttitudeImpactDiagramEntity">
           <Key>
             <PropertyRef Name="AttitudeImpactDiagramEntityId" />
           </Key>
           <Property Name="AttitudeImpactDiagramEntityId" Type="integer" StoreGeneratedPattern="Identity" Nullable="false" />
-          <Property Name="AnalysisEntityId" Type="integer" />
-          <Property Name="AnalysisId" Type="integer" />
-          <Property Name="Name" Type="nvarchar" MaxLength="2147483647" />
-          <Property Name="Order" Type="integer" />
+          <Property Name="AnalysisEntityId" Type="integer" Nullable="false" />
+          <Property Name="Name" Type="nvarchar" MaxLength="2147483647" Nullable="false" />
+          <Property Name="Order" Type="integer" Nullable="false" />
         </EntityType>
         <EntityType Name="AttitudeImpactDiagramStakeholderEntity">
           <Key>
             <PropertyRef Name="AttitudeImpactDiagramStakeholderEntityId" />
           </Key>
           <Property Name="AttitudeImpactDiagramStakeholderEntityId" Type="integer" StoreGeneratedPattern="Identity" Nullable="false" />
-          <Property Name="AttitudeImpactDiagramEntityId" Type="integer" />
-          <Property Name="StakeholderEntityId" Type="integer" />
-          <Property Name="Attitude" Type="real" />
-          <Property Name="Impact" Type="real" />
-          <Property Name="Order" Type="integer" />
+          <Property Name="AttitudeImpactDiagramEntityId" Type="integer" Nullable="false" />
+          <Property Name="StakeholderEntityId" Type="integer" Nullable="false" />
+          <Property Name="Attitude" Type="real" Nullable="false" />
+          <Property Name="Impact" Type="real" Nullable="false" />
+          <Property Name="Order" Type="integer" Nullable="false" />
         </EntityType>
         <EntityType Name="ForceFieldDiagramEntity">
           <Key>
             <PropertyRef Name="ForceFieldDiagramEntityId" />
           </Key>
           <Property Name="ForceFieldDiagramEntityId" Type="integer" StoreGeneratedPattern="Identity" Nullable="false" />
-          <Property Name="AnalysisEntityId" Type="integer" />
-          <Property Name="Name" Type="nvarchar" MaxLength="2147483647" />
-          <Property Name="Order" Type="integer" />
+          <Property Name="AnalysisEntityId" Type="integer" Nullable="false" />
+          <Property Name="Name" Type="nvarchar" MaxLength="2147483647" Nullable="false" />
+          <Property Name="Order" Type="integer" Nullable="false" />
         </EntityType>
         <EntityType Name="ForceFieldDiagramStakeholderEntity">
           <Key>
             <PropertyRef Name="ForceFieldDiagramStakeholderEntityId" />
           </Key>
           <Property Name="ForceFieldDiagramStakeholderEntityId" Type="integer" StoreGeneratedPattern="Identity" Nullable="false" />
-          <Property Name="StakeholderEntityId" Type="integer" />
-          <Property Name="ForceFieldDiagramEntityId" Type="integer" />
-          <Property Name="Interest" Type="real" />
-          <Property Name="Influence" Type="real" />
-          <Property Name="Order" Type="integer" />
+          <Property Name="StakeholderEntityId" Type="integer" Nullable="false" />
+          <Property Name="ForceFieldDiagramEntityId" Type="integer" Nullable="false" />
+          <Property Name="Interest" Type="real" Nullable="false" />
+          <Property Name="Influence" Type="real" Nullable="false" />
+          <Property Name="Order" Type="integer" Nullable="false" />
         </EntityType>
         <EntityType Name="OnionDiagramEntity">
           <Key>
             <PropertyRef Name="OnionDiagramId" />
           </Key>
           <Property Name="OnionDiagramId" Type="integer" StoreGeneratedPattern="Identity" Nullable="false" />
-          <Property Name="AnalysisEntityId" Type="integer" />
-          <Property Name="Name" Type="nvarchar" MaxLength="2147483647" />
+          <Property Name="AnalysisEntityId" Type="integer" Nullable="false" />
+          <Property Name="Name" Type="nvarchar" MaxLength="2147483647" Nullable="false" />
           <Property Name="Asymmetry" Type="real" Nullable="false" />
           <Property Name="Order" Type="integer" Nullable="false" />
         </EntityType>
@@ -68,8 +66,8 @@
             <PropertyRef Name="OnionDiagramStakeholderEntityId" />
           </Key>
           <Property Name="OnionDiagramStakeholderEntityId" Type="integer" StoreGeneratedPattern="Identity" Nullable="false" />
-          <Property Name="StakeholderEntityId" Type="integer" />
-          <Property Name="OnionDiagramId" Type="integer" />
+          <Property Name="StakeholderEntityId" Type="integer" Nullable="false" />
+          <Property Name="OnionDiagramId" Type="integer" Nullable="false" />
           <Property Name="Left" Type="real" Nullable="false" />
           <Property Name="Top" Type="real" Nullable="false" />
           <Property Name="Order" Type="integer" Nullable="false" />
@@ -79,22 +77,22 @@
             <PropertyRef Name="OnrionRingEntityId" />
           </Key>
           <Property Name="OnrionRingEntityId" Type="integer" StoreGeneratedPattern="Identity" Nullable="false" />
-          <Property Name="OnionDiagramId" Type="integer" />
+          <Property Name="OnionDiagramId" Type="integer" Nullable="false" />
           <Property Name="Percentage" Type="real" Nullable="false" />
-          <Property Name="BackgroundColor" Type="nvarchar" MaxLength="2147483647" />
-          <Property Name="StrokeColor" Type="nvarchar" MaxLength="2147483647" />
+          <Property Name="BackgroundColor" Type="nvarchar" MaxLength="2147483647" Nullable="false" />
+          <Property Name="StrokeColor" Type="nvarchar" MaxLength="2147483647" Nullable="false" />
           <Property Name="StrokeThickness" Type="real" Nullable="false" />
-          <Property Name="Order" Type="integer" />
+          <Property Name="Order" Type="integer" Nullable="false" />
         </EntityType>
         <EntityType Name="StakeholderConnectionEntity">
           <Key>
             <PropertyRef Name="StakeholderConnectionEntityId" />
           </Key>
           <Property Name="StakeholderConnectionEntityId" Type="integer" StoreGeneratedPattern="Identity" Nullable="false" />
-          <Property Name="StakeholderConnectionGroupEntityId" Type="integer" />
-          <Property Name="StakeholderFromEntityId" Type="integer" />
-          <Property Name="StakeholderToEntityId" Type="integer" />
-          <Property Name="OnionDiagramId" Type="integer" />
+          <Property Name="StakeholderConnectionGroupEntityId" Type="integer" Nullable="false" />
+          <Property Name="StakeholderFromEntityId" Type="integer" Nullable="false" />
+          <Property Name="StakeholderToEntityId" Type="integer" Nullable="false" />
+          <Property Name="OnionDiagramId" Type="integer" Nullable="false" />
           <Property Name="Order" Type="integer" Nullable="false" />
         </EntityType>
         <EntityType Name="StakeholderConnectionGroupEntity">
@@ -102,11 +100,11 @@
             <PropertyRef Name="StakeholderConnectionGroupEntityId" />
           </Key>
           <Property Name="StakeholderConnectionGroupEntityId" Type="integer" StoreGeneratedPattern="Identity" Nullable="false" />
-          <Property Name="OnionDiagramId" Type="integer" />
-          <Property Name="Name" Type="nvarchar" MaxLength="2147483647" />
-          <Property Name="Color" Type="nvarchar" MaxLength="2147483647" />
-          <Property Name="Visible" Type="nvarchar" MaxLength="2147483647" />
-          <Property Name="StrokeThickness" Type="real" />
+          <Property Name="OnionDiagramId" Type="integer" Nullable="false" />
+          <Property Name="Name" Type="nvarchar" MaxLength="2147483647" Nullable="false" />
+          <Property Name="Color" Type="nvarchar" MaxLength="2147483647" Nullable="false" />
+          <Property Name="Visible" Type="tinyint" Nullable="false" />
+          <Property Name="StrokeThickness" Type="real" Nullable="false" />
           <Property Name="Order" Type="integer" Nullable="false" />
         </EntityType>
         <EntityType Name="StakeholderEntity">
@@ -114,13 +112,22 @@
             <PropertyRef Name="StakeholderEntityId" />
           </Key>
           <Property Name="StakeholderEntityId" Type="integer" StoreGeneratedPattern="Identity" Nullable="false" />
-          <Property Name="AnalysisEntityId" Type="integer" />
-          <Property Name="Name" Type="nvarchar" MaxLength="2147483647" />
+          <Property Name="AnalysisEntityId" Type="integer" Nullable="false" />
+          <Property Name="Name" Type="nvarchar" MaxLength="2147483647" Nullable="false" />
           <Property Name="Type" Type="tinyint" Nullable="false" />
-          <Property Name="Order" Type="integer" />
+          <Property Name="Order" Type="integer" Nullable="false" />
+        </EntityType>
+        <EntityType Name="VersionEntity">
+          <Key>
+            <PropertyRef Name="VersionEntityId" />
+          </Key>
+          <Property Name="VersionEntityId" Type="integer" Nullable="false" />
+          <Property Name="Version" Type="varchar" MaxLength="2147483647" Nullable="false" />
+          <Property Name="TimeStamp" Type="datetime" Nullable="false" />
+          <Property Name="FingerPrint" Type="blob" Nullable="false" />
         </EntityType>
         <Association Name="FK_AttitudeImpactDiagramEntity_0_0">
-          <End Role="AnalysisEntity" Type="Self.AnalysisEntity" Multiplicity="0..1" />
+          <End Role="AnalysisEntity" Type="Self.AnalysisEntity" Multiplicity="1" />
           <End Role="AttitudeImpactDiagramEntity" Type="Self.AttitudeImpactDiagramEntity" Multiplicity="*" />
           <ReferentialConstraint>
             <Principal Role="AnalysisEntity">
@@ -132,7 +139,7 @@
           </ReferentialConstraint>
         </Association>
         <Association Name="FK_AttitudeImpactDiagramStakeholderEntity_0_0">
-          <End Role="StakeholderEntity" Type="Self.StakeholderEntity" Multiplicity="0..1" />
+          <End Role="StakeholderEntity" Type="Self.StakeholderEntity" Multiplicity="1" />
           <End Role="AttitudeImpactDiagramStakeholderEntity" Type="Self.AttitudeImpactDiagramStakeholderEntity" Multiplicity="*" />
           <ReferentialConstraint>
             <Principal Role="StakeholderEntity">
@@ -144,7 +151,7 @@
           </ReferentialConstraint>
         </Association>
         <Association Name="FK_AttitudeImpactDiagramStakeholderEntity_1_0">
-          <End Role="AttitudeImpactDiagramEntity" Type="Self.AttitudeImpactDiagramEntity" Multiplicity="0..1" />
+          <End Role="AttitudeImpactDiagramEntity" Type="Self.AttitudeImpactDiagramEntity" Multiplicity="1" />
           <End Role="AttitudeImpactDiagramStakeholderEntity" Type="Self.AttitudeImpactDiagramStakeholderEntity" Multiplicity="*" />
           <ReferentialConstraint>
             <Principal Role="AttitudeImpactDiagramEntity">
@@ -156,7 +163,7 @@
           </ReferentialConstraint>
         </Association>
         <Association Name="FK_ForceFieldDiagramEntity_0_0">
-          <End Role="AnalysisEntity" Type="Self.AnalysisEntity" Multiplicity="0..1" />
+          <End Role="AnalysisEntity" Type="Self.AnalysisEntity" Multiplicity="1" />
           <End Role="ForceFieldDiagramEntity" Type="Self.ForceFieldDiagramEntity" Multiplicity="*" />
           <ReferentialConstraint>
             <Principal Role="AnalysisEntity">
@@ -168,7 +175,7 @@
           </ReferentialConstraint>
         </Association>
         <Association Name="FK_ForceFieldDiagramStakeholderEntity_0_0">
-          <End Role="StakeholderEntity" Type="Self.StakeholderEntity" Multiplicity="0..1" />
+          <End Role="StakeholderEntity" Type="Self.StakeholderEntity" Multiplicity="1" />
           <End Role="ForceFieldDiagramStakeholderEntity" Type="Self.ForceFieldDiagramStakeholderEntity" Multiplicity="*" />
           <ReferentialConstraint>
             <Principal Role="StakeholderEntity">
@@ -180,7 +187,7 @@
           </ReferentialConstraint>
         </Association>
         <Association Name="FK_ForceFieldDiagramStakeholderEntity_1_0">
-          <End Role="ForceFieldDiagramEntity" Type="Self.ForceFieldDiagramEntity" Multiplicity="0..1" />
+          <End Role="ForceFieldDiagramEntity" Type="Self.ForceFieldDiagramEntity" Multiplicity="1" />
           <End Role="ForceFieldDiagramStakeholderEntity" Type="Self.ForceFieldDiagramStakeholderEntity" Multiplicity="*" />
           <ReferentialConstraint>
             <Principal Role="ForceFieldDiagramEntity">
@@ -192,7 +199,7 @@
           </ReferentialConstraint>
         </Association>
         <Association Name="FK_OnionDiagramEntity_0_0">
-          <End Role="AnalysisEntity" Type="Self.AnalysisEntity" Multiplicity="0..1" />
+          <End Role="AnalysisEntity" Type="Self.AnalysisEntity" Multiplicity="1" />
           <End Role="OnionDiagramEntity" Type="Self.OnionDiagramEntity" Multiplicity="*" />
           <ReferentialConstraint>
             <Principal Role="AnalysisEntity">
@@ -204,7 +211,7 @@
           </ReferentialConstraint>
         </Association>
         <Association Name="FK_OnionDiagramStakeholderEntity_0_0">
-          <End Role="StakeholderEntity" Type="Self.StakeholderEntity" Multiplicity="0..1" />
+          <End Role="StakeholderEntity" Type="Self.StakeholderEntity" Multiplicity="1" />
           <End Role="OnionDiagramStakeholderEntity" Type="Self.OnionDiagramStakeholderEntity" Multiplicity="*" />
           <ReferentialConstraint>
             <Principal Role="StakeholderEntity">
@@ -216,7 +223,7 @@
           </ReferentialConstraint>
         </Association>
         <Association Name="FK_OnionDiagramStakeholderEntity_1_0">
-          <End Role="OnionDiagramEntity" Type="Self.OnionDiagramEntity" Multiplicity="0..1" />
+          <End Role="OnionDiagramEntity" Type="Self.OnionDiagramEntity" Multiplicity="1" />
           <End Role="OnionDiagramStakeholderEntity" Type="Self.OnionDiagramStakeholderEntity" Multiplicity="*" />
           <ReferentialConstraint>
             <Principal Role="OnionDiagramEntity">
@@ -228,7 +235,7 @@
           </ReferentialConstraint>
         </Association>
         <Association Name="FK_OnionRingEntity_0_0">
-          <End Role="OnionDiagramEntity" Type="Self.OnionDiagramEntity" Multiplicity="0..1" />
+          <End Role="OnionDiagramEntity" Type="Self.OnionDiagramEntity" Multiplicity="1" />
           <End Role="OnionRingEntity" Type="Self.OnionRingEntity" Multiplicity="*" />
           <ReferentialConstraint>
             <Principal Role="OnionDiagramEntity">
@@ -240,7 +247,7 @@
           </ReferentialConstraint>
         </Association>
         <Association Name="FK_StakeholderConnectionEntity_0_0">
-          <End Role="StakeholderConnectionGroupEntity" Type="Self.StakeholderConnectionGroupEntity" Multiplicity="0..1" />
+          <End Role="StakeholderConnectionGroupEntity" Type="Self.StakeholderConnectionGroupEntity" Multiplicity="1" />
           <End Role="StakeholderConnectionEntity" Type="Self.StakeholderConnectionEntity" Multiplicity="*" />
           <ReferentialConstraint>
             <Principal Role="StakeholderConnectionGroupEntity">
@@ -252,7 +259,7 @@
           </ReferentialConstraint>
         </Association>
         <Association Name="FK_StakeholderConnectionEntity_1_0">
-          <End Role="OnionDiagramStakeholderEntity" Type="Self.OnionDiagramStakeholderEntity" Multiplicity="0..1" />
+          <End Role="OnionDiagramStakeholderEntity" Type="Self.OnionDiagramStakeholderEntity" Multiplicity="1" />
           <End Role="StakeholderConnectionEntity" Type="Self.StakeholderConnectionEntity" Multiplicity="*" />
           <ReferentialConstraint>
             <Principal Role="OnionDiagramStakeholderEntity">
@@ -264,7 +271,7 @@
           </ReferentialConstraint>
         </Association>
         <Association Name="FK_StakeholderConnectionEntity_2_0">
-          <End Role="OnionDiagramStakeholderEntity" Type="Self.OnionDiagramStakeholderEntity" Multiplicity="0..1" />
+          <End Role="OnionDiagramStakeholderEntity" Type="Self.OnionDiagramStakeholderEntity" Multiplicity="1" />
           <End Role="StakeholderConnectionEntity" Type="Self.StakeholderConnectionEntity" Multiplicity="*" />
           <ReferentialConstraint>
             <Principal Role="OnionDiagramStakeholderEntity">
@@ -276,7 +283,7 @@
           </ReferentialConstraint>
         </Association>
         <Association Name="FK_StakeholderConnectionEntity_3_0">
-          <End Role="OnionDiagramEntity" Type="Self.OnionDiagramEntity" Multiplicity="0..1" />
+          <End Role="OnionDiagramEntity" Type="Self.OnionDiagramEntity" Multiplicity="1" />
           <End Role="StakeholderConnectionEntity" Type="Self.StakeholderConnectionEntity" Multiplicity="*" />
           <ReferentialConstraint>
             <Principal Role="OnionDiagramEntity">
@@ -288,7 +295,7 @@
           </ReferentialConstraint>
         </Association>
         <Association Name="FK_StakeholderConnectionGroupEntity_0_0">
-          <End Role="OnionDiagramEntity" Type="Self.OnionDiagramEntity" Multiplicity="0..1" />
+          <End Role="OnionDiagramEntity" Type="Self.OnionDiagramEntity" Multiplicity="1" />
           <End Role="StakeholderConnectionGroupEntity" Type="Self.StakeholderConnectionGroupEntity" Multiplicity="*" />
           <ReferentialConstraint>
             <Principal Role="OnionDiagramEntity">
@@ -300,7 +307,7 @@
           </ReferentialConstraint>
         </Association>
         <Association Name="FK_StakeholderEntity_0_0">
-          <End Role="AnalysisEntity" Type="Self.AnalysisEntity" Multiplicity="0..1" />
+          <End Role="AnalysisEntity" Type="Self.AnalysisEntity" Multiplicity="1" />
           <End Role="StakeholderEntity" Type="Self.StakeholderEntity" Multiplicity="*" />
           <ReferentialConstraint>
             <Principal Role="AnalysisEntity">
@@ -311,7 +318,7 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <EntityContainer Name="StakeholderAnalysisMainEntitiesStoreContainer">
+        <EntityContainer Name="StakeholderAnalysisEntitiesStoreContainer">
           <EntitySet Name="AnalysisEntity" EntityType="Self.AnalysisEntity" store:Type="Tables" />
           <EntitySet Name="AttitudeImpactDiagramEntity" EntityType="Self.AttitudeImpactDiagramEntity" store:Type="Tables" />
           <EntitySet Name="AttitudeImpactDiagramStakeholderEntity" EntityType="Self.AttitudeImpactDiagramStakeholderEntity" store:Type="Tables" />
@@ -323,6 +330,7 @@
           <EntitySet Name="StakeholderConnectionEntity" EntityType="Self.StakeholderConnectionEntity" store:Type="Tables" />
           <EntitySet Name="StakeholderConnectionGroupEntity" EntityType="Self.StakeholderConnectionGroupEntity" store:Type="Tables" />
           <EntitySet Name="StakeholderEntity" EntityType="Self.StakeholderEntity" store:Type="Tables" />
+          <EntitySet Name="VersionEntity" EntityType="Self.VersionEntity" store:Type="Tables" />
           <AssociationSet Name="FK_AttitudeImpactDiagramEntity_0_0" Association="Self.FK_AttitudeImpactDiagramEntity_0_0">
             <End Role="AnalysisEntity" EntitySet="AnalysisEntity" />
             <End Role="AttitudeImpactDiagramEntity" EntitySet="AttitudeImpactDiagramEntity" />
@@ -388,160 +396,244 @@
             <End Role="StakeholderEntity" EntitySet="StakeholderEntity" />
           </AssociationSet>
         </EntityContainer>
-      </Schema>
-    </edmx:StorageModels>
+      </Schema></edmx:StorageModels>
     <!-- CSDL content -->
     <edmx:ConceptualModels>
-      <Schema Namespace="StakeholderAnalysisMainEntities" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+      <Schema Namespace="StakeholderAnalysisEntities" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+        <EntityContainer Name="Entities" annotation:LazyLoadingEnabled="true">
+          <EntitySet Name="AnalysisEntities" EntityType="StakeholderAnalysisEntities.AnalysisEntity" />
+          <EntitySet Name="AttitudeImpactDiagramEntities" EntityType="StakeholderAnalysisEntities.AttitudeImpactDiagramEntity" />
+          <EntitySet Name="AttitudeImpactDiagramStakeholderEntities" EntityType="StakeholderAnalysisEntities.AttitudeImpactDiagramStakeholderEntity" />
+          <EntitySet Name="ForceFieldDiagramEntities" EntityType="StakeholderAnalysisEntities.ForceFieldDiagramEntity" />
+          <EntitySet Name="ForceFieldDiagramStakeholderEntities" EntityType="StakeholderAnalysisEntities.ForceFieldDiagramStakeholderEntity" />
+          <EntitySet Name="OnionDiagramEntities" EntityType="StakeholderAnalysisEntities.OnionDiagramEntity" />
+          <EntitySet Name="OnionDiagramStakeholderEntities" EntityType="StakeholderAnalysisEntities.OnionDiagramStakeholderEntity" />
+          <EntitySet Name="OnionRingEntities" EntityType="StakeholderAnalysisEntities.OnionRingEntity" />
+          <EntitySet Name="StakeholderConnectionEntities" EntityType="StakeholderAnalysisEntities.StakeholderConnectionEntity" />
+          <EntitySet Name="StakeholderConnectionGroupEntities" EntityType="StakeholderAnalysisEntities.StakeholderConnectionGroupEntity" />
+          <EntitySet Name="StakeholderEntities" EntityType="StakeholderAnalysisEntities.StakeholderEntity" />
+          <EntitySet Name="VersionEntities" EntityType="StakeholderAnalysisEntities.VersionEntity" />
+          <AssociationSet Name="FK_AttitudeImpactDiagramEntity_0_0" Association="StakeholderAnalysisEntities.FK_AttitudeImpactDiagramEntity_0_0">
+            <End Role="AnalysisEntity" EntitySet="AnalysisEntities" />
+            <End Role="AttitudeImpactDiagramEntity" EntitySet="AttitudeImpactDiagramEntities" />
+          </AssociationSet>
+          <AssociationSet Name="FK_ForceFieldDiagramEntity_0_0" Association="StakeholderAnalysisEntities.FK_ForceFieldDiagramEntity_0_0">
+            <End Role="AnalysisEntity" EntitySet="AnalysisEntities" />
+            <End Role="ForceFieldDiagramEntity" EntitySet="ForceFieldDiagramEntities" />
+          </AssociationSet>
+          <AssociationSet Name="FK_OnionDiagramEntity_0_0" Association="StakeholderAnalysisEntities.FK_OnionDiagramEntity_0_0">
+            <End Role="AnalysisEntity" EntitySet="AnalysisEntities" />
+            <End Role="OnionDiagramEntity" EntitySet="OnionDiagramEntities" />
+          </AssociationSet>
+          <AssociationSet Name="FK_StakeholderEntity_0_0" Association="StakeholderAnalysisEntities.FK_StakeholderEntity_0_0">
+            <End Role="AnalysisEntity" EntitySet="AnalysisEntities" />
+            <End Role="StakeholderEntity" EntitySet="StakeholderEntities" />
+          </AssociationSet>
+          <AssociationSet Name="FK_AttitudeImpactDiagramStakeholderEntity_1_0" Association="StakeholderAnalysisEntities.FK_AttitudeImpactDiagramStakeholderEntity_1_0">
+            <End Role="AttitudeImpactDiagramEntity" EntitySet="AttitudeImpactDiagramEntities" />
+            <End Role="AttitudeImpactDiagramStakeholderEntity" EntitySet="AttitudeImpactDiagramStakeholderEntities" />
+          </AssociationSet>
+          <AssociationSet Name="FK_AttitudeImpactDiagramStakeholderEntity_0_0" Association="StakeholderAnalysisEntities.FK_AttitudeImpactDiagramStakeholderEntity_0_0">
+            <End Role="StakeholderEntity" EntitySet="StakeholderEntities" />
+            <End Role="AttitudeImpactDiagramStakeholderEntity" EntitySet="AttitudeImpactDiagramStakeholderEntities" />
+          </AssociationSet>
+          <AssociationSet Name="FK_ForceFieldDiagramStakeholderEntity_1_0" Association="StakeholderAnalysisEntities.FK_ForceFieldDiagramStakeholderEntity_1_0">
+            <End Role="ForceFieldDiagramEntity" EntitySet="ForceFieldDiagramEntities" />
+            <End Role="ForceFieldDiagramStakeholderEntity" EntitySet="ForceFieldDiagramStakeholderEntities" />
+          </AssociationSet>
+          <AssociationSet Name="FK_ForceFieldDiagramStakeholderEntity_0_0" Association="StakeholderAnalysisEntities.FK_ForceFieldDiagramStakeholderEntity_0_0">
+            <End Role="StakeholderEntity" EntitySet="StakeholderEntities" />
+            <End Role="ForceFieldDiagramStakeholderEntity" EntitySet="ForceFieldDiagramStakeholderEntities" />
+          </AssociationSet>
+          <AssociationSet Name="FK_OnionDiagramStakeholderEntity_1_0" Association="StakeholderAnalysisEntities.FK_OnionDiagramStakeholderEntity_1_0">
+            <End Role="OnionDiagramEntity" EntitySet="OnionDiagramEntities" />
+            <End Role="OnionDiagramStakeholderEntity" EntitySet="OnionDiagramStakeholderEntities" />
+          </AssociationSet>
+          <AssociationSet Name="FK_OnionRingEntity_0_0" Association="StakeholderAnalysisEntities.FK_OnionRingEntity_0_0">
+            <End Role="OnionDiagramEntity" EntitySet="OnionDiagramEntities" />
+            <End Role="OnionRingEntity" EntitySet="OnionRingEntities" />
+          </AssociationSet>
+          <AssociationSet Name="FK_StakeholderConnectionEntity_3_0" Association="StakeholderAnalysisEntities.FK_StakeholderConnectionEntity_3_0">
+            <End Role="OnionDiagramEntity" EntitySet="OnionDiagramEntities" />
+            <End Role="StakeholderConnectionEntity" EntitySet="StakeholderConnectionEntities" />
+          </AssociationSet>
+          <AssociationSet Name="FK_StakeholderConnectionGroupEntity_0_0" Association="StakeholderAnalysisEntities.FK_StakeholderConnectionGroupEntity_0_0">
+            <End Role="OnionDiagramEntity" EntitySet="OnionDiagramEntities" />
+            <End Role="StakeholderConnectionGroupEntity" EntitySet="StakeholderConnectionGroupEntities" />
+          </AssociationSet>
+          <AssociationSet Name="FK_OnionDiagramStakeholderEntity_0_0" Association="StakeholderAnalysisEntities.FK_OnionDiagramStakeholderEntity_0_0">
+            <End Role="StakeholderEntity" EntitySet="StakeholderEntities" />
+            <End Role="OnionDiagramStakeholderEntity" EntitySet="OnionDiagramStakeholderEntities" />
+          </AssociationSet>
+          <AssociationSet Name="FK_StakeholderConnectionEntity_1_0" Association="StakeholderAnalysisEntities.FK_StakeholderConnectionEntity_1_0">
+            <End Role="OnionDiagramStakeholderEntity" EntitySet="OnionDiagramStakeholderEntities" />
+            <End Role="StakeholderConnectionEntity" EntitySet="StakeholderConnectionEntities" />
+          </AssociationSet>
+          <AssociationSet Name="FK_StakeholderConnectionEntity_2_0" Association="StakeholderAnalysisEntities.FK_StakeholderConnectionEntity_2_0">
+            <End Role="OnionDiagramStakeholderEntity" EntitySet="OnionDiagramStakeholderEntities" />
+            <End Role="StakeholderConnectionEntity" EntitySet="StakeholderConnectionEntities" />
+          </AssociationSet>
+          <AssociationSet Name="FK_StakeholderConnectionEntity_0_0" Association="StakeholderAnalysisEntities.FK_StakeholderConnectionEntity_0_0">
+            <End Role="StakeholderConnectionGroupEntity" EntitySet="StakeholderConnectionGroupEntities" />
+            <End Role="StakeholderConnectionEntity" EntitySet="StakeholderConnectionEntities" />
+          </AssociationSet>
+        </EntityContainer>
         <EntityType Name="AnalysisEntity">
           <Key>
             <PropertyRef Name="AnalysisEntityId" />
           </Key>
           <Property Name="AnalysisEntityId" Type="Int64" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
-          <Property Name="StakeholderId" Type="Int64" />
-          <NavigationProperty Name="AttitudeImpactDiagramEntity" Relationship="Self.FK_AttitudeImpactDiagramEntity_0_0" FromRole="AnalysisEntity" ToRole="AttitudeImpactDiagramEntity" />
-          <NavigationProperty Name="ForceFieldDiagramEntity" Relationship="Self.FK_ForceFieldDiagramEntity_0_0" FromRole="AnalysisEntity" ToRole="ForceFieldDiagramEntity" />
-          <NavigationProperty Name="OnionDiagramEntity" Relationship="Self.FK_OnionDiagramEntity_0_0" FromRole="AnalysisEntity" ToRole="OnionDiagramEntity" />
-          <NavigationProperty Name="StakeholderEntity" Relationship="Self.FK_StakeholderEntity_0_0" FromRole="AnalysisEntity" ToRole="StakeholderEntity" />
+          <NavigationProperty Name="AttitudeImpactDiagramEntities" Relationship="StakeholderAnalysisEntities.FK_AttitudeImpactDiagramEntity_0_0" FromRole="AnalysisEntity" ToRole="AttitudeImpactDiagramEntity" />
+          <NavigationProperty Name="ForceFieldDiagramEntities" Relationship="StakeholderAnalysisEntities.FK_ForceFieldDiagramEntity_0_0" FromRole="AnalysisEntity" ToRole="ForceFieldDiagramEntity" />
+          <NavigationProperty Name="OnionDiagramEntities" Relationship="StakeholderAnalysisEntities.FK_OnionDiagramEntity_0_0" FromRole="AnalysisEntity" ToRole="OnionDiagramEntity" />
+          <NavigationProperty Name="StakeholderEntities" Relationship="StakeholderAnalysisEntities.FK_StakeholderEntity_0_0" FromRole="AnalysisEntity" ToRole="StakeholderEntity" />
         </EntityType>
         <EntityType Name="AttitudeImpactDiagramEntity">
           <Key>
             <PropertyRef Name="AttitudeImpactDiagramEntityId" />
           </Key>
           <Property Name="AttitudeImpactDiagramEntityId" Type="Int64" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
-          <Property Name="AnalysisEntityId" Type="Int64" />
-          <Property Name="AnalysisId" Type="Int64" />
-          <Property Name="Name" Type="String" MaxLength="2147483647" FixedLength="false" Unicode="true" />
-          <Property Name="Order" Type="Int64" />
-          <NavigationProperty Name="AnalysisEntity" Relationship="Self.FK_AttitudeImpactDiagramEntity_0_0" FromRole="AttitudeImpactDiagramEntity" ToRole="AnalysisEntity" />
-          <NavigationProperty Name="AttitudeImpactDiagramStakeholderEntity" Relationship="Self.FK_AttitudeImpactDiagramStakeholderEntity_1_0" FromRole="AttitudeImpactDiagramEntity" ToRole="AttitudeImpactDiagramStakeholderEntity" />
+          <Property Name="AnalysisEntityId" Type="Int64" Nullable="false" />
+          <Property Name="Name" Type="String" Nullable="false" MaxLength="2147483647" FixedLength="false" Unicode="true" />
+          <Property Name="Order" Type="Int64" Nullable="false" />
+          <NavigationProperty Name="AnalysisEntity" Relationship="StakeholderAnalysisEntities.FK_AttitudeImpactDiagramEntity_0_0" FromRole="AttitudeImpactDiagramEntity" ToRole="AnalysisEntity" />
+          <NavigationProperty Name="AttitudeImpactDiagramStakeholderEntities" Relationship="StakeholderAnalysisEntities.FK_AttitudeImpactDiagramStakeholderEntity_1_0" FromRole="AttitudeImpactDiagramEntity" ToRole="AttitudeImpactDiagramStakeholderEntity" />
         </EntityType>
         <EntityType Name="AttitudeImpactDiagramStakeholderEntity">
           <Key>
             <PropertyRef Name="AttitudeImpactDiagramStakeholderEntityId" />
           </Key>
           <Property Name="AttitudeImpactDiagramStakeholderEntityId" Type="Int64" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
-          <Property Name="AttitudeImpactDiagramEntityId" Type="Int64" />
-          <Property Name="StakeholderEntityId" Type="Int64" />
-          <Property Name="Attitude" Type="Double" />
-          <Property Name="Impact" Type="Double" />
-          <Property Name="Order" Type="Int64" />
-          <NavigationProperty Name="AttitudeImpactDiagramEntity" Relationship="Self.FK_AttitudeImpactDiagramStakeholderEntity_1_0" FromRole="AttitudeImpactDiagramStakeholderEntity" ToRole="AttitudeImpactDiagramEntity" />
-          <NavigationProperty Name="StakeholderEntity" Relationship="Self.FK_AttitudeImpactDiagramStakeholderEntity_0_0" FromRole="AttitudeImpactDiagramStakeholderEntity" ToRole="StakeholderEntity" />
+          <Property Name="AttitudeImpactDiagramEntityId" Type="Int64" Nullable="false" />
+          <Property Name="StakeholderEntityId" Type="Int64" Nullable="false" />
+          <Property Name="Attitude" Type="Double" Nullable="false" />
+          <Property Name="Impact" Type="Double" Nullable="false" />
+          <Property Name="Order" Type="Int64" Nullable="false" />
+          <NavigationProperty Name="AttitudeImpactDiagramEntity" Relationship="StakeholderAnalysisEntities.FK_AttitudeImpactDiagramStakeholderEntity_1_0" FromRole="AttitudeImpactDiagramStakeholderEntity" ToRole="AttitudeImpactDiagramEntity" />
+          <NavigationProperty Name="StakeholderEntity" Relationship="StakeholderAnalysisEntities.FK_AttitudeImpactDiagramStakeholderEntity_0_0" FromRole="AttitudeImpactDiagramStakeholderEntity" ToRole="StakeholderEntity" />
         </EntityType>
         <EntityType Name="ForceFieldDiagramEntity">
           <Key>
             <PropertyRef Name="ForceFieldDiagramEntityId" />
           </Key>
           <Property Name="ForceFieldDiagramEntityId" Type="Int64" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
-          <Property Name="AnalysisEntityId" Type="Int64" />
-          <Property Name="Name" Type="String" MaxLength="2147483647" FixedLength="false" Unicode="true" />
-          <Property Name="Order" Type="Int64" />
-          <NavigationProperty Name="AnalysisEntity" Relationship="Self.FK_ForceFieldDiagramEntity_0_0" FromRole="ForceFieldDiagramEntity" ToRole="AnalysisEntity" />
-          <NavigationProperty Name="ForceFieldDiagramStakeholderEntity" Relationship="Self.FK_ForceFieldDiagramStakeholderEntity_1_0" FromRole="ForceFieldDiagramEntity" ToRole="ForceFieldDiagramStakeholderEntity" />
+          <Property Name="AnalysisEntityId" Type="Int64" Nullable="false" />
+          <Property Name="Name" Type="String" Nullable="false" MaxLength="2147483647" FixedLength="false" Unicode="true" />
+          <Property Name="Order" Type="Int64" Nullable="false" />
+          <NavigationProperty Name="AnalysisEntity" Relationship="StakeholderAnalysisEntities.FK_ForceFieldDiagramEntity_0_0" FromRole="ForceFieldDiagramEntity" ToRole="AnalysisEntity" />
+          <NavigationProperty Name="ForceFieldDiagramStakeholderEntities" Relationship="StakeholderAnalysisEntities.FK_ForceFieldDiagramStakeholderEntity_1_0" FromRole="ForceFieldDiagramEntity" ToRole="ForceFieldDiagramStakeholderEntity" />
         </EntityType>
         <EntityType Name="ForceFieldDiagramStakeholderEntity">
           <Key>
             <PropertyRef Name="ForceFieldDiagramStakeholderEntityId" />
           </Key>
           <Property Name="ForceFieldDiagramStakeholderEntityId" Type="Int64" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
-          <Property Name="StakeholderEntityId" Type="Int64" />
-          <Property Name="ForceFieldDiagramEntityId" Type="Int64" />
-          <Property Name="Interest" Type="Double" />
-          <Property Name="Influence" Type="Double" />
-          <Property Name="Order" Type="Int64" />
-          <NavigationProperty Name="ForceFieldDiagramEntity" Relationship="Self.FK_ForceFieldDiagramStakeholderEntity_1_0" FromRole="ForceFieldDiagramStakeholderEntity" ToRole="ForceFieldDiagramEntity" />
-          <NavigationProperty Name="StakeholderEntity" Relationship="Self.FK_ForceFieldDiagramStakeholderEntity_0_0" FromRole="ForceFieldDiagramStakeholderEntity" ToRole="StakeholderEntity" />
+          <Property Name="StakeholderEntityId" Type="Int64" Nullable="false" />
+          <Property Name="ForceFieldDiagramEntityId" Type="Int64" Nullable="false" />
+          <Property Name="Interest" Type="Double" Nullable="false" />
+          <Property Name="Influence" Type="Double" Nullable="false" />
+          <Property Name="Order" Type="Int64" Nullable="false" />
+          <NavigationProperty Name="ForceFieldDiagramEntity" Relationship="StakeholderAnalysisEntities.FK_ForceFieldDiagramStakeholderEntity_1_0" FromRole="ForceFieldDiagramStakeholderEntity" ToRole="ForceFieldDiagramEntity" />
+          <NavigationProperty Name="StakeholderEntity" Relationship="StakeholderAnalysisEntities.FK_ForceFieldDiagramStakeholderEntity_0_0" FromRole="ForceFieldDiagramStakeholderEntity" ToRole="StakeholderEntity" />
         </EntityType>
         <EntityType Name="OnionDiagramEntity">
           <Key>
             <PropertyRef Name="OnionDiagramId" />
           </Key>
           <Property Name="OnionDiagramId" Type="Int64" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
-          <Property Name="AnalysisEntityId" Type="Int64" />
-          <Property Name="Name" Type="String" MaxLength="2147483647" FixedLength="false" Unicode="true" />
+          <Property Name="AnalysisEntityId" Type="Int64" Nullable="false" />
+          <Property Name="Name" Type="String" Nullable="false" MaxLength="2147483647" FixedLength="false" Unicode="true" />
           <Property Name="Asymmetry" Type="Double" Nullable="false" />
           <Property Name="Order" Type="Int64" Nullable="false" />
-          <NavigationProperty Name="AnalysisEntity" Relationship="Self.FK_OnionDiagramEntity_0_0" FromRole="OnionDiagramEntity" ToRole="AnalysisEntity" />
-          <NavigationProperty Name="OnionDiagramStakeholderEntity" Relationship="Self.FK_OnionDiagramStakeholderEntity_1_0" FromRole="OnionDiagramEntity" ToRole="OnionDiagramStakeholderEntity" />
-          <NavigationProperty Name="OnionRingEntity" Relationship="Self.FK_OnionRingEntity_0_0" FromRole="OnionDiagramEntity" ToRole="OnionRingEntity" />
-          <NavigationProperty Name="StakeholderConnectionEntity" Relationship="Self.FK_StakeholderConnectionEntity_3_0" FromRole="OnionDiagramEntity" ToRole="StakeholderConnectionEntity" />
-          <NavigationProperty Name="StakeholderConnectionGroupEntity" Relationship="Self.FK_StakeholderConnectionGroupEntity_0_0" FromRole="OnionDiagramEntity" ToRole="StakeholderConnectionGroupEntity" />
+          <NavigationProperty Name="AnalysisEntity" Relationship="StakeholderAnalysisEntities.FK_OnionDiagramEntity_0_0" FromRole="OnionDiagramEntity" ToRole="AnalysisEntity" />
+          <NavigationProperty Name="OnionDiagramStakeholderEntities" Relationship="StakeholderAnalysisEntities.FK_OnionDiagramStakeholderEntity_1_0" FromRole="OnionDiagramEntity" ToRole="OnionDiagramStakeholderEntity" />
+          <NavigationProperty Name="OnionRingEntities" Relationship="StakeholderAnalysisEntities.FK_OnionRingEntity_0_0" FromRole="OnionDiagramEntity" ToRole="OnionRingEntity" />
+          <NavigationProperty Name="StakeholderConnectionEntities" Relationship="StakeholderAnalysisEntities.FK_StakeholderConnectionEntity_3_0" FromRole="OnionDiagramEntity" ToRole="StakeholderConnectionEntity" />
+          <NavigationProperty Name="StakeholderConnectionGroupEntities" Relationship="StakeholderAnalysisEntities.FK_StakeholderConnectionGroupEntity_0_0" FromRole="OnionDiagramEntity" ToRole="StakeholderConnectionGroupEntity" />
         </EntityType>
         <EntityType Name="OnionDiagramStakeholderEntity">
           <Key>
             <PropertyRef Name="OnionDiagramStakeholderEntityId" />
           </Key>
           <Property Name="OnionDiagramStakeholderEntityId" Type="Int64" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
-          <Property Name="StakeholderEntityId" Type="Int64" />
-          <Property Name="OnionDiagramId" Type="Int64" />
+          <Property Name="StakeholderEntityId" Type="Int64" Nullable="false" />
+          <Property Name="OnionDiagramId" Type="Int64" Nullable="false" />
           <Property Name="Left" Type="Double" Nullable="false" />
           <Property Name="Top" Type="Double" Nullable="false" />
           <Property Name="Order" Type="Int64" Nullable="false" />
-          <NavigationProperty Name="OnionDiagramEntity" Relationship="Self.FK_OnionDiagramStakeholderEntity_1_0" FromRole="OnionDiagramStakeholderEntity" ToRole="OnionDiagramEntity" />
-          <NavigationProperty Name="StakeholderEntity" Relationship="Self.FK_OnionDiagramStakeholderEntity_0_0" FromRole="OnionDiagramStakeholderEntity" ToRole="StakeholderEntity" />
-          <NavigationProperty Name="StakeholderConnectionEntity" Relationship="Self.FK_StakeholderConnectionEntity_1_0" FromRole="OnionDiagramStakeholderEntity" ToRole="StakeholderConnectionEntity" />
-          <NavigationProperty Name="StakeholderConnectionEntity1" Relationship="Self.FK_StakeholderConnectionEntity_2_0" FromRole="OnionDiagramStakeholderEntity" ToRole="StakeholderConnectionEntity" />
+          <NavigationProperty Name="OnionDiagramEntity" Relationship="StakeholderAnalysisEntities.FK_OnionDiagramStakeholderEntity_1_0" FromRole="OnionDiagramStakeholderEntity" ToRole="OnionDiagramEntity" />
+          <NavigationProperty Name="StakeholderEntity" Relationship="StakeholderAnalysisEntities.FK_OnionDiagramStakeholderEntity_0_0" FromRole="OnionDiagramStakeholderEntity" ToRole="StakeholderEntity" />
+          <NavigationProperty Name="StakeholderConnectionEntities" Relationship="StakeholderAnalysisEntities.FK_StakeholderConnectionEntity_1_0" FromRole="OnionDiagramStakeholderEntity" ToRole="StakeholderConnectionEntity" />
+          <NavigationProperty Name="StakeholderConnectionEntities1" Relationship="StakeholderAnalysisEntities.FK_StakeholderConnectionEntity_2_0" FromRole="OnionDiagramStakeholderEntity" ToRole="StakeholderConnectionEntity" />
         </EntityType>
         <EntityType Name="OnionRingEntity">
           <Key>
             <PropertyRef Name="OnrionRingEntityId" />
           </Key>
           <Property Name="OnrionRingEntityId" Type="Int64" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
-          <Property Name="OnionDiagramId" Type="Int64" />
+          <Property Name="OnionDiagramId" Type="Int64" Nullable="false" />
           <Property Name="Percentage" Type="Double" Nullable="false" />
-          <Property Name="BackgroundColor" Type="String" MaxLength="2147483647" FixedLength="false" Unicode="true" />
-          <Property Name="StrokeColor" Type="String" MaxLength="2147483647" FixedLength="false" Unicode="true" />
+          <Property Name="BackgroundColor" Type="String" Nullable="false" MaxLength="2147483647" FixedLength="false" Unicode="true" />
+          <Property Name="StrokeColor" Type="String" Nullable="false" MaxLength="2147483647" FixedLength="false" Unicode="true" />
           <Property Name="StrokeThickness" Type="Double" Nullable="false" />
-          <Property Name="Order" Type="Int64" />
-          <NavigationProperty Name="OnionDiagramEntity" Relationship="Self.FK_OnionRingEntity_0_0" FromRole="OnionRingEntity" ToRole="OnionDiagramEntity" />
+          <Property Name="Order" Type="Int64" Nullable="false" />
+          <NavigationProperty Name="OnionDiagramEntity" Relationship="StakeholderAnalysisEntities.FK_OnionRingEntity_0_0" FromRole="OnionRingEntity" ToRole="OnionDiagramEntity" />
         </EntityType>
         <EntityType Name="StakeholderConnectionEntity">
           <Key>
             <PropertyRef Name="StakeholderConnectionEntityId" />
           </Key>
           <Property Name="StakeholderConnectionEntityId" Type="Int64" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
-          <Property Name="StakeholderConnectionGroupEntityId" Type="Int64" />
-          <Property Name="StakeholderFromEntityId" Type="Int64" />
-          <Property Name="StakeholderToEntityId" Type="Int64" />
-          <Property Name="OnionDiagramId" Type="Int64" />
+          <Property Name="StakeholderConnectionGroupEntityId" Type="Int64" Nullable="false" />
+          <Property Name="StakeholderFromEntityId" Type="Int64" Nullable="false" />
+          <Property Name="StakeholderToEntityId" Type="Int64" Nullable="false" />
+          <Property Name="OnionDiagramId" Type="Int64" Nullable="false" />
           <Property Name="Order" Type="Int64" Nullable="false" />
-          <NavigationProperty Name="OnionDiagramEntity" Relationship="Self.FK_StakeholderConnectionEntity_3_0" FromRole="StakeholderConnectionEntity" ToRole="OnionDiagramEntity" />
-          <NavigationProperty Name="OnionDiagramStakeholderEntity" Relationship="Self.FK_StakeholderConnectionEntity_1_0" FromRole="StakeholderConnectionEntity" ToRole="OnionDiagramStakeholderEntity" />
-          <NavigationProperty Name="OnionDiagramStakeholderEntity1" Relationship="Self.FK_StakeholderConnectionEntity_2_0" FromRole="StakeholderConnectionEntity" ToRole="OnionDiagramStakeholderEntity" />
-          <NavigationProperty Name="StakeholderConnectionGroupEntity" Relationship="Self.FK_StakeholderConnectionEntity_0_0" FromRole="StakeholderConnectionEntity" ToRole="StakeholderConnectionGroupEntity" />
+          <NavigationProperty Name="OnionDiagramEntity" Relationship="StakeholderAnalysisEntities.FK_StakeholderConnectionEntity_3_0" FromRole="StakeholderConnectionEntity" ToRole="OnionDiagramEntity" />
+          <NavigationProperty Name="OnionDiagramStakeholderEntity" Relationship="StakeholderAnalysisEntities.FK_StakeholderConnectionEntity_1_0" FromRole="StakeholderConnectionEntity" ToRole="OnionDiagramStakeholderEntity" />
+          <NavigationProperty Name="OnionDiagramStakeholderEntity1" Relationship="StakeholderAnalysisEntities.FK_StakeholderConnectionEntity_2_0" FromRole="StakeholderConnectionEntity" ToRole="OnionDiagramStakeholderEntity" />
+          <NavigationProperty Name="StakeholderConnectionGroupEntity" Relationship="StakeholderAnalysisEntities.FK_StakeholderConnectionEntity_0_0" FromRole="StakeholderConnectionEntity" ToRole="StakeholderConnectionGroupEntity" />
         </EntityType>
         <EntityType Name="StakeholderConnectionGroupEntity">
           <Key>
             <PropertyRef Name="StakeholderConnectionGroupEntityId" />
           </Key>
           <Property Name="StakeholderConnectionGroupEntityId" Type="Int64" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
-          <Property Name="OnionDiagramId" Type="Int64" />
-          <Property Name="Name" Type="String" MaxLength="2147483647" FixedLength="false" Unicode="true" />
-          <Property Name="Color" Type="String" MaxLength="2147483647" FixedLength="false" Unicode="true" />
-          <Property Name="Visible" Type="String" MaxLength="2147483647" FixedLength="false" Unicode="true" />
-          <Property Name="StrokeThickness" Type="Double" />
+          <Property Name="OnionDiagramId" Type="Int64" Nullable="false" />
+          <Property Name="Name" Type="String" Nullable="false" MaxLength="2147483647" FixedLength="false" Unicode="true" />
+          <Property Name="Color" Type="String" Nullable="false" MaxLength="2147483647" FixedLength="false" Unicode="true" />
+          <Property Name="Visible" Type="Byte" Nullable="false" />
+          <Property Name="StrokeThickness" Type="Double" Nullable="false" />
           <Property Name="Order" Type="Int64" Nullable="false" />
-          <NavigationProperty Name="OnionDiagramEntity" Relationship="Self.FK_StakeholderConnectionGroupEntity_0_0" FromRole="StakeholderConnectionGroupEntity" ToRole="OnionDiagramEntity" />
-          <NavigationProperty Name="StakeholderConnectionEntity" Relationship="Self.FK_StakeholderConnectionEntity_0_0" FromRole="StakeholderConnectionGroupEntity" ToRole="StakeholderConnectionEntity" />
+          <NavigationProperty Name="OnionDiagramEntity" Relationship="StakeholderAnalysisEntities.FK_StakeholderConnectionGroupEntity_0_0" FromRole="StakeholderConnectionGroupEntity" ToRole="OnionDiagramEntity" />
+          <NavigationProperty Name="StakeholderConnectionEntities" Relationship="StakeholderAnalysisEntities.FK_StakeholderConnectionEntity_0_0" FromRole="StakeholderConnectionGroupEntity" ToRole="StakeholderConnectionEntity" />
         </EntityType>
         <EntityType Name="StakeholderEntity">
           <Key>
             <PropertyRef Name="StakeholderEntityId" />
           </Key>
           <Property Name="StakeholderEntityId" Type="Int64" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
-          <Property Name="AnalysisEntityId" Type="Int64" />
-          <Property Name="Name" Type="String" MaxLength="2147483647" FixedLength="false" Unicode="true" />
+          <Property Name="AnalysisEntityId" Type="Int64" Nullable="false" />
+          <Property Name="Name" Type="String" Nullable="false" MaxLength="2147483647" FixedLength="false" Unicode="true" />
           <Property Name="Type" Type="Byte" Nullable="false" />
-          <Property Name="Order" Type="Int64" />
-          <NavigationProperty Name="AnalysisEntity" Relationship="Self.FK_StakeholderEntity_0_0" FromRole="StakeholderEntity" ToRole="AnalysisEntity" />
-          <NavigationProperty Name="AttitudeImpactDiagramStakeholderEntity" Relationship="Self.FK_AttitudeImpactDiagramStakeholderEntity_0_0" FromRole="StakeholderEntity" ToRole="AttitudeImpactDiagramStakeholderEntity" />
-          <NavigationProperty Name="ForceFieldDiagramStakeholderEntity" Relationship="Self.FK_ForceFieldDiagramStakeholderEntity_0_0" FromRole="StakeholderEntity" ToRole="ForceFieldDiagramStakeholderEntity" />
-          <NavigationProperty Name="OnionDiagramStakeholderEntity" Relationship="Self.FK_OnionDiagramStakeholderEntity_0_0" FromRole="StakeholderEntity" ToRole="OnionDiagramStakeholderEntity" />
+          <Property Name="Order" Type="Int64" Nullable="false" />
+          <NavigationProperty Name="AnalysisEntity" Relationship="StakeholderAnalysisEntities.FK_StakeholderEntity_0_0" FromRole="StakeholderEntity" ToRole="AnalysisEntity" />
+          <NavigationProperty Name="AttitudeImpactDiagramStakeholderEntities" Relationship="StakeholderAnalysisEntities.FK_AttitudeImpactDiagramStakeholderEntity_0_0" FromRole="StakeholderEntity" ToRole="AttitudeImpactDiagramStakeholderEntity" />
+          <NavigationProperty Name="ForceFieldDiagramStakeholderEntities" Relationship="StakeholderAnalysisEntities.FK_ForceFieldDiagramStakeholderEntity_0_0" FromRole="StakeholderEntity" ToRole="ForceFieldDiagramStakeholderEntity" />
+          <NavigationProperty Name="OnionDiagramStakeholderEntities" Relationship="StakeholderAnalysisEntities.FK_OnionDiagramStakeholderEntity_0_0" FromRole="StakeholderEntity" ToRole="OnionDiagramStakeholderEntity" />
+        </EntityType>
+        <EntityType Name="VersionEntity">
+          <Key>
+            <PropertyRef Name="VersionEntityId" />
+          </Key>
+          <Property Name="VersionEntityId" Type="Int64" Nullable="false" />
+          <Property Name="Version" Type="String" Nullable="false" MaxLength="2147483647" FixedLength="false" Unicode="false" />
+          <Property Name="TimeStamp" Type="DateTime" Nullable="false" />
+          <Property Name="FingerPrint" Type="Binary" Nullable="false" MaxLength="2147483647" FixedLength="false" />
         </EntityType>
         <Association Name="FK_AttitudeImpactDiagramEntity_0_0">
-          <End Role="AnalysisEntity" Type="Self.AnalysisEntity" Multiplicity="0..1" />
-          <End Role="AttitudeImpactDiagramEntity" Type="Self.AttitudeImpactDiagramEntity" Multiplicity="*" />
+          <End Type="StakeholderAnalysisEntities.AnalysisEntity" Role="AnalysisEntity" Multiplicity="1" />
+          <End Type="StakeholderAnalysisEntities.AttitudeImpactDiagramEntity" Role="AttitudeImpactDiagramEntity" Multiplicity="*" />
           <ReferentialConstraint>
             <Principal Role="AnalysisEntity">
               <PropertyRef Name="AnalysisEntityId" />
@@ -552,8 +644,8 @@
           </ReferentialConstraint>
         </Association>
         <Association Name="FK_ForceFieldDiagramEntity_0_0">
-          <End Role="AnalysisEntity" Type="Self.AnalysisEntity" Multiplicity="0..1" />
-          <End Role="ForceFieldDiagramEntity" Type="Self.ForceFieldDiagramEntity" Multiplicity="*" />
+          <End Type="StakeholderAnalysisEntities.AnalysisEntity" Role="AnalysisEntity" Multiplicity="1" />
+          <End Type="StakeholderAnalysisEntities.ForceFieldDiagramEntity" Role="ForceFieldDiagramEntity" Multiplicity="*" />
           <ReferentialConstraint>
             <Principal Role="AnalysisEntity">
               <PropertyRef Name="AnalysisEntityId" />
@@ -564,8 +656,8 @@
           </ReferentialConstraint>
         </Association>
         <Association Name="FK_OnionDiagramEntity_0_0">
-          <End Role="AnalysisEntity" Type="Self.AnalysisEntity" Multiplicity="0..1" />
-          <End Role="OnionDiagramEntity" Type="Self.OnionDiagramEntity" Multiplicity="*" />
+          <End Type="StakeholderAnalysisEntities.AnalysisEntity" Role="AnalysisEntity" Multiplicity="1" />
+          <End Type="StakeholderAnalysisEntities.OnionDiagramEntity" Role="OnionDiagramEntity" Multiplicity="*" />
           <ReferentialConstraint>
             <Principal Role="AnalysisEntity">
               <PropertyRef Name="AnalysisEntityId" />
@@ -576,8 +668,8 @@
           </ReferentialConstraint>
         </Association>
         <Association Name="FK_StakeholderEntity_0_0">
-          <End Role="AnalysisEntity" Type="Self.AnalysisEntity" Multiplicity="0..1" />
-          <End Role="StakeholderEntity" Type="Self.StakeholderEntity" Multiplicity="*" />
+          <End Type="StakeholderAnalysisEntities.AnalysisEntity" Role="AnalysisEntity" Multiplicity="1" />
+          <End Type="StakeholderAnalysisEntities.StakeholderEntity" Role="StakeholderEntity" Multiplicity="*" />
           <ReferentialConstraint>
             <Principal Role="AnalysisEntity">
               <PropertyRef Name="AnalysisEntityId" />
@@ -588,8 +680,8 @@
           </ReferentialConstraint>
         </Association>
         <Association Name="FK_AttitudeImpactDiagramStakeholderEntity_1_0">
-          <End Role="AttitudeImpactDiagramEntity" Type="Self.AttitudeImpactDiagramEntity" Multiplicity="0..1" />
-          <End Role="AttitudeImpactDiagramStakeholderEntity" Type="Self.AttitudeImpactDiagramStakeholderEntity" Multiplicity="*" />
+          <End Type="StakeholderAnalysisEntities.AttitudeImpactDiagramEntity" Role="AttitudeImpactDiagramEntity" Multiplicity="1" />
+          <End Type="StakeholderAnalysisEntities.AttitudeImpactDiagramStakeholderEntity" Role="AttitudeImpactDiagramStakeholderEntity" Multiplicity="*" />
           <ReferentialConstraint>
             <Principal Role="AttitudeImpactDiagramEntity">
               <PropertyRef Name="AttitudeImpactDiagramEntityId" />
@@ -600,8 +692,8 @@
           </ReferentialConstraint>
         </Association>
         <Association Name="FK_AttitudeImpactDiagramStakeholderEntity_0_0">
-          <End Role="StakeholderEntity" Type="Self.StakeholderEntity" Multiplicity="0..1" />
-          <End Role="AttitudeImpactDiagramStakeholderEntity" Type="Self.AttitudeImpactDiagramStakeholderEntity" Multiplicity="*" />
+          <End Type="StakeholderAnalysisEntities.StakeholderEntity" Role="StakeholderEntity" Multiplicity="1" />
+          <End Type="StakeholderAnalysisEntities.AttitudeImpactDiagramStakeholderEntity" Role="AttitudeImpactDiagramStakeholderEntity" Multiplicity="*" />
           <ReferentialConstraint>
             <Principal Role="StakeholderEntity">
               <PropertyRef Name="StakeholderEntityId" />
@@ -612,8 +704,8 @@
           </ReferentialConstraint>
         </Association>
         <Association Name="FK_ForceFieldDiagramStakeholderEntity_1_0">
-          <End Role="ForceFieldDiagramEntity" Type="Self.ForceFieldDiagramEntity" Multiplicity="0..1" />
-          <End Role="ForceFieldDiagramStakeholderEntity" Type="Self.ForceFieldDiagramStakeholderEntity" Multiplicity="*" />
+          <End Type="StakeholderAnalysisEntities.ForceFieldDiagramEntity" Role="ForceFieldDiagramEntity" Multiplicity="1" />
+          <End Type="StakeholderAnalysisEntities.ForceFieldDiagramStakeholderEntity" Role="ForceFieldDiagramStakeholderEntity" Multiplicity="*" />
           <ReferentialConstraint>
             <Principal Role="ForceFieldDiagramEntity">
               <PropertyRef Name="ForceFieldDiagramEntityId" />
@@ -624,8 +716,8 @@
           </ReferentialConstraint>
         </Association>
         <Association Name="FK_ForceFieldDiagramStakeholderEntity_0_0">
-          <End Role="StakeholderEntity" Type="Self.StakeholderEntity" Multiplicity="0..1" />
-          <End Role="ForceFieldDiagramStakeholderEntity" Type="Self.ForceFieldDiagramStakeholderEntity" Multiplicity="*" />
+          <End Type="StakeholderAnalysisEntities.StakeholderEntity" Role="StakeholderEntity" Multiplicity="1" />
+          <End Type="StakeholderAnalysisEntities.ForceFieldDiagramStakeholderEntity" Role="ForceFieldDiagramStakeholderEntity" Multiplicity="*" />
           <ReferentialConstraint>
             <Principal Role="StakeholderEntity">
               <PropertyRef Name="StakeholderEntityId" />
@@ -636,8 +728,8 @@
           </ReferentialConstraint>
         </Association>
         <Association Name="FK_OnionDiagramStakeholderEntity_1_0">
-          <End Role="OnionDiagramEntity" Type="Self.OnionDiagramEntity" Multiplicity="0..1" />
-          <End Role="OnionDiagramStakeholderEntity" Type="Self.OnionDiagramStakeholderEntity" Multiplicity="*" />
+          <End Type="StakeholderAnalysisEntities.OnionDiagramEntity" Role="OnionDiagramEntity" Multiplicity="1" />
+          <End Type="StakeholderAnalysisEntities.OnionDiagramStakeholderEntity" Role="OnionDiagramStakeholderEntity" Multiplicity="*" />
           <ReferentialConstraint>
             <Principal Role="OnionDiagramEntity">
               <PropertyRef Name="OnionDiagramId" />
@@ -648,8 +740,8 @@
           </ReferentialConstraint>
         </Association>
         <Association Name="FK_OnionRingEntity_0_0">
-          <End Role="OnionDiagramEntity" Type="Self.OnionDiagramEntity" Multiplicity="0..1" />
-          <End Role="OnionRingEntity" Type="Self.OnionRingEntity" Multiplicity="*" />
+          <End Type="StakeholderAnalysisEntities.OnionDiagramEntity" Role="OnionDiagramEntity" Multiplicity="1" />
+          <End Type="StakeholderAnalysisEntities.OnionRingEntity" Role="OnionRingEntity" Multiplicity="*" />
           <ReferentialConstraint>
             <Principal Role="OnionDiagramEntity">
               <PropertyRef Name="OnionDiagramId" />
@@ -660,8 +752,8 @@
           </ReferentialConstraint>
         </Association>
         <Association Name="FK_StakeholderConnectionEntity_3_0">
-          <End Role="OnionDiagramEntity" Type="Self.OnionDiagramEntity" Multiplicity="0..1" />
-          <End Role="StakeholderConnectionEntity" Type="Self.StakeholderConnectionEntity" Multiplicity="*" />
+          <End Type="StakeholderAnalysisEntities.OnionDiagramEntity" Role="OnionDiagramEntity" Multiplicity="1" />
+          <End Type="StakeholderAnalysisEntities.StakeholderConnectionEntity" Role="StakeholderConnectionEntity" Multiplicity="*" />
           <ReferentialConstraint>
             <Principal Role="OnionDiagramEntity">
               <PropertyRef Name="OnionDiagramId" />
@@ -672,8 +764,8 @@
           </ReferentialConstraint>
         </Association>
         <Association Name="FK_StakeholderConnectionGroupEntity_0_0">
-          <End Role="OnionDiagramEntity" Type="Self.OnionDiagramEntity" Multiplicity="0..1" />
-          <End Role="StakeholderConnectionGroupEntity" Type="Self.StakeholderConnectionGroupEntity" Multiplicity="*" />
+          <End Type="StakeholderAnalysisEntities.OnionDiagramEntity" Role="OnionDiagramEntity" Multiplicity="1" />
+          <End Type="StakeholderAnalysisEntities.StakeholderConnectionGroupEntity" Role="StakeholderConnectionGroupEntity" Multiplicity="*" />
           <ReferentialConstraint>
             <Principal Role="OnionDiagramEntity">
               <PropertyRef Name="OnionDiagramId" />
@@ -684,8 +776,8 @@
           </ReferentialConstraint>
         </Association>
         <Association Name="FK_OnionDiagramStakeholderEntity_0_0">
-          <End Role="StakeholderEntity" Type="Self.StakeholderEntity" Multiplicity="0..1" />
-          <End Role="OnionDiagramStakeholderEntity" Type="Self.OnionDiagramStakeholderEntity" Multiplicity="*" />
+          <End Type="StakeholderAnalysisEntities.StakeholderEntity" Role="StakeholderEntity" Multiplicity="1" />
+          <End Type="StakeholderAnalysisEntities.OnionDiagramStakeholderEntity" Role="OnionDiagramStakeholderEntity" Multiplicity="*" />
           <ReferentialConstraint>
             <Principal Role="StakeholderEntity">
               <PropertyRef Name="StakeholderEntityId" />
@@ -696,8 +788,8 @@
           </ReferentialConstraint>
         </Association>
         <Association Name="FK_StakeholderConnectionEntity_1_0">
-          <End Role="OnionDiagramStakeholderEntity" Type="Self.OnionDiagramStakeholderEntity" Multiplicity="0..1" />
-          <End Role="StakeholderConnectionEntity" Type="Self.StakeholderConnectionEntity" Multiplicity="*" />
+          <End Type="StakeholderAnalysisEntities.OnionDiagramStakeholderEntity" Role="OnionDiagramStakeholderEntity" Multiplicity="1" />
+          <End Type="StakeholderAnalysisEntities.StakeholderConnectionEntity" Role="StakeholderConnectionEntity" Multiplicity="*" />
           <ReferentialConstraint>
             <Principal Role="OnionDiagramStakeholderEntity">
               <PropertyRef Name="OnionDiagramStakeholderEntityId" />
@@ -708,8 +800,8 @@
           </ReferentialConstraint>
         </Association>
         <Association Name="FK_StakeholderConnectionEntity_2_0">
-          <End Role="OnionDiagramStakeholderEntity" Type="Self.OnionDiagramStakeholderEntity" Multiplicity="0..1" />
-          <End Role="StakeholderConnectionEntity" Type="Self.StakeholderConnectionEntity" Multiplicity="*" />
+          <End Type="StakeholderAnalysisEntities.OnionDiagramStakeholderEntity" Role="OnionDiagramStakeholderEntity" Multiplicity="1" />
+          <End Type="StakeholderAnalysisEntities.StakeholderConnectionEntity" Role="StakeholderConnectionEntity" Multiplicity="*" />
           <ReferentialConstraint>
             <Principal Role="OnionDiagramStakeholderEntity">
               <PropertyRef Name="OnionDiagramStakeholderEntityId" />
@@ -720,8 +812,8 @@
           </ReferentialConstraint>
         </Association>
         <Association Name="FK_StakeholderConnectionEntity_0_0">
-          <End Role="StakeholderConnectionGroupEntity" Type="Self.StakeholderConnectionGroupEntity" Multiplicity="0..1" />
-          <End Role="StakeholderConnectionEntity" Type="Self.StakeholderConnectionEntity" Multiplicity="*" />
+          <End Type="StakeholderAnalysisEntities.StakeholderConnectionGroupEntity" Role="StakeholderConnectionGroupEntity" Multiplicity="1" />
+          <End Type="StakeholderAnalysisEntities.StakeholderConnectionEntity" Role="StakeholderConnectionEntity" Multiplicity="*" />
           <ReferentialConstraint>
             <Principal Role="StakeholderConnectionGroupEntity">
               <PropertyRef Name="StakeholderConnectionGroupEntityId" />
@@ -731,211 +823,142 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <EntityContainer Name="Entities" annotation:LazyLoadingEnabled="true">
-          <EntitySet Name="AnalysisEntity" EntityType="Self.AnalysisEntity" />
-          <EntitySet Name="AttitudeImpactDiagramEntity" EntityType="Self.AttitudeImpactDiagramEntity" />
-          <EntitySet Name="AttitudeImpactDiagramStakeholderEntity" EntityType="Self.AttitudeImpactDiagramStakeholderEntity" />
-          <EntitySet Name="ForceFieldDiagramEntity" EntityType="Self.ForceFieldDiagramEntity" />
-          <EntitySet Name="ForceFieldDiagramStakeholderEntity" EntityType="Self.ForceFieldDiagramStakeholderEntity" />
-          <EntitySet Name="OnionDiagramEntity" EntityType="Self.OnionDiagramEntity" />
-          <EntitySet Name="OnionDiagramStakeholderEntity" EntityType="Self.OnionDiagramStakeholderEntity" />
-          <EntitySet Name="OnionRingEntity" EntityType="Self.OnionRingEntity" />
-          <EntitySet Name="StakeholderConnectionEntity" EntityType="Self.StakeholderConnectionEntity" />
-          <EntitySet Name="StakeholderConnectionGroupEntity" EntityType="Self.StakeholderConnectionGroupEntity" />
-          <EntitySet Name="StakeholderEntity" EntityType="Self.StakeholderEntity" />
-          <AssociationSet Name="FK_AttitudeImpactDiagramEntity_0_0" Association="Self.FK_AttitudeImpactDiagramEntity_0_0">
-            <End Role="AnalysisEntity" EntitySet="AnalysisEntity" />
-            <End Role="AttitudeImpactDiagramEntity" EntitySet="AttitudeImpactDiagramEntity" />
-          </AssociationSet>
-          <AssociationSet Name="FK_ForceFieldDiagramEntity_0_0" Association="Self.FK_ForceFieldDiagramEntity_0_0">
-            <End Role="AnalysisEntity" EntitySet="AnalysisEntity" />
-            <End Role="ForceFieldDiagramEntity" EntitySet="ForceFieldDiagramEntity" />
-          </AssociationSet>
-          <AssociationSet Name="FK_OnionDiagramEntity_0_0" Association="Self.FK_OnionDiagramEntity_0_0">
-            <End Role="AnalysisEntity" EntitySet="AnalysisEntity" />
-            <End Role="OnionDiagramEntity" EntitySet="OnionDiagramEntity" />
-          </AssociationSet>
-          <AssociationSet Name="FK_StakeholderEntity_0_0" Association="Self.FK_StakeholderEntity_0_0">
-            <End Role="AnalysisEntity" EntitySet="AnalysisEntity" />
-            <End Role="StakeholderEntity" EntitySet="StakeholderEntity" />
-          </AssociationSet>
-          <AssociationSet Name="FK_AttitudeImpactDiagramStakeholderEntity_1_0" Association="Self.FK_AttitudeImpactDiagramStakeholderEntity_1_0">
-            <End Role="AttitudeImpactDiagramEntity" EntitySet="AttitudeImpactDiagramEntity" />
-            <End Role="AttitudeImpactDiagramStakeholderEntity" EntitySet="AttitudeImpactDiagramStakeholderEntity" />
-          </AssociationSet>
-          <AssociationSet Name="FK_AttitudeImpactDiagramStakeholderEntity_0_0" Association="Self.FK_AttitudeImpactDiagramStakeholderEntity_0_0">
-            <End Role="StakeholderEntity" EntitySet="StakeholderEntity" />
-            <End Role="AttitudeImpactDiagramStakeholderEntity" EntitySet="AttitudeImpactDiagramStakeholderEntity" />
-          </AssociationSet>
-          <AssociationSet Name="FK_ForceFieldDiagramStakeholderEntity_1_0" Association="Self.FK_ForceFieldDiagramStakeholderEntity_1_0">
-            <End Role="ForceFieldDiagramEntity" EntitySet="ForceFieldDiagramEntity" />
-            <End Role="ForceFieldDiagramStakeholderEntity" EntitySet="ForceFieldDiagramStakeholderEntity" />
-          </AssociationSet>
-          <AssociationSet Name="FK_ForceFieldDiagramStakeholderEntity_0_0" Association="Self.FK_ForceFieldDiagramStakeholderEntity_0_0">
-            <End Role="StakeholderEntity" EntitySet="StakeholderEntity" />
-            <End Role="ForceFieldDiagramStakeholderEntity" EntitySet="ForceFieldDiagramStakeholderEntity" />
-          </AssociationSet>
-          <AssociationSet Name="FK_OnionDiagramStakeholderEntity_1_0" Association="Self.FK_OnionDiagramStakeholderEntity_1_0">
-            <End Role="OnionDiagramEntity" EntitySet="OnionDiagramEntity" />
-            <End Role="OnionDiagramStakeholderEntity" EntitySet="OnionDiagramStakeholderEntity" />
-          </AssociationSet>
-          <AssociationSet Name="FK_OnionRingEntity_0_0" Association="Self.FK_OnionRingEntity_0_0">
-            <End Role="OnionDiagramEntity" EntitySet="OnionDiagramEntity" />
-            <End Role="OnionRingEntity" EntitySet="OnionRingEntity" />
-          </AssociationSet>
-          <AssociationSet Name="FK_StakeholderConnectionEntity_3_0" Association="Self.FK_StakeholderConnectionEntity_3_0">
-            <End Role="OnionDiagramEntity" EntitySet="OnionDiagramEntity" />
-            <End Role="StakeholderConnectionEntity" EntitySet="StakeholderConnectionEntity" />
-          </AssociationSet>
-          <AssociationSet Name="FK_StakeholderConnectionGroupEntity_0_0" Association="Self.FK_StakeholderConnectionGroupEntity_0_0">
-            <End Role="OnionDiagramEntity" EntitySet="OnionDiagramEntity" />
-            <End Role="StakeholderConnectionGroupEntity" EntitySet="StakeholderConnectionGroupEntity" />
-          </AssociationSet>
-          <AssociationSet Name="FK_OnionDiagramStakeholderEntity_0_0" Association="Self.FK_OnionDiagramStakeholderEntity_0_0">
-            <End Role="StakeholderEntity" EntitySet="StakeholderEntity" />
-            <End Role="OnionDiagramStakeholderEntity" EntitySet="OnionDiagramStakeholderEntity" />
-          </AssociationSet>
-          <AssociationSet Name="FK_StakeholderConnectionEntity_1_0" Association="Self.FK_StakeholderConnectionEntity_1_0">
-            <End Role="OnionDiagramStakeholderEntity" EntitySet="OnionDiagramStakeholderEntity" />
-            <End Role="StakeholderConnectionEntity" EntitySet="StakeholderConnectionEntity" />
-          </AssociationSet>
-          <AssociationSet Name="FK_StakeholderConnectionEntity_2_0" Association="Self.FK_StakeholderConnectionEntity_2_0">
-            <End Role="OnionDiagramStakeholderEntity" EntitySet="OnionDiagramStakeholderEntity" />
-            <End Role="StakeholderConnectionEntity" EntitySet="StakeholderConnectionEntity" />
-          </AssociationSet>
-          <AssociationSet Name="FK_StakeholderConnectionEntity_0_0" Association="Self.FK_StakeholderConnectionEntity_0_0">
-            <End Role="StakeholderConnectionGroupEntity" EntitySet="StakeholderConnectionGroupEntity" />
-            <End Role="StakeholderConnectionEntity" EntitySet="StakeholderConnectionEntity" />
-          </AssociationSet>
-        </EntityContainer>
-      </Schema>
+        </Schema>
     </edmx:ConceptualModels>
     <!-- C-S mapping content -->
     <edmx:Mappings>
       <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
-        <EntityContainerMapping StorageEntityContainer="StakeholderAnalysisMainEntitiesStoreContainer" CdmEntityContainer="Entities">
-          <EntitySetMapping Name="AnalysisEntity">
-            <EntityTypeMapping TypeName="StakeholderAnalysisMainEntities.AnalysisEntity">
+        <EntityContainerMapping StorageEntityContainer="StakeholderAnalysisEntitiesStoreContainer" CdmEntityContainer="Entities">
+          <EntitySetMapping Name="AnalysisEntities">
+            <EntityTypeMapping TypeName="StakeholderAnalysisEntities.AnalysisEntity">
               <MappingFragment StoreEntitySet="AnalysisEntity">
                 <ScalarProperty Name="AnalysisEntityId" ColumnName="AnalysisEntityId" />
-                <ScalarProperty Name="StakeholderId" ColumnName="StakeholderId" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
-          <EntitySetMapping Name="AttitudeImpactDiagramEntity">
-            <EntityTypeMapping TypeName="StakeholderAnalysisMainEntities.AttitudeImpactDiagramEntity">
+          <EntitySetMapping Name="AttitudeImpactDiagramEntities">
+            <EntityTypeMapping TypeName="StakeholderAnalysisEntities.AttitudeImpactDiagramEntity">
               <MappingFragment StoreEntitySet="AttitudeImpactDiagramEntity">
-                <ScalarProperty Name="AttitudeImpactDiagramEntityId" ColumnName="AttitudeImpactDiagramEntityId" />
-                <ScalarProperty Name="AnalysisEntityId" ColumnName="AnalysisEntityId" />
-                <ScalarProperty Name="AnalysisId" ColumnName="AnalysisId" />
-                <ScalarProperty Name="Name" ColumnName="Name" />
                 <ScalarProperty Name="Order" ColumnName="Order" />
+                <ScalarProperty Name="Name" ColumnName="Name" />
+                <ScalarProperty Name="AnalysisEntityId" ColumnName="AnalysisEntityId" />
+                <ScalarProperty Name="AttitudeImpactDiagramEntityId" ColumnName="AttitudeImpactDiagramEntityId" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
-          <EntitySetMapping Name="AttitudeImpactDiagramStakeholderEntity">
-            <EntityTypeMapping TypeName="StakeholderAnalysisMainEntities.AttitudeImpactDiagramStakeholderEntity">
+          <EntitySetMapping Name="AttitudeImpactDiagramStakeholderEntities">
+            <EntityTypeMapping TypeName="StakeholderAnalysisEntities.AttitudeImpactDiagramStakeholderEntity">
               <MappingFragment StoreEntitySet="AttitudeImpactDiagramStakeholderEntity">
-                <ScalarProperty Name="AttitudeImpactDiagramStakeholderEntityId" ColumnName="AttitudeImpactDiagramStakeholderEntityId" />
-                <ScalarProperty Name="AttitudeImpactDiagramEntityId" ColumnName="AttitudeImpactDiagramEntityId" />
-                <ScalarProperty Name="StakeholderEntityId" ColumnName="StakeholderEntityId" />
-                <ScalarProperty Name="Attitude" ColumnName="Attitude" />
+                <ScalarProperty Name="Order" ColumnName="Order" />
                 <ScalarProperty Name="Impact" ColumnName="Impact" />
-                <ScalarProperty Name="Order" ColumnName="Order" />
+                <ScalarProperty Name="Attitude" ColumnName="Attitude" />
+                <ScalarProperty Name="StakeholderEntityId" ColumnName="StakeholderEntityId" />
+                <ScalarProperty Name="AttitudeImpactDiagramEntityId" ColumnName="AttitudeImpactDiagramEntityId" />
+                <ScalarProperty Name="AttitudeImpactDiagramStakeholderEntityId" ColumnName="AttitudeImpactDiagramStakeholderEntityId" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
-          <EntitySetMapping Name="ForceFieldDiagramEntity">
-            <EntityTypeMapping TypeName="StakeholderAnalysisMainEntities.ForceFieldDiagramEntity">
+          <EntitySetMapping Name="ForceFieldDiagramEntities">
+            <EntityTypeMapping TypeName="StakeholderAnalysisEntities.ForceFieldDiagramEntity">
               <MappingFragment StoreEntitySet="ForceFieldDiagramEntity">
-                <ScalarProperty Name="ForceFieldDiagramEntityId" ColumnName="ForceFieldDiagramEntityId" />
-                <ScalarProperty Name="AnalysisEntityId" ColumnName="AnalysisEntityId" />
-                <ScalarProperty Name="Name" ColumnName="Name" />
                 <ScalarProperty Name="Order" ColumnName="Order" />
+                <ScalarProperty Name="Name" ColumnName="Name" />
+                <ScalarProperty Name="AnalysisEntityId" ColumnName="AnalysisEntityId" />
+                <ScalarProperty Name="ForceFieldDiagramEntityId" ColumnName="ForceFieldDiagramEntityId" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
-          <EntitySetMapping Name="ForceFieldDiagramStakeholderEntity">
-            <EntityTypeMapping TypeName="StakeholderAnalysisMainEntities.ForceFieldDiagramStakeholderEntity">
+          <EntitySetMapping Name="ForceFieldDiagramStakeholderEntities">
+            <EntityTypeMapping TypeName="StakeholderAnalysisEntities.ForceFieldDiagramStakeholderEntity">
               <MappingFragment StoreEntitySet="ForceFieldDiagramStakeholderEntity">
-                <ScalarProperty Name="ForceFieldDiagramStakeholderEntityId" ColumnName="ForceFieldDiagramStakeholderEntityId" />
-                <ScalarProperty Name="StakeholderEntityId" ColumnName="StakeholderEntityId" />
-                <ScalarProperty Name="ForceFieldDiagramEntityId" ColumnName="ForceFieldDiagramEntityId" />
-                <ScalarProperty Name="Interest" ColumnName="Interest" />
+                <ScalarProperty Name="Order" ColumnName="Order" />
                 <ScalarProperty Name="Influence" ColumnName="Influence" />
-                <ScalarProperty Name="Order" ColumnName="Order" />
+                <ScalarProperty Name="Interest" ColumnName="Interest" />
+                <ScalarProperty Name="ForceFieldDiagramEntityId" ColumnName="ForceFieldDiagramEntityId" />
+                <ScalarProperty Name="StakeholderEntityId" ColumnName="StakeholderEntityId" />
+                <ScalarProperty Name="ForceFieldDiagramStakeholderEntityId" ColumnName="ForceFieldDiagramStakeholderEntityId" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
-          <EntitySetMapping Name="OnionDiagramEntity">
-            <EntityTypeMapping TypeName="StakeholderAnalysisMainEntities.OnionDiagramEntity">
+          <EntitySetMapping Name="OnionDiagramEntities">
+            <EntityTypeMapping TypeName="StakeholderAnalysisEntities.OnionDiagramEntity">
               <MappingFragment StoreEntitySet="OnionDiagramEntity">
-                <ScalarProperty Name="OnionDiagramId" ColumnName="OnionDiagramId" />
-                <ScalarProperty Name="AnalysisEntityId" ColumnName="AnalysisEntityId" />
-                <ScalarProperty Name="Name" ColumnName="Name" />
+                <ScalarProperty Name="Order" ColumnName="Order" />
                 <ScalarProperty Name="Asymmetry" ColumnName="Asymmetry" />
-                <ScalarProperty Name="Order" ColumnName="Order" />
-              </MappingFragment>
-            </EntityTypeMapping>
-          </EntitySetMapping>
-          <EntitySetMapping Name="OnionDiagramStakeholderEntity">
-            <EntityTypeMapping TypeName="StakeholderAnalysisMainEntities.OnionDiagramStakeholderEntity">
-              <MappingFragment StoreEntitySet="OnionDiagramStakeholderEntity">
-                <ScalarProperty Name="OnionDiagramStakeholderEntityId" ColumnName="OnionDiagramStakeholderEntityId" />
-                <ScalarProperty Name="StakeholderEntityId" ColumnName="StakeholderEntityId" />
-                <ScalarProperty Name="OnionDiagramId" ColumnName="OnionDiagramId" />
-                <ScalarProperty Name="Left" ColumnName="Left" />
-                <ScalarProperty Name="Top" ColumnName="Top" />
-                <ScalarProperty Name="Order" ColumnName="Order" />
-              </MappingFragment>
-            </EntityTypeMapping>
-          </EntitySetMapping>
-          <EntitySetMapping Name="OnionRingEntity">
-            <EntityTypeMapping TypeName="StakeholderAnalysisMainEntities.OnionRingEntity">
-              <MappingFragment StoreEntitySet="OnionRingEntity">
-                <ScalarProperty Name="OnrionRingEntityId" ColumnName="OnrionRingEntityId" />
-                <ScalarProperty Name="OnionDiagramId" ColumnName="OnionDiagramId" />
-                <ScalarProperty Name="Percentage" ColumnName="Percentage" />
-                <ScalarProperty Name="BackgroundColor" ColumnName="BackgroundColor" />
-                <ScalarProperty Name="StrokeColor" ColumnName="StrokeColor" />
-                <ScalarProperty Name="StrokeThickness" ColumnName="StrokeThickness" />
-                <ScalarProperty Name="Order" ColumnName="Order" />
-              </MappingFragment>
-            </EntityTypeMapping>
-          </EntitySetMapping>
-          <EntitySetMapping Name="StakeholderConnectionEntity">
-            <EntityTypeMapping TypeName="StakeholderAnalysisMainEntities.StakeholderConnectionEntity">
-              <MappingFragment StoreEntitySet="StakeholderConnectionEntity">
-                <ScalarProperty Name="StakeholderConnectionEntityId" ColumnName="StakeholderConnectionEntityId" />
-                <ScalarProperty Name="StakeholderConnectionGroupEntityId" ColumnName="StakeholderConnectionGroupEntityId" />
-                <ScalarProperty Name="StakeholderFromEntityId" ColumnName="StakeholderFromEntityId" />
-                <ScalarProperty Name="StakeholderToEntityId" ColumnName="StakeholderToEntityId" />
-                <ScalarProperty Name="OnionDiagramId" ColumnName="OnionDiagramId" />
-                <ScalarProperty Name="Order" ColumnName="Order" />
-              </MappingFragment>
-            </EntityTypeMapping>
-          </EntitySetMapping>
-          <EntitySetMapping Name="StakeholderConnectionGroupEntity">
-            <EntityTypeMapping TypeName="StakeholderAnalysisMainEntities.StakeholderConnectionGroupEntity">
-              <MappingFragment StoreEntitySet="StakeholderConnectionGroupEntity">
-                <ScalarProperty Name="StakeholderConnectionGroupEntityId" ColumnName="StakeholderConnectionGroupEntityId" />
-                <ScalarProperty Name="OnionDiagramId" ColumnName="OnionDiagramId" />
                 <ScalarProperty Name="Name" ColumnName="Name" />
-                <ScalarProperty Name="Color" ColumnName="Color" />
-                <ScalarProperty Name="Visible" ColumnName="Visible" />
-                <ScalarProperty Name="StrokeThickness" ColumnName="StrokeThickness" />
-                <ScalarProperty Name="Order" ColumnName="Order" />
-              </MappingFragment>
-            </EntityTypeMapping>
-          </EntitySetMapping>
-          <EntitySetMapping Name="StakeholderEntity">
-            <EntityTypeMapping TypeName="StakeholderAnalysisMainEntities.StakeholderEntity">
-              <MappingFragment StoreEntitySet="StakeholderEntity">
-                <ScalarProperty Name="StakeholderEntityId" ColumnName="StakeholderEntityId" />
                 <ScalarProperty Name="AnalysisEntityId" ColumnName="AnalysisEntityId" />
-                <ScalarProperty Name="Name" ColumnName="Name" />
-                <ScalarProperty Name="Type" ColumnName="Type" />
+                <ScalarProperty Name="OnionDiagramId" ColumnName="OnionDiagramId" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="OnionDiagramStakeholderEntities">
+            <EntityTypeMapping TypeName="StakeholderAnalysisEntities.OnionDiagramStakeholderEntity">
+              <MappingFragment StoreEntitySet="OnionDiagramStakeholderEntity">
                 <ScalarProperty Name="Order" ColumnName="Order" />
+                <ScalarProperty Name="Top" ColumnName="Top" />
+                <ScalarProperty Name="Left" ColumnName="Left" />
+                <ScalarProperty Name="OnionDiagramId" ColumnName="OnionDiagramId" />
+                <ScalarProperty Name="StakeholderEntityId" ColumnName="StakeholderEntityId" />
+                <ScalarProperty Name="OnionDiagramStakeholderEntityId" ColumnName="OnionDiagramStakeholderEntityId" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="OnionRingEntities">
+            <EntityTypeMapping TypeName="StakeholderAnalysisEntities.OnionRingEntity">
+              <MappingFragment StoreEntitySet="OnionRingEntity">
+                <ScalarProperty Name="Order" ColumnName="Order" />
+                <ScalarProperty Name="StrokeThickness" ColumnName="StrokeThickness" />
+                <ScalarProperty Name="StrokeColor" ColumnName="StrokeColor" />
+                <ScalarProperty Name="BackgroundColor" ColumnName="BackgroundColor" />
+                <ScalarProperty Name="Percentage" ColumnName="Percentage" />
+                <ScalarProperty Name="OnionDiagramId" ColumnName="OnionDiagramId" />
+                <ScalarProperty Name="OnrionRingEntityId" ColumnName="OnrionRingEntityId" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="StakeholderConnectionEntities">
+            <EntityTypeMapping TypeName="StakeholderAnalysisEntities.StakeholderConnectionEntity">
+              <MappingFragment StoreEntitySet="StakeholderConnectionEntity">
+                <ScalarProperty Name="Order" ColumnName="Order" />
+                <ScalarProperty Name="OnionDiagramId" ColumnName="OnionDiagramId" />
+                <ScalarProperty Name="StakeholderToEntityId" ColumnName="StakeholderToEntityId" />
+                <ScalarProperty Name="StakeholderFromEntityId" ColumnName="StakeholderFromEntityId" />
+                <ScalarProperty Name="StakeholderConnectionGroupEntityId" ColumnName="StakeholderConnectionGroupEntityId" />
+                <ScalarProperty Name="StakeholderConnectionEntityId" ColumnName="StakeholderConnectionEntityId" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="StakeholderConnectionGroupEntities">
+            <EntityTypeMapping TypeName="StakeholderAnalysisEntities.StakeholderConnectionGroupEntity">
+              <MappingFragment StoreEntitySet="StakeholderConnectionGroupEntity">
+                <ScalarProperty Name="Order" ColumnName="Order" />
+                <ScalarProperty Name="StrokeThickness" ColumnName="StrokeThickness" />
+                <ScalarProperty Name="Visible" ColumnName="Visible" />
+                <ScalarProperty Name="Color" ColumnName="Color" />
+                <ScalarProperty Name="Name" ColumnName="Name" />
+                <ScalarProperty Name="OnionDiagramId" ColumnName="OnionDiagramId" />
+                <ScalarProperty Name="StakeholderConnectionGroupEntityId" ColumnName="StakeholderConnectionGroupEntityId" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="StakeholderEntities">
+            <EntityTypeMapping TypeName="StakeholderAnalysisEntities.StakeholderEntity">
+              <MappingFragment StoreEntitySet="StakeholderEntity">
+                <ScalarProperty Name="Order" ColumnName="Order" />
+                <ScalarProperty Name="Type" ColumnName="Type" />
+                <ScalarProperty Name="Name" ColumnName="Name" />
+                <ScalarProperty Name="AnalysisEntityId" ColumnName="AnalysisEntityId" />
+                <ScalarProperty Name="StakeholderEntityId" ColumnName="StakeholderEntityId" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="VersionEntities">
+            <EntityTypeMapping TypeName="StakeholderAnalysisEntities.VersionEntity">
+              <MappingFragment StoreEntitySet="VersionEntity">
+                <ScalarProperty Name="FingerPrint" ColumnName="FingerPrint" />
+                <ScalarProperty Name="TimeStamp" ColumnName="TimeStamp" />
+                <ScalarProperty Name="Version" ColumnName="Version" />
+                <ScalarProperty Name="VersionEntityId" ColumnName="VersionEntityId" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
@@ -953,7 +976,7 @@
     <Options>
       <DesignerInfoPropertySet>
         <DesignerProperty Name="ValidateOnBuild" Value="true" />
-        <DesignerProperty Name="EnablePluralization" Value="false" />
+        <DesignerProperty Name="EnablePluralization" Value="true" />
         <DesignerProperty Name="IncludeForeignKeysInModel" Value="true" />
         <DesignerProperty Name="UseLegacyProvider" Value="false" />
         <DesignerProperty Name="CodeGenerationStrategy" Value="None" />

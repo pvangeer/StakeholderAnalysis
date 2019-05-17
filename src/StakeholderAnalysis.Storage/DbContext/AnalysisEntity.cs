@@ -17,22 +17,21 @@ namespace StakeholderAnalysis.Storage.DbContext
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
         public AnalysisEntity()
         {
-            this.AttitudeImpactDiagramEntity = new HashSet<AttitudeImpactDiagramEntity>();
-            this.ForceFieldDiagramEntity = new HashSet<ForceFieldDiagramEntity>();
-            this.OnionDiagramEntity = new HashSet<OnionDiagramEntity>();
-            this.StakeholderEntity = new HashSet<StakeholderEntity>();
+            this.AttitudeImpactDiagramEntities = new HashSet<AttitudeImpactDiagramEntity>();
+            this.ForceFieldDiagramEntities = new HashSet<ForceFieldDiagramEntity>();
+            this.OnionDiagramEntities = new HashSet<OnionDiagramEntity>();
+            this.StakeholderEntities = new HashSet<StakeholderEntity>();
         }
     
         public long AnalysisEntityId { get; set; }
-        public Nullable<long> StakeholderId { get; set; }
     
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<AttitudeImpactDiagramEntity> AttitudeImpactDiagramEntity { get; set; }
+        public virtual ICollection<AttitudeImpactDiagramEntity> AttitudeImpactDiagramEntities { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<ForceFieldDiagramEntity> ForceFieldDiagramEntity { get; set; }
+        public virtual ICollection<ForceFieldDiagramEntity> ForceFieldDiagramEntities { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<OnionDiagramEntity> OnionDiagramEntity { get; set; }
+        public virtual ICollection<OnionDiagramEntity> OnionDiagramEntities { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<StakeholderEntity> StakeholderEntity { get; set; }
+        public virtual ICollection<StakeholderEntity> StakeholderEntities { get; set; }
     }
 }

@@ -25,16 +25,17 @@ namespace StakeholderAnalysis.Storage.DbContext
             throw new UnintentionalCodeFirstException();
         }
     
-        public virtual DbSet<AnalysisEntity> AnalysisEntity { get; set; }
-        public virtual DbSet<AttitudeImpactDiagramEntity> AttitudeImpactDiagramEntity { get; set; }
-        public virtual DbSet<AttitudeImpactDiagramStakeholderEntity> AttitudeImpactDiagramStakeholderEntity { get; set; }
-        public virtual DbSet<ForceFieldDiagramEntity> ForceFieldDiagramEntity { get; set; }
-        public virtual DbSet<ForceFieldDiagramStakeholderEntity> ForceFieldDiagramStakeholderEntity { get; set; }
-        public virtual DbSet<OnionDiagramEntity> OnionDiagramEntity { get; set; }
-        public virtual DbSet<OnionDiagramStakeholderEntity> OnionDiagramStakeholderEntity { get; set; }
-        public virtual DbSet<OnionRingEntity> OnionRingEntity { get; set; }
-        public virtual DbSet<StakeholderConnectionEntity> StakeholderConnectionEntity { get; set; }
-        public virtual DbSet<StakeholderConnectionGroupEntity> StakeholderConnectionGroupEntity { get; set; }
-        public virtual DbSet<StakeholderEntity> StakeholderEntity { get; set; }
+        public virtual DbSet<AnalysisEntity> AnalysisEntities { get; set; }
+        public virtual DbSet<AttitudeImpactDiagramEntity> AttitudeImpactDiagramEntities { get; set; }
+        public virtual DbSet<AttitudeImpactDiagramStakeholderEntity> AttitudeImpactDiagramStakeholderEntities { get; set; }
+        public virtual DbSet<ForceFieldDiagramEntity> ForceFieldDiagramEntities { get; set; }
+        public virtual DbSet<ForceFieldDiagramStakeholderEntity> ForceFieldDiagramStakeholderEntities { get; set; }
+        public virtual DbSet<OnionDiagramEntity> OnionDiagramEntities { get; set; }
+        public virtual DbSet<OnionDiagramStakeholderEntity> OnionDiagramStakeholderEntities { get; set; }
+        public virtual DbSet<OnionRingEntity> OnionRingEntities { get; set; }
+        public virtual DbSet<StakeholderConnectionEntity> StakeholderConnectionEntities { get; set; }
+        public virtual DbSet<StakeholderConnectionGroupEntity> StakeholderConnectionGroupEntities { get; set; }
+        public virtual DbSet<StakeholderEntity> StakeholderEntities { get; set; }
+        public virtual DbSet<VersionEntity> VersionEntities { get; set; }
     }
 }

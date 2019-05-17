@@ -17,26 +17,26 @@ namespace StakeholderAnalysis.Storage.DbContext
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
         public OnionDiagramEntity()
         {
-            this.OnionDiagramStakeholderEntity = new HashSet<OnionDiagramStakeholderEntity>();
-            this.OnionRingEntity = new HashSet<OnionRingEntity>();
-            this.StakeholderConnectionEntity = new HashSet<StakeholderConnectionEntity>();
-            this.StakeholderConnectionGroupEntity = new HashSet<StakeholderConnectionGroupEntity>();
+            this.OnionDiagramStakeholderEntities = new HashSet<OnionDiagramStakeholderEntity>();
+            this.OnionRingEntities = new HashSet<OnionRingEntity>();
+            this.StakeholderConnectionEntities = new HashSet<StakeholderConnectionEntity>();
+            this.StakeholderConnectionGroupEntities = new HashSet<StakeholderConnectionGroupEntity>();
         }
     
         public long OnionDiagramId { get; set; }
-        public Nullable<long> AnalysisEntityId { get; set; }
+        public long AnalysisEntityId { get; set; }
         public string Name { get; set; }
         public double Asymmetry { get; set; }
         public long Order { get; set; }
     
         public virtual AnalysisEntity AnalysisEntity { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<OnionDiagramStakeholderEntity> OnionDiagramStakeholderEntity { get; set; }
+        public virtual ICollection<OnionDiagramStakeholderEntity> OnionDiagramStakeholderEntities { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<OnionRingEntity> OnionRingEntity { get; set; }
+        public virtual ICollection<OnionRingEntity> OnionRingEntities { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<StakeholderConnectionEntity> StakeholderConnectionEntity { get; set; }
+        public virtual ICollection<StakeholderConnectionEntity> StakeholderConnectionEntities { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<StakeholderConnectionGroupEntity> StakeholderConnectionGroupEntity { get; set; }
+        public virtual ICollection<StakeholderConnectionGroupEntity> StakeholderConnectionGroupEntities { get; set; }
     }
 }

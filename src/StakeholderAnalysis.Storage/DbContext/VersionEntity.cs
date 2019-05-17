@@ -12,16 +12,11 @@ namespace StakeholderAnalysis.Storage.DbContext
     using System;
     using System.Collections.Generic;
     
-    public partial class ForceFieldDiagramStakeholderEntity
+    public partial class VersionEntity
     {
-        public long ForceFieldDiagramStakeholderEntityId { get; set; }
-        public long StakeholderEntityId { get; set; }
-        public long ForceFieldDiagramEntityId { get; set; }
-        public double Interest { get; set; }
-        public double Influence { get; set; }
-        public long Order { get; set; }
-    
-        public virtual ForceFieldDiagramEntity ForceFieldDiagramEntity { get; set; }
-        public virtual StakeholderEntity StakeholderEntity { get; set; }
+        public long VersionEntityId { get; set; }
+        public string Version { get; set; }
+        public System.DateTime TimeStamp { get; set; }
+        public byte[] FingerPrint { get; set; }
     }
 }

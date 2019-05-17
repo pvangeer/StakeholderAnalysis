@@ -15,11 +15,11 @@ namespace StakeholderAnalysis.Storage.DbContext
     public partial class AttitudeImpactDiagramStakeholderEntity
     {
         public long AttitudeImpactDiagramStakeholderEntityId { get; set; }
-        public Nullable<long> AttitudeImpactDiagramEntityId { get; set; }
-        public Nullable<long> StakeholderEntityId { get; set; }
-        public Nullable<double> Attitude { get; set; }
-        public Nullable<double> Impact { get; set; }
-        public Nullable<long> Order { get; set; }
+        public long AttitudeImpactDiagramEntityId { get; set; }
+        public long StakeholderEntityId { get; set; }
+        public double Attitude { get; set; }
+        public double Impact { get; set; }
+        public long Order { get; set; }
     
         public virtual AttitudeImpactDiagramEntity AttitudeImpactDiagramEntity { get; set; }
         public virtual StakeholderEntity StakeholderEntity { get; set; }

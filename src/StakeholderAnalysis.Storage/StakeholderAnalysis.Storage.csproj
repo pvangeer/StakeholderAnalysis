@@ -83,6 +83,7 @@
     <Compile Include="DbContext\OnionRingEntity.cs">
       <DependentUpon>StakeholderAnalysisEntityDataModel.tt</DependentUpon>
     </Compile>
+    <Compile Include="DbContext\PartialEntities.cs" />
     <Compile Include="DbContext\StakeholderAnalysisEntityDataModel.Context.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
@@ -107,19 +108,10 @@
     <Compile Include="DbContext\StakeholderEntity.cs">
       <DependentUpon>StakeholderAnalysisEntityDataModel.tt</DependentUpon>
     </Compile>
+    <Compile Include="DbContext\VersionEntity.cs">
+      <DependentUpon>StakeholderAnalysisEntityDataModel.tt</DependentUpon>
+    </Compile>
     <Compile Include="Properties\AssemblyInfo.cs" />
-  </ItemGroup>
-  <ItemGroup>
-    <Content Include="DbContext\StakeholderAnalysisEntityDataModel.Context.tt">
-      <Generator>TextTemplatingFileGenerator</Generator>
-      <DependentUpon>StakeholderAnalysisEntityDataModel.edmx</DependentUpon>
-      <LastGenOutput>StakeholderAnalysisEntityDataModel.Context.cs</LastGenOutput>
-    </Content>
-    <Content Include="DbContext\StakeholderAnalysisEntityDataModel.tt">
-      <Generator>TextTemplatingFileGenerator</Generator>
-      <DependentUpon>StakeholderAnalysisEntityDataModel.edmx</DependentUpon>
-      <LastGenOutput>StakeholderAnalysisEntityDataModel.cs</LastGenOutput>
-    </Content>
   </ItemGroup>
   <ItemGroup>
     <None Include="App.config" />
@@ -134,6 +126,18 @@
   </ItemGroup>
   <ItemGroup>
     <Service Include="{508349B6-6B84-4DF5-91F0-309BEEBAD82D}" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="DbContext\StakeholderAnalysisEntityDataModel.Context.tt">
+      <Generator>TextTemplatingFileGenerator</Generator>
+      <DependentUpon>StakeholderAnalysisEntityDataModel.edmx</DependentUpon>
+      <LastGenOutput>StakeholderAnalysisEntityDataModel.Context.cs</LastGenOutput>
+    </Content>
+    <Content Include="DbContext\StakeholderAnalysisEntityDataModel.tt">
+      <Generator>TextTemplatingFileGenerator</Generator>
+      <DependentUpon>StakeholderAnalysisEntityDataModel.edmx</DependentUpon>
+      <LastGenOutput>StakeholderAnalysisEntityDataModel.cs</LastGenOutput>
+    </Content>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <Import Project="..\..\packages\System.Data.SQLite.Core.1.0.109.2\build\net45\System.Data.SQLite.Core.targets" Condition="Exists('..\..\packages\System.Data.SQLite.Core.1.0.109.2\build\net45\System.Data.SQLite.Core.targets')" />

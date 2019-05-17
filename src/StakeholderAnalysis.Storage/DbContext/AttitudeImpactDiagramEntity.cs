@@ -17,17 +17,16 @@ namespace StakeholderAnalysis.Storage.DbContext
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
         public AttitudeImpactDiagramEntity()
         {
-            this.AttitudeImpactDiagramStakeholderEntity = new HashSet<AttitudeImpactDiagramStakeholderEntity>();
+            this.AttitudeImpactDiagramStakeholderEntities = new HashSet<AttitudeImpactDiagramStakeholderEntity>();
         }
     
         public long AttitudeImpactDiagramEntityId { get; set; }
-        public Nullable<long> AnalysisEntityId { get; set; }
-        public Nullable<long> AnalysisId { get; set; }
+        public long AnalysisEntityId { get; set; }
         public string Name { get; set; }
-        public Nullable<long> Order { get; set; }
+        public long Order { get; set; }
     
         public virtual AnalysisEntity AnalysisEntity { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<AttitudeImpactDiagramStakeholderEntity> AttitudeImpactDiagramStakeholderEntity { get; set; }
+        public virtual ICollection<AttitudeImpactDiagramStakeholderEntity> AttitudeImpactDiagramStakeholderEntities { get; set; }
     }
 }

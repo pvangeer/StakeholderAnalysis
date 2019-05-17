@@ -17,13 +17,13 @@ namespace StakeholderAnalysis.Storage.DbContext
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
         public OnionDiagramStakeholderEntity()
         {
-            this.StakeholderConnectionEntity = new HashSet<StakeholderConnectionEntity>();
-            this.StakeholderConnectionEntity1 = new HashSet<StakeholderConnectionEntity>();
+            this.StakeholderConnectionEntities = new HashSet<StakeholderConnectionEntity>();
+            this.StakeholderConnectionEntities1 = new HashSet<StakeholderConnectionEntity>();
         }
     
         public long OnionDiagramStakeholderEntityId { get; set; }
-        public Nullable<long> StakeholderEntityId { get; set; }
-        public Nullable<long> OnionDiagramId { get; set; }
+        public long StakeholderEntityId { get; set; }
+        public long OnionDiagramId { get; set; }
         public double Left { get; set; }
         public double Top { get; set; }
         public long Order { get; set; }
@@ -31,8 +31,8 @@ namespace StakeholderAnalysis.Storage.DbContext
         public virtual OnionDiagramEntity OnionDiagramEntity { get; set; }
         public virtual StakeholderEntity StakeholderEntity { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<StakeholderConnectionEntity> StakeholderConnectionEntity { get; set; }
+        public virtual ICollection<StakeholderConnectionEntity> StakeholderConnectionEntities { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<StakeholderConnectionEntity> StakeholderConnectionEntity1 { get; set; }
+        public virtual ICollection<StakeholderConnectionEntity> StakeholderConnectionEntities1 { get; set; }
     }
 }

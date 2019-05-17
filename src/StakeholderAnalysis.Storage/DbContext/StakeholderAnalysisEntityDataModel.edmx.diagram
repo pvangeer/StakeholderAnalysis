@@ -4,34 +4,35 @@
   <edmx:Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
     <!-- Diagram content (shape and connector positions) -->
     <edmx:Diagrams>
-      <Diagram DiagramId="c213b520daeb4fdaae4029e679526153" Name="Diagram1">
-        <EntityTypeShape EntityType="StakeholderAnalysisMainEntities.AnalysisEntity" Width="1.5" PointX="0.75" PointY="10.625" IsExpanded="true" />
-        <EntityTypeShape EntityType="StakeholderAnalysisMainEntities.AttitudeImpactDiagramEntity" Width="1.5" PointX="3" PointY="4" IsExpanded="true" />
-        <EntityTypeShape EntityType="StakeholderAnalysisMainEntities.AttitudeImpactDiagramStakeholderEntity" Width="1.5" PointX="5.25" PointY="9.5" IsExpanded="true" />
-        <EntityTypeShape EntityType="StakeholderAnalysisMainEntities.ForceFieldDiagramEntity" Width="1.5" PointX="3" PointY="7.125" IsExpanded="true" />
-        <EntityTypeShape EntityType="StakeholderAnalysisMainEntities.ForceFieldDiagramStakeholderEntity" Width="1.5" PointX="8.25" PointY="12" IsExpanded="true" />
-        <EntityTypeShape EntityType="StakeholderAnalysisMainEntities.OnionDiagramEntity" Width="1.5" PointX="3" PointY="11.5" IsExpanded="true" />
-        <EntityTypeShape EntityType="StakeholderAnalysisMainEntities.OnionDiagramStakeholderEntity" Width="1.5" PointX="8.25" PointY="16.125" IsExpanded="true" />
-        <EntityTypeShape EntityType="StakeholderAnalysisMainEntities.OnionRingEntity" Width="1.5" PointX="5.25" PointY="13.625" IsExpanded="true" />
-        <EntityTypeShape EntityType="StakeholderAnalysisMainEntities.StakeholderConnectionEntity" Width="1.5" PointX="10.5" PointY="14.125" IsExpanded="true" />
-        <EntityTypeShape EntityType="StakeholderAnalysisMainEntities.StakeholderConnectionGroupEntity" Width="1.5" PointX="5.25" PointY="17" IsExpanded="true" />
-        <EntityTypeShape EntityType="StakeholderAnalysisMainEntities.StakeholderEntity" Width="1.5" PointX="3" PointY="16.75" IsExpanded="true" />
-        <AssociationConnector Association="StakeholderAnalysisMainEntities.FK_AttitudeImpactDiagramEntity_0_0" ManuallyRouted="false" />
-        <AssociationConnector Association="StakeholderAnalysisMainEntities.FK_ForceFieldDiagramEntity_0_0" ManuallyRouted="false" />
-        <AssociationConnector Association="StakeholderAnalysisMainEntities.FK_OnionDiagramEntity_0_0" ManuallyRouted="false" />
-        <AssociationConnector Association="StakeholderAnalysisMainEntities.FK_StakeholderEntity_0_0" ManuallyRouted="false" />
-        <AssociationConnector Association="StakeholderAnalysisMainEntities.FK_AttitudeImpactDiagramStakeholderEntity_1_0" ManuallyRouted="false" />
-        <AssociationConnector Association="StakeholderAnalysisMainEntities.FK_AttitudeImpactDiagramStakeholderEntity_0_0" ManuallyRouted="false" />
-        <AssociationConnector Association="StakeholderAnalysisMainEntities.FK_ForceFieldDiagramStakeholderEntity_1_0" ManuallyRouted="false" />
-        <AssociationConnector Association="StakeholderAnalysisMainEntities.FK_ForceFieldDiagramStakeholderEntity_0_0" ManuallyRouted="false" />
-        <AssociationConnector Association="StakeholderAnalysisMainEntities.FK_OnionDiagramStakeholderEntity_1_0" ManuallyRouted="false" />
-        <AssociationConnector Association="StakeholderAnalysisMainEntities.FK_OnionRingEntity_0_0" ManuallyRouted="false" />
-        <AssociationConnector Association="StakeholderAnalysisMainEntities.FK_StakeholderConnectionEntity_3_0" ManuallyRouted="false" />
-        <AssociationConnector Association="StakeholderAnalysisMainEntities.FK_StakeholderConnectionGroupEntity_0_0" ManuallyRouted="false" />
-        <AssociationConnector Association="StakeholderAnalysisMainEntities.FK_OnionDiagramStakeholderEntity_0_0" ManuallyRouted="false" />
-        <AssociationConnector Association="StakeholderAnalysisMainEntities.FK_StakeholderConnectionEntity_1_0" ManuallyRouted="false" />
-        <AssociationConnector Association="StakeholderAnalysisMainEntities.FK_StakeholderConnectionEntity_2_0" ManuallyRouted="false" />
-        <AssociationConnector Association="StakeholderAnalysisMainEntities.FK_StakeholderConnectionEntity_0_0" ManuallyRouted="false" />
+      <Diagram DiagramId="a7f6a9593876454e84023e6fddf43ab1" Name="Diagram1" ZoomLevel="64">
+        <EntityTypeShape EntityType="StakeholderAnalysisEntities.AnalysisEntity" Width="1.5" PointX="0.75" PointY="10.75" />
+        <EntityTypeShape EntityType="StakeholderAnalysisEntities.AttitudeImpactDiagramEntity" Width="1.5" PointX="3" PointY="4" />
+        <EntityTypeShape EntityType="StakeholderAnalysisEntities.AttitudeImpactDiagramStakeholderEntity" Width="1.5" PointX="5.25" PointY="13.5" />
+        <EntityTypeShape EntityType="StakeholderAnalysisEntities.ForceFieldDiagramEntity" Width="1.5" PointX="3" PointY="7" />
+        <EntityTypeShape EntityType="StakeholderAnalysisEntities.ForceFieldDiagramStakeholderEntity" Width="1.5" PointX="8.25" PointY="11.875" />
+        <EntityTypeShape EntityType="StakeholderAnalysisEntities.OnionDiagramEntity" Width="1.5" PointX="3" PointY="11.5" />
+        <EntityTypeShape EntityType="StakeholderAnalysisEntities.OnionDiagramStakeholderEntity" Width="1.5" PointX="8.25" PointY="16" />
+        <EntityTypeShape EntityType="StakeholderAnalysisEntities.OnionRingEntity" Width="1.5" PointX="5.25" PointY="9.875" />
+        <EntityTypeShape EntityType="StakeholderAnalysisEntities.StakeholderConnectionEntity" Width="1.5" PointX="10.5" PointY="14.125" />
+        <EntityTypeShape EntityType="StakeholderAnalysisEntities.StakeholderConnectionGroupEntity" Width="1.5" PointX="5.25" PointY="16.875" />
+        <EntityTypeShape EntityType="StakeholderAnalysisEntities.StakeholderEntity" Width="1.5" PointX="3" PointY="16.75" />
+        <EntityTypeShape EntityType="StakeholderAnalysisEntities.VersionEntity" Width="1.5" PointX="0.75" PointY="0.75" />
+        <AssociationConnector Association="StakeholderAnalysisEntities.FK_AttitudeImpactDiagramEntity_0_0" />
+        <AssociationConnector Association="StakeholderAnalysisEntities.FK_ForceFieldDiagramEntity_0_0" />
+        <AssociationConnector Association="StakeholderAnalysisEntities.FK_OnionDiagramEntity_0_0" />
+        <AssociationConnector Association="StakeholderAnalysisEntities.FK_StakeholderEntity_0_0" />
+        <AssociationConnector Association="StakeholderAnalysisEntities.FK_AttitudeImpactDiagramStakeholderEntity_1_0" />
+        <AssociationConnector Association="StakeholderAnalysisEntities.FK_AttitudeImpactDiagramStakeholderEntity_0_0" />
+        <AssociationConnector Association="StakeholderAnalysisEntities.FK_ForceFieldDiagramStakeholderEntity_1_0" />
+        <AssociationConnector Association="StakeholderAnalysisEntities.FK_ForceFieldDiagramStakeholderEntity_0_0" />
+        <AssociationConnector Association="StakeholderAnalysisEntities.FK_OnionDiagramStakeholderEntity_1_0" />
+        <AssociationConnector Association="StakeholderAnalysisEntities.FK_OnionRingEntity_0_0" />
+        <AssociationConnector Association="StakeholderAnalysisEntities.FK_StakeholderConnectionEntity_3_0" />
+        <AssociationConnector Association="StakeholderAnalysisEntities.FK_StakeholderConnectionGroupEntity_0_0" />
+        <AssociationConnector Association="StakeholderAnalysisEntities.FK_OnionDiagramStakeholderEntity_0_0" />
+        <AssociationConnector Association="StakeholderAnalysisEntities.FK_StakeholderConnectionEntity_1_0" />
+        <AssociationConnector Association="StakeholderAnalysisEntities.FK_StakeholderConnectionEntity_2_0" />
+        <AssociationConnector Association="StakeholderAnalysisEntities.FK_StakeholderConnectionEntity_0_0" />
       </Diagram>
     </edmx:Diagrams>
   </edmx:Designer>
