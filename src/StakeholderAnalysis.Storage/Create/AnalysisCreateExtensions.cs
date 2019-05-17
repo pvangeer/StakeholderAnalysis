@@ -45,7 +45,12 @@ namespace StakeholderAnalysis.Storage.Create
 
         private static void AddEntitiesForOnionDiagrams(Analysis analysis, AnalysisEntity entity, PersistenceRegistry registry)
         {
-            // TODO
+            for (var index = 0; index < analysis.OnionDiagrams.Count; index++)
+            {
+                var onionDiagramEntity = analysis.OnionDiagrams[index].Create(registry);
+                onionDiagramEntity.Order = index;
+                entity.OnionDiagramEntities.Add(onionDiagramEntity);
+            }
         }
 
         private static void AddEntitiesForStakeholders(Analysis analysis, AnalysisEntity entity, PersistenceRegistry registry)

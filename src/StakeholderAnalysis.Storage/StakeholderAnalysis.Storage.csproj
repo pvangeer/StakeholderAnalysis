@@ -63,7 +63,12 @@
     <Compile Include="Create\AttitudeImpactDiagramStakeholderCreateExtensions.cs" />
     <Compile Include="Create\ForceFieldDiagramCreateExtensions.cs" />
     <Compile Include="Create\ForceFieldDiagramStakeholderCreateExtensions.cs" />
+    <Compile Include="Create\OnionDiagramCreateExtensions.cs" />
+    <Compile Include="Create\OnionDiagramStakeholderCreateExtensions.cs" />
+    <Compile Include="Create\OnionRingCreateExtensions.cs" />
     <Compile Include="Create\PersistenceRegistry.cs" />
+    <Compile Include="Create\StakeholderConnectionCreateExtensions.cs" />
+    <Compile Include="Create\StakeholderConnectionGroupCreateExtensions.cs" />
     <Compile Include="Create\StakeholderCreateExtensions.cs" />
     <Compile Include="DbContext\AnalysisEntity.cs">
       <DependentUpon>StakeholderAnalysisEntityDataModel.tt</DependentUpon>
