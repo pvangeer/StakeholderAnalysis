@@ -21,6 +21,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "StakeholderAnalysis.Storage
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "StakeholderAnalysis.Storage.Preparation.Test", "test\StakeholderAnalysis.Storage.Preparation.Test\StakeholderAnalysis.Storage.Preparation.Test.csproj", "{86C303BF-EB5D-495E-A6A8-FDBDA806F9F4}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "StakeholderAnalysis.Storage", "src\StakeholderAnalysis.Storage\StakeholderAnalysis.Storage.csproj", "{89C312EB-73EC-4254-A6B2-336BA0448B04}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|x64 = Debug|x64
@@ -55,6 +57,10 @@ Global
 		{86C303BF-EB5D-495E-A6A8-FDBDA806F9F4}.Debug|x64.Build.0 = Debug|x64
 		{86C303BF-EB5D-495E-A6A8-FDBDA806F9F4}.Release|x64.ActiveCfg = Release|x64
 		{86C303BF-EB5D-495E-A6A8-FDBDA806F9F4}.Release|x64.Build.0 = Release|x64
+		{89C312EB-73EC-4254-A6B2-336BA0448B04}.Debug|x64.ActiveCfg = Debug|x64
+		{89C312EB-73EC-4254-A6B2-336BA0448B04}.Debug|x64.Build.0 = Debug|x64
+		{89C312EB-73EC-4254-A6B2-336BA0448B04}.Release|x64.ActiveCfg = Release|x64
+		{89C312EB-73EC-4254-A6B2-336BA0448B04}.Release|x64.Build.0 = Release|x64
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
@@ -67,6 +73,7 @@ Global
 		{1D562DF9-DF35-46FA-B33A-B8AEF5FC7CF0} = {729C9A16-269E-4907-BB51-4A2985072B43}
 		{2F077DEA-2527-434B-8955-2BBB50007B33} = {181B3BC3-DE8D-4AE7-8E67-91DB884106E4}
 		{86C303BF-EB5D-495E-A6A8-FDBDA806F9F4} = {181B3BC3-DE8D-4AE7-8E67-91DB884106E4}
+		{89C312EB-73EC-4254-A6B2-336BA0448B04} = {729C9A16-269E-4907-BB51-4A2985072B43}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {82FE5DCB-03E1-485C-805E-B87D438D5DF9}
