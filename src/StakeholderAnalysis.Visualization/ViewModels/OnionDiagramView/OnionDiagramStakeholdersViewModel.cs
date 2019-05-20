@@ -8,16 +8,16 @@ namespace StakeholderAnalysis.Visualization.ViewModels.OnionDiagramView
 {
     public class OnionDiagramStakeholdersViewModel : NotifyPropertyChangedObservable
     {
-        private readonly OnionDiagram diagram;
+        private readonly ISelectionRegister selectionRegister;
 
-        public OnionDiagramStakeholdersViewModel(OnionDiagram onionDiagram)
+        public OnionDiagramStakeholdersViewModel(OnionDiagram onionDiagram, ISelectionRegister selectionRegister)
         {
-            diagram = onionDiagram;
-
+            var diagram = onionDiagram;
+            this.selectionRegister = selectionRegister;
             if (diagram != null)
             {
                 diagram.Stakeholders.CollectionChanged += OnionDiagramStakeholdersCollectionChanged;
-                OnionDiagramStakeholders = new ObservableCollection<OnionDiagramStakeholderViewModel>(diagram.Stakeholders.Select(stakeholder => new OnionDiagramStakeholderViewModel(stakeholder)));
+                OnionDiagramStakeholders = new ObservableCollection<OnionDiagramStakeholderViewModel>(diagram.Stakeholders.Select(stakeholder => new OnionDiagramStakeholderViewModel(stakeholder, selectionRegister)));
             }
         }
 
@@ -27,14 +27,12 @@ namespace StakeholderAnalysis.Visualization.ViewModels.OnionDiagramView
         {
             if (e.Action == NotifyCollectionChangedAction.Add)
                 foreach (var item in e.NewItems.OfType<OnionDiagramStakeholder>())
-                    OnionDiagramStakeholders.Add(new OnionDiagramStakeholderViewModel(item));
+                    OnionDiagramStakeholders.Add(new OnionDiagramStakeholderViewModel(item, selectionRegister));
 
             if (e.Action == NotifyCollectionChangedAction.Remove)
                 foreach (var stakeholder in e.OldItems.OfType<OnionDiagramStakeholder>())
                     OnionDiagramStakeholders.Remove(OnionDiagramStakeholders.FirstOrDefault(viewModel =>
                         viewModel.IsViewModelFor(stakeholder)));
         }
-
-
     }
 }

@@ -9,6 +9,9 @@
 
     <DataTemplate x:Key="OnionDiagramDataTemplate" DataType="onionDiagramView:OnionDiagramViewModel">
         <Grid Margin="10">
+            <Grid.InputBindings>
+                <MouseBinding MouseAction="LeftDoubleClick" Command="{Binding GridClickedCommand}" />
+            </Grid.InputBindings>
             <ContentPresenter 
                 Name="OnionRingsPresenter" 
                 Content="{Binding OnionDiagramRingsCanvasViewModel}"

@@ -1,12 +1,17 @@
 ﻿using System.ComponentModel;
+using System.Windows.Input;
 using StakeholderAnalysis.Data;
+using StakeholderAnalysis.Visualization.Commands;
 
 namespace StakeholderAnalysis.Visualization.ViewModels
 {
     public class StakeholderViewModel : NotifyPropertyChangedObservable, IDropHandler
     {
-        public StakeholderViewModel(Stakeholder stakeholder)
+        protected readonly ISelectionRegister SelectionRegister;
+
+        public StakeholderViewModel(Stakeholder stakeholder, ISelectionRegister selectionRegister)
         {
+            this.SelectionRegister = selectionRegister;
             Stakeholder = stakeholder;
             if (Stakeholder != null) Stakeholder.PropertyChanged += StakeholderPropertyChanged;
         }
@@ -30,6 +35,10 @@ namespace StakeholderAnalysis.Visualization.ViewModels
 
         public StakeholderType Type => Stakeholder.Type;
 
+        public bool IsSelectedStakeholder => SelectionRegister != null && SelectionRegister.IsSelected(Stakeholder);
+
+        public ICommand StakeholderClickedCommand => new StakeholderClickedCommand(this);
+        
         protected virtual void StakeholderPropertyChanged(object sender, PropertyChangedEventArgs e)
         {
             switch (e.PropertyName)
@@ -44,5 +53,10 @@ namespace StakeholderAnalysis.Visualization.ViewModels
         }
 
         public virtual void Moved(double xRelativeNew, double yRelativeNew) { }
+
+        public void SelectStakeholder()
+        {
+            SelectionRegister?.Select(Stakeholder);
+        }
     }
 }

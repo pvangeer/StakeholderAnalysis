@@ -17,10 +17,22 @@
 
     <DataTemplate x:Key="StakeholderDataTemplate" DataType="viewModels:StakeholderViewModel">
         <Border CornerRadius="1" visualization:DragOnCanvasBehavior.DropHandler="{Binding }">
+            <Border.InputBindings>
+                <MouseBinding MouseAction="LeftDoubleClick" Command="{Binding StakeholderClickedCommand}" />
+            </Border.InputBindings>
             <Border.Style>
                 <Style TargetType="{x:Type Border}">
                     <Setter Property="BorderBrush" Value="Gray" />
                     <Setter Property="BorderThickness" Value="1" />
+                    <Style.Triggers>
+                        <DataTrigger Value="True">
+                            <DataTrigger.Binding>
+                                <Binding Path="IsSelectedStakeholder"/>
+                            </DataTrigger.Binding>
+                            <Setter Property="BorderBrush" Value="DarkRed" />
+                            <Setter Property="BorderThickness" Value="2" />
+                        </DataTrigger>
+                    </Style.Triggers>
                 </Style>
             </Border.Style>
             <Grid Background="{Binding Type, Converter={StaticResource TypeToBrushConverter}}">

@@ -12,7 +12,7 @@ namespace StakeholderAnalysis.Visualization.ViewModels.StakeholderTableView
             if (analysis != null)
             {
                 analysis.Stakeholders.CollectionChanged += StakeholdersCollectionChanged;
-                Stakeholders = new ObservableCollection<StakeholderViewModel>(analysis.Stakeholders.Select(stakeholder => new StakeholderViewModel(stakeholder)));
+                Stakeholders = new ObservableCollection<StakeholderViewModel>(analysis.Stakeholders.Select(stakeholder => new StakeholderViewModel(stakeholder, null)));
             }
         }
 
@@ -22,7 +22,7 @@ namespace StakeholderAnalysis.Visualization.ViewModels.StakeholderTableView
         {
             if (e.Action == NotifyCollectionChangedAction.Add)
                 foreach (var item in e.NewItems.OfType<Stakeholder>())
-                    Stakeholders.Add(new StakeholderViewModel(item));
+                    Stakeholders.Add(new StakeholderViewModel(item, null));
 
             if (e.Action == NotifyCollectionChangedAction.Remove)
                 foreach (var stakeholder in e.OldItems.OfType<Stakeholder>())

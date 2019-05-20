@@ -9,7 +9,7 @@ namespace StakeholderAnalysis.Visualization.ViewModels.OnionDiagramView
     {
         private readonly OnionDiagramStakeholder onionDiagramStakeholder;
 
-        public OnionDiagramStakeholderViewModel(OnionDiagramStakeholder stakeholder) : base(stakeholder?.Stakeholder)
+        public OnionDiagramStakeholderViewModel(OnionDiagramStakeholder stakeholder, ISelectionRegister selectionRegister) : base(stakeholder?.Stakeholder, selectionRegister)
         {
             onionDiagramStakeholder = stakeholder;
             if (onionDiagramStakeholder != null)

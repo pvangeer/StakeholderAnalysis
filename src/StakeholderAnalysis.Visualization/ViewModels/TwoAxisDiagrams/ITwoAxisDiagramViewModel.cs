@@ -1,9 +1,10 @@
 ﻿using System.Collections.ObjectModel;
+using System.Windows.Input;
 using System.Windows.Media;
 
 namespace StakeholderAnalysis.Visualization.ViewModels.TwoAxisDiagrams
 {
-    interface ITwoAxisDiagramViewModel
+    interface ITwoAxisDiagramViewModel : ISelectionRegister
     {
         Brush BackgroundBrush { get; }
 
@@ -24,5 +25,6 @@ namespace StakeholderAnalysis.Visualization.ViewModels.TwoAxisDiagrams
         string XAxisMaxLabel { get; }
 
         string XAxisMinLabel { get; }
+        ICommand GridClickedCommand { get; }
     }
 }

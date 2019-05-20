@@ -16,6 +16,9 @@
     <DataTemplate x:Key="TwoAxisDiagramDataTemplate" DataType="twoAxisDiagrams:ITwoAxisDiagramViewModel">
         <!--Main grid-->
         <Grid>
+            <Grid.InputBindings>
+                <MouseBinding MouseAction="LeftDoubleClick" Command="{Binding GridClickedCommand}" />
+            </Grid.InputBindings>
             <Grid.RowDefinitions>
                 <RowDefinition Height="*" />
                 <RowDefinition Height="Auto" />
