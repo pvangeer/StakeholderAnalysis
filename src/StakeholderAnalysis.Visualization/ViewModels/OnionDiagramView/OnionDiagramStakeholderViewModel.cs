@@ -1,16 +1,22 @@
 ﻿using System;
 using System.ComponentModel;
+using System.Linq;
+using System.Windows.Input;
 using StakeholderAnalysis.Data.OnionDiagrams;
+using StakeholderAnalysis.Visualization.Commands;
 using static System.Double;
 
 namespace StakeholderAnalysis.Visualization.ViewModels.OnionDiagramView
 {
     public class OnionDiagramStakeholderViewModel : StakeholderViewModel
     {
+        private OnionDiagram diagram;
         private readonly OnionDiagramStakeholder onionDiagramStakeholder;
 
-        public OnionDiagramStakeholderViewModel(OnionDiagramStakeholder stakeholder, ISelectionRegister selectionRegister) : base(stakeholder?.Stakeholder, selectionRegister)
+        public OnionDiagramStakeholderViewModel(OnionDiagram diagram, OnionDiagramStakeholder stakeholder,
+            ISelectionRegister selectionRegister) : base(stakeholder?.Stakeholder, selectionRegister)
         {
+            this.diagram = diagram;
             onionDiagramStakeholder = stakeholder;
             if (onionDiagramStakeholder != null)
             {
@@ -38,6 +44,8 @@ namespace StakeholderAnalysis.Visualization.ViewModels.OnionDiagramView
             }
         }
 
+        public ICommand RemoveStakeholderCommand => new RemoveSelectedStakeholderFromDiagramCommand(this);
+
         public override void Moved(double xRelativeNew, double yRelativeNew)
         {
             LeftPercentage = Math.Min(1.0,Math.Max(0.0,xRelativeNew));
@@ -61,6 +69,21 @@ namespace StakeholderAnalysis.Visualization.ViewModels.OnionDiagramView
         public bool IsViewModelFor(OnionDiagramStakeholder stakeholder)
         {
             return IsViewModelFor(stakeholder.Stakeholder);
+        }
+
+        public void RemoveFromDiagram()
+        {
+            if (IsSelectedStakeholder)
+            {
+                diagram.Stakeholders.Remove(onionDiagramStakeholder);
+                var connectionsToRemove = diagram.Connections.Where(c =>
+                    c.ConnectFrom == onionDiagramStakeholder || c.ConnectTo == onionDiagramStakeholder).ToList();
+                foreach (var connection in connectionsToRemove)
+                {
+                    diagram.Connections.Remove(connection);
+                }
+
+            }
         }
     }
 }

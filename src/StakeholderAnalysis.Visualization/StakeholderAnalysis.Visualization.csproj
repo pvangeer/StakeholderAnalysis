@@ -103,6 +103,7 @@
     <Compile Include="Commands\OnionDiagramProperties\AddConnectionGroupCommand.cs" />
     <Compile Include="Commands\OnionDiagramProperties\RemoveConnectionGroupCommand.cs" />
     <Compile Include="Commands\OnionDiagramProperties\RemoveOnionRingCommand.cs" />
+    <Compile Include="Commands\RemoveSelectedStakeholderFromDiagramCommand.cs" />
     <Compile Include="Commands\Ribbon\AddOnionRingCommand.cs" />
     <Compile Include="Commands\ProjectExplorer\ToggleToolWindowCommand.cs" />
     <Compile Include="Commands\ProjectExplorer\AddNewDiagramCommand.cs" />
@@ -142,6 +143,7 @@
     <Compile Include="DragOnCanvasBehavior.cs" />
     <Compile Include="IDropHandler.cs" />
     <Compile Include="ISelectionRegister.cs" />
+    <Compile Include="IsSelectedStakeholderToOffsetConverter.cs" />
     <Compile Include="LayouItemContainerStyleSelector.cs" />
     <Compile Include="ViewModels\IExpandableContentViewModel.cs" />
     <Compile Include="ViewModels\OnionDiagramProperties\ConnectionGroupPropertiesViewModel.cs" />
@@ -365,6 +367,9 @@
     <Resource Include="Resources\alert-icon 32x32.png" />
     <Resource Include="Resources\close-icon 32x32.png" />
     <Resource Include="Resources\information-icon 32x32.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Resources\delete.png" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

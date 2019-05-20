@@ -9,15 +9,18 @@ namespace StakeholderAnalysis.Visualization.ViewModels.OnionDiagramView
     public class OnionDiagramStakeholdersViewModel : NotifyPropertyChangedObservable
     {
         private readonly ISelectionRegister selectionRegister;
+        private readonly OnionDiagram diagram;
 
         public OnionDiagramStakeholdersViewModel(OnionDiagram onionDiagram, ISelectionRegister selectionRegister)
         {
-            var diagram = onionDiagram;
+            diagram = onionDiagram;
             this.selectionRegister = selectionRegister;
             if (diagram != null)
             {
                 diagram.Stakeholders.CollectionChanged += OnionDiagramStakeholdersCollectionChanged;
-                OnionDiagramStakeholders = new ObservableCollection<OnionDiagramStakeholderViewModel>(diagram.Stakeholders.Select(stakeholder => new OnionDiagramStakeholderViewModel(stakeholder, selectionRegister)));
+                OnionDiagramStakeholders = new ObservableCollection<OnionDiagramStakeholderViewModel>(
+                    diagram.Stakeholders.Select(stakeholder =>
+                        new OnionDiagramStakeholderViewModel(diagram, stakeholder, selectionRegister)));
             }
         }
 
@@ -27,7 +30,7 @@ namespace StakeholderAnalysis.Visualization.ViewModels.OnionDiagramView
         {
             if (e.Action == NotifyCollectionChangedAction.Add)
                 foreach (var item in e.NewItems.OfType<OnionDiagramStakeholder>())
-                    OnionDiagramStakeholders.Add(new OnionDiagramStakeholderViewModel(item, selectionRegister));
+                    OnionDiagramStakeholders.Add(new OnionDiagramStakeholderViewModel(diagram, item, selectionRegister));
 
             if (e.Action == NotifyCollectionChangedAction.Remove)
                 foreach (var stakeholder in e.OldItems.OfType<OnionDiagramStakeholder>())

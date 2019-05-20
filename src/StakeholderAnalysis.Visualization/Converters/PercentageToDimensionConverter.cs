@@ -11,6 +11,7 @@ namespace StakeholderAnalysis.Visualization.Converters
             var percentage = 0.0;
             var elementSize = 0.0;
             var actualSize = 0.0;
+            var pixelOffset = 0.0;
             if (values.Length == 2)
             {
                 percentage = (double) values[0];
@@ -25,7 +26,14 @@ namespace StakeholderAnalysis.Visualization.Converters
                 actualSize = (double) values[2];
             }
 
-            return percentage * actualSize - elementSize / 2;
+            if (values.Length == 4)
+            {
+                percentage = (double)values[0];
+                elementSize = (double)values[1];
+                actualSize = (double)values[2];
+                pixelOffset = (double) values[3];
+            }
+            return (percentage * actualSize - elementSize / 2) + pixelOffset;
         }
 
         public object[] ConvertBack(object value, Type[] targetTypes, object parameter, CultureInfo culture)

@@ -12,7 +12,7 @@ namespace StakeholderAnalysis.Visualization.ViewModels.OnionDiagramView
     public class OnionDiagramViewModel: NotifyPropertyChangedObservable, ISelectionRegister
     {
         private readonly OnionDiagram diagram;
-        private object selectedObject;
+        public object SelectedObject = null;
 
         public OnionDiagramViewModel(OnionDiagram onionDiagram)
         {
@@ -63,12 +63,12 @@ namespace StakeholderAnalysis.Visualization.ViewModels.OnionDiagramView
 
         public bool IsSelected(object o)
         {
-            return selectedObject == o;
+            return SelectedObject == o;
         }
 
         public void Select(object o)
         {
-            selectedObject = o;
+            SelectedObject = o;
             foreach (var onionDiagramStakeholderViewModel in OnionDiagramStakeholdersViewModel.OnionDiagramStakeholders)
             {
                 onionDiagramStakeholderViewModel.OnPropertyChanged(nameof(OnionDiagramStakeholderViewModel.IsSelectedStakeholder));
