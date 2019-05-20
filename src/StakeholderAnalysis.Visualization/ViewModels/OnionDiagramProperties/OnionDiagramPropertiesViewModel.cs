@@ -10,7 +10,7 @@ namespace StakeholderAnalysis.Visualization.ViewModels.OnionDiagramProperties
     {
         private readonly ViewManager viewManager;
 
-        public OnionDiagramPropertiesViewModel(Analysis analysis, ViewManager viewManager)
+        public OnionDiagramPropertiesViewModel(ViewManager viewManager)
         {
             this.viewManager = viewManager;
             viewManager.PropertyChanged += ViewManagerPropertyChanged;

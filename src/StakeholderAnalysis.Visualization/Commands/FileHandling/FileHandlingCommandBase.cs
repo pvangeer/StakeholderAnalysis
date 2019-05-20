@@ -15,7 +15,7 @@ namespace StakeholderAnalysis.Visualization.Commands.FileHandling
 
         public virtual bool CanExecute(object parameter)
         {
-            return false;
+            return ribbonViewModel.HasGui;
         }
 
         public abstract void Execute(object parameter);

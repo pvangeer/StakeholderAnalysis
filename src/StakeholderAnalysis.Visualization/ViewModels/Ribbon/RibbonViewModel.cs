@@ -1,6 +1,8 @@
-﻿using System.Collections.ObjectModel;
+﻿using System;
+using System.Collections.ObjectModel;
 using System.Collections.Specialized;
 using System.ComponentModel;
+using System.Windows;
 using System.Windows.Input;
 using StakeholderAnalysis.Data;
 using StakeholderAnalysis.Gui;
@@ -14,13 +16,19 @@ namespace StakeholderAnalysis.Visualization.ViewModels.Ribbon
     public class RibbonViewModel : NotifyPropertyChangedObservable
     {
         private readonly StakeholderAnalysisGui gui;
-        private readonly Analysis analysis;
         private RelayCommand saveCanvasCommand;
+        private readonly Action invalidateVisualAction;
 
-        public RibbonViewModel(Analysis analysisInput, StakeholderAnalysisGui guiInput)
+        public RibbonViewModel(StakeholderAnalysisGui guiInput, Action invalidateVisualAction)
         {
+            this.invalidateVisualAction = invalidateVisualAction;
             gui = guiInput;
-            analysis = analysisInput;
+            GuiProjectSercices = new GuiProjectServices(gui);
+            if (gui != null)
+            {
+                gui.ShouldSaveOpenChanges = ShouldSaveOpenChanges;
+                gui.PropertyChanged += GuiPropertyChanged;
+            }
 
             ViewManagerViewModel = new ViewManagerViewModel(gui.ViewManager);
             gui.ViewManager.PropertyChanged += ViewManagerPropertyChanged;
@@ -38,10 +46,11 @@ namespace StakeholderAnalysis.Visualization.ViewModels.Ribbon
 
         public ICommand NewCommand => new NewProjectCommand(this);
 
-        public ICommand CloseApplication => new CloseApplicationCommand();
+        public ICommand CloseApplication => new CloseApplicationCommand(gui, GuiProjectSercices);
 
         public RibbonStakeholderConnectionGroupsViewModel RibbonStakeholderConnectionGroupsViewModel => new RibbonStakeholderConnectionGroupsViewModel(gui.ViewManager);
 
+        public bool HasGui => gui != null;
 
         public bool IsMagnifierActive
         {
@@ -69,10 +78,10 @@ namespace StakeholderAnalysis.Visualization.ViewModels.Ribbon
 
         public RibbonSelectedOnionDiagramViewModel RibbonSelectedOnionDiagramViewModel =>
             gui?.ViewManager?.ActiveDocument?.ViewModel is OnionDiagramViewModel viewModel
-                ? new RibbonSelectedOnionDiagramViewModel(viewModel.GetDiagram(), analysis)
+                ? new RibbonSelectedOnionDiagramViewModel(viewModel.GetDiagram(), gui.Analysis)
                 : null;
 
-        public ICommand ToggleToolWindowCommand => new ToggleToolWindowCommand(analysis, gui.ViewManager);
+        public ICommand ToggleToolWindowCommand => new ToggleToolWindowCommand(gui, gui.ViewManager);
 
         public ObservableCollection<ViewInfo> ToolWindows
         {
@@ -92,6 +101,13 @@ namespace StakeholderAnalysis.Visualization.ViewModels.Ribbon
                 case nameof(StakeholderAnalysisGui.IsMagnifierActive):
                     OnPropertyChanged(nameof(IsMagnifierActive));
                     break;
+                case nameof(StakeholderAnalysisGui.BusyIndicator):
+                    invalidateVisualAction?.Invoke();
+                    break;
+                case nameof(StakeholderAnalysisGui.Analysis):
+                    OnPropertyChanged(nameof(RibbonSelectedOnionDiagramViewModel));
+                    OnPropertyChanged(nameof(ToggleToolWindowCommand));
+                break;
             }
         }
 
@@ -103,6 +119,21 @@ namespace StakeholderAnalysis.Visualization.ViewModels.Ribbon
                     OnPropertyChanged(nameof(RibbonSelectedOnionDiagramViewModel));
                     break;
             }
+        }
+
+        public GuiProjectServices GuiProjectSercices { get; }
+
+        private bool ShouldSaveOpenChanges()
+        {
+            string messageBoxText = "U heeft aanpassingen aan uw project nog niet opgeslagen. Wilt u dat alsnog doen?";
+            string caption = "Aanpassingen opslaan";
+
+            MessageBoxButton messageBoxType = MessageBoxButton.YesNo;
+            MessageBoxImage messageBoxImage = MessageBoxImage.Question;
+
+            MessageBoxResult messageBoxResult = MessageBox.Show(messageBoxText, caption, messageBoxType, messageBoxImage);
+
+            return messageBoxResult == MessageBoxResult.Yes;
         }
     }
 }

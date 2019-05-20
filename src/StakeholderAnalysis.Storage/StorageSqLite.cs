@@ -16,6 +16,14 @@ namespace StakeholderAnalysis.Storage
     public class StorageSqLite
     {
         private StagedProject stagedProject;
+        private readonly byte[] emptyProjectHash;
+
+        public StorageSqLite()
+        {
+            var emptyProject = new Analysis();
+            var emptyStagedProject = new StagedProject(emptyProject, emptyProject.Create(new PersistenceRegistry()));
+            this.emptyProjectHash = FingerprintHelper.Get(emptyStagedProject.Entity);
+        }
 
         public bool HasStagedProject
         {
@@ -105,6 +113,13 @@ namespace StakeholderAnalysis.Storage
             {
                 throw new InvalidOperationException("Call 'StageProject(IProject)' first before calling this method.");
             }
+
+            byte[] hash = FingerprintHelper.Get(stagedProject.Entity);
+            if (FingerprintHelper.AreEqual(hash, emptyProjectHash))
+            {
+                return false;
+            }
+
             if (string.IsNullOrWhiteSpace(filePath))
             {
                 return true;
@@ -117,7 +132,6 @@ namespace StakeholderAnalysis.Storage
                 using (var dbContext = new Entities(connectionString))
                     originalHash = dbContext.VersionEntities.Select(v => v.FingerPrint).First();
 
-                byte[] hash = FingerprintHelper.Get(stagedProject.Entity);
                 return !FingerprintHelper.AreEqual(originalHash, hash);
             }
             catch (Exception e)

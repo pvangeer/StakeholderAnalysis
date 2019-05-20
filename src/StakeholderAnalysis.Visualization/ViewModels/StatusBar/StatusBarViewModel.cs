@@ -12,12 +12,10 @@ namespace StakeholderAnalysis.Visualization.ViewModels.StatusBar
     public class StatusBarViewModel : NotifyPropertyChangedObservable
     {
         private readonly StakeholderAnalysisGui gui;
-        private readonly Analysis analysis;
         private MessageListViewModel messageListViewModel;
 
-        public StatusBarViewModel(Analysis analysis, StakeholderAnalysisGui gui)
+        public StatusBarViewModel(StakeholderAnalysisGui gui)
         {
-            this.analysis = analysis;
             this.gui = gui;
 
             if (gui != null)

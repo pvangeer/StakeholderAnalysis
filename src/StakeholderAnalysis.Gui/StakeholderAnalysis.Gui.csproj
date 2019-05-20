@@ -59,6 +59,7 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="CloseViewCommand.cs" />
+    <Compile Include="GuiProjectServices.cs" />
     <Compile Include="StakeholderAnalysisGui.cs" />
     <Compile Include="Properties\Annotations.cs" />
     <Compile Include="Properties\AssemblyInfo.cs">
@@ -74,6 +75,7 @@
       <DependentUpon>Settings.settings</DependentUpon>
       <DesignTimeSharedInput>True</DesignTimeSharedInput>
     </Compile>
+    <Compile Include="StorageState.cs" />
     <Compile Include="ViewInfo.cs" />
     <Compile Include="ViewManager.cs" />
     <EmbeddedResource Include="Properties\Resources.resx">
@@ -87,9 +89,17 @@
     </None>
   </ItemGroup>
   <ItemGroup>
+    <ProjectReference Include="..\StakeholderAnalysis.Data\StakeholderAnalysis.Data.csproj">
+      <Project>{96BE72A1-F5B6-4DA7-A7F7-CB0D3FA69DEC}</Project>
+      <Name>StakeholderAnalysis.Data</Name>
+    </ProjectReference>
     <ProjectReference Include="..\StakeholderAnalysis.Messaging\StakeholderAnalysis.Messaging.csproj">
       <Project>{1D562DF9-DF35-46FA-B33A-B8AEF5FC7CF0}</Project>
       <Name>StakeholderAnalysis.Messaging</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\StakeholderAnalysis.Storage\StakeholderAnalysis.Storage.csproj">
+      <Project>{89C312EB-73EC-4254-A6B2-336BA0448B04}</Project>
+      <Name>StakeholderAnalysis.Storage</Name>
     </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

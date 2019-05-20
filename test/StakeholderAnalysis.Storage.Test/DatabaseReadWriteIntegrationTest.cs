@@ -57,6 +57,7 @@ namespace StakeholderAnalysis.Storage.Test
                 var onionDiagram = analysisOnionDiagrams[i];
                 var twoCAttitudeImpactDiagram = analysis2COnionDiagrams[i];
                 Assert.AreEqual(onionDiagram.Name, twoCAttitudeImpactDiagram.Name);
+                Assert.AreEqual(onionDiagram.Asymmetry, twoCAttitudeImpactDiagram.Asymmetry);
                 AssertAreEqualOnionDiagramStakeholders(onionDiagram.Stakeholders, twoCAttitudeImpactDiagram.Stakeholders);
                 AssertAreEqualOnionRings(onionDiagram.OnionRings, twoCAttitudeImpactDiagram.OnionRings);
                 AssertAreEqualStakeholdersConnections(onionDiagram.Connections, twoCAttitudeImpactDiagram.Connections);

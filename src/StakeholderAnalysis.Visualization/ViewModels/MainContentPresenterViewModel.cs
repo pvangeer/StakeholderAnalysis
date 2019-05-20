@@ -1,4 +1,5 @@
 ﻿using System.ComponentModel;
+using System.Linq;
 using StakeholderAnalysis.Data;
 using StakeholderAnalysis.Gui;
 using StakeholderAnalysis.Visualization.Commands;
@@ -9,7 +10,7 @@ namespace StakeholderAnalysis.Visualization.ViewModels
     {
         private bool isSaveToImage;
         private RelayCommand saveCanvasCommand;
-        private readonly Gui.StakeholderAnalysisGui gui;
+        private readonly StakeholderAnalysisGui gui;
 
         public MainContentPresenterViewModel(StakeholderAnalysisGui gui)
         {
@@ -29,6 +30,12 @@ namespace StakeholderAnalysis.Visualization.ViewModels
                     break;
                 case nameof(StakeholderAnalysisGui.IsSaveToImage):
                     OnPropertyChanged(nameof(IsSaveToImage));
+                    break;
+                case nameof(StakeholderAnalysisGui.Analysis):
+                    foreach (var viewInfo in gui.ViewManager.Views.ToList())
+                    {
+                        gui.ViewManager.CloseView(viewInfo);
+                    }
                     break;
             }
         }

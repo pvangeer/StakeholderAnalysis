@@ -5,7 +5,12 @@
                      xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
                      xmlns:viewmodels="clr-namespace:StakeholderAnalysis.Visualization.ViewModels;assembly=StakeholderAnalysis.Visualization"
                      xmlns:fluent="urn:fluent-ribbon"
+                     xmlns:projectExplorer="clr-namespace:StakeholderAnalysis.Visualization.ViewModels.ProjectExplorer;assembly=StakeholderAnalysis.Visualization"
+                     xmlns:onionDiagramProperties="clr-namespace:StakeholderAnalysis.Visualization.ViewModels.OnionDiagramProperties;assembly=StakeholderAnalysis.Visualization"
+                     xmlns:controls="clr-namespace:StakeholderAnalysis.Visualization.Controls;assembly=StakeholderAnalysis.Visualization"
+                     xmlns:converters="clr-namespace:StakeholderAnalysis.Visualization.Converters;assembly=StakeholderAnalysis.Visualization"
                      mc:Ignorable="d"
+                     Closing="MainWindowClosing"
                      Loaded="MainWindow_OnLoaded"
                      Title="Stakeholderanalyse"
                      Height="900"
@@ -19,23 +24,136 @@
         <ResourceDictionary>
             <ResourceDictionary.MergedDictionaries>
                 <ResourceDictionary Source="/Fluent;Component/Themes/generic.xaml" />
-                <ResourceDictionary Source="/StakeholderAnalysis.Visualization;Component/DataTemplates/Ribbon/RibbonDataTemplate.xaml" />
                 <ResourceDictionary Source="/StakeholderAnalysis.Visualization;Component/DataTemplates/MainContentPresenterDataTemplate.xaml" />
                 <ResourceDictionary Source="/StakeholderAnalysis.Visualization;Component/DataTemplates/StatusBar/StatusBarDataTemplate.xaml" />
             </ResourceDictionary.MergedDictionaries>
+
+            <converters:IsSelectedViewTypeToVisibilityConverter x:Key="IsSelectedViewInfoToVisibilityConverter" />
+            <converters:ValueToSameConverter x:Key="DummyConverter" />
+            <converters:IsActiveToolWindowConverter x:Key="IsActiveToolWindowConverter" />
+
         </ResourceDictionary>
     </Window.Resources>
 
+    
     <Grid>
         <Grid.RowDefinitions>
             <RowDefinition Height="Auto" />
             <RowDefinition Height="*" />
             <RowDefinition Height="Auto" />
         </Grid.RowDefinitions>
-        <ContentPresenter 
-            Grid.Row="0" 
-            Content="{Binding RibbonViewModel}" 
-            ContentTemplate="{StaticResource RibbonDataTemplate}" />
+        <fluent:Ribbon Focusable="True" x:Name="Ribbon" AutomaticStateManagement="False">
+            <fluent:Ribbon.Menu>
+                <fluent:Backstage Background="#008fc5">
+
+                    <fluent:BackstageTabControl>
+                        <fluent:Button Header="Nieuw"
+                                       Icon="pack://application:,,,/StakeholderAnalysis.Visualization;component/Resources/DocumentHS.png"
+                                       fluent:KeyTip.Keys="N"
+                                       Command="{Binding RibbonViewModel.NewCommand}" />
+
+                        <fluent:Button Header="Opslaan"
+                                       Icon="pack://application:,,,/StakeholderAnalysis.Visualization;component/Resources/saveHS.png"
+                                       fluent:KeyTip.Keys="S"
+                                       Command="{Binding RibbonViewModel.SaveCommand}" />
+
+                        <fluent:Button Header="Opslaan als"
+                                       Icon="pack://application:,,,/StakeholderAnalysis.Visualization;component/Resources/SaveAsHH.png"
+                                       fluent:KeyTip.Keys="A"
+                                       Command="{Binding RibbonViewModel.SaveAsCommand}" />
+
+                        <fluent:Button Header="Openen"
+                                       Icon="pack://application:,,,/StakeholderAnalysis.Visualization;component/Resources/openfolderHS.png"
+                                       fluent:KeyTip.Keys="O"
+                                       Command="{Binding RibbonViewModel.OpenCommand}" />
+
+                        <fluent:SeparatorTabItem />
+
+                        <fluent:Button Header="Afsluiten"
+                                       Icon="pack://application:,,,/StakeholderAnalysis.Visualization;component/Resources/ClosePreviewHH.png"
+                                       fluent:KeyTip.Keys="X"
+                                       Command="{Binding RibbonViewModel.CloseApplication}" />
+                    </fluent:BackstageTabControl>
+                </fluent:Backstage>
+            </fluent:Ribbon.Menu>
+
+            <fluent:Ribbon.ContextualGroups>
+                <fluent:RibbonContextualTabGroup
+                    x:Name="onionGroup"
+                    Header="Ui-diagram"
+                    Background="Green"
+                    Foreground="DarkSeaGreen">
+                    <fluent:RibbonContextualTabGroup.Visibility>
+                        <Binding 
+                            Path="RibbonViewModel.ViewManagerViewModel.ActiveDocument"
+                            Converter="{StaticResource IsSelectedViewInfoToVisibilityConverter}" 
+                            UpdateSourceTrigger="PropertyChanged"/>
+                    </fluent:RibbonContextualTabGroup.Visibility>
+                </fluent:RibbonContextualTabGroup>
+            </fluent:Ribbon.ContextualGroups>
+
+            <fluent:RibbonTabItem Header="Start">
+                <fluent:RibbonGroupBox Header="Beeld">
+                    <fluent:ToggleButton 
+                        Size="Middle"
+                        Header="Projectgegevens tonen" 
+                        Icon="pack://application:,,,/StakeholderAnalysis.Visualization;component/Resources/document.png"
+                        IsChecked="{Binding RibbonViewModel.ToolWindows, Converter={StaticResource IsActiveToolWindowConverter}, ConverterParameter={x:Type projectExplorer:ProjectExplorerViewModel}}"
+                        Command="{Binding RibbonViewModel.ToggleToolWindowCommand}"
+                        CommandParameter="{x:Type projectExplorer:ProjectExplorerViewModel}"/>
+                    <fluent:ToggleButton 
+                        Size="Middle"
+                        Header="UI-diagram gegevens tonen" 
+                        Icon="pack://application:,,,/StakeholderAnalysis.Visualization;component/Resources/onion.png"
+                        IsChecked="{Binding RibbonViewModel.ToolWindows, Converter={StaticResource IsActiveToolWindowConverter}, ConverterParameter={x:Type onionDiagramProperties:OnionDiagramPropertiesViewModel}}"
+                        Command="{Binding RibbonViewModel.ToggleToolWindowCommand}"
+                        CommandParameter="{x:Type onionDiagramProperties:OnionDiagramPropertiesViewModel}"/>
+                    <fluent:ToggleButton
+                        Header="Vergrootglas"
+                        Size="Large"
+                        LargeIcon="pack://application:,,,/StakeholderAnalysis.Visualization;component/Resources/Magnifier.png"
+                        IsChecked="{Binding RibbonViewModel.IsMagnifierActive}" />
+                    <fluent:Button
+                        Header="Afbeelding opslaan"
+                        Size="Large"
+                        LargeIcon="pack://application:,,,/StakeholderAnalysis.Visualization;component/Resources/SaveImage.png"
+                        Command="{Binding RibbonViewModel.SaveImageCommand}" />
+
+                </fluent:RibbonGroupBox>
+            </fluent:RibbonTabItem>
+
+            <fluent:RibbonTabItem Header="Ui-diagram" Group="{Binding Source={x:Reference onionGroup}}">
+                <fluent:RibbonGroupBox Header="Ringen">
+                    <fluent:Button 
+                        Header="Ring toevoegen" 
+                        Command="{Binding RibbonViewModel.RibbonSelectedOnionDiagramViewModel.AddOnionRingCommand, Converter={StaticResource DummyConverter}}"
+                        Size="Middle"
+                        Icon="pack://application:,,,/StakeholderAnalysis.Visualization;component/Resources/plus.png"/>
+                    <fluent:Spinner 
+                        Value="{Binding RibbonViewModel.RibbonSelectedOnionDiagramViewModel.Asymmetry, Converter={StaticResource DummyConverter}}" 
+                        Header="Asymmetrie"
+                        Format="0.#####"
+                        Minimum="0.0" 
+                        Maximum="1.0" 
+                        Increment="0.1"/>
+                </fluent:RibbonGroupBox>
+
+                <fluent:RibbonGroupBox Header="Stakeholders">
+                    <fluent:Button 
+                        Header="Stakeholder(s) toevoegen" 
+                        Command="{Binding RibbonViewModel.RibbonSelectedOnionDiagramViewModel.AddStakeholdersCommand, Converter={StaticResource DummyConverter}}"
+                        Size="Large"
+                        LargeIcon="pack://application:,,,/StakeholderAnalysis.Visualization;component/Resources/plus.png"/>
+                </fluent:RibbonGroupBox>
+
+                <fluent:RibbonGroupBox Header="Verbindingsgroepen">
+                    <controls:ConnectionGroupsListBoxControl
+                        Width="250"
+                        Margin="0,2,0,0"
+                        StakeholderConnectionsList="{Binding RibbonViewModel.RibbonStakeholderConnectionGroupsViewModel.StakeholderConnectionGroups}" />
+                </fluent:RibbonGroupBox>
+            </fluent:RibbonTabItem>
+        </fluent:Ribbon>
         <ContentPresenter 
             Grid.Row="1" 
             Content="{Binding MainContentPresenterViewModel}"

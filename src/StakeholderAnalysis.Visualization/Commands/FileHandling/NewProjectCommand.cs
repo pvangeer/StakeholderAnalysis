@@ -1,6 +1,4 @@
-﻿using System;
-using StakeholderAnalysis.Visualization.ViewModels;
-using StakeholderAnalysis.Visualization.ViewModels.Ribbon;
+﻿using StakeholderAnalysis.Visualization.ViewModels.Ribbon;
 
 namespace StakeholderAnalysis.Visualization.Commands.FileHandling
 {
@@ -12,7 +10,7 @@ namespace StakeholderAnalysis.Visualization.Commands.FileHandling
 
         public override void Execute(object parameter)
         {
-            throw new NotImplementedException();
+            ribbonViewModel.GuiProjectSercices.NewProject();
         }
     }
 }

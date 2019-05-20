@@ -20,7 +20,8 @@ namespace StakeholderAnalysis.Storage.Create
 
             var entity = new OnionDiagramEntity
             {
-                Name = diagram.Name.DeepClone()
+                Name = diagram.Name.DeepClone(),
+                Asymmetry = diagram.Asymmetry.ToNaNAsNull()
             };
 
             AddEntitiesForRings(diagram, entity, registry);

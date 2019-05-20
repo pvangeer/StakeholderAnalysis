@@ -11,11 +11,11 @@ namespace StakeholderAnalysis.Visualization.Commands.ProjectExplorer
     public class ToggleToolWindowCommand : ICommand
     {
         private readonly ViewManager viewManager;
-        private readonly Analysis analysis;
+        private readonly StakeholderAnalysisGui gui;
 
-        public ToggleToolWindowCommand(Analysis analysis, ViewManager viewManager)
+        public ToggleToolWindowCommand(StakeholderAnalysisGui gui, ViewManager viewManager)
         {
-            this.analysis = analysis;
+            this.gui = gui;
             this.viewManager = viewManager;
         }
 
@@ -46,12 +46,12 @@ namespace StakeholderAnalysis.Visualization.Commands.ProjectExplorer
         {
             if (type == typeof(ProjectExplorerViewModel))
             {
-                return new ViewInfo("Projectgegevens", new ProjectExplorerViewModel(analysis, viewManager), "pack://application:,,,/StakeholderAnalysis.Visualization;component/Resources/document.png", false);
+                return new ViewInfo("Projectgegevens", new ProjectExplorerViewModel(gui, viewManager), "pack://application:,,,/StakeholderAnalysis.Visualization;component/Resources/document.png", false);
             }
 
             if (type == typeof(OnionDiagramPropertiesViewModel))
             {
-                return new ViewInfo("UI-diagram", new OnionDiagramPropertiesViewModel(analysis, viewManager), "pack://application:,,,/StakeholderAnalysis.Visualization;component/Resources/onion.png", false);
+                return new ViewInfo("UI-diagram", new OnionDiagramPropertiesViewModel(viewManager), "pack://application:,,,/StakeholderAnalysis.Visualization;component/Resources/onion.png", false);
             }
 
             return null;

@@ -1,4 +1,5 @@
-﻿using System.Windows;
+﻿using System.ComponentModel;
+using System.Windows;
 using Fluent;
 using StakeholderAnalysis.Gui;
 using StakeholderAnalysis.Visualization.ViewModels;
@@ -15,9 +16,24 @@ namespace StakeholderAnalysis.App
             InitializeComponent();
         }
 
-        private void MainWindow_OnLoaded(object sender, RoutedEventArgs e)
+        private void MainWindow_OnLoaded(object sender, RoutedEventArgs eLoaded)
         {
-            DataContext = new MainWindowViewModel(AnalysisGenerator.GetAnalysis(), new StakeholderAnalysisGui());
+            var mainWindowViewModel = new MainWindowViewModel(new StakeholderAnalysisGui(AnalysisGenerator.GetAnalysis()));
+            DataContext = mainWindowViewModel;
+
+            mainWindowViewModel.OnInvalidateVisual += (o, e) =>
+            {
+                //InvalidateVisual();
+            };
+
+        }
+
+        private void MainWindowClosing(object sender, CancelEventArgs e)
+        {
+            if (DataContext is MainWindowViewModel viewModel)
+            {
+                viewModel.ForcedClosingMainWindow();
+            }
         }
     }
 }
