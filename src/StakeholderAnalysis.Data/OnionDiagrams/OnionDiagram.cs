@@ -15,7 +15,10 @@ namespace StakeholderAnalysis.Data.OnionDiagrams
             Stakeholders = new ObservableCollection<OnionDiagramStakeholder>();
             Connections = connections ?? new ObservableCollection<StakeholderConnection>();
             ConnectionGroups = connectionGroups ?? new ObservableCollection<StakeholderConnectionGroup>();
+            Asymmetry = 0.7;
         }
+
+        public OnionDiagram() : this("") { }
 
         public string Name { get; set; }
 

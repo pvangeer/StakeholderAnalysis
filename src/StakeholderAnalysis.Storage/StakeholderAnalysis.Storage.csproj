@@ -137,7 +137,12 @@
     <Compile Include="Read\AttitudeImpactDiagramStakeholderEntityReadExtensions.cs" />
     <Compile Include="Read\ForceFieldDiagramEntityReadExtensions.cs" />
     <Compile Include="Read\ForceFieldDiagramStakeholderEntityReadExtensions.cs" />
+    <Compile Include="Read\OnionDiagramEntityReadExtensions.cs" />
+    <Compile Include="Read\OnionDiagramStakeholderEntityReadExtensions.cs" />
+    <Compile Include="Read\OnionRingEntityReadExtensions.cs" />
     <Compile Include="Read\ReadConversionCollector.cs" />
+    <Compile Include="Read\StakeholderConnectionEntityReadExtensions.cs" />
+    <Compile Include="Read\StakeholderConnectionGroupEntityReadExtensions.cs" />
     <Compile Include="Read\StakeholderEntityReadExtensions.cs" />
     <Compile Include="ReferenceEqualityComparer.cs" />
     <Compile Include="SqliteConnectionStringBuilder.cs" />

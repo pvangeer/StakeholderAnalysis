@@ -6,6 +6,7 @@ using StakeholderAnalysis.App;
 using StakeholderAnalysis.Data;
 using StakeholderAnalysis.Data.AttitudeImpactDiagrams;
 using StakeholderAnalysis.Data.ForceFieldDiagrams;
+using StakeholderAnalysis.Data.OnionDiagrams;
 
 namespace StakeholderAnalysis.Storage.Test
 {
@@ -45,6 +46,87 @@ namespace StakeholderAnalysis.Storage.Test
             AssertEqualStakeholders(analysis.Stakeholders, analysis2C.Stakeholders);
             AssertEqualForceFieldDiagrams(analysis.ForceFieldDiagrams, analysis2C.ForceFieldDiagrams);
             AssertEqualAttitudeImpactDiagrams(analysis.AttitudeImpactDiagrams, analysis2C.AttitudeImpactDiagrams);
+            AssertEqualOnionDiagrams(analysis.OnionDiagrams, analysis2C.OnionDiagrams);
+        }
+
+        private void AssertEqualOnionDiagrams(ObservableCollection<OnionDiagram> analysisOnionDiagrams, ObservableCollection<OnionDiagram> analysis2COnionDiagrams)
+        {
+            Assert.AreEqual(analysisOnionDiagrams.Count, analysis2COnionDiagrams.Count);
+            for (int i = 0; i < analysisOnionDiagrams.Count; i++)
+            {
+                var onionDiagram = analysisOnionDiagrams[i];
+                var twoCAttitudeImpactDiagram = analysis2COnionDiagrams[i];
+                Assert.AreEqual(onionDiagram.Name, twoCAttitudeImpactDiagram.Name);
+                AssertAreEqualOnionDiagramStakeholders(onionDiagram.Stakeholders, twoCAttitudeImpactDiagram.Stakeholders);
+                AssertAreEqualOnionRings(onionDiagram.OnionRings, twoCAttitudeImpactDiagram.OnionRings);
+                AssertAreEqualStakeholdersConnections(onionDiagram.Connections, twoCAttitudeImpactDiagram.Connections);
+                AssertAreEqualStakeholdersConnectionGroups(onionDiagram.ConnectionGroups, twoCAttitudeImpactDiagram.ConnectionGroups);
+            }
+        }
+
+        private void AssertAreEqualStakeholdersConnectionGroups(ObservableCollection<StakeholderConnectionGroup> onionDiagramConnectionGroups, ObservableCollection<StakeholderConnectionGroup> otherConnectionGroups)
+        {
+            Assert.AreEqual(onionDiagramConnectionGroups.Count, otherConnectionGroups.Count);
+            for (int i = 0; i < onionDiagramConnectionGroups.Count; i++)
+            {
+                var connectionGroup = onionDiagramConnectionGroups[i];
+                var otherConnectionGroup = otherConnectionGroups[i];
+                AssertAreEqualConnectionGroups(connectionGroup, otherConnectionGroup);
+            }
+        }
+
+        private static void AssertAreEqualConnectionGroups(StakeholderConnectionGroup connectionGroup,
+            StakeholderConnectionGroup otherConnectionGroup)
+        {
+            Assert.AreEqual(connectionGroup.Name, otherConnectionGroup.Name);
+            Assert.AreEqual(connectionGroup.Color, otherConnectionGroup.Color);
+            Assert.AreEqual(connectionGroup.StrokeThickness, otherConnectionGroup.StrokeThickness);
+            Assert.AreEqual(connectionGroup.Visible, otherConnectionGroup.Visible);
+        }
+
+        private void AssertAreEqualStakeholdersConnections(ObservableCollection<StakeholderConnection> onionDiagramConnections, ObservableCollection<StakeholderConnection> otherConnections)
+        {
+            Assert.AreEqual(onionDiagramConnections.Count, otherConnections.Count);
+            for (int i = 0; i < onionDiagramConnections.Count; i++)
+            {
+                var connection = onionDiagramConnections[i];
+                var otherConnection = otherConnections[i];
+                AssertAreEqualConnectionGroups(connection.StakeholderConnectionGroup, otherConnection.StakeholderConnectionGroup);
+                AssertAreEqualOnionDiagramStakeholder(connection.ConnectFrom, otherConnection.ConnectFrom);
+                AssertAreEqualOnionDiagramStakeholder(connection.ConnectTo, otherConnection.ConnectTo);
+            }
+        }
+
+        private void AssertAreEqualOnionRings(ObservableCollection<OnionRing> onionDiagramOnionRings, ObservableCollection<OnionRing> onionRings)
+        {
+            Assert.AreEqual(onionDiagramOnionRings.Count, onionRings.Count);
+            for (int i = 0; i < onionDiagramOnionRings.Count; i++)
+            {
+                var onionRing = onionDiagramOnionRings[i];
+                var otherOnionRing = onionRings[i];
+                Assert.AreEqual(onionRing.Percentage, otherOnionRing.Percentage);
+                Assert.AreEqual(onionRing.StrokeThickness, otherOnionRing.StrokeThickness);
+                Assert.AreEqual(onionRing.BackgroundColor, otherOnionRing.BackgroundColor);
+                Assert.AreEqual(onionRing.StrokeColor, otherOnionRing.StrokeColor);
+            }
+        }
+
+        private void AssertAreEqualOnionDiagramStakeholders(ObservableCollection<OnionDiagramStakeholder> onionDiagramStakeholders, ObservableCollection<OnionDiagramStakeholder> stakeholders)
+        {
+            Assert.AreEqual(onionDiagramStakeholders.Count, stakeholders.Count);
+            for (int i = 0; i < onionDiagramStakeholders.Count; i++)
+            {
+                var stakeholder = onionDiagramStakeholders[i];
+                var otherStakeholder = stakeholders[i];
+                AssertAreEqualOnionDiagramStakeholder(stakeholder, otherStakeholder);
+            }
+        }
+
+        private void AssertAreEqualOnionDiagramStakeholder(OnionDiagramStakeholder stakeholder, OnionDiagramStakeholder otherStakeholder)
+        {
+            AssertAreEqualStakeholders(stakeholder.Stakeholder, otherStakeholder.Stakeholder);
+            Assert.AreEqual(stakeholder.Left,otherStakeholder.Left);
+            Assert.AreEqual(stakeholder.Top, otherStakeholder.Top);
         }
 
         private void AssertEqualForceFieldDiagrams(ObservableCollection<ForceFieldDiagram> forceFieldDiagrams, ObservableCollection<ForceFieldDiagram> twoCForceFieldDiagrams)

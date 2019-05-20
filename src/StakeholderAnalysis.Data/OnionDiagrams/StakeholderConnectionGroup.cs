@@ -4,6 +4,8 @@ namespace StakeholderAnalysis.Data.OnionDiagrams
 {
     public class StakeholderConnectionGroup : NotifyPropertyChangedObservable
     {
+        public StakeholderConnectionGroup() : this("",Colors.Black) { }
+
         public StakeholderConnectionGroup(string name, Color color, double strokeThickness = 1.0, bool visible = true)
         {
             Name = name;
