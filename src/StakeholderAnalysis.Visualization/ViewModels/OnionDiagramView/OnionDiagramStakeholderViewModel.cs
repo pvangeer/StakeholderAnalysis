@@ -14,8 +14,9 @@ namespace StakeholderAnalysis.Visualization.ViewModels.OnionDiagramView
         private readonly OnionDiagramStakeholder onionDiagramStakeholder;
 
         public OnionDiagramStakeholderViewModel(OnionDiagram diagram, OnionDiagramStakeholder stakeholder,
-            ISelectionRegister selectionRegister) : base(stakeholder?.Stakeholder, selectionRegister)
+            ISelectionRegister selectionRegister, IDrawConnectionHandler drawConnectionHandler) : base(stakeholder?.Stakeholder, selectionRegister, drawConnectionHandler)
         {
+            DrawConnectionHandler = drawConnectionHandler;
             this.diagram = diagram;
             onionDiagramStakeholder = stakeholder;
             if (onionDiagramStakeholder != null)
@@ -45,6 +46,8 @@ namespace StakeholderAnalysis.Visualization.ViewModels.OnionDiagramView
         }
 
         public ICommand RemoveStakeholderCommand => new RemoveSelectedStakeholderFromDiagramCommand(this);
+
+        public IDrawConnectionHandler DrawConnectionHandler { get; }
 
         public override void Moved(double xRelativeNew, double yRelativeNew)
         {
@@ -84,6 +87,11 @@ namespace StakeholderAnalysis.Visualization.ViewModels.OnionDiagramView
                 }
 
             }
+        }
+
+        public OnionDiagramStakeholder GetOnionDiagramStakeholder()
+        {
+            return onionDiagramStakeholder;
         }
     }
 }

@@ -8,7 +8,7 @@ namespace StakeholderAnalysis.Visualization.ViewModels.TwoAxisDiagrams
     {
         private readonly ForceFieldDiagramStakeholder firceFieldDiagramStakeholder;
 
-        public ForceFieldDiagramStakeholderViewModel(ForceFieldDiagramStakeholder stakeholder, ISelectionRegister selectionRegister) : base(stakeholder?.Stakeholder, selectionRegister)
+        public ForceFieldDiagramStakeholderViewModel(ForceFieldDiagramStakeholder stakeholder, ISelectionRegister selectionRegister) : base(stakeholder?.Stakeholder, selectionRegister, null)
         {
             firceFieldDiagramStakeholder = stakeholder;
             if (firceFieldDiagramStakeholder != null)

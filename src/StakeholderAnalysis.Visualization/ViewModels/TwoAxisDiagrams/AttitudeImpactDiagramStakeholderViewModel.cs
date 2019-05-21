@@ -8,7 +8,7 @@ namespace StakeholderAnalysis.Visualization.ViewModels.TwoAxisDiagrams
     {
         private readonly AttitudeImpactDiagramStakeholder attitudeImpactDiagramStakeholder;
 
-        public AttitudeImpactDiagramStakeholderViewModel(AttitudeImpactDiagramStakeholder stakeholder, ISelectionRegister selectionRegister) : base(stakeholder?.Stakeholder, selectionRegister)
+        public AttitudeImpactDiagramStakeholderViewModel(AttitudeImpactDiagramStakeholder stakeholder, ISelectionRegister selectionRegister) : base(stakeholder?.Stakeholder, selectionRegister, null)
         {
             attitudeImpactDiagramStakeholder = stakeholder;
             if (attitudeImpactDiagramStakeholder != null)

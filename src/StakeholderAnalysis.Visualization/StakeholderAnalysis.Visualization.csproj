@@ -140,6 +140,7 @@
     <Compile Include="Converters\StakeholderTypeToStringConverter.cs" />
     <Compile Include="Converters\StatusBar\MessageListToLabelConverter.cs" />
     <Compile Include="Converters\ValueToSameConverter.cs" />
+    <Compile Include="DrawConnectionBehavior.cs" />
     <Compile Include="DragOnCanvasBehavior.cs" />
     <Compile Include="IDropHandler.cs" />
     <Compile Include="ISelectionRegister.cs" />
@@ -370,6 +371,10 @@
   </ItemGroup>
   <ItemGroup>
     <Resource Include="Resources\delete.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Resources\arrow-16.png" />
+    <Resource Include="Resources\arrow.png" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

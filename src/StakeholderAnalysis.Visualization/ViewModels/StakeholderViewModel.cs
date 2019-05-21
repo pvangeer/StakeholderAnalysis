@@ -8,14 +8,17 @@ namespace StakeholderAnalysis.Visualization.ViewModels
     public class StakeholderViewModel : NotifyPropertyChangedObservable, IDropHandler
     {
         protected readonly ISelectionRegister SelectionRegister;
+        private IDrawConnectionHandler drawConnectionHandler;
 
-        public StakeholderViewModel(Stakeholder stakeholder, ISelectionRegister selectionRegister)
+        public StakeholderViewModel(Stakeholder stakeholder, ISelectionRegister selectionRegister, IDrawConnectionHandler drawConnectionHandler)
         {
+            this.drawConnectionHandler = drawConnectionHandler;
             this.SelectionRegister = selectionRegister;
             Stakeholder = stakeholder;
             if (Stakeholder != null) Stakeholder.PropertyChanged += StakeholderPropertyChanged;
         }
 
+        
         public Stakeholder Stakeholder { get; }
 
         public bool IsViewModelFor(Stakeholder stakeholder)
@@ -36,6 +39,8 @@ namespace StakeholderAnalysis.Visualization.ViewModels
         public StakeholderType Type => Stakeholder.Type;
 
         public bool IsSelectedStakeholder => SelectionRegister != null && SelectionRegister.IsSelected(Stakeholder);
+
+        public bool IsConnectionToTarget => drawConnectionHandler != null && drawConnectionHandler.IsConnectionTarget(Stakeholder);
 
         public ICommand StakeholderClickedCommand => new StakeholderClickedCommand(this);
         
