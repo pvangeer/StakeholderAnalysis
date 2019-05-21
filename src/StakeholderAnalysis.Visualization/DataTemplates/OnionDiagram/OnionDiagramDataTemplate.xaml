@@ -4,6 +4,7 @@
     <ResourceDictionary.MergedDictionaries>
         <ResourceDictionary Source="/StakeholderAnalysis.Visualization;Component/DataTemplates/OnionDiagram/OnionDiagramRingsDataTemplate.xaml" />
         <ResourceDictionary Source="/StakeholderAnalysis.Visualization;Component/DataTemplates/OnionDiagram/OnionDiagramStakeholdersDataTemplate.xaml" />
+        <ResourceDictionary Source="/StakeholderAnalysis.Visualization;Component/DataTemplates/OnionDiagram/OnionDiagramConnectionDrawingCanvasDataTemplate.xaml" />
         <ResourceDictionary Source="/StakeholderAnalysis.Visualization;Component/DataTemplates/OnionDiagram/ConnectionsPresenterDataTemplate.xaml" />
     </ResourceDictionary.MergedDictionaries>
 
@@ -20,6 +21,10 @@
                 Name="ConnectionsPresenter" 
                 Content="{Binding OnionDiagramConnectionsPresenterViewModel}"
                 ContentTemplate="{StaticResource OnionDiagramConnectionsPresenterDataTemplate}" />
+            <ContentPresenter
+                Name="ConnectionDrawingCanvas"
+                Content="{Binding OnionDiagramDrawConnectionViewModel}"
+                ContentTemplate="{StaticResource OnionDiagramConnectionDrawingCanvasDataTemplate}"/>
             <ContentPresenter 
                 Name="StakeholdersPresenter" 
                 Content="{Binding OnionDiagramStakeholdersViewModel}"

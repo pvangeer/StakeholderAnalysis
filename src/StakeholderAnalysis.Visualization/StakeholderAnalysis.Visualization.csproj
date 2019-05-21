@@ -152,6 +152,7 @@
     <Compile Include="ViewModels\OnionDiagramProperties\OnionRingPropertiesViewModel.cs" />
     <Compile Include="ViewModels\OnionDiagramProperties\ConnectionGroupsPropertiesViewModel.cs" />
     <Compile Include="ViewModels\OnionDiagramProperties\OnionRingsPropertiesViewModel.cs" />
+    <Compile Include="ViewModels\OnionDiagramView\OnionDiagramDrawConnectionViewModel.cs" />
     <Compile Include="ViewModels\ProjectExplorer\IProjectExplorerDiagramViewModel.cs" />
     <Compile Include="ViewModels\ProjectExplorer\ProjectExplorerAttitudeImpactDiagramsViewModel.cs" />
     <Compile Include="ViewModels\ProjectExplorer\ProjectExplorerForceFieldDiagramsViewModel.cs" />
@@ -232,6 +233,10 @@
       <SubType>Designer</SubType>
     </Page>
     <Page Include="DataTemplates\OnionDiagramProperties\OnionRingsPropertiesDataTemplate.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="DataTemplates\OnionDiagram\OnionDiagramConnectionDrawingCanvasDataTemplate.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>

@@ -1,7 +1,6 @@
 ﻿using System.Collections.ObjectModel;
 using System.Collections.Specialized;
 using System.Linq;
-using System.Windows;
 using System.Windows.Input;
 using StakeholderAnalysis.Data;
 using StakeholderAnalysis.Data.OnionDiagrams;
@@ -10,18 +9,16 @@ using StakeholderAnalysis.Visualization.ViewModels.Ribbon;
 
 namespace StakeholderAnalysis.Visualization.ViewModels.OnionDiagramView
 {
-    public class OnionDiagramViewModel: NotifyPropertyChangedObservable, ISelectionRegister, IDrawConnectionHandler
+    public class OnionDiagramViewModel: NotifyPropertyChangedObservable, ISelectionRegister
     {
         private readonly OnionDiagram diagram;
         private object selectedObject = null;
-        private OnionDiagramStakeholderViewModel newConnectionFromViewModel;
-        private OnionDiagramStakeholderViewModel newConnectionPossibleToViewModel;
-        private Point newConnectionToRelativePosition;
 
         public OnionDiagramViewModel(OnionDiagram onionDiagram)
         {
             diagram = onionDiagram;
-            OnionDiagramStakeholdersViewModel = new OnionDiagramStakeholdersViewModel(onionDiagram, this, this);
+            OnionDiagramDrawConnectionViewModel = new OnionDiagramDrawConnectionViewModel(onionDiagram);
+            OnionDiagramStakeholdersViewModel = new OnionDiagramStakeholdersViewModel(onionDiagram, this, OnionDiagramDrawConnectionViewModel);
         }
 
         public OnionDiagramRingsCanvasViewModel OnionDiagramRingsCanvasViewModel => new OnionDiagramRingsCanvasViewModel(diagram);
@@ -31,6 +28,8 @@ namespace StakeholderAnalysis.Visualization.ViewModels.OnionDiagramView
         public OnionDiagramStakeholdersViewModel OnionDiagramStakeholdersViewModel { get; }
 
         public ICommand GridClickedCommand => new ClearSelectionCommand(this);
+
+        public OnionDiagramDrawConnectionViewModel OnionDiagramDrawConnectionViewModel { get; }
 
         // TODO: Move below code to separate viewmodel for Ribbon (or toolwindow in future?)
         public void RegisterConnectionGroupsCollectionChanged(NotifyCollectionChangedEventHandler handler)
@@ -77,43 +76,6 @@ namespace StakeholderAnalysis.Visualization.ViewModels.OnionDiagramView
             {
                 onionDiagramStakeholderViewModel.OnPropertyChanged(nameof(OnionDiagramStakeholderViewModel.IsSelectedStakeholder));
             }
-        }
-
-        public void PositionMoved(double relativeLeft, double relativeTop)
-        {
-            newConnectionToRelativePosition = new Point(relativeLeft, relativeTop);
-        }
-
-        public void ChangeTarget(OnionDiagramStakeholderViewModel viewModel)
-        {
-            var oldViewModel = newConnectionPossibleToViewModel;
-            newConnectionPossibleToViewModel = viewModel == newConnectionFromViewModel ? null : viewModel;
-            oldViewModel?.OnPropertyChanged(nameof(OnionDiagramStakeholderViewModel.IsConnectionToTarget));
-            viewModel?.OnPropertyChanged(nameof(OnionDiagramStakeholderViewModel.IsConnectionToTarget));
-        }
-
-        public void InitializeConnection(OnionDiagramStakeholderViewModel stakeholderViewModel)
-        {
-            newConnectionFromViewModel = stakeholderViewModel;
-            newConnectionToRelativePosition = new Point(stakeholderViewModel.LeftPercentage, stakeholderViewModel.TopPercentage);
-        }
-
-        public void FinishConnecting()
-        {
-            if (newConnectionFromViewModel != null && newConnectionPossibleToViewModel != null &&
-                newConnectionFromViewModel != newConnectionPossibleToViewModel)
-            {
-                diagram.Connections.Add(new StakeholderConnection(diagram.ConnectionGroups.FirstOrDefault(), newConnectionFromViewModel.GetOnionDiagramStakeholder(), newConnectionPossibleToViewModel.GetOnionDiagramStakeholder()));
-            }
-
-            newConnectionFromViewModel = null;
-            newConnectionPossibleToViewModel = null;
-            newConnectionToRelativePosition = new Point(0.0,0.0);
-        }
-
-        public bool IsConnectionTarget(Stakeholder stakeholder)
-        {
-            return newConnectionPossibleToViewModel?.Stakeholder == stakeholder;
         }
     }
 }
