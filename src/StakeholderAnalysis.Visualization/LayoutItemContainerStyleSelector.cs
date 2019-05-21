@@ -1,11 +1,10 @@
 using System.Windows;
 using System.Windows.Controls;
 using StakeholderAnalysis.Gui;
-using Xceed.Wpf.AvalonDock.Controls;
 
 namespace StakeholderAnalysis.Visualization
 {
-    public class LayouItemContainerStyleSelector : StyleSelector
+    public class LayoutItemContainerStyleSelector : StyleSelector
     {
         public Style AnchorableContainerStyle { get; set; }
 

@@ -140,12 +140,13 @@
     <Compile Include="Converters\StakeholderTypeToStringConverter.cs" />
     <Compile Include="Converters\StatusBar\MessageListToLabelConverter.cs" />
     <Compile Include="Converters\ValueToSameConverter.cs" />
-    <Compile Include="DrawConnectionBehavior.cs" />
-    <Compile Include="DragOnCanvasBehavior.cs" />
-    <Compile Include="IDropHandler.cs" />
-    <Compile Include="ISelectionRegister.cs" />
-    <Compile Include="IsSelectedStakeholderToOffsetConverter.cs" />
-    <Compile Include="LayouItemContainerStyleSelector.cs" />
+    <Compile Include="Behaviors\DrawConnectionBehavior.cs" />
+    <Compile Include="Behaviors\DragOnCanvasBehavior.cs" />
+    <Compile Include="Behaviors\IDrawConnectionHandler.cs" />
+    <Compile Include="Behaviors\IDropHandler.cs" />
+    <Compile Include="Behaviors\ISelectionRegister.cs" />
+    <Compile Include="Converters\IsSelectedStakeholderToOffsetConverter.cs" />
+    <Compile Include="LayoutItemContainerStyleSelector.cs" />
     <Compile Include="ViewModels\IExpandableContentViewModel.cs" />
     <Compile Include="ViewModels\OnionDiagramProperties\ConnectionGroupPropertiesViewModel.cs" />
     <Compile Include="ViewModels\OnionDiagramProperties\OnionDiagramPropertiesViewModel.cs" />
@@ -163,7 +164,6 @@
     <Compile Include="ViewModels\StatusBar\MessagesViewModel.cs" />
     <Compile Include="ViewModels\StatusBar\StatusBarViewModel.cs" />
     <Compile Include="ViewModels\TwoAxisDiagrams\ITwoAxisDiagramViewModel.cs" />
-    <Compile Include="TestConverter.cs" />
     <Compile Include="ViewModels\TwoAxisDiagrams\AttitudeImpactDiagramStakeholderViewModel.cs" />
     <Compile Include="ViewModels\TwoAxisDiagrams\ForceFieldDiagramStakeholderViewModel.cs" />
     <Compile Include="ViewModels\OnionDiagramView\OnionDiagramStakeholderViewModel.cs" />
@@ -184,7 +184,7 @@
       <DesignTimeSharedInput>True</DesignTimeSharedInput>
     </Compile>
     <Compile Include="Converters\TypeToBrushConverter.cs" />
-    <Compile Include="SaveToImageBehavior.cs" />
+    <Compile Include="Behaviors\SaveToImageBehavior.cs" />
     <Compile Include="ViewModels\TwoAxisDiagrams\AttitudeImpactDiagramViewModel.cs" />
     <Compile Include="ViewModels\Ribbon\ConnectionGroupViewModel.cs" />
     <Compile Include="ViewModels\MainContentPresenterViewModel.cs" />
@@ -380,6 +380,9 @@
   <ItemGroup>
     <Resource Include="Resources\arrow-16.png" />
     <Resource Include="Resources\arrow.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Resources\arrow-16-gray.png" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

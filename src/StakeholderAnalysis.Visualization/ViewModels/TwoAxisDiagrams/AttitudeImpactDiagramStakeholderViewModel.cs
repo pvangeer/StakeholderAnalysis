@@ -1,6 +1,7 @@
 ﻿using System;
 using System.ComponentModel;
 using StakeholderAnalysis.Data.AttitudeImpactDiagrams;
+using StakeholderAnalysis.Visualization.Behaviors;
 
 namespace StakeholderAnalysis.Visualization.ViewModels.TwoAxisDiagrams
 {

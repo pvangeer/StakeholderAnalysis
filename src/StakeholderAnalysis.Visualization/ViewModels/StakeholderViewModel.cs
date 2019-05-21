@@ -1,6 +1,7 @@
 ﻿using System.ComponentModel;
 using System.Windows.Input;
 using StakeholderAnalysis.Data;
+using StakeholderAnalysis.Visualization.Behaviors;
 using StakeholderAnalysis.Visualization.Commands;
 
 namespace StakeholderAnalysis.Visualization.ViewModels

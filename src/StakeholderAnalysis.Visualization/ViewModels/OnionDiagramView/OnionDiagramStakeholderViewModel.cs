@@ -3,6 +3,7 @@ using System.ComponentModel;
 using System.Linq;
 using System.Windows.Input;
 using StakeholderAnalysis.Data.OnionDiagrams;
+using StakeholderAnalysis.Visualization.Behaviors;
 using StakeholderAnalysis.Visualization.Commands;
 using static System.Double;
 

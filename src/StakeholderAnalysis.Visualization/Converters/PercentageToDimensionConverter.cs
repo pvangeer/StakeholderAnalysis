@@ -14,26 +14,31 @@ namespace StakeholderAnalysis.Visualization.Converters
             var pixelOffset = 0.0;
             if (values.Length == 2)
             {
-                percentage = (double) values[0];
+                percentage = GetValueAsDouble(values, 0);
                 elementSize = 0.0;
-                actualSize = (double) values[1];
+                actualSize = GetValueAsDouble(values,1);
             }
 
             if (values.Length == 3)
             {
-                percentage = (double) values[0];
-                elementSize = (double) values[1];
-                actualSize = (double) values[2];
+                percentage = GetValueAsDouble(values,0);
+                elementSize = GetValueAsDouble(values,1);
+                actualSize = GetValueAsDouble(values,2);
             }
 
             if (values.Length == 4)
             {
-                percentage = (double)values[0];
-                elementSize = (double)values[1];
-                actualSize = (double)values[2];
-                pixelOffset = (double) values[3];
+                percentage = GetValueAsDouble(values, 0);
+                elementSize = GetValueAsDouble(values, 1);
+                actualSize = GetValueAsDouble(values, 2);
+                pixelOffset = GetValueAsDouble(values, 3);
             }
             return (percentage * actualSize - elementSize / 2) + pixelOffset;
+        }
+
+        private static double GetValueAsDouble(object[] values, int i)
+        {
+            return values[i] is double valueAsDouble ? valueAsDouble : 0.0;
         }
 
         public object[] ConvertBack(object value, Type[] targetTypes, object parameter, CultureInfo culture)

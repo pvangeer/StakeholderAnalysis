@@ -2,7 +2,7 @@
 using System.Windows.Input;
 using StakeholderAnalysis.Visualization.ViewModels.OnionDiagramProperties;
 
-namespace StakeholderAnalysis.Visualization.Commands
+namespace StakeholderAnalysis.Visualization.Commands.OnionDiagramProperties
 {
     public class RemoveOnionRingCommand : ICommand
     {

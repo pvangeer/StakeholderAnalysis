@@ -3,7 +3,8 @@
                     xmlns:viewModels="clr-namespace:StakeholderAnalysis.Visualization.ViewModels"
                     xmlns:data="clr-namespace:StakeholderAnalysis.Data;assembly=StakeholderAnalysis.Data"
                     xmlns:converters="clr-namespace:StakeholderAnalysis.Visualization.Converters"
-                    xmlns:visualization="clr-namespace:StakeholderAnalysis.Visualization">
+                    xmlns:visualization="clr-namespace:StakeholderAnalysis.Visualization"
+                    xmlns:behaviors="clr-namespace:StakeholderAnalysis.Visualization.Behaviors">
 
     <converters:TypeToBrushConverter x:Key="TypeToBrushConverter" />
 
@@ -16,7 +17,7 @@
     </DataTemplate>
 
     <DataTemplate x:Key="StakeholderDataTemplate" DataType="viewModels:StakeholderViewModel">
-        <Border CornerRadius="1" visualization:DragOnCanvasBehavior.DropHandler="{Binding }" IsHitTestVisible="True">
+        <Border CornerRadius="1" behaviors:DragOnCanvasBehavior.DropHandler="{Binding }" IsHitTestVisible="True">
             <Border.InputBindings>
                 <MouseBinding MouseAction="LeftDoubleClick" Command="{Binding StakeholderClickedCommand}" />
             </Border.InputBindings>
@@ -25,6 +26,7 @@
                     <Setter Property="BorderBrush" Value="Gray" />
                     <Setter Property="BorderThickness" Value="1" />
                     <Style.Triggers>
+                        <!--TODO: Move color to viewmodel and away from this datatemplate -->
                         <DataTrigger Value="True">
                             <DataTrigger.Binding>
                                 <Binding Path="IsSelectedStakeholder"/>

@@ -3,6 +3,7 @@ using System.Windows.Media;
 using StakeholderAnalysis.Data;
 using StakeholderAnalysis.Data.OnionDiagrams;
 using StakeholderAnalysis.Visualization.Commands;
+using StakeholderAnalysis.Visualization.Commands.OnionDiagramProperties;
 
 namespace StakeholderAnalysis.Visualization.ViewModels.OnionDiagramProperties
 {

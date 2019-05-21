@@ -2,7 +2,7 @@ using System;
 using System.Globalization;
 using System.Windows.Data;
 
-namespace StakeholderAnalysis.Visualization
+namespace StakeholderAnalysis.Visualization.Converters
 {
     public class IsSelectedStakeholderToOffsetConverter : IValueConverter
     {

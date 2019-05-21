@@ -5,7 +5,8 @@
                     xmlns:gui="clr-namespace:StakeholderAnalysis.Gui;assembly=StakeholderAnalysis.Gui"
                     xmlns:converters="clr-namespace:StakeholderAnalysis.Visualization.Converters"
                     xmlns:visualization="clr-namespace:StakeholderAnalysis.Visualization"
-                    xmlns:xctk="http://schemas.xceed.com/wpf/xaml/toolkit">
+                    xmlns:xctk="http://schemas.xceed.com/wpf/xaml/toolkit"
+                    xmlns:behaviors="clr-namespace:StakeholderAnalysis.Visualization.Behaviors">
 
     <ResourceDictionary.MergedDictionaries>
         <ResourceDictionary Source="OnionDiagram/OnionDiagramDataTemplate.xaml" />
@@ -49,10 +50,10 @@
                                     <Binding/>
                                 </MultiBinding>
                             </DataTrigger.Binding>
-                            <Setter Property="visualization:SaveToImageBehavior.SaveToImage" Value="True" />
+                            <Setter Property="behaviors:SaveToImageBehavior.SaveToImage" Value="True" />
                         </DataTrigger>
                         <DataTrigger Binding="{Binding ElementName=DockingManager, Path=DataContext.IsSaveToImage}" Value="False">
-                            <Setter Property="visualization:SaveToImageBehavior.SaveToImage" Value="False" />
+                            <Setter Property="behaviors:SaveToImageBehavior.SaveToImage" Value="False" />
                         </DataTrigger>
                     </Style.Triggers>
                 </Style>
@@ -110,7 +111,7 @@
                 </xcad:DockingManager.LayoutItemTemplateSelector>
 
                 <xcad:DockingManager.LayoutItemContainerStyleSelector>
-                    <visualization:LayouItemContainerStyleSelector
+                    <visualization:LayoutItemContainerStyleSelector
                         AnchorableContainerStyle="{StaticResource LayoutAnchorableItemContainerStyle}"
                         DocumentContainerStyle="{StaticResource LayoutDocumentItemContainerStyle}"/>
                 </xcad:DockingManager.LayoutItemContainerStyleSelector>

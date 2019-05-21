@@ -4,7 +4,7 @@ using System.Windows.Controls;
 using System.Windows.Input;
 using System.Windows.Media;
 
-namespace StakeholderAnalysis.Visualization
+namespace StakeholderAnalysis.Visualization.Behaviors
 {
     public class DragOnCanvasBehavior
     {

@@ -1,4 +1,4 @@
-﻿namespace StakeholderAnalysis.Visualization
+﻿namespace StakeholderAnalysis.Visualization.Behaviors
 {
     public interface ISelectionRegister
     {

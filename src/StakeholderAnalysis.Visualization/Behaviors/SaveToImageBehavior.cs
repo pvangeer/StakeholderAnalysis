@@ -1,7 +1,7 @@
 ﻿using System.Windows;
 using StakeholderAnalysis.Visualization.Commands;
 
-namespace StakeholderAnalysis.Visualization
+namespace StakeholderAnalysis.Visualization.Behaviors
 {
     public static class SaveToImageBehavior
     {

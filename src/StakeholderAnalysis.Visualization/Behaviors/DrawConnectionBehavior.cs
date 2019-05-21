@@ -3,11 +3,9 @@ using System.Windows;
 using System.Windows.Controls;
 using System.Windows.Input;
 using System.Windows.Media;
-using StakeholderAnalysis.Data;
-using StakeholderAnalysis.Visualization.ViewModels;
 using StakeholderAnalysis.Visualization.ViewModels.OnionDiagramView;
 
-namespace StakeholderAnalysis.Visualization
+namespace StakeholderAnalysis.Visualization.Behaviors
 {
     public class DrawConnectionBehavior
     {
@@ -57,6 +55,11 @@ namespace StakeholderAnalysis.Visualization
 
         private void ElementOnMouseLeftButtonDown(object sender, MouseButtonEventArgs mouseButtonEventArgs)
         {
+            if (!DrawConnectionHandler.IsActive)
+            {
+                return;
+            }
+
             var canvas = FindParent<Canvas>((UIElement)sender);
             if (canvas == null)
             {
@@ -76,7 +79,11 @@ namespace StakeholderAnalysis.Visualization
 
         private void ElementOnMouseLeftButtonUp(object sender, MouseButtonEventArgs mouseButtonEventArgs)
         {
-            // Find StakeholderTo under mouse button (use hittest) and make connection
+            if (!DrawConnectionHandler.IsActive)
+            {
+                return;
+            }
+
             UIElement element = (UIElement)sender;
             element.ReleaseMouseCapture();
 
@@ -85,7 +92,11 @@ namespace StakeholderAnalysis.Visualization
 
         private void ElementOnMouseMove(object sender, MouseEventArgs mouseEventArgs)
         {
-            // Update drawing
+            if (!DrawConnectionHandler.IsActive)
+            {
+                return;
+            }
+
             if (!((UIElement)sender).IsMouseCaptured || this.DrawConnectionHandler == null)
             {
                 return;
@@ -110,7 +121,6 @@ namespace StakeholderAnalysis.Visualization
 
         private OnionDiagramStakeholderViewModel FindViewModelUnderMouse(Canvas canvas, Point mouseCurrentPos)
         {
-            // Perform the hit test against a given portion of the visual object tree.
             HitTestResult result = VisualTreeHelper.HitTest(canvas, mouseCurrentPos);
 
             if (result != null)
@@ -143,18 +153,5 @@ namespace StakeholderAnalysis.Visualization
             T parent = parentObject as T;
             return parent ?? FindParent<T>(parentObject);
         }
-    }
-
-    public interface IDrawConnectionHandler
-    {
-        void PositionMoved(double relativeLeft, double relativeTop);
-
-        void ChangeTarget(OnionDiagramStakeholderViewModel viewModel);
-
-        void InitializeConnection(OnionDiagramStakeholderViewModel stakeholderViewModel);
-
-        void FinishConnecting();
-
-        bool IsConnectionTarget(Stakeholder stakeholder);
     }
 }

@@ -3,7 +3,7 @@
                     xmlns:converters="clr-namespace:StakeholderAnalysis.Visualization.Converters"
                     xmlns:onionDiagramView="clr-namespace:StakeholderAnalysis.Visualization.ViewModels.OnionDiagramView"
                     xmlns:xcad="http://schemas.xceed.com/wpf/xaml/avalondock"
-                    xmlns:visualization="clr-namespace:StakeholderAnalysis.Visualization">
+                    xmlns:behaviors="clr-namespace:StakeholderAnalysis.Visualization.Behaviors">
 
     <ResourceDictionary.MergedDictionaries>
         <ResourceDictionary Source="/StakeholderAnalysis.Visualization;Component/DataTemplates/StakeholderDataTemplate.xaml" />
@@ -12,19 +12,34 @@
     <converters:PercentageToDimensionConverter x:Key="PercentageToDimensionConverter" />
     <xcad:BoolToVisibilityConverter x:Key="BoolToVisibilityConverter" />
 
-    <visualization:TestConverter x:Key="TestConverter" />
     <DataTemplate x:Key="OnionDiagramStakeholderDataTemplate" DataType="onionDiagramView:OnionDiagramStakeholderViewModel">
         <Grid>
             <Grid.ColumnDefinitions>
                 <ColumnDefinition Width="Auto"/>
                 <ColumnDefinition Width="Auto"/>
             </Grid.ColumnDefinitions>
-            <ContentPresenter Grid.Column="0" Content="{Binding}" ContentTemplate="{StaticResource StakeholderDataTemplate}" IsHitTestVisible="True"/>
+            <ContentPresenter 
+                Grid.Column="0" 
+                Content="{Binding}" 
+                ContentTemplate="{StaticResource StakeholderDataTemplate}" 
+                IsHitTestVisible="True"/>
             <StackPanel Grid.Column="1" Width="20" Visibility="{Binding IsSelectedStakeholder, Converter={StaticResource BoolToVisibilityConverter}}">
-                <Border visualization:DrawConnectionBehavior.DrawConnectionHandler="{Binding DrawConnectionHandler}">
+                <Border behaviors:DrawConnectionBehavior.DrawConnectionHandler="{Binding DrawConnectionHandler}">
                     <Image Width="16" 
-                           Height="16"
-                           Source="pack://application:,,,/StakeholderAnalysis.Visualization;component/Resources/arrow-16.png"/>
+                           Height="16">
+                        <Image.Style>
+                            <Style TargetType="Image">
+                                <Style.Triggers>
+                                    <DataTrigger Binding="{Binding DrawConnectionHandler.IsActive}" Value="True">
+                                        <Setter Property="Source" Value="pack://application:,,,/StakeholderAnalysis.Visualization;component/Resources/arrow-16.png"/>
+                                    </DataTrigger>
+                                    <DataTrigger Binding="{Binding DrawConnectionHandler.IsActive}" Value="False">
+                                        <Setter Property="Source" Value="pack://application:,,,/StakeholderAnalysis.Visualization;component/Resources/arrow-16-gray.png"/>
+                                    </DataTrigger>
+                                </Style.Triggers>
+                            </Style>
+                        </Image.Style>
+                    </Image>
                 </Border>
                 <Button 
                     Command="{Binding RemoveStakeholderCommand}">
@@ -40,7 +55,7 @@
         </Grid>
     </DataTemplate>
 
-    <visualization:IsSelectedStakeholderToOffsetConverter x:Key="IsSelectedStakeholderToOffsetConverter" />
+    <converters:IsSelectedStakeholderToOffsetConverter x:Key="IsSelectedStakeholderToOffsetConverter" />
     <DataTemplate x:Key="OnionDiagramStakeholdersDataTemplate" DataType="onionDiagramView:OnionDiagramStakeholdersViewModel">
         <Grid>
             <ItemsControl ItemsSource="{Binding OnionDiagramStakeholders}"

@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Windows.Input;
+using StakeholderAnalysis.Visualization.Behaviors;
 
 namespace StakeholderAnalysis.Visualization.Commands
 {

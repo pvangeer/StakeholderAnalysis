@@ -10,6 +10,7 @@
     <DataTemplate x:Key="OnionDiagramConnectionDrawingCanvasDataTemplate" DataType="onionDiagramView:OnionDiagramDrawConnectionViewModel">
         <Canvas Name="Canvas" Visibility="{Binding IsDrawing, Converter={StaticResource BoolToVisibilityConverter}}">
             <Line 
+                Visibility="{Binding IsDrawing, Converter={StaticResource BoolToVisibilityConverter}}"
                 Stroke="Brown"
                 StrokeThickness="2"
                 StrokeDashArray="4,4">
