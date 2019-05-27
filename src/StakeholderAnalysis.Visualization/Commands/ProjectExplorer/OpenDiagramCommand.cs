@@ -21,7 +21,6 @@ namespace StakeholderAnalysis.Visualization.Commands.ProjectExplorer
         public void Execute(object parameter)
         {
             diagramViewModel.OpenDiagramInDocumentView();
-            
         }
 
         public event EventHandler CanExecuteChanged;

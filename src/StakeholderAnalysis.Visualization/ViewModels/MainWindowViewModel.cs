@@ -1,7 +1,9 @@
 using System;
+using System.Linq;
 using StakeholderAnalysis.Data;
 using StakeholderAnalysis.Gui;
 using StakeholderAnalysis.Visualization.ViewModels.OnionDiagramProperties;
+using StakeholderAnalysis.Visualization.ViewModels.OnionDiagramView;
 using StakeholderAnalysis.Visualization.ViewModels.ProjectExplorer;
 using StakeholderAnalysis.Visualization.ViewModels.Ribbon;
 using StakeholderAnalysis.Visualization.ViewModels.StatusBar;
@@ -17,13 +19,15 @@ namespace StakeholderAnalysis.Visualization.ViewModels
         public MainWindowViewModel(StakeholderAnalysisGui guiInput)
         {
             gui = guiInput;
+            RibbonViewModel = new RibbonViewModel(gui, () => OnInvalidateVisual?.Invoke(this, null));
             RibbonViewModel.ToggleToolWindowCommand.Execute(typeof(ProjectExplorerViewModel));
             RibbonViewModel.ToggleToolWindowCommand.Execute(typeof(OnionDiagramPropertiesViewModel));
+            MainContentPresenterViewModel = new MainContentPresenterViewModel(gui);
         }
 
-        public MainContentPresenterViewModel MainContentPresenterViewModel => new MainContentPresenterViewModel(gui);
+        public MainContentPresenterViewModel MainContentPresenterViewModel { get; }
 
-        public RibbonViewModel RibbonViewModel => new RibbonViewModel(gui, () => OnInvalidateVisual?.Invoke(this, null));
+        public RibbonViewModel RibbonViewModel { get; }
 
         public StatusBarViewModel StatusBarViewModel => new StatusBarViewModel(gui);
 

@@ -1,7 +1,5 @@
 ﻿<ResourceDictionary xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
                     xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
-                    xmlns:viewModels="clr-namespace:StakeholderAnalysis.Visualization.ViewModels"
-                    xmlns:xcad="http://schemas.xceed.com/wpf/xaml/avalondock"
                     xmlns:gui="clr-namespace:StakeholderAnalysis.Gui;assembly=StakeholderAnalysis.Gui"
                     xmlns:converters="clr-namespace:StakeholderAnalysis.Visualization.Converters"
                     xmlns:visualization="clr-namespace:StakeholderAnalysis.Visualization"
@@ -26,16 +24,7 @@
                                         AttitudeImpactDiagramTemplate="{StaticResource TwoAxisDiagramDataTemplate}"
                                         OnionDiagramPropertiesTemplate="{StaticResource OnionDiagramPropertiesDataTemplate}"/>
 
-    <Style x:Key="LayoutDocumentItemContainerStyle" TargetType="xcad:LayoutItem" >
-        <Setter Property="CloseCommand" Value="{Binding Model.CloseViewCommand}"/>
-    </Style>
-
-    <Style x:Key="LayoutAnchorableItemContainerStyle" TargetType="xcad:LayoutAnchorableItem" BasedOn="{StaticResource LayoutDocumentItemContainerStyle}">
-        <Setter Property="Title" Value="{Binding Model.Title }"/>
-        <Setter Property="HideCommand" Value="{Binding Model.CloseViewCommand}"/>
-    </Style>
-
-    <DataTemplate x:Key="DocumentLayoutDataTemplate" DataType="gui:ViewInfo">
+    <DataTemplate x:Key="DocumentViewDataTemplate" DataType="gui:ViewInfo">
         <ContentPresenter 
             Content="{Binding ViewModel}" 
             ContentTemplateSelector="{StaticResource ViewTemplateSelector}">
@@ -45,14 +34,14 @@
                         <DataTrigger Value="True">
                             <DataTrigger.Binding>
                                 <MultiBinding Converter="{StaticResource IsProneToExportConverter}">
-                                    <Binding ElementName="DockingManager" Path="DataContext.IsSaveToImage"/>
-                                    <Binding ElementName="DockingManager" Path="DataContext.ViewManager.ActiveDocument"/>
+                                    <Binding ElementName="MainContentPresenter" Path="DataContext.IsSaveToImage"/>
+                                    <Binding ElementName="MainContentPresenter" Path="DataContext.ViewManager.ActiveDocument"/>
                                     <Binding/>
                                 </MultiBinding>
                             </DataTrigger.Binding>
                             <Setter Property="behaviors:SaveToImageBehavior.SaveToImage" Value="True" />
                         </DataTrigger>
-                        <DataTrigger Binding="{Binding ElementName=DockingManager, Path=DataContext.IsSaveToImage}" Value="False">
+                        <DataTrigger Binding="{Binding ElementName=MainContentPresenter, Path=DataContext.IsSaveToImage}" Value="False">
                             <Setter Property="behaviors:SaveToImageBehavior.SaveToImage" Value="False" />
                         </DataTrigger>
                     </Style.Triggers>
@@ -73,51 +62,11 @@
         </ContentPresenter>
     </DataTemplate>
 
-    <DataTemplate x:Key="AnchorableLayoutDataTemplate" DataType="gui:ViewInfo">
+    <DataTemplate x:Key="ToolWindowDataTemplate" DataType="gui:ViewInfo">
         <ContentPresenter 
             Content="{Binding ViewModel}" 
             ContentTemplateSelector="{StaticResource ViewTemplateSelector}">
         </ContentPresenter>
     </DataTemplate>
 
-    <DataTemplate x:Key="MainContentPresenterDataTemplate" DataType="viewModels:MainContentPresenterViewModel">
-        <Grid>
-            <xcad:DockingManager
-                Name="DockingManager"
-                DocumentsSource="{Binding ViewManager.Views}"
-                AnchorablesSource="{Binding ViewManager.ToolWindows}"
-                AllowMixedOrientation="True"
-                BorderBrush="Black"
-                ActiveContent="{Binding ViewManager.CurrentViewInfo, Mode=TwoWay}"
-                BorderThickness="1">
-
-                <xcad:DockingManager.Theme>
-                    <xcad:MetroTheme />
-                </xcad:DockingManager.Theme>
-
-                <xcad:DockingManager.DocumentHeaderTemplate>
-                    <DataTemplate DataType="xcad:LayoutDocument">
-                        <StackPanel Orientation="Horizontal">
-                            <Image Source="{Binding Content.IconReference}" Margin="0,0,4,0" Height="16" Width="16"/>
-                            <TextBlock Text="{Binding Content.Title}" />
-                        </StackPanel>
-                    </DataTemplate>
-                </xcad:DockingManager.DocumentHeaderTemplate>
-
-                <xcad:DockingManager.LayoutItemTemplateSelector>
-                    <visualization:PresentationLayoutTemplateSelector
-                        DocumentLayoutTemplate ="{StaticResource DocumentLayoutDataTemplate}"
-                        AnchorableLayoutTemplate="{StaticResource AnchorableLayoutDataTemplate}"/>
-                </xcad:DockingManager.LayoutItemTemplateSelector>
-
-                <xcad:DockingManager.LayoutItemContainerStyleSelector>
-                    <visualization:LayoutItemContainerStyleSelector
-                        AnchorableContainerStyle="{StaticResource LayoutAnchorableItemContainerStyle}"
-                        DocumentContainerStyle="{StaticResource LayoutDocumentItemContainerStyle}"/>
-                </xcad:DockingManager.LayoutItemContainerStyleSelector>
-
-                <xcad:LayoutRoot/>
-            </xcad:DockingManager>
-        </Grid>
-    </DataTemplate>
 </ResourceDictionary>

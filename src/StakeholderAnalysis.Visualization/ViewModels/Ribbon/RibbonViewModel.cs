@@ -24,6 +24,7 @@ namespace StakeholderAnalysis.Visualization.ViewModels.Ribbon
             this.invalidateVisualAction = invalidateVisualAction;
             gui = guiInput;
             GuiProjectSercices = new GuiProjectServices(gui);
+            RibbonStakeholderConnectionGroupsViewModel = new RibbonStakeholderConnectionGroupsViewModel(gui.ViewManager);
             if (gui != null)
             {
                 gui.ShouldSaveOpenChanges = ShouldSaveOpenChanges;
@@ -48,7 +49,7 @@ namespace StakeholderAnalysis.Visualization.ViewModels.Ribbon
 
         public ICommand CloseApplication => new CloseApplicationCommand(gui, GuiProjectSercices);
 
-        public RibbonStakeholderConnectionGroupsViewModel RibbonStakeholderConnectionGroupsViewModel => new RibbonStakeholderConnectionGroupsViewModel(gui.ViewManager);
+        public RibbonStakeholderConnectionGroupsViewModel RibbonStakeholderConnectionGroupsViewModel { get; }
 
         public bool HasGui => gui != null;
 

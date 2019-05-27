@@ -1,4 +1,5 @@
 ﻿using System.Collections.ObjectModel;
+using System.Collections.Specialized;
 using System.ComponentModel;
 using System.Linq;
 using StakeholderAnalysis.Data;
@@ -9,57 +10,52 @@ namespace StakeholderAnalysis.Visualization.ViewModels
     public class ViewManagerViewModel : NotifyPropertyChangedObservable
     {
         private readonly ViewManager viewManager;
-        private ViewInfo currentViewInfo;
 
         public ViewManagerViewModel(ViewManager viewManager)
         {
             this.viewManager = viewManager;
 
             viewManager.PropertyChanged += ViewManagerPropertyChanged;
+            viewManager.ToolWindows.CollectionChanged += ToolWindowsCollectionChanged;
+            SelectedToolWindowIndex = 0;
+            OnPropertyChanged(nameof(SelectedToolWindowIndex));
         }
 
-        public ViewInfo CurrentViewInfo
+        private void ToolWindowsCollectionChanged(object sender, NotifyCollectionChangedEventArgs e)
         {
-            get => currentViewInfo;
-            set
+            if (e.Action == NotifyCollectionChangedAction.Remove)
             {
-                currentViewInfo = value;
-                OnPropertyChanged(nameof(CurrentViewInfo));
+                if (SelectedToolWindowIndex >= viewManager.ToolWindows.Count)
+                {
+                    SelectedToolWindowIndex = viewManager.ToolWindows.Count - 1;
+                    OnPropertyChanged(nameof(SelectedToolWindowIndex));
+                }
+            }
 
-                if (currentViewInfo == null)
-                {
-                    if (viewManager.ActiveDocument != null)
-                    {
-                        viewManager.ActiveDocument = null;
-                        viewManager.OnPropertyChanged(nameof(ActiveDocument));
-                    }
-                }
-                else if (currentViewInfo.IsDocumentView)
-                {
-                    if (!viewManager.Views.Any())
-                    {
-                        if (ActiveDocument != null)
-                        {
-                            viewManager.ActiveDocument = null;
-                            viewManager.OnPropertyChanged(nameof(ActiveDocument));
-                        }
-                    }
-                    else if (viewManager.Views.Contains(CurrentViewInfo))
-                    {
-                        viewManager.ActiveDocument = CurrentViewInfo;
-                        viewManager.OnPropertyChanged(nameof(ActiveDocument));
-                    }
-                }
+            if (e.Action == NotifyCollectionChangedAction.Add)
+            {
+                SelectedToolWindowIndex = viewManager.ToolWindows.Count - 1;
+                OnPropertyChanged(nameof(SelectedToolWindowIndex));
             }
         }
 
-        public ViewInfo ActiveDocument
+        public ViewInfo ActiveDocument => viewManager?.ActiveDocument;
+
+        public int ActiveDocumentIndex
         {
-            get => viewManager?.ActiveDocument;
+            get => viewManager?.Views.IndexOf(viewManager.ActiveDocument) ?? -1;
             set
             {
-                viewManager.ActiveDocument = value;
-                viewManager.OnPropertyChanged(nameof(ViewManager.ActiveDocument));
+                var viewInfo = viewManager.Views.ElementAtOrDefault(value);
+                if (viewInfo != null)
+                {
+                    viewManager?.BringToFront(viewInfo);
+                }
+                else
+                {
+                    viewManager.ActiveDocument = null;
+                    viewManager.OnPropertyChanged(nameof(ViewManager.ActiveDocument));
+                }
             }
         }
 
@@ -67,14 +63,15 @@ namespace StakeholderAnalysis.Visualization.ViewModels
 
         public ObservableCollection<ViewInfo> ToolWindows => viewManager.ToolWindows;
 
+        public int SelectedToolWindowIndex { get; set; }
+
         private void ViewManagerPropertyChanged(object sender, PropertyChangedEventArgs e)
         {
             switch (e.PropertyName)
             {
                 case nameof(ViewManager.ActiveDocument):
-                    currentViewInfo = viewManager.ActiveDocument;
+                    OnPropertyChanged(nameof(ActiveDocumentIndex));
                     OnPropertyChanged(nameof(ActiveDocument));
-                    OnPropertyChanged(nameof(CurrentViewInfo));
                     break;
             }
         }

@@ -2,7 +2,6 @@
                     xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
                     xmlns:converters="clr-namespace:StakeholderAnalysis.Visualization.Converters"
                     xmlns:onionDiagramView="clr-namespace:StakeholderAnalysis.Visualization.ViewModels.OnionDiagramView"
-                    xmlns:xcad="http://schemas.xceed.com/wpf/xaml/avalondock"
                     xmlns:behaviors="clr-namespace:StakeholderAnalysis.Visualization.Behaviors">
 
     <ResourceDictionary.MergedDictionaries>
@@ -10,7 +9,7 @@
     </ResourceDictionary.MergedDictionaries>
 
     <converters:PercentageToDimensionConverter x:Key="PercentageToDimensionConverter" />
-    <xcad:BoolToVisibilityConverter x:Key="BoolToVisibilityConverter" />
+    <BooleanToVisibilityConverter x:Key="BoolToVisibilityConverter" />
 
     <DataTemplate x:Key="OnionDiagramStakeholderDataTemplate" DataType="onionDiagramView:OnionDiagramStakeholderViewModel">
         <Grid>

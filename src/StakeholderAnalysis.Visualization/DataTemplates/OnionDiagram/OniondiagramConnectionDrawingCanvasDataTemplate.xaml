@@ -1,11 +1,10 @@
 ﻿<ResourceDictionary xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
                     xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
                     xmlns:onionDiagramView="clr-namespace:StakeholderAnalysis.Visualization.ViewModels.OnionDiagramView"
-                    xmlns:converters="clr-namespace:StakeholderAnalysis.Visualization.Converters"
-                    xmlns:xcad="http://schemas.xceed.com/wpf/xaml/avalondock">
+                    xmlns:converters="clr-namespace:StakeholderAnalysis.Visualization.Converters">
 
     <converters:PercentageToDimensionConverter x:Key="PercentageToDimensionConverter" />
-    <xcad:BoolToVisibilityConverter x:Key="BoolToVisibilityConverter" />
+    <BooleanToVisibilityConverter x:Key="BoolToVisibilityConverter" />
 
     <DataTemplate x:Key="OnionDiagramConnectionDrawingCanvasDataTemplate" DataType="onionDiagramView:OnionDiagramDrawConnectionViewModel">
         <Canvas Name="Canvas" Visibility="{Binding IsDrawing, Converter={StaticResource BoolToVisibilityConverter}}">

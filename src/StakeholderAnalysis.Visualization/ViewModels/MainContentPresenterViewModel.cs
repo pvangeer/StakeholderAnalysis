@@ -2,14 +2,11 @@
 using System.Linq;
 using StakeholderAnalysis.Data;
 using StakeholderAnalysis.Gui;
-using StakeholderAnalysis.Visualization.Commands;
 
 namespace StakeholderAnalysis.Visualization.ViewModels
 {
     public class MainContentPresenterViewModel : NotifyPropertyChangedObservable
     {
-        private bool isSaveToImage;
-        private RelayCommand saveCanvasCommand;
         private readonly StakeholderAnalysisGui gui;
 
         public MainContentPresenterViewModel(StakeholderAnalysisGui gui)
@@ -19,6 +16,7 @@ namespace StakeholderAnalysis.Visualization.ViewModels
             {
                 gui.PropertyChanged += GuiPropertyChanged;
             }
+            ViewManager = new ViewManagerViewModel(gui.ViewManager);
         }
 
         private void GuiPropertyChanged(object sender, PropertyChangedEventArgs e)
@@ -40,7 +38,7 @@ namespace StakeholderAnalysis.Visualization.ViewModels
             }
         }
 
-        public ViewManagerViewModel ViewManager => new ViewManagerViewModel(gui.ViewManager);
+        public ViewManagerViewModel ViewManager { get; }
 
         public bool IsSaveToImage
         {

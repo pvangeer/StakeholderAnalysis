@@ -4,7 +4,6 @@ using System.Windows.Input;
 using StakeholderAnalysis.Data;
 using StakeholderAnalysis.Data.OnionDiagrams;
 using StakeholderAnalysis.Gui;
-using StakeholderAnalysis.Visualization.Commands;
 using StakeholderAnalysis.Visualization.Commands.ProjectExplorer;
 using StakeholderAnalysis.Visualization.ViewModels.OnionDiagramView;
 
