@@ -27,7 +27,5 @@ namespace StakeholderAnalysis.Visualization.ViewModels.Ribbon
                 onionDiagram.OnPropertyChanged(nameof(OnionDiagram.Asymmetry));
             }
         }
-
-        public ICommand AddStakeholdersCommand => new AddStakeholdersToDiagramCommand(onionDiagram, analysis);
     }
 }

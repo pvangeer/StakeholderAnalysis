@@ -74,5 +74,10 @@ namespace StakeholderAnalysis.Visualization.ViewModels.TwoAxisDiagrams
                 stakeholderViewModel.OnPropertyChanged(nameof(StakeholderViewModel.IsSelectedStakeholder));
             }
         }
+
+        public ForceFieldDiagram GetDiagram()
+        {
+            return diagram;
+        }
     }
 }

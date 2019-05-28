@@ -1,27 +1,40 @@
 ﻿using System;
+using System.ComponentModel;
 using System.Linq;
 using System.Windows;
 using System.Windows.Input;
 using StakeholderAnalysis.Data;
+using StakeholderAnalysis.Data.AttitudeImpactDiagrams;
+using StakeholderAnalysis.Data.ForceFieldDiagrams;
 using StakeholderAnalysis.Data.OnionDiagrams;
+using StakeholderAnalysis.Gui;
 using StakeholderAnalysis.Visualization.Controls;
+using StakeholderAnalysis.Visualization.ViewModels.OnionDiagramView;
+using StakeholderAnalysis.Visualization.ViewModels.TwoAxisDiagrams;
 
 namespace StakeholderAnalysis.Visualization.Commands.Ribbon
 {
     public class AddStakeholdersToDiagramCommand : ICommand
     {
-        private readonly OnionDiagram diagram;
+        private readonly ViewManager viewManager;
         private readonly Analysis analysis;
+        private OnionDiagram selectedOnionDiagram;
+        private ForceFieldDiagram selectedForceFieldDiagram;
+        private AttitudeImpactDiagram selectedAttitudeImpactDiagram;
 
-        public AddStakeholdersToDiagramCommand(OnionDiagram onionDiagram, Analysis analysis)
+        public AddStakeholdersToDiagramCommand(ViewManager viewManager, Analysis analysis)
         {
-            this.diagram = onionDiagram;
+            this.viewManager = viewManager;
+            if (viewManager != null)
+            {
+                viewManager.PropertyChanged += ViewManagerPropertyChanged;
+            }
             this.analysis = analysis;
         }
 
         public bool CanExecute(object parameter)
         {
-            return true;
+            return selectedOnionDiagram != null || selectedAttitudeImpactDiagram != null || selectedForceFieldDiagram != null;
         }
 
         public void Execute(object parameter)
@@ -37,12 +50,54 @@ namespace StakeholderAnalysis.Visualization.Commands.Ribbon
                 return;
             }
 
-            // Add stakeholders to diagram
-            var selectedStakeholders = dialog.SelectedStakeholders;
-            var currentStakeholders = diagram.Stakeholders.Select(s => s.Stakeholder);
-            foreach (var selectedStakeholder in selectedStakeholders.Except(currentStakeholders))
+            // Add stakeholders to viewManager
+            var selectedStakeholders = dialog.SelectedStakeholders.ToArray();
+
+            if (selectedOnionDiagram != null)
             {
-                diagram.Stakeholders.Add(new OnionDiagramStakeholder(selectedStakeholder, 0.5, 0.5));
+                var currentStakeholders = selectedOnionDiagram.Stakeholders.Select(s => s.Stakeholder);
+                foreach (var selectedStakeholder in selectedStakeholders.Except(currentStakeholders))
+                {
+                    selectedOnionDiagram.Stakeholders.Add(new OnionDiagramStakeholder(selectedStakeholder, 0.5, 0.5));
+                }
+            }
+
+            if (selectedAttitudeImpactDiagram != null)
+            {
+                var currentStakeholders = selectedAttitudeImpactDiagram.Stakeholders.Select(s => s.Stakeholder);
+                foreach (var selectedStakeholder in selectedStakeholders.Except(currentStakeholders))
+                {
+                    selectedAttitudeImpactDiagram.Stakeholders.Add(new AttitudeImpactDiagramStakeholder(selectedStakeholder, 0.5, 0.5));
+                }
+            }
+
+            if (selectedForceFieldDiagram != null)
+            {
+                var currentStakeholders = selectedForceFieldDiagram.Stakeholders.Select(s => s.Stakeholder);
+                foreach (var selectedStakeholder in selectedStakeholders.Except(currentStakeholders))
+                {
+                    selectedForceFieldDiagram.Stakeholders.Add(new ForceFieldDiagramStakeholder(selectedStakeholder, 0.5, 0.5));
+                }
+            }
+        }
+
+        private void ViewManagerPropertyChanged(object sender, PropertyChangedEventArgs e)
+        {
+            switch (e.PropertyName)
+            {
+                case nameof(ViewManager.ActiveDocument):
+                    selectedOnionDiagram = viewManager?.ActiveDocument?.ViewModel is OnionDiagramViewModel viewModel
+                        ? viewModel.GetDiagram()
+                        : null;
+                    selectedForceFieldDiagram = viewManager?.ActiveDocument?.ViewModel is ForceFieldDiagramViewModel viewModel2
+                        ? viewModel2.GetDiagram()
+                        : null;
+                    selectedAttitudeImpactDiagram = viewManager?.ActiveDocument?.ViewModel is AttitudeImpactDiagramViewModel viewModel3
+                        ? viewModel3.GetDiagram()
+                        : null;
+
+                    CanExecuteChanged?.Invoke(this,null);
+                    break;
             }
         }
 

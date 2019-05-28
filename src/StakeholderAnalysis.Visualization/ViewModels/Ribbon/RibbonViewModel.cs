@@ -10,6 +10,7 @@ using StakeholderAnalysis.Gui;
 using StakeholderAnalysis.Visualization.Commands;
 using StakeholderAnalysis.Visualization.Commands.FileHandling;
 using StakeholderAnalysis.Visualization.Commands.ProjectExplorer;
+using StakeholderAnalysis.Visualization.Commands.Ribbon;
 using StakeholderAnalysis.Visualization.ViewModels.OnionDiagramView;
 
 namespace StakeholderAnalysis.Visualization.ViewModels.Ribbon
@@ -88,6 +89,8 @@ namespace StakeholderAnalysis.Visualization.ViewModels.Ribbon
         public ICommand NewCommand => new NewProjectCommand(this);
 
         public ICommand CloseApplication => new CloseApplicationCommand(gui, GuiProjectServices);
+
+        public ICommand AddStakeholdersCommand => new AddStakeholdersToDiagramCommand(gui.ViewManager, gui.Analysis);
 
         public bool HasGui => gui != null;
 

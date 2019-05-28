@@ -75,5 +75,10 @@ namespace StakeholderAnalysis.Visualization.ViewModels.TwoAxisDiagrams
                 stakeholder.OnPropertyChanged(nameof(StakeholderViewModel.IsSelectedStakeholder));
             }
         }
+
+        public AttitudeImpactDiagram GetDiagram()
+        {
+            return diagram;
+        }
     }
 }

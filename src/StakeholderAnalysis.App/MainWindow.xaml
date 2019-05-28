@@ -123,6 +123,15 @@
                         Command="{Binding RibbonViewModel.SaveImageCommand}" />
 
                 </fluent:RibbonGroupBox>
+
+                <fluent:RibbonGroupBox Header="Diagram">
+                    <fluent:Button 
+                        Header="Stakeholder(s) toevoegen" 
+                        Command="{Binding RibbonViewModel.AddStakeholdersCommand, Converter={StaticResource DummyConverter}}"
+                        Size="Large"
+                        LargeIcon="pack://application:,,,/StakeholderAnalysis.Visualization;component/Resources/plus.png"/>
+                </fluent:RibbonGroupBox>
+
             </fluent:RibbonTabItem>
 
             <fluent:RibbonTabItem Header="Ui-diagram" Group="{Binding Source={x:Reference onionGroup}}">
@@ -141,13 +150,6 @@
                         Increment="0.1"/>
                 </fluent:RibbonGroupBox>
 
-                <fluent:RibbonGroupBox Header="Stakeholders">
-                    <fluent:Button 
-                        Header="Stakeholder(s) toevoegen" 
-                        Command="{Binding RibbonViewModel.RibbonSelectedOnionDiagramViewModel.AddStakeholdersCommand, Converter={StaticResource DummyConverter}}"
-                        Size="Large"
-                        LargeIcon="pack://application:,,,/StakeholderAnalysis.Visualization;component/Resources/plus.png"/>
-                </fluent:RibbonGroupBox>
 
                 <fluent:RibbonGroupBox Header="Verbindingsgroepen">
                     <fluent:ComboBox 
