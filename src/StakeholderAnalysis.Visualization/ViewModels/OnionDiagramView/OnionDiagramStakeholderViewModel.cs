@@ -46,8 +46,6 @@ namespace StakeholderAnalysis.Visualization.ViewModels.OnionDiagramView
             }
         }
 
-        public ICommand RemoveStakeholderCommand => new RemoveSelectedStakeholderFromDiagramCommand(this);
-
         public IDrawConnectionHandler DrawConnectionHandler { get; }
 
         public override void Moved(double xRelativeNew, double yRelativeNew)
@@ -75,7 +73,7 @@ namespace StakeholderAnalysis.Visualization.ViewModels.OnionDiagramView
             return IsViewModelFor(stakeholder.Stakeholder);
         }
 
-        public void RemoveFromDiagram()
+        public override void RemoveFromDiagram()
         {
             if (IsSelectedStakeholder)
             {

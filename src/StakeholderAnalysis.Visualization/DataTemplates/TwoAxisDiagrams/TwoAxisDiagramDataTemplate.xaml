@@ -2,7 +2,8 @@
                     xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
                     xmlns:converters="clr-namespace:StakeholderAnalysis.Visualization.Converters"
                     xmlns:system="clr-namespace:System;assembly=mscorlib"
-                    xmlns:twoAxisDiagrams="clr-namespace:StakeholderAnalysis.Visualization.ViewModels.TwoAxisDiagrams">
+                    xmlns:twoAxisDiagrams="clr-namespace:StakeholderAnalysis.Visualization.ViewModels.TwoAxisDiagrams"
+                    xmlns:viewModels="clr-namespace:StakeholderAnalysis.Visualization.ViewModels">
 
     <ResourceDictionary.MergedDictionaries>
         <ResourceDictionary Source="/StakeholderAnalysis.Visualization;Component/DataTemplates/StakeholderDataTemplate.xaml" />
@@ -12,6 +13,34 @@
 
     <converters:PercentageToDimensionConverter x:Key="PercentageToDimensionConverter" />
     <converters:CanvasSizeToArrowsPathDataConverter x:Key="SizeToArrowsPathDataConverter" />
+    <BooleanToVisibilityConverter x:Key="BoolToVisibilityConverter" />
+    <converters:IsSelectedStakeholderToOffsetConverter x:Key="IsSelectedStakeholderToOffsetConverter" />
+
+    <DataTemplate x:Key="TwoAxisDiagramStakeholderDataTemplate" DataType="viewModels:StakeholderViewModel">
+        <Grid>
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="Auto"/>
+                <ColumnDefinition Width="Auto"/>
+            </Grid.ColumnDefinitions>
+            <ContentPresenter 
+                Grid.Column="0" 
+                Content="{Binding}" 
+                ContentTemplate="{StaticResource StakeholderDataTemplate}" 
+                IsHitTestVisible="True"/>
+            <StackPanel Grid.Column="1" Width="20" Visibility="{Binding IsSelectedStakeholder, Converter={StaticResource BoolToVisibilityConverter}}">
+                <Button 
+                    Command="{Binding RemoveStakeholderCommand}">
+                    <Button.Template>
+                        <ControlTemplate TargetType="Button">
+                            <Image Width="16" 
+                                   Height="16"
+                                   Source="pack://application:,,,/StakeholderAnalysis.Visualization;component/Resources/delete.png"/>
+                        </ControlTemplate>
+                    </Button.Template>
+                </Button>
+            </StackPanel>
+        </Grid>
+    </DataTemplate>
 
     <DataTemplate x:Key="TwoAxisDiagramDataTemplate" DataType="twoAxisDiagrams:ITwoAxisDiagramViewModel">
         <!--Main grid-->
@@ -68,7 +97,7 @@
                 <!--Canvas that holds all stakeholders-->
                 <ItemsControl ItemsSource="{Binding PositionedStakeholders}"
                               Background="Transparent"
-                              ItemTemplate="{StaticResource StakeholderDataTemplate}">
+                              ItemTemplate="{StaticResource TwoAxisDiagramStakeholderDataTemplate}">
                     <ItemsControl.ItemContainerStyle>
                         <Style>
                             <Setter Property="Canvas.Left">
@@ -77,6 +106,7 @@
                                         <Binding Path="RelativePositionLeft" />
                                         <Binding RelativeSource="{RelativeSource Self}" Path="ActualWidth" />
                                         <Binding ElementName="Canvas" Path="ActualWidth" />
+                                        <Binding Path="IsSelectedStakeholder" Converter="{StaticResource IsSelectedStakeholderToOffsetConverter}"/>
                                     </MultiBinding>
                                 </Setter.Value>
                             </Setter>

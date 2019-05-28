@@ -6,7 +6,7 @@ using StakeholderAnalysis.Visualization.Commands;
 
 namespace StakeholderAnalysis.Visualization.ViewModels
 {
-    public class StakeholderViewModel : NotifyPropertyChangedObservable, IDropHandler
+    public class StakeholderViewModel : NotifyPropertyChangedObservable, IDropHandler, IRemoveStakeholderViewModel
     {
         protected readonly ISelectionRegister SelectionRegister;
         private readonly IDrawConnectionHandler drawConnectionHandler;
@@ -43,10 +43,14 @@ namespace StakeholderAnalysis.Visualization.ViewModels
 
         public bool IsSelectedStakeholder => SelectionRegister != null && SelectionRegister.IsSelected(Stakeholder);
 
+        public virtual void RemoveFromDiagram() { }
+
         public bool IsConnectionToTarget => drawConnectionHandler != null && drawConnectionHandler.IsConnectionTarget(Stakeholder);
 
         public ICommand StakeholderClickedCommand => new StakeholderClickedCommand(this);
-        
+
+        public ICommand RemoveStakeholderCommand => new RemoveSelectedStakeholderFromDiagramCommand(this);
+
         protected virtual void StakeholderPropertyChanged(object sender, PropertyChangedEventArgs e)
         {
             switch (e.PropertyName)

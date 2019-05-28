@@ -7,15 +7,16 @@ using System.Threading.Tasks;
 using System.Windows.Input;
 using StakeholderAnalysis.Data;
 using StakeholderAnalysis.Data.OnionDiagrams;
+using StakeholderAnalysis.Visualization.ViewModels;
 using StakeholderAnalysis.Visualization.ViewModels.OnionDiagramView;
 
 namespace StakeholderAnalysis.Visualization.Commands
 {
     public class RemoveSelectedStakeholderFromDiagramCommand : ICommand
     {
-        private OnionDiagramStakeholderViewModel onionDiagramViewModel;
+        private IRemoveStakeholderViewModel onionDiagramViewModel;
 
-        public RemoveSelectedStakeholderFromDiagramCommand(OnionDiagramStakeholderViewModel onionDiagramViewModel)
+        public RemoveSelectedStakeholderFromDiagramCommand(IRemoveStakeholderViewModel onionDiagramViewModel)
         {
             this.onionDiagramViewModel = onionDiagramViewModel;
             onionDiagramViewModel.PropertyChanged += ViewModelPropertyChanged;

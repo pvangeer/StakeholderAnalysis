@@ -7,34 +7,36 @@ namespace StakeholderAnalysis.Visualization.ViewModels.TwoAxisDiagrams
 {
     public class ForceFieldDiagramStakeholderViewModel : StakeholderViewModel, IPositionedStakeholderViewModel
     {
-        private readonly ForceFieldDiagramStakeholder firceFieldDiagramStakeholder;
+        private readonly ForceFieldDiagramStakeholder forceFieldDiagramStakeholder;
+        private readonly ForceFieldDiagram diagram;
 
-        public ForceFieldDiagramStakeholderViewModel(ForceFieldDiagramStakeholder stakeholder, ISelectionRegister selectionRegister) : base(stakeholder?.Stakeholder, selectionRegister, null)
+        public ForceFieldDiagramStakeholderViewModel(ForceFieldDiagram diagram, ForceFieldDiagramStakeholder stakeholder, ISelectionRegister selectionRegister) : base(stakeholder?.Stakeholder, selectionRegister, null)
         {
-            firceFieldDiagramStakeholder = stakeholder;
-            if (firceFieldDiagramStakeholder != null)
+            this.diagram = diagram;
+            forceFieldDiagramStakeholder = stakeholder;
+            if (forceFieldDiagramStakeholder != null)
             {
-                firceFieldDiagramStakeholder.PropertyChanged += StakeholderPropertyChanged;
+                forceFieldDiagramStakeholder.PropertyChanged += StakeholderPropertyChanged;
             }
         }
 
         public double RelativePositionLeft
         {
-            get => firceFieldDiagramStakeholder.Interest;
+            get => forceFieldDiagramStakeholder.Interest;
             set
             {
-                firceFieldDiagramStakeholder.Interest = value;
-                firceFieldDiagramStakeholder.OnPropertyChanged(nameof(firceFieldDiagramStakeholder.Interest));
+                forceFieldDiagramStakeholder.Interest = value;
+                forceFieldDiagramStakeholder.OnPropertyChanged(nameof(forceFieldDiagramStakeholder.Interest));
             }
         }
 
         public double RelativePositionTop
         {
-            get => 1 - firceFieldDiagramStakeholder.Influence;
+            get => 1 - forceFieldDiagramStakeholder.Influence;
             set
             {
-                firceFieldDiagramStakeholder.Influence = 1 - value;
-                firceFieldDiagramStakeholder.OnPropertyChanged(nameof(firceFieldDiagramStakeholder.Influence));
+                forceFieldDiagramStakeholder.Influence = 1 - value;
+                forceFieldDiagramStakeholder.OnPropertyChanged(nameof(forceFieldDiagramStakeholder.Influence));
             }
         }
 
@@ -44,14 +46,22 @@ namespace StakeholderAnalysis.Visualization.ViewModels.TwoAxisDiagrams
             RelativePositionTop = Math.Min(1.0, Math.Max(0.0, yRelativeNew));
         }
 
+        public override void RemoveFromDiagram()
+        {
+            if (IsSelectedStakeholder)
+            {
+                diagram.Stakeholders.Remove(forceFieldDiagramStakeholder);
+            }
+        }
+
         protected override void StakeholderPropertyChanged(object sender, PropertyChangedEventArgs e)
         {
             switch (e.PropertyName)
             {
-                case nameof(firceFieldDiagramStakeholder.Interest):
+                case nameof(forceFieldDiagramStakeholder.Interest):
                     OnPropertyChanged(nameof(RelativePositionLeft));
                     break;
-                case nameof(firceFieldDiagramStakeholder.Influence):
+                case nameof(forceFieldDiagramStakeholder.Influence):
                     OnPropertyChanged(nameof(RelativePositionTop));
                     break;
             }

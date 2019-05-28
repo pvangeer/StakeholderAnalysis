@@ -36,6 +36,7 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Commands\ClearSelectionCommand.cs" />
+    <Compile Include="ViewModels\IRemoveStakeholderViewModel.cs" />
     <Compile Include="Commands\OnionDiagramProperties\AddConnectionGroupCommand.cs" />
     <Compile Include="Commands\OnionDiagramProperties\RemoveConnectionGroupCommand.cs" />
     <Compile Include="Commands\OnionDiagramProperties\RemoveOnionRingCommand.cs" />

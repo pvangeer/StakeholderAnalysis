@@ -1,5 +1,6 @@
 ﻿using System;
 using System.ComponentModel;
+using System.Windows.Media.TextFormatting;
 using StakeholderAnalysis.Data.AttitudeImpactDiagrams;
 using StakeholderAnalysis.Visualization.Behaviors;
 
@@ -8,9 +9,11 @@ namespace StakeholderAnalysis.Visualization.ViewModels.TwoAxisDiagrams
     public class AttitudeImpactDiagramStakeholderViewModel : StakeholderViewModel, IPositionedStakeholderViewModel
     {
         private readonly AttitudeImpactDiagramStakeholder attitudeImpactDiagramStakeholder;
+        private readonly AttitudeImpactDiagram diagram;
 
-        public AttitudeImpactDiagramStakeholderViewModel(AttitudeImpactDiagramStakeholder stakeholder, ISelectionRegister selectionRegister) : base(stakeholder?.Stakeholder, selectionRegister, null)
+        public AttitudeImpactDiagramStakeholderViewModel(AttitudeImpactDiagram diagram, AttitudeImpactDiagramStakeholder stakeholder, ISelectionRegister selectionRegister) : base(stakeholder?.Stakeholder, selectionRegister, null)
         {
+            this.diagram = diagram;
             attitudeImpactDiagramStakeholder = stakeholder;
             if (attitudeImpactDiagramStakeholder != null)
             {
@@ -42,6 +45,14 @@ namespace StakeholderAnalysis.Visualization.ViewModels.TwoAxisDiagrams
         {
             RelativePositionLeft = Math.Min(1.0, Math.Max(0.0, xRelativeNew));
             RelativePositionTop = Math.Min(1.0, Math.Max(0.0, yRelativeNew));
+        }
+
+        public override void RemoveFromDiagram()
+        {
+            if (IsSelectedStakeholder)
+            {
+                diagram.Stakeholders.Remove(attitudeImpactDiagramStakeholder);
+            }
         }
 
         protected override void StakeholderPropertyChanged(object sender, PropertyChangedEventArgs e)
