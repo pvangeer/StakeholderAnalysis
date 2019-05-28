@@ -11,7 +11,7 @@ namespace StakeholderAnalysis.Visualization.Commands.FileHandling
 
         public override void Execute(object parameter)
         {
-            ribbonViewModel.GuiProjectSercices.SaveProjectAs();
+            ribbonViewModel.GuiProjectServices.SaveProjectAs();
         }
     }
 }

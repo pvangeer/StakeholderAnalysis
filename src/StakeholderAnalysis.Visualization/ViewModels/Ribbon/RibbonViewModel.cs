@@ -2,9 +2,10 @@
 using System.Collections.ObjectModel;
 using System.Collections.Specialized;
 using System.ComponentModel;
+using System.Linq;
 using System.Windows;
 using System.Windows.Input;
-using StakeholderAnalysis.Data;
+using StakeholderAnalysis.Data.OnionDiagrams;
 using StakeholderAnalysis.Gui;
 using StakeholderAnalysis.Visualization.Commands;
 using StakeholderAnalysis.Visualization.Commands.FileHandling;
@@ -13,28 +14,64 @@ using StakeholderAnalysis.Visualization.ViewModels.OnionDiagramView;
 
 namespace StakeholderAnalysis.Visualization.ViewModels.Ribbon
 {
-    public class RibbonViewModel : NotifyPropertyChangedObservable
+    public class RibbonViewModel : ViewModelBase
     {
         private readonly StakeholderAnalysisGui gui;
         private RelayCommand saveCanvasCommand;
         private readonly Action invalidateVisualAction;
+        private StakeholderConnectionGroupSelection stakeholderConnectionGroupSelection;
 
-        public RibbonViewModel(StakeholderAnalysisGui guiInput, Action invalidateVisualAction)
+        public RibbonViewModel(ViewModelFactory factory, StakeholderAnalysisGui guiInput, Action invalidateVisualAction) : base(factory)
         {
             this.invalidateVisualAction = invalidateVisualAction;
+
             gui = guiInput;
-            GuiProjectSercices = new GuiProjectServices(gui);
-            RibbonStakeholderConnectionGroupsViewModel = new RibbonStakeholderConnectionGroupsViewModel(gui.ViewManager);
+            GuiProjectServices = new GuiProjectServices(gui);
             if (gui != null)
             {
                 gui.ShouldSaveOpenChanges = ShouldSaveOpenChanges;
                 gui.PropertyChanged += GuiPropertyChanged;
+                gui.ViewManager.PropertyChanged += ViewManagerPropertyChanged;
+                gui.ViewManager.ToolWindows.CollectionChanged += ToolWindowsCollectionChanged;
+                gui.ViewManager.PropertyChanged += ViewManagerPropertyChanged;
+                SetCurrentSelectedDiagramAndGroups();
             }
 
-            ViewManagerViewModel = new ViewManagerViewModel(gui.ViewManager);
-            gui.ViewManager.PropertyChanged += ViewManagerPropertyChanged;
-            gui.ViewManager.ToolWindows.CollectionChanged += ToolWindowsCollectionChanged;
-            gui.PropertyChanged += GuiPropertyChanged;
+            ViewManagerViewModel = new ViewManagerViewModel(gui?.ViewManager);
+        }
+
+        private void SetCurrentSelectedDiagramAndGroups()
+        {
+            var selectedOnionDiagram = gui?.ViewManager?.ActiveDocument?.ViewModel is OnionDiagramViewModel viewModel
+                ? viewModel.GetDiagram()
+                : null;
+
+            if (stakeholderConnectionGroupSelection != null)
+            {
+                stakeholderConnectionGroupSelection.PropertyChanged -= StakeholderConnectionGroupSelectionPropertyChanged;
+            }
+
+            stakeholderConnectionGroupSelection =
+                gui?.SelectedStakeholderConnectionGroups.FirstOrDefault(g => g.OnionDiagram == selectedOnionDiagram);
+
+            if (stakeholderConnectionGroupSelection != null)
+            {
+                stakeholderConnectionGroupSelection.PropertyChanged += StakeholderConnectionGroupSelectionPropertyChanged;
+            }
+
+            OnPropertyChanged(nameof(selectedOnionDiagram));
+            OnPropertyChanged(nameof(RibbonSelectedOnionDiagramViewModel));
+            OnPropertyChanged(nameof(StakeholderConnectionGroups));
+            OnPropertyChanged(nameof(SelectedStakeholderConnectionGroup));
+            OnPropertyChanged(nameof(ToggleToolWindowCommand));
+        }
+
+        private void StakeholderConnectionGroupSelectionPropertyChanged(object sender, PropertyChangedEventArgs e)
+        {
+            if (e.PropertyName == nameof(StakeholderConnectionGroupSelection.StakeholderConnectionGroup))
+            {
+                OnPropertyChanged(nameof(SelectedStakeholderConnectionGroup));
+            }
         }
 
         public ViewManagerViewModel ViewManagerViewModel { get; }
@@ -47,9 +84,7 @@ namespace StakeholderAnalysis.Visualization.ViewModels.Ribbon
 
         public ICommand NewCommand => new NewProjectCommand(this);
 
-        public ICommand CloseApplication => new CloseApplicationCommand(gui, GuiProjectSercices);
-
-        public RibbonStakeholderConnectionGroupsViewModel RibbonStakeholderConnectionGroupsViewModel { get; }
+        public ICommand CloseApplication => new CloseApplicationCommand(gui, GuiProjectServices);
 
         public bool HasGui => gui != null;
 
@@ -78,11 +113,9 @@ namespace StakeholderAnalysis.Visualization.ViewModels.Ribbon
         }
 
         public RibbonSelectedOnionDiagramViewModel RibbonSelectedOnionDiagramViewModel =>
-            gui?.ViewManager?.ActiveDocument?.ViewModel is OnionDiagramViewModel viewModel
-                ? new RibbonSelectedOnionDiagramViewModel(viewModel.GetDiagram(), gui.Analysis)
-                : null;
+            stakeholderConnectionGroupSelection?.OnionDiagram != null ? new RibbonSelectedOnionDiagramViewModel(stakeholderConnectionGroupSelection.OnionDiagram, gui.Analysis) : null;
 
-        public ICommand ToggleToolWindowCommand => new ToggleToolWindowCommand(gui, gui.ViewManager);
+        public ICommand ToggleToolWindowCommand => new ToggleToolWindowCommand(ViewModelFactory, gui, gui.ViewManager);
 
         public ObservableCollection<ViewInfo> ToolWindows
         {
@@ -106,9 +139,8 @@ namespace StakeholderAnalysis.Visualization.ViewModels.Ribbon
                     invalidateVisualAction?.Invoke();
                     break;
                 case nameof(StakeholderAnalysisGui.Analysis):
-                    OnPropertyChanged(nameof(RibbonSelectedOnionDiagramViewModel));
-                    OnPropertyChanged(nameof(ToggleToolWindowCommand));
-                break;
+                    SetCurrentSelectedDiagramAndGroups();
+                    break;
             }
         }
 
@@ -117,12 +149,29 @@ namespace StakeholderAnalysis.Visualization.ViewModels.Ribbon
             switch (e.PropertyName)
             {
                 case nameof(gui.ViewManager.ActiveDocument):
-                    OnPropertyChanged(nameof(RibbonSelectedOnionDiagramViewModel));
+                    SetCurrentSelectedDiagramAndGroups();
                     break;
             }
         }
 
-        public GuiProjectServices GuiProjectSercices { get; }
+        public GuiProjectServices GuiProjectServices { get; }
+
+        public ObservableCollection<StakeholderConnectionGroup> StakeholderConnectionGroups => stakeholderConnectionGroupSelection?.OnionDiagram?.ConnectionGroups;
+
+        public StakeholderConnectionGroup SelectedStakeholderConnectionGroup
+        {
+            get => stakeholderConnectionGroupSelection?.StakeholderConnectionGroup;
+            set 
+            {
+                if (stakeholderConnectionGroupSelection == null || value == null)
+                {
+                    return;
+                }
+
+                stakeholderConnectionGroupSelection.StakeholderConnectionGroup = value;
+                stakeholderConnectionGroupSelection.OnPropertyChanged(nameof(StakeholderConnectionGroupSelection.StakeholderConnectionGroup));
+            }
+        }
 
         private bool ShouldSaveOpenChanges()
         {

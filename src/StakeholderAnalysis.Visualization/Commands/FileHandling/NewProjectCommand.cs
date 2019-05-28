@@ -10,7 +10,7 @@ namespace StakeholderAnalysis.Visualization.Commands.FileHandling
 
         public override void Execute(object parameter)
         {
-            ribbonViewModel.GuiProjectSercices.NewProject();
+            ribbonViewModel.GuiProjectServices.NewProject();
         }
     }
 }

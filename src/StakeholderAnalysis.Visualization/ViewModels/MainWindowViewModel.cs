@@ -12,14 +12,17 @@ namespace StakeholderAnalysis.Visualization.ViewModels
 {
     public class MainWindowViewModel : NotifyPropertyChangedObservable
     {
+        public ViewModelFactory ViewModelFactory { get; }
+
         private readonly StakeholderAnalysisGui gui;
 
         public MainWindowViewModel() : this(new StakeholderAnalysisGui()){ }
 
         public MainWindowViewModel(StakeholderAnalysisGui guiInput)
         {
+            ViewModelFactory = new ViewModelFactory(guiInput, guiInput.ViewManager);
             gui = guiInput;
-            RibbonViewModel = new RibbonViewModel(gui, () => OnInvalidateVisual?.Invoke(this, null));
+            RibbonViewModel = new RibbonViewModel(ViewModelFactory,gui, () => OnInvalidateVisual?.Invoke(this, null));
             RibbonViewModel.ToggleToolWindowCommand.Execute(typeof(ProjectExplorerViewModel));
             RibbonViewModel.ToggleToolWindowCommand.Execute(typeof(OnionDiagramPropertiesViewModel));
             MainContentPresenterViewModel = new MainContentPresenterViewModel(gui);
@@ -35,7 +38,7 @@ namespace StakeholderAnalysis.Visualization.ViewModels
 
         public void ForcedClosingMainWindow()
         {
-            RibbonViewModel.GuiProjectSercices.HandleUnsavedChanges(gui, () => {});
+            RibbonViewModel.GuiProjectServices.HandleUnsavedChanges(gui, () => {});
         }
     }
 }

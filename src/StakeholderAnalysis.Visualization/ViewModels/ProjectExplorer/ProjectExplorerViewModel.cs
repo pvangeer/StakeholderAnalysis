@@ -1,15 +1,16 @@
 ﻿using System.ComponentModel;
+using System.Linq;
 using StakeholderAnalysis.Data;
 using StakeholderAnalysis.Gui;
 
 namespace StakeholderAnalysis.Visualization.ViewModels.ProjectExplorer
 {
-    public class ProjectExplorerViewModel : NotifyPropertyChangedObservable
+    public class ProjectExplorerViewModel : ViewModelBase
     {
         private readonly StakeholderAnalysisGui gui;
         private readonly ViewManager viewManager;
 
-        public ProjectExplorerViewModel(StakeholderAnalysisGui gui, ViewManager viewManager)
+        public ProjectExplorerViewModel(ViewModelFactory factory, StakeholderAnalysisGui gui, ViewManager viewManager) : base(factory)
         {
             this.viewManager = viewManager;
             this.gui = gui;
@@ -29,7 +30,7 @@ namespace StakeholderAnalysis.Visualization.ViewModels.ProjectExplorer
             }
         }
 
-        public ProjectExplorerOnionDiagramsViewModel OnionDiagramsViewModel => new ProjectExplorerOnionDiagramsViewModel(gui.Analysis, viewManager);
+        public ProjectExplorerOnionDiagramsViewModel OnionDiagramsViewModel => new ProjectExplorerOnionDiagramsViewModel(ViewModelFactory, gui.Analysis, viewManager);
 
         public ProjectExplorerForceFieldDiagramsViewModel ForceFieldDiagramsViewModel => new ProjectExplorerForceFieldDiagramsViewModel(gui.Analysis, viewManager);
 

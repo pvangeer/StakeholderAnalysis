@@ -1,4 +1,5 @@
-﻿using System.Collections.ObjectModel;
+﻿using System;
+using System.Collections.ObjectModel;
 using System.Collections.Specialized;
 using System.Linq;
 using System.Windows.Input;
@@ -10,13 +11,13 @@ using StakeholderAnalysis.Visualization.Commands.ProjectExplorer;
 
 namespace StakeholderAnalysis.Visualization.ViewModels.ProjectExplorer
 {
-    public class ProjectExplorerOnionDiagramsViewModel : NotifyPropertyChangedObservable, IExpandableDiagramCollectionViewModel
+    public class ProjectExplorerOnionDiagramsViewModel : ViewModelBase, IExpandableDiagramCollectionViewModel
     {
         private readonly Analysis analysis;
         private bool isExpanded = true;
         private readonly ViewManager viewManager;
 
-        public ProjectExplorerOnionDiagramsViewModel(Analysis analysis, ViewManager viewManager)
+        public ProjectExplorerOnionDiagramsViewModel(ViewModelFactory factory, Analysis analysis, ViewManager viewManager) : base(factory)
         {
             this.viewManager = viewManager;
             this.analysis = analysis;
@@ -25,7 +26,7 @@ namespace StakeholderAnalysis.Visualization.ViewModels.ProjectExplorer
             Diagrams = new ObservableCollection<IProjectExplorerDiagramViewModel>();
             foreach (var analysisOnionDiagram in analysis.OnionDiagrams)
             {
-                Diagrams.Add(new ProjectExplorerOnionDiagramViewModel(analysis,analysisOnionDiagram, viewManager));
+                Diagrams.Add(new ProjectExplorerOnionDiagramViewModel(ViewModelFactory, analysis,analysisOnionDiagram, viewManager));
             }
         }
 
@@ -58,7 +59,7 @@ namespace StakeholderAnalysis.Visualization.ViewModels.ProjectExplorer
             {
                 foreach (var onionDiagram in e.NewItems.OfType<OnionDiagram>())
                 {
-                    Diagrams.Add(new ProjectExplorerOnionDiagramViewModel(analysis,onionDiagram, viewManager));
+                    Diagrams.Add(new ProjectExplorerOnionDiagramViewModel(ViewModelFactory, analysis,onionDiagram, viewManager));
                 }
             }
 

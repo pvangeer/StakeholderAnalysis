@@ -3,6 +3,7 @@ using System.Linq;
 using System.Windows.Input;
 using StakeholderAnalysis.Data;
 using StakeholderAnalysis.Gui;
+using StakeholderAnalysis.Visualization.ViewModels;
 using StakeholderAnalysis.Visualization.ViewModels.OnionDiagramProperties;
 using StakeholderAnalysis.Visualization.ViewModels.ProjectExplorer;
 
@@ -12,12 +13,15 @@ namespace StakeholderAnalysis.Visualization.Commands.ProjectExplorer
     {
         private readonly ViewManager viewManager;
         private readonly StakeholderAnalysisGui gui;
+        private readonly ViewModelFactory viewModelFactory;
 
-        public ToggleToolWindowCommand(StakeholderAnalysisGui gui, ViewManager viewManager)
+        public ToggleToolWindowCommand(ViewModelFactory factory, StakeholderAnalysisGui gui, ViewManager viewManager)
         {
+            this.viewModelFactory = factory;
             this.gui = gui;
             this.viewManager = viewManager;
         }
+
 
         public bool CanExecute(object parameter)
         {
@@ -46,7 +50,7 @@ namespace StakeholderAnalysis.Visualization.Commands.ProjectExplorer
         {
             if (type == typeof(ProjectExplorerViewModel))
             {
-                return new ViewInfo("Projectgegevens", new ProjectExplorerViewModel(gui, viewManager), "pack://application:,,,/StakeholderAnalysis.Visualization;component/Resources/document.png", false);
+                return new ViewInfo("Projectgegevens", new ProjectExplorerViewModel(viewModelFactory, gui, viewManager), "pack://application:,,,/StakeholderAnalysis.Visualization;component/Resources/document.png", false);
             }
 
             if (type == typeof(OnionDiagramPropertiesViewModel))

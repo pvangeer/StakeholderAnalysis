@@ -1,4 +1,5 @@
-﻿using System.ComponentModel;
+﻿using System;
+using System.ComponentModel;
 using System.Linq;
 using System.Windows.Input;
 using StakeholderAnalysis.Data;
@@ -9,13 +10,13 @@ using StakeholderAnalysis.Visualization.ViewModels.OnionDiagramView;
 
 namespace StakeholderAnalysis.Visualization.ViewModels.ProjectExplorer
 {
-    public class ProjectExplorerOnionDiagramViewModel : NotifyPropertyChangedObservable, IProjectExplorerDiagramViewModel
+    public class ProjectExplorerOnionDiagramViewModel : ViewModelBase, IProjectExplorerDiagramViewModel
     {
         private readonly OnionDiagram diagram;
         private readonly Analysis analysis;
         private readonly ViewManager viewManager;
 
-        public ProjectExplorerOnionDiagramViewModel(Analysis analysis, OnionDiagram onionDiagram, ViewManager viewManager)
+        public ProjectExplorerOnionDiagramViewModel(ViewModelFactory factory, Analysis analysis, OnionDiagram onionDiagram, ViewManager viewManager) : base(factory)
         {
             this.viewManager = viewManager;
             this.analysis = analysis;
@@ -63,7 +64,8 @@ namespace StakeholderAnalysis.Visualization.ViewModels.ProjectExplorer
                 v.ViewModel is OnionDiagramViewModel diagramViewModel && diagramViewModel.IsViewModelFor(diagram));
             if (viewInfo == null)
             {
-                viewInfo = new ViewInfo(diagram.Name, new OnionDiagramViewModel(diagram),IconSourceString, true);
+                var onionDiagramViewModel = new OnionDiagramViewModel(ViewModelFactory, diagram);
+                viewInfo = new ViewInfo(diagram.Name, onionDiagramViewModel, IconSourceString, true);
                 viewManager.OpenView(viewInfo);
             }
             viewManager.BringToFront(viewInfo);

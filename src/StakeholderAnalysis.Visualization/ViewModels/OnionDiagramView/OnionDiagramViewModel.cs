@@ -1,24 +1,20 @@
-﻿using System.Collections.ObjectModel;
-using System.Collections.Specialized;
-using System.Linq;
-using System.Windows.Input;
-using StakeholderAnalysis.Data;
+﻿using System.Windows.Input;
 using StakeholderAnalysis.Data.OnionDiagrams;
 using StakeholderAnalysis.Visualization.Behaviors;
 using StakeholderAnalysis.Visualization.Commands;
-using StakeholderAnalysis.Visualization.ViewModels.Ribbon;
 
 namespace StakeholderAnalysis.Visualization.ViewModels.OnionDiagramView
 {
-    public class OnionDiagramViewModel: NotifyPropertyChangedObservable, ISelectionRegister
+    public class OnionDiagramViewModel: ViewModelBase, ISelectionRegister
     {
         private readonly OnionDiagram diagram;
         private object selectedObject = null;
 
-        public OnionDiagramViewModel(OnionDiagram onionDiagram)
+        public OnionDiagramViewModel(ViewModelFactory factory, OnionDiagram onionDiagram) : base(factory)
         {
             diagram = onionDiagram;
-            OnionDiagramDrawConnectionViewModel = new OnionDiagramDrawConnectionViewModel(onionDiagram);
+            OnionDiagramDrawConnectionViewModel = factory.CreateOnionDiagramDrawConnectionViewModel(onionDiagram);
+
             OnionDiagramStakeholdersViewModel = new OnionDiagramStakeholdersViewModel(onionDiagram, this, OnionDiagramDrawConnectionViewModel);
         }
 
@@ -31,28 +27,6 @@ namespace StakeholderAnalysis.Visualization.ViewModels.OnionDiagramView
         public ICommand GridClickedCommand => new ClearSelectionCommand(this);
 
         public OnionDiagramDrawConnectionViewModel OnionDiagramDrawConnectionViewModel { get; }
-
-        // TODO: Move below code to separate viewmodel for Ribbon (or toolwindow in future?)
-        public void RegisterConnectionGroupsCollectionChanged(NotifyCollectionChangedEventHandler handler)
-        {
-            if (diagram != null)
-            {
-                diagram.ConnectionGroups.CollectionChanged += handler;
-            }
-        }
-
-        public void UnRegisterConnectionGroupsCollectionChanged(NotifyCollectionChangedEventHandler handler)
-        {
-            if (diagram != null)
-            {
-                diagram.ConnectionGroups.CollectionChanged -= handler;
-            }
-        }
-
-        public ObservableCollection<ConnectionGroupViewModel> GetConnectionGroupsViewModels()
-        {
-            return new ObservableCollection<ConnectionGroupViewModel>(diagram.ConnectionGroups.Select(g => new ConnectionGroupViewModel(g)));
-        }
 
         public bool IsViewModelFor(OnionDiagram otherDiagram)
         {

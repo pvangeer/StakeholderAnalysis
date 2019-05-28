@@ -103,7 +103,6 @@
     <Compile Include="ViewModels\TwoAxisDiagrams\ForceFieldDiagramStakeholderViewModel.cs" />
     <Compile Include="ViewModels\OnionDiagramView\OnionDiagramStakeholderViewModel.cs" />
     <Compile Include="ViewModels\ProjectExplorer\IExpandableDiagramCollectionViewModel.cs" />
-    <Compile Include="ViewModels\Ribbon\RibbonStakeholderConnectionGroupsViewModel.cs" />
     <Compile Include="Properties\AssemblyInfo.cs">
       <SubType>Code</SubType>
     </Compile>
@@ -138,6 +137,8 @@
     <Compile Include="ViewModels\StakeholderViewModel.cs" />
     <Compile Include="ViewModels\TwoAxisDiagrams\PositionedStakeholderViewModel.cs" />
     <Compile Include="ViewModels\ViewManagerViewModel.cs" />
+    <Compile Include="ViewModels\ViewModelBase.cs" />
+    <Compile Include="ViewModels\ViewModelFactory.cs" />
     <Compile Include="ViewTemplateSelector.cs" />
     <EmbeddedResource Include="Properties\Resources.resx">
       <Generator>ResXFileCodeGenerator</Generator>

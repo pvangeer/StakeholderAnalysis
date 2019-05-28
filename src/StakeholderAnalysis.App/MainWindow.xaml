@@ -10,6 +10,8 @@
                      xmlns:controls="clr-namespace:StakeholderAnalysis.Visualization.Controls;assembly=StakeholderAnalysis.Visualization"
                      xmlns:converters="clr-namespace:StakeholderAnalysis.Visualization.Converters;assembly=StakeholderAnalysis.Visualization"
                      xmlns:gui="clr-namespace:StakeholderAnalysis.Gui;assembly=StakeholderAnalysis.Gui"
+                     xmlns:ribbon="clr-namespace:StakeholderAnalysis.Visualization.ViewModels.Ribbon;assembly=StakeholderAnalysis.Visualization"
+                     xmlns:onionDiagrams="clr-namespace:StakeholderAnalysis.Data.OnionDiagrams;assembly=StakeholderAnalysis.Data"
                      mc:Ignorable="d"
                      Closing="MainWindowClosing"
                      Loaded="MainWindow_OnLoaded"
@@ -148,10 +150,21 @@
                 </fluent:RibbonGroupBox>
 
                 <fluent:RibbonGroupBox Header="Verbindingsgroepen">
-                    <controls:ConnectionGroupsListBoxControl
-                        Width="250"
-                        Margin="0,2,0,0"
-                        StakeholderConnectionsList="{Binding RibbonViewModel.RibbonStakeholderConnectionGroupsViewModel.StakeholderConnectionGroups}" />
+                    <fluent:ComboBox 
+                        IsEditable="False"
+                        ItemsSource="{Binding RibbonViewModel.StakeholderConnectionGroups}"
+                        SelectedItem="{Binding RibbonViewModel.SelectedStakeholderConnectionGroup}">
+                        <ComboBox.ItemTemplate>
+                            <DataTemplate DataType="onionDiagrams:StakeholderConnectionGroup">
+                                <Border BorderThickness="0 0 0 3">
+                                    <Border.BorderBrush>
+                                        <SolidColorBrush Color="{Binding Color}"/>
+                                    </Border.BorderBrush>
+                                    <TextBlock Text="{Binding Name}"/>
+                                </Border>
+                            </DataTemplate>
+                        </ComboBox.ItemTemplate>
+                    </fluent:ComboBox>
                 </fluent:RibbonGroupBox>
             </fluent:RibbonTabItem>
         </fluent:Ribbon>
