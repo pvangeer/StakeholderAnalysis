@@ -51,6 +51,10 @@ namespace StakeholderAnalysis.Visualization.ViewModels.Ribbon
                 stakeholderConnectionGroupSelection.PropertyChanged -= StakeholderConnectionGroupSelectionPropertyChanged;
             }
 
+            stakeholderConnectionGroupSelection = null;
+            OnPropertyChanged(nameof(StakeholderConnectionGroups));
+            OnPropertyChanged(nameof(SelectedStakeholderConnectionGroup));
+            
             stakeholderConnectionGroupSelection =
                 gui?.SelectedStakeholderConnectionGroups.FirstOrDefault(g => g.OnionDiagram == selectedOnionDiagram);
 
@@ -59,7 +63,6 @@ namespace StakeholderAnalysis.Visualization.ViewModels.Ribbon
                 stakeholderConnectionGroupSelection.PropertyChanged += StakeholderConnectionGroupSelectionPropertyChanged;
             }
 
-            OnPropertyChanged(nameof(selectedOnionDiagram));
             OnPropertyChanged(nameof(RibbonSelectedOnionDiagramViewModel));
             OnPropertyChanged(nameof(StakeholderConnectionGroups));
             OnPropertyChanged(nameof(SelectedStakeholderConnectionGroup));
