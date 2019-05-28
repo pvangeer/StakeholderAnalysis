@@ -11,8 +11,8 @@
                 ItemsSource="{Binding Stakeholders}"
                 AutoGenerateColumns="False"
                 SelectionMode="Extended"
-                CanUserAddRows="False"
-                CanUserDeleteRows="False"
+                CanUserAddRows="True"
+                CanUserDeleteRows="True"
                 SelectionUnit="CellOrRowHeader">
                 <DataGrid.Columns>
                     <DataGridTextColumn Header="Naam" Binding="{Binding Name, Mode=TwoWay}" />

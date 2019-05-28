@@ -9,7 +9,9 @@ namespace StakeholderAnalysis.Visualization.ViewModels
     public class StakeholderViewModel : NotifyPropertyChangedObservable, IDropHandler
     {
         protected readonly ISelectionRegister SelectionRegister;
-        private IDrawConnectionHandler drawConnectionHandler;
+        private readonly IDrawConnectionHandler drawConnectionHandler;
+
+        public StakeholderViewModel() : this(new Stakeholder(),null,null) { }
 
         public StakeholderViewModel(Stakeholder stakeholder, ISelectionRegister selectionRegister, IDrawConnectionHandler drawConnectionHandler)
         {
