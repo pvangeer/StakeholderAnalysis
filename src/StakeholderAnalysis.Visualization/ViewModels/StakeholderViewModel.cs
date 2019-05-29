@@ -39,7 +39,18 @@ namespace StakeholderAnalysis.Visualization.ViewModels
             }
         }
 
-        public StakeholderType Type => Stakeholder.Type;
+        public StakeholderType Type
+        {
+            get => Stakeholder.Type;
+            set
+            {
+                if (Stakeholder != null)
+                {
+                    Stakeholder.Type = value;
+                    Stakeholder.OnPropertyChanged(nameof(Stakeholder.Type));
+                }
+            }
+        }
 
         public bool IsSelectedStakeholder => SelectionRegister != null && SelectionRegister.IsSelected(Stakeholder);
 

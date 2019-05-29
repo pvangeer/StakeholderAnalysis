@@ -33,7 +33,24 @@ namespace StakeholderAnalysis.Visualization.Converters
 
         public object ConvertBack(object value, Type targetType, object parameter, CultureInfo culture)
         {
-            throw new NotImplementedException();
+            var stakeholderTypeString = value?.ToString();
+            switch (stakeholderTypeString)
+            {
+                case "Stakeholdergroep":
+                    return StakeholderType.Stakeholdergroep;
+                case "Ingenieursbureau":
+                    return StakeholderType.Ingenieursbureaus;
+                case "Kennisinstituut":
+                    return StakeholderType.Kennisinstituut;
+                case "Rijksoverheid":
+                    return StakeholderType.Rijksoverheid;
+                case "Waterkeringbeheerder":
+                    return StakeholderType.Waterkeringbeheerder;
+                case "Overig":
+                    return StakeholderType.Overig;
+            }
+
+            return value;
         }
     }
 }

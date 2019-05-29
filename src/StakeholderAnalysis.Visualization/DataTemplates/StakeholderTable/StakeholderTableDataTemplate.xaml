@@ -1,7 +1,9 @@
 ﻿<ResourceDictionary xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
                     xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
                     xmlns:converters="clr-namespace:StakeholderAnalysis.Visualization.Converters"
-                    xmlns:stakeholderTableView="clr-namespace:StakeholderAnalysis.Visualization.ViewModels.StakeholderTableView">
+                    xmlns:stakeholderTableView="clr-namespace:StakeholderAnalysis.Visualization.ViewModels.StakeholderTableView"
+                    xmlns:sys="clr-namespace:System;assembly=mscorlib"
+                    xmlns:data="clr-namespace:StakeholderAnalysis.Data;assembly=StakeholderAnalysis.Data">
 
     <converters:StakeholderTypeToStringConverter x:Key="StakeholderTypeToStringConverter" />
 
@@ -14,9 +16,22 @@
                 CanUserAddRows="True"
                 CanUserDeleteRows="True"
                 SelectionUnit="CellOrRowHeader">
+                <DataGrid.Resources>
+                    <ObjectDataProvider x:Key="stakeholderTypeEnum"
+                                        MethodName="GetValues" 
+                                        ObjectType="{x:Type sys:Enum}">
+                        <ObjectDataProvider.MethodParameters>
+                            <x:Type TypeName="data:StakeholderType" />
+                        </ObjectDataProvider.MethodParameters>
+                    </ObjectDataProvider>
+                </DataGrid.Resources>
                 <DataGrid.Columns>
                     <DataGridTextColumn Header="Naam" Binding="{Binding Name, Mode=TwoWay}" />
-                    <DataGridTextColumn Header="Type" Binding="{Binding Type, Converter={StaticResource StakeholderTypeToStringConverter}, Mode=OneWay}" />
+                    <DataGridComboBoxColumn 
+                        Header="Type (combo)" 
+                        ItemsSource="{Binding Source={StaticResource stakeholderTypeEnum}, Mode=OneWay}" 
+                        SelectedItemBinding="{Binding Type, UpdateSourceTrigger=PropertyChanged}" 
+                        TextBinding="{Binding Type, Converter={StaticResource StakeholderTypeToStringConverter}, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"/>
                 </DataGrid.Columns>
             </DataGrid>
         </Grid>
