@@ -1,5 +1,6 @@
 ﻿using System;
 using System.ComponentModel;
+using System.Linq;
 using System.Windows;
 using Microsoft.Win32;
 using StakeholderAnalysis.Data;
@@ -28,6 +29,11 @@ namespace StakeholderAnalysis.Gui
         private void CreateNewProject()
         {
             storageSqLite.UnstageProject();
+            foreach (var viewInfo in gui.ViewManager.Views.ToArray())
+            {
+                gui.ViewManager.CloseView(viewInfo);
+            }
+
             gui.ProjectFilePath = "";
             
             gui.Analysis = new Analysis();
@@ -54,6 +60,11 @@ namespace StakeholderAnalysis.Gui
 
             if ((bool) dialog.ShowDialog(Application.Current.MainWindow))
             {
+                foreach (var viewInfo in gui.ViewManager.Views.ToArray())
+                {
+                    gui.ViewManager.CloseView(viewInfo);
+                }
+
                 ChangeState(StorageState.Busy);
 
                 var worker = new BackgroundWorker();
