@@ -63,6 +63,7 @@ namespace StakeholderAnalysis.App
             var stowaStakeholder = AddStakeholderToAnalysis(analysis, "STOWA", StakeholderType.Stakeholdergroep);
 
             // Waterschappen
+            var waterAuthoritiesStakeholder = AddStakeholderToAnalysis(analysis, "Waterkeringbeheerders", StakeholderType.Waterkeringbeheerder);
             var hhnkStakeholder = AddStakeholderToAnalysis(analysis, "Hollands Noorderkwartier", StakeholderType.Waterkeringbeheerder);
             var scheldeStromenStakeholder = AddStakeholderToAnalysis(analysis, "Scheldestromen", StakeholderType.Waterkeringbeheerder);
             var wetterskipStakeholder = AddStakeholderToAnalysis(analysis, "Wetterskip", StakeholderType.Waterkeringbeheerder);
@@ -85,6 +86,7 @@ namespace StakeholderAnalysis.App
             var srijStakeholder = AddStakeholderToAnalysis(analysis, "Stichtse Rijnlanden", StakeholderType.Waterkeringbeheerder);
             var hhskStakeholder = AddStakeholderToAnalysis(analysis, "Schieland en de krimpenerwaard", StakeholderType.Waterkeringbeheerder);
 
+            var allMarkedPartiesStakeholder = AddStakeholderToAnalysis(analysis, "Marktpartijen", StakeholderType.Ingenieursbureaus);
             var hkvStakeholder = AddStakeholderToAnalysis(analysis, "HKV", StakeholderType.Ingenieursbureaus);
             var rhdhvStakeholder = AddStakeholderToAnalysis(analysis, "RHDHV", StakeholderType.Ingenieursbureaus);
             var fugroStakeholder = AddStakeholderToAnalysis(analysis, "Fugro", StakeholderType.Ingenieursbureaus);
@@ -367,6 +369,51 @@ namespace StakeholderAnalysis.App
             forceFieldDiagram.Stakeholders.Add(new ForceFieldDiagramStakeholder(bzimStakeholder, 0.54, 0.18));
             forceFieldDiagram.Stakeholders.Add(new ForceFieldDiagramStakeholder(zzpersStakeholder, 0.6, 0.5));
             forceFieldDiagram.Stakeholders.Add(new ForceFieldDiagramStakeholder(boskalisStakeholder, 0.6, 0.5));
+
+            forceFieldDiagram.Stakeholders.Add(new ForceFieldDiagramStakeholder(ihwStakeholder, 0.3, 0.5));
+            forceFieldDiagram.Stakeholders.Add(new ForceFieldDiagramStakeholder(waterschapshuisStakeholder, 0.25, 0.4));
+            forceFieldDiagram.Stakeholders.Add(new ForceFieldDiagramStakeholder(technolutionStakeholder, 0.1, 0.3));
+            forceFieldDiagram.Stakeholders.Add(new ForceFieldDiagramStakeholder(vortechStakeholder, 0.2, 0.5));
+            forceFieldDiagram.Stakeholders.Add(new ForceFieldDiagramStakeholder(altenStakeholder, 0.14, 0.7));
+
+            forceFieldDiagram.Stakeholders.Add(new ForceFieldDiagramStakeholder(tudStakeholder, 0.25, 0.45));
+            forceFieldDiagram.Stakeholders.Add(new ForceFieldDiagramStakeholder(tutStakeholder, 0.25, 0.45));
+            forceFieldDiagram.Stakeholders.Add(new ForceFieldDiagramStakeholder(vuStakeholder, 0.16, 0.15));
+            forceFieldDiagram.Stakeholders.Add(new ForceFieldDiagramStakeholder(uuStakeholder, 0.15, 0.17));
+            forceFieldDiagram.Stakeholders.Add(new ForceFieldDiagramStakeholder(tnoStakeholder, 0.23, 0.56));
+            forceFieldDiagram.Stakeholders.Add(new ForceFieldDiagramStakeholder(knmiStakeholder, 0.6, 0.5));
+            forceFieldDiagram.Stakeholders.Add(new ForceFieldDiagramStakeholder(alterraStakeholder, 0.6, 0.5));
+            #endregion
+
+            #region Add Force field diagram 2
+
+            forceFieldDiagram = new ForceFieldDiagram("BOI-krachtenveld (simpel)");
+            analysis.ForceFieldDiagrams.Add(forceFieldDiagram);
+
+            forceFieldDiagram.Stakeholders.Add(new ForceFieldDiagramStakeholder(wlvStakeholder, 0.9, 1.0));
+            forceFieldDiagram.Stakeholders.Add(new ForceFieldDiagramStakeholder(dgwbStakeholder, 0.94, 1.0));
+            forceFieldDiagram.Stakeholders.Add(new ForceFieldDiagramStakeholder(deltaresStakeholder, 0.9, 0.9));
+            forceFieldDiagram.Stakeholders.Add(new ForceFieldDiagramStakeholder(markedStakeholder, 0.8, 0.8));
+            forceFieldDiagram.Stakeholders.Add(new ForceFieldDiagramStakeholder(kkpStakeholder, 1.0, 0.5));
+            forceFieldDiagram.Stakeholders.Add(new ForceFieldDiagramStakeholder(enwStakeholder, 0.6, 0.4));
+            forceFieldDiagram.Stakeholders.Add(new ForceFieldDiagramStakeholder(uvwStakeholder, 0.9, 0.6));
+            forceFieldDiagram.Stakeholders.Add(new ForceFieldDiagramStakeholder(wwkStakeholder, 0.85, 0.55));
+            forceFieldDiagram.Stakeholders.Add(new ForceFieldDiagramStakeholder(cwkStakeholder, 0.85, 0.5));
+            forceFieldDiagram.Stakeholders.Add(new ForceFieldDiagramStakeholder(aioStakeholder, 0.7, 0.7));
+            forceFieldDiagram.Stakeholders.Add(new ForceFieldDiagramStakeholder(dkiStakeholder, 0.6, 0.7));
+            forceFieldDiagram.Stakeholders.Add(new ForceFieldDiagramStakeholder(nlIngenieursStakeholder, 0.1, 0.2));
+            forceFieldDiagram.Stakeholders.Add(new ForceFieldDiagramStakeholder(hwbpStakeholder, 0.5, 0.55));
+
+            forceFieldDiagram.Stakeholders.Add(new ForceFieldDiagramStakeholder(iltStakeholder, 0.8, 0.5));
+            forceFieldDiagram.Stakeholders.Add(new ForceFieldDiagramStakeholder(wateropleidingenStakeholder, 0.6, 0.2));
+            forceFieldDiagram.Stakeholders.Add(new ForceFieldDiagramStakeholder(kvkStakeholder, 0.4, 0.6));
+
+            forceFieldDiagram.Stakeholders.Add(new ForceFieldDiagramStakeholder(themagroepKustStakeholder, 0.9, 0.3));
+            forceFieldDiagram.Stakeholders.Add(new ForceFieldDiagramStakeholder(stowaStakeholder, 0.7, 0.3));
+
+            forceFieldDiagram.Stakeholders.Add(new ForceFieldDiagramStakeholder(waterAuthoritiesStakeholder, 0.8, 0.55));
+
+            forceFieldDiagram.Stakeholders.Add(new ForceFieldDiagramStakeholder(allMarkedPartiesStakeholder, 0.7, 0.65));
 
             forceFieldDiagram.Stakeholders.Add(new ForceFieldDiagramStakeholder(ihwStakeholder, 0.3, 0.5));
             forceFieldDiagram.Stakeholders.Add(new ForceFieldDiagramStakeholder(waterschapshuisStakeholder, 0.25, 0.4));
