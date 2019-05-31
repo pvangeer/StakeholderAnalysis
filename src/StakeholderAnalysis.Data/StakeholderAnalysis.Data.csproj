@@ -33,6 +33,7 @@
     <Compile Include="Stakeholder.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="OnionDiagrams\StakeholderConnection.cs" />
+    <Compile Include="StakeholderIconType.cs" />
     <Compile Include="StakeholderType.cs" />
   </ItemGroup>
   <ItemGroup>

@@ -6,8 +6,6 @@
                     xmlns:visualization="clr-namespace:StakeholderAnalysis.Visualization"
                     xmlns:behaviors="clr-namespace:StakeholderAnalysis.Visualization.Behaviors">
 
-    <converters:TypeToBrushConverter x:Key="TypeToBrushConverter" />
-
     <DataTemplate x:Key="StakeholderPopupDataTemplate" DataType="viewModels:StakeholderViewModel">
         <Border Background="AntiqueWhite" BorderBrush="Gray" BorderThickness="1">
             <Grid Width="300" Height="400">
@@ -15,6 +13,8 @@
             </Grid>
         </Border>
     </DataTemplate>
+
+    <converters:IconTypeToIconSourceConverter x:Key="IconTypeToIconSourceConverter" />
 
     <DataTemplate x:Key="StakeholderDataTemplate" DataType="viewModels:StakeholderViewModel">
         <Border CornerRadius="1" behaviors:DragOnCanvasBehavior.DropHandler="{Binding }" IsHitTestVisible="True">
@@ -44,7 +44,10 @@
                     </Style.Triggers>
                 </Style>
             </Border.Style>
-            <Grid Background="{Binding Type, Converter={StaticResource TypeToBrushConverter}}" IsHitTestVisible="True">
+            <Grid IsHitTestVisible="True">
+                <Grid.Background>
+                    <SolidColorBrush Color="{Binding Type.Color}"/>
+                </Grid.Background>
                 <Grid.RowDefinitions>
                     <RowDefinition Height="Auto" />
                     <RowDefinition Height="Auto" />
@@ -52,43 +55,13 @@
 
                 <TextBlock Grid.Row="0" Text="{Binding Name}" TextAlignment="Center" HorizontalAlignment="Center"
                            Margin="1" MaxWidth="90" TextWrapping="Wrap" IsHitTestVisible="False"/>
-                <Image Grid.Row="1" Margin="2" Width="30" Height="30" IsHitTestVisible="False">
-                    <Image.Style>
-                        <Style TargetType="{x:Type Image}">
-                            <Style.Triggers>
-                                <DataTrigger Binding="{Binding Type}"
-                                             Value="{x:Static data:StakeholderType.Waterkeringbeheerder}">
-                                    <Setter Property="Source"
-                                            Value="pack://application:,,,/StakeholderAnalysis.Visualization;component/Resources/Waterschap.png" />
-                                </DataTrigger>
-                                <DataTrigger Binding="{Binding Type}"
-                                             Value="{x:Static data:StakeholderType.Kennisinstituut}">
-                                    <Setter Property="Source"
-                                            Value="pack://application:,,,/StakeholderAnalysis.Visualization;component/Resources/Knowledge.png" />
-                                </DataTrigger>
-                                <DataTrigger Binding="{Binding Type}"
-                                             Value="{x:Static data:StakeholderType.Rijksoverheid}">
-                                    <Setter Property="Source"
-                                            Value="pack://application:,,,/StakeholderAnalysis.Visualization;component/Resources/Pak.png" />
-                                </DataTrigger>
-                                <DataTrigger Binding="{Binding Type}"
-                                             Value="{x:Static data:StakeholderType.Stakeholdergroep}">
-                                    <Setter Property="Source"
-                                            Value="pack://application:,,,/StakeholderAnalysis.Visualization;component/Resources/Group.png" />
-                                </DataTrigger>
-                                <DataTrigger Binding="{Binding Type}"
-                                             Value="{x:Static data:StakeholderType.Ingenieursbureaus}">
-                                    <Setter Property="Source"
-                                            Value="pack://application:,,,/StakeholderAnalysis.Visualization;component/Resources/euro.png" />
-                                </DataTrigger>
-                                <DataTrigger Binding="{Binding Type}" Value="{x:Static data:StakeholderType.Overig}">
-                                    <Setter Property="Source"
-                                            Value="pack://application:,,,/StakeholderAnalysis.Visualization;component/Resources/other.png" />
-                                </DataTrigger>
-                            </Style.Triggers>
-                        </Style>
-                    </Image.Style>
-                </Image>
+                <Image 
+                    Grid.Row="1" 
+                    Margin="2" 
+                    Width="30" 
+                    Height="30" 
+                    IsHitTestVisible="False" 
+                    Source="{Binding Type.IconType, Converter={StaticResource IconTypeToIconSourceConverter}}"/>
                 <Popup Name="popLogFile"
                        PlacementTarget="{Binding ElementName=btnLogFile}" Placement="MousePoint"
                        HorizontalOffset="0" VerticalOffset="0"

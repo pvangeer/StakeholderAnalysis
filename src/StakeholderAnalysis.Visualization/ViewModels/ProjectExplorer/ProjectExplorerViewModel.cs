@@ -36,6 +36,6 @@ namespace StakeholderAnalysis.Visualization.ViewModels.ProjectExplorer
 
         public ProjectExplorerAttitudeImpactDiagramsViewModel AttitudeImpactDiagramsViewModel => new ProjectExplorerAttitudeImpactDiagramsViewModel(gui.Analysis, viewManager);
 
-        public ProjectExplorerStakeholderOverviewTableViewModel StakeholderOverviewTableViewModel => new ProjectExplorerStakeholderOverviewTableViewModel(gui.Analysis, viewManager);
+        public ProjectExplorerStakeholderOverviewTableViewModel StakeholderOverviewTableViewModel => new ProjectExplorerStakeholderOverviewTableViewModel(ViewModelFactory, gui.Analysis, viewManager);
     }
 }

@@ -21,7 +21,8 @@ namespace StakeholderAnalysis.Storage.Create
             var entity = new StakeholderEntity
             {
                 Name = stakeholder.Name.DeepClone(),
-                Type = Convert.ToByte(stakeholder.Type)
+                // TODO: Fix storage
+                //Type = Convert.ToByte(stakeholder.Type)
             };
 
             registry.Register(stakeholder, entity);

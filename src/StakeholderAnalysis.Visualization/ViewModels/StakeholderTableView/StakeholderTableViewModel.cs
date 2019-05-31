@@ -5,11 +5,11 @@ using StakeholderAnalysis.Data;
 
 namespace StakeholderAnalysis.Visualization.ViewModels.StakeholderTableView
 {
-    public class StakeholderTableViewModel
+    public class StakeholderTableViewModel : ViewModelBase
     {
         private readonly Analysis analysis;
 
-        public StakeholderTableViewModel(Analysis analysis)
+        public StakeholderTableViewModel(ViewModelFactory factory, Analysis analysis) : base(factory)
         {
             this.analysis = analysis;
             if (analysis != null)
@@ -21,6 +21,9 @@ namespace StakeholderAnalysis.Visualization.ViewModels.StakeholderTableView
         }
 
         public ObservableCollection<StakeholderViewModel> Stakeholders { get; }
+
+        public ObservableCollection<StakeholderType> StakeholderTypes => analysis.StakeholderTypes;
+
 
         private void StakeholderViewModelsCollectionChanged(object sender, NotifyCollectionChangedEventArgs e)
         {

@@ -1,14 +1,9 @@
 ﻿<ResourceDictionary xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
                     xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
-                    xmlns:converters="clr-namespace:StakeholderAnalysis.Visualization.Converters"
-                    xmlns:stakeholderTableView="clr-namespace:StakeholderAnalysis.Visualization.ViewModels.StakeholderTableView"
-                    xmlns:sys="clr-namespace:System;assembly=mscorlib"
-                    xmlns:data="clr-namespace:StakeholderAnalysis.Data;assembly=StakeholderAnalysis.Data">
-
-    <converters:StakeholderTypeToStringConverter x:Key="StakeholderTypeToStringConverter" />
+                    xmlns:stakeholderTableView="clr-namespace:StakeholderAnalysis.Visualization.ViewModels.StakeholderTableView">
 
     <DataTemplate x:Key="StakeholderTableDataTemplate" DataType="stakeholderTableView:StakeholderTableViewModel">
-        <Grid>
+        <Grid Name="TableGrid" DataContext="{Binding}">
             <DataGrid
                 ItemsSource="{Binding Stakeholders}"
                 AutoGenerateColumns="False"
@@ -16,22 +11,23 @@
                 CanUserAddRows="True"
                 CanUserDeleteRows="True"
                 SelectionUnit="CellOrRowHeader">
-                <DataGrid.Resources>
-                    <ObjectDataProvider x:Key="stakeholderTypeEnum"
-                                        MethodName="GetValues" 
-                                        ObjectType="{x:Type sys:Enum}">
-                        <ObjectDataProvider.MethodParameters>
-                            <x:Type TypeName="data:StakeholderType" />
-                        </ObjectDataProvider.MethodParameters>
-                    </ObjectDataProvider>
-                </DataGrid.Resources>
                 <DataGrid.Columns>
                     <DataGridTextColumn Header="Naam" Binding="{Binding Name, Mode=TwoWay}" />
                     <DataGridComboBoxColumn 
-                        Header="Type (combo)" 
-                        ItemsSource="{Binding Source={StaticResource stakeholderTypeEnum}, Mode=OneWay}" 
-                        SelectedItemBinding="{Binding Type, UpdateSourceTrigger=PropertyChanged}" 
-                        TextBinding="{Binding Type, Converter={StaticResource StakeholderTypeToStringConverter}, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"/>
+                        Header="Type" 
+                        DisplayMemberPath="Name"
+                        SelectedItemBinding="{Binding Type}">
+                        <DataGridComboBoxColumn.ElementStyle>
+                            <Style TargetType="ComboBox">
+                                <Setter Property="ItemsSource" Value="{Binding ElementName=TableGrid, Path=DataContext.StakeholderTypes}"/>
+                            </Style>
+                        </DataGridComboBoxColumn.ElementStyle>
+                        <DataGridComboBoxColumn.EditingElementStyle>
+                            <Style TargetType="ComboBox">
+                                <Setter Property="ItemsSource" Value="{Binding ElementName=TableGrid, Path=DataContext.StakeholderTypes}"/>
+                            </Style>
+                        </DataGridComboBoxColumn.EditingElementStyle>
+                    </DataGridComboBoxColumn>
                 </DataGrid.Columns>
             </DataGrid>
         </Grid>

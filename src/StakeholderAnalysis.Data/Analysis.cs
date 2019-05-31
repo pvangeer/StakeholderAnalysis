@@ -13,6 +13,7 @@ namespace StakeholderAnalysis.Data
             ForceFieldDiagrams = new ObservableCollection<ForceFieldDiagram>();
             AttitudeImpactDiagrams = new ObservableCollection<AttitudeImpactDiagram>();
             Stakeholders = stakeholders ?? new ObservableCollection<Stakeholder>();
+            StakeholderTypes = new ObservableCollection<StakeholderType>();
         }
 
         public ObservableCollection<OnionDiagram> OnionDiagrams { get; }
@@ -22,5 +23,7 @@ namespace StakeholderAnalysis.Data
         public ObservableCollection<AttitudeImpactDiagram> AttitudeImpactDiagrams { get; }
 
         public ObservableCollection<Stakeholder> Stakeholders { get; }
+
+        public ObservableCollection<StakeholderType> StakeholderTypes { get; }
     }
 }

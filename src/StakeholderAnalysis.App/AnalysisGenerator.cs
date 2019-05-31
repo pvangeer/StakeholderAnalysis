@@ -33,101 +33,108 @@ namespace StakeholderAnalysis.App
 
             #region Add stakeholders
             //Team
-            var wlvStakeholder = AddStakeholderToAnalysis(analysis, "WVL", StakeholderType.Rijksoverheid);
-            var dgwbStakeholder = AddStakeholderToAnalysis(analysis, "DGWB", StakeholderType.Rijksoverheid);
-            var deltaresStakeholder = AddStakeholderToAnalysis(analysis, "Deltares", StakeholderType.Kennisinstituut);
-            var markedStakeholder = AddStakeholderToAnalysis(analysis, "Ontwikkelaars (overig)", StakeholderType.Kennisinstituut);
+            var rijksoverheidStakeholderType = AddStakeholderType(analysis, "Rijksoverheid", StakeholderIconType.Rijksoverheid, Colors.MistyRose);
+            var knowledgeInstituteStakeholderType = AddStakeholderType(analysis, "Kennisinstituut", StakeholderIconType.Kennisinstituut, Colors.DarkSeaGreen);
+            var stakeholderGroupStakeholderType = AddStakeholderType(analysis, "Stakeholdergroep", StakeholderIconType.Stakeholdergroep, Colors.DarkGray);
+            var miscStakeholderType = AddStakeholderType(analysis, "Overig", StakeholderIconType.Overig, Colors.Chocolate);
+            var waterDefenceMaintainerStakeholderType = AddStakeholderType(analysis, "Waterkeringbeheerder", StakeholderIconType.Waterkeringbeheerder, Colors.AliceBlue);
+            var marketStakeholderType = AddStakeholderType(analysis, "Ingenieursbureau", StakeholderIconType.Ingenieursbureaus, Colors.CadetBlue);
+
+            var wlvStakeholder = AddStakeholderToAnalysis(analysis, "WVL", rijksoverheidStakeholderType);
+            var dgwbStakeholder = AddStakeholderToAnalysis(analysis, "DGWB", rijksoverheidStakeholderType);
+            var deltaresStakeholder = AddStakeholderToAnalysis(analysis, "Deltares", knowledgeInstituteStakeholderType);
+            var markedStakeholder = AddStakeholderToAnalysis(analysis, "Ontwikkelaars (overig)", knowledgeInstituteStakeholderType);
             
             // Groepen
-            var kkpStakeholder = AddStakeholderToAnalysis(analysis, "KKP", StakeholderType.Stakeholdergroep);
-            var enwStakeholder = AddStakeholderToAnalysis(analysis, "ENW", StakeholderType.Stakeholdergroep);
-            var enwCoastStakeholder = AddStakeholderToAnalysis(analysis, "ENW-Kust", StakeholderType.Stakeholdergroep);
-            var enwRiversStakeholder = AddStakeholderToAnalysis(analysis, "ENW-Rivieren", StakeholderType.Stakeholdergroep);
-            var enwTechnicStakeholder = AddStakeholderToAnalysis(analysis, "ENW-Techniek", StakeholderType.Stakeholdergroep);
-            var enwSafetyStakeholder = AddStakeholderToAnalysis(analysis, "ENW-Veiligheid", StakeholderType.Stakeholdergroep);
+            var kkpStakeholder = AddStakeholderToAnalysis(analysis, "KKP", stakeholderGroupStakeholderType);
+            var enwStakeholder = AddStakeholderToAnalysis(analysis, "ENW", stakeholderGroupStakeholderType);
+            var enwCoastStakeholder = AddStakeholderToAnalysis(analysis, "ENW-Kust", stakeholderGroupStakeholderType);
+            var enwRiversStakeholder = AddStakeholderToAnalysis(analysis, "ENW-Rivieren", stakeholderGroupStakeholderType);
+            var enwTechnicStakeholder = AddStakeholderToAnalysis(analysis, "ENW-Techniek", stakeholderGroupStakeholderType);
+            var enwSafetyStakeholder = AddStakeholderToAnalysis(analysis, "ENW-Veiligheid", stakeholderGroupStakeholderType);
 
-            var uvwStakeholder = AddStakeholderToAnalysis(analysis, "UvW", StakeholderType.Stakeholdergroep);
-            var wwkStakeholder = AddStakeholderToAnalysis(analysis, "WWK", StakeholderType.Stakeholdergroep);
-            var cwkStakeholder = AddStakeholderToAnalysis(analysis, "CWK", StakeholderType.Stakeholdergroep);
-            var aioStakeholder = AddStakeholderToAnalysis(analysis, "AIO", StakeholderType.Stakeholdergroep);
-            var dkiStakeholder = AddStakeholderToAnalysis(analysis, "DKI", StakeholderType.Stakeholdergroep);
-            var nlIngenieursStakeholder = AddStakeholderToAnalysis(analysis, "NL-ingenieurs", StakeholderType.Stakeholdergroep);
-            var hwbpStakeholder = AddStakeholderToAnalysis(analysis, "HWBP", StakeholderType.Overig);
+            var uvwStakeholder = AddStakeholderToAnalysis(analysis, "UvW", stakeholderGroupStakeholderType);
+            var wwkStakeholder = AddStakeholderToAnalysis(analysis, "WWK", stakeholderGroupStakeholderType);
+            var cwkStakeholder = AddStakeholderToAnalysis(analysis, "CWK", stakeholderGroupStakeholderType);
+            var aioStakeholder = AddStakeholderToAnalysis(analysis, "AIO", stakeholderGroupStakeholderType);
+            var dkiStakeholder = AddStakeholderToAnalysis(analysis, "DKI", stakeholderGroupStakeholderType);
+            var nlIngenieursStakeholder = AddStakeholderToAnalysis(analysis, "NL-ingenieurs", stakeholderGroupStakeholderType);
+            var hwbpStakeholder = AddStakeholderToAnalysis(analysis, "HWBP", miscStakeholderType);
 
             // kpr, POVs
-            var iltStakeholder = AddStakeholderToAnalysis(analysis, "ILT", StakeholderType.Rijksoverheid);
-            var wateropleidingenStakeholder = AddStakeholderToAnalysis(analysis, "Water- opleidingen", StakeholderType.Overig);
-            var kvkStakeholder = AddStakeholderToAnalysis(analysis, "Kennis voor keringen", StakeholderType.Kennisinstituut);
+            var iltStakeholder = AddStakeholderToAnalysis(analysis, "ILT", rijksoverheidStakeholderType);
+            var wateropleidingenStakeholder = AddStakeholderToAnalysis(analysis, "Water- opleidingen", miscStakeholderType);
+            var kvkStakeholder = AddStakeholderToAnalysis(analysis, "Kennis voor keringen", knowledgeInstituteStakeholderType);
 
-            var themagroepKustStakeholder = AddStakeholderToAnalysis(analysis, "Themagroep Kust", StakeholderType.Stakeholdergroep);
-            var stowaStakeholder = AddStakeholderToAnalysis(analysis, "STOWA", StakeholderType.Stakeholdergroep);
+            var themagroepKustStakeholder = AddStakeholderToAnalysis(analysis, "Themagroep Kust", stakeholderGroupStakeholderType);
+            var stowaStakeholder = AddStakeholderToAnalysis(analysis, "STOWA", stakeholderGroupStakeholderType);
 
             // Waterschappen
-            var waterAuthoritiesStakeholder = AddStakeholderToAnalysis(analysis, "Waterkeringbeheerders", StakeholderType.Waterkeringbeheerder);
-            var hhnkStakeholder = AddStakeholderToAnalysis(analysis, "Hollands Noorderkwartier", StakeholderType.Waterkeringbeheerder);
-            var scheldeStromenStakeholder = AddStakeholderToAnalysis(analysis, "Scheldestromen", StakeholderType.Waterkeringbeheerder);
-            var wetterskipStakeholder = AddStakeholderToAnalysis(analysis, "Wetterskip", StakeholderType.Waterkeringbeheerder);
-            var rijnlandStakeholder = AddStakeholderToAnalysis(analysis, "Rijnland", StakeholderType.Waterkeringbeheerder);
-            var delflandStakeholder = AddStakeholderToAnalysis(analysis, "Delfland", StakeholderType.Waterkeringbeheerder);
-            var hollandseDeltaStakeholder = AddStakeholderToAnalysis(analysis, "Hollandse Delta", StakeholderType.Waterkeringbeheerder);
-            var rwsZenDStakeholder = AddStakeholderToAnalysis(analysis, "RWS - Z&D", StakeholderType.Waterkeringbeheerder);
-            var rwsNNStakeholder = AddStakeholderToAnalysis(analysis, "RWS - NN", StakeholderType.Waterkeringbeheerder);
-            var nzvStakeholder = AddStakeholderToAnalysis(analysis, "Noordezijlvest", StakeholderType.Waterkeringbeheerder);
-            var henaStakeholder = AddStakeholderToAnalysis(analysis, "Hunze en Aa's", StakeholderType.Waterkeringbeheerder);
-            var wdodStakeholder = AddStakeholderToAnalysis(analysis, "Drents Overijsselse Delta", StakeholderType.Waterkeringbeheerder);
-            var zzlStakeholder = AddStakeholderToAnalysis(analysis, "Zuiderzeeland", StakeholderType.Waterkeringbeheerder);
-            var agenvStakeholder = AddStakeholderToAnalysis(analysis, "Amstel Gooi en Vecht", StakeholderType.Waterkeringbeheerder);
-            var wsvvStakeholder = AddStakeholderToAnalysis(analysis, "Vallei en Veluwen", StakeholderType.Waterkeringbeheerder);
-            var wrijStakeholder = AddStakeholderToAnalysis(analysis, "Rijn en IJssel", StakeholderType.Waterkeringbeheerder);
-            var aaenmStakeholder = AddStakeholderToAnalysis(analysis, "Aa en Maas", StakeholderType.Waterkeringbeheerder);
-            var limburgStakeholder = AddStakeholderToAnalysis(analysis, "Limburg", StakeholderType.Waterkeringbeheerder);
-            var bdeltaStakeholder = AddStakeholderToAnalysis(analysis, "Brabantse Delta", StakeholderType.Waterkeringbeheerder);
-            var rivierenlandStakeholder = AddStakeholderToAnalysis(analysis, "Rivierenland", StakeholderType.Waterkeringbeheerder);
-            var srijStakeholder = AddStakeholderToAnalysis(analysis, "Stichtse Rijnlanden", StakeholderType.Waterkeringbeheerder);
-            var hhskStakeholder = AddStakeholderToAnalysis(analysis, "Schieland en de krimpenerwaard", StakeholderType.Waterkeringbeheerder);
+            var waterAuthoritiesStakeholder = AddStakeholderToAnalysis(analysis, "Waterkeringbeheerders", waterDefenceMaintainerStakeholderType);
+            var hhnkStakeholder = AddStakeholderToAnalysis(analysis, "Hollands Noorderkwartier", waterDefenceMaintainerStakeholderType);
+            var scheldeStromenStakeholder = AddStakeholderToAnalysis(analysis, "Scheldestromen", waterDefenceMaintainerStakeholderType);
+            var wetterskipStakeholder = AddStakeholderToAnalysis(analysis, "Wetterskip", waterDefenceMaintainerStakeholderType);
+            var rijnlandStakeholder = AddStakeholderToAnalysis(analysis, "Rijnland", waterDefenceMaintainerStakeholderType);
+            var delflandStakeholder = AddStakeholderToAnalysis(analysis, "Delfland", waterDefenceMaintainerStakeholderType);
+            var hollandseDeltaStakeholder = AddStakeholderToAnalysis(analysis, "Hollandse Delta", waterDefenceMaintainerStakeholderType);
+            var rwsZenDStakeholder = AddStakeholderToAnalysis(analysis, "RWS - Z&D", waterDefenceMaintainerStakeholderType);
+            var rwsNNStakeholder = AddStakeholderToAnalysis(analysis, "RWS - NN", waterDefenceMaintainerStakeholderType);
+            var nzvStakeholder = AddStakeholderToAnalysis(analysis, "Noordezijlvest", waterDefenceMaintainerStakeholderType);
+            var henaStakeholder = AddStakeholderToAnalysis(analysis, "Hunze en Aa's", waterDefenceMaintainerStakeholderType);
+            var wdodStakeholder = AddStakeholderToAnalysis(analysis, "Drents Overijsselse Delta", waterDefenceMaintainerStakeholderType);
+            var zzlStakeholder = AddStakeholderToAnalysis(analysis, "Zuiderzeeland", waterDefenceMaintainerStakeholderType);
+            var agenvStakeholder = AddStakeholderToAnalysis(analysis, "Amstel Gooi en Vecht", waterDefenceMaintainerStakeholderType);
+            var wsvvStakeholder = AddStakeholderToAnalysis(analysis, "Vallei en Veluwen", waterDefenceMaintainerStakeholderType);
+            var wrijStakeholder = AddStakeholderToAnalysis(analysis, "Rijn en IJssel", waterDefenceMaintainerStakeholderType);
+            var aaenmStakeholder = AddStakeholderToAnalysis(analysis, "Aa en Maas", waterDefenceMaintainerStakeholderType);
+            var limburgStakeholder = AddStakeholderToAnalysis(analysis, "Limburg", waterDefenceMaintainerStakeholderType);
+            var bdeltaStakeholder = AddStakeholderToAnalysis(analysis, "Brabantse Delta", waterDefenceMaintainerStakeholderType);
+            var rivierenlandStakeholder = AddStakeholderToAnalysis(analysis, "Rivierenland", waterDefenceMaintainerStakeholderType);
+            var srijStakeholder = AddStakeholderToAnalysis(analysis, "Stichtse Rijnlanden", waterDefenceMaintainerStakeholderType);
+            var hhskStakeholder = AddStakeholderToAnalysis(analysis, "Schieland en de krimpenerwaard", waterDefenceMaintainerStakeholderType);
 
-            var allMarkedPartiesStakeholder = AddStakeholderToAnalysis(analysis, "Marktpartijen", StakeholderType.Ingenieursbureaus);
-            var hkvStakeholder = AddStakeholderToAnalysis(analysis, "HKV", StakeholderType.Ingenieursbureaus);
-            var rhdhvStakeholder = AddStakeholderToAnalysis(analysis, "RHDHV", StakeholderType.Ingenieursbureaus);
-            var fugroStakeholder = AddStakeholderToAnalysis(analysis, "Fugro", StakeholderType.Ingenieursbureaus);
-            var wiboStakeholder = AddStakeholderToAnalysis(analysis, "Witteveen en Bos", StakeholderType.Ingenieursbureaus);
-            var arcStakeholder = AddStakeholderToAnalysis(analysis, "Arcadis", StakeholderType.Ingenieursbureaus);
-            var wnetStakeholder = AddStakeholderToAnalysis(analysis, "Waternet", StakeholderType.Ingenieursbureaus);
-            var ivInfraStakeholder = AddStakeholderToAnalysis(analysis, "Iv - Infra", StakeholderType.Ingenieursbureaus);
-            var anteaStakeholder = AddStakeholderToAnalysis(analysis, "Antea Group", StakeholderType.Ingenieursbureaus);
-            var greenRiversStakeholder = AddStakeholderToAnalysis(analysis, "Greenrivers", StakeholderType.Ingenieursbureaus);
-            var bwzStakeholder = AddStakeholderToAnalysis(analysis, "BWZ Ingenieurs", StakeholderType.Ingenieursbureaus);
-            var inframStakeholder = AddStakeholderToAnalysis(analysis, "Infram", StakeholderType.Ingenieursbureaus);
-            var swecoStakeholder = AddStakeholderToAnalysis(analysis, "Sweco", StakeholderType.Ingenieursbureaus);
-            var tauwStakeholder = AddStakeholderToAnalysis(analysis, "Tauw", StakeholderType.Ingenieursbureaus);
-            var movaresStakeholder = AddStakeholderToAnalysis(analysis, "Movares", StakeholderType.Ingenieursbureaus);
-            var csoStakeholder = AddStakeholderToAnalysis(analysis, "CSO Lievense", StakeholderType.Ingenieursbureaus);
-            var hydrologicStakeholder = AddStakeholderToAnalysis(analysis, "HydroLogic", StakeholderType.Ingenieursbureaus);
-            var avecoStakeholder = AddStakeholderToAnalysis(analysis, "Aveco de Bondt", StakeholderType.Ingenieursbureaus);
-            var rpsStakeholder = AddStakeholderToAnalysis(analysis, "RPS", StakeholderType.Ingenieursbureaus);
-            var cruxStakeholder = AddStakeholderToAnalysis(analysis, "CRUX", StakeholderType.Ingenieursbureaus);
-            var nensStakeholder = AddStakeholderToAnalysis(analysis, "Nelen & Schuurmans", StakeholderType.Ingenieursbureaus);
-            var geobestStakeholder = AddStakeholderToAnalysis(analysis, "Geobest", StakeholderType.Ingenieursbureaus);
-            var bzimStakeholder = AddStakeholderToAnalysis(analysis, "BZIM", StakeholderType.Ingenieursbureaus);
-            var zzpersStakeholder = AddStakeholderToAnalysis(analysis, "ZZPers", StakeholderType.Ingenieursbureaus);
-            var boskalisStakeholder = AddStakeholderToAnalysis(analysis, "Boskalis", StakeholderType.Ingenieursbureaus);
+            var allMarkedPartiesStakeholder = AddStakeholderToAnalysis(analysis, "Marktpartijen", marketStakeholderType);
+            var hkvStakeholder = AddStakeholderToAnalysis(analysis, "HKV", marketStakeholderType);
+            var rhdhvStakeholder = AddStakeholderToAnalysis(analysis, "RHDHV", marketStakeholderType);
+            var fugroStakeholder = AddStakeholderToAnalysis(analysis, "Fugro", marketStakeholderType);
+            var wiboStakeholder = AddStakeholderToAnalysis(analysis, "Witteveen en Bos", marketStakeholderType);
+            var arcStakeholder = AddStakeholderToAnalysis(analysis, "Arcadis", marketStakeholderType);
+            var wnetStakeholder = AddStakeholderToAnalysis(analysis, "Waternet", marketStakeholderType);
+            var ivInfraStakeholder = AddStakeholderToAnalysis(analysis, "Iv - Infra", marketStakeholderType);
+            var anteaStakeholder = AddStakeholderToAnalysis(analysis, "Antea Group", marketStakeholderType);
+            var greenRiversStakeholder = AddStakeholderToAnalysis(analysis, "Greenrivers", marketStakeholderType);
+            var bwzStakeholder = AddStakeholderToAnalysis(analysis, "BWZ Ingenieurs", marketStakeholderType);
+            var inframStakeholder = AddStakeholderToAnalysis(analysis, "Infram", marketStakeholderType);
+            var swecoStakeholder = AddStakeholderToAnalysis(analysis, "Sweco", marketStakeholderType);
+            var tauwStakeholder = AddStakeholderToAnalysis(analysis, "Tauw", marketStakeholderType);
+            var movaresStakeholder = AddStakeholderToAnalysis(analysis, "Movares", marketStakeholderType);
+            var csoStakeholder = AddStakeholderToAnalysis(analysis, "CSO Lievense", marketStakeholderType);
+            var hydrologicStakeholder = AddStakeholderToAnalysis(analysis, "HydroLogic", marketStakeholderType);
+            var avecoStakeholder = AddStakeholderToAnalysis(analysis, "Aveco de Bondt", marketStakeholderType);
+            var rpsStakeholder = AddStakeholderToAnalysis(analysis, "RPS", marketStakeholderType);
+            var cruxStakeholder = AddStakeholderToAnalysis(analysis, "CRUX", marketStakeholderType);
+            var nensStakeholder = AddStakeholderToAnalysis(analysis, "Nelen & Schuurmans", marketStakeholderType);
+            var geobestStakeholder = AddStakeholderToAnalysis(analysis, "Geobest", marketStakeholderType);
+            var bzimStakeholder = AddStakeholderToAnalysis(analysis, "BZIM", marketStakeholderType);
+            var zzpersStakeholder = AddStakeholderToAnalysis(analysis, "ZZPers", marketStakeholderType);
+            var boskalisStakeholder = AddStakeholderToAnalysis(analysis, "Boskalis", marketStakeholderType);
 
-            var ihwStakeholder = AddStakeholderToAnalysis(analysis, "IHW", StakeholderType.Overig);
-            var waterschapshuisStakeholder = AddStakeholderToAnalysis(analysis, "Waterschapshuis", StakeholderType.Overig);
-            var technolutionStakeholder = AddStakeholderToAnalysis(analysis, "Technolution", StakeholderType.Kennisinstituut);
-            var vortechStakeholder = AddStakeholderToAnalysis(analysis, "Vortech", StakeholderType.Kennisinstituut);
-            var altenStakeholder = AddStakeholderToAnalysis(analysis, "Alten", StakeholderType.Kennisinstituut);
+            var ihwStakeholder = AddStakeholderToAnalysis(analysis, "IHW", miscStakeholderType);
+            var waterschapshuisStakeholder = AddStakeholderToAnalysis(analysis, "Waterschapshuis", miscStakeholderType);
+            var technolutionStakeholder = AddStakeholderToAnalysis(analysis, "Technolution", knowledgeInstituteStakeholderType);
+            var vortechStakeholder = AddStakeholderToAnalysis(analysis, "Vortech", knowledgeInstituteStakeholderType);
+            var altenStakeholder = AddStakeholderToAnalysis(analysis, "Alten", knowledgeInstituteStakeholderType);
             //CIO
             // BIT
             // CIV
 
-            var tudStakeholder = AddStakeholderToAnalysis(analysis, "TU Delft", StakeholderType.Kennisinstituut);
-            var tutStakeholder = AddStakeholderToAnalysis(analysis, "TU Twente", StakeholderType.Kennisinstituut);
-            var vuStakeholder = AddStakeholderToAnalysis(analysis, "VU Amsterdam", StakeholderType.Kennisinstituut);
-            var uuStakeholder = AddStakeholderToAnalysis(analysis, "UU", StakeholderType.Kennisinstituut);
-            var tnoStakeholder = AddStakeholderToAnalysis(analysis, "TNO", StakeholderType.Kennisinstituut);
-            var knmiStakeholder = AddStakeholderToAnalysis(analysis, "KNMI", StakeholderType.Kennisinstituut);
-            var alterraStakeholder = AddStakeholderToAnalysis(analysis, "Alterra", StakeholderType.Kennisinstituut);
+            var tudStakeholder = AddStakeholderToAnalysis(analysis, "TU Delft", knowledgeInstituteStakeholderType);
+            var tutStakeholder = AddStakeholderToAnalysis(analysis, "TU Twente", knowledgeInstituteStakeholderType);
+            var vuStakeholder = AddStakeholderToAnalysis(analysis, "VU Amsterdam", knowledgeInstituteStakeholderType);
+            var uuStakeholder = AddStakeholderToAnalysis(analysis, "UU", knowledgeInstituteStakeholderType);
+            var tnoStakeholder = AddStakeholderToAnalysis(analysis, "TNO", knowledgeInstituteStakeholderType);
+            var knmiStakeholder = AddStakeholderToAnalysis(analysis, "KNMI", knowledgeInstituteStakeholderType);
+            var alterraStakeholder = AddStakeholderToAnalysis(analysis, "Alterra", knowledgeInstituteStakeholderType);
             #endregion
 
             #region Add Onion diagram
@@ -521,6 +528,13 @@ namespace StakeholderAnalysis.App
             #endregion
 
             return analysis;
+        }
+
+        private static StakeholderType AddStakeholderType(Analysis analysis, string name, StakeholderIconType iconType, Color color)
+        {
+            var stakeholderType = new StakeholderType {Name = name, IconType = iconType, Color = color };
+            analysis.StakeholderTypes.Add(stakeholderType);
+            return stakeholderType;
         }
 
         private static void AddMultipleConnections(OnionDiagram diagram, StakeholderConnectionGroup stakeholderConnectionGroup, OnionDiagramStakeholder baseStakeholder, IEnumerable<OnionDiagramStakeholder> stakeholders)

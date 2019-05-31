@@ -7,12 +7,12 @@ using StakeholderAnalysis.Visualization.ViewModels.StakeholderTableView;
 
 namespace StakeholderAnalysis.Visualization.ViewModels.ProjectExplorer
 {
-    public class ProjectExplorerStakeholderOverviewTableViewModel : NotifyPropertyChangedObservable 
+    public class ProjectExplorerStakeholderOverviewTableViewModel : ViewModelBase 
     {
         private readonly ViewManager viewManager;
         private readonly Analysis analysis;
 
-        public ProjectExplorerStakeholderOverviewTableViewModel(Analysis analysis, ViewManager viewManager)
+        public ProjectExplorerStakeholderOverviewTableViewModel(ViewModelFactory factory, Analysis analysis, ViewManager viewManager) : base(factory)
         {
             this.analysis = analysis;
             this.viewManager = viewManager;
@@ -25,7 +25,7 @@ namespace StakeholderAnalysis.Visualization.ViewModels.ProjectExplorer
             var viewInfo = viewManager.Views.FirstOrDefault(v => v.ViewModel is StakeholderTableViewModel);
             if (viewInfo == null)
             {
-                viewInfo = new ViewInfo("Tabel", new StakeholderTableViewModel(analysis), "pack://application:,,,/StakeholderAnalysis.Visualization;component/Resources/table.png", true);
+                viewInfo = new ViewInfo("Tabel", new StakeholderTableViewModel(ViewModelFactory, analysis), "pack://application:,,,/StakeholderAnalysis.Visualization;component/Resources/table.png", true);
                 viewManager.OpenView(viewInfo);
             }
             viewManager.BringToFront(viewInfo);

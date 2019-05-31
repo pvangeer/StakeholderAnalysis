@@ -1,4 +1,5 @@
-﻿using System.ComponentModel;
+﻿using System.Collections.ObjectModel;
+using System.ComponentModel;
 using System.Windows.Input;
 using StakeholderAnalysis.Data;
 using StakeholderAnalysis.Visualization.Behaviors;
@@ -8,7 +9,7 @@ namespace StakeholderAnalysis.Visualization.ViewModels
 {
     public class StakeholderViewModel : NotifyPropertyChangedObservable, IDropHandler, IRemoveStakeholderViewModel
     {
-        protected readonly ISelectionRegister SelectionRegister;
+        private readonly ISelectionRegister selectionRegister;
         private readonly IDrawConnectionHandler drawConnectionHandler;
 
         public StakeholderViewModel() : this(new Stakeholder(),null,null) { }
@@ -16,8 +17,9 @@ namespace StakeholderAnalysis.Visualization.ViewModels
         public StakeholderViewModel(Stakeholder stakeholder, ISelectionRegister selectionRegister, IDrawConnectionHandler drawConnectionHandler)
         {
             this.drawConnectionHandler = drawConnectionHandler;
-            this.SelectionRegister = selectionRegister;
+            this.selectionRegister = selectionRegister;
             Stakeholder = stakeholder;
+
             if (Stakeholder != null) Stakeholder.PropertyChanged += StakeholderPropertyChanged;
         }
 
@@ -52,7 +54,7 @@ namespace StakeholderAnalysis.Visualization.ViewModels
             }
         }
 
-        public bool IsSelectedStakeholder => SelectionRegister != null && SelectionRegister.IsSelected(Stakeholder);
+        public bool IsSelectedStakeholder => selectionRegister != null && selectionRegister.IsSelected(Stakeholder);
 
         public virtual void RemoveFromDiagram() { }
 
@@ -79,7 +81,7 @@ namespace StakeholderAnalysis.Visualization.ViewModels
 
         public void SelectStakeholder()
         {
-            SelectionRegister?.Select(Stakeholder);
+            selectionRegister?.Select(Stakeholder);
         }
     }
 }

@@ -5,9 +5,13 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:viewModels="clr-namespace:StakeholderAnalysis.Visualization.ViewModels"
         xmlns:data="clr-namespace:StakeholderAnalysis.Data;assembly=StakeholderAnalysis.Data"
+        xmlns:converters="clr-namespace:StakeholderAnalysis.Visualization.Converters"
         mc:Ignorable="d"
         Title="Selecteer stakeholder(s)" Height="450" Width="400">
 
+    <Window.Resources>
+        <converters:IconTypeToIconSourceConverter x:Key="IconTypeToIconSourceConverter" />
+    </Window.Resources>
     <Grid>
         <Grid.RowDefinitions>
             <RowDefinition Height="*"/>
@@ -23,43 +27,11 @@
                 <DataTemplate DataType="viewModels:StakeholderViewModel">
                     <Border BorderThickness="1" BorderBrush="Gray" HorizontalAlignment="Stretch">
                         <StackPanel Orientation="Horizontal" HorizontalAlignment="Stretch">
-                            <Image Margin="2,0,2,0" Width="20" Height="20">
-                                <Image.Style>
-                                    <Style TargetType="{x:Type Image}">
-                                        <Style.Triggers>
-                                            <DataTrigger Binding="{Binding Type}"
-                                             Value="{x:Static data:StakeholderType.Waterkeringbeheerder}">
-                                                <Setter Property="Source"
-                                            Value="pack://application:,,,/StakeholderAnalysis.Visualization;component/Resources/Waterschap.png" />
-                                            </DataTrigger>
-                                            <DataTrigger Binding="{Binding Type}"
-                                             Value="{x:Static data:StakeholderType.Kennisinstituut}">
-                                                <Setter Property="Source"
-                                            Value="pack://application:,,,/StakeholderAnalysis.Visualization;component/Resources/Knowledge.png" />
-                                            </DataTrigger>
-                                            <DataTrigger Binding="{Binding Type}"
-                                             Value="{x:Static data:StakeholderType.Rijksoverheid}">
-                                                <Setter Property="Source"
-                                            Value="pack://application:,,,/StakeholderAnalysis.Visualization;component/Resources/Pak.png" />
-                                            </DataTrigger>
-                                            <DataTrigger Binding="{Binding Type}"
-                                             Value="{x:Static data:StakeholderType.Stakeholdergroep}">
-                                                <Setter Property="Source"
-                                            Value="pack://application:,,,/StakeholderAnalysis.Visualization;component/Resources/Group.png" />
-                                            </DataTrigger>
-                                            <DataTrigger Binding="{Binding Type}"
-                                             Value="{x:Static data:StakeholderType.Ingenieursbureaus}">
-                                                <Setter Property="Source"
-                                            Value="pack://application:,,,/StakeholderAnalysis.Visualization;component/Resources/euro.png" />
-                                            </DataTrigger>
-                                            <DataTrigger Binding="{Binding Type}" Value="{x:Static data:StakeholderType.Overig}">
-                                                <Setter Property="Source"
-                                            Value="pack://application:,,,/StakeholderAnalysis.Visualization;component/Resources/other.png" />
-                                            </DataTrigger>
-                                        </Style.Triggers>
-                                    </Style>
-                                </Image.Style>
-                            </Image>
+                            <Image 
+                                Margin="2,0,2,0" 
+                                Width="20" 
+                                Height="20" 
+                                Source="{Binding Type.IconType, Converter={StaticResource IconTypeToIconSourceConverter}}"/>
                             <TextBlock 
                             Text="{Binding Name}" 
                             TextAlignment="Left" 

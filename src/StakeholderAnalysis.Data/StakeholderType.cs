@@ -1,14 +1,13 @@
-﻿using System.Net.Mime;
+﻿using System.Windows.Media;
 
 namespace StakeholderAnalysis.Data
 {
-    public enum StakeholderType
+    public class StakeholderType : NotifyPropertyChangedObservable
     {
-        Waterkeringbeheerder,
-        Kennisinstituut,
-        Rijksoverheid,
-        Stakeholdergroep,
-        Ingenieursbureaus,
-        Overig
+        public string Name { get; set; }
+
+        public StakeholderIconType IconType { get; set; }
+
+        public Color Color { get; set; }
     }
 }

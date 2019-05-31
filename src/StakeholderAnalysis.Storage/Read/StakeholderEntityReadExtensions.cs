@@ -25,7 +25,8 @@ namespace StakeholderAnalysis.Storage.Read
             var stakeholder = new Stakeholder
             {
                 Name = entity.Name,
-                Type = (StakeholderType) entity.Type
+                // TODO: adjust storage
+                //Type = (StakeholderType) entity.Type
             };
 
             collector.Collect(entity,stakeholder);
