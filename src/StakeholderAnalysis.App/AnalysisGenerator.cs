@@ -33,12 +33,12 @@ namespace StakeholderAnalysis.App
 
             #region Add stakeholders
             //Team
-            var rijksoverheidStakeholderType = AddStakeholderType(analysis, "Rijksoverheid", StakeholderIconType.Rijksoverheid, Colors.MistyRose);
-            var knowledgeInstituteStakeholderType = AddStakeholderType(analysis, "Kennisinstituut", StakeholderIconType.Kennisinstituut, Colors.DarkSeaGreen);
-            var stakeholderGroupStakeholderType = AddStakeholderType(analysis, "Stakeholdergroep", StakeholderIconType.Stakeholdergroep, Colors.DarkGray);
-            var miscStakeholderType = AddStakeholderType(analysis, "Overig", StakeholderIconType.Overig, Colors.Chocolate);
-            var waterDefenceMaintainerStakeholderType = AddStakeholderType(analysis, "Waterkeringbeheerder", StakeholderIconType.Waterkeringbeheerder, Colors.AliceBlue);
-            var marketStakeholderType = AddStakeholderType(analysis, "Ingenieursbureau", StakeholderIconType.Ingenieursbureaus, Colors.CadetBlue);
+            var rijksoverheidStakeholderType = AddStakeholderType(analysis, "Rijksoverheid", StakeholderIconType.Suit, Colors.MistyRose);
+            var knowledgeInstituteStakeholderType = AddStakeholderType(analysis, "Kennisinstituut", StakeholderIconType.Knowledge, Colors.DarkSeaGreen);
+            var stakeholderGroupStakeholderType = AddStakeholderType(analysis, "Stakeholdergroep", StakeholderIconType.GroupTable, Colors.DarkGray);
+            var miscStakeholderType = AddStakeholderType(analysis, "Other", StakeholderIconType.Other, Colors.Chocolate);
+            var waterDefenceMaintainerStakeholderType = AddStakeholderType(analysis, "Waterkeringbeheerder", StakeholderIconType.Group5, Colors.AliceBlue);
+            var marketStakeholderType = AddStakeholderType(analysis, "Ingenieursbureau", StakeholderIconType.Dollar, Colors.CadetBlue);
 
             var wlvStakeholder = AddStakeholderToAnalysis(analysis, "WVL", rijksoverheidStakeholderType);
             var dgwbStakeholder = AddStakeholderToAnalysis(analysis, "DGWB", rijksoverheidStakeholderType);

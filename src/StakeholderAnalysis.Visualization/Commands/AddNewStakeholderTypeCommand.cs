@@ -7,7 +7,7 @@ namespace StakeholderAnalysis.Visualization.Commands
 {
     public class AddNewStakeholderTypeCommand : ICommand
     {
-        private Analysis analysis;
+        private readonly Analysis analysis;
 
         public AddNewStakeholderTypeCommand(Analysis analysis)
         {
@@ -21,7 +21,7 @@ namespace StakeholderAnalysis.Visualization.Commands
 
         public void Execute(object parameter)
         {
-            analysis.StakeholderTypes.Add(new StakeholderType{Name = "Niew type", Color = Colors.Black, IconType = StakeholderIconType.Overig});
+            analysis.StakeholderTypes.Add(new StakeholderType{Name = "Nieuw type", Color = Colors.Black, IconType = StakeholderIconType.Other});
         }
 
         public event EventHandler CanExecuteChanged;

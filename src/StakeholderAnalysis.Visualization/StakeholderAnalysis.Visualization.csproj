@@ -328,4 +328,43 @@
   <ItemGroup>
     <Resource Include="Resources\arrow-16-gray.png" />
   </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Resources\iconfinder_angel.png" />
+    <Resource Include="Resources\iconfinder_baby.png" />
+    <Resource Include="Resources\iconfinder_cloud.png" />
+    <Resource Include="Resources\iconfinder_coffee.png" />
+    <Resource Include="Resources\iconfinder_dance.png" />
+    <Resource Include="Resources\iconfinder_disabled.png" />
+    <Resource Include="Resources\iconfinder_family.png" />
+    <Resource Include="Resources\iconfinder_fountain.png" />
+    <Resource Include="Resources\iconfinder_full_mug.png" />
+    <Resource Include="Resources\iconfinder_good_listen.png" />
+    <Resource Include="Resources\iconfinder_group.png" />
+    <Resource Include="Resources\iconfinder_group2.png" />
+    <Resource Include="Resources\iconfinder_group3.png" />
+    <Resource Include="Resources\iconfinder_group4.png" />
+    <Resource Include="Resources\iconfinder_group_add.png" />
+    <Resource Include="Resources\iconfinder_headphones.png" />
+    <Resource Include="Resources\iconfinder_icon-person-add.png" />
+    <Resource Include="Resources\iconfinder_icon-person-stalker.png" />
+    <Resource Include="Resources\iconfinder_link.png" />
+    <Resource Include="Resources\iconfinder_link2.png" />
+    <Resource Include="Resources\iconfinder_morning-coffee.png" />
+    <Resource Include="Resources\iconfinder_person 2.png" />
+    <Resource Include="Resources\iconfinder_person.png" />
+    <Resource Include="Resources\iconfinder_running.png" />
+    <Resource Include="Resources\iconfinder_settings.png" />
+    <Resource Include="Resources\iconfinder_walking.png" />
+    <Resource Include="Resources\iconfinder_wifi.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Resources\iconfinder_ad.png" />
+    <Resource Include="Resources\iconfinder_dollar_bundle.png" />
+    <Resource Include="Resources\iconfinder_euro.png" />
+    <Resource Include="Resources\iconfinder_mail.png" />
+    <Resource Include="Resources\iconfinder_mailbox.png" />
+    <Resource Include="Resources\iconfinder_mail_open.png" />
+    <Resource Include="Resources\iconfinder_money.png" />
+    <Resource Include="Resources\iconfinder_yen.png" />
+  </ItemGroup>
 </Project>
