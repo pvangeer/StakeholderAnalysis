@@ -35,8 +35,11 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Commands\AddNewStakeholderTypeCommand.cs" />
     <Compile Include="Commands\ClearSelectionCommand.cs" />
+    <Compile Include="Commands\ProjectExplorer\RemoveStakeholderTypeCommand.cs" />
     <Compile Include="Converters\IconTypeToIconSourceConverter.cs" />
+    <Compile Include="ViewModels\CommandFactory.cs" />
     <Compile Include="ViewModels\IRemoveStakeholderViewModel.cs" />
     <Compile Include="Commands\OnionDiagramProperties\AddConnectionGroupCommand.cs" />
     <Compile Include="Commands\OnionDiagramProperties\RemoveConnectionGroupCommand.cs" />
@@ -96,6 +99,8 @@
     <Compile Include="ViewModels\ProjectExplorer\ProjectExplorerDiagramViewModel.cs" />
     <Compile Include="ViewModels\ProjectExplorer\ProjectExplorerForceFieldDiagramViewModel.cs" />
     <Compile Include="ViewModels\ProjectExplorer\ProjectExplorerStakeholderOverviewTableViewModel.cs" />
+    <Compile Include="ViewModels\ProjectExplorer\StakeholderTypesViewModel.cs" />
+    <Compile Include="ViewModels\ProjectExplorer\StakeholderTypeViewModel.cs" />
     <Compile Include="ViewModels\Ribbon\RibbonSelectedOnionDiagramViewModel.cs" />
     <Compile Include="ViewModels\StatusBar\MessagesViewModel.cs" />
     <Compile Include="ViewModels\StatusBar\StatusBarViewModel.cs" />
@@ -180,6 +185,10 @@
       <SubType>Designer</SubType>
     </Page>
     <Page Include="DataTemplates\ProjectExplorer\ProjectExplorerStakeholderOverviewTableDataTemplate.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="DataTemplates\ProjectExplorer\ProjectExplorerStakeholderTypesDataTemplate.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>

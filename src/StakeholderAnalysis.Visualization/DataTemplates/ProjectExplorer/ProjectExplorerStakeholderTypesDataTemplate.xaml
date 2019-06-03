@@ -1,0 +1,78 @@
+﻿<ResourceDictionary xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+                    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+                    xmlns:projectExplorer="clr-namespace:StakeholderAnalysis.Visualization.ViewModels.ProjectExplorer">
+
+    <ResourceDictionary.MergedDictionaries>
+        <ResourceDictionary Source="ProjectExplorerButtonStyles.xaml"/>
+    </ResourceDictionary.MergedDictionaries>
+
+    <BooleanToVisibilityConverter x:Key="BoolToVisibilityConverter" />
+
+    <DataTemplate x:Key="ProjectExplorerStakeholderTypesDataTemplate" DataType="projectExplorer:StakeholderTypesViewModel">
+        <StackPanel Orientation="Vertical">
+            <!--TODO: Move this piece including the Add command to a base interface with base datatemplate-->
+            <Border BorderThickness="0" Style="{StaticResource ExpandableElementBorderStyle}">
+                <Grid Margin="2">
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="24"/>
+                        <ColumnDefinition Width="*"/>
+                        <ColumnDefinition Width="24"/>
+                    </Grid.ColumnDefinitions>
+                    <Button 
+                Grid.Column="0"
+                Command="{Binding ToggleIsExpandedCommand}"
+                Style="{StaticResource ExpandCollapseButtonStyle}"/>
+                    <TextBlock 
+                TextAlignment="Left"
+                Grid.Column="1" 
+                Text="{Binding DisplayName}" 
+                HorizontalAlignment="Stretch"
+                VerticalAlignment="Center"
+                FontSize="12"/>
+                    <Button
+                Grid.Column="2"
+                Command="{Binding AddNewContentCommand}"
+                Style="{StaticResource AddButtonStyle}"/>
+                </Grid>
+            </Border>
+            <Grid Visibility="{Binding IsExpanded, Converter={StaticResource BoolToVisibilityConverter}}">
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="24"/>
+                    <ColumnDefinition Width="*"/>
+                </Grid.ColumnDefinitions>
+                <ItemsControl Grid.Column="1" ItemsSource="{Binding StakeholderTypes}">
+                    <ItemsControl.ItemTemplate>
+                        <DataTemplate DataType="projectExplorer:StakeholderTypeViewModel">
+                            <Border BorderThickness="0" Style="{StaticResource ExpandableElementBorderStyle}">
+                                <Grid>
+                                    <Grid.ColumnDefinitions>
+                                        <ColumnDefinition Width="30"/>
+                                        <ColumnDefinition Width="*"/>
+                                        <ColumnDefinition Width="30"/>
+                                    </Grid.ColumnDefinitions>
+                                    <Image 
+                                        Grid.Column="0" 
+                                        Width="20"
+                                        Height="20"
+                                        Source="{Binding IconSourceString}"/>
+                                    <TextBox 
+                                        Background="Transparent"
+                                        BorderBrush="Transparent"
+                                        HorizontalAlignment="Stretch"
+                                        HorizontalContentAlignment="Left"
+                                        Grid.Column="1" 
+                                        Text="{Binding Name, UpdateSourceTrigger=PropertyChanged}"
+                                        FontSize="12"/>
+                                    <Button
+                                        Grid.Column="2"
+                                        Command="{Binding RemoveStakeholderTypeCommand}"
+                                        Style="{StaticResource RemoveButtonStyle}"/>
+                                </Grid>
+                            </Border>
+                        </DataTemplate>
+                    </ItemsControl.ItemTemplate>
+                </ItemsControl>
+            </Grid>
+        </StackPanel>
+    </DataTemplate>
+</ResourceDictionary>

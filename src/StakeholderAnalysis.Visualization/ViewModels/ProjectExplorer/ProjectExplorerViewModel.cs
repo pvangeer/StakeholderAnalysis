@@ -26,6 +26,7 @@ namespace StakeholderAnalysis.Visualization.ViewModels.ProjectExplorer
                     OnPropertyChanged(nameof(ForceFieldDiagramsViewModel));
                     OnPropertyChanged(nameof(AttitudeImpactDiagramsViewModel));
                     OnPropertyChanged(nameof(StakeholderOverviewTableViewModel));
+                    OnPropertyChanged(nameof(StakeholderTypesViewModel));
                     break;
             }
         }
@@ -37,5 +38,7 @@ namespace StakeholderAnalysis.Visualization.ViewModels.ProjectExplorer
         public ProjectExplorerAttitudeImpactDiagramsViewModel AttitudeImpactDiagramsViewModel => new ProjectExplorerAttitudeImpactDiagramsViewModel(gui.Analysis, viewManager);
 
         public ProjectExplorerStakeholderOverviewTableViewModel StakeholderOverviewTableViewModel => new ProjectExplorerStakeholderOverviewTableViewModel(ViewModelFactory, gui.Analysis, viewManager);
+
+        public StakeholderTypesViewModel StakeholderTypesViewModel => ViewModelFactory.CreateStakeholderTypesViewModel();
     }
 }
