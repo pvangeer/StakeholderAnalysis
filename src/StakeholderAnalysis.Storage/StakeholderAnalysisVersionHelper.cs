@@ -26,10 +26,10 @@ namespace StakeholderAnalysis.Storage
     /// <summary>
     /// This class is capable of comparing Ringtoets database versions.
     /// </summary>
-    public static class StoryTreeVersionHelper
+    public static class StakeholderAnalysisVersionHelper
     {
-        private const string validDatabaseVersion = "5";
-        private const string currentDatabaseVersion = "18.1";
+        private const string validDatabaseVersion = "1";
+        private const string currentDatabaseVersion = "19.1";
 
         /// <summary>
         /// Gets the current database version.
@@ -48,7 +48,7 @@ namespace StakeholderAnalysis.Storage
         /// database version, <c>false</c> otherwise.</returns>
         public static bool IsNewerThanCurrent(string version)
         {
-            var versionComparer = new StoryTreeVersionComparer();
+            var versionComparer = new StakeholderAnalysisVersionComparer();
             return versionComparer.Compare(version, currentDatabaseVersion) > 0;
         }
 
@@ -61,7 +61,7 @@ namespace StakeholderAnalysis.Storage
         /// <remarks>A valid version must be greater than <see cref="validDatabaseVersion"/>.</remarks>
         public static bool IsValidVersion(string version)
         {
-            var versionComparer = new StoryTreeVersionComparer();
+            var versionComparer = new StakeholderAnalysisVersionComparer();
             return versionComparer.Compare(version, validDatabaseVersion) >= 0;
         }
 

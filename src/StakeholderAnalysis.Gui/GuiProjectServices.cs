@@ -54,7 +54,7 @@ namespace StakeholderAnalysis.Gui
             var dialog = new OpenFileDialog
             {
                 CheckFileExists = true,
-                Filter = "StoryTree bestand (*.sqlite)|*.sqlite",
+                Filter = "Stakeholder analyse bestand (*.sqlite)|*.sqlite",
                 FileName = gui.ProjectFilePath,
             };
 
@@ -111,7 +111,7 @@ namespace StakeholderAnalysis.Gui
                 CheckPathExists = true,
                 FileName = gui.ProjectFilePath,
                 OverwritePrompt = true,
-                Filter = "StoryTree bestand (*.sqlite)|*.sqlite"
+                Filter = "Stakeholder analyse bestand (*.sqlite)|*.sqlite"
             };
 
             if ((bool)dialog.ShowDialog(Application.Current.MainWindow))

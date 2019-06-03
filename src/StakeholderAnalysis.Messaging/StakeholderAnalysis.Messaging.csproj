@@ -20,7 +20,7 @@
     <Compile Include="MessageSeverity.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="LogMessage.cs" />
-    <Compile Include="StoryTreeLogger.cs" />
+    <Compile Include="StakeholderAnalysisLogger.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="packages.config" />

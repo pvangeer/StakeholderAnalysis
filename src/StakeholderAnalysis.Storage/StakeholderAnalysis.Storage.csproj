@@ -129,8 +129,8 @@
     <Compile Include="SqLiteEntityConnectionStringBuilder.cs" />
     <Compile Include="StorageSqLite.cs" />
     <Compile Include="StorageSqliteCreator.cs" />
-    <Compile Include="StoryTreeVersionComparer.cs" />
-    <Compile Include="StoryTreeVersionHelper.cs" />
+    <Compile Include="StakeholderAnalysisVersionComparer.cs" />
+    <Compile Include="StakeholderAnalysisVersionHelper.cs" />
     <Compile Include="StringExtensions.cs" />
   </ItemGroup>
   <ItemGroup>

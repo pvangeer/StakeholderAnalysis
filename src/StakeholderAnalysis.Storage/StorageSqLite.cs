@@ -153,7 +153,7 @@ namespace StakeholderAnalysis.Storage
                 {
                     dbContext.VersionEntities.Add(new VersionEntity
                     {
-                        Version = StoryTreeVersionHelper.GetCurrentDatabaseVersion(),
+                        Version = StakeholderAnalysisVersionHelper.GetCurrentDatabaseVersion(),
                         TimeStamp = DateTime.Now,
                         FingerPrint = FingerprintHelper.Get(stagedProject.Entity)
                     });
@@ -175,12 +175,12 @@ namespace StakeholderAnalysis.Storage
             }
         }
 
-        private static void ValidateDatabaseVersion(Entities storyTreeEntities, string databaseFilePath)
+        private static void ValidateDatabaseVersion(Entities stakeholderAnalysisEntities, string databaseFilePath)
         {
             try
             {
-                string databaseVersion = storyTreeEntities.VersionEntities.Select(v => v.Version).Single();
-                if (!StoryTreeVersionHelper.IsValidVersion(databaseVersion))
+                string databaseVersion = stakeholderAnalysisEntities.VersionEntities.Select(v => v.Version).Single();
+                if (!StakeholderAnalysisVersionHelper.IsValidVersion(databaseVersion))
                 {
                     string m = string.Format("Database versie ('{0}') is ongeldig",
                         databaseVersion);
@@ -188,10 +188,10 @@ namespace StakeholderAnalysis.Storage
                     throw new FormatException(message);
                 }
 
-                if (StoryTreeVersionHelper.IsNewerThanCurrent(databaseVersion))
+                if (StakeholderAnalysisVersionHelper.IsNewerThanCurrent(databaseVersion))
                 {
                     string m = string.Format("Database versie ('{0}') is nieuwer dan de huidige versie ('{1}')",
-                        databaseVersion, StoryTreeVersionHelper.GetCurrentDatabaseVersion());
+                        databaseVersion, StakeholderAnalysisVersionHelper.GetCurrentDatabaseVersion());
                     string message = new FileReaderErrorMessageBuilder(databaseFilePath).Build(m);
                     throw new FormatException(message);
                 }
