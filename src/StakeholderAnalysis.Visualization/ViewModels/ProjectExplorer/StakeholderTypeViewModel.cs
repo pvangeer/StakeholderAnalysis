@@ -2,13 +2,15 @@
 using System.Windows.Input;
 using System.Windows.Media;
 using StakeholderAnalysis.Data;
+using StakeholderAnalysis.Visualization.Commands;
 using StakeholderAnalysis.Visualization.Converters;
 
 namespace StakeholderAnalysis.Visualization.ViewModels.ProjectExplorer
 {
-    public class StakeholderTypeViewModel : ViewModelBase
+    public class StakeholderTypeViewModel : ViewModelBase, IExpandableContentViewModel
     {
         private readonly StakeholderType stakeholderType;
+        private bool isExpanded;
 
         public StakeholderTypeViewModel(ViewModelFactory factory, StakeholderType stakeholderType, ICommand removeStakeholderTypeCommand) : base(factory)
         {
@@ -22,7 +24,7 @@ namespace StakeholderAnalysis.Visualization.ViewModels.ProjectExplorer
             switch (e.PropertyName)
             {
                 case nameof(StakeholderType.Name):
-                    OnPropertyChanged(nameof(Name));
+                    OnPropertyChanged(nameof(DisplayName));
                     break;
                 case nameof(StakeholderType.IconType):
                     OnPropertyChanged(nameof(IconSourceString));
@@ -35,7 +37,17 @@ namespace StakeholderAnalysis.Visualization.ViewModels.ProjectExplorer
 
         public string IconSourceString => (string)new IconTypeToIconSourceConverter().Convert(stakeholderType.IconType, typeof(string), null, null);
 
-        public string Name
+        public StakeholderIconType IconType
+        {
+            get => stakeholderType.IconType;
+            set
+            {
+                stakeholderType.IconType = value;
+                stakeholderType.OnPropertyChanged(nameof(StakeholderType.IconType));
+            }
+        }
+
+        public string DisplayName
         {
             get => stakeholderType?.Name;
             set
@@ -61,5 +73,17 @@ namespace StakeholderAnalysis.Visualization.ViewModels.ProjectExplorer
         {
             return stakeholderType == otherStakeholderType;
         }
+
+        public bool IsExpanded
+        {
+            get => isExpanded;
+            set
+            {
+                isExpanded = value;
+                OnPropertyChanged(nameof(IsExpanded));
+            }
+        }
+
+        public ICommand ToggleIsExpandedCommand => new ToggleIsExpandedCommand(this);
     }
 }
