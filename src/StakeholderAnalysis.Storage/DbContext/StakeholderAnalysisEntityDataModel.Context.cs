@@ -36,6 +36,7 @@ namespace StakeholderAnalysis.Storage.DbContext
         public virtual DbSet<StakeholderConnectionEntity> StakeholderConnectionEntities { get; set; }
         public virtual DbSet<StakeholderConnectionGroupEntity> StakeholderConnectionGroupEntities { get; set; }
         public virtual DbSet<StakeholderEntity> StakeholderEntities { get; set; }
+        public virtual DbSet<StakeholderTypeEntity> StakeholderTypeEntities { get; set; }
         public virtual DbSet<VersionEntity> VersionEntities { get; set; }
     }
 }

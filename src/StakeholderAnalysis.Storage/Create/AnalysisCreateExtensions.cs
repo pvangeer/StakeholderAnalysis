@@ -15,12 +15,23 @@ namespace StakeholderAnalysis.Storage.Create
 
             var entity = new AnalysisEntity();
 
+            AddEntitiesForStakeholderTypes(analysis, entity, registry);
             AddEntitiesForStakeholders(analysis, entity, registry);
             AddEntitiesForOnionDiagrams(analysis, entity, registry);
             AddEntitiesForForceDiagrams(analysis, entity, registry);
             AddEntitiesForAttitudeImpactDiagrams(analysis, entity, registry);
 
             return entity;
+        }
+
+        private static void AddEntitiesForStakeholderTypes(Analysis analysis, AnalysisEntity entity, PersistenceRegistry registry)
+        {
+            for (var index = 0; index < analysis.StakeholderTypes.Count; index++)
+            {
+                var stakeholderTypeEntity = analysis.StakeholderTypes[index].Create(registry);
+                stakeholderTypeEntity.Order = index;
+                entity.StakeholderTypeEntities.Add(stakeholderTypeEntity);
+            }
         }
 
         private static void AddEntitiesForAttitudeImpactDiagrams(Analysis analysis, AnalysisEntity entity, PersistenceRegistry registry)

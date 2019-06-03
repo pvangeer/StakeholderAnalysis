@@ -24,6 +24,7 @@
       <HintPath>..\..\packages\System.Data.SQLite.EF6.1.0.109.0\lib\net45\System.Data.SQLite.EF6.dll</HintPath>
     </Reference>
     <Reference Include="System.Runtime.Serialization" />
+    <Reference Include="System.Security" />
     <Reference Include="System.ServiceModel" />
     <Reference Include="System.Data.DataSetExtensions" />
     <Reference Include="System.Data" />
@@ -44,6 +45,7 @@
     <Compile Include="Create\StakeholderConnectionCreateExtensions.cs" />
     <Compile Include="Create\StakeholderConnectionGroupCreateExtensions.cs" />
     <Compile Include="Create\StakeholderCreateExtensions.cs" />
+    <Compile Include="Create\StakeholderTypeCreateExtensions.cs" />
     <Compile Include="DbContext\AnalysisEntity.cs">
       <DependentUpon>StakeholderAnalysisEntityDataModel.tt</DependentUpon>
     </Compile>
@@ -93,6 +95,9 @@
     <Compile Include="DbContext\StakeholderEntity.cs">
       <DependentUpon>StakeholderAnalysisEntityDataModel.tt</DependentUpon>
     </Compile>
+    <Compile Include="DbContext\StakeholderTypeEntity.cs">
+      <DependentUpon>StakeholderAnalysisEntityDataModel.tt</DependentUpon>
+    </Compile>
     <Compile Include="DbContext\VersionEntity.cs">
       <DependentUpon>StakeholderAnalysisEntityDataModel.tt</DependentUpon>
     </Compile>
@@ -118,6 +123,7 @@
     <Compile Include="Read\StakeholderConnectionEntityReadExtensions.cs" />
     <Compile Include="Read\StakeholderConnectionGroupEntityReadExtensions.cs" />
     <Compile Include="Read\StakeholderEntityReadExtensions.cs" />
+    <Compile Include="Read\StakeholderTypeEntityReadExtensions.cs" />
     <Compile Include="ReferenceEqualityComparer.cs" />
     <Compile Include="SqliteConnectionStringBuilder.cs" />
     <Compile Include="SqLiteEntityConnectionStringBuilder.cs" />

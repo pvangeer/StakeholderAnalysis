@@ -12,6 +12,7 @@ namespace StakeholderAnalysis.Storage.Create
     public class PersistenceRegistry
     {
         private readonly Dictionary<Stakeholder, StakeholderEntity> stakeholders = CreateDictionary<Stakeholder, StakeholderEntity>();
+        private readonly Dictionary<StakeholderType, StakeholderTypeEntity> stakeholderTypes = CreateDictionary<StakeholderType, StakeholderTypeEntity>();
 
         private readonly Dictionary<OnionDiagram, OnionDiagramEntity> onionDiagrams = CreateDictionary<OnionDiagram, OnionDiagramEntity>();
         private readonly Dictionary<OnionDiagramStakeholder, OnionDiagramStakeholderEntity> onionDiagramStakeholders = CreateDictionary<OnionDiagramStakeholder, OnionDiagramStakeholderEntity>();
@@ -29,6 +30,10 @@ namespace StakeholderAnalysis.Storage.Create
         internal void Register(Stakeholder model, StakeholderEntity entity)
         {
             Register(stakeholders, model, entity);
+        }
+        internal void Register(StakeholderType model, StakeholderTypeEntity entity)
+        {
+            Register(stakeholderTypes, model, entity);
         }
         internal void Register(OnionDiagram model, OnionDiagramEntity entity)
         {
@@ -75,6 +80,10 @@ namespace StakeholderAnalysis.Storage.Create
         {
             return ContainsValue(stakeholders, model);
         }
+        internal bool Contains(StakeholderType model)
+        {
+            return ContainsValue(stakeholderTypes, model);
+        }
         internal bool Contains(OnionDiagram model)
         {
             return ContainsValue(onionDiagrams, model);
@@ -117,6 +126,10 @@ namespace StakeholderAnalysis.Storage.Create
         public StakeholderEntity Get(Stakeholder model)
         {
             return Get(stakeholders, model);
+        }
+        public StakeholderTypeEntity Get(StakeholderType model)
+        {
+            return Get(stakeholderTypes, model);
         }
         public OnionDiagramEntity Get(OnionDiagram model)
         {

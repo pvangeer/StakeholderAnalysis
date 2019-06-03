@@ -11,6 +11,7 @@ namespace StakeholderAnalysis.Storage.Read
     internal class ReadConversionCollector
     {
         private readonly Dictionary<StakeholderEntity, Stakeholder> stakeholders = CreateDictionary<StakeholderEntity, Stakeholder>();
+        private readonly Dictionary<StakeholderTypeEntity, StakeholderType> stakeholderTypes = CreateDictionary<StakeholderTypeEntity, StakeholderType>();
         private readonly Dictionary<OnionDiagramEntity, OnionDiagram> onionDiagrams = CreateDictionary<OnionDiagramEntity, OnionDiagram>();
         private readonly Dictionary<OnionRingEntity, OnionRing> onionRings = CreateDictionary<OnionRingEntity, OnionRing>();
         private readonly Dictionary<OnionDiagramStakeholderEntity, OnionDiagramStakeholder> onionDiagramStakeholders = CreateDictionary<OnionDiagramStakeholderEntity, OnionDiagramStakeholder>();
@@ -24,6 +25,10 @@ namespace StakeholderAnalysis.Storage.Read
         internal void Collect(StakeholderEntity entity, Stakeholder model)
         {
             Collect(stakeholders,entity,model);
+        }
+        internal void Collect(StakeholderTypeEntity entity, StakeholderType model)
+        {
+            Collect(stakeholderTypes, entity, model);
         }
         internal void Collect(OnionDiagramEntity entity, OnionDiagram model)
         {
@@ -66,6 +71,10 @@ namespace StakeholderAnalysis.Storage.Read
         {
             return Contains(stakeholders, entity);
         }
+        internal bool Contains(StakeholderTypeEntity entity)
+        {
+            return Contains(stakeholderTypes, entity);
+        }
         internal bool Contains(OnionDiagramEntity entity)
         {
             return Contains(onionDiagrams, entity);
@@ -106,6 +115,10 @@ namespace StakeholderAnalysis.Storage.Read
         internal Stakeholder Get(StakeholderEntity entity)
         {
             return Get(stakeholders, entity);
+        }
+        internal StakeholderType Get(StakeholderTypeEntity entity)
+        {
+            return Get(stakeholderTypes, entity);
         }
         internal OnionDiagram Get(OnionDiagramEntity entity)
         {

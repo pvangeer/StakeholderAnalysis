@@ -43,10 +43,30 @@ namespace StakeholderAnalysis.Storage.Test
 
         private void AssertEqualAnalysis(Analysis analysis, Analysis analysis2C)
         {
+            AssertEqualStakeholderTypes(analysis.StakeholderTypes, analysis2C.StakeholderTypes);
             AssertEqualStakeholders(analysis.Stakeholders, analysis2C.Stakeholders);
             AssertEqualForceFieldDiagrams(analysis.ForceFieldDiagrams, analysis2C.ForceFieldDiagrams);
             AssertEqualAttitudeImpactDiagrams(analysis.AttitudeImpactDiagrams, analysis2C.AttitudeImpactDiagrams);
             AssertEqualOnionDiagrams(analysis.OnionDiagrams, analysis2C.OnionDiagrams);
+        }
+
+        private void AssertEqualStakeholderTypes(ObservableCollection<StakeholderType> analysisStakeholderTypes, ObservableCollection<StakeholderType> analysis2CStakeholderTypes)
+        {
+            Assert.AreEqual(analysisStakeholderTypes.Count, analysis2CStakeholderTypes.Count);
+            for (int i = 0; i < analysisStakeholderTypes.Count; i++)
+            {
+                var stakeholderType = analysisStakeholderTypes[i];
+                var analysis2CStakeholderType = analysis2CStakeholderTypes[i];
+                AssertAreEqualStakeholderTypes(stakeholderType, analysis2CStakeholderType);
+            }
+        }
+
+        private static void AssertAreEqualStakeholderTypes(StakeholderType stakeholderType,
+            StakeholderType analysis2CStakeholderType)
+        {
+            Assert.AreEqual(stakeholderType.Name, analysis2CStakeholderType.Name);
+            Assert.AreEqual(stakeholderType.Color, analysis2CStakeholderType.Color);
+            Assert.AreEqual(stakeholderType.IconType, analysis2CStakeholderType.IconType);
         }
 
         private void AssertEqualOnionDiagrams(ObservableCollection<OnionDiagram> analysisOnionDiagrams, ObservableCollection<OnionDiagram> analysis2COnionDiagrams)
@@ -194,7 +214,7 @@ namespace StakeholderAnalysis.Storage.Test
         private static void AssertAreEqualStakeholders(Stakeholder stakeholder1, Stakeholder stakeholder2)
         {
             Assert.AreEqual(stakeholder1.Name, stakeholder2.Name);
-            Assert.AreEqual(stakeholder1.Type, stakeholder2.Type);
+            AssertAreEqualStakeholderTypes(stakeholder1.Type, stakeholder2.Type);
         }
     }
 }

@@ -21,6 +21,7 @@ namespace StakeholderAnalysis.Storage.DbContext
             this.ForceFieldDiagramEntities = new HashSet<ForceFieldDiagramEntity>();
             this.OnionDiagramEntities = new HashSet<OnionDiagramEntity>();
             this.StakeholderEntities = new HashSet<StakeholderEntity>();
+            this.StakeholderTypeEntities = new HashSet<StakeholderTypeEntity>();
         }
     
         public long AnalysisEntityId { get; set; }
@@ -33,5 +34,7 @@ namespace StakeholderAnalysis.Storage.DbContext
         public virtual ICollection<OnionDiagramEntity> OnionDiagramEntities { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<StakeholderEntity> StakeholderEntities { get; set; }
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
+        public virtual ICollection<StakeholderTypeEntity> StakeholderTypeEntities { get; set; }
     }
 }

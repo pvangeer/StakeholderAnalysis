@@ -23,9 +23,9 @@ namespace StakeholderAnalysis.Storage.DbContext
         }
     
         public long StakeholderEntityId { get; set; }
+        public long StakeholderTypeId { get; set; }
         public long AnalysisEntityId { get; set; }
         public string Name { get; set; }
-        public byte Type { get; set; }
         public long Order { get; set; }
     
         public virtual AnalysisEntity AnalysisEntity { get; set; }
@@ -35,5 +35,6 @@ namespace StakeholderAnalysis.Storage.DbContext
         public virtual ICollection<ForceFieldDiagramStakeholderEntity> ForceFieldDiagramStakeholderEntities { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<OnionDiagramStakeholderEntity> OnionDiagramStakeholderEntities { get; set; }
+        public virtual StakeholderTypeEntity StakeholderTypeEntity { get; set; }
     }
 }

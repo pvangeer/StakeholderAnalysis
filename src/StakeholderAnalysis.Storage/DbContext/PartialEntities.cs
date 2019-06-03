@@ -19,6 +19,7 @@ namespace StakeholderAnalysis.Storage.DbContext
         /// </summary>
         public void LoadTablesIntoContext()
         {
+            StakeholderTypeEntities.Load();
             StakeholderEntities.Load();
             OnionDiagramEntities.Load();
             OnionRingEntities.Load();

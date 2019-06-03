@@ -4,9 +4,9 @@ using StakeholderAnalysis.Storage.DbContext;
 
 namespace StakeholderAnalysis.Storage.Read
 {
-    internal static class StakeholderEntityReadExtensions
+    internal static class StakeholderTypeEntityReadExtensions
     {
-        internal static Stakeholder Read(this StakeholderEntity entity, ReadConversionCollector collector)
+        internal static StakeholderType Read(this StakeholderTypeEntity entity, ReadConversionCollector collector)
         {
             if (entity == null)
             {
@@ -22,15 +22,16 @@ namespace StakeholderAnalysis.Storage.Read
                 return collector.Get(entity);
             }
 
-            var stakeholder = new Stakeholder
+            var stakeholderType = new StakeholderType
             {
                 Name = entity.Name,
-                Type = entity.StakeholderTypeEntity.Read(collector)
+                Color = entity.Color.ToColor(),
+                IconType = (StakeholderIconType)entity.Icontype
             };
 
-            collector.Collect(entity,stakeholder);
+            collector.Collect(entity, stakeholderType);
 
-            return stakeholder;
+            return stakeholderType;
         }
     }
 }

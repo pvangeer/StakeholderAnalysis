@@ -18,12 +18,17 @@ namespace StakeholderAnalysis.Storage.Read
                 throw new ArgumentNullException(nameof(collector));
             }
 
+            var stakeholderTypes = entity.StakeholderTypeEntities.OrderBy(e => e.Order).Select(e => e.Read(collector));
             var stakeholders = entity.StakeholderEntities.OrderBy(e => e.Order).Select(e => e.Read(collector));
             var onionDiagrams = entity.OnionDiagramEntities.OrderBy(e => e.Order).Select(e => e.Read(collector));
             var forceFieldDiagrams = entity.ForceFieldDiagramEntities.OrderBy(e => e.Order).Select(e => e.Read(collector));
             var attitudeImpactDiagrams = entity.AttitudeImpactDiagramEntities.OrderBy(e => e.Order).Select(e => e.Read(collector));
 
             var analysis = new Analysis();
+            foreach (var stakeholderType in stakeholderTypes)
+            {
+                analysis.StakeholderTypes.Add(stakeholderType);
+            }
 
             foreach (var stakeholder in stakeholders)
             {
