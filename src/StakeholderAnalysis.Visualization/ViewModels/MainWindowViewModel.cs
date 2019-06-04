@@ -34,7 +34,7 @@ namespace StakeholderAnalysis.Visualization.ViewModels
 
         public void ForcedClosingMainWindow()
         {
-            RibbonViewModel.GuiProjectServices.HandleUnsavedChanges(gui, () => {});
+            gui.GuiProjectServices.HandleUnsavedChanges(gui, () => {});
         }
     }
 }

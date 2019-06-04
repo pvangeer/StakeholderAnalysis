@@ -2,13 +2,16 @@
 
 namespace StakeholderAnalysis.Visualization.ViewModels
 {
-    public class ViewModelBase : NotifyPropertyChangedObservable
+    public abstract class ViewModelBase : NotifyPropertyChangedObservable
     {
-        public ViewModelBase(ViewModelFactory factory)
+        protected ViewModelBase(ViewModelFactory factory)
         {
             ViewModelFactory = factory;
+            CommandFactory = ViewModelFactory.GetCommandFactory();
         }
 
         protected ViewModelFactory ViewModelFactory { get; }
+
+        protected CommandFactory CommandFactory { get; }
     }
 }

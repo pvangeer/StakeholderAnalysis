@@ -1,17 +1,16 @@
-﻿using System;
-using StakeholderAnalysis.Visualization.ViewModels.Ribbon;
+﻿using StakeholderAnalysis.Gui;
 
 namespace StakeholderAnalysis.Visualization.Commands.FileHandling
 {
     public class OpenFileCommand : FileHandlingCommandBase
     {
-        public OpenFileCommand(RibbonViewModel ribbonViewModel) : base(ribbonViewModel)
+        public OpenFileCommand(GuiProjectServices guiProjectServices) : base(guiProjectServices)
         {
         }
 
         public override void Execute(object parameter)
         {
-            ribbonViewModel.GuiProjectServices.OpenProject();
+            GuiProjectServices.OpenProject();
         }
     }
 }

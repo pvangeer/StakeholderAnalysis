@@ -138,11 +138,11 @@
                 <fluent:RibbonGroupBox Header="Ringen">
                     <fluent:Button 
                         Header="Ring toevoegen" 
-                        Command="{Binding RibbonViewModel.RibbonSelectedOnionDiagramViewModel.AddOnionRingCommand, Converter={StaticResource DummyConverter}}"
+                        Command="{Binding RibbonViewModel.AddOnionRingCommand, Converter={StaticResource DummyConverter}}"
                         Size="Middle"
                         Icon="pack://application:,,,/StakeholderAnalysis.Visualization;component/Resources/plus.png"/>
                     <fluent:Spinner 
-                        Value="{Binding RibbonViewModel.RibbonSelectedOnionDiagramViewModel.Asymmetry, Converter={StaticResource DummyConverter}}" 
+                        Value="{Binding RibbonViewModel.Asymmetry, Converter={StaticResource DummyConverter}}" 
                         Header="Asymmetrie"
                         Format="0.#####"
                         Minimum="0.0" 

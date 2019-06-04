@@ -1,21 +1,21 @@
 ﻿using System;
 using System.Windows.Input;
-using StakeholderAnalysis.Visualization.ViewModels.Ribbon;
+using StakeholderAnalysis.Gui;
 
 namespace StakeholderAnalysis.Visualization.Commands.FileHandling
 {
     public abstract class FileHandlingCommandBase : ICommand
     {
-        protected RibbonViewModel ribbonViewModel;
+        protected GuiProjectServices GuiProjectServices;
 
-        protected FileHandlingCommandBase(RibbonViewModel ribbonViewModel)
+        protected FileHandlingCommandBase(GuiProjectServices guiProjectServices)
         {
-            this.ribbonViewModel = ribbonViewModel;
+            this.GuiProjectServices = guiProjectServices;
         }
 
         public virtual bool CanExecute(object parameter)
         {
-            return ribbonViewModel.HasGui;
+            return true;
         }
 
         public abstract void Execute(object parameter);

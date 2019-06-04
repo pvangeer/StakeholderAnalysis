@@ -101,7 +101,6 @@
     <Compile Include="ViewModels\ProjectExplorer\ProjectExplorerStakeholderOverviewTableViewModel.cs" />
     <Compile Include="ViewModels\ProjectExplorer\StakeholderTypesViewModel.cs" />
     <Compile Include="ViewModels\ProjectExplorer\StakeholderTypeViewModel.cs" />
-    <Compile Include="ViewModels\Ribbon\RibbonSelectedOnionDiagramViewModel.cs" />
     <Compile Include="ViewModels\StatusBar\MessagesViewModel.cs" />
     <Compile Include="ViewModels\StatusBar\StatusBarViewModel.cs" />
     <Compile Include="ViewModels\TwoAxisDiagrams\ITwoAxisDiagramViewModel.cs" />

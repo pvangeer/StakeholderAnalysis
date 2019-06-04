@@ -19,7 +19,7 @@ namespace StakeholderAnalysis.Visualization.ViewModels
         {
             this.gui = gui;
             this.viewManager = viewManager;
-            this.commandFactory = new CommandFactory(gui.Analysis);
+            this.commandFactory = new CommandFactory(gui, gui.Analysis, this);
         }
 
         public OnionDiagramDrawConnectionViewModel CreateOnionDiagramDrawConnectionViewModel(OnionDiagram onionDiagram)
@@ -56,6 +56,16 @@ namespace StakeholderAnalysis.Visualization.ViewModels
         public StatusBarViewModel CreateStatusBarViewModel()
         {
             return new StatusBarViewModel(this,gui);
+        }
+
+        public CommandFactory GetCommandFactory()
+        {
+            return commandFactory;
+        }
+
+        public ViewManagerViewModel CreateViewManagerViewModel(ViewManager guiViewManager)
+        {
+            return new ViewManagerViewModel(gui?.ViewManager);
         }
     }
 }

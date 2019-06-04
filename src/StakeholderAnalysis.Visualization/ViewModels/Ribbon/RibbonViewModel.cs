@@ -1,5 +1,4 @@
-﻿using System;
-using System.Collections.ObjectModel;
+﻿using System.Collections.ObjectModel;
 using System.Collections.Specialized;
 using System.ComponentModel;
 using System.Linq;
@@ -8,9 +7,6 @@ using System.Windows.Input;
 using StakeholderAnalysis.Data.OnionDiagrams;
 using StakeholderAnalysis.Gui;
 using StakeholderAnalysis.Visualization.Commands;
-using StakeholderAnalysis.Visualization.Commands.FileHandling;
-using StakeholderAnalysis.Visualization.Commands.ProjectExplorer;
-using StakeholderAnalysis.Visualization.Commands.Ribbon;
 using StakeholderAnalysis.Visualization.ViewModels.OnionDiagramView;
 
 namespace StakeholderAnalysis.Visualization.ViewModels.Ribbon
@@ -24,7 +20,6 @@ namespace StakeholderAnalysis.Visualization.ViewModels.Ribbon
         public RibbonViewModel(ViewModelFactory factory, StakeholderAnalysisGui guiInput) : base(factory)
         {
             gui = guiInput;
-            GuiProjectServices = new GuiProjectServices(gui);
             if (gui != null)
             {
                 gui.ShouldSaveOpenChanges = ShouldSaveOpenChanges;
@@ -35,7 +30,7 @@ namespace StakeholderAnalysis.Visualization.ViewModels.Ribbon
                 SetCurrentSelectedDiagramAndGroups();
             }
 
-            ViewManagerViewModel = new ViewManagerViewModel(gui?.ViewManager);
+            ViewManagerViewModel = ViewModelFactory.CreateViewManagerViewModel(gui?.ViewManager);
         }
 
         private void SetCurrentSelectedDiagramAndGroups()
@@ -61,7 +56,8 @@ namespace StakeholderAnalysis.Visualization.ViewModels.Ribbon
                 stakeholderConnectionGroupSelection.PropertyChanged += StakeholderConnectionGroupSelectionPropertyChanged;
             }
 
-            OnPropertyChanged(nameof(RibbonSelectedOnionDiagramViewModel));
+            OnPropertyChanged(nameof(Asymmetry));
+            OnPropertyChanged(nameof(AddOnionRingCommand));
             OnPropertyChanged(nameof(StakeholderConnectionGroups));
             OnPropertyChanged(nameof(SelectedStakeholderConnectionGroup));
             OnPropertyChanged(nameof(ToggleToolWindowCommand));
@@ -77,19 +73,17 @@ namespace StakeholderAnalysis.Visualization.ViewModels.Ribbon
 
         public ViewManagerViewModel ViewManagerViewModel { get; }
 
-        public ICommand OpenCommand => new OpenFileCommand(this);
+        public ICommand OpenCommand => CommandFactory.CeateOpenFileCommand();
 
-        public ICommand SaveCommand => new SaveFileCommand(this);
+        public ICommand SaveCommand => CommandFactory.CreateSaveFileCommand();
 
-        public ICommand SaveAsCommand => new SaveFileAsCommand(this);
+        public ICommand SaveAsCommand => CommandFactory.CreateSaveFileAsCommand();
 
-        public ICommand NewCommand => new NewProjectCommand(this);
+        public ICommand NewCommand => CommandFactory.CreateNewProjectCommand();
 
-        public ICommand CloseApplication => new CloseApplicationCommand(gui, GuiProjectServices);
+        public ICommand CloseApplication => CommandFactory.CreateCloseApplicationCommand();
 
-        public ICommand AddStakeholdersCommand => new AddStakeholdersToDiagramCommand(gui.ViewManager, gui.Analysis);
-
-        public bool HasGui => gui != null;
+        public ICommand AddStakeholdersCommand => CommandFactory.CreateAddStakeholdersCommand();
 
         public bool IsMagnifierActive
         {
@@ -101,24 +95,25 @@ namespace StakeholderAnalysis.Visualization.ViewModels.Ribbon
             }
         }
 
-        public ICommand SaveImageCommand
+        public ICommand SaveImageCommand => saveCanvasCommand ?? (saveCanvasCommand = CommandFactory.CreateSaveImageCommand());
+
+        public ICommand AddOnionRingCommand => CommandFactory.CreateAddOnionRingCommand(stakeholderConnectionGroupSelection?.OnionDiagram);
+
+        public double Asymmetry
         {
-            get
+            get => stakeholderConnectionGroupSelection?.OnionDiagram?.Asymmetry ?? 0.0;
+            set
             {
-                return saveCanvasCommand ?? (saveCanvasCommand = new RelayCommand(() =>
+                if (stakeholderConnectionGroupSelection?.OnionDiagram != null)
                 {
-                    gui.IsSaveToImage = true;
-                    gui.OnPropertyChanged(nameof(StakeholderAnalysisGui.IsSaveToImage));
-                    gui.IsSaveToImage = false;
-                    gui.OnPropertyChanged(nameof(StakeholderAnalysisGui.IsSaveToImage));
-                }, () => gui.ViewManager.ActiveDocument != null));
+                    stakeholderConnectionGroupSelection.OnionDiagram.Asymmetry = value;
+                    stakeholderConnectionGroupSelection.OnionDiagram.OnPropertyChanged(nameof(OnionDiagram.Asymmetry));
+                }
             }
         }
 
-        public RibbonSelectedOnionDiagramViewModel RibbonSelectedOnionDiagramViewModel =>
-            stakeholderConnectionGroupSelection?.OnionDiagram != null ? new RibbonSelectedOnionDiagramViewModel(stakeholderConnectionGroupSelection.OnionDiagram, gui.Analysis) : null;
 
-        public ICommand ToggleToolWindowCommand => new ToggleToolWindowCommand(ViewModelFactory, gui, gui.ViewManager);
+        public ICommand ToggleToolWindowCommand => CommandFactory.CreateToggleToolWindowCommand();
 
         public ObservableCollection<ViewInfo> ToolWindows
         {
@@ -154,8 +149,6 @@ namespace StakeholderAnalysis.Visualization.ViewModels.Ribbon
             }
         }
 
-        public GuiProjectServices GuiProjectServices { get; }
-
         public ObservableCollection<StakeholderConnectionGroup> StakeholderConnectionGroups => stakeholderConnectionGroupSelection?.OnionDiagram?.ConnectionGroups;
 
         public StakeholderConnectionGroup SelectedStakeholderConnectionGroup
@@ -177,11 +170,7 @@ namespace StakeholderAnalysis.Visualization.ViewModels.Ribbon
         {
             string messageBoxText = "U heeft aanpassingen aan uw project nog niet opgeslagen. Wilt u dat alsnog doen?";
             string caption = "Aanpassingen opslaan";
-
-            MessageBoxButton messageBoxType = MessageBoxButton.YesNo;
-            MessageBoxImage messageBoxImage = MessageBoxImage.Question;
-
-            MessageBoxResult messageBoxResult = MessageBox.Show(messageBoxText, caption, messageBoxType, messageBoxImage);
+            MessageBoxResult messageBoxResult = MessageBox.Show(messageBoxText, caption, MessageBoxButton.YesNo, MessageBoxImage.Question);
 
             return messageBoxResult == MessageBoxResult.Yes;
         }

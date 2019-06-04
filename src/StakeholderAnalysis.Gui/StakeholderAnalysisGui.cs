@@ -30,6 +30,8 @@ namespace StakeholderAnalysis.Gui
                 ? new ObservableCollection<StakeholderConnectionGroupSelection>()
                 : new ObservableCollection<StakeholderConnectionGroupSelection>(analysis.OnionDiagrams.Select(d => new StakeholderConnectionGroupSelection(d, d.ConnectionGroups.FirstOrDefault())));
 
+            GuiProjectServices = new GuiProjectServices(this);
+
             ConfigureMessaging();
             Messages = new MessageList();
             IsMagnifierActive = false;
@@ -118,6 +120,7 @@ namespace StakeholderAnalysis.Gui
         public bool IsSaveToImage { get; set; }
 
         public Func<bool> ShouldSaveOpenChanges { get; set; }
+        public GuiProjectServices GuiProjectServices { get; }
 
         public readonly ObservableCollection<StakeholderConnectionGroupSelection> SelectedStakeholderConnectionGroups;
 

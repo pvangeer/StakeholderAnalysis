@@ -1,16 +1,17 @@
-﻿using StakeholderAnalysis.Visualization.ViewModels.Ribbon;
+﻿using StakeholderAnalysis.Gui;
+using StakeholderAnalysis.Visualization.ViewModels.Ribbon;
 
 namespace StakeholderAnalysis.Visualization.Commands.FileHandling
 {
     public class NewProjectCommand : FileHandlingCommandBase
     {
-        public NewProjectCommand(RibbonViewModel ribbonViewModel) : base(ribbonViewModel)
+        public NewProjectCommand(GuiProjectServices guiProjectServices) : base(guiProjectServices)
         {
         }
 
         public override void Execute(object parameter)
         {
-            ribbonViewModel.GuiProjectServices.NewProject();
+            GuiProjectServices.NewProject();
         }
     }
 }
