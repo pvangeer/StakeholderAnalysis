@@ -19,13 +19,10 @@ namespace StakeholderAnalysis.Visualization.ViewModels.Ribbon
     {
         private readonly StakeholderAnalysisGui gui;
         private RelayCommand saveCanvasCommand;
-        private readonly Action invalidateVisualAction;
         private StakeholderConnectionGroupSelection stakeholderConnectionGroupSelection;
 
-        public RibbonViewModel(ViewModelFactory factory, StakeholderAnalysisGui guiInput, Action invalidateVisualAction) : base(factory)
+        public RibbonViewModel(ViewModelFactory factory, StakeholderAnalysisGui guiInput) : base(factory)
         {
-            this.invalidateVisualAction = invalidateVisualAction;
-
             gui = guiInput;
             GuiProjectServices = new GuiProjectServices(gui);
             if (gui != null)
@@ -140,9 +137,6 @@ namespace StakeholderAnalysis.Visualization.ViewModels.Ribbon
             {
                 case nameof(StakeholderAnalysisGui.IsMagnifierActive):
                     OnPropertyChanged(nameof(IsMagnifierActive));
-                    break;
-                case nameof(StakeholderAnalysisGui.BusyIndicator):
-                    invalidateVisualAction?.Invoke();
                     break;
                 case nameof(StakeholderAnalysisGui.Analysis):
                     SetCurrentSelectedDiagramAndGroups();

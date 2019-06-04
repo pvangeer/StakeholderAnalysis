@@ -5,11 +5,11 @@ using StakeholderAnalysis.Gui;
 
 namespace StakeholderAnalysis.Visualization.ViewModels
 {
-    public class MainContentPresenterViewModel : NotifyPropertyChangedObservable
+    public class MainContentPresenterViewModel : ViewModelBase
     {
         private readonly StakeholderAnalysisGui gui;
 
-        public MainContentPresenterViewModel(StakeholderAnalysisGui gui)
+        public MainContentPresenterViewModel(ViewModelFactory factory, StakeholderAnalysisGui gui) : base(factory)
         {
             this.gui = gui;
             if (gui != null)

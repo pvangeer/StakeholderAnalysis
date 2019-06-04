@@ -9,12 +9,12 @@ using StakeholderAnalysis.Visualization.Commands.StatusBar;
 
 namespace StakeholderAnalysis.Visualization.ViewModels.StatusBar
 {
-    public class StatusBarViewModel : NotifyPropertyChangedObservable
+    public class StatusBarViewModel : ViewModelBase
     {
         private readonly StakeholderAnalysisGui gui;
         private MessageListViewModel messageListViewModel;
 
-        public StatusBarViewModel(StakeholderAnalysisGui gui)
+        public StatusBarViewModel(ViewModelFactory viewModelFactory, StakeholderAnalysisGui gui) : base(viewModelFactory)
         {
             this.gui = gui;
 

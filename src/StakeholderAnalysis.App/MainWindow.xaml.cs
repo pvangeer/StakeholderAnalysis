@@ -18,14 +18,7 @@ namespace StakeholderAnalysis.App
 
         private void MainWindow_OnLoaded(object sender, RoutedEventArgs eLoaded)
         {
-            var mainWindowViewModel = new MainWindowViewModel(new StakeholderAnalysisGui(AnalysisGenerator.GetAnalysis()));
-            DataContext = mainWindowViewModel;
-
-            mainWindowViewModel.OnInvalidateVisual += (o, e) =>
-            {
-                //InvalidateVisual();
-            };
-
+            DataContext = new MainWindowViewModel(new StakeholderAnalysisGui(AnalysisGenerator.GetAnalysis()));
         }
 
         private void MainWindowClosing(object sender, CancelEventArgs e)

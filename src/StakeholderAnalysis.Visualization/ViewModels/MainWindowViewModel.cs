@@ -20,19 +20,17 @@ namespace StakeholderAnalysis.Visualization.ViewModels
         {
             ViewModelFactory = new ViewModelFactory(guiInput, guiInput.ViewManager);
             gui = guiInput;
-            RibbonViewModel = new RibbonViewModel(ViewModelFactory,gui, () => OnInvalidateVisual?.Invoke(this, null));
+            RibbonViewModel = ViewModelFactory.CreateRibbonViewModel();
             RibbonViewModel.ToggleToolWindowCommand.Execute(typeof(ProjectExplorerViewModel));
             RibbonViewModel.ToggleToolWindowCommand.Execute(typeof(OnionDiagramPropertiesViewModel));
-            MainContentPresenterViewModel = new MainContentPresenterViewModel(gui);
+            MainContentPresenterViewModel = ViewModelFactory.CreateMainContentPresenterViewModel(gui);
         }
 
         public MainContentPresenterViewModel MainContentPresenterViewModel { get; }
 
         public RibbonViewModel RibbonViewModel { get; }
 
-        public StatusBarViewModel StatusBarViewModel => new StatusBarViewModel(gui);
-
-        public event EventHandler OnInvalidateVisual;
+        public StatusBarViewModel StatusBarViewModel => ViewModelFactory.CreateStatusBarViewModel();
 
         public void ForcedClosingMainWindow()
         {

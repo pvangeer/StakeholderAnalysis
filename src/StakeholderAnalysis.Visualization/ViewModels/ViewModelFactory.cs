@@ -4,6 +4,8 @@ using StakeholderAnalysis.Data.OnionDiagrams;
 using StakeholderAnalysis.Gui;
 using StakeholderAnalysis.Visualization.ViewModels.OnionDiagramView;
 using StakeholderAnalysis.Visualization.ViewModels.ProjectExplorer;
+using StakeholderAnalysis.Visualization.ViewModels.Ribbon;
+using StakeholderAnalysis.Visualization.ViewModels.StatusBar;
 
 namespace StakeholderAnalysis.Visualization.ViewModels
 {
@@ -39,6 +41,21 @@ namespace StakeholderAnalysis.Visualization.ViewModels
         {
             return new StakeholderTypeViewModel(this, stakeholderType,
                 commandFactory.CreateRemoveStakeholderTypeCommand(stakeholderType));
+        }
+
+        public RibbonViewModel CreateRibbonViewModel()
+        {
+            return new RibbonViewModel(this, gui);
+        }
+
+        public MainContentPresenterViewModel CreateMainContentPresenterViewModel(StakeholderAnalysisGui stakeholderAnalysisGui)
+        {
+            return new MainContentPresenterViewModel(this, stakeholderAnalysisGui);
+        }
+
+        public StatusBarViewModel CreateStatusBarViewModel()
+        {
+            return new StatusBarViewModel(this,gui);
         }
     }
 }
