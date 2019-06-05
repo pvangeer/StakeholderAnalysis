@@ -1,6 +1,5 @@
 ﻿using System.ComponentModel;
 using System.Linq;
-using StakeholderAnalysis.Data;
 using StakeholderAnalysis.Gui;
 
 namespace StakeholderAnalysis.Visualization.ViewModels
@@ -16,26 +15,7 @@ namespace StakeholderAnalysis.Visualization.ViewModels
             {
                 gui.PropertyChanged += GuiPropertyChanged;
             }
-            ViewManager = new ViewManagerViewModel(gui.ViewManager);
-        }
-
-        private void GuiPropertyChanged(object sender, PropertyChangedEventArgs e)
-        {
-            switch (e.PropertyName)
-            {
-                case nameof(StakeholderAnalysisGui.IsMagnifierActive):
-                    OnPropertyChanged(nameof(IsMagnifierActive));
-                    break;
-                case nameof(StakeholderAnalysisGui.IsSaveToImage):
-                    OnPropertyChanged(nameof(IsSaveToImage));
-                    break;
-                case nameof(StakeholderAnalysisGui.Analysis):
-                    foreach (var viewInfo in gui.ViewManager.Views.ToList())
-                    {
-                        gui.ViewManager.CloseView(viewInfo);
-                    }
-                    break;
-            }
+            ViewManager = ViewModelFactory.CreateViewManagerViewModel(gui?.ViewManager);
         }
 
         public ViewManagerViewModel ViewManager { get; }
@@ -57,6 +37,25 @@ namespace StakeholderAnalysis.Visualization.ViewModels
             {
                 gui.IsMagnifierActive = value;
                 gui.OnPropertyChanged(nameof(StakeholderAnalysisGui.IsMagnifierActive));
+            }
+        }
+
+        private void GuiPropertyChanged(object sender, PropertyChangedEventArgs e)
+        {
+            switch (e.PropertyName)
+            {
+                case nameof(StakeholderAnalysisGui.IsMagnifierActive):
+                    OnPropertyChanged(nameof(IsMagnifierActive));
+                    break;
+                case nameof(StakeholderAnalysisGui.IsSaveToImage):
+                    OnPropertyChanged(nameof(IsSaveToImage));
+                    break;
+                case nameof(StakeholderAnalysisGui.Analysis):
+                    foreach (var viewInfo in gui.ViewManager.Views.ToList())
+                    {
+                        gui.ViewManager.CloseView(viewInfo);
+                    }
+                    break;
             }
         }
     }

@@ -18,7 +18,7 @@ namespace StakeholderAnalysis.Visualization.ViewModels
 
         public MainWindowViewModel(StakeholderAnalysisGui guiInput)
         {
-            ViewModelFactory = new ViewModelFactory(guiInput, guiInput.ViewManager);
+            ViewModelFactory = new ViewModelFactory(guiInput);
             gui = guiInput;
             RibbonViewModel = ViewModelFactory.CreateRibbonViewModel();
             RibbonViewModel.ToggleToolWindowCommand.Execute(typeof(ProjectExplorerViewModel));

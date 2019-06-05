@@ -12,14 +12,12 @@ namespace StakeholderAnalysis.Visualization.ViewModels
     public class ViewModelFactory
     {
         private readonly StakeholderAnalysisGui gui;
-        private readonly ViewManager viewManager;
         private readonly CommandFactory commandFactory;
 
-        public ViewModelFactory(StakeholderAnalysisGui gui, ViewManager viewManager)
+        public ViewModelFactory(StakeholderAnalysisGui gui)
         {
             this.gui = gui;
-            this.viewManager = viewManager;
-            this.commandFactory = new CommandFactory(gui, gui.Analysis, this);
+            commandFactory = new CommandFactory(gui, gui.Analysis, this);
         }
 
         public OnionDiagramDrawConnectionViewModel CreateOnionDiagramDrawConnectionViewModel(OnionDiagram onionDiagram)
