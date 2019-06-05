@@ -42,16 +42,14 @@ namespace StakeholderAnalysis.Visualization.ViewModels.ProjectExplorer
             }
         }
 
-        public ICommand ToggleIsExpandedCommand => new ToggleIsExpandedCommand(this);
+        public ICommand ToggleIsExpandedCommand => CommandFactory.CreateToggleIsExpandedCommand(this);
 
-        public ICommand AddNewDiagramCommand => new AddNewDiagramCommand(this);
-
-        public string DisplayName => "Ui-diagrammen";
-
-        public void AddNewDiagram()
+        public ICommand AddNewDiagramCommand => CommandFactory.CreateCanAlwaysExecuteActionCommand(p =>
         {
             analysis.OnionDiagrams.Add(new OnionDiagram("Nieuw diagram"));
-        }
+        });
+
+        public string DisplayName => "Ui-diagrammen";
 
         private void OnionDiagramsCollectionChanged(object sender, NotifyCollectionChangedEventArgs e)
         {

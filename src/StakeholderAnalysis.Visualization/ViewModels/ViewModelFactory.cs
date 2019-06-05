@@ -1,7 +1,9 @@
 ﻿using System.Linq;
 using StakeholderAnalysis.Data;
+using StakeholderAnalysis.Data.ForceFieldDiagrams;
 using StakeholderAnalysis.Data.OnionDiagrams;
 using StakeholderAnalysis.Gui;
+using StakeholderAnalysis.Visualization.ViewModels.OnionDiagramProperties;
 using StakeholderAnalysis.Visualization.ViewModels.OnionDiagramView;
 using StakeholderAnalysis.Visualization.ViewModels.ProjectExplorer;
 using StakeholderAnalysis.Visualization.ViewModels.Ribbon;
@@ -69,6 +71,51 @@ namespace StakeholderAnalysis.Visualization.ViewModels
         public MessageListViewModel CreateMessageListViewModel()
         {
             return new MessageListViewModel(this,gui?.Messages);
+        }
+
+        public ConnectionGroupsPropertiesViewModel CreateConnectionGroupsPropertiesViewModel()
+        {
+            return new ConnectionGroupsPropertiesViewModel(this, gui?.ViewManager);
+        }
+
+        public OnionDiagramPropertiesViewModel CreateOnionDiagramPropertiesViewModel()
+        {
+            return new OnionDiagramPropertiesViewModel(this, gui?.ViewManager);
+        }
+
+        public ProjectExplorerViewModel CreateProjectExplorerViewModel()
+        {
+            return new ProjectExplorerViewModel(this, gui);
+        }
+
+        public OnionRingPropertiesViewModel CreateOnionRingPropertiesViewModel(OnionRing onionRing, OnionDiagram selectedOnionDiagram)
+        {
+            return new OnionRingPropertiesViewModel(this, onionRing, selectedOnionDiagram);
+        }
+
+        public OnionRingsPropertiesViewModel CreateOnionRingsPropertiesViewModel()
+        {
+            return new OnionRingsPropertiesViewModel(this, gui.ViewManager);
+        }
+
+        public ConnectionGroupPropertiesViewModel CreateConnectionGroupPropertiesViewModel(StakeholderConnectionGroup connectionGroup, OnionDiagram selectedOnionDiagram)
+        {
+            return new ConnectionGroupPropertiesViewModel(this, connectionGroup, selectedOnionDiagram);
+        }
+
+        public ProjectExplorerForceFieldDiagramsViewModel CreateProjectExplorerForceFieldDiagramsViewModel(Analysis analysis)
+        {
+            return new ProjectExplorerForceFieldDiagramsViewModel(this, analysis, gui.ViewManager);
+        }
+
+        public IProjectExplorerDiagramViewModel CreateProjectExplorerForceFieldDiagramViewModel(Analysis analysis, ForceFieldDiagram forceFieldDiagram)
+        {
+            return new ProjectExplorerForceFieldDiagramViewModel(analysis, forceFieldDiagram, gui.ViewManager);
+        }
+
+        public ProjectExplorerAttitudeImpactDiagramsViewModel CreateProjectExplorerAttitudeImpactDiagramsViewModel(Analysis guiAnalysis)
+        {
+            return new ProjectExplorerAttitudeImpactDiagramsViewModel(this, guiAnalysis, gui.ViewManager);
         }
     }
 }

@@ -1,20 +1,17 @@
 ﻿using System.ComponentModel;
 using System.Windows.Input;
 using System.Windows.Media;
-using StakeholderAnalysis.Data;
 using StakeholderAnalysis.Data.OnionDiagrams;
-using StakeholderAnalysis.Visualization.Commands;
-using StakeholderAnalysis.Visualization.Commands.OnionDiagramProperties;
 
 namespace StakeholderAnalysis.Visualization.ViewModels.OnionDiagramProperties
 {
-    public class ConnectionGroupPropertiesViewModel : NotifyPropertyChangedObservable, IExpandableContentViewModel
+    public class ConnectionGroupPropertiesViewModel : ViewModelBase, IExpandableContentViewModel
     {
         private readonly StakeholderConnectionGroup connectionGroup;
         private bool isExpanded;
-        private OnionDiagram diagram;
+        private readonly OnionDiagram diagram;
 
-        public ConnectionGroupPropertiesViewModel(StakeholderConnectionGroup connectionGroup, OnionDiagram selectedOnionDiagram)
+        public ConnectionGroupPropertiesViewModel(ViewModelFactory factory, StakeholderConnectionGroup connectionGroup, OnionDiagram selectedOnionDiagram) : base(factory)
         {
             this.diagram = selectedOnionDiagram;
             this.connectionGroup = connectionGroup;
@@ -97,13 +94,12 @@ namespace StakeholderAnalysis.Visualization.ViewModels.OnionDiagramProperties
                 connectionGroup.OnPropertyChanged(nameof(StakeholderConnectionGroup.StrokeThickness));
             }
         }
-        public ICommand ToggleIsExpandedCommand => new ToggleIsExpandedCommand(this);
 
-        public ICommand RemoveConnectionGroupCommand => new RemoveConnectionGroupCommand(this);
+        public ICommand ToggleIsExpandedCommand => CommandFactory.CreateToggleIsExpandedCommand(this);
 
-        public void RemoveConnectionGroup()
+        public ICommand RemoveConnectionGroupCommand => CommandFactory.CreateCanAlwaysExecuteActionCommand(p =>
         {
             diagram.ConnectionGroups.Remove(connectionGroup);
-        }
+        });
     }
 }

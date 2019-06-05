@@ -1,16 +1,15 @@
 ﻿using System.ComponentModel;
-using StakeholderAnalysis.Data;
 using StakeholderAnalysis.Data.OnionDiagrams;
 using StakeholderAnalysis.Gui;
 using StakeholderAnalysis.Visualization.ViewModels.OnionDiagramView;
 
 namespace StakeholderAnalysis.Visualization.ViewModels.OnionDiagramProperties
 {
-    public class OnionDiagramPropertiesViewModel : NotifyPropertyChangedObservable
+    public class OnionDiagramPropertiesViewModel : ViewModelBase
     {
         private readonly ViewManager viewManager;
 
-        public OnionDiagramPropertiesViewModel(ViewManager viewManager)
+        public OnionDiagramPropertiesViewModel(ViewModelFactory factory, ViewManager viewManager) : base(factory)
         {
             this.viewManager = viewManager;
             viewManager.PropertyChanged += ViewManagerPropertyChanged;
@@ -39,10 +38,10 @@ namespace StakeholderAnalysis.Visualization.ViewModels.OnionDiagramProperties
             }
         }
 
-        public OnionRingsPropertiesViewModel OnionRingsViewModel => new OnionRingsPropertiesViewModel(viewManager);
+        public OnionRingsPropertiesViewModel OnionRingsViewModel => ViewModelFactory.CreateOnionRingsPropertiesViewModel();
 
         private OnionDiagram SelectedOnionDiagram => (viewManager?.ActiveDocument?.ViewModel as OnionDiagramViewModel)?.GetDiagram();
 
-        public ConnectionGroupsPropertiesViewModel ConnectionGroupsViewModel => new ConnectionGroupsPropertiesViewModel(viewManager);
+        public ConnectionGroupsPropertiesViewModel ConnectionGroupsViewModel => ViewModelFactory.CreateConnectionGroupsPropertiesViewModel();
     }
 }

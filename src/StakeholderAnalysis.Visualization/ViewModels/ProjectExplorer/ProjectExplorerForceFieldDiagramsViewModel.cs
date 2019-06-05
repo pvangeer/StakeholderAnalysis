@@ -5,18 +5,16 @@ using System.Windows.Input;
 using StakeholderAnalysis.Data;
 using StakeholderAnalysis.Data.ForceFieldDiagrams;
 using StakeholderAnalysis.Gui;
-using StakeholderAnalysis.Visualization.Commands;
-using StakeholderAnalysis.Visualization.Commands.ProjectExplorer;
 
 namespace StakeholderAnalysis.Visualization.ViewModels.ProjectExplorer
 {
-    public class ProjectExplorerForceFieldDiagramsViewModel : NotifyPropertyChangedObservable, IExpandableDiagramCollectionViewModel
+    public class ProjectExplorerForceFieldDiagramsViewModel : ViewModelBase, IExpandableDiagramCollectionViewModel
     {
         private readonly Analysis analysis;
         private bool isExpanded = true;
         private readonly ViewManager viewManager;
 
-        public ProjectExplorerForceFieldDiagramsViewModel(Analysis analysis, ViewManager viewManager)
+        public ProjectExplorerForceFieldDiagramsViewModel(ViewModelFactory factory, Analysis analysis, ViewManager viewManager) : base(factory)
         {
             this.viewManager = viewManager;
             this.analysis = analysis;
@@ -25,7 +23,7 @@ namespace StakeholderAnalysis.Visualization.ViewModels.ProjectExplorer
             Diagrams = new ObservableCollection<IProjectExplorerDiagramViewModel>();
             foreach (var forceFieldDiagram in analysis.ForceFieldDiagrams)
             {
-                Diagrams.Add(new ProjectExplorerForceFieldDiagramViewModel(analysis, forceFieldDiagram, viewManager));
+                Diagrams.Add(ViewModelFactory.CreateProjectExplorerForceFieldDiagramViewModel(analysis, forceFieldDiagram));
             }
         }
 
@@ -41,16 +39,14 @@ namespace StakeholderAnalysis.Visualization.ViewModels.ProjectExplorer
             }
         }
 
-        public ICommand ToggleIsExpandedCommand => new ToggleIsExpandedCommand(this);
+        public ICommand ToggleIsExpandedCommand => CommandFactory.CreateToggleIsExpandedCommand(this);
 
-        public ICommand AddNewDiagramCommand => new AddNewDiagramCommand(this);
-
-        public string DisplayName => "Krachtenveld diagrammen";
-
-        public void AddNewDiagram()
+        public ICommand AddNewDiagramCommand => CommandFactory.CreateCanAlwaysExecuteActionCommand(p =>
         {
             analysis.ForceFieldDiagrams.Add(new ForceFieldDiagram("Nieuw diagram"));
-        }
+        });
+
+        public string DisplayName => "Krachtenveld diagrammen";
 
         private void ForceFieldDiagramsCollectionChanged(object sender, NotifyCollectionChangedEventArgs e)
         {

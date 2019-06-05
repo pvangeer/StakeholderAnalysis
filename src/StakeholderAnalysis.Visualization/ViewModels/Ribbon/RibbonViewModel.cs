@@ -73,7 +73,7 @@ namespace StakeholderAnalysis.Visualization.ViewModels.Ribbon
 
         public ViewManagerViewModel ViewManagerViewModel { get; }
 
-        public ICommand OpenCommand => CommandFactory.CeateOpenFileCommand();
+        public ICommand OpenCommand => CommandFactory.CreateOpenFileCommand();
 
         public ICommand SaveCommand => CommandFactory.CreateSaveFileCommand();
 

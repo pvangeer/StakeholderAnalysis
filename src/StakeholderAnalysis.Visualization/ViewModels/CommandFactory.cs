@@ -10,9 +10,11 @@ using StakeholderAnalysis.Gui;
 using StakeholderAnalysis.Messaging;
 using StakeholderAnalysis.Visualization.Commands;
 using StakeholderAnalysis.Visualization.Commands.FileHandling;
+using StakeholderAnalysis.Visualization.Commands.OnionDiagramProperties;
 using StakeholderAnalysis.Visualization.Commands.ProjectExplorer;
 using StakeholderAnalysis.Visualization.Commands.Ribbon;
 using StakeholderAnalysis.Visualization.Commands.StatusBar;
+using StakeholderAnalysis.Visualization.ViewModels.OnionDiagramProperties;
 using StakeholderAnalysis.Visualization.ViewModels.StatusBar;
 
 namespace StakeholderAnalysis.Visualization.ViewModels
@@ -45,7 +47,7 @@ namespace StakeholderAnalysis.Visualization.ViewModels
             return new NewProjectCommand(gui?.GuiProjectServices);
         }
 
-        public ICommand CeateOpenFileCommand()
+        public ICommand CreateOpenFileCommand()
         {
             return new OpenFileCommand(gui?.GuiProjectServices);
         }
@@ -79,7 +81,7 @@ namespace StakeholderAnalysis.Visualization.ViewModels
 
         public ICommand CreateToggleToolWindowCommand()
         {
-            return new ToggleToolWindowCommand(viewModelFactory, gui, gui.ViewManager);
+            return new ToggleToolWindowCommand(viewModelFactory, gui.ViewManager);
         }
 
         public ICommand CreateAddOnionRingCommand(OnionDiagram onionDiagram)
@@ -98,6 +100,16 @@ namespace StakeholderAnalysis.Visualization.ViewModels
         public ICommand CreateRemoveAllMessagesCommand(MessageList messageList)
         {
             return new RemoveAllMessagesCommand(messageList);
+        }
+
+        public ICommand CreateAddConnectionGroupCommand(OnionDiagram selectedOnionDiagram)
+        {
+            return new AddConnectionGroupCommand(selectedOnionDiagram);
+        }
+
+        public ICommand CreateToggleIsExpandedCommand(IExpandableContentViewModel expandableContentViewModel)
+        {
+            return new ToggleIsExpandedCommand(expandableContentViewModel);
         }
     }
 }

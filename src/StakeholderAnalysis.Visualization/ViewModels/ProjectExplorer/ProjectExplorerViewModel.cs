@@ -8,11 +8,9 @@ namespace StakeholderAnalysis.Visualization.ViewModels.ProjectExplorer
     public class ProjectExplorerViewModel : ViewModelBase
     {
         private readonly StakeholderAnalysisGui gui;
-        private readonly ViewManager viewManager;
 
-        public ProjectExplorerViewModel(ViewModelFactory factory, StakeholderAnalysisGui gui, ViewManager viewManager) : base(factory)
+        public ProjectExplorerViewModel(ViewModelFactory factory, StakeholderAnalysisGui gui) : base(factory)
         {
-            this.viewManager = viewManager;
             this.gui = gui;
             gui.PropertyChanged += GuiPropertyChanged;
         }
@@ -31,13 +29,13 @@ namespace StakeholderAnalysis.Visualization.ViewModels.ProjectExplorer
             }
         }
 
-        public ProjectExplorerOnionDiagramsViewModel OnionDiagramsViewModel => new ProjectExplorerOnionDiagramsViewModel(ViewModelFactory, gui.Analysis, viewManager);
+        public ProjectExplorerOnionDiagramsViewModel OnionDiagramsViewModel => new ProjectExplorerOnionDiagramsViewModel(ViewModelFactory, gui.Analysis, gui.ViewManager);
 
-        public ProjectExplorerForceFieldDiagramsViewModel ForceFieldDiagramsViewModel => new ProjectExplorerForceFieldDiagramsViewModel(gui.Analysis, viewManager);
+        public ProjectExplorerForceFieldDiagramsViewModel ForceFieldDiagramsViewModel => ViewModelFactory.CreateProjectExplorerForceFieldDiagramsViewModel(gui.Analysis);
 
-        public ProjectExplorerAttitudeImpactDiagramsViewModel AttitudeImpactDiagramsViewModel => new ProjectExplorerAttitudeImpactDiagramsViewModel(gui.Analysis, viewManager);
+        public ProjectExplorerAttitudeImpactDiagramsViewModel AttitudeImpactDiagramsViewModel => ViewModelFactory.CreateProjectExplorerAttitudeImpactDiagramsViewModel(gui.Analysis);
 
-        public ProjectExplorerStakeholderOverviewTableViewModel StakeholderOverviewTableViewModel => new ProjectExplorerStakeholderOverviewTableViewModel(ViewModelFactory, gui.Analysis, viewManager);
+        public ProjectExplorerStakeholderOverviewTableViewModel StakeholderOverviewTableViewModel => new ProjectExplorerStakeholderOverviewTableViewModel(ViewModelFactory, gui.Analysis, gui.ViewManager);
 
         public StakeholderTypesViewModel StakeholderTypesViewModel => ViewModelFactory.CreateStakeholderTypesViewModel();
     }

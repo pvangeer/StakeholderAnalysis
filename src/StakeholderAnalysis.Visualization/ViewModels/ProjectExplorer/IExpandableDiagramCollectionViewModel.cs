@@ -8,7 +8,5 @@ namespace StakeholderAnalysis.Visualization.ViewModels.ProjectExplorer
         ObservableCollection<IProjectExplorerDiagramViewModel> Diagrams { get; }
 
         ICommand AddNewDiagramCommand { get; }
-
-        void AddNewDiagram();
     }
 }

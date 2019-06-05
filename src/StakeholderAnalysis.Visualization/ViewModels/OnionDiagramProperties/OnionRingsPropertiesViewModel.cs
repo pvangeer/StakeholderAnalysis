@@ -13,12 +13,12 @@ using StakeholderAnalysis.Visualization.ViewModels.OnionDiagramView;
 
 namespace StakeholderAnalysis.Visualization.ViewModels.OnionDiagramProperties
 {
-    public class OnionRingsPropertiesViewModel : NotifyPropertyChangedObservable, IExpandableContentViewModel
+    public class OnionRingsPropertiesViewModel : ViewModelBase, IExpandableContentViewModel
     {
         private readonly ViewManager viewManager;
         private bool isExpanded;
 
-        public OnionRingsPropertiesViewModel(ViewManager viewManager)
+        public OnionRingsPropertiesViewModel(ViewModelFactory factory, ViewManager viewManager) : base(factory)
         {
             this.viewManager = viewManager;
             viewManager.PropertyChanged += ViewManagerPropertyChanged;
@@ -67,7 +67,7 @@ namespace StakeholderAnalysis.Visualization.ViewModels.OnionDiagramProperties
 
                 SelectedOnionDiagram = activeOnionDiagram;
                 OnionRings = new ObservableCollection<OnionRingPropertiesViewModel>(
-                    SelectedOnionDiagram?.OnionRings.Select(r => new OnionRingPropertiesViewModel(r, SelectedOnionDiagram)) ??
+                    SelectedOnionDiagram?.OnionRings.Select(r => ViewModelFactory.CreateOnionRingPropertiesViewModel(r, SelectedOnionDiagram)) ??
                     new List<OnionRingPropertiesViewModel>());
 
                 if (SelectedOnionDiagram != null)
@@ -86,7 +86,7 @@ namespace StakeholderAnalysis.Visualization.ViewModels.OnionDiagramProperties
                 case NotifyCollectionChangedAction.Add:
                     foreach (var onionRing in e.NewItems.OfType<OnionRing>())
                     {
-                        OnionRings.Add(new OnionRingPropertiesViewModel(onionRing, SelectedOnionDiagram));
+                        OnionRings.Add(ViewModelFactory.CreateOnionRingPropertiesViewModel(onionRing, SelectedOnionDiagram));
                     }
                     break;
                 case NotifyCollectionChangedAction.Remove:

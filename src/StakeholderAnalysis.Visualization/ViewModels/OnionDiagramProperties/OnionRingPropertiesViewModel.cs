@@ -1,19 +1,16 @@
 ﻿using System.Windows.Input;
 using System.Windows.Media;
-using StakeholderAnalysis.Data;
 using StakeholderAnalysis.Data.OnionDiagrams;
-using StakeholderAnalysis.Visualization.Commands;
-using StakeholderAnalysis.Visualization.Commands.OnionDiagramProperties;
 
 namespace StakeholderAnalysis.Visualization.ViewModels.OnionDiagramProperties
 {
-    public class OnionRingPropertiesViewModel : NotifyPropertyChangedObservable, IExpandableContentViewModel
+    public class OnionRingPropertiesViewModel : ViewModelBase, IExpandableContentViewModel
     {
         private readonly OnionRing ring;
         private readonly OnionDiagram diagram;
         private bool isExpanded;
 
-        public OnionRingPropertiesViewModel(OnionRing ring, OnionDiagram diagram)
+        public OnionRingPropertiesViewModel(ViewModelFactory factory, OnionRing ring, OnionDiagram diagram) : base(factory)
         {
             this.diagram = diagram;
             this.ring = ring;
@@ -60,18 +57,16 @@ namespace StakeholderAnalysis.Visualization.ViewModels.OnionDiagramProperties
             }
         }
 
-        public ICommand RemoveRingCommand => new RemoveOnionRingCommand(this);
+        public ICommand RemoveRingCommand => CommandFactory.CreateCanAlwaysExecuteActionCommand(p =>
+        {
+            diagram.OnionRings.Remove(ring);
+        });
 
-        public ICommand ToggleIsExpandedCommand => new ToggleIsExpandedCommand(this);
+        public ICommand ToggleIsExpandedCommand => CommandFactory.CreateToggleIsExpandedCommand(this);
 
         public bool IsViewModelFor(OnionRing ringViewModel)
         {
             return ringViewModel == ring;
-        }
-
-        public void RemoveOnionRing()
-        {
-            diagram.OnionRings.Remove(ring);
         }
 
         public string DisplayName => Percentage.ToString("0.####");

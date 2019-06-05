@@ -1,6 +1,4 @@
-﻿using System;
-using StakeholderAnalysis.Gui;
-using StakeholderAnalysis.Visualization.ViewModels.Ribbon;
+﻿using StakeholderAnalysis.Gui;
 
 namespace StakeholderAnalysis.Visualization.Commands.FileHandling
 {

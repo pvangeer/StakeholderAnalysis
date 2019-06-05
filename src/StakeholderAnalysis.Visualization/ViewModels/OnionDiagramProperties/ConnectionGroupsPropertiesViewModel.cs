@@ -4,21 +4,19 @@ using System.Collections.Specialized;
 using System.ComponentModel;
 using System.Linq;
 using System.Windows.Input;
-using StakeholderAnalysis.Data;
 using StakeholderAnalysis.Data.OnionDiagrams;
 using StakeholderAnalysis.Gui;
 using StakeholderAnalysis.Visualization.Commands;
-using StakeholderAnalysis.Visualization.Commands.OnionDiagramProperties;
 using StakeholderAnalysis.Visualization.ViewModels.OnionDiagramView;
 
 namespace StakeholderAnalysis.Visualization.ViewModels.OnionDiagramProperties
 {
-    public class ConnectionGroupsPropertiesViewModel : NotifyPropertyChangedObservable, IExpandableContentViewModel
+    public class ConnectionGroupsPropertiesViewModel : ViewModelBase, IExpandableContentViewModel
     {
         private readonly ViewManager viewManager;
         private bool isExpanded;
 
-        public ConnectionGroupsPropertiesViewModel(ViewManager viewManager)
+        public ConnectionGroupsPropertiesViewModel(ViewModelFactory factory, ViewManager viewManager) : base(factory)
         {
             this.viewManager = viewManager;
             viewManager.PropertyChanged += ViewManagerPropertyChanged;
@@ -43,7 +41,7 @@ namespace StakeholderAnalysis.Visualization.ViewModels.OnionDiagramProperties
 
         public ICommand ToggleIsExpandedCommand => new ToggleIsExpandedCommand(this);
 
-        public ICommand AddNewConnectionGroupCommand => new AddConnectionGroupCommand(SelectedOnionDiagram);
+        public ICommand AddNewConnectionGroupCommand => CommandFactory.CreateAddConnectionGroupCommand(SelectedOnionDiagram);
 
         public bool IsExpanded
         {
@@ -67,7 +65,7 @@ namespace StakeholderAnalysis.Visualization.ViewModels.OnionDiagramProperties
 
                 SelectedOnionDiagram = activeOnionDiagram;
                 ConnectionGroups = new ObservableCollection<ConnectionGroupPropertiesViewModel>(
-                    SelectedOnionDiagram?.ConnectionGroups.Select(connectionGroup => new ConnectionGroupPropertiesViewModel(connectionGroup, SelectedOnionDiagram)) ??
+                    SelectedOnionDiagram?.ConnectionGroups.Select(connectionGroup => ViewModelFactory.CreateConnectionGroupPropertiesViewModel(connectionGroup, SelectedOnionDiagram)) ??
                     new List<ConnectionGroupPropertiesViewModel>());
 
                 if (SelectedOnionDiagram != null)
@@ -86,7 +84,7 @@ namespace StakeholderAnalysis.Visualization.ViewModels.OnionDiagramProperties
                 case NotifyCollectionChangedAction.Add:
                     foreach (var connectionGroup in e.NewItems.OfType<StakeholderConnectionGroup>())
                     {
-                        ConnectionGroups.Add(new ConnectionGroupPropertiesViewModel(connectionGroup, SelectedOnionDiagram));
+                        ConnectionGroups.Add(ViewModelFactory.CreateConnectionGroupPropertiesViewModel(connectionGroup, SelectedOnionDiagram));
                     }
                     break;
                 case NotifyCollectionChangedAction.Remove:

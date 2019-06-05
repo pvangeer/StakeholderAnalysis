@@ -10,13 +10,13 @@ using StakeholderAnalysis.Visualization.Commands.ProjectExplorer;
 
 namespace StakeholderAnalysis.Visualization.ViewModels.ProjectExplorer
 {
-    public class ProjectExplorerAttitudeImpactDiagramsViewModel : NotifyPropertyChangedObservable, IExpandableDiagramCollectionViewModel
+    public class ProjectExplorerAttitudeImpactDiagramsViewModel : ViewModelBase, IExpandableDiagramCollectionViewModel
     {
         private readonly Analysis analysis;
         private bool isExpanded = true;
         private readonly ViewManager viewManager;
 
-        public ProjectExplorerAttitudeImpactDiagramsViewModel(Analysis analysis, ViewManager viewManager)
+        public ProjectExplorerAttitudeImpactDiagramsViewModel(ViewModelFactory factory, Analysis analysis, ViewManager viewManager) : base(factory)
         {
             this.viewManager = viewManager;
             this.analysis = analysis;
@@ -43,14 +43,12 @@ namespace StakeholderAnalysis.Visualization.ViewModels.ProjectExplorer
 
         public ICommand ToggleIsExpandedCommand => new ToggleIsExpandedCommand(this);
 
-        public ICommand AddNewDiagramCommand => new AddNewDiagramCommand(this);
-
-        public string DisplayName => "Houding - impact";
-
-        public void AddNewDiagram()
+        public ICommand AddNewDiagramCommand => CommandFactory.CreateCanAlwaysExecuteActionCommand(p =>
         {
             analysis.AttitudeImpactDiagrams.Add(new AttitudeImpactDiagram("Nieuw diagram"));
-        }
+        });
+
+        public string DisplayName => "Houding - impact";
 
         private void AttitudeImpactDiagramsCollectionChanged(object sender, NotifyCollectionChangedEventArgs e)
         {

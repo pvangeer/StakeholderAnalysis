@@ -42,12 +42,9 @@
     <Compile Include="ViewModels\CommandFactory.cs" />
     <Compile Include="ViewModels\IRemoveStakeholderViewModel.cs" />
     <Compile Include="Commands\OnionDiagramProperties\AddConnectionGroupCommand.cs" />
-    <Compile Include="Commands\OnionDiagramProperties\RemoveConnectionGroupCommand.cs" />
-    <Compile Include="Commands\OnionDiagramProperties\RemoveOnionRingCommand.cs" />
     <Compile Include="Commands\RemoveSelectedStakeholderFromDiagramCommand.cs" />
     <Compile Include="Commands\Ribbon\AddOnionRingCommand.cs" />
     <Compile Include="Commands\ProjectExplorer\ToggleToolWindowCommand.cs" />
-    <Compile Include="Commands\ProjectExplorer\AddNewDiagramCommand.cs" />
     <Compile Include="Commands\CloseApplicationCommand.cs" />
     <Compile Include="Commands\FileHandling\FileHandlingCommandBase.cs" />
     <Compile Include="Commands\FileHandling\NewProjectCommand.cs" />
