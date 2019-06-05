@@ -1,12 +1,8 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using StakeholderAnalysis.Data;
+﻿using StakeholderAnalysis.Data;
 
 namespace StakeholderAnalysis.Visualization.ViewModels.TwoAxisDiagrams
 {
+    // TODO: Also use this interface in onion diagram and merge the two datatemplates
     public interface IPositionedStakeholderViewModel
     {
         bool IsViewModelFor(Stakeholder stakeholder);

@@ -1,9 +1,8 @@
-﻿using System.ComponentModel;
-using System.Windows;
-using System.Windows.Input;
+﻿using System.Windows.Input;
 
 namespace StakeholderAnalysis.Visualization.ViewModels
 {
+    // TODO: Move generic interfaces to one namespace
     public interface IExpandableContentViewModel
     {
         string DisplayName { get; }

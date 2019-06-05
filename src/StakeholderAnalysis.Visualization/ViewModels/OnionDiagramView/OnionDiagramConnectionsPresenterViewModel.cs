@@ -1,22 +1,21 @@
 ﻿using System.Collections.ObjectModel;
 using System.Collections.Specialized;
 using System.Linq;
-using StakeholderAnalysis.Data;
 using StakeholderAnalysis.Data.OnionDiagrams;
 
 namespace StakeholderAnalysis.Visualization.ViewModels.OnionDiagramView
 {
-    public class OnionDiagramConnectionsPresenterViewModel : NotifyPropertyChangedObservable
+    public class OnionDiagramConnectionsPresenterViewModel : ViewModelBase
     {
         private readonly OnionDiagram diagram;
 
-        public OnionDiagramConnectionsPresenterViewModel(OnionDiagram onionDiagram)
+        public OnionDiagramConnectionsPresenterViewModel(ViewModelFactory factory, OnionDiagram onionDiagram) : base(factory)
         {
             this.diagram = onionDiagram;
 
             if (diagram != null)
             {
-                StakeholderConnections = new ObservableCollection<StakeholderConnectionViewModel>(diagram.Connections.Select(c => new StakeholderConnectionViewModel(c)));
+                StakeholderConnections = new ObservableCollection<StakeholderConnectionViewModel>(diagram.Connections.Select(c => ViewModelFactory.CreateStakeholderConnectionViewModel(c)));
                 diagram.Connections.CollectionChanged += ConnectorsCollectionChanged;
             }
         }
@@ -26,8 +25,8 @@ namespace StakeholderAnalysis.Visualization.ViewModels.OnionDiagramView
         private void ConnectorsCollectionChanged(object sender, NotifyCollectionChangedEventArgs e)
         {
             if (e.Action == NotifyCollectionChangedAction.Add)
-                foreach (var item in e.NewItems.OfType<StakeholderConnection>())
-                    StakeholderConnections.Add(new StakeholderConnectionViewModel(item));
+                foreach (var connection in e.NewItems.OfType<StakeholderConnection>())
+                    StakeholderConnections.Add(ViewModelFactory.CreateStakeholderConnectionViewModel(connection));
 
             if (e.Action == NotifyCollectionChangedAction.Remove)
                 foreach (var stakeholder in e.OldItems.OfType<StakeholderConnection>())

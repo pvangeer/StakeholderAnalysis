@@ -27,7 +27,7 @@ namespace StakeholderAnalysis.Visualization.ViewModels
 
         public OnionDiagramDrawConnectionViewModel CreateOnionDiagramDrawConnectionViewModel(OnionDiagram onionDiagram)
         {
-            return new OnionDiagramDrawConnectionViewModel(onionDiagram)
+            return new OnionDiagramDrawConnectionViewModel(this, onionDiagram)
             {
                 GetSelectedStakeholderConnectionGroup = d =>
                     gui?.SelectedStakeholderConnectionGroups?.FirstOrDefault(s => s.OnionDiagram == d)
@@ -68,7 +68,7 @@ namespace StakeholderAnalysis.Visualization.ViewModels
 
         public ViewManagerViewModel CreateViewManagerViewModel(ViewManager guiViewManager)
         {
-            return new ViewManagerViewModel(guiViewManager);
+            return new ViewManagerViewModel(this, guiViewManager);
         }
 
         public MessageListViewModel CreateMessageListViewModel()
@@ -159,6 +159,36 @@ namespace StakeholderAnalysis.Visualization.ViewModels
         public OnionDiagramStakeholdersViewModel CreateOnionDiagramStakeholdersViewModel(OnionDiagram onionDiagram, OnionDiagramViewModel onionDiagramViewModel, IDrawConnectionHandler drawConnectionHandler)
         {
             return new OnionDiagramStakeholdersViewModel(this, onionDiagram, onionDiagramViewModel, drawConnectionHandler);
+        }
+
+        public OnionDiagramConnectionsPresenterViewModel CreateOnionDiagramConnectionsPresenterViewModel(OnionDiagram diagram)
+        {
+            return new OnionDiagramConnectionsPresenterViewModel(this, diagram);
+        }
+
+        public OnionDiagramRingsCanvasViewModel CreateOnionDiagramRingsCanvasViewModel(OnionDiagram diagram)
+        {
+            return new OnionDiagramRingsCanvasViewModel(this, diagram);
+        }
+
+        public OnionRingViewModel CreateOnionRingViewModel(OnionRing onionRing)
+        {
+            return new OnionRingViewModel(this, onionRing);
+        }
+
+        public StakeholderConnectionViewModel CreateStakeholderConnectionViewModel(StakeholderConnection stakeholderConnection)
+        {
+            return new StakeholderConnectionViewModel(this, stakeholderConnection);
+        }
+
+        public ProjectExplorerStakeholderOverviewTableViewModel CreateProjectExplorerStakeholderOverviewTableViewModel(Analysis guiAnalysis)
+        {
+            return new ProjectExplorerStakeholderOverviewTableViewModel(this, guiAnalysis, gui.ViewManager);
+        }
+
+        public ProjectExplorerOnionDiagramsViewModel CreateProjectExplorerOnionDiagramsViewModel(Analysis guiAnalysis)
+        {
+            return new ProjectExplorerOnionDiagramsViewModel(this, guiAnalysis, gui.ViewManager);
         }
     }
 }

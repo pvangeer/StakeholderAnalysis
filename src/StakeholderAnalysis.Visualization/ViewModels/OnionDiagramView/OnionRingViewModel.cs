@@ -1,17 +1,12 @@
 ﻿using System.ComponentModel;
 using System.Windows.Media;
-using StakeholderAnalysis.Data;
 using StakeholderAnalysis.Data.OnionDiagrams;
 
 namespace StakeholderAnalysis.Visualization.ViewModels.OnionDiagramView
 {
-    public class OnionRingViewModel : NotifyPropertyChangedObservable
+    public class OnionRingViewModel : ViewModelBase
     {
-        public OnionRingViewModel() : this(new OnionRing())
-        {
-        }
-
-        public OnionRingViewModel(OnionRing ring)
+        public OnionRingViewModel(ViewModelFactory factory, OnionRing ring) : base(factory)
         {
             Ring = ring;
             ring.PropertyChanged += RingPropertyChanged;

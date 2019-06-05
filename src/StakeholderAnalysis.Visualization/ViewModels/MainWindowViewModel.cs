@@ -1,5 +1,4 @@
-using System;
-using StakeholderAnalysis.Data;
+using System.Linq.Expressions;
 using StakeholderAnalysis.Gui;
 using StakeholderAnalysis.Visualization.ViewModels.OnionDiagramProperties;
 using StakeholderAnalysis.Visualization.ViewModels.ProjectExplorer;
@@ -8,17 +7,14 @@ using StakeholderAnalysis.Visualization.ViewModels.StatusBar;
 
 namespace StakeholderAnalysis.Visualization.ViewModels
 {
-    public class MainWindowViewModel : NotifyPropertyChangedObservable
+    public class MainWindowViewModel : ViewModelBase
     {
-        public ViewModelFactory ViewModelFactory { get; }
-
         private readonly StakeholderAnalysisGui gui;
 
         public MainWindowViewModel() : this(new StakeholderAnalysisGui()){ }
 
-        public MainWindowViewModel(StakeholderAnalysisGui guiInput)
+        public MainWindowViewModel(StakeholderAnalysisGui guiInput) : base(new ViewModelFactory(guiInput))
         {
-            ViewModelFactory = new ViewModelFactory(guiInput);
             gui = guiInput;
             RibbonViewModel = ViewModelFactory.CreateRibbonViewModel();
             RibbonViewModel.ToggleToolWindowCommand.Execute(typeof(ProjectExplorerViewModel));

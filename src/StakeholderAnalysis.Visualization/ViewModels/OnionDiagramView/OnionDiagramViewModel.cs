@@ -19,9 +19,9 @@ namespace StakeholderAnalysis.Visualization.ViewModels.OnionDiagramView
             OnionDiagramStakeholdersViewModel = ViewModelFactory.CreateOnionDiagramStakeholdersViewModel(onionDiagram, this, OnionDiagramDrawConnectionViewModel);
         }
 
-        public OnionDiagramRingsCanvasViewModel OnionDiagramRingsCanvasViewModel => new OnionDiagramRingsCanvasViewModel(diagram);
+        public OnionDiagramRingsCanvasViewModel OnionDiagramRingsCanvasViewModel => ViewModelFactory.CreateOnionDiagramRingsCanvasViewModel(diagram);
 
-        public OnionDiagramConnectionsPresenterViewModel OnionDiagramConnectionsPresenterViewModel => new OnionDiagramConnectionsPresenterViewModel(diagram);
+        public OnionDiagramConnectionsPresenterViewModel OnionDiagramConnectionsPresenterViewModel => ViewModelFactory.CreateOnionDiagramConnectionsPresenterViewModel(diagram);
 
         public OnionDiagramStakeholdersViewModel OnionDiagramStakeholdersViewModel { get; }
 

@@ -1,8 +1,4 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using System.Windows.Input;
 using StakeholderAnalysis.Data;
 using StakeholderAnalysis.Data.OnionDiagrams;
@@ -15,9 +11,6 @@ using StakeholderAnalysis.Visualization.Commands.OnionDiagramProperties;
 using StakeholderAnalysis.Visualization.Commands.ProjectExplorer;
 using StakeholderAnalysis.Visualization.Commands.Ribbon;
 using StakeholderAnalysis.Visualization.Commands.StatusBar;
-using StakeholderAnalysis.Visualization.ViewModels.OnionDiagramProperties;
-using StakeholderAnalysis.Visualization.ViewModels.OnionDiagramView;
-using StakeholderAnalysis.Visualization.ViewModels.StatusBar;
 
 namespace StakeholderAnalysis.Visualization.ViewModels
 {

@@ -7,11 +7,11 @@ using StakeholderAnalysis.Gui;
 
 namespace StakeholderAnalysis.Visualization.ViewModels
 {
-    public class ViewManagerViewModel : NotifyPropertyChangedObservable
+    public class ViewManagerViewModel : ViewModelBase
     {
         private readonly ViewManager viewManager;
 
-        public ViewManagerViewModel(ViewManager viewManager)
+        public ViewManagerViewModel(ViewModelFactory factory, ViewManager viewManager) : base(factory)
         {
             this.viewManager = viewManager;
 

@@ -5,9 +5,9 @@ using StakeholderAnalysis.Data.OnionDiagrams;
 
 namespace StakeholderAnalysis.Visualization.ViewModels.OnionDiagramView
 {
-    public class StakeholderConnectionViewModel : NotifyPropertyChangedObservable
+    public class StakeholderConnectionViewModel : ViewModelBase
     {
-        public StakeholderConnectionViewModel(StakeholderConnection connection)
+        public StakeholderConnectionViewModel(ViewModelFactory factory, StakeholderConnection connection) : base(factory)
         {
             StakeholderConnection = connection;
             StakeholderConnection.StakeholderConnectionGroup.PropertyChanged += ConnectionGroupPropertyChanged;

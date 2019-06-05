@@ -7,7 +7,7 @@ namespace StakeholderAnalysis.Visualization.ViewModels
         protected ViewModelBase(ViewModelFactory factory)
         {
             ViewModelFactory = factory;
-            CommandFactory = ViewModelFactory.GetCommandFactory();
+            CommandFactory = ViewModelFactory?.GetCommandFactory();
         }
 
         protected ViewModelFactory ViewModelFactory { get; }

@@ -114,7 +114,6 @@
     </Compile>
     <Compile Include="Behaviors\SaveToImageBehavior.cs" />
     <Compile Include="ViewModels\TwoAxisDiagrams\AttitudeImpactDiagramViewModel.cs" />
-    <Compile Include="ViewModels\Ribbon\ConnectionGroupViewModel.cs" />
     <Compile Include="ViewModels\MainContentPresenterViewModel.cs" />
     <Compile Include="ViewModels\ProjectExplorer\ProjectExplorerOnionDiagramsViewModel.cs" />
     <Compile Include="ViewModels\ProjectExplorer\ProjectExplorerOnionDiagramViewModel.cs" />

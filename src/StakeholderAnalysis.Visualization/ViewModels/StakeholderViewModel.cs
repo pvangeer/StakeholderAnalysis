@@ -10,6 +10,8 @@ namespace StakeholderAnalysis.Visualization.ViewModels
         private readonly ISelectionRegister selectionRegister;
         private readonly IDrawConnectionHandler drawConnectionHandler;
 
+        public StakeholderViewModel() : this(null, new Stakeholder(), null, null) { }
+
         public StakeholderViewModel(ViewModelFactory factory, Stakeholder stakeholder, ISelectionRegister selectionRegister, IDrawConnectionHandler drawConnectionHandler) : base(factory)
         {
             this.drawConnectionHandler = drawConnectionHandler;

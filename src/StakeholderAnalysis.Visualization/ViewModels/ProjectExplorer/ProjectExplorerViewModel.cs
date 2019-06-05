@@ -29,13 +29,13 @@ namespace StakeholderAnalysis.Visualization.ViewModels.ProjectExplorer
             }
         }
 
-        public ProjectExplorerOnionDiagramsViewModel OnionDiagramsViewModel => new ProjectExplorerOnionDiagramsViewModel(ViewModelFactory, gui.Analysis, gui.ViewManager);
+        public ProjectExplorerOnionDiagramsViewModel OnionDiagramsViewModel => ViewModelFactory.CreateProjectExplorerOnionDiagramsViewModel(gui.Analysis);
 
         public ProjectExplorerForceFieldDiagramsViewModel ForceFieldDiagramsViewModel => ViewModelFactory.CreateProjectExplorerForceFieldDiagramsViewModel(gui.Analysis);
 
         public ProjectExplorerAttitudeImpactDiagramsViewModel AttitudeImpactDiagramsViewModel => ViewModelFactory.CreateProjectExplorerAttitudeImpactDiagramsViewModel(gui.Analysis);
 
-        public ProjectExplorerStakeholderOverviewTableViewModel StakeholderOverviewTableViewModel => new ProjectExplorerStakeholderOverviewTableViewModel(ViewModelFactory, gui.Analysis, gui.ViewManager);
+        public ProjectExplorerStakeholderOverviewTableViewModel StakeholderOverviewTableViewModel => ViewModelFactory.CreateProjectExplorerStakeholderOverviewTableViewModel(gui.Analysis);
 
         public StakeholderTypesViewModel StakeholderTypesViewModel => ViewModelFactory.CreateStakeholderTypesViewModel();
     }

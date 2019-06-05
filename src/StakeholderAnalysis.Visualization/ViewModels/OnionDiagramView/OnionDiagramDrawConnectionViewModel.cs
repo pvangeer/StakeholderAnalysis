@@ -7,12 +7,12 @@ using StakeholderAnalysis.Visualization.Behaviors;
 
 namespace StakeholderAnalysis.Visualization.ViewModels.OnionDiagramView
 {
-    public class OnionDiagramDrawConnectionViewModel : NotifyPropertyChangedObservable, IDrawConnectionHandler
+    public class OnionDiagramDrawConnectionViewModel : ViewModelBase, IDrawConnectionHandler
     {
         private readonly OnionDiagram onionDiagram;
         private OnionDiagramStakeholderViewModel newConnectionFromViewModel;
 
-        public OnionDiagramDrawConnectionViewModel(OnionDiagram onionDiagram)
+        public OnionDiagramDrawConnectionViewModel(ViewModelFactory factory, OnionDiagram onionDiagram) : base(factory)
         {
             this.onionDiagram = onionDiagram;
             if (onionDiagram != null)

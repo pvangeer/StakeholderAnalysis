@@ -2,7 +2,6 @@
 using System.Windows.Input;
 using System.Windows.Media;
 using StakeholderAnalysis.Data;
-using StakeholderAnalysis.Visualization.Commands;
 using StakeholderAnalysis.Visualization.Converters;
 
 namespace StakeholderAnalysis.Visualization.ViewModels.ProjectExplorer
