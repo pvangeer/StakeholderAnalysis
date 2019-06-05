@@ -23,7 +23,7 @@ namespace StakeholderAnalysis.Visualization.ViewModels.ProjectExplorer
             Diagrams = new ObservableCollection<IProjectExplorerDiagramViewModel>();
             foreach (var analysisOnionDiagram in analysis.OnionDiagrams)
             {
-                Diagrams.Add(new ProjectExplorerOnionDiagramViewModel(ViewModelFactory, analysis,analysisOnionDiagram, viewManager));
+                Diagrams.Add(ViewModelFactory.CreateProjectExplorerOnionDiagramViewModel(analysis,analysisOnionDiagram));
             }
         }
 
@@ -54,7 +54,7 @@ namespace StakeholderAnalysis.Visualization.ViewModels.ProjectExplorer
             {
                 foreach (var onionDiagram in e.NewItems.OfType<OnionDiagram>())
                 {
-                    Diagrams.Add(new ProjectExplorerOnionDiagramViewModel(ViewModelFactory, analysis,onionDiagram, viewManager));
+                    Diagrams.Add(ViewModelFactory.CreateProjectExplorerOnionDiagramViewModel(analysis,onionDiagram));
                 }
             }
 

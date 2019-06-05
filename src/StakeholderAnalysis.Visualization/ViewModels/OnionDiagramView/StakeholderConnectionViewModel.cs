@@ -1,6 +1,5 @@
 ﻿using System.ComponentModel;
 using System.Windows.Media;
-using StakeholderAnalysis.Data;
 using StakeholderAnalysis.Data.OnionDiagrams;
 
 namespace StakeholderAnalysis.Visualization.ViewModels.OnionDiagramView

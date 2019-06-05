@@ -9,6 +9,7 @@ using StakeholderAnalysis.Visualization.ViewModels.OnionDiagramProperties;
 using StakeholderAnalysis.Visualization.ViewModels.OnionDiagramView;
 using StakeholderAnalysis.Visualization.ViewModels.ProjectExplorer;
 using StakeholderAnalysis.Visualization.ViewModels.Ribbon;
+using StakeholderAnalysis.Visualization.ViewModels.StakeholderTableView;
 using StakeholderAnalysis.Visualization.ViewModels.StatusBar;
 using StakeholderAnalysis.Visualization.ViewModels.TwoAxisDiagrams;
 
@@ -189,6 +190,21 @@ namespace StakeholderAnalysis.Visualization.ViewModels
         public ProjectExplorerOnionDiagramsViewModel CreateProjectExplorerOnionDiagramsViewModel(Analysis guiAnalysis)
         {
             return new ProjectExplorerOnionDiagramsViewModel(this, guiAnalysis, gui.ViewManager);
+        }
+
+        public OnionDiagramViewModel CreateOnionDiagramViewModel(OnionDiagram diagram)
+        {
+            return new OnionDiagramViewModel(this, diagram);
+        }
+
+        public IProjectExplorerDiagramViewModel CreateProjectExplorerOnionDiagramViewModel(Analysis analysis, OnionDiagram analysisOnionDiagram)
+        {
+            return new ProjectExplorerOnionDiagramViewModel(this, analysis, analysisOnionDiagram, gui?.ViewManager);
+        }
+
+        public StakeholderTableViewModel CreateStakeholderTableViewModel(Analysis analysis)
+        {
+            return new StakeholderTableViewModel(this, analysis);
         }
     }
 }

@@ -61,7 +61,7 @@ namespace StakeholderAnalysis.Visualization.ViewModels.ProjectExplorer
                 v.ViewModel is OnionDiagramViewModel diagramViewModel && diagramViewModel.IsViewModelFor(diagram));
             if (viewInfo == null)
             {
-                var onionDiagramViewModel = new OnionDiagramViewModel(ViewModelFactory, diagram);
+                var onionDiagramViewModel = ViewModelFactory.CreateOnionDiagramViewModel(diagram);
                 viewInfo = new ViewInfo(diagram.Name, onionDiagramViewModel, IconSourceString, true);
                 viewManager.OpenView(viewInfo);
             }

@@ -10,7 +10,7 @@ namespace StakeholderAnalysis.Visualization.ViewModels.TwoAxisDiagrams
 {
     public class ForceFieldDiagramViewModel : ViewModelBase, ITwoAxisDiagramViewModel
     {
-        private ForceFieldDiagram diagram;
+        private readonly ForceFieldDiagram diagram;
         private object selectedObject;
 
         public ForceFieldDiagramViewModel(ViewModelFactory factory, ForceFieldDiagram diagram) : base(factory)
