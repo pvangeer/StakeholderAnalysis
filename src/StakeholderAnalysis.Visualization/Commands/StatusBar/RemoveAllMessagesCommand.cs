@@ -1,28 +1,27 @@
 ﻿using System;
 using System.Linq;
 using System.Windows.Input;
-using StakeholderAnalysis.Visualization.ViewModels.StatusBar;
+using StakeholderAnalysis.Messaging;
 
 namespace StakeholderAnalysis.Visualization.Commands.StatusBar
 {
     public class RemoveAllMessagesCommand : ICommand
     {
-        private readonly MessageListViewModel messageListViewModel;
+        private readonly MessageList messageList;
 
-        public RemoveAllMessagesCommand(MessageListViewModel messageListViewModel)
+        public RemoveAllMessagesCommand(MessageList messageList)
         {
-            this.messageListViewModel = messageListViewModel;
+            this.messageList = messageList;
         }
-
 
         public bool CanExecute(object parameter)
         {
-            return messageListViewModel.MessageList.Any();
+            return messageList.Any();
         }
 
         public void Execute(object parameter)
         {
-            messageListViewModel.ClearAllMessages();
+            messageList.Clear();
         }
 
         public event EventHandler CanExecuteChanged;

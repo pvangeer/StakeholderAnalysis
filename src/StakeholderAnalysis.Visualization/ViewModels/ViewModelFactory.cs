@@ -63,7 +63,12 @@ namespace StakeholderAnalysis.Visualization.ViewModels
 
         public ViewManagerViewModel CreateViewManagerViewModel(ViewManager guiViewManager)
         {
-            return new ViewManagerViewModel(gui?.ViewManager);
+            return new ViewManagerViewModel(guiViewManager);
+        }
+
+        public MessageListViewModel CreateMessageListViewModel()
+        {
+            return new MessageListViewModel(this,gui?.Messages);
         }
     }
 }

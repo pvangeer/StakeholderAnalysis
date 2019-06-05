@@ -7,10 +7,13 @@ using System.Windows.Input;
 using StakeholderAnalysis.Data;
 using StakeholderAnalysis.Data.OnionDiagrams;
 using StakeholderAnalysis.Gui;
+using StakeholderAnalysis.Messaging;
 using StakeholderAnalysis.Visualization.Commands;
 using StakeholderAnalysis.Visualization.Commands.FileHandling;
 using StakeholderAnalysis.Visualization.Commands.ProjectExplorer;
 using StakeholderAnalysis.Visualization.Commands.Ribbon;
+using StakeholderAnalysis.Visualization.Commands.StatusBar;
+using StakeholderAnalysis.Visualization.ViewModels.StatusBar;
 
 namespace StakeholderAnalysis.Visualization.ViewModels
 {
@@ -82,6 +85,19 @@ namespace StakeholderAnalysis.Visualization.ViewModels
         public ICommand CreateAddOnionRingCommand(OnionDiagram onionDiagram)
         {
             return new AddOnionRingCommand(onionDiagram);
+        }
+
+        public ICommand CreateCanAlwaysExecuteActionCommand(Action<object> action)
+        {
+            return new CanAlwaysExecuteActionCommand
+            {
+                ExecuteAction = action
+            };
+        }
+
+        public ICommand CreateRemoveAllMessagesCommand(MessageList messageList)
+        {
+            return new RemoveAllMessagesCommand(messageList);
         }
     }
 }

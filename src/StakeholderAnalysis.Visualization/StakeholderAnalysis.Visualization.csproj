@@ -62,8 +62,7 @@
     <Compile Include="Commands\FileHandling\SaveFileCommand.cs" />
     <Compile Include="Commands\Ribbon\AddStakeholdersToDiagramCommand.cs" />
     <Compile Include="Commands\StatusBar\RemoveAllMessagesCommand.cs" />
-    <Compile Include="Commands\StatusBar\RemovePriorityMessageCommand.cs" />
-    <Compile Include="Commands\StatusBar\ShowMessageListCommand.cs" />
+    <Compile Include="Commands\StatusBar\CanAlwaysExecuteActionCommand.cs" />
     <Compile Include="Controls\ConnectionGroupsListBoxControl.xaml.cs">
       <DependentUpon>ConnectionGroupsListBoxControl.xaml</DependentUpon>
     </Compile>

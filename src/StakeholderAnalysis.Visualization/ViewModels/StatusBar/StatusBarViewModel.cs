@@ -2,10 +2,8 @@
 using System.ComponentModel;
 using System.Linq;
 using System.Windows.Input;
-using StakeholderAnalysis.Data;
 using StakeholderAnalysis.Gui;
 using StakeholderAnalysis.Messaging;
-using StakeholderAnalysis.Visualization.Commands.StatusBar;
 
 namespace StakeholderAnalysis.Visualization.ViewModels.StatusBar
 {
@@ -27,12 +25,20 @@ namespace StakeholderAnalysis.Visualization.ViewModels.StatusBar
 
         public bool ShowMessages { get; set; }
 
-        public ICommand ShowMessageListCommand => new ShowMessageListCommand(this);
+        public ICommand ShowMessageListCommand => CommandFactory.CreateCanAlwaysExecuteActionCommand(p =>
+        {
+            ShowMessages = MessagesViewModel.MessageList.Count != 0;
+            OnPropertyChanged(nameof(ShowMessages));
+        });
 
         public MessageListViewModel MessagesViewModel =>
-            messageListViewModel ?? (messageListViewModel = new MessageListViewModel(gui.Messages));
+            messageListViewModel ?? (messageListViewModel = ViewModelFactory.CreateMessageListViewModel());
 
-        public ICommand RemoveLastMessageCommand => new RemovePriorityMessageCommand(this);
+        public ICommand RemoveLastMessageCommand => CommandFactory.CreateCanAlwaysExecuteActionCommand(p =>
+        {
+            PriorityMessage = null;
+            OnPropertyChanged(nameof(PriorityMessage));
+        });
 
         public LogMessage PriorityMessage { get; set; }
 

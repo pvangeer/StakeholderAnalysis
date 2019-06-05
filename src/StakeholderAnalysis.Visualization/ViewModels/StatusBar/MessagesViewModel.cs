@@ -1,17 +1,18 @@
 ﻿using System.Collections.Specialized;
 using System.Windows.Input;
-using StakeholderAnalysis.Data;
 using StakeholderAnalysis.Messaging;
-using StakeholderAnalysis.Visualization.Commands.StatusBar;
 
 namespace StakeholderAnalysis.Visualization.ViewModels.StatusBar
 {
-    public class MessageListViewModel : NotifyPropertyChangedObservable
+    public class MessageListViewModel : ViewModelBase
     {
-        public MessageListViewModel(MessageList messageList)
+        public MessageListViewModel(ViewModelFactory factory, MessageList messageList) : base(factory)
         {
             this.MessageList = messageList;
-            MessageList.CollectionChanged += MessageListCollectionChanged;
+            if (messageList != null)
+            {
+                MessageList.CollectionChanged += MessageListCollectionChanged;
+            }
         }
 
         private void MessageListCollectionChanged(object sender, NotifyCollectionChangedEventArgs e)
@@ -22,12 +23,6 @@ namespace StakeholderAnalysis.Visualization.ViewModels.StatusBar
 
         public MessageList MessageList { get; }
 
-        public ICommand RemoveAllMessagesCommand => new RemoveAllMessagesCommand(this);
-
-        public void ClearAllMessages()
-        {
-            MessageList.Clear();
-        }
-
+        public ICommand RemoveAllMessagesCommand => CommandFactory.CreateRemoveAllMessagesCommand(MessageList);
     }
 }
