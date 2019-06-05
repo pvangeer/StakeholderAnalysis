@@ -9,18 +9,16 @@ namespace StakeholderAnalysis.Visualization.ViewModels.StatusBar
 {
     public class StatusBarViewModel : ViewModelBase
     {
-        private readonly StakeholderAnalysisGui gui;
         private MessageListViewModel messageListViewModel;
 
         public StatusBarViewModel(ViewModelFactory viewModelFactory, StakeholderAnalysisGui gui) : base(viewModelFactory)
         {
-            this.gui = gui;
-
-            if (gui != null)
+            if (gui == null)
             {
-                gui.PropertyChanged += GuiPropertyChanged;
-                gui.Messages.CollectionChanged += GuiMessagesCollectionChanged;
+                return;
             }
+            gui.PropertyChanged += GuiPropertyChanged;
+            gui.Messages.CollectionChanged += GuiMessagesCollectionChanged;
         }
 
         public bool ShowMessages { get; set; }
