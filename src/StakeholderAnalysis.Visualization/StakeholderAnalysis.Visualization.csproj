@@ -58,9 +58,6 @@
     <Compile Include="Commands\Ribbon\AddStakeholdersToDiagramCommand.cs" />
     <Compile Include="Commands\StatusBar\RemoveAllMessagesCommand.cs" />
     <Compile Include="Commands\CanAlwaysExecuteActionCommand.cs" />
-    <Compile Include="Controls\ConnectionGroupsListBoxControl.xaml.cs">
-      <DependentUpon>ConnectionGroupsListBoxControl.xaml</DependentUpon>
-    </Compile>
     <Compile Include="Controls\SelectStakeholdersDialog.xaml.cs">
       <DependentUpon>SelectStakeholdersDialog.xaml</DependentUpon>
     </Compile>
@@ -149,10 +146,6 @@
     </None>
   </ItemGroup>
   <ItemGroup>
-    <Page Include="Controls\ConnectionGroupsListBoxControl.xaml">
-      <SubType>Designer</SubType>
-      <Generator>MSBuild:Compile</Generator>
-    </Page>
     <Page Include="Controls\SelectStakeholdersDialog.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
