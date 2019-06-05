@@ -62,7 +62,7 @@ namespace StakeholderAnalysis.Visualization.ViewModels.ProjectExplorer
                 v.ViewModel is AttitudeImpactDiagramViewModel diagramViewModel && diagramViewModel.IsViewModelFor(diagram));
             if (viewInfo == null)
             {
-                viewInfo = new ViewInfo(diagram.Name, new AttitudeImpactDiagramViewModel(diagram),IconSourceString, true);
+                viewInfo = new ViewInfo(diagram.Name, ViewModelFactory.CrateAttitudeImpactDiagramViewModel(diagram),IconSourceString, true);
                 viewManager.OpenView(viewInfo);
             }
             viewManager.BringToFront(viewInfo);

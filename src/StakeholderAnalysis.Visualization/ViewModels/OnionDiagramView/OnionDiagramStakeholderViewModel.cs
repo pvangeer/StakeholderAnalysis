@@ -14,8 +14,8 @@ namespace StakeholderAnalysis.Visualization.ViewModels.OnionDiagramView
         private OnionDiagram diagram;
         private readonly OnionDiagramStakeholder onionDiagramStakeholder;
 
-        public OnionDiagramStakeholderViewModel(OnionDiagram diagram, OnionDiagramStakeholder stakeholder,
-            ISelectionRegister selectionRegister, IDrawConnectionHandler drawConnectionHandler) : base(stakeholder?.Stakeholder, selectionRegister, drawConnectionHandler)
+        public OnionDiagramStakeholderViewModel(ViewModelFactory factory, OnionDiagram diagram, OnionDiagramStakeholder stakeholder,
+            ISelectionRegister selectionRegister, IDrawConnectionHandler drawConnectionHandler) : base(factory, stakeholder?.Stakeholder, selectionRegister, drawConnectionHandler)
         {
             DrawConnectionHandler = drawConnectionHandler;
             this.diagram = diagram;

@@ -8,6 +8,7 @@ using StakeholderAnalysis.Data;
 using StakeholderAnalysis.Data.OnionDiagrams;
 using StakeholderAnalysis.Gui;
 using StakeholderAnalysis.Messaging;
+using StakeholderAnalysis.Visualization.Behaviors;
 using StakeholderAnalysis.Visualization.Commands;
 using StakeholderAnalysis.Visualization.Commands.FileHandling;
 using StakeholderAnalysis.Visualization.Commands.OnionDiagramProperties;
@@ -15,6 +16,7 @@ using StakeholderAnalysis.Visualization.Commands.ProjectExplorer;
 using StakeholderAnalysis.Visualization.Commands.Ribbon;
 using StakeholderAnalysis.Visualization.Commands.StatusBar;
 using StakeholderAnalysis.Visualization.ViewModels.OnionDiagramProperties;
+using StakeholderAnalysis.Visualization.ViewModels.OnionDiagramView;
 using StakeholderAnalysis.Visualization.ViewModels.StatusBar;
 
 namespace StakeholderAnalysis.Visualization.ViewModels
@@ -110,6 +112,21 @@ namespace StakeholderAnalysis.Visualization.ViewModels
         public ICommand CreateToggleIsExpandedCommand(IExpandableContentViewModel expandableContentViewModel)
         {
             return new ToggleIsExpandedCommand(expandableContentViewModel);
+        }
+
+        public ICommand CreateAddNewStakeholderTypeCommand(Analysis analysis)
+        {
+            return new AddNewStakeholderTypeCommand(analysis);
+        }
+
+        public ICommand CreateClearSelectionCommand(ISelectionRegister selectionRegister)
+        {
+            return new ClearSelectionCommand(selectionRegister);
+        }
+
+        public ICommand CreateRemoveSelectedStakeholderFromDiagramCommand(IRemoveStakeholderViewModel removeStakeholderViewModel)
+        {
+            return new RemoveSelectedStakeholderFromDiagramCommand(removeStakeholderViewModel);
         }
     }
 }

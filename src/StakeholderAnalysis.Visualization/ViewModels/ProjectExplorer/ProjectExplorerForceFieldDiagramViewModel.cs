@@ -61,7 +61,7 @@ namespace StakeholderAnalysis.Visualization.ViewModels.ProjectExplorer
                 v.ViewModel is ForceFieldDiagramViewModel diagramViewModel && diagramViewModel.IsViewModelFor(diagram));
             if (viewInfo == null)
             {
-                viewInfo = new ViewInfo(diagram.Name, new ForceFieldDiagramViewModel(diagram),IconSourceString, true);
+                viewInfo = new ViewInfo(diagram.Name, ViewModelFactory.CreateForceFieldDiagramViewModel(diagram),IconSourceString, true);
                 viewManager.OpenView(viewInfo);
             }
             viewManager.BringToFront(viewInfo);

@@ -6,7 +6,7 @@ namespace StakeholderAnalysis.Visualization.Commands
 {
     public class ClearSelectionCommand : ICommand
     {
-        private ISelectionRegister selectionRegister;
+        private readonly ISelectionRegister selectionRegister;
 
         public ClearSelectionCommand(ISelectionRegister selectionRegister)
         {

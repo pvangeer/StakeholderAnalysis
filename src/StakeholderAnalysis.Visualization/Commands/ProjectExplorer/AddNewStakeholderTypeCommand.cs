@@ -3,7 +3,7 @@ using System.Windows.Input;
 using System.Windows.Media;
 using StakeholderAnalysis.Data;
 
-namespace StakeholderAnalysis.Visualization.Commands
+namespace StakeholderAnalysis.Visualization.Commands.ProjectExplorer
 {
     public class AddNewStakeholderTypeCommand : ICommand
     {

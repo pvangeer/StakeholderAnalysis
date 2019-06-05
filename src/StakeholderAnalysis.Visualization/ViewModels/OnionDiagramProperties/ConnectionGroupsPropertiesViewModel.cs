@@ -39,7 +39,7 @@ namespace StakeholderAnalysis.Visualization.ViewModels.OnionDiagramProperties
 
         public ObservableCollection<ConnectionGroupPropertiesViewModel> ConnectionGroups { get; private set; }
 
-        public ICommand ToggleIsExpandedCommand => new ToggleIsExpandedCommand(this);
+        public ICommand ToggleIsExpandedCommand => CommandFactory.CreateToggleIsExpandedCommand(this);
 
         public ICommand AddNewConnectionGroupCommand => CommandFactory.CreateAddConnectionGroupCommand(SelectedOnionDiagram);
 

@@ -1,19 +1,18 @@
 ﻿using System.Collections.ObjectModel;
 using System.Collections.Specialized;
 using System.Linq;
-using StakeholderAnalysis.Data;
 using StakeholderAnalysis.Data.OnionDiagrams;
 using StakeholderAnalysis.Visualization.Behaviors;
 
 namespace StakeholderAnalysis.Visualization.ViewModels.OnionDiagramView
 {
-    public class OnionDiagramStakeholdersViewModel : NotifyPropertyChangedObservable
+    public class OnionDiagramStakeholdersViewModel : ViewModelBase
     {
         private readonly ISelectionRegister selectionRegister;
         private readonly OnionDiagram diagram;
         private readonly IDrawConnectionHandler drawConnectionHandler;
 
-        public OnionDiagramStakeholdersViewModel(OnionDiagram onionDiagram, ISelectionRegister selectionRegister, IDrawConnectionHandler drawConnectionHandler)
+        public OnionDiagramStakeholdersViewModel(ViewModelFactory factory, OnionDiagram onionDiagram, ISelectionRegister selectionRegister, IDrawConnectionHandler drawConnectionHandler) : base(factory)
         {
             diagram = onionDiagram;
             this.drawConnectionHandler = drawConnectionHandler;
@@ -22,8 +21,7 @@ namespace StakeholderAnalysis.Visualization.ViewModels.OnionDiagramView
             {
                 diagram.Stakeholders.CollectionChanged += OnionDiagramStakeholdersCollectionChanged;
                 OnionDiagramStakeholders = new ObservableCollection<OnionDiagramStakeholderViewModel>(
-                    diagram.Stakeholders.Select(stakeholder =>
-                        new OnionDiagramStakeholderViewModel(diagram, stakeholder, selectionRegister, drawConnectionHandler)));
+                    diagram.Stakeholders.Select(stakeholder => ViewModelFactory.CreateOnionDiagramStakeholderViewModel(diagram, stakeholder, selectionRegister, drawConnectionHandler)));
             }
         }
 
@@ -33,7 +31,7 @@ namespace StakeholderAnalysis.Visualization.ViewModels.OnionDiagramView
         {
             if (e.Action == NotifyCollectionChangedAction.Add)
                 foreach (var item in e.NewItems.OfType<OnionDiagramStakeholder>())
-                    OnionDiagramStakeholders.Add(new OnionDiagramStakeholderViewModel(diagram, item, selectionRegister, drawConnectionHandler));
+                    OnionDiagramStakeholders.Add(ViewModelFactory.CreateOnionDiagramStakeholderViewModel(diagram, item, selectionRegister, drawConnectionHandler));
 
             if (e.Action == NotifyCollectionChangedAction.Remove)
                 foreach (var stakeholder in e.OldItems.OfType<OnionDiagramStakeholder>())

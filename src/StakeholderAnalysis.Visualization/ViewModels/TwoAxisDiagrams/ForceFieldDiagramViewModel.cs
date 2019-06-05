@@ -5,23 +5,22 @@ using System.Windows;
 using System.Windows.Input;
 using System.Windows.Media;
 using StakeholderAnalysis.Data.ForceFieldDiagrams;
-using StakeholderAnalysis.Visualization.Commands;
 
 namespace StakeholderAnalysis.Visualization.ViewModels.TwoAxisDiagrams
 {
-    public class ForceFieldDiagramViewModel : ITwoAxisDiagramViewModel
+    public class ForceFieldDiagramViewModel : ViewModelBase, ITwoAxisDiagramViewModel
     {
         private ForceFieldDiagram diagram;
         private object selectedObject;
 
-        public ForceFieldDiagramViewModel(ForceFieldDiagram diagram)
+        public ForceFieldDiagramViewModel(ViewModelFactory factory, ForceFieldDiagram diagram) : base(factory)
         {
             this.diagram = diagram;
 
             if (diagram != null)
             {
                 diagram.Stakeholders.CollectionChanged += StakeholdersCollectionChanged;
-                PositionedStakeholders = new ObservableCollection<IPositionedStakeholderViewModel>(diagram.Stakeholders.Select(stakeholder => new ForceFieldDiagramStakeholderViewModel(diagram, stakeholder, this)));
+                PositionedStakeholders = new ObservableCollection<IPositionedStakeholderViewModel>(diagram.Stakeholders.Select(stakeholder => ViewModelFactory.CreateForceFieldDiagramStakeholderViewModel(diagram, stakeholder, this)));
             }
         }
 
@@ -31,7 +30,7 @@ namespace StakeholderAnalysis.Visualization.ViewModels.TwoAxisDiagrams
         {
             if (e.Action == NotifyCollectionChangedAction.Add)
                 foreach (var item in e.NewItems.OfType<ForceFieldDiagramStakeholder>())
-                    PositionedStakeholders.Add(new ForceFieldDiagramStakeholderViewModel(diagram, item, this));
+                    PositionedStakeholders.Add(ViewModelFactory.CreateForceFieldDiagramStakeholderViewModel(diagram, item, this));
 
             if (e.Action == NotifyCollectionChangedAction.Remove)
                 foreach (var stakeholder in e.OldItems.OfType<ForceFieldDiagramStakeholder>())
@@ -50,11 +49,14 @@ namespace StakeholderAnalysis.Visualization.ViewModels.TwoAxisDiagrams
         public string BackgroundTextRightBottom => "Informeren";
 
         public string YAxisMaxLabel => "Veel invloed";
+
         public string YAxisMinLabel => "Weinig invloed";
+
         public string XAxisMaxLabel => "Groot belang";
+
         public string XAxisMinLabel => "Klein belang";
 
-        public ICommand GridClickedCommand => new ClearSelectionCommand(this);
+        public ICommand GridClickedCommand => CommandFactory.CreateClearSelectionCommand(this);
 
         public bool IsViewModelFor(ForceFieldDiagram otherDiagram)
         {

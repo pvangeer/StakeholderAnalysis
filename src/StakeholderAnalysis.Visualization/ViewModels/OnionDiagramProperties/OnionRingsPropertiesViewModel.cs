@@ -41,9 +41,9 @@ namespace StakeholderAnalysis.Visualization.ViewModels.OnionDiagramProperties
 
         public ObservableCollection<OnionRingPropertiesViewModel> OnionRings { get; private set; }
 
-        public ICommand ToggleIsExpandedCommand => new ToggleIsExpandedCommand(this);
+        public ICommand ToggleIsExpandedCommand => CommandFactory.CreateToggleIsExpandedCommand(this);
 
-        public ICommand AddNewRingCommand => new AddOnionRingCommand(SelectedOnionDiagram);
+        public ICommand AddNewRingCommand => CommandFactory.CreateAddOnionRingCommand(SelectedOnionDiagram);
 
         public bool IsExpanded
         {

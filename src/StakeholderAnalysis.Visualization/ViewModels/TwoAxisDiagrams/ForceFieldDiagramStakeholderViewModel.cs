@@ -10,7 +10,7 @@ namespace StakeholderAnalysis.Visualization.ViewModels.TwoAxisDiagrams
         private readonly ForceFieldDiagramStakeholder forceFieldDiagramStakeholder;
         private readonly ForceFieldDiagram diagram;
 
-        public ForceFieldDiagramStakeholderViewModel(ForceFieldDiagram diagram, ForceFieldDiagramStakeholder stakeholder, ISelectionRegister selectionRegister) : base(stakeholder?.Stakeholder, selectionRegister, null)
+        public ForceFieldDiagramStakeholderViewModel(ViewModelFactory factory, ForceFieldDiagram diagram, ForceFieldDiagramStakeholder stakeholder, ISelectionRegister selectionRegister) : base(factory, stakeholder?.Stakeholder, selectionRegister, null)
         {
             this.diagram = diagram;
             forceFieldDiagramStakeholder = stakeholder;

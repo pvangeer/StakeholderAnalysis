@@ -4,11 +4,13 @@ using StakeholderAnalysis.Data.AttitudeImpactDiagrams;
 using StakeholderAnalysis.Data.ForceFieldDiagrams;
 using StakeholderAnalysis.Data.OnionDiagrams;
 using StakeholderAnalysis.Gui;
+using StakeholderAnalysis.Visualization.Behaviors;
 using StakeholderAnalysis.Visualization.ViewModels.OnionDiagramProperties;
 using StakeholderAnalysis.Visualization.ViewModels.OnionDiagramView;
 using StakeholderAnalysis.Visualization.ViewModels.ProjectExplorer;
 using StakeholderAnalysis.Visualization.ViewModels.Ribbon;
 using StakeholderAnalysis.Visualization.ViewModels.StatusBar;
+using StakeholderAnalysis.Visualization.ViewModels.TwoAxisDiagrams;
 
 namespace StakeholderAnalysis.Visualization.ViewModels
 {
@@ -122,6 +124,41 @@ namespace StakeholderAnalysis.Visualization.ViewModels
         public IProjectExplorerDiagramViewModel CreateProjectExplorerDiagramViewModel(Analysis analysis, AttitudeImpactDiagram forceFieldDiagram)
         {
             return new ProjectExplorerDiagramViewModel(this, analysis, forceFieldDiagram, gui.ViewManager);
+        }
+
+        public AttitudeImpactDiagramViewModel CrateAttitudeImpactDiagramViewModel(AttitudeImpactDiagram diagram)
+        {
+            return new AttitudeImpactDiagramViewModel(this, diagram);
+        }
+
+        public ForceFieldDiagramViewModel CreateForceFieldDiagramViewModel(ForceFieldDiagram diagram)
+        {
+            return new ForceFieldDiagramViewModel(this, diagram);
+        }
+
+        public AttitudeImpactDiagramStakeholderViewModel CreateAttitudeImpactDiagramStakeholderViewModel(AttitudeImpactDiagram diagram, AttitudeImpactDiagramStakeholder stakeholder, ISelectionRegister selectionRegister)
+        {
+            return new AttitudeImpactDiagramStakeholderViewModel(this, diagram, stakeholder, selectionRegister);
+        }
+
+        public StakeholderViewModel CreateStakeholderViewModel(Stakeholder stakeholder, ISelectionRegister selectionRegister, IDrawConnectionHandler drawConnectionHandler)
+        {
+            return new StakeholderViewModel(this, stakeholder, selectionRegister, drawConnectionHandler);
+        }
+
+        public ForceFieldDiagramStakeholderViewModel CreateForceFieldDiagramStakeholderViewModel(ForceFieldDiagram diagram, ForceFieldDiagramStakeholder stakeholder, ISelectionRegister selectionRegister)
+        {
+            return new ForceFieldDiagramStakeholderViewModel(this, diagram, stakeholder, selectionRegister);
+        }
+
+        public OnionDiagramStakeholderViewModel CreateOnionDiagramStakeholderViewModel(OnionDiagram diagram, OnionDiagramStakeholder stakeholder, ISelectionRegister selectionRegister, IDrawConnectionHandler drawConnectionHandler)
+        {
+            return new OnionDiagramStakeholderViewModel(this, diagram, stakeholder, selectionRegister, drawConnectionHandler);
+        }
+
+        public OnionDiagramStakeholdersViewModel CreateOnionDiagramStakeholdersViewModel(OnionDiagram onionDiagram, OnionDiagramViewModel onionDiagramViewModel, IDrawConnectionHandler drawConnectionHandler)
+        {
+            return new OnionDiagramStakeholdersViewModel(this, onionDiagram, onionDiagramViewModel, drawConnectionHandler);
         }
     }
 }

@@ -15,7 +15,7 @@ namespace StakeholderAnalysis.Visualization.Controls
         public SelectStakeholdersDialog(Analysis analysis)
         {
             InitializeComponent();
-            ListBox.ItemsSource = analysis.Stakeholders.Select(st => new StakeholderViewModel(st, null, null)).ToList();
+            ListBox.ItemsSource = analysis.Stakeholders.Select(st => new StakeholderViewModel(null, st, null, null)).ToList();
         }
 
         public IEnumerable<Stakeholder> SelectedStakeholders { get; private set; }

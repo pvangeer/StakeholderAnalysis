@@ -1,12 +1,6 @@
 ﻿using System;
-using System.Collections.Generic;
 using System.ComponentModel;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using System.Windows.Input;
-using StakeholderAnalysis.Data;
-using StakeholderAnalysis.Data.OnionDiagrams;
 using StakeholderAnalysis.Visualization.ViewModels;
 using StakeholderAnalysis.Visualization.ViewModels.OnionDiagramView;
 
@@ -14,7 +8,7 @@ namespace StakeholderAnalysis.Visualization.Commands
 {
     public class RemoveSelectedStakeholderFromDiagramCommand : ICommand
     {
-        private IRemoveStakeholderViewModel onionDiagramViewModel;
+        private readonly IRemoveStakeholderViewModel onionDiagramViewModel;
 
         public RemoveSelectedStakeholderFromDiagramCommand(IRemoveStakeholderViewModel onionDiagramViewModel)
         {

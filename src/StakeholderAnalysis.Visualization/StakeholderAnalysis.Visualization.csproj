@@ -35,7 +35,7 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Commands\AddNewStakeholderTypeCommand.cs" />
+    <Compile Include="Commands\ProjectExplorer\AddNewStakeholderTypeCommand.cs" />
     <Compile Include="Commands\ClearSelectionCommand.cs" />
     <Compile Include="Commands\ProjectExplorer\RemoveStakeholderTypeCommand.cs" />
     <Compile Include="Converters\IconTypeToIconSourceConverter.cs" />
@@ -57,7 +57,7 @@
     <Compile Include="Commands\FileHandling\SaveFileCommand.cs" />
     <Compile Include="Commands\Ribbon\AddStakeholdersToDiagramCommand.cs" />
     <Compile Include="Commands\StatusBar\RemoveAllMessagesCommand.cs" />
-    <Compile Include="Commands\StatusBar\CanAlwaysExecuteActionCommand.cs" />
+    <Compile Include="Commands\CanAlwaysExecuteActionCommand.cs" />
     <Compile Include="Controls\ConnectionGroupsListBoxControl.xaml.cs">
       <DependentUpon>ConnectionGroupsListBoxControl.xaml</DependentUpon>
     </Compile>

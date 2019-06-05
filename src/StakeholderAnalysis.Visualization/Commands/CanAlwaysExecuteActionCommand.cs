@@ -1,7 +1,7 @@
 ﻿using System;
 using System.Windows.Input;
 
-namespace StakeholderAnalysis.Visualization.Commands.StatusBar
+namespace StakeholderAnalysis.Visualization.Commands
 {
     public class CanAlwaysExecuteActionCommand : ICommand
     {

@@ -16,7 +16,7 @@ namespace StakeholderAnalysis.Visualization.ViewModels.OnionDiagramView
             diagram = onionDiagram;
             OnionDiagramDrawConnectionViewModel = factory.CreateOnionDiagramDrawConnectionViewModel(onionDiagram);
 
-            OnionDiagramStakeholdersViewModel = new OnionDiagramStakeholdersViewModel(onionDiagram, this, OnionDiagramDrawConnectionViewModel);
+            OnionDiagramStakeholdersViewModel = ViewModelFactory.CreateOnionDiagramStakeholdersViewModel(onionDiagram, this, OnionDiagramDrawConnectionViewModel);
         }
 
         public OnionDiagramRingsCanvasViewModel OnionDiagramRingsCanvasViewModel => new OnionDiagramRingsCanvasViewModel(diagram);
@@ -25,7 +25,7 @@ namespace StakeholderAnalysis.Visualization.ViewModels.OnionDiagramView
 
         public OnionDiagramStakeholdersViewModel OnionDiagramStakeholdersViewModel { get; }
 
-        public ICommand GridClickedCommand => new ClearSelectionCommand(this);
+        public ICommand GridClickedCommand => CommandFactory.CreateClearSelectionCommand(this);
 
         public OnionDiagramDrawConnectionViewModel OnionDiagramDrawConnectionViewModel { get; }
 

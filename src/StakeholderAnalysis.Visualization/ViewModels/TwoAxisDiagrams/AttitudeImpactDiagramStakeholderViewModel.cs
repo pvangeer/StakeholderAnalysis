@@ -11,7 +11,7 @@ namespace StakeholderAnalysis.Visualization.ViewModels.TwoAxisDiagrams
         private readonly AttitudeImpactDiagramStakeholder attitudeImpactDiagramStakeholder;
         private readonly AttitudeImpactDiagram diagram;
 
-        public AttitudeImpactDiagramStakeholderViewModel(AttitudeImpactDiagram diagram, AttitudeImpactDiagramStakeholder stakeholder, ISelectionRegister selectionRegister) : base(stakeholder?.Stakeholder, selectionRegister, null)
+        public AttitudeImpactDiagramStakeholderViewModel(ViewModelFactory factory, AttitudeImpactDiagram diagram, AttitudeImpactDiagramStakeholder stakeholder, ISelectionRegister selectionRegister) : base(factory, stakeholder?.Stakeholder, selectionRegister, null)
         {
             this.diagram = diagram;
             attitudeImpactDiagramStakeholder = stakeholder;

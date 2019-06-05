@@ -1,20 +1,16 @@
-﻿using System.Collections.ObjectModel;
-using System.ComponentModel;
+﻿using System.ComponentModel;
 using System.Windows.Input;
 using StakeholderAnalysis.Data;
 using StakeholderAnalysis.Visualization.Behaviors;
-using StakeholderAnalysis.Visualization.Commands;
 
 namespace StakeholderAnalysis.Visualization.ViewModels
 {
-    public class StakeholderViewModel : NotifyPropertyChangedObservable, IDropHandler, IRemoveStakeholderViewModel
+    public class StakeholderViewModel : ViewModelBase, IDropHandler, IRemoveStakeholderViewModel
     {
         private readonly ISelectionRegister selectionRegister;
         private readonly IDrawConnectionHandler drawConnectionHandler;
 
-        public StakeholderViewModel() : this(new Stakeholder(),null,null) { }
-
-        public StakeholderViewModel(Stakeholder stakeholder, ISelectionRegister selectionRegister, IDrawConnectionHandler drawConnectionHandler)
+        public StakeholderViewModel(ViewModelFactory factory, Stakeholder stakeholder, ISelectionRegister selectionRegister, IDrawConnectionHandler drawConnectionHandler) : base(factory)
         {
             this.drawConnectionHandler = drawConnectionHandler;
             this.selectionRegister = selectionRegister;
@@ -60,9 +56,12 @@ namespace StakeholderAnalysis.Visualization.ViewModels
 
         public bool IsConnectionToTarget => drawConnectionHandler != null && drawConnectionHandler.IsConnectionTarget(Stakeholder);
 
-        public ICommand StakeholderClickedCommand => new StakeholderClickedCommand(this);
+        public ICommand StakeholderClickedCommand => CommandFactory.CreateCanAlwaysExecuteActionCommand(p =>
+        {
+            selectionRegister?.Select(Stakeholder);
+        });
 
-        public ICommand RemoveStakeholderCommand => new RemoveSelectedStakeholderFromDiagramCommand(this);
+        public ICommand RemoveStakeholderCommand => CommandFactory.CreateRemoveSelectedStakeholderFromDiagramCommand(this);
 
         protected virtual void StakeholderPropertyChanged(object sender, PropertyChangedEventArgs e)
         {
