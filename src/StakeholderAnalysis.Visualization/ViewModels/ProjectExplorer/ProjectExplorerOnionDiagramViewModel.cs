@@ -47,18 +47,17 @@ namespace StakeholderAnalysis.Visualization.ViewModels.ProjectExplorer
             }
         }
 
-        public ICommand RemoveDiagramCommand => new RemoveDiagramCommand(this);
-
-        public ICommand OpenViewForDiagramCommand => new OpenDiagramCommand(this);
-
-        public bool IsViewModelFor(object otherObject)
+        public ICommand RemoveDiagramCommand => CommandFactory.CreateCanAlwaysExecuteActionCommand(p =>
         {
-            return otherObject as OnionDiagram == this.diagram;
-        }
+            var viewInfo = viewManager?.Views.FirstOrDefault(vi => vi.ViewModel is OnionDiagramViewModel diagramViewModel1 && diagramViewModel1.IsViewModelFor(diagram));
+            if (viewInfo != null)
+            {
+                viewManager.CloseView(viewInfo);
+            }
+            analysis.OnionDiagrams.Remove(diagram);
+        });
 
-        public string IconSourceString => "pack://application:,,,/StakeholderAnalysis.Visualization;component/Resources/onion.png";
-
-        public void OpenDiagramInDocumentView()
+        public ICommand OpenViewForDiagramCommand => CommandFactory.CreateCanAlwaysExecuteActionCommand(p =>
         {
             var viewInfo = viewManager.Views.FirstOrDefault(v =>
                 v.ViewModel is OnionDiagramViewModel diagramViewModel && diagramViewModel.IsViewModelFor(diagram));
@@ -69,16 +68,13 @@ namespace StakeholderAnalysis.Visualization.ViewModels.ProjectExplorer
                 viewManager.OpenView(viewInfo);
             }
             viewManager.BringToFront(viewInfo);
+        });
+
+        public bool IsViewModelFor(object otherObject)
+        {
+            return otherObject as OnionDiagram == this.diagram;
         }
 
-        public void RemoveDiagram()
-        {
-            var viewInfo = viewManager?.Views.FirstOrDefault(vi => vi.ViewModel is OnionDiagramViewModel diagramViewModel1 && diagramViewModel1.IsViewModelFor(diagram));
-            if (viewInfo != null)
-            {
-                viewManager.CloseView(viewInfo);
-            }
-            analysis.OnionDiagrams.Remove(diagram);
-        }
+        public string IconSourceString => "pack://application:,,,/StakeholderAnalysis.Visualization;component/Resources/onion.png";
     }
 }

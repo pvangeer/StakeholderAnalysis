@@ -4,18 +4,17 @@ using System.Windows.Input;
 using StakeholderAnalysis.Data;
 using StakeholderAnalysis.Data.ForceFieldDiagrams;
 using StakeholderAnalysis.Gui;
-using StakeholderAnalysis.Visualization.Commands.ProjectExplorer;
 using StakeholderAnalysis.Visualization.ViewModels.TwoAxisDiagrams;
 
 namespace StakeholderAnalysis.Visualization.ViewModels.ProjectExplorer
 {
-    public class ProjectExplorerForceFieldDiagramViewModel : NotifyPropertyChangedObservable, IProjectExplorerDiagramViewModel
+    public class ProjectExplorerForceFieldDiagramViewModel : ViewModelBase, IProjectExplorerDiagramViewModel
     {
         private readonly ForceFieldDiagram diagram;
         private readonly Analysis analysis;
         private readonly ViewManager viewManager;
 
-        public ProjectExplorerForceFieldDiagramViewModel(Analysis analysis, ForceFieldDiagram forceFieldDiagram, ViewManager viewManager)
+        public ProjectExplorerForceFieldDiagramViewModel(ViewModelFactory factory, Analysis analysis, ForceFieldDiagram forceFieldDiagram, ViewManager viewManager) : base(factory)
         {
             this.viewManager = viewManager;
             this.analysis = analysis;
@@ -46,18 +45,17 @@ namespace StakeholderAnalysis.Visualization.ViewModels.ProjectExplorer
             }
         }
 
-        public ICommand RemoveDiagramCommand => new RemoveDiagramCommand(this);
-
-        public ICommand OpenViewForDiagramCommand => new OpenDiagramCommand(this);
-
-        public string IconSourceString => "pack://application:,,,/StakeholderAnalysis.Visualization;component/Resources/forces.png";
-
-        public bool IsViewModelFor(object otherObject)
+        public ICommand RemoveDiagramCommand => CommandFactory.CreateCanAlwaysExecuteActionCommand(p =>
         {
-            return otherObject as ForceFieldDiagram == diagram;
-        }
+            var viewInfo = viewManager?.Views.FirstOrDefault(vi => vi.ViewModel is ForceFieldDiagramViewModel diagramViewModel1 && diagramViewModel1.IsViewModelFor(diagram));
+            if (viewInfo != null)
+            {
+                viewManager.CloseView(viewInfo);
+            }
+            analysis.ForceFieldDiagrams.Remove(diagram);
+        });
 
-        public void OpenDiagramInDocumentView()
+        public ICommand OpenViewForDiagramCommand => CommandFactory.CreateCanAlwaysExecuteActionCommand(p =>
         {
             var viewInfo = viewManager.Views.FirstOrDefault(v =>
                 v.ViewModel is ForceFieldDiagramViewModel diagramViewModel && diagramViewModel.IsViewModelFor(diagram));
@@ -67,16 +65,13 @@ namespace StakeholderAnalysis.Visualization.ViewModels.ProjectExplorer
                 viewManager.OpenView(viewInfo);
             }
             viewManager.BringToFront(viewInfo);
-        }
+        });
 
-        public void RemoveDiagram()
+        public string IconSourceString => "pack://application:,,,/StakeholderAnalysis.Visualization;component/Resources/forces.png";
+
+        public bool IsViewModelFor(object otherObject)
         {
-            var viewInfo = viewManager?.Views.FirstOrDefault(vi => vi.ViewModel is ForceFieldDiagramViewModel diagramViewModel1 && diagramViewModel1.IsViewModelFor(diagram));
-            if (viewInfo != null)
-            {
-                viewManager.CloseView(viewInfo);
-            }
-            analysis.ForceFieldDiagrams.Remove(diagram);
+            return otherObject as ForceFieldDiagram == diagram;
         }
     }
 }

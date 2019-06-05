@@ -1,5 +1,6 @@
 ﻿using System.Linq;
 using StakeholderAnalysis.Data;
+using StakeholderAnalysis.Data.AttitudeImpactDiagrams;
 using StakeholderAnalysis.Data.ForceFieldDiagrams;
 using StakeholderAnalysis.Data.OnionDiagrams;
 using StakeholderAnalysis.Gui;
@@ -105,17 +106,22 @@ namespace StakeholderAnalysis.Visualization.ViewModels
 
         public ProjectExplorerForceFieldDiagramsViewModel CreateProjectExplorerForceFieldDiagramsViewModel(Analysis analysis)
         {
-            return new ProjectExplorerForceFieldDiagramsViewModel(this, analysis, gui.ViewManager);
+            return new ProjectExplorerForceFieldDiagramsViewModel(this, analysis);
         }
 
         public IProjectExplorerDiagramViewModel CreateProjectExplorerForceFieldDiagramViewModel(Analysis analysis, ForceFieldDiagram forceFieldDiagram)
         {
-            return new ProjectExplorerForceFieldDiagramViewModel(analysis, forceFieldDiagram, gui.ViewManager);
+            return new ProjectExplorerForceFieldDiagramViewModel(this, analysis, forceFieldDiagram, gui.ViewManager);
         }
 
         public ProjectExplorerAttitudeImpactDiagramsViewModel CreateProjectExplorerAttitudeImpactDiagramsViewModel(Analysis guiAnalysis)
         {
-            return new ProjectExplorerAttitudeImpactDiagramsViewModel(this, guiAnalysis, gui.ViewManager);
+            return new ProjectExplorerAttitudeImpactDiagramsViewModel(this, guiAnalysis);
+        }
+
+        public IProjectExplorerDiagramViewModel CreateProjectExplorerDiagramViewModel(Analysis analysis, AttitudeImpactDiagram forceFieldDiagram)
+        {
+            return new ProjectExplorerDiagramViewModel(this, analysis, forceFieldDiagram, gui.ViewManager);
         }
     }
 }

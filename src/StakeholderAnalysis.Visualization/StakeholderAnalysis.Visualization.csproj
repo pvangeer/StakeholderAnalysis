@@ -49,8 +49,6 @@
     <Compile Include="Commands\FileHandling\FileHandlingCommandBase.cs" />
     <Compile Include="Commands\FileHandling\NewProjectCommand.cs" />
     <Compile Include="Commands\FileHandling\OpenFileCommand.cs" />
-    <Compile Include="Commands\ProjectExplorer\OpenDiagramCommand.cs" />
-    <Compile Include="Commands\ProjectExplorer\RemoveDiagramCommand.cs" />
     <Compile Include="Commands\StakeholderClickedCommand.cs" />
     <Compile Include="Commands\ToggleIsExpandedCommand.cs" />
     <Compile Include="Commands\RelayCommand.cs" />

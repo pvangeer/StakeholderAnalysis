@@ -4,7 +4,6 @@ using System.Linq;
 using System.Windows.Input;
 using StakeholderAnalysis.Data;
 using StakeholderAnalysis.Data.ForceFieldDiagrams;
-using StakeholderAnalysis.Gui;
 
 namespace StakeholderAnalysis.Visualization.ViewModels.ProjectExplorer
 {
@@ -12,11 +11,9 @@ namespace StakeholderAnalysis.Visualization.ViewModels.ProjectExplorer
     {
         private readonly Analysis analysis;
         private bool isExpanded = true;
-        private readonly ViewManager viewManager;
 
-        public ProjectExplorerForceFieldDiagramsViewModel(ViewModelFactory factory, Analysis analysis, ViewManager viewManager) : base(factory)
+        public ProjectExplorerForceFieldDiagramsViewModel(ViewModelFactory factory, Analysis analysis) : base(factory)
         {
-            this.viewManager = viewManager;
             this.analysis = analysis;
             analysis.ForceFieldDiagrams.CollectionChanged += ForceFieldDiagramsCollectionChanged;
 
@@ -54,7 +51,7 @@ namespace StakeholderAnalysis.Visualization.ViewModels.ProjectExplorer
             {
                 foreach (var forceFieldDiagram in e.NewItems.OfType<ForceFieldDiagram>())
                 {
-                    Diagrams.Add(new ProjectExplorerForceFieldDiagramViewModel(analysis, forceFieldDiagram, viewManager));
+                    Diagrams.Add(ViewModelFactory.CreateProjectExplorerForceFieldDiagramViewModel(analysis, forceFieldDiagram));
                 }
             }
 

@@ -11,9 +11,5 @@ namespace StakeholderAnalysis.Visualization.ViewModels.ProjectExplorer
         bool IsViewModelFor(object diagram);
 
         string IconSourceString { get; }
-
-        void OpenDiagramInDocumentView();
-
-        void RemoveDiagram();
     }
 }

@@ -5,18 +5,17 @@ using StakeholderAnalysis.Data;
 using StakeholderAnalysis.Data.AttitudeImpactDiagrams;
 using StakeholderAnalysis.Data.ForceFieldDiagrams;
 using StakeholderAnalysis.Gui;
-using StakeholderAnalysis.Visualization.Commands.ProjectExplorer;
 using StakeholderAnalysis.Visualization.ViewModels.TwoAxisDiagrams;
 
 namespace StakeholderAnalysis.Visualization.ViewModels.ProjectExplorer
 {
-    public class ProjectExplorerDiagramViewModel : NotifyPropertyChangedObservable, IProjectExplorerDiagramViewModel
+    public class ProjectExplorerDiagramViewModel : ViewModelBase, IProjectExplorerDiagramViewModel
     {
         private readonly AttitudeImpactDiagram diagram;
         private readonly Analysis analysis;
         private readonly ViewManager viewManager;
 
-        public ProjectExplorerDiagramViewModel(Analysis analysis, AttitudeImpactDiagram attitudeImpactDiagram, ViewManager viewManager)
+        public ProjectExplorerDiagramViewModel(ViewModelFactory factory, Analysis analysis, AttitudeImpactDiagram attitudeImpactDiagram, ViewManager viewManager) : base(factory)
         {
             this.viewManager = viewManager;
             this.analysis = analysis;
@@ -47,18 +46,17 @@ namespace StakeholderAnalysis.Visualization.ViewModels.ProjectExplorer
             }
         }
 
-        public ICommand RemoveDiagramCommand => new RemoveDiagramCommand(this);
-
-        public ICommand OpenViewForDiagramCommand => new OpenDiagramCommand(this);
-
-        public string IconSourceString => "pack://application:,,,/StakeholderAnalysis.Visualization;component/Resources/involvement.png";
-
-        public bool IsViewModelFor(object otherObject)
+        public ICommand RemoveDiagramCommand => CommandFactory.CreateCanAlwaysExecuteActionCommand(p =>
         {
-            return otherObject as AttitudeImpactDiagram == diagram;
-        }
+            var viewInfo = viewManager?.Views.FirstOrDefault(vi => vi.ViewModel is AttitudeImpactDiagramViewModel diagramViewModel1 && diagramViewModel1.IsViewModelFor(diagram));
+            if (viewInfo != null)
+            {
+                viewManager.CloseView(viewInfo);
+            }
+            analysis.AttitudeImpactDiagrams.Remove(diagram);
+        });
 
-        public void OpenDiagramInDocumentView()
+        public ICommand OpenViewForDiagramCommand => CommandFactory.CreateCanAlwaysExecuteActionCommand(p =>
         {
             var viewInfo = viewManager.Views.FirstOrDefault(v =>
                 v.ViewModel is AttitudeImpactDiagramViewModel diagramViewModel && diagramViewModel.IsViewModelFor(diagram));
@@ -68,16 +66,13 @@ namespace StakeholderAnalysis.Visualization.ViewModels.ProjectExplorer
                 viewManager.OpenView(viewInfo);
             }
             viewManager.BringToFront(viewInfo);
-        }
+        });
 
-        public void RemoveDiagram()
+        public string IconSourceString => "pack://application:,,,/StakeholderAnalysis.Visualization;component/Resources/involvement.png";
+
+        public bool IsViewModelFor(object otherObject)
         {
-            var viewInfo = viewManager?.Views.FirstOrDefault(vi => vi.ViewModel is AttitudeImpactDiagramViewModel diagramViewModel1 && diagramViewModel1.IsViewModelFor(diagram));
-            if (viewInfo != null)
-            {
-                viewManager.CloseView(viewInfo);
-            }
-            analysis.AttitudeImpactDiagrams.Remove(diagram);
+            return otherObject as AttitudeImpactDiagram == diagram;
         }
     }
 }

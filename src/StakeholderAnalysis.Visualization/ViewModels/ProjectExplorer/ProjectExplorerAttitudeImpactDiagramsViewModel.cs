@@ -4,9 +4,7 @@ using System.Linq;
 using System.Windows.Input;
 using StakeholderAnalysis.Data;
 using StakeholderAnalysis.Data.AttitudeImpactDiagrams;
-using StakeholderAnalysis.Gui;
 using StakeholderAnalysis.Visualization.Commands;
-using StakeholderAnalysis.Visualization.Commands.ProjectExplorer;
 
 namespace StakeholderAnalysis.Visualization.ViewModels.ProjectExplorer
 {
@@ -14,18 +12,16 @@ namespace StakeholderAnalysis.Visualization.ViewModels.ProjectExplorer
     {
         private readonly Analysis analysis;
         private bool isExpanded = true;
-        private readonly ViewManager viewManager;
 
-        public ProjectExplorerAttitudeImpactDiagramsViewModel(ViewModelFactory factory, Analysis analysis, ViewManager viewManager) : base(factory)
+        public ProjectExplorerAttitudeImpactDiagramsViewModel(ViewModelFactory factory, Analysis analysis) : base(factory)
         {
-            this.viewManager = viewManager;
             this.analysis = analysis;
             analysis.AttitudeImpactDiagrams.CollectionChanged += AttitudeImpactDiagramsCollectionChanged;
 
             Diagrams = new ObservableCollection<IProjectExplorerDiagramViewModel>();
             foreach (var forceFieldDiagram in analysis.AttitudeImpactDiagrams)
             {
-                Diagrams.Add(new ProjectExplorerDiagramViewModel(analysis, forceFieldDiagram, viewManager));
+                Diagrams.Add(ViewModelFactory.CreateProjectExplorerDiagramViewModel(analysis, forceFieldDiagram));
             }
         }
 
@@ -56,7 +52,7 @@ namespace StakeholderAnalysis.Visualization.ViewModels.ProjectExplorer
             {
                 foreach (var attitudeImpactDiagram in e.NewItems.OfType<AttitudeImpactDiagram>())
                 {
-                    Diagrams.Add(new ProjectExplorerDiagramViewModel(analysis, attitudeImpactDiagram, viewManager));
+                    Diagrams.Add(ViewModelFactory.CreateProjectExplorerDiagramViewModel(analysis, attitudeImpactDiagram));
                 }
             }
 
