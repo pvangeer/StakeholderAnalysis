@@ -19,6 +19,7 @@ namespace StakeholderAnalysis.Storage.DbContext
         public long ForceFieldDiagramEntityId { get; set; }
         public Nullable<double> Interest { get; set; }
         public Nullable<double> Influence { get; set; }
+        public long Rank { get; set; }
         public long Order { get; set; }
     
         public virtual ForceFieldDiagramEntity ForceFieldDiagramEntity { get; set; }

@@ -19,6 +19,7 @@ namespace StakeholderAnalysis.Storage.DbContext
         public long StakeholderEntityId { get; set; }
         public Nullable<double> Attitude { get; set; }
         public Nullable<double> Impact { get; set; }
+        public long Rank { get; set; }
         public long Order { get; set; }
     
         public virtual AttitudeImpactDiagramEntity AttitudeImpactDiagramEntity { get; set; }

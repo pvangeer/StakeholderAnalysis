@@ -24,7 +24,10 @@ namespace StakeholderAnalysis.Storage.Read
             }
 
             var attitudeImpactDiagram = new OnionDiagramStakeholder(entity.StakeholderEntity.Read(collector),
-                entity.Left.ToNullAsNaN(), entity.Top.ToNullAsNaN());
+                entity.Left.ToNullAsNaN(), entity.Top.ToNullAsNaN())
+            {
+                Rank = (int) entity.Rank
+            };
 
             collector.Collect(entity, attitudeImpactDiagram);
 

@@ -29,6 +29,7 @@
           <Property Name="StakeholderEntityId" Type="integer" Nullable="false" />
           <Property Name="Attitude" Type="real" />
           <Property Name="Impact" Type="real" />
+          <Property Name="Rank" Type="integer" Nullable="false" />
           <Property Name="Order" Type="integer" Nullable="false" />
         </EntityType>
         <EntityType Name="ForceFieldDiagramEntity">
@@ -49,6 +50,7 @@
           <Property Name="ForceFieldDiagramEntityId" Type="integer" Nullable="false" />
           <Property Name="Interest" Type="real" />
           <Property Name="Influence" Type="real" />
+          <Property Name="Rank" Type="integer" Nullable="false" />
           <Property Name="Order" Type="integer" Nullable="false" />
         </EntityType>
         <EntityType Name="OnionDiagramEntity">
@@ -70,6 +72,7 @@
           <Property Name="OnionDiagramId" Type="integer" Nullable="false" />
           <Property Name="Left" Type="real" />
           <Property Name="Top" Type="real" />
+          <Property Name="Rank" Type="integer" Nullable="false" />
           <Property Name="Order" Type="integer" Nullable="false" />
         </EntityType>
         <EntityType Name="OnionRingEntity">
@@ -562,6 +565,7 @@
           <Property Name="StakeholderEntityId" Type="Int64" Nullable="false" />
           <Property Name="Attitude" Type="Double" />
           <Property Name="Impact" Type="Double" />
+          <Property Name="Rank" Type="Int64" Nullable="false" />
           <Property Name="Order" Type="Int64" Nullable="false" />
           <NavigationProperty Name="AttitudeImpactDiagramEntity" Relationship="StakeholderAnalysisEntities.FK_AttitudeImpactDiagramStakeholderEntity_1_0" FromRole="AttitudeImpactDiagramStakeholderEntity" ToRole="AttitudeImpactDiagramEntity" />
           <NavigationProperty Name="StakeholderEntity" Relationship="StakeholderAnalysisEntities.FK_AttitudeImpactDiagramStakeholderEntity_0_0" FromRole="AttitudeImpactDiagramStakeholderEntity" ToRole="StakeholderEntity" />
@@ -586,6 +590,7 @@
           <Property Name="ForceFieldDiagramEntityId" Type="Int64" Nullable="false" />
           <Property Name="Interest" Type="Double" />
           <Property Name="Influence" Type="Double" />
+          <Property Name="Rank" Type="Int64" Nullable="false" />
           <Property Name="Order" Type="Int64" Nullable="false" />
           <NavigationProperty Name="ForceFieldDiagramEntity" Relationship="StakeholderAnalysisEntities.FK_ForceFieldDiagramStakeholderEntity_1_0" FromRole="ForceFieldDiagramStakeholderEntity" ToRole="ForceFieldDiagramEntity" />
           <NavigationProperty Name="StakeholderEntity" Relationship="StakeholderAnalysisEntities.FK_ForceFieldDiagramStakeholderEntity_0_0" FromRole="ForceFieldDiagramStakeholderEntity" ToRole="StakeholderEntity" />
@@ -614,6 +619,7 @@
           <Property Name="OnionDiagramId" Type="Int64" Nullable="false" />
           <Property Name="Left" Type="Double" />
           <Property Name="Top" Type="Double" />
+          <Property Name="Rank" Type="Int64" Nullable="false" />
           <Property Name="Order" Type="Int64" Nullable="false" />
           <NavigationProperty Name="OnionDiagramEntity" Relationship="StakeholderAnalysisEntities.FK_OnionDiagramStakeholderEntity_1_0" FromRole="OnionDiagramStakeholderEntity" ToRole="OnionDiagramEntity" />
           <NavigationProperty Name="StakeholderEntity" Relationship="StakeholderAnalysisEntities.FK_OnionDiagramStakeholderEntity_0_0" FromRole="OnionDiagramStakeholderEntity" ToRole="StakeholderEntity" />
@@ -942,6 +948,7 @@
             <EntityTypeMapping TypeName="StakeholderAnalysisEntities.AttitudeImpactDiagramStakeholderEntity">
               <MappingFragment StoreEntitySet="AttitudeImpactDiagramStakeholderEntity">
                 <ScalarProperty Name="Order" ColumnName="Order" />
+                <ScalarProperty Name="Rank" ColumnName="Rank" />
                 <ScalarProperty Name="Impact" ColumnName="Impact" />
                 <ScalarProperty Name="Attitude" ColumnName="Attitude" />
                 <ScalarProperty Name="StakeholderEntityId" ColumnName="StakeholderEntityId" />
@@ -964,6 +971,7 @@
             <EntityTypeMapping TypeName="StakeholderAnalysisEntities.ForceFieldDiagramStakeholderEntity">
               <MappingFragment StoreEntitySet="ForceFieldDiagramStakeholderEntity">
                 <ScalarProperty Name="Order" ColumnName="Order" />
+                <ScalarProperty Name="Rank" ColumnName="Rank" />
                 <ScalarProperty Name="Influence" ColumnName="Influence" />
                 <ScalarProperty Name="Interest" ColumnName="Interest" />
                 <ScalarProperty Name="ForceFieldDiagramEntityId" ColumnName="ForceFieldDiagramEntityId" />
@@ -987,6 +995,7 @@
             <EntityTypeMapping TypeName="StakeholderAnalysisEntities.OnionDiagramStakeholderEntity">
               <MappingFragment StoreEntitySet="OnionDiagramStakeholderEntity">
                 <ScalarProperty Name="Order" ColumnName="Order" />
+                <ScalarProperty Name="Rank" ColumnName="Rank" />
                 <ScalarProperty Name="Top" ColumnName="Top" />
                 <ScalarProperty Name="Left" ColumnName="Left" />
                 <ScalarProperty Name="OnionDiagramId" ColumnName="OnionDiagramId" />

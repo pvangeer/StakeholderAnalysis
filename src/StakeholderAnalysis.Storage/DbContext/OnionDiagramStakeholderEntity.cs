@@ -26,6 +26,7 @@ namespace StakeholderAnalysis.Storage.DbContext
         public long OnionDiagramId { get; set; }
         public Nullable<double> Left { get; set; }
         public Nullable<double> Top { get; set; }
+        public long Rank { get; set; }
         public long Order { get; set; }
     
         public virtual OnionDiagramEntity OnionDiagramEntity { get; set; }

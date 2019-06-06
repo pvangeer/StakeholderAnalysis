@@ -24,7 +24,10 @@ namespace StakeholderAnalysis.Storage.Read
             }
 
             var attitudeImpactDiagram = new ForceFieldDiagramStakeholder(entity.StakeholderEntity.Read(collector),
-                entity.Interest.ToNullAsNaN(), entity.Influence.ToNullAsNaN());
+                entity.Interest.ToNullAsNaN(), entity.Influence.ToNullAsNaN())
+            {
+                Rank = (int) entity.Rank
+            };
 
             collector.Collect(entity, attitudeImpactDiagram);
 

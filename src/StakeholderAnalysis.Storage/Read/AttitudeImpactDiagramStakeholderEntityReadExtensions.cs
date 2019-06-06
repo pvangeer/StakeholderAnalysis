@@ -24,7 +24,10 @@ namespace StakeholderAnalysis.Storage.Read
             }
 
             var attitudeImpactDiagram = new AttitudeImpactDiagramStakeholder(entity.StakeholderEntity.Read(collector),
-                entity.Attitude.ToNullAsNaN(), entity.Impact.ToNullAsNaN());
+                entity.Attitude.ToNullAsNaN(), entity.Impact.ToNullAsNaN())
+            {
+                Rank = (int)entity.Rank
+            };
 
             collector.Collect(entity, attitudeImpactDiagram);
 

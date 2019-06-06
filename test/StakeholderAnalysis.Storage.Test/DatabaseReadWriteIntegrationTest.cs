@@ -148,6 +148,7 @@ namespace StakeholderAnalysis.Storage.Test
             AssertAreEqualStakeholders(stakeholder.Stakeholder, otherStakeholder.Stakeholder);
             Assert.AreEqual(stakeholder.Left,otherStakeholder.Left);
             Assert.AreEqual(stakeholder.Top, otherStakeholder.Top);
+            Assert.AreEqual(stakeholder.Rank, otherStakeholder.Rank);
         }
 
         private void AssertEqualForceFieldDiagrams(ObservableCollection<ForceFieldDiagram> forceFieldDiagrams, ObservableCollection<ForceFieldDiagram> twoCForceFieldDiagrams)
@@ -171,6 +172,7 @@ namespace StakeholderAnalysis.Storage.Test
                 var stakeholder2 = twoCStakeholders[i];
                 Assert.AreEqual(stakeholder1.Influence, stakeholder2.Influence);
                 Assert.AreEqual(stakeholder1.Interest, stakeholder2.Interest);
+                Assert.AreEqual(stakeholder1.Rank, stakeholder2.Rank);
                 AssertAreEqualStakeholders(stakeholder1.Stakeholder, stakeholder2.Stakeholder);
             }
         }
@@ -196,6 +198,7 @@ namespace StakeholderAnalysis.Storage.Test
                 var stakeholder2 = twoCStakeholders[i];
                 Assert.AreEqual(stakeholder1.Attitude, stakeholder2.Attitude);
                 Assert.AreEqual(stakeholder1.Impact, stakeholder2.Impact);
+                Assert.AreEqual(stakeholder1.Rank, stakeholder2.Rank);
                 AssertAreEqualStakeholders(stakeholder1.Stakeholder, stakeholder2.Stakeholder);
             }
         }

@@ -22,7 +22,8 @@ namespace StakeholderAnalysis.Storage.Create
             {
                 StakeholderEntity = stakeholder.Stakeholder.Create(registry),
                 Left = stakeholder.Left.ToNaNAsNull(),
-                Top = stakeholder.Top.ToNaNAsNull()
+                Top = stakeholder.Top.ToNaNAsNull(),
+                Rank = stakeholder.Rank
             };
 
             registry.Register(stakeholder, entity);
