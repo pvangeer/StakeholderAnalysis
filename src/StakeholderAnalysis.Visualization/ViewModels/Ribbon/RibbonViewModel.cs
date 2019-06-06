@@ -30,7 +30,7 @@ namespace StakeholderAnalysis.Visualization.ViewModels.Ribbon
                 SetCurrentSelectedDiagramAndGroups();
             }
 
-            ViewManagerViewModel = ViewModelFactory.CreateViewManagerViewModel(gui?.ViewManager);
+            ViewManagerViewModel = ViewModelFactory.CreateViewManagerViewModel();
         }
 
         private void SetCurrentSelectedDiagramAndGroups()

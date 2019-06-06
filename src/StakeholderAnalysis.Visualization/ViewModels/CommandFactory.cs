@@ -16,20 +16,19 @@ namespace StakeholderAnalysis.Visualization.ViewModels
 {
     public class CommandFactory
     {
-        private readonly Analysis analysis;
+        private Analysis Analysis => gui?.Analysis;
         private readonly StakeholderAnalysisGui gui;
         private readonly ViewModelFactory viewModelFactory;
 
-        public CommandFactory(StakeholderAnalysisGui gui, Analysis analysis, ViewModelFactory viewModelFactory)
+        public CommandFactory(StakeholderAnalysisGui gui, ViewModelFactory viewModelFactory)
         {
             this.viewModelFactory = viewModelFactory;
-            this.analysis = analysis;
             this.gui = gui;
         }
 
         public ICommand CreateRemoveStakeholderTypeCommand(StakeholderType stakeholderType)
         {
-            return new RemoveStakeholderTypeCommand(stakeholderType, analysis);
+            return new RemoveStakeholderTypeCommand(stakeholderType, Analysis);
         }
 
         public ICommand CreateCloseApplicationCommand()
@@ -59,24 +58,27 @@ namespace StakeholderAnalysis.Visualization.ViewModels
 
         public ICommand CreateAddStakeholdersCommand()
         {
-            return new AddStakeholdersToDiagramCommand(gui.ViewManager, gui.Analysis);
+            return new AddStakeholdersToDiagramCommand(gui?.ViewManager, Analysis);
         }
 
         public RelayCommand CreateSaveImageCommand()
         {
             return new RelayCommand(() =>
             {
-                gui.IsSaveToImage = true;
-                gui.OnPropertyChanged(nameof(StakeholderAnalysisGui.IsSaveToImage));
-                gui.IsSaveToImage = false;
-                gui.OnPropertyChanged(nameof(StakeholderAnalysisGui.IsSaveToImage));
+                if (gui != null)
+                {
+                    gui.IsSaveToImage = true;
+                    gui.OnPropertyChanged(nameof(StakeholderAnalysisGui.IsSaveToImage));
+                    gui.IsSaveToImage = false;
+                    gui.OnPropertyChanged(nameof(StakeholderAnalysisGui.IsSaveToImage));
+                }
             }, 
-                () => gui.ViewManager.ActiveDocument != null);
+                () => gui?.ViewManager.ActiveDocument != null);
         }
 
         public ICommand CreateToggleToolWindowCommand()
         {
-            return new ToggleToolWindowCommand(viewModelFactory, gui.ViewManager);
+            return new ToggleToolWindowCommand(viewModelFactory, gui?.ViewManager);
         }
 
         public ICommand CreateAddOnionRingCommand(OnionDiagram onionDiagram)

@@ -20,10 +20,13 @@ namespace StakeholderAnalysis.Visualization.ViewModels
         private readonly StakeholderAnalysisGui gui;
         private readonly CommandFactory commandFactory;
 
+        private ViewManager ViewManager => gui?.ViewManager;
+        private Analysis Analysis => gui?.Analysis;
+
         public ViewModelFactory(StakeholderAnalysisGui gui)
         {
             this.gui = gui;
-            commandFactory = new CommandFactory(gui, gui.Analysis, this);
+            commandFactory = new CommandFactory(gui, this);
         }
 
         public OnionDiagramDrawConnectionViewModel CreateOnionDiagramDrawConnectionViewModel(OnionDiagram onionDiagram)
@@ -38,13 +41,12 @@ namespace StakeholderAnalysis.Visualization.ViewModels
 
         public StakeholderTypesViewModel CreateStakeholderTypesViewModel()
         {
-            return new StakeholderTypesViewModel(this, gui.Analysis);
+            return new StakeholderTypesViewModel(this, Analysis);
         }
 
         public StakeholderTypeViewModel CreateStakeholderTypeViewModel(StakeholderType stakeholderType)
         {
-            return new StakeholderTypeViewModel(this, stakeholderType,
-                commandFactory.CreateRemoveStakeholderTypeCommand(stakeholderType));
+            return new StakeholderTypeViewModel(this, stakeholderType);
         }
 
         public RibbonViewModel CreateRibbonViewModel()
@@ -52,9 +54,9 @@ namespace StakeholderAnalysis.Visualization.ViewModels
             return new RibbonViewModel(this, gui);
         }
 
-        public MainContentPresenterViewModel CreateMainContentPresenterViewModel(StakeholderAnalysisGui stakeholderAnalysisGui)
+        public MainContentPresenterViewModel CreateMainContentPresenterViewModel()
         {
-            return new MainContentPresenterViewModel(this, stakeholderAnalysisGui);
+            return new MainContentPresenterViewModel(this, gui);
         }
 
         public StatusBarViewModel CreateStatusBarViewModel()
@@ -67,9 +69,9 @@ namespace StakeholderAnalysis.Visualization.ViewModels
             return commandFactory;
         }
 
-        public ViewManagerViewModel CreateViewManagerViewModel(ViewManager guiViewManager)
+        public ViewManagerViewModel CreateViewManagerViewModel()
         {
-            return new ViewManagerViewModel(this, guiViewManager);
+            return new ViewManagerViewModel(this, ViewManager);
         }
 
         public MessageListViewModel CreateMessageListViewModel()
@@ -79,12 +81,12 @@ namespace StakeholderAnalysis.Visualization.ViewModels
 
         public ConnectionGroupsPropertiesViewModel CreateConnectionGroupsPropertiesViewModel()
         {
-            return new ConnectionGroupsPropertiesViewModel(this, gui?.ViewManager);
+            return new ConnectionGroupsPropertiesViewModel(this, ViewManager);
         }
 
         public OnionDiagramPropertiesViewModel CreateOnionDiagramPropertiesViewModel()
         {
-            return new OnionDiagramPropertiesViewModel(this, gui?.ViewManager);
+            return new OnionDiagramPropertiesViewModel(this, ViewManager);
         }
 
         public ProjectExplorerViewModel CreateProjectExplorerViewModel()
@@ -99,7 +101,7 @@ namespace StakeholderAnalysis.Visualization.ViewModels
 
         public OnionRingsPropertiesViewModel CreateOnionRingsPropertiesViewModel()
         {
-            return new OnionRingsPropertiesViewModel(this, gui.ViewManager);
+            return new OnionRingsPropertiesViewModel(this, ViewManager);
         }
 
         public ConnectionGroupPropertiesViewModel CreateConnectionGroupPropertiesViewModel(StakeholderConnectionGroup connectionGroup, OnionDiagram selectedOnionDiagram)
@@ -107,24 +109,24 @@ namespace StakeholderAnalysis.Visualization.ViewModels
             return new ConnectionGroupPropertiesViewModel(this, connectionGroup, selectedOnionDiagram);
         }
 
-        public ProjectExplorerForceFieldDiagramsViewModel CreateProjectExplorerForceFieldDiagramsViewModel(Analysis analysis)
+        public ProjectExplorerForceFieldDiagramsViewModel CreateProjectExplorerForceFieldDiagramsViewModel()
         {
-            return new ProjectExplorerForceFieldDiagramsViewModel(this, analysis);
+            return new ProjectExplorerForceFieldDiagramsViewModel(this, Analysis);
         }
 
-        public IProjectExplorerDiagramViewModel CreateProjectExplorerForceFieldDiagramViewModel(Analysis analysis, ForceFieldDiagram forceFieldDiagram)
+        public IProjectExplorerDiagramViewModel CreateProjectExplorerForceFieldDiagramViewModel(ForceFieldDiagram forceFieldDiagram)
         {
-            return new ProjectExplorerForceFieldDiagramViewModel(this, analysis, forceFieldDiagram, gui.ViewManager);
+            return new ProjectExplorerForceFieldDiagramViewModel(this, Analysis, forceFieldDiagram, ViewManager);
         }
 
-        public ProjectExplorerAttitudeImpactDiagramsViewModel CreateProjectExplorerAttitudeImpactDiagramsViewModel(Analysis guiAnalysis)
+        public ProjectExplorerAttitudeImpactDiagramsViewModel CreateProjectExplorerAttitudeImpactDiagramsViewModel()
         {
-            return new ProjectExplorerAttitudeImpactDiagramsViewModel(this, guiAnalysis);
+            return new ProjectExplorerAttitudeImpactDiagramsViewModel(this, Analysis);
         }
 
-        public IProjectExplorerDiagramViewModel CreateProjectExplorerDiagramViewModel(Analysis analysis, AttitudeImpactDiagram forceFieldDiagram)
+        public IProjectExplorerDiagramViewModel CreateProjectExplorerDiagramViewModel(AttitudeImpactDiagram forceFieldDiagram)
         {
-            return new ProjectExplorerDiagramViewModel(this, analysis, forceFieldDiagram, gui.ViewManager);
+            return new ProjectExplorerDiagramViewModel(this, Analysis, forceFieldDiagram, ViewManager);
         }
 
         public AttitudeImpactDiagramViewModel CrateAttitudeImpactDiagramViewModel(AttitudeImpactDiagram diagram)
@@ -157,9 +159,9 @@ namespace StakeholderAnalysis.Visualization.ViewModels
             return new OnionDiagramStakeholderViewModel(this, diagram, stakeholder, selectionRegister, drawConnectionHandler);
         }
 
-        public OnionDiagramStakeholdersViewModel CreateOnionDiagramStakeholdersViewModel(OnionDiagram onionDiagram, OnionDiagramViewModel onionDiagramViewModel, IDrawConnectionHandler drawConnectionHandler)
+        public OnionDiagramStakeholdersViewModel CreateOnionDiagramStakeholdersViewModel(OnionDiagram onionDiagram, ISelectionRegister selectionRegister, IDrawConnectionHandler drawConnectionHandler)
         {
-            return new OnionDiagramStakeholdersViewModel(this, onionDiagram, onionDiagramViewModel, drawConnectionHandler);
+            return new OnionDiagramStakeholdersViewModel(this, onionDiagram, selectionRegister, drawConnectionHandler);
         }
 
         public OnionDiagramConnectionsPresenterViewModel CreateOnionDiagramConnectionsPresenterViewModel(OnionDiagram diagram)
@@ -182,14 +184,14 @@ namespace StakeholderAnalysis.Visualization.ViewModels
             return new StakeholderConnectionViewModel(this, stakeholderConnection);
         }
 
-        public ProjectExplorerStakeholderOverviewTableViewModel CreateProjectExplorerStakeholderOverviewTableViewModel(Analysis guiAnalysis)
+        public ProjectExplorerStakeholderOverviewTableViewModel CreateProjectExplorerStakeholderOverviewTableViewModel()
         {
-            return new ProjectExplorerStakeholderOverviewTableViewModel(this, guiAnalysis, gui.ViewManager);
+            return new ProjectExplorerStakeholderOverviewTableViewModel(this, Analysis, ViewManager);
         }
 
-        public ProjectExplorerOnionDiagramsViewModel CreateProjectExplorerOnionDiagramsViewModel(Analysis guiAnalysis)
+        public ProjectExplorerOnionDiagramsViewModel CreateProjectExplorerOnionDiagramsViewModel()
         {
-            return new ProjectExplorerOnionDiagramsViewModel(this, guiAnalysis, gui.ViewManager);
+            return new ProjectExplorerOnionDiagramsViewModel(this, Analysis);
         }
 
         public OnionDiagramViewModel CreateOnionDiagramViewModel(OnionDiagram diagram)
@@ -197,14 +199,14 @@ namespace StakeholderAnalysis.Visualization.ViewModels
             return new OnionDiagramViewModel(this, diagram);
         }
 
-        public IProjectExplorerDiagramViewModel CreateProjectExplorerOnionDiagramViewModel(Analysis analysis, OnionDiagram analysisOnionDiagram)
+        public IProjectExplorerDiagramViewModel CreateProjectExplorerOnionDiagramViewModel(OnionDiagram analysisOnionDiagram)
         {
-            return new ProjectExplorerOnionDiagramViewModel(this, analysis, analysisOnionDiagram, gui?.ViewManager);
+            return new ProjectExplorerOnionDiagramViewModel(this, Analysis, analysisOnionDiagram, ViewManager);
         }
 
-        public StakeholderTableViewModel CreateStakeholderTableViewModel(Analysis analysis)
+        public StakeholderTableViewModel CreateStakeholderTableViewModel()
         {
-            return new StakeholderTableViewModel(this, analysis);
+            return new StakeholderTableViewModel(this, Analysis);
         }
     }
 }

@@ -4,7 +4,6 @@ using System.Linq;
 using System.Windows.Input;
 using StakeholderAnalysis.Data;
 using StakeholderAnalysis.Data.OnionDiagrams;
-using StakeholderAnalysis.Gui;
 
 namespace StakeholderAnalysis.Visualization.ViewModels.ProjectExplorer
 {
@@ -12,18 +11,16 @@ namespace StakeholderAnalysis.Visualization.ViewModels.ProjectExplorer
     {
         private readonly Analysis analysis;
         private bool isExpanded = true;
-        private readonly ViewManager viewManager;
-
-        public ProjectExplorerOnionDiagramsViewModel(ViewModelFactory factory, Analysis analysis, ViewManager viewManager) : base(factory)
+        
+        public ProjectExplorerOnionDiagramsViewModel(ViewModelFactory factory, Analysis analysis) : base(factory)
         {
-            this.viewManager = viewManager;
             this.analysis = analysis;
             analysis.OnionDiagrams.CollectionChanged += OnionDiagramsCollectionChanged;
 
             Diagrams = new ObservableCollection<IProjectExplorerDiagramViewModel>();
             foreach (var analysisOnionDiagram in analysis.OnionDiagrams)
             {
-                Diagrams.Add(ViewModelFactory.CreateProjectExplorerOnionDiagramViewModel(analysis,analysisOnionDiagram));
+                Diagrams.Add(ViewModelFactory.CreateProjectExplorerOnionDiagramViewModel(analysisOnionDiagram));
             }
         }
 
@@ -54,7 +51,7 @@ namespace StakeholderAnalysis.Visualization.ViewModels.ProjectExplorer
             {
                 foreach (var onionDiagram in e.NewItems.OfType<OnionDiagram>())
                 {
-                    Diagrams.Add(ViewModelFactory.CreateProjectExplorerOnionDiagramViewModel(analysis,onionDiagram));
+                    Diagrams.Add(ViewModelFactory.CreateProjectExplorerOnionDiagramViewModel(onionDiagram));
                 }
             }
 

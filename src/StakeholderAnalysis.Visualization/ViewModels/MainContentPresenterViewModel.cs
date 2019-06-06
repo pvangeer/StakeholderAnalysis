@@ -15,7 +15,7 @@ namespace StakeholderAnalysis.Visualization.ViewModels
             {
                 gui.PropertyChanged += GuiPropertyChanged;
             }
-            ViewManager = ViewModelFactory.CreateViewManagerViewModel(gui?.ViewManager);
+            ViewManager = ViewModelFactory.CreateViewManagerViewModel();
         }
 
         public ViewManagerViewModel ViewManager { get; }

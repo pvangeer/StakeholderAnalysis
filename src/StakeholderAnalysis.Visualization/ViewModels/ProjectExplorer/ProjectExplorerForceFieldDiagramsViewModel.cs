@@ -20,7 +20,7 @@ namespace StakeholderAnalysis.Visualization.ViewModels.ProjectExplorer
             Diagrams = new ObservableCollection<IProjectExplorerDiagramViewModel>();
             foreach (var forceFieldDiagram in analysis.ForceFieldDiagrams)
             {
-                Diagrams.Add(ViewModelFactory.CreateProjectExplorerForceFieldDiagramViewModel(analysis, forceFieldDiagram));
+                Diagrams.Add(ViewModelFactory.CreateProjectExplorerForceFieldDiagramViewModel(forceFieldDiagram));
             }
         }
 
@@ -51,7 +51,7 @@ namespace StakeholderAnalysis.Visualization.ViewModels.ProjectExplorer
             {
                 foreach (var forceFieldDiagram in e.NewItems.OfType<ForceFieldDiagram>())
                 {
-                    Diagrams.Add(ViewModelFactory.CreateProjectExplorerForceFieldDiagramViewModel(analysis, forceFieldDiagram));
+                    Diagrams.Add(ViewModelFactory.CreateProjectExplorerForceFieldDiagramViewModel(forceFieldDiagram));
                 }
             }
 

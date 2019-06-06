@@ -109,7 +109,7 @@ namespace StakeholderAnalysis.Gui
 
         public Analysis Analysis { get; set; }
 
-        public ViewManager ViewManager { get; set; }
+        public ViewManager ViewManager { get; }
 
         public MessageList Messages { get; }
 

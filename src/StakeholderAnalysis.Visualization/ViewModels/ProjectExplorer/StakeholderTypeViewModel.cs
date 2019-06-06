@@ -11,10 +11,10 @@ namespace StakeholderAnalysis.Visualization.ViewModels.ProjectExplorer
         private readonly StakeholderType stakeholderType;
         private bool isExpanded;
 
-        public StakeholderTypeViewModel(ViewModelFactory factory, StakeholderType stakeholderType, ICommand removeStakeholderTypeCommand) : base(factory)
+        public StakeholderTypeViewModel(ViewModelFactory factory, StakeholderType stakeholderType) : base(factory)
         {
             this.stakeholderType = stakeholderType;
-            RemoveStakeholderTypeCommand = removeStakeholderTypeCommand;
+            RemoveStakeholderTypeCommand = CommandFactory.CreateRemoveStakeholderTypeCommand(stakeholderType);
             stakeholderType.PropertyChanged += StakeholderTypePropertyChanged;
         }
 
