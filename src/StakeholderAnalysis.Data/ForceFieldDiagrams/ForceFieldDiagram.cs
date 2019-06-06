@@ -3,7 +3,7 @@ using System.Collections.ObjectModel;
 
 namespace StakeholderAnalysis.Data.ForceFieldDiagrams
 {
-    public class ForceFieldDiagram : NotifyPropertyChangedObservable
+    public class ForceFieldDiagram : NotifyPropertyChangedObservable, IRankedStakeholderDiagram<ForceFieldDiagramStakeholder>
     {
         public ForceFieldDiagram(string name)
         {

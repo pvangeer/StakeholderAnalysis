@@ -2,7 +2,7 @@
 
 namespace StakeholderAnalysis.Data.ForceFieldDiagrams
 {
-    public class ForceFieldDiagramStakeholder : NotifyPropertyChangedObservable
+    public class ForceFieldDiagramStakeholder : NotifyPropertyChangedObservable, IRankedStakeholder
     {
         private double interest;
         private double influence;
@@ -15,6 +15,9 @@ namespace StakeholderAnalysis.Data.ForceFieldDiagrams
         }
 
         public Stakeholder Stakeholder { get; }
+
+        // TODO: Store Rank
+        public int Rank { get; set; }
 
         public double Interest
         {
