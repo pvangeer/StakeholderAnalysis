@@ -18,7 +18,7 @@ namespace StakeholderAnalysis.App
 
         private void MainWindow_OnLoaded(object sender, RoutedEventArgs eLoaded)
         {
-            DataContext = new MainWindowViewModel(new StakeholderAnalysisGui(AnalysisGenerator.GetAnalysis()));
+            DataContext = new MainWindowViewModel(new StakeholderAnalysisGui());
         }
 
         private void MainWindowClosing(object sender, CancelEventArgs e)

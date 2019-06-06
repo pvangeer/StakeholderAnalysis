@@ -6,7 +6,7 @@ using StakeholderAnalysis.Data.AttitudeImpactDiagrams;
 using StakeholderAnalysis.Data.ForceFieldDiagrams;
 using StakeholderAnalysis.Data.OnionDiagrams;
 
-namespace StakeholderAnalysis.App
+namespace StakeholderAnalysis.Storage.Test
 {
     public static class AnalysisGenerator
     {
