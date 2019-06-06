@@ -390,6 +390,11 @@ namespace StakeholderAnalysis.App
             forceFieldDiagram.Stakeholders.Add(new ForceFieldDiagramStakeholder(tnoStakeholder, 0.23, 0.56));
             forceFieldDiagram.Stakeholders.Add(new ForceFieldDiagramStakeholder(knmiStakeholder, 0.6, 0.5));
             forceFieldDiagram.Stakeholders.Add(new ForceFieldDiagramStakeholder(alterraStakeholder, 0.6, 0.5));
+
+            for (int i = 0; i < forceFieldDiagram.Stakeholders.Count; i++)
+            {
+                forceFieldDiagram.Stakeholders[i].Rank = i;
+            }
             #endregion
 
             #region Add Force field diagram 2
@@ -435,6 +440,10 @@ namespace StakeholderAnalysis.App
             forceFieldDiagram.Stakeholders.Add(new ForceFieldDiagramStakeholder(tnoStakeholder, 0.23, 0.56));
             forceFieldDiagram.Stakeholders.Add(new ForceFieldDiagramStakeholder(knmiStakeholder, 0.6, 0.5));
             forceFieldDiagram.Stakeholders.Add(new ForceFieldDiagramStakeholder(alterraStakeholder, 0.6, 0.5));
+            for (int i = 0; i < forceFieldDiagram.Stakeholders.Count; i++)
+            {
+                forceFieldDiagram.Stakeholders[i].Rank = i;
+            }
             #endregion
 
             #region Attitude impact diagram
@@ -525,6 +534,10 @@ namespace StakeholderAnalysis.App
             attitudeImpactDiagram.Stakeholders.Add(new AttitudeImpactDiagramStakeholder(tnoStakeholder, 0.8, 0.3));
             attitudeImpactDiagram.Stakeholders.Add(new AttitudeImpactDiagramStakeholder(knmiStakeholder, 0.76, 0.36));
             attitudeImpactDiagram.Stakeholders.Add(new AttitudeImpactDiagramStakeholder(alterraStakeholder, 0.6, 0.15));
+            for (int i = 0; i < attitudeImpactDiagram.Stakeholders.Count; i++)
+            {
+                attitudeImpactDiagram.Stakeholders[i].Rank = i;
+            }
             #endregion
 
             return analysis;

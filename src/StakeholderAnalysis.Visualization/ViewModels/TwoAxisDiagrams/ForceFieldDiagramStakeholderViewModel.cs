@@ -5,12 +5,13 @@ using StakeholderAnalysis.Visualization.Behaviors;
 
 namespace StakeholderAnalysis.Visualization.ViewModels.TwoAxisDiagrams
 {
-    public class ForceFieldDiagramStakeholderViewModel : StakeholderViewModel, IPositionedStakeholderViewModel
+    public class ForceFieldDiagramStakeholderViewModel : RankedStakeholderViewModel<ForceFieldDiagramStakeholder>, IPositionedStakeholderViewModel
     {
         private readonly ForceFieldDiagramStakeholder forceFieldDiagramStakeholder;
         private readonly ForceFieldDiagram diagram;
 
-        public ForceFieldDiagramStakeholderViewModel(ViewModelFactory factory, ForceFieldDiagram diagram, ForceFieldDiagramStakeholder stakeholder, ISelectionRegister selectionRegister) : base(factory, stakeholder?.Stakeholder, selectionRegister, null)
+        public ForceFieldDiagramStakeholderViewModel(ViewModelFactory factory, ForceFieldDiagram diagram, ForceFieldDiagramStakeholder stakeholder, ISelectionRegister selectionRegister) : 
+            base(factory, stakeholder, diagram, selectionRegister, null)
         {
             this.diagram = diagram;
             forceFieldDiagramStakeholder = stakeholder;

@@ -1,17 +1,17 @@
 ﻿using System;
 using System.ComponentModel;
-using System.Windows.Media.TextFormatting;
 using StakeholderAnalysis.Data.AttitudeImpactDiagrams;
 using StakeholderAnalysis.Visualization.Behaviors;
 
 namespace StakeholderAnalysis.Visualization.ViewModels.TwoAxisDiagrams
 {
-    public class AttitudeImpactDiagramStakeholderViewModel : StakeholderViewModel, IPositionedStakeholderViewModel
+    public class AttitudeImpactDiagramStakeholderViewModel : RankedStakeholderViewModel<AttitudeImpactDiagramStakeholder>, IPositionedStakeholderViewModel
     {
         private readonly AttitudeImpactDiagramStakeholder attitudeImpactDiagramStakeholder;
         private readonly AttitudeImpactDiagram diagram;
 
-        public AttitudeImpactDiagramStakeholderViewModel(ViewModelFactory factory, AttitudeImpactDiagram diagram, AttitudeImpactDiagramStakeholder stakeholder, ISelectionRegister selectionRegister) : base(factory, stakeholder?.Stakeholder, selectionRegister, null)
+        public AttitudeImpactDiagramStakeholderViewModel(ViewModelFactory factory, AttitudeImpactDiagram diagram, AttitudeImpactDiagramStakeholder stakeholder, ISelectionRegister selectionRegister) 
+            : base(factory, stakeholder, diagram, selectionRegister, null)
         {
             this.diagram = diagram;
             attitudeImpactDiagramStakeholder = stakeholder;

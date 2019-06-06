@@ -134,6 +134,7 @@
     <Compile Include="ViewModels\StakeholderTableView\StakeholderTableViewModel.cs" />
     <Compile Include="ViewModels\StakeholderViewModel.cs" />
     <Compile Include="ViewModels\TwoAxisDiagrams\PositionedStakeholderViewModel.cs" />
+    <Compile Include="ViewModels\TwoAxisDiagrams\RankedStakeholderViewModel.cs" />
     <Compile Include="ViewModels\ViewManagerViewModel.cs" />
     <Compile Include="ViewModels\ViewModelBase.cs" />
     <Compile Include="ViewModels\ViewModelFactory.cs" />

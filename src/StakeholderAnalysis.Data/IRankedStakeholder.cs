@@ -6,6 +6,8 @@ namespace StakeholderAnalysis.Data
     {
         int Rank { get; set; }
 
+        Stakeholder Stakeholder { get; }
+
         void OnPropertyChanged(string propertyName);
     }
 }

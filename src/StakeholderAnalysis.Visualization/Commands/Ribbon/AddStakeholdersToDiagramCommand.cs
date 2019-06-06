@@ -18,6 +18,7 @@ namespace StakeholderAnalysis.Visualization.Commands.Ribbon
     {
         private readonly ViewManager viewManager;
         private readonly Analysis analysis;
+        // TODO: Solve this with a generic interfact (similar to IRankedStakeholderDiagram)
         private OnionDiagram selectedOnionDiagram;
         private ForceFieldDiagram selectedForceFieldDiagram;
         private AttitudeImpactDiagram selectedAttitudeImpactDiagram;
@@ -71,7 +72,11 @@ namespace StakeholderAnalysis.Visualization.Commands.Ribbon
                 var currentStakeholders = selectedAttitudeImpactDiagram.Stakeholders.Select(s => s.Stakeholder);
                 foreach (var selectedStakeholder in selectedStakeholders.Except(currentStakeholders))
                 {
-                    selectedAttitudeImpactDiagram.Stakeholders.Add(new AttitudeImpactDiagramStakeholder(selectedStakeholder, 0.5, 0.5));
+                    var attitudeImpactDiagramStakeholder = new AttitudeImpactDiagramStakeholder(selectedStakeholder, 0.5, 0.5)
+                    {
+                        Rank = selectedAttitudeImpactDiagram.Stakeholders.Count
+                    };
+                    selectedAttitudeImpactDiagram.Stakeholders.Add(attitudeImpactDiagramStakeholder);
                 }
             }
 
@@ -80,7 +85,11 @@ namespace StakeholderAnalysis.Visualization.Commands.Ribbon
                 var currentStakeholders = selectedForceFieldDiagram.Stakeholders.Select(s => s.Stakeholder);
                 foreach (var selectedStakeholder in selectedStakeholders.Except(currentStakeholders))
                 {
-                    selectedForceFieldDiagram.Stakeholders.Add(new ForceFieldDiagramStakeholder(selectedStakeholder, 0.5, 0.5));
+                    var forceFieldDiagramStakeholder = new ForceFieldDiagramStakeholder(selectedStakeholder, 0.5, 0.5)
+                    {
+                        Rank = selectedForceFieldDiagram.Stakeholders.Count
+                    };
+                    selectedForceFieldDiagram.Stakeholders.Add(forceFieldDiagramStakeholder);
                 }
             }
         }
