@@ -1,27 +1,28 @@
 ﻿using System;
 using System.Linq;
 using System.Windows.Input;
+using StakeholderAnalysis.Data;
 using StakeholderAnalysis.Data.OnionDiagrams;
 
 namespace StakeholderAnalysis.Visualization.Commands.OnionDiagramProperties
 {
-    public class MoveStakeholderUpCommand : ICommand
+    public class MoveStakeholderUpCommand<TStakeholder> : ICommand where TStakeholder : class, IRankedStakeholder
     {
-        private readonly OnionDiagram diagram;
-        private readonly OnionDiagramStakeholder onionDiagramStakeholder;
+        private readonly IRankedStakeholderDiagram<TStakeholder> diagram;
+        private readonly IRankedStakeholder stakeholder;
 
-        public MoveStakeholderUpCommand(OnionDiagram diagram, OnionDiagramStakeholder onionDiagramStakeholder)
+        public MoveStakeholderUpCommand(IRankedStakeholderDiagram<TStakeholder> diagram, IRankedStakeholder stakeholder)
         {
             this.diagram = diagram;
-            this.onionDiagramStakeholder = onionDiagramStakeholder;
+            this.stakeholder = stakeholder;
             if (diagram != null)
             {
                 diagram.Stakeholders.CollectionChanged += (o, e) => CanExecuteChanged?.Invoke(this, null);
             }
 
-            onionDiagramStakeholder.PropertyChanged += (o, e) =>
+            stakeholder.PropertyChanged += (o, e) =>
             {
-                if (e.PropertyName == nameof(OnionDiagramStakeholder.Rank))
+                if (e.PropertyName == nameof(IRankedStakeholder.Rank))
                 {
                     CanExecuteChanged?.Invoke(this, null);
                 }
@@ -30,19 +31,19 @@ namespace StakeholderAnalysis.Visualization.Commands.OnionDiagramProperties
 
         public bool CanExecute(object parameter)
         {
-            return diagram != null && onionDiagramStakeholder != null && onionDiagramStakeholder.Rank != diagram.Stakeholders.Max(s => s.Rank);
+            return diagram != null && stakeholder != null && stakeholder.Rank != diagram.Stakeholders.Max(s => s.Rank);
         }
 
         public void Execute(object parameter)
         {
-            var rankHigher = diagram.Stakeholders.FirstOrDefault(s => s.Rank == onionDiagramStakeholder.Rank + 1);
+            var rankHigher = diagram.Stakeholders.FirstOrDefault(s => s.Rank == stakeholder.Rank + 1);
 
             if (rankHigher != null)
             {
-                onionDiagramStakeholder.Rank = onionDiagramStakeholder.Rank + 1;
+                stakeholder.Rank = stakeholder.Rank + 1;
                 rankHigher.Rank = rankHigher.Rank - 1;
-                onionDiagramStakeholder.OnPropertyChanged(nameof(OnionDiagramStakeholder.Rank));
-                rankHigher.OnPropertyChanged(nameof(OnionDiagramStakeholder.Rank));
+                stakeholder.OnPropertyChanged(nameof(IRankedStakeholder.Rank));
+                rankHigher.OnPropertyChanged(nameof(IRankedStakeholder.Rank));
             }
         }
 

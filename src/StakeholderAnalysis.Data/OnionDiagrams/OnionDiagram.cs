@@ -2,7 +2,7 @@
 
 namespace StakeholderAnalysis.Data.OnionDiagrams
 {
-    public class OnionDiagram : NotifyPropertyChangedObservable
+    public class OnionDiagram : NotifyPropertyChangedObservable, IRankedStakeholderDiagram<OnionDiagramStakeholder>
     {
         public OnionDiagram(string name, ObservableCollection<OnionRing> onionRings = null, 
             ObservableCollection<StakeholderConnection> connections = null,
