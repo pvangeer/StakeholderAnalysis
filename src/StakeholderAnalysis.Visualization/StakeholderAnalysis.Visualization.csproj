@@ -35,6 +35,10 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Commands\OnionDiagramProperties\MoveStakeholderDownCommand.cs" />
+    <Compile Include="Commands\OnionDiagramProperties\MoveStakeholderToBottomCommand.cs" />
+    <Compile Include="Commands\OnionDiagramProperties\MoveStakeholderUpCommand.cs" />
+    <Compile Include="Commands\OnionDiagramProperties\MoveStakeholderToTopCommand.cs" />
     <Compile Include="Commands\ProjectExplorer\AddNewStakeholderTypeCommand.cs" />
     <Compile Include="Commands\ClearSelectionCommand.cs" />
     <Compile Include="Commands\ProjectExplorer\RemoveStakeholderTypeCommand.cs" />
@@ -351,5 +355,15 @@
     <Resource Include="Resources\iconfinder_mail_open.png" />
     <Resource Include="Resources\iconfinder_money.png" />
     <Resource Include="Resources\iconfinder_yen.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Resources\arrow_bottom_black.png" />
+    <Resource Include="Resources\arrow_bottom_gray.png" />
+    <Resource Include="Resources\arrow_down_black.png" />
+    <Resource Include="Resources\arrow_down_gray.png" />
+    <Resource Include="Resources\arrow_top_black.png" />
+    <Resource Include="Resources\arrow_top_gray.png" />
+    <Resource Include="Resources\arrow_up_black.png" />
+    <Resource Include="Resources\arrow_up_gray.png" />
   </ItemGroup>
 </Project>

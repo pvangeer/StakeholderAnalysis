@@ -555,7 +555,10 @@ namespace StakeholderAnalysis.App
         private static OnionDiagramStakeholder AddStakeholderToOnionDiagram(Stakeholder stakeholder, OnionDiagram diagram,
             double leftPercentage, double rightPercentage)
         {
-            var diagramStakeholder = new OnionDiagramStakeholder(stakeholder, leftPercentage, rightPercentage);
+            var diagramStakeholder = new OnionDiagramStakeholder(stakeholder, leftPercentage, rightPercentage)
+            {
+                Rank = diagram.Stakeholders.Count
+            };
             diagram.Stakeholders.Add(diagramStakeholder);
             return diagramStakeholder;
         }

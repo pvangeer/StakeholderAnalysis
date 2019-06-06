@@ -58,7 +58,11 @@ namespace StakeholderAnalysis.Visualization.Commands.Ribbon
                 var currentStakeholders = selectedOnionDiagram.Stakeholders.Select(s => s.Stakeholder);
                 foreach (var selectedStakeholder in selectedStakeholders.Except(currentStakeholders))
                 {
-                    selectedOnionDiagram.Stakeholders.Add(new OnionDiagramStakeholder(selectedStakeholder, 0.5, 0.5));
+                    var onionDiagramStakeholder = new OnionDiagramStakeholder(selectedStakeholder, 0.5, 0.5)
+                    {
+                        Rank = selectedOnionDiagram.Stakeholders.Count
+                    };
+                    selectedOnionDiagram.Stakeholders.Add(onionDiagramStakeholder);
                 }
             }
 

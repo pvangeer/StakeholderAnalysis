@@ -16,6 +16,9 @@ namespace StakeholderAnalysis.Data.OnionDiagrams
 
         public Stakeholder Stakeholder { get; }
 
+        // TODO: Store Rank
+        public int Rank { get; set; }
+
         public double Left
         {
             get => left;

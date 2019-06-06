@@ -123,5 +123,25 @@ namespace StakeholderAnalysis.Visualization.ViewModels
         {
             return new RemoveSelectedStakeholderFromDiagramCommand(removeStakeholderViewModel);
         }
+
+        public ICommand CreateMoveToBottomCommand(OnionDiagram diagram, OnionDiagramStakeholder onionDiagramStakeholder)
+        {
+            return new MoveStakeholderToBottomCommand(diagram, onionDiagramStakeholder);
+        }
+
+        public ICommand CreateMoveUpCommand(OnionDiagram diagram, OnionDiagramStakeholder onionDiagramStakeholder)
+        {
+            return new MoveStakeholderUpCommand(diagram, onionDiagramStakeholder);
+        }
+
+        public ICommand CreateMoveDownCommand(OnionDiagram diagram, OnionDiagramStakeholder onionDiagramStakeholder)
+        {
+            return new MoveStakeholderDownCommand(diagram, onionDiagramStakeholder);
+        }
+
+        public ICommand CreateMoveToTopCommand(OnionDiagram diagram, OnionDiagramStakeholder onionDiagramStakeholder)
+        {
+            return new MoveStakeholderToTopCommand(diagram, onionDiagramStakeholder);
+        }
     }
 }

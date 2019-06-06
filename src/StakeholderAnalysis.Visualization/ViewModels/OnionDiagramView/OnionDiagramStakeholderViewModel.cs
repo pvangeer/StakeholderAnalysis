@@ -1,6 +1,8 @@
 ﻿using System;
+using System.Collections.Specialized;
 using System.ComponentModel;
 using System.Linq;
+using System.Windows.Input;
 using StakeholderAnalysis.Data.OnionDiagrams;
 using StakeholderAnalysis.Visualization.Behaviors;
 using static System.Double;
@@ -9,7 +11,7 @@ namespace StakeholderAnalysis.Visualization.ViewModels.OnionDiagramView
 {
     public class OnionDiagramStakeholderViewModel : StakeholderViewModel
     {
-        private OnionDiagram diagram;
+        private readonly OnionDiagram diagram;
         private readonly OnionDiagramStakeholder onionDiagramStakeholder;
 
         public OnionDiagramStakeholderViewModel(ViewModelFactory factory, OnionDiagram diagram, OnionDiagramStakeholder stakeholder,
@@ -17,10 +19,36 @@ namespace StakeholderAnalysis.Visualization.ViewModels.OnionDiagramView
         {
             DrawConnectionHandler = drawConnectionHandler;
             this.diagram = diagram;
+            if (diagram != null)
+            {
+                diagram.Stakeholders.CollectionChanged += DiagramStakeholdersCollectionChanged;
+            }
             onionDiagramStakeholder = stakeholder;
             if (onionDiagramStakeholder != null)
             {
                 onionDiagramStakeholder.PropertyChanged += StakeholderPropertyChanged;
+            }
+            MoveStakeholderToBottomCommand = CommandFactory.CreateMoveToBottomCommand(diagram, onionDiagramStakeholder);
+            MoveStakeholderToTopCommand = CommandFactory.CreateMoveToTopCommand(diagram, onionDiagramStakeholder);
+            MoveStakeholderUpCommand = CommandFactory.CreateMoveUpCommand(diagram, onionDiagramStakeholder);
+            MoveStakeholderDownCommand = CommandFactory.CreateMoveDownCommand(diagram, onionDiagramStakeholder);
+        }
+
+        private void DiagramStakeholdersCollectionChanged(object sender, NotifyCollectionChangedEventArgs e)
+        {
+            OnPropertyChanged(nameof(CanMoveToBottom));
+            OnPropertyChanged(nameof(CanMoveDown));
+            OnPropertyChanged(nameof(CanMoveToTop));
+            OnPropertyChanged(nameof(CanMoveUp));
+        }
+
+        public int Rank
+        {
+            get => onionDiagramStakeholder.Rank;
+            set
+            {
+                onionDiagramStakeholder.Rank = value;
+                onionDiagramStakeholder.OnPropertyChanged(nameof(OnionDiagramStakeholder.Rank));
             }
         }
 
@@ -46,6 +74,22 @@ namespace StakeholderAnalysis.Visualization.ViewModels.OnionDiagramView
 
         public IDrawConnectionHandler DrawConnectionHandler { get; }
 
+        public ICommand MoveStakeholderToBottomCommand { get; }
+
+        public bool CanMoveToBottom => MoveStakeholderToBottomCommand.CanExecute(null);
+
+        public ICommand MoveStakeholderToTopCommand { get; }
+
+        public bool CanMoveToTop => MoveStakeholderToTopCommand.CanExecute(null);
+
+        public ICommand MoveStakeholderUpCommand { get; }
+
+        public bool CanMoveUp => MoveStakeholderUpCommand.CanExecute(null);
+
+        public ICommand MoveStakeholderDownCommand { get; }
+
+        public bool CanMoveDown => MoveStakeholderDownCommand.CanExecute(null);
+
         public override void Moved(double xRelativeNew, double yRelativeNew)
         {
             LeftPercentage = Math.Min(1.0,Math.Max(0.0,xRelativeNew));
@@ -61,6 +105,13 @@ namespace StakeholderAnalysis.Visualization.ViewModels.OnionDiagramView
                     break;
                 case nameof(OnionDiagramStakeholder.Top):
                     OnPropertyChanged(nameof(TopPercentage));
+                    break;
+                case nameof(OnionDiagramStakeholder.Rank):
+                    OnPropertyChanged(nameof(CanMoveToBottom));
+                    OnPropertyChanged(nameof(CanMoveDown));
+                    OnPropertyChanged(nameof(CanMoveToTop));
+                    OnPropertyChanged(nameof(CanMoveUp));
+                    OnPropertyChanged(nameof(Rank));
                     break;
             }
             base.StakeholderPropertyChanged(sender,e);
