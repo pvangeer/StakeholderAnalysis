@@ -2,7 +2,7 @@
 
 namespace StakeholderAnalysis.Data.AttitudeImpactDiagrams
 {
-    public class AttitudeImpactDiagram : NotifyPropertyChangedObservable
+    public class AttitudeImpactDiagram : NotifyPropertyChangedObservable, IRankedStakeholderDiagram<AttitudeImpactDiagramStakeholder>
     {
         public AttitudeImpactDiagram(string name)
         {

@@ -2,7 +2,7 @@
 
 namespace StakeholderAnalysis.Data.AttitudeImpactDiagrams
 {
-    public class AttitudeImpactDiagramStakeholder : NotifyPropertyChangedObservable
+    public class AttitudeImpactDiagramStakeholder : NotifyPropertyChangedObservable, IRankedStakeholder
     {
         private double attitude;
         private double impact;
@@ -15,6 +15,9 @@ namespace StakeholderAnalysis.Data.AttitudeImpactDiagrams
         }
 
         public Stakeholder Stakeholder { get; }
+
+        //TODO: Store Rank
+        public int Rank { get; set; }
 
         public double Attitude
         {
