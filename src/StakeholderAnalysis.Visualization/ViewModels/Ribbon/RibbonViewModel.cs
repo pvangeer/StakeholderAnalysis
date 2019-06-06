@@ -135,6 +135,7 @@ namespace StakeholderAnalysis.Visualization.ViewModels.Ribbon
                     break;
                 case nameof(StakeholderAnalysisGui.Analysis):
                     SetCurrentSelectedDiagramAndGroups();
+                    OnPropertyChanged(nameof(AddStakeholdersCommand));
                     break;
             }
         }

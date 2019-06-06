@@ -20,15 +20,15 @@ namespace StakeholderAnalysis.Gui
 
         public StakeholderAnalysisGui(Analysis analysis)
         {
-            Analysis = analysis;
+            SelectedStakeholderConnectionGroups = analysis == null
+                ? new ObservableCollection<StakeholderConnectionGroupSelection>()
+                : new ObservableCollection<StakeholderConnectionGroupSelection>(analysis.OnionDiagrams.Select(d => new StakeholderConnectionGroupSelection(d, d.ConnectionGroups.FirstOrDefault())));
+
+            this.analysis = analysis;
             if (analysis != null)
             {
                 analysis.OnionDiagrams.CollectionChanged += OnionDiagramsCollectionChanged;
             }
-
-            SelectedStakeholderConnectionGroups = analysis == null
-                ? new ObservableCollection<StakeholderConnectionGroupSelection>()
-                : new ObservableCollection<StakeholderConnectionGroupSelection>(analysis.OnionDiagrams.Select(d => new StakeholderConnectionGroupSelection(d, d.ConnectionGroups.FirstOrDefault())));
 
             GuiProjectServices = new GuiProjectServices(this);
 
@@ -107,7 +107,27 @@ namespace StakeholderAnalysis.Gui
 
         public string ProjectFilePath { get; set; }
 
-        public Analysis Analysis { get; set; }
+        public Analysis Analysis
+        {
+            get => analysis;
+            set
+            {
+                if (analysis != null)
+                {
+                    analysis.OnionDiagrams.CollectionChanged -= OnionDiagramsCollectionChanged;
+                }
+                analysis = value;
+                SelectedStakeholderConnectionGroups.Clear();
+                if (analysis != null)
+                {
+                    analysis.OnionDiagrams.CollectionChanged += OnionDiagramsCollectionChanged;
+                    foreach (var onionDiagram in analysis.OnionDiagrams)
+                    {
+                        SelectedStakeholderConnectionGroups.Add(new StakeholderConnectionGroupSelection(onionDiagram, onionDiagram.ConnectionGroups.FirstOrDefault()));
+                    }
+                }
+            }
+        }
 
         public ViewManager ViewManager { get; }
 
@@ -123,6 +143,7 @@ namespace StakeholderAnalysis.Gui
         public GuiProjectServices GuiProjectServices { get; }
 
         public readonly ObservableCollection<StakeholderConnectionGroupSelection> SelectedStakeholderConnectionGroups;
+        private Analysis analysis;
 
         private void ConfigureMessaging()
         {
