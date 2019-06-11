@@ -38,9 +38,9 @@ namespace StakeholderAnalysis.Visualization.ViewModels.TwoAxisDiagrams
                         viewModel.IsViewModelFor(stakeholder.Stakeholder)));
         }
 
-        public Brush BackgroundBrush => new LinearGradientBrush(Colors.CornflowerBlue, Colors.LimeGreen, new Point(0,1), new Point(1,0));
+        public Brush BackgroundBrush => new LinearGradientBrush(Colors.PowderBlue, Colors.LightGreen, new Point(0,1), new Point(1,0));
 
-        public string BackgroundTextLeftTop => "Tevreden houden";
+        public string BackgroundTextLeftTop => "Consulteren";
 
         public string BackgroundTextRightTop => "Betrekken";
 
