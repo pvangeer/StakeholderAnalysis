@@ -164,9 +164,9 @@ namespace StakeholderAnalysis.Visualization.ViewModels
             return new OnionDiagramStakeholdersViewModel(this, onionDiagram, selectionRegister, drawConnectionHandler);
         }
 
-        public OnionDiagramConnectionsPresenterViewModel CreateOnionDiagramConnectionsPresenterViewModel(OnionDiagram diagram)
+        public OnionDiagramConnectionsPresenterViewModel CreateOnionDiagramConnectionsPresenterViewModel(OnionDiagram diagram, ISelectionRegister selectionRegister)
         {
-            return new OnionDiagramConnectionsPresenterViewModel(this, diagram);
+            return new OnionDiagramConnectionsPresenterViewModel(this, diagram, selectionRegister);
         }
 
         public OnionDiagramRingsCanvasViewModel CreateOnionDiagramRingsCanvasViewModel(OnionDiagram diagram)
@@ -179,9 +179,9 @@ namespace StakeholderAnalysis.Visualization.ViewModels
             return new OnionRingViewModel(this, onionRing);
         }
 
-        public StakeholderConnectionViewModel CreateStakeholderConnectionViewModel(StakeholderConnection stakeholderConnection)
+        public StakeholderConnectionViewModel CreateStakeholderConnectionViewModel(StakeholderConnection stakeholderConnection, ISelectionRegister selectionRegister)
         {
-            return new StakeholderConnectionViewModel(this, stakeholderConnection);
+            return new StakeholderConnectionViewModel(this, stakeholderConnection, selectionRegister);
         }
 
         public ProjectExplorerStakeholderOverviewTableViewModel CreateProjectExplorerStakeholderOverviewTableViewModel()

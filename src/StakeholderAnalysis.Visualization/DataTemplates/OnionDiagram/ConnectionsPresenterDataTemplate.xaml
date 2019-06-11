@@ -1,14 +1,53 @@
 ﻿<ResourceDictionary xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
                     xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
                     xmlns:converters="clr-namespace:StakeholderAnalysis.Visualization.Converters"
-                    xmlns:onionDiagramView="clr-namespace:StakeholderAnalysis.Visualization.ViewModels.OnionDiagramView">
+                    xmlns:onionDiagramView="clr-namespace:StakeholderAnalysis.Visualization.ViewModels.OnionDiagramView"
+                    xmlns:visualization="clr-namespace:StakeholderAnalysis.Visualization">
 
     <converters:PercentageToDimensionConverter x:Key="PercentageToDimensionConverter" />
-
     <BooleanToVisibilityConverter x:Key="BooleanToVisibilityConverter" />
+    <visualization:IsSelectedToStrokeThicknessConverter x:Key="IsSelectedToStrokeThicknessConverter" />
+    <converters:ToComplementColorConverter x:Key="ToComplementColorConverter" />
 
     <DataTemplate x:Key="ConnectionDataTemplate" DataType="onionDiagramView:StakeholderConnectionViewModel">
-        <Grid>
+        <Canvas>
+            <Line
+                Visibility="{Binding IsSelected, Converter={StaticResource BooleanToVisibilityConverter}}"
+                Stroke="{Binding StrokeColor, Converter={StaticResource ToComplementColorConverter}}">
+                <Line.StrokeThickness>
+                    <MultiBinding Converter="{StaticResource IsSelectedToStrokeThicknessConverter}">
+                        <Binding Path="StrokeThickness" UpdateSourceTrigger="PropertyChanged"/>
+                        <Binding Path="IsSelected" UpdateSourceTrigger="PropertyChanged"/>
+                    </MultiBinding>
+                </Line.StrokeThickness>
+                <Line.X1>
+                    <MultiBinding Converter="{StaticResource PercentageToDimensionConverter}">
+                        <Binding Path="ConnectFromLeft" />
+                        <Binding ElementName="LinesCanvas" Path="ActualWidth" />
+                    </MultiBinding>
+                </Line.X1>
+                <Line.Y1>
+                    <MultiBinding Converter="{StaticResource PercentageToDimensionConverter}">
+                        <Binding Path="ConnectFromTop" />
+                        <Binding ElementName="LinesCanvas" Path="ActualHeight" />
+                    </MultiBinding>
+                </Line.Y1>
+                <Line.X2>
+                    <MultiBinding Converter="{StaticResource PercentageToDimensionConverter}">
+                        <Binding Path="ConnectToLeft" />
+                        <Binding ElementName="LinesCanvas" Path="ActualWidth" />
+                    </MultiBinding>
+                </Line.X2>
+                <Line.Y2>
+                    <MultiBinding Converter="{StaticResource PercentageToDimensionConverter}">
+                        <Binding Path="ConnectToTop" />
+                        <Binding ElementName="LinesCanvas" Path="ActualHeight" />
+                    </MultiBinding>
+                </Line.Y2>
+                <Line.InputBindings>
+                    <MouseBinding MouseAction="LeftDoubleClick" Command="{Binding StakeholderConnectionClickedCommand}" />
+                </Line.InputBindings>
+            </Line>
             <Line
                 Visibility="{Binding IsVisible, Converter={StaticResource BooleanToVisibilityConverter}}"
                 Stroke="{Binding StrokeColor}"
@@ -37,18 +76,21 @@
                         <Binding ElementName="LinesCanvas" Path="ActualHeight" />
                     </MultiBinding>
                 </Line.Y2>
+                <Line.InputBindings>
+                    <MouseBinding MouseAction="LeftDoubleClick" Command="{Binding StakeholderConnectionClickedCommand}" />
+                </Line.InputBindings>
             </Line>
-        </Grid>
+        </Canvas>
     </DataTemplate>
 
     <DataTemplate x:Key="OnionDiagramConnectionsPresenterDataTemplate" DataType="onionDiagramView:OnionDiagramConnectionsPresenterViewModel">
-        <Grid>
+        <Grid Background="Transparent">
             <ItemsControl ItemsSource="{Binding StakeholderConnections}"
                           Background="Transparent"
                           ItemTemplate="{StaticResource ConnectionDataTemplate}">
                 <ItemsControl.ItemsPanel>
                     <ItemsPanelTemplate>
-                        <Canvas Name="LinesCanvas" IsItemsHost="True"/>
+                        <Canvas Name="LinesCanvas" IsItemsHost="True" Background="Transparent"/>
                     </ItemsPanelTemplate>
                 </ItemsControl.ItemsPanel>
             </ItemsControl>

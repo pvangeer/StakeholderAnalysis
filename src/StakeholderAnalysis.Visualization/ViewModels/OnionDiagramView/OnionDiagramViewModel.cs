@@ -1,4 +1,6 @@
-﻿using System.Windows.Input;
+﻿using System.Linq;
+using System.Windows.Input;
+using StakeholderAnalysis.Data;
 using StakeholderAnalysis.Data.OnionDiagrams;
 using StakeholderAnalysis.Visualization.Behaviors;
 
@@ -13,13 +15,14 @@ namespace StakeholderAnalysis.Visualization.ViewModels.OnionDiagramView
         {
             diagram = onionDiagram;
             OnionDiagramDrawConnectionViewModel = factory.CreateOnionDiagramDrawConnectionViewModel(onionDiagram);
-
+            OnionDiagramRingsCanvasViewModel = ViewModelFactory.CreateOnionDiagramRingsCanvasViewModel(diagram);
+            OnionDiagramConnectionsPresenterViewModel = ViewModelFactory.CreateOnionDiagramConnectionsPresenterViewModel(diagram, this);
             OnionDiagramStakeholdersViewModel = ViewModelFactory.CreateOnionDiagramStakeholdersViewModel(onionDiagram, this, OnionDiagramDrawConnectionViewModel);
         }
 
-        public OnionDiagramRingsCanvasViewModel OnionDiagramRingsCanvasViewModel => ViewModelFactory.CreateOnionDiagramRingsCanvasViewModel(diagram);
+        public OnionDiagramRingsCanvasViewModel OnionDiagramRingsCanvasViewModel { get; }
 
-        public OnionDiagramConnectionsPresenterViewModel OnionDiagramConnectionsPresenterViewModel => ViewModelFactory.CreateOnionDiagramConnectionsPresenterViewModel(diagram);
+        public OnionDiagramConnectionsPresenterViewModel OnionDiagramConnectionsPresenterViewModel { get; }
 
         public OnionDiagramStakeholdersViewModel OnionDiagramStakeholdersViewModel { get; }
 
@@ -45,10 +48,27 @@ namespace StakeholderAnalysis.Visualization.ViewModels.OnionDiagramView
 
         public void Select(object o)
         {
+            var oldSelectedObject = selectedObject;
             selectedObject = o;
-            foreach (var onionDiagramStakeholderViewModel in OnionDiagramStakeholdersViewModel.OnionDiagramStakeholders)
+
+            RaiseIsSelectedPropertyChanged(oldSelectedObject);
+            RaiseIsSelectedPropertyChanged(selectedObject);
+        }
+
+        private void RaiseIsSelectedPropertyChanged(object o)
+        {
+            if (o is Stakeholder stakeholder)
             {
-                onionDiagramStakeholderViewModel.OnPropertyChanged(nameof(OnionDiagramStakeholderViewModel.IsSelectedStakeholder));
+                var viewModel = OnionDiagramStakeholdersViewModel.OnionDiagramStakeholders.FirstOrDefault(vm =>
+                        vm.IsViewModelFor(stakeholder));
+                viewModel?.OnPropertyChanged(nameof(OnionDiagramStakeholderViewModel.IsSelectedStakeholder));
+            }
+
+            if (o is StakeholderConnection connection)
+            {
+                var viewModel = OnionDiagramConnectionsPresenterViewModel.StakeholderConnections.FirstOrDefault(vm =>
+                        vm.IsViewModelFor(connection));
+                viewModel?.OnPropertyChanged(nameof(StakeholderConnectionViewModel.IsSelected));
             }
         }
     }

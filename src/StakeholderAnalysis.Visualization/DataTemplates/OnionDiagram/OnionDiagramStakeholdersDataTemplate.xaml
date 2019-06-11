@@ -161,7 +161,6 @@
                 </CollectionViewSource>
             </Grid.Resources>
             <ItemsControl ItemsSource="{Binding Source={StaticResource SortedOnionDiagramStakeholders}}"
-                          Background="Transparent"
                           ItemTemplate="{StaticResource OnionDiagramStakeholderDataTemplate}">
                 <ItemsControl.ItemContainerStyle>
                     <Style>

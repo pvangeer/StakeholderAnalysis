@@ -1,13 +1,20 @@
 ﻿using System.ComponentModel;
+using System.Windows.Input;
 using System.Windows.Media;
 using StakeholderAnalysis.Data.OnionDiagrams;
+using StakeholderAnalysis.Messaging;
+using StakeholderAnalysis.Visualization.Behaviors;
 
 namespace StakeholderAnalysis.Visualization.ViewModels.OnionDiagramView
 {
     public class StakeholderConnectionViewModel : ViewModelBase
     {
-        public StakeholderConnectionViewModel(ViewModelFactory factory, StakeholderConnection connection) : base(factory)
+        private readonly StakeholderAnalysisLog log = new StakeholderAnalysisLog(typeof(StakeholderConnectionViewModel));
+        private readonly ISelectionRegister selectionRegister;
+        
+        public StakeholderConnectionViewModel(ViewModelFactory factory, StakeholderConnection connection, ISelectionRegister selectionRegister) : base(factory)
         {
+            this.selectionRegister = selectionRegister;
             StakeholderConnection = connection;
             StakeholderConnection.StakeholderConnectionGroup.PropertyChanged += ConnectionGroupPropertyChanged;
             StakeholderConnection.ConnectFrom.PropertyChanged += ConnectFromPropertyChanged;
@@ -16,6 +23,8 @@ namespace StakeholderAnalysis.Visualization.ViewModels.OnionDiagramView
 
 
         public StakeholderConnection StakeholderConnection { get; }
+
+        public bool IsSelected => selectionRegister != null && selectionRegister.IsSelected(StakeholderConnection);
 
         public Brush StrokeColor => new SolidColorBrush(StakeholderConnection.StakeholderConnectionGroup.Color);
 
@@ -30,6 +39,11 @@ namespace StakeholderAnalysis.Visualization.ViewModels.OnionDiagramView
         public double ConnectToLeft => StakeholderConnection.ConnectTo.Left;
 
         public double ConnectToTop => StakeholderConnection.ConnectTo.Top;
+
+        public ICommand StakeholderConnectionClickedCommand => CommandFactory.CreateCanAlwaysExecuteActionCommand(p =>
+        {
+            selectionRegister?.Select(StakeholderConnection);
+        });
 
         private void ConnectToPropertyChanged(object sender, PropertyChangedEventArgs e)
         {
@@ -71,6 +85,11 @@ namespace StakeholderAnalysis.Visualization.ViewModels.OnionDiagramView
                     OnPropertyChanged(nameof(StrokeThickness));
                     break;
             }
+        }
+
+        public bool IsViewModelFor(StakeholderConnection connection)
+        {
+            return connection == StakeholderConnection;
         }
     }
 }

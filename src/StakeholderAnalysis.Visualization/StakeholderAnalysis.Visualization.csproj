@@ -43,6 +43,8 @@
     <Compile Include="Commands\ClearSelectionCommand.cs" />
     <Compile Include="Commands\ProjectExplorer\RemoveStakeholderTypeCommand.cs" />
     <Compile Include="Converters\IconTypeToIconSourceConverter.cs" />
+    <Compile Include="Converters\ToComplementColorConverter.cs" />
+    <Compile Include="IsSelectedToStrokeThicknessConverter.cs" />
     <Compile Include="ViewModels\CommandFactory.cs" />
     <Compile Include="ViewModels\IRemoveStakeholderViewModel.cs" />
     <Compile Include="Commands\OnionDiagramProperties\AddConnectionGroupCommand.cs" />

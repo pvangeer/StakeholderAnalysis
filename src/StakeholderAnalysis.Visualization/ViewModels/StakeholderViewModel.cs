@@ -21,7 +21,6 @@ namespace StakeholderAnalysis.Visualization.ViewModels
             if (Stakeholder != null) Stakeholder.PropertyChanged += StakeholderPropertyChanged;
         }
 
-        
         public Stakeholder Stakeholder { get; }
 
         public bool IsViewModelFor(Stakeholder stakeholder)
