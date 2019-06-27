@@ -42,6 +42,8 @@ namespace StakeholderAnalysis.Visualization.ViewModels.OnionDiagramProperties
 
         public ICommand AddNewConnectionGroupCommand => CommandFactory.CreateAddConnectionGroupCommand(SelectedOnionDiagram);
 
+        public bool IsExpandable => true;
+
         public bool IsExpanded
         {
             get => isExpanded;

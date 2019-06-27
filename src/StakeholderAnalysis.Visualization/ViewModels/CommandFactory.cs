@@ -11,6 +11,7 @@ using StakeholderAnalysis.Visualization.Commands.OnionDiagramProperties;
 using StakeholderAnalysis.Visualization.Commands.ProjectExplorer;
 using StakeholderAnalysis.Visualization.Commands.Ribbon;
 using StakeholderAnalysis.Visualization.Commands.StatusBar;
+using StakeholderAnalysis.Visualization.ViewModels.PropertiesTree;
 
 namespace StakeholderAnalysis.Visualization.ViewModels
 {
@@ -104,7 +105,7 @@ namespace StakeholderAnalysis.Visualization.ViewModels
             return new AddConnectionGroupCommand(selectedOnionDiagram);
         }
 
-        public ICommand CreateToggleIsExpandedCommand(IExpandableContentViewModel expandableContentViewModel)
+        public ICommand CreateToggleIsExpandedCommand(IExpandable expandableContentViewModel)
         {
             return new ToggleIsExpandedCommand(expandableContentViewModel);
         }

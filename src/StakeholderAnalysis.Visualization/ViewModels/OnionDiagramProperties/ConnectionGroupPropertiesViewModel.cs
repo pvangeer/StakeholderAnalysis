@@ -45,6 +45,8 @@ namespace StakeholderAnalysis.Visualization.ViewModels.OnionDiagramProperties
 
         public string DisplayName => connectionGroup.Name;
 
+        public bool IsExpandable => true;
+
         public bool IsExpanded
         {
             get => isExpanded;

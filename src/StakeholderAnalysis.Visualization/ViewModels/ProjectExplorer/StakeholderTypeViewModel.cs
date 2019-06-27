@@ -73,6 +73,8 @@ namespace StakeholderAnalysis.Visualization.ViewModels.ProjectExplorer
             return stakeholderType == otherStakeholderType;
         }
 
+        public bool IsExpandable => true;
+
         public bool IsExpanded
         {
             get => isExpanded;

@@ -1,10 +1,11 @@
-﻿using System.Windows.Input;
-using System.Windows.Media;
+﻿using System.Collections.ObjectModel;
+using System.Windows.Input;
 using StakeholderAnalysis.Data.OnionDiagrams;
+using StakeholderAnalysis.Visualization.ViewModels.PropertiesTree;
 
 namespace StakeholderAnalysis.Visualization.ViewModels.OnionDiagramProperties
 {
-    public class OnionRingPropertiesViewModel : ViewModelBase, IExpandableContentViewModel
+    public class OnionRingPropertiesViewModel : ViewModelBase, IPropertyCollectionTreeNodeViewModel
     {
         private readonly OnionRing ring;
         private readonly OnionDiagram diagram;
@@ -14,62 +15,38 @@ namespace StakeholderAnalysis.Visualization.ViewModels.OnionDiagramProperties
         {
             this.diagram = diagram;
             this.ring = ring;
-        }
-
-        public Color StrokeColor
-        {
-            get => ring.StrokeColor;
-            set
+            Items = new ObservableCollection<ITreeNodeViewModel>
             {
-                ring.StrokeColor = value;
-                ring.OnPropertyChanged(nameof(OnionRing.StrokeColor));
-            }
+                new PercentagePropertyTreeNodeViewModel(ring),
+                new BackgroundColorPropertyTreeNodeViewModel(ring),
+                new StrokeColorPropertyTreeNodeViewModel(ring),
+                new StrokeThicknessPropertyTreeNodeViewModel(ring)
+            };
         }
 
-        public Color BackgroundColor
-        {
-            get => ring.BackgroundColor;
-            set
-            {
-                ring.BackgroundColor = value;
-                ring.OnPropertyChanged(nameof(OnionRing.BackgroundColor));
-            }
-        }
+        public ICommand ToggleIsExpandedCommand => CommandFactory.CreateToggleIsExpandedCommand(this);
 
-        public double StrokeThickness
-        {
-            get => ring.StrokeThickness;
-            set
-            {
-                ring.StrokeThickness = value;
-                ring.OnPropertyChanged(nameof(OnionRing.StrokeThickness));
-            }
-        }
+        public string IconSourceString { get; }
 
-        public double Percentage
-        {
-            get => ring.Percentage;
-            set
-            {
-                ring.Percentage = value;
-                ring.OnPropertyChanged(nameof(OnionRing.Percentage));
-                OnPropertyChanged(nameof(DisplayName));
-            }
-        }
+        public bool CanRemove => true;
 
-        public ICommand RemoveRingCommand => CommandFactory.CreateCanAlwaysExecuteActionCommand(p =>
+        public ICommand RemoveItemCommand => CommandFactory.CreateCanAlwaysExecuteActionCommand(p =>
         {
             diagram.OnionRings.Remove(ring);
         });
 
-        public ICommand ToggleIsExpandedCommand => CommandFactory.CreateToggleIsExpandedCommand(this);
+        public bool CanOpen => false;
+
+        public ICommand OpenViewCommand => null;
 
         public bool IsViewModelFor(OnionRing ringViewModel)
         {
             return ringViewModel == ring;
         }
 
-        public string DisplayName => Percentage.ToString("0.####");
+        public string DisplayName => ring.Percentage.ToString("0.####");
+
+        public bool IsExpandable => true;
 
         public bool IsExpanded
         {
@@ -80,5 +57,11 @@ namespace StakeholderAnalysis.Visualization.ViewModels.OnionDiagramProperties
                 OnPropertyChanged(nameof(IsExpanded));
             }
         }
+
+        public ObservableCollection<ITreeNodeViewModel> Items { get; }
+
+        public bool CanAdd => false;
+
+        public ICommand AddItemCommand => null;
     }
 }

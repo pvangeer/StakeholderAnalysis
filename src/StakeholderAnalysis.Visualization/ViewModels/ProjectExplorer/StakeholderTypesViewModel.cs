@@ -28,6 +28,8 @@ namespace StakeholderAnalysis.Visualization.ViewModels.ProjectExplorer
 
         public string DisplayName => "Stakeholder types";
 
+        public bool IsExpandable => true;
+
         public bool IsExpanded
         {
             get => isExpanded;

@@ -112,7 +112,7 @@
                                     <TextBlock Grid.Column="1" Grid.Row="0" Text="Naam" IsHitTestVisible="False"/>
                                     <TextBlock Grid.Column="1" Grid.Row="1" Text="Kleur" IsHitTestVisible="False"/>
                                     <TextBlock Grid.Column="1" Grid.Row="2" Text="Beeldmerk" IsHitTestVisible="False"/>
-                                    <GridSplitter Grid.Column="2" Grid.Row="0" Width="5" HorizontalAlignment="Stretch" Grid.RowSpan="4" />
+                                    <GridSplitter Grid.Column="2" Grid.Row="0" Width="5" Background="Gainsboro" HorizontalAlignment="Stretch" Grid.RowSpan="4" />
                                     <TextBox
                                         Grid.Column="3"
                                         Grid.Row="0"

@@ -1,0 +1,128 @@
+﻿<ResourceDictionary xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+                    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+                    xmlns:propertiesTree="clr-namespace:StakeholderAnalysis.Visualization.ViewModels.PropertiesTree"
+                    xmlns:visualization="clr-namespace:StakeholderAnalysis.Visualization"
+                    xmlns:xctk="http://schemas.xceed.com/wpf/xaml/toolkit"
+                    xmlns:behaviors="clr-namespace:StakeholderAnalysis.Visualization.Behaviors">
+
+    <ResourceDictionary.MergedDictionaries>
+        <ResourceDictionary Source="../ProjectExplorer/ProjectExplorerButtonStyles.xaml"/>
+    </ResourceDictionary.MergedDictionaries>
+
+    <DataTemplate x:Key="ColorPropertyDataTemplate" DataType="propertiesTree:IColorPropertyTreeNodeViewModel">
+        <xctk:ColorPicker 
+            Height="20"
+            SelectedColor="{Binding ColorValue}"/>
+    </DataTemplate>
+
+    <DataTemplate x:Key="DoubleUpDownPropertyDataTemplate" DataType="propertiesTree:IDoubleUpDownPropertyTreeNodeViewModelBase">
+        <xctk:DoubleUpDown
+            Value="{Binding DoubleValue}"
+            Minimum="{Binding MinValue}"
+            Maximum="{Binding MaxValue}"
+            Increment="{Binding Increment}"
+            FormatString="{Binding StringFormat}"/>
+    </DataTemplate>
+
+    <visualization:PropertyTreeNodeValueTemplateSelector x:Key="ContentTemplateSelector" 
+                                                         ColorTemplate="{StaticResource ColorPropertyDataTemplate}"
+                                                         DoubleUpDownTemplate="{StaticResource DoubleUpDownPropertyDataTemplate}"/>
+
+    <BooleanToVisibilityConverter x:Key="BooleanToVisibilityConverter" />
+
+    <DataTemplate x:Key="ITreeNodeItemDataTemplate" DataType="propertiesTree:ITreeNodeViewModel">
+        <Border BorderThickness="0">
+            <Border.Style>
+                <Style TargetType="Border" BasedOn="{StaticResource ExpandableElementBorderStyle}">
+                    <Style.Triggers>
+                        <DataTrigger Binding="{Binding CanOpen}" Value="True">
+                            <Setter Property="behaviors:AttachInputBindingsBehavior.InputBindings">
+                                <Setter.Value>
+                                    <InputBindingCollection>
+                                        <MouseBinding MouseAction="LeftDoubleClick" Command="{Binding OpenViewCommand}"></MouseBinding>
+                                    </InputBindingCollection>
+                                </Setter.Value>
+                            </Setter>
+                        </DataTrigger>
+                    </Style.Triggers>
+                </Style>
+            </Border.Style>
+            <Grid>
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="24"/>
+                    <ColumnDefinition Width="*"/>
+                    <ColumnDefinition Width="Auto"/>
+                    <ColumnDefinition Width="Auto"/>
+                </Grid.ColumnDefinitions>
+                <Button 
+                    Grid.Column="0"
+                    Command="{Binding ToggleIsExpandedCommand}"
+                    Style="{StaticResource ExpandCollapseButtonStyle}"/>
+                <TextBlock 
+                    TextAlignment="Left"
+                    Grid.Column="1" 
+                    Text="{Binding DisplayName}" 
+                    HorizontalAlignment="Stretch"
+                    VerticalAlignment="Center"
+                    FontSize="12"/>
+                <Button 
+                    Grid.Column="2"
+                    Margin="2"
+                    Visibility="{Binding CanRemove, Converter={StaticResource BooleanToVisibilityConverter}}"
+                    Command="{Binding RemoveItemCommand}"
+                    Style="{StaticResource RemoveButtonStyle}"/>
+                <Button 
+                    Grid.Column="3"
+                    Margin="2"
+                    Visibility="{Binding CanAdd, Converter={StaticResource BooleanToVisibilityConverter}}"
+                    Command="{Binding AddItemCommand}"
+                    Style="{StaticResource AddButtonStyle}"/>
+            </Grid>
+        </Border>
+    </DataTemplate>
+
+    <DataTemplate x:Key="IPropertyCollectionDataTemplate" DataType="propertiesTree:IPropertyCollectionTreeNodeViewModel">
+        <StackPanel Orientation="Vertical">
+            <ContentPresenter Content="{Binding }" ContentTemplate="{StaticResource ITreeNodeItemDataTemplate}"/>
+            <Grid Visibility="{Binding IsExpanded, Converter={StaticResource BooleanToVisibilityConverter}}" >
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="24"/>
+                    <ColumnDefinition Width="*"/>
+                </Grid.ColumnDefinitions>
+                <ItemsControl 
+                    Grid.Column="1"
+                    ItemsSource="{Binding Items}" 
+                    Grid.IsSharedSizeScope="True">
+                    <ItemsControl.ItemTemplate>
+                        <!--TODO: Add Template Selector to switch between nested tree lists and property - value pairs in a grid-->
+                        <DataTemplate DataType="propertiesTree:ITreeNodeViewModel">
+                            <Border Style="{StaticResource ExpandableElementBorderStyle}">
+                                <Grid>
+                                    <Grid.Resources>
+                                    </Grid.Resources>
+                                    <Grid.ColumnDefinitions>
+                                        <ColumnDefinition Width="*"/>
+                                        <ColumnDefinition Width="5"/>
+                                        <ColumnDefinition Width="Auto" SharedSizeGroup="True"/>
+                                    </Grid.ColumnDefinitions>
+                                    <TextBlock 
+                                        Grid.Column="0" 
+                                        Text="{Binding DisplayName}" 
+                                        TextAlignment="Left"
+                                        VerticalAlignment="Center"
+                                        Background="Transparent"/>
+                                    <GridSplitter Grid.Column="1" Width="5" Background="Gainsboro" HorizontalAlignment="Stretch"/>
+                                    <ContentPresenter 
+                                        Grid.Column="2" 
+                                        Content="{Binding }" 
+                                        ContentTemplateSelector="{StaticResource ContentTemplateSelector}">
+                                    </ContentPresenter>
+                                </Grid>
+                            </Border>
+                        </DataTemplate>
+                    </ItemsControl.ItemTemplate>
+                </ItemsControl>
+            </Grid>
+        </StackPanel>
+    </DataTemplate>
+</ResourceDictionary>

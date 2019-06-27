@@ -5,6 +5,7 @@
 
     <ResourceDictionary.MergedDictionaries>
         <ResourceDictionary Source="../ProjectExplorer/ProjectExplorerButtonStyles.xaml"/>
+        <ResourceDictionary Source="../PropertiesTree/ExpandablePropertyItemViewModel.xaml"/>
     </ResourceDictionary.MergedDictionaries>
 
     <DataTemplate x:Key="ExpandablePropertyDataTemplate" DataType="onionDiagramProperties:OnionRingsPropertiesViewModel">
@@ -46,94 +47,7 @@
                     <ColumnDefinition Width="24"/>
                     <ColumnDefinition Width="*"/>
                 </Grid.ColumnDefinitions>
-                <ItemsControl Grid.Column="1" ItemsSource="{Binding OnionRings}">
-                    <ItemsControl.ItemTemplate>
-                        <DataTemplate DataType="onionDiagramProperties:OnionRingPropertiesViewModel">
-                            <StackPanel Orientation="Vertical">
-                                <Border BorderThickness="0" Style="{StaticResource ExpandableElementBorderStyle}">
-                                    <Grid>
-                                        <Grid.ColumnDefinitions>
-                                            <ColumnDefinition Width="24"/>
-                                            <ColumnDefinition Width="*"/>
-                                            <ColumnDefinition Width="24"/>
-                                        </Grid.ColumnDefinitions>
-                                        <Button 
-                                            Grid.Column="0"
-                                            Command="{Binding ToggleIsExpandedCommand}"
-                                            Style="{StaticResource ExpandCollapseButtonStyle}"/>
-                                        <TextBlock 
-                                            Background="Transparent"
-                                            HorizontalAlignment="Stretch"
-                                            Grid.Column="1" 
-                                            Text="{Binding DisplayName, UpdateSourceTrigger=PropertyChanged}"
-                                            FontSize="12"/>
-                                        <Button
-                                            Grid.Column="2"
-                                            Command="{Binding RemoveRingCommand}"
-                                            Style="{StaticResource RemoveButtonStyle}"/>
-                                    </Grid>
-                                </Border>
-                                <Grid Visibility="{Binding IsExpanded, Converter={StaticResource BoolToVisibilityConverter}}">
-                                    <Grid.ColumnDefinitions>
-                                        <ColumnDefinition Width="24"/>
-                                        <ColumnDefinition Width="*"/>
-                                        <ColumnDefinition Width="5" />
-                                        <ColumnDefinition Width="*"/>
-                                    </Grid.ColumnDefinitions>
-                                    <Grid.RowDefinitions>
-                                        <RowDefinition Height="Auto"/>
-                                        <RowDefinition Height="Auto"/>
-                                        <RowDefinition Height="Auto"/>
-                                        <RowDefinition Height="Auto"/>
-                                    </Grid.RowDefinitions>
-                                    <Border Grid.Row="0" Grid.Column="1" Grid.ColumnSpan="3" 
-                                            Style="{StaticResource ExpandableElementBorderStyle}"
-                                            BorderThickness="0"/>
-                                    <Border Grid.Row="1" Grid.Column="1" Grid.ColumnSpan="3" 
-                                            Style="{StaticResource ExpandableElementBorderStyle}"
-                                            BorderThickness="0"/>
-                                    <Border Grid.Row="2" Grid.Column="1" Grid.ColumnSpan="3" 
-                                            Style="{StaticResource ExpandableElementBorderStyle}"
-                                            BorderThickness="0"/>
-                                    <Border Grid.Row="3" Grid.Column="1" Grid.ColumnSpan="3" 
-                                            Style="{StaticResource ExpandableElementBorderStyle}"
-                                            BorderThickness="0"/>
-                                    <TextBlock Grid.Column="1" Grid.Row="0" Text="Grootte" IsHitTestVisible="False"/>
-                                    <TextBlock Grid.Column="1" Grid.Row="1" Text="Achtergrondkleur" IsHitTestVisible="False"/>
-                                    <TextBlock Grid.Column="1" Grid.Row="2" Text="Lijnkleur" IsHitTestVisible="False"/>
-                                    <TextBlock Grid.Column="1" Grid.Row="3" Text="Lijndikte" IsHitTestVisible="False"/>
-                                    <GridSplitter Grid.Column="2" Grid.Row="0" Width="5" HorizontalAlignment="Stretch" Grid.RowSpan="4" />
-                                    <xctk:DoubleUpDown 
-                                        Grid.Column="3"
-                                        Grid.Row="0"
-                                        Value="{Binding Percentage}"
-                                        Minimum="0.0"
-                                        Maximum="1.0"
-                                        Increment="0.1"
-                                        FormatString="0.####"/>
-                                    <xctk:ColorPicker 
-                                        Grid.Column="3"
-                                        Grid.Row="1"
-                                        Height="20"
-                                        SelectedColor="{Binding BackgroundColor}"/>
-                                    <xctk:ColorPicker 
-                                        Grid.Column="3"
-                                        Grid.Row="2"
-                                        Height="20"
-                                        SelectedColor="{Binding StrokeColor}"/>
-                                    <xctk:DoubleUpDown 
-                                        Grid.Column="3"
-                                        Grid.Row="3"
-                                        Value="{Binding StrokeThickness}"
-                                        Minimum="0.0"
-                                        Maximum="40.0"
-                                        Increment="0.5"
-                                        FormatString="0.##"/>
-                                </Grid>
-                            </StackPanel>
-                        </DataTemplate>
-                    </ItemsControl.ItemTemplate>
-                </ItemsControl>
+                <ItemsControl Grid.Column="1" ItemsSource="{Binding OnionRings}" ItemTemplate="{StaticResource IPropertyCollectionDataTemplate}"/>
             </Grid>
         </StackPanel>
     </DataTemplate>

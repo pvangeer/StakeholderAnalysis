@@ -35,6 +35,12 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Behaviors\AttachInputBindingsBehavior.cs" />
+    <Compile Include="ViewModels\OnionDiagramProperties\BackgroundColorPropertyTreeNodeViewModel.cs" />
+    <Compile Include="ViewModels\OnionDiagramProperties\PercentagePropertyTreeNodeViewModel.cs" />
+    <Compile Include="ViewModels\OnionDiagramProperties\StrokeColorPropertyTreeNodeViewModel.cs" />
+    <Compile Include="ViewModels\OnionDiagramProperties\StrokeThicknessPropertyTreeNodeViewModel.cs" />
+    <Compile Include="ViewModels\PropertiesTree\IExpandable.cs" />
     <Compile Include="Commands\OnionDiagramProperties\MoveStakeholderDownCommand.cs" />
     <Compile Include="Commands\OnionDiagramProperties\MoveStakeholderToBottomCommand.cs" />
     <Compile Include="Commands\OnionDiagramProperties\MoveStakeholderUpCommand.cs" />
@@ -45,6 +51,7 @@
     <Compile Include="Converters\IconTypeToIconSourceConverter.cs" />
     <Compile Include="Converters\ToComplementColorConverter.cs" />
     <Compile Include="IsSelectedToStrokeThicknessConverter.cs" />
+    <Compile Include="PropertyTreeNodeValueTemplateSelector.cs" />
     <Compile Include="ViewModels\CommandFactory.cs" />
     <Compile Include="ViewModels\IRemoveStakeholderViewModel.cs" />
     <Compile Include="Commands\OnionDiagramProperties\AddConnectionGroupCommand.cs" />
@@ -98,6 +105,13 @@
     <Compile Include="ViewModels\ProjectExplorer\ProjectExplorerStakeholderOverviewTableViewModel.cs" />
     <Compile Include="ViewModels\ProjectExplorer\StakeholderTypesViewModel.cs" />
     <Compile Include="ViewModels\ProjectExplorer\StakeholderTypeViewModel.cs" />
+    <Compile Include="ViewModels\PropertiesTree\ColorPropertyTreeNodeViewModelBase.cs" />
+    <Compile Include="ViewModels\PropertiesTree\DoubleUpDownPropertyTreeNodeViewModelBase.cs" />
+    <Compile Include="ViewModels\PropertiesTree\IColorPropertyTreeNodeViewModel.cs" />
+    <Compile Include="ViewModels\PropertiesTree\IDoubleUpDownPropertyTreeNodeViewModelBase.cs" />
+    <Compile Include="ViewModels\PropertiesTree\IPropertyCollectionTreeNodeViewModel.cs" />
+    <Compile Include="ViewModels\PropertiesTree\ITreeNodeViewModel.cs" />
+    <Compile Include="ViewModels\PropertiesTree\PropertyTreeNodeViewModelBaseBase.cs" />
     <Compile Include="ViewModels\StatusBar\MessagesViewModel.cs" />
     <Compile Include="ViewModels\StatusBar\StatusBarViewModel.cs" />
     <Compile Include="ViewModels\TwoAxisDiagrams\ITwoAxisDiagramViewModel.cs" />
@@ -181,6 +195,10 @@
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="DataTemplates\ProjectExplorer\ProjectExplorerStakeholderTypesDataTemplate.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="DataTemplates\PropertiesTree\ExpandablePropertyItemViewModel.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>

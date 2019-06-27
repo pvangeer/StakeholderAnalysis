@@ -42,6 +42,8 @@ namespace StakeholderAnalysis.Visualization.ViewModels.OnionDiagramProperties
 
         public ICommand AddNewRingCommand => CommandFactory.CreateAddOnionRingCommand(SelectedOnionDiagram);
 
+        public bool IsExpandable => true;
+
         public bool IsExpanded
         {
             get => isExpanded;

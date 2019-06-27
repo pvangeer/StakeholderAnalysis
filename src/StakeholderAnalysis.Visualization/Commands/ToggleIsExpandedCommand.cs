@@ -1,27 +1,44 @@
 ﻿using System;
+using System.ComponentModel;
 using System.Windows.Input;
-using StakeholderAnalysis.Visualization.ViewModels;
+using StakeholderAnalysis.Visualization.ViewModels.PropertiesTree;
 
 namespace StakeholderAnalysis.Visualization.Commands
 {
     public class ToggleIsExpandedCommand : ICommand
     {
-        private readonly IExpandableContentViewModel expandableGroupViewModel;
+        private readonly IExpandable expandableViewModel;
 
-        public ToggleIsExpandedCommand(IExpandableContentViewModel expandableGroupViewModel)
+        public ToggleIsExpandedCommand(IExpandable expandableViewModel)
         {
-            this.expandableGroupViewModel = expandableGroupViewModel;
+            this.expandableViewModel = expandableViewModel;
+            if (this.expandableViewModel != null)
+            {
+                this.expandableViewModel.PropertyChanged += ExpandablePropertyChanged;
+            }
         }
 
         public bool CanExecute(object parameter)
         {
-            return true;
+            return expandableViewModel.IsExpandable;
         }
 
         public void Execute(object parameter)
         {
-            expandableGroupViewModel.IsExpanded =
-                !expandableGroupViewModel.IsExpanded;
+            if (expandableViewModel != null && expandableViewModel.IsExpandable)
+            {
+                expandableViewModel.IsExpanded = !expandableViewModel.IsExpanded;
+            }
+        }
+
+        private void ExpandablePropertyChanged(object sender, PropertyChangedEventArgs e)
+        {
+            switch (e.PropertyName)
+            {
+                case nameof(IExpandable.IsExpandable):
+                    CanExecuteChanged?.Invoke(this,null);
+                    break;
+            }
         }
 
         public event EventHandler CanExecuteChanged;

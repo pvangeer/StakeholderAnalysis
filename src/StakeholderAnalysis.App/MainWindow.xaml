@@ -212,7 +212,7 @@
                     </DataTemplate>
                 </TabControl.ItemTemplate>
             </TabControl>
-            <GridSplitter Grid.Column="1" Width="5" HorizontalAlignment="Stretch" />
+            <GridSplitter Grid.Column="1" Width="5" Background="Gainsboro" HorizontalAlignment="Stretch" />
             <TabControl 
                 Grid.Column="2" 
                 ContentTemplate="{StaticResource DocumentViewDataTemplate}"

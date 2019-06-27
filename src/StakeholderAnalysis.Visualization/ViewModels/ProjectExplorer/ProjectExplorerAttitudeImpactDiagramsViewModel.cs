@@ -26,6 +26,8 @@ namespace StakeholderAnalysis.Visualization.ViewModels.ProjectExplorer
 
         public ObservableCollection<IProjectExplorerDiagramViewModel> Diagrams { get; }
 
+        public bool IsExpandable => true;
+
         public bool IsExpanded
         {
             get => isExpanded;
