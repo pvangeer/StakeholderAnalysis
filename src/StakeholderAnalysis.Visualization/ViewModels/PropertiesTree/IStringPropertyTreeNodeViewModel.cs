@@ -1,6 +1,6 @@
 ﻿namespace StakeholderAnalysis.Visualization.ViewModels.PropertiesTree
 {
-    public interface IStringPropertyTreeNodeViewModelBase
+    public interface IStringPropertyTreeNodeViewModel
     {
         string StringValue { get; set; }
     }

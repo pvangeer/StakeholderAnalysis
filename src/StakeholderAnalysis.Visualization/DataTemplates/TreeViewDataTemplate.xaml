@@ -28,7 +28,7 @@
             SelectedColor="{Binding ColorValue}"/>
     </DataTemplate>
 
-    <DataTemplate x:Key="DoubleUpDownPropertyDataTemplate" DataType="propertiesTree:IDoubleUpDownPropertyTreeNodeViewModelBase">
+    <DataTemplate x:Key="DoubleUpDownPropertyDataTemplate" DataType="propertiesTree:IDoubleUpDownPropertyTreeNodeViewModel">
         <xctk:DoubleUpDown
             Value="{Binding DoubleValue}"
             Minimum="{Binding MinValue}"
@@ -45,7 +45,7 @@
             IsChecked="{Binding BooleanValue}"/>
     </DataTemplate>
 
-    <DataTemplate x:Key="StringTemplate" DataType="propertiesTree:IStringPropertyTreeNodeViewModelBase">
+    <DataTemplate x:Key="StringTemplate" DataType="propertiesTree:IStringPropertyTreeNodeViewModel">
         <TextBox 
             Text="{Binding StringValue, UpdateSourceTrigger=PropertyChanged}"/>
     </DataTemplate>

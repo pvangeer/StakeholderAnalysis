@@ -4,7 +4,6 @@ using System.Windows.Input;
 using System.Windows.Media;
 using StakeholderAnalysis.Data;
 using StakeholderAnalysis.Visualization.Converters;
-using StakeholderAnalysis.Visualization.ViewModels.OnionDiagramProperties;
 using StakeholderAnalysis.Visualization.ViewModels.PropertiesTree;
 
 namespace StakeholderAnalysis.Visualization.ViewModels.ProjectExplorer
@@ -19,8 +18,8 @@ namespace StakeholderAnalysis.Visualization.ViewModels.ProjectExplorer
             this.stakeholderType = stakeholderType;
             Items = new ObservableCollection<ITreeNodeViewModel>
             {
-                new NamePropertyTreeNodeViewModel(stakeholderType),
-                new ColorPropertyTreeNodeViewModel(stakeholderType),
+                new StringPropertyTreeNodeViewModel(stakeholderType, nameof(StakeholderType.Name), "Naam"),
+                new ColorPropertyTreeNodeViewModel(stakeholderType, nameof(StakeholderType.Color),"Kleur"),
                 new StakeholderTypeIconPropertyTreeNodeViewModel(stakeholderType)
             };
             RemoveItemCommand = CommandFactory.CreateRemoveStakeholderTypeCommand(stakeholderType);

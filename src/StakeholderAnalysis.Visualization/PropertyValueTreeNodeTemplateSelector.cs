@@ -9,7 +9,7 @@ namespace StakeholderAnalysis.Visualization
     {
         public override DataTemplate SelectTemplate(object item, DependencyObject container)
         {
-            if (item is IDoubleUpDownPropertyTreeNodeViewModelBase)
+            if (item is IDoubleUpDownPropertyTreeNodeViewModel)
             {
                 return DoubleUpDownTemplate;
             }
@@ -19,7 +19,7 @@ namespace StakeholderAnalysis.Visualization
                 return ColorTemplate;
             }
 
-            if (item is IStringPropertyTreeNodeViewModelBase)
+            if (item is IStringPropertyTreeNodeViewModel)
             {
                 return StringTempalte;
             }

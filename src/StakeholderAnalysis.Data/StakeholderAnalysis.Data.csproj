@@ -25,12 +25,9 @@
     <Compile Include="Exceptions\ValueOutOfBoundsException.cs" />
     <Compile Include="ForceFieldDiagrams\ForceFieldDiagram.cs" />
     <Compile Include="ForceFieldDiagrams\ForceFieldDiagramStakeholder.cs" />
-    <Compile Include="INameProperty.cs" />
     <Compile Include="INotifyPropertyChangedImplementation.cs" />
     <Compile Include="IRankedStakeholder.cs" />
     <Compile Include="IRankedStakeholderDiagram.cs" />
-    <Compile Include="IStrokeProperty.cs" />
-    <Compile Include="IVisibilityProperty.cs" />
     <Compile Include="OnionDiagrams\OnionDiagram.cs" />
     <Compile Include="OnionDiagrams\OnionDiagramStakeholder.cs" />
     <Compile Include="OnionDiagrams\StakeholderConnectionGroup.cs" />

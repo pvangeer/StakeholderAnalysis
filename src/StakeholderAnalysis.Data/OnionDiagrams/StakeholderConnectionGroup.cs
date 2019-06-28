@@ -2,7 +2,7 @@
 
 namespace StakeholderAnalysis.Data.OnionDiagrams
 {
-    public class StakeholderConnectionGroup : NotifyPropertyChangedObservable, IStrokeProperty, IVisibilityProperty, INameProperty
+    public class StakeholderConnectionGroup : NotifyPropertyChangedObservable
     {
         public StakeholderConnectionGroup() : this("",Colors.Black) { }
 

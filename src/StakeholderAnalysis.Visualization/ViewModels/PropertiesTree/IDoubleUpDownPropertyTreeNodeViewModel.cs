@@ -1,6 +1,6 @@
 ﻿namespace StakeholderAnalysis.Visualization.ViewModels.PropertiesTree
 {
-    public interface IDoubleUpDownPropertyTreeNodeViewModelBase : ITreeNodeViewModel
+    public interface IDoubleUpDownPropertyTreeNodeViewModel : ITreeNodeViewModel
     {
         double DoubleValue { get; set; }
 
