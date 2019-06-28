@@ -1,4 +1,5 @@
-﻿using System.ComponentModel;
+﻿using System.Collections.ObjectModel;
+using System.ComponentModel;
 using System.Linq;
 using System.Windows.Input;
 using StakeholderAnalysis.Data;
@@ -9,17 +10,24 @@ using StakeholderAnalysis.Visualization.ViewModels.PropertiesTree;
 
 namespace StakeholderAnalysis.Visualization.ViewModels.ProjectExplorer
 {
-    public class ProjectExplorerOnionDiagramViewModel : ViewModelBase, ITreeNodeViewModel
+    public class ProjectExplorerOnionDiagramViewModel : ViewModelBase, IPropertyCollectionTreeNodeViewModel
     {
         private readonly OnionDiagram diagram;
         private readonly Analysis analysis;
         private readonly ViewManager viewManager;
+        private bool isExpanded = false;
 
         public ProjectExplorerOnionDiagramViewModel(ViewModelFactory factory, Analysis analysis, OnionDiagram onionDiagram, ViewManager viewManager) : base(factory)
         {
             this.viewManager = viewManager;
             this.analysis = analysis;
             diagram = onionDiagram;
+            Items = new ObservableCollection<ITreeNodeViewModel>
+            {
+                new StringPropertyTreeNodeViewModel(diagram, nameof(OnionDiagram.Name), "Naam"),
+                new DoubleUpDownPropertyTreeNodeViewModel(diagram, nameof(OnionDiagram.Asymmetry), "Asymmetrie", 0, 1, 0.1, "0.#####")
+            };
+
             if (diagram != null)
             {
                 diagram.PropertyChanged += DiagramPropertyChanged;
@@ -36,16 +44,7 @@ namespace StakeholderAnalysis.Visualization.ViewModels.ProjectExplorer
             }
         }
 
-        public string DisplayName
-        {
-            get => diagram.Name;
-            // TODO: Make name editable again
-/*            set
-            {
-                diagram.Name = value;
-                OnPropertyChanged(nameof(DisplayName));
-            }*/
-        }
+        public string DisplayName => diagram.Name;
 
         public bool CanRemove => true;
 
@@ -85,10 +84,22 @@ namespace StakeholderAnalysis.Visualization.ViewModels.ProjectExplorer
 
         public string IconSourceString => "pack://application:,,,/StakeholderAnalysis.Visualization;component/Resources/onion.png";
 
-        public bool IsExpandable => false;
+        public bool IsExpandable => true;
 
-        public bool IsExpanded { get; set; }
+        public bool IsExpanded
+        {
+            get => isExpanded;
+            set
+            {
+                isExpanded = value;
+                OnPropertyChanged(nameof(IsExpanded));
+            }
+        }
 
-        public ICommand ToggleIsExpandedCommand => null;
+        public ICommand ToggleIsExpandedCommand => CommandFactory.CreateToggleIsExpandedCommand(this);
+
+        public ObservableCollection<ITreeNodeViewModel> Items { get; }
+
+        public CollectionType CollectionType => CollectionType.PropertyValue;
     }
 }

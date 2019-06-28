@@ -12,6 +12,7 @@ namespace StakeholderAnalysis.Gui
             ViewModel = viewModel;
         }
 
+        // TODO: Update title in case of property change
         public string Title { get; }
 
         public string IconReference { get; }
