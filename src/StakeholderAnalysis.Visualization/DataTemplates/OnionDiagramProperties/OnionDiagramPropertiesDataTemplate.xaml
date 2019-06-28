@@ -4,7 +4,6 @@
 
     <ResourceDictionary.MergedDictionaries>
         <ResourceDictionary Source="/StakeholderAnalysis.Visualization;Component/DataTemplates/TreeViewDataTemplate.xaml" />
-        <ResourceDictionary Source="ConnectionGroupsPropertiesDataTemplate.xaml"/>
     </ResourceDictionary.MergedDictionaries>
 
     <DataTemplate x:Key="OnionDiagramPropertiesDataTemplate" DataType="onionDiagramProperties:OnionDiagramPropertiesViewModel">
@@ -15,7 +14,7 @@
                     ContentTemplate="{StaticResource IPropertyCollectionItemDataTemplate}"/>
                 <ContentPresenter 
                     Content="{Binding ConnectionGroupsViewModel}" 
-                    ContentTemplate="{StaticResource ConnectionGroupsPropertiesDataTemplate}"/>
+                    ContentTemplate="{StaticResource IPropertyCollectionItemDataTemplate}"/>
             </StackPanel>
         </Grid>
     </DataTemplate>

@@ -2,21 +2,21 @@
 
 namespace StakeholderAnalysis.Data.OnionDiagrams
 {
-    public class StakeholderConnectionGroup : NotifyPropertyChangedObservable
+    public class StakeholderConnectionGroup : NotifyPropertyChangedObservable, IStrokeProperty, IVisibilityProperty, INameProperty
     {
         public StakeholderConnectionGroup() : this("",Colors.Black) { }
 
-        public StakeholderConnectionGroup(string name, Color color, double strokeThickness = 1.0, bool visible = true)
+        public StakeholderConnectionGroup(string name, Color strokeColor, double strokeThickness = 1.0, bool visible = true)
         {
             Name = name;
-            Color = color;
+            StrokeColor = strokeColor;
             StrokeThickness = strokeThickness;
             Visible = visible;
         }
 
         public string Name { get; set; }
 
-        public Color Color { get; set; }
+        public Color StrokeColor { get; set; }
 
         public bool Visible { get; set; }
 

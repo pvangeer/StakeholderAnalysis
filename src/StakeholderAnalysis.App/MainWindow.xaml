@@ -7,10 +7,8 @@
                      xmlns:fluent="urn:fluent-ribbon"
                      xmlns:projectExplorer="clr-namespace:StakeholderAnalysis.Visualization.ViewModels.ProjectExplorer;assembly=StakeholderAnalysis.Visualization"
                      xmlns:onionDiagramProperties="clr-namespace:StakeholderAnalysis.Visualization.ViewModels.OnionDiagramProperties;assembly=StakeholderAnalysis.Visualization"
-                     xmlns:controls="clr-namespace:StakeholderAnalysis.Visualization.Controls;assembly=StakeholderAnalysis.Visualization"
                      xmlns:converters="clr-namespace:StakeholderAnalysis.Visualization.Converters;assembly=StakeholderAnalysis.Visualization"
                      xmlns:gui="clr-namespace:StakeholderAnalysis.Gui;assembly=StakeholderAnalysis.Gui"
-                     xmlns:ribbon="clr-namespace:StakeholderAnalysis.Visualization.ViewModels.Ribbon;assembly=StakeholderAnalysis.Visualization"
                      xmlns:onionDiagrams="clr-namespace:StakeholderAnalysis.Data.OnionDiagrams;assembly=StakeholderAnalysis.Data"
                      mc:Ignorable="d"
                      Closing="MainWindowClosing"
@@ -160,7 +158,7 @@
                             <DataTemplate DataType="onionDiagrams:StakeholderConnectionGroup">
                                 <Border BorderThickness="0 0 0 3">
                                     <Border.BorderBrush>
-                                        <SolidColorBrush Color="{Binding Color}"/>
+                                        <SolidColorBrush Color="{Binding StrokeColor}"/>
                                     </Border.BorderBrush>
                                     <TextBlock Text="{Binding Name}"/>
                                 </Border>
@@ -170,6 +168,7 @@
                 </fluent:RibbonGroupBox>
             </fluent:RibbonTabItem>
         </fluent:Ribbon>
+
         <Grid Name="MainContentPresenter" Grid.Row="1" DataContext="{Binding MainContentPresenterViewModel}">
             <Grid.ColumnDefinitions>
                 <ColumnDefinition Width="Auto"/>
@@ -212,7 +211,7 @@
                     </DataTemplate>
                 </TabControl.ItemTemplate>
             </TabControl>
-            <GridSplitter Grid.Column="1" Width="5" Background="Gainsboro" HorizontalAlignment="Stretch" />
+            <GridSplitter Grid.Column="1" Width="5" Background="Gainsboro" HorizontalAlignment="Stretch" ResizeBehavior="BasedOnAlignment"/>
             <TabControl 
                 Grid.Column="2" 
                 ContentTemplate="{StaticResource DocumentViewDataTemplate}"

@@ -21,7 +21,7 @@ namespace StakeholderAnalysis.Storage.Create
             var entity = new StakeholderConnectionGroupEntity
             {
                 Name = group.Name.DeepClone(),
-                Color = group.Color.ToHexString(),
+                Color = group.StrokeColor.ToHexString(),
                 Visible = group.Visible ? (byte)1 : (byte)0,
                 StrokeThickness = group.StrokeThickness.ToNaNAsNull()
             };

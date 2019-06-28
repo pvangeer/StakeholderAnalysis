@@ -18,9 +18,23 @@ namespace StakeholderAnalysis.Visualization
                 return ColorTemplate;
             }
 
+            if (item is IStringPropertyTreeNodeViewModelBase)
+            {
+                return StringTempalte;
+            }
+
+            if (item is IBooleanPropertyTreeNodeViewModel)
+            {
+                return CheckBoxTemplate;
+            }
+
             // TODO: throws exception in case of unsupported implementation of ITreeNodeViewModel (only property descriptors are accepted).
             return base.SelectTemplate(item,container);
         }
+
+        public DataTemplate StringTempalte { get; set; }
+
+        public DataTemplate CheckBoxTemplate { get; set; }
 
         public DataTemplate ColorTemplate { get; set; }
 

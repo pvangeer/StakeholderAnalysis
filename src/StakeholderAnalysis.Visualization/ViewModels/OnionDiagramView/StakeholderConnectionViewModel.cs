@@ -26,7 +26,7 @@ namespace StakeholderAnalysis.Visualization.ViewModels.OnionDiagramView
 
         public bool IsSelected => selectionRegister != null && selectionRegister.IsSelected(StakeholderConnection);
 
-        public Brush StrokeColor => new SolidColorBrush(StakeholderConnection.StakeholderConnectionGroup.Color);
+        public Brush StrokeColor => new SolidColorBrush(StakeholderConnection.StakeholderConnectionGroup.StrokeColor);
 
         public double StrokeThickness => StakeholderConnection.StakeholderConnectionGroup.StrokeThickness;
 
@@ -75,7 +75,7 @@ namespace StakeholderAnalysis.Visualization.ViewModels.OnionDiagramView
         {
             switch (e.PropertyName)
             {
-                case nameof(StakeholderConnectionGroup.Color):
+                case nameof(StakeholderConnectionGroup.StrokeColor):
                     OnPropertyChanged(nameof(StrokeColor));
                     break;
                 case nameof(StakeholderConnectionGroup.Visible):

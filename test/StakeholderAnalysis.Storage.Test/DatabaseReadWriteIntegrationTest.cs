@@ -100,7 +100,7 @@ namespace StakeholderAnalysis.Storage.Test
             StakeholderConnectionGroup otherConnectionGroup)
         {
             Assert.AreEqual(connectionGroup.Name, otherConnectionGroup.Name);
-            Assert.AreEqual(connectionGroup.Color, otherConnectionGroup.Color);
+            Assert.AreEqual(connectionGroup.StrokeColor, otherConnectionGroup.StrokeColor);
             Assert.AreEqual(connectionGroup.StrokeThickness, otherConnectionGroup.StrokeThickness);
             Assert.AreEqual(connectionGroup.Visible, otherConnectionGroup.Visible);
         }

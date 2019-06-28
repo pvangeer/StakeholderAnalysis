@@ -1,11 +1,12 @@
-﻿using System.ComponentModel;
+﻿using System.Collections.ObjectModel;
+using System.ComponentModel;
 using System.Windows.Input;
-using System.Windows.Media;
 using StakeholderAnalysis.Data.OnionDiagrams;
+using StakeholderAnalysis.Visualization.ViewModels.PropertiesTree;
 
 namespace StakeholderAnalysis.Visualization.ViewModels.OnionDiagramProperties
 {
-    public class ConnectionGroupPropertiesViewModel : ViewModelBase, IExpandableContentViewModel
+    public class ConnectionGroupPropertiesViewModel : ViewModelBase, IPropertyCollectionTreeNodeViewModel, IQuickSelectionViewModel
     {
         private readonly StakeholderConnectionGroup connectionGroup;
         private bool isExpanded;
@@ -13,9 +14,17 @@ namespace StakeholderAnalysis.Visualization.ViewModels.OnionDiagramProperties
 
         public ConnectionGroupPropertiesViewModel(ViewModelFactory factory, StakeholderConnectionGroup connectionGroup, OnionDiagram selectedOnionDiagram) : base(factory)
         {
-            this.diagram = selectedOnionDiagram;
+            diagram = selectedOnionDiagram;
             this.connectionGroup = connectionGroup;
             connectionGroup.PropertyChanged += ConnectionGroupPropertyChanged;
+
+            Items = new ObservableCollection<ITreeNodeViewModel>
+            {
+                new NamePropertyTreeNodeViewModel(connectionGroup),
+                new VisibilityPropertyTreeNodeViewModel(connectionGroup),
+                new StrokeColorPropertyTreeNodeViewModel(connectionGroup),
+                new StrokeThicknessPropertyTreeNodeViewModel(connectionGroup)
+            };
         }
 
         private void ConnectionGroupPropertyChanged(object sender, PropertyChangedEventArgs e)
@@ -24,26 +33,18 @@ namespace StakeholderAnalysis.Visualization.ViewModels.OnionDiagramProperties
             {
                 case nameof(StakeholderConnectionGroup.Name):
                     OnPropertyChanged(nameof(DisplayName));
-                    OnPropertyChanged(nameof(Name));
                     break;
                 case nameof(StakeholderConnectionGroup.Visible):
-                    OnPropertyChanged(nameof(IsVisible));
-                    break;
-                case nameof(StakeholderConnectionGroup.StrokeThickness):
-                    OnPropertyChanged(nameof(StrokeThickness));
-                    break;
-                case nameof(StakeholderConnectionGroup.Color):
-                    OnPropertyChanged(nameof(StrokeColor));
+                    OnPropertyChanged(nameof(IsSelected));
                     break;
             }
         }
 
-        public bool IsViewModelFor(StakeholderConnectionGroup otherConnectionGroup)
-        {
-            return otherConnectionGroup == connectionGroup;
-        }
-
         public string DisplayName => connectionGroup.Name;
+
+        public string IconSourceString { get; }
+
+        public bool CanRemove => true;
 
         public bool IsExpandable => true;
 
@@ -57,27 +58,33 @@ namespace StakeholderAnalysis.Visualization.ViewModels.OnionDiagramProperties
             }
         }
 
-        public string Name
+        public ICommand ToggleIsExpandedCommand => CommandFactory.CreateToggleIsExpandedCommand(this);
+
+        public ICommand RemoveItemCommand => CommandFactory.CreateCanAlwaysExecuteActionCommand(p =>
         {
-            get => connectionGroup.Name;
-            set
-            {
-                connectionGroup.Name = value;
-                connectionGroup.OnPropertyChanged(nameof(StakeholderConnectionGroup.Name));
-            }
+            diagram.ConnectionGroups.Remove(connectionGroup);
+        });
+
+        public bool CanAdd => false;
+
+        public ICommand AddItemCommand => null;
+
+        public bool CanOpen => false;
+
+        public ICommand OpenViewCommand => null;
+
+        public bool IsViewModelFor(object o)
+        {
+            return o as StakeholderConnectionGroup == connectionGroup;
         }
 
-        public Color StrokeColor
-        {
-            get => connectionGroup.Color;
-            set
-            {
-                connectionGroup.Color = value;
-                connectionGroup.OnPropertyChanged(nameof(StakeholderConnectionGroup.Color));
-            }
-        }
+        public ObservableCollection<ITreeNodeViewModel> Items { get; }
 
-        public bool IsVisible
+        public CollectionType CollectionType => CollectionType.PropertyValue;
+
+        public bool IsQuickSelection => true;
+
+        public bool IsSelected
         {
             get => connectionGroup.Visible;
             set
@@ -86,22 +93,12 @@ namespace StakeholderAnalysis.Visualization.ViewModels.OnionDiagramProperties
                 connectionGroup.OnPropertyChanged(nameof(StakeholderConnectionGroup.Visible));
             }
         }
+    }
 
-        public double StrokeThickness
-        {
-            get => connectionGroup.StrokeThickness;
-            set
-            {
-                connectionGroup.StrokeThickness = value;
-                connectionGroup.OnPropertyChanged(nameof(StakeholderConnectionGroup.StrokeThickness));
-            }
-        }
+    public interface IQuickSelectionViewModel
+    {
+        bool IsQuickSelection { get; }
 
-        public ICommand ToggleIsExpandedCommand => CommandFactory.CreateToggleIsExpandedCommand(this);
-
-        public ICommand RemoveConnectionGroupCommand => CommandFactory.CreateCanAlwaysExecuteActionCommand(p =>
-        {
-            diagram.ConnectionGroups.Remove(connectionGroup);
-        });
+        bool IsSelected { get; set; }
     }
 }

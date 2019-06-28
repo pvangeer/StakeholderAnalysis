@@ -3,7 +3,8 @@
                     xmlns:propertiesTree="clr-namespace:StakeholderAnalysis.Visualization.ViewModels.PropertiesTree"
                     xmlns:visualization="clr-namespace:StakeholderAnalysis.Visualization"
                     xmlns:xctk="http://schemas.xceed.com/wpf/xaml/toolkit"
-                    xmlns:behaviors="clr-namespace:StakeholderAnalysis.Visualization.Behaviors">
+                    xmlns:behaviors="clr-namespace:StakeholderAnalysis.Visualization.Behaviors"
+                    xmlns:converters="clr-namespace:StakeholderAnalysis.Visualization.Converters">
 
     <ResourceDictionary.MergedDictionaries>
         <ResourceDictionary Source="ProjectExplorer/ProjectExplorerButtonStyles.xaml"/>
@@ -24,11 +25,27 @@
             FormatString="{Binding StringFormat}"/>
     </DataTemplate>
 
-    <visualization:PropertyValueTreeNodeTemplateSelector x:Key="PropertyValueContentTemplateSelector" 
+    <DataTemplate x:Key="CheckBoxTemplate" DataType="propertiesTree:IBooleanPropertyTreeNodeViewModel">
+        <CheckBox 
+            Height="20"
+            HorizontalAlignment="Center"
+            VerticalContentAlignment="Center"
+            IsChecked="{Binding BooleanValue}"/>
+    </DataTemplate>
+
+    <DataTemplate x:Key="StringTemplate" DataType="propertiesTree:IStringPropertyTreeNodeViewModelBase">
+        <TextBox 
+            Text="{Binding StringValue, UpdateSourceTrigger=PropertyChanged}"/>
+    </DataTemplate>
+
+    <visualization:PropertyValueTreeNodeTemplateSelector x:Key="PropertyValueContentTemplateSelector"
+                                                         CheckBoxTemplate="{StaticResource CheckBoxTemplate}"
+                                                         StringTempalte="{StaticResource StringTemplate}"
                                                          ColorTemplate="{StaticResource ColorPropertyDataTemplate}"
                                                          DoubleUpDownTemplate="{StaticResource DoubleUpDownPropertyDataTemplate}"/>
 
     <BooleanToVisibilityConverter x:Key="BooleanToVisibilityConverter" />
+    <converters:BooleanToVisibilityConverter x:Key="QuickSelectionVisibilityConverter" />
 
     <DataTemplate x:Key="ITreeNodeItemDataTemplate" DataType="propertiesTree:ITreeNodeViewModel">
         <Border BorderThickness="0">
@@ -50,6 +67,7 @@
             <Grid>
                 <Grid.ColumnDefinitions>
                     <ColumnDefinition Width="24"/>
+                    <ColumnDefinition Width="Auto"/>
                     <ColumnDefinition Width="*"/>
                     <ColumnDefinition Width="Auto"/>
                     <ColumnDefinition Width="Auto"/>
@@ -58,21 +76,26 @@
                     Grid.Column="0"
                     Command="{Binding ToggleIsExpandedCommand}"
                     Style="{StaticResource ExpandCollapseButtonStyle}"/>
+                <CheckBox Grid.Column="1"
+                          VerticalContentAlignment="Center"
+                          Margin="0,0,2,0"
+                          Visibility="{Binding Converter={StaticResource QuickSelectionVisibilityConverter}}"
+                          IsChecked="{Binding IsSelected}"/>
                 <TextBlock 
                     TextAlignment="Left"
-                    Grid.Column="1" 
+                    Grid.Column="2" 
                     Text="{Binding DisplayName}" 
                     HorizontalAlignment="Stretch"
                     VerticalAlignment="Center"
                     FontSize="12"/>
                 <Button 
-                    Grid.Column="2"
+                    Grid.Column="3"
                     Margin="2"
                     Visibility="{Binding CanRemove, Converter={StaticResource BooleanToVisibilityConverter}}"
                     Command="{Binding RemoveItemCommand}"
                     Style="{StaticResource RemoveButtonStyle}"/>
                 <Button 
-                    Grid.Column="3"
+                    Grid.Column="4"
                     Margin="2"
                     Visibility="{Binding CanAdd, Converter={StaticResource BooleanToVisibilityConverter}}"
                     Command="{Binding AddItemCommand}"
@@ -97,7 +120,7 @@
                     TextAlignment="Left"
                     VerticalAlignment="Center"
                     Background="Transparent"/>
-                <GridSplitter Grid.Column="1" Width="5" Background="Gainsboro" HorizontalAlignment="Stretch"/>
+                <GridSplitter Grid.Column="1" Width="5" Background="Gainsboro" HorizontalAlignment="Stretch" ResizeBehavior="BasedOnAlignment"/>
                 <ContentPresenter 
                     Grid.Column="2" 
                     Content="{Binding }" 

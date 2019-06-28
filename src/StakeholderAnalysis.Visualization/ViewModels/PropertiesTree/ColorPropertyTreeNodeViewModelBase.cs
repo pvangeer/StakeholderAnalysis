@@ -13,5 +13,10 @@ namespace StakeholderAnalysis.Visualization.ViewModels.PropertiesTree
         protected T Content { get; }
 
         public abstract Color ColorValue { get; set; }
+
+        public override bool IsViewModelFor(object o)
+        {
+            return ReferenceEquals(o, Content);
+        }
     }
 }

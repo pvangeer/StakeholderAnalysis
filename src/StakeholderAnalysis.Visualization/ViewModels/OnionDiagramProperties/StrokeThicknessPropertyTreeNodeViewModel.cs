@@ -1,11 +1,12 @@
-﻿using StakeholderAnalysis.Data.OnionDiagrams;
+﻿using StakeholderAnalysis.Data;
+using StakeholderAnalysis.Data.OnionDiagrams;
 using StakeholderAnalysis.Visualization.ViewModels.PropertiesTree;
 
 namespace StakeholderAnalysis.Visualization.ViewModels.OnionDiagramProperties
 {
-    public class StrokeThicknessPropertyTreeNodeViewModel : DoubleUpDownPropertyTreeNodeViewModelBase<OnionRing>
+    public class StrokeThicknessPropertyTreeNodeViewModel : DoubleUpDownPropertyTreeNodeViewModelBase<IStrokeProperty>
     {
-        public StrokeThicknessPropertyTreeNodeViewModel(OnionRing ring) : base(ring, "Lijndikte", 0.0, 40.0, 0.5, "0.##") { }
+        public StrokeThicknessPropertyTreeNodeViewModel(IStrokeProperty ring) : base(ring, "Lijndikte", 0.0, 40.0, 0.5, "0.##") { }
 
         public override double DoubleValue
         {
@@ -19,7 +20,7 @@ namespace StakeholderAnalysis.Visualization.ViewModels.OnionDiagramProperties
 
         public override bool IsViewModelFor(object o)
         {
-            return o as OnionRing == Content;
+            return ReferenceEquals(o,Content);
         }
     }
 }

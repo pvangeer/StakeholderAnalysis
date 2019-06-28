@@ -7,10 +7,11 @@ using System.Windows.Input;
 using StakeholderAnalysis.Data.OnionDiagrams;
 using StakeholderAnalysis.Gui;
 using StakeholderAnalysis.Visualization.ViewModels.OnionDiagramView;
+using StakeholderAnalysis.Visualization.ViewModels.PropertiesTree;
 
 namespace StakeholderAnalysis.Visualization.ViewModels.OnionDiagramProperties
 {
-    public class ConnectionGroupsPropertiesViewModel : ViewModelBase, IExpandableContentViewModel
+    public class ConnectionGroupsPropertiesViewModel : ViewModelBase, IPropertyCollectionTreeNodeViewModel
     {
         private readonly ViewManager viewManager;
         private bool isExpanded;
@@ -34,13 +35,30 @@ namespace StakeholderAnalysis.Visualization.ViewModels.OnionDiagramProperties
 
         public string DisplayName => "Connectiegroepen";
 
+        public string IconSourceString { get; }
+
+        public bool CanRemove => false;
+
+        public ICommand RemoveItemCommand => null;
+
+        public bool CanAdd => true;
+
+        public bool CanOpen => false;
+
+        public ICommand OpenViewCommand => null;
+
+        public bool IsViewModelFor(object o)
+        {
+            return false;
+        }
+
         private OnionDiagram SelectedOnionDiagram { get; set; }
 
-        public ObservableCollection<ConnectionGroupPropertiesViewModel> ConnectionGroups { get; private set; }
+        public ObservableCollection<ITreeNodeViewModel> Items { get; private set; }
 
         public ICommand ToggleIsExpandedCommand => CommandFactory.CreateToggleIsExpandedCommand(this);
 
-        public ICommand AddNewConnectionGroupCommand => CommandFactory.CreateAddConnectionGroupCommand(SelectedOnionDiagram);
+        public ICommand AddItemCommand => CommandFactory.CreateAddConnectionGroupCommand(SelectedOnionDiagram);
 
         public bool IsExpandable => true;
 
@@ -65,7 +83,7 @@ namespace StakeholderAnalysis.Visualization.ViewModels.OnionDiagramProperties
                 }
 
                 SelectedOnionDiagram = activeOnionDiagram;
-                ConnectionGroups = new ObservableCollection<ConnectionGroupPropertiesViewModel>(
+                Items = new ObservableCollection<ITreeNodeViewModel>(
                     SelectedOnionDiagram?.ConnectionGroups.Select(connectionGroup => ViewModelFactory.CreateConnectionGroupPropertiesViewModel(connectionGroup, SelectedOnionDiagram)) ??
                     new List<ConnectionGroupPropertiesViewModel>());
 
@@ -74,7 +92,7 @@ namespace StakeholderAnalysis.Visualization.ViewModels.OnionDiagramProperties
                     SelectedOnionDiagram.ConnectionGroups.CollectionChanged += ConnectionGroupsCollectionChanged;
                 }
 
-                OnPropertyChanged(nameof(ConnectionGroups));
+                OnPropertyChanged(nameof(Items));
             }
         }
 
@@ -85,20 +103,22 @@ namespace StakeholderAnalysis.Visualization.ViewModels.OnionDiagramProperties
                 case NotifyCollectionChangedAction.Add:
                     foreach (var connectionGroup in e.NewItems.OfType<StakeholderConnectionGroup>())
                     {
-                        ConnectionGroups.Add(ViewModelFactory.CreateConnectionGroupPropertiesViewModel(connectionGroup, SelectedOnionDiagram));
+                        Items.Add(ViewModelFactory.CreateConnectionGroupPropertiesViewModel(connectionGroup, SelectedOnionDiagram));
                     }
                     break;
                 case NotifyCollectionChangedAction.Remove:
                     foreach (var connectionGroup in e.OldItems.OfType<StakeholderConnectionGroup>())
                     {
-                        var viewModel = ConnectionGroups.FirstOrDefault(vm => vm.IsViewModelFor(connectionGroup));
+                        var viewModel = Items.FirstOrDefault(vm => vm.IsViewModelFor(connectionGroup));
                         if (viewModel != null)
                         {
-                            ConnectionGroups.Remove(viewModel);
+                            Items.Remove(viewModel);
                         }
                     }
                     break;
             }
         }
+
+        public CollectionType CollectionType => CollectionType.CollectionList;
     }
 }
