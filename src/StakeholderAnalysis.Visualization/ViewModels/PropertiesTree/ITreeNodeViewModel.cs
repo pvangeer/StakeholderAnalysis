@@ -19,5 +19,7 @@ namespace StakeholderAnalysis.Visualization.ViewModels.PropertiesTree
         bool CanOpen { get; }
 
         ICommand OpenViewCommand { get; }
+
+        bool IsViewModelFor(object o);
     }
 }

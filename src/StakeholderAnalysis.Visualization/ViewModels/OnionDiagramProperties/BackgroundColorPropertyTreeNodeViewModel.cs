@@ -17,5 +17,10 @@ namespace StakeholderAnalysis.Visualization.ViewModels.OnionDiagramProperties
                 Content.OnPropertyChanged(nameof(OnionRing.BackgroundColor));
             }
         }
+
+        public override bool IsViewModelFor(object o)
+        {
+            return o as OnionRing == Content;
+        }
     }
 }

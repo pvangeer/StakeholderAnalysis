@@ -1,10 +1,16 @@
 ﻿using System.Collections.ObjectModel;
-using System.Windows.Input;
 
 namespace StakeholderAnalysis.Visualization.ViewModels.PropertiesTree
 {
     public interface IPropertyCollectionTreeNodeViewModel : ITreeNodeViewModel
     {
         ObservableCollection<ITreeNodeViewModel> Items { get; }
+        CollectionType CollectionType { get; }
+    }
+
+    public enum CollectionType
+    {
+        PropertyValue,
+        CollectionList
     }
 }

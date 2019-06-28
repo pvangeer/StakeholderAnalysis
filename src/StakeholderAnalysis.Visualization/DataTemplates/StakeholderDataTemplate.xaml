@@ -1,9 +1,7 @@
 ﻿<ResourceDictionary xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
                     xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
                     xmlns:viewModels="clr-namespace:StakeholderAnalysis.Visualization.ViewModels"
-                    xmlns:data="clr-namespace:StakeholderAnalysis.Data;assembly=StakeholderAnalysis.Data"
                     xmlns:converters="clr-namespace:StakeholderAnalysis.Visualization.Converters"
-                    xmlns:visualization="clr-namespace:StakeholderAnalysis.Visualization"
                     xmlns:behaviors="clr-namespace:StakeholderAnalysis.Visualization.Behaviors">
 
     <DataTemplate x:Key="StakeholderPopupDataTemplate" DataType="viewModels:StakeholderViewModel">

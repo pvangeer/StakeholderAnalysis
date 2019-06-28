@@ -16,5 +16,10 @@ namespace StakeholderAnalysis.Visualization.ViewModels.OnionDiagramProperties
                 Content.OnPropertyChanged(nameof(OnionRing.StrokeThickness));
             }
         }
+
+        public override bool IsViewModelFor(object o)
+        {
+            return o as OnionRing == Content;
+        }
     }
 }

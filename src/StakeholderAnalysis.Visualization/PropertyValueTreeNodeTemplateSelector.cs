@@ -4,7 +4,7 @@ using StakeholderAnalysis.Visualization.ViewModels.PropertiesTree;
 
 namespace StakeholderAnalysis.Visualization
 {
-    public class PropertyTreeNodeValueTemplateSelector : DataTemplateSelector
+    public class PropertyValueTreeNodeTemplateSelector : DataTemplateSelector
     {
         public override DataTemplate SelectTemplate(object item, DependencyObject container)
         {

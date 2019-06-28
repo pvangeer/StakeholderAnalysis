@@ -36,6 +36,7 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Behaviors\AttachInputBindingsBehavior.cs" />
+    <Compile Include="PropertyCollectionTemplateSelector.cs" />
     <Compile Include="ViewModels\OnionDiagramProperties\BackgroundColorPropertyTreeNodeViewModel.cs" />
     <Compile Include="ViewModels\OnionDiagramProperties\PercentagePropertyTreeNodeViewModel.cs" />
     <Compile Include="ViewModels\OnionDiagramProperties\StrokeColorPropertyTreeNodeViewModel.cs" />
@@ -51,7 +52,7 @@
     <Compile Include="Converters\IconTypeToIconSourceConverter.cs" />
     <Compile Include="Converters\ToComplementColorConverter.cs" />
     <Compile Include="IsSelectedToStrokeThicknessConverter.cs" />
-    <Compile Include="PropertyTreeNodeValueTemplateSelector.cs" />
+    <Compile Include="PropertyValueTreeNodeTemplateSelector.cs" />
     <Compile Include="ViewModels\CommandFactory.cs" />
     <Compile Include="ViewModels\IRemoveStakeholderViewModel.cs" />
     <Compile Include="Commands\OnionDiagramProperties\AddConnectionGroupCommand.cs" />
@@ -178,10 +179,6 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </Page>
-    <Page Include="DataTemplates\OnionDiagramProperties\OnionRingsPropertiesDataTemplate.xaml">
-      <SubType>Designer</SubType>
-      <Generator>MSBuild:Compile</Generator>
-    </Page>
     <Page Include="DataTemplates\OnionDiagram\OnionDiagramConnectionDrawingCanvasDataTemplate.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
@@ -198,7 +195,7 @@
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
-    <Page Include="DataTemplates\PropertiesTree\ExpandablePropertyItemViewModel.xaml">
+    <Page Include="DataTemplates\TreeViewDataTemplate.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
@@ -386,5 +383,8 @@
     <Resource Include="Resources\arrow_top_gray.png" />
     <Resource Include="Resources\arrow_up_black.png" />
     <Resource Include="Resources\arrow_up_gray.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Folder Include="DataTemplates\PropertiesTree\" />
   </ItemGroup>
 </Project>

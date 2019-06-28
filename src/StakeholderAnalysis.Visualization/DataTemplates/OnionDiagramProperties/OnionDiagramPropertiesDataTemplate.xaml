@@ -3,7 +3,7 @@
                     xmlns:onionDiagramProperties="clr-namespace:StakeholderAnalysis.Visualization.ViewModels.OnionDiagramProperties">
 
     <ResourceDictionary.MergedDictionaries>
-        <ResourceDictionary Source="OnionRingsPropertiesDataTemplate.xaml"/>
+        <ResourceDictionary Source="/StakeholderAnalysis.Visualization;Component/DataTemplates/TreeViewDataTemplate.xaml" />
         <ResourceDictionary Source="ConnectionGroupsPropertiesDataTemplate.xaml"/>
     </ResourceDictionary.MergedDictionaries>
 
@@ -12,7 +12,7 @@
             <StackPanel Orientation="Vertical">
                 <ContentPresenter 
                     Content="{Binding OnionRingsViewModel}" 
-                    ContentTemplate="{StaticResource OnionRingsPropertiesDataTemplate}"/>
+                    ContentTemplate="{StaticResource IPropertyCollectionItemDataTemplate}"/>
                 <ContentPresenter 
                     Content="{Binding ConnectionGroupsViewModel}" 
                     ContentTemplate="{StaticResource ConnectionGroupsPropertiesDataTemplate}"/>

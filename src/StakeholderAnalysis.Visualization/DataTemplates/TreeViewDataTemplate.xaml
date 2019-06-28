@@ -6,7 +6,7 @@
                     xmlns:behaviors="clr-namespace:StakeholderAnalysis.Visualization.Behaviors">
 
     <ResourceDictionary.MergedDictionaries>
-        <ResourceDictionary Source="../ProjectExplorer/ProjectExplorerButtonStyles.xaml"/>
+        <ResourceDictionary Source="ProjectExplorer/ProjectExplorerButtonStyles.xaml"/>
     </ResourceDictionary.MergedDictionaries>
 
     <DataTemplate x:Key="ColorPropertyDataTemplate" DataType="propertiesTree:IColorPropertyTreeNodeViewModel">
@@ -24,7 +24,7 @@
             FormatString="{Binding StringFormat}"/>
     </DataTemplate>
 
-    <visualization:PropertyTreeNodeValueTemplateSelector x:Key="ContentTemplateSelector" 
+    <visualization:PropertyValueTreeNodeTemplateSelector x:Key="PropertyValueContentTemplateSelector" 
                                                          ColorTemplate="{StaticResource ColorPropertyDataTemplate}"
                                                          DoubleUpDownTemplate="{StaticResource DoubleUpDownPropertyDataTemplate}"/>
 
@@ -81,7 +81,33 @@
         </Border>
     </DataTemplate>
 
-    <DataTemplate x:Key="IPropertyCollectionDataTemplate" DataType="propertiesTree:IPropertyCollectionTreeNodeViewModel">
+    <DataTemplate x:Key="PropertyValueItemDataTemplate" DataType="propertiesTree:ITreeNodeViewModel">
+        <Border Style="{StaticResource ExpandableElementBorderStyle}">
+            <Grid>
+                <Grid.Resources>
+                </Grid.Resources>
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="*"/>
+                    <ColumnDefinition Width="5"/>
+                    <ColumnDefinition Width="Auto" SharedSizeGroup="True"/>
+                </Grid.ColumnDefinitions>
+                <TextBlock 
+                    Grid.Column="0" 
+                    Text="{Binding DisplayName}" 
+                    TextAlignment="Left"
+                    VerticalAlignment="Center"
+                    Background="Transparent"/>
+                <GridSplitter Grid.Column="1" Width="5" Background="Gainsboro" HorizontalAlignment="Stretch"/>
+                <ContentPresenter 
+                    Grid.Column="2" 
+                    Content="{Binding }" 
+                    ContentTemplateSelector="{StaticResource PropertyValueContentTemplateSelector}">
+                </ContentPresenter>
+            </Grid>
+        </Border>
+    </DataTemplate>
+
+    <DataTemplate x:Key="IPropertyCollectionItemDataTemplate" DataType="propertiesTree:IPropertyCollectionTreeNodeViewModel">
         <StackPanel Orientation="Vertical">
             <ContentPresenter Content="{Binding }" ContentTemplate="{StaticResource ITreeNodeItemDataTemplate}"/>
             <Grid Visibility="{Binding IsExpanded, Converter={StaticResource BooleanToVisibilityConverter}}" >
@@ -93,34 +119,18 @@
                     Grid.Column="1"
                     ItemsSource="{Binding Items}" 
                     Grid.IsSharedSizeScope="True">
-                    <ItemsControl.ItemTemplate>
-                        <!--TODO: Add Template Selector to switch between nested tree lists and property - value pairs in a grid-->
-                        <DataTemplate DataType="propertiesTree:ITreeNodeViewModel">
-                            <Border Style="{StaticResource ExpandableElementBorderStyle}">
-                                <Grid>
-                                    <Grid.Resources>
-                                    </Grid.Resources>
-                                    <Grid.ColumnDefinitions>
-                                        <ColumnDefinition Width="*"/>
-                                        <ColumnDefinition Width="5"/>
-                                        <ColumnDefinition Width="Auto" SharedSizeGroup="True"/>
-                                    </Grid.ColumnDefinitions>
-                                    <TextBlock 
-                                        Grid.Column="0" 
-                                        Text="{Binding DisplayName}" 
-                                        TextAlignment="Left"
-                                        VerticalAlignment="Center"
-                                        Background="Transparent"/>
-                                    <GridSplitter Grid.Column="1" Width="5" Background="Gainsboro" HorizontalAlignment="Stretch"/>
-                                    <ContentPresenter 
-                                        Grid.Column="2" 
-                                        Content="{Binding }" 
-                                        ContentTemplateSelector="{StaticResource ContentTemplateSelector}">
-                                    </ContentPresenter>
-                                </Grid>
-                            </Border>
-                        </DataTemplate>
-                    </ItemsControl.ItemTemplate>
+                    <ItemsControl.Style>
+                        <Style TargetType="ItemsControl">
+                            <Style.Triggers>
+                                <DataTrigger Binding="{Binding CollectionType}" Value="{x:Static propertiesTree:CollectionType.PropertyValue}">
+                                    <Setter Property="ItemTemplate" Value="{StaticResource PropertyValueItemDataTemplate}"/>
+                                </DataTrigger>
+                                <DataTrigger Binding="{Binding CollectionType}" Value="{x:Static propertiesTree:CollectionType.CollectionList}">
+                                    <Setter Property="ItemTemplate" Value="{DynamicResource IPropertyCollectionItemDataTemplate}"/>
+                                </DataTrigger>
+                            </Style.Triggers>
+                        </Style>
+                    </ItemsControl.Style>
                 </ItemsControl>
             </Grid>
         </StackPanel>

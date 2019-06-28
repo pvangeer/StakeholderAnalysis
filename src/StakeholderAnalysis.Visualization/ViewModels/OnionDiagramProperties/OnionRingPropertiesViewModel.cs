@@ -39,9 +39,9 @@ namespace StakeholderAnalysis.Visualization.ViewModels.OnionDiagramProperties
 
         public ICommand OpenViewCommand => null;
 
-        public bool IsViewModelFor(OnionRing ringViewModel)
+        public bool IsViewModelFor(object o)
         {
-            return ringViewModel == ring;
+            return o as OnionRing == ring;
         }
 
         public string DisplayName => ring.Percentage.ToString("0.####");
@@ -59,6 +59,8 @@ namespace StakeholderAnalysis.Visualization.ViewModels.OnionDiagramProperties
         }
 
         public ObservableCollection<ITreeNodeViewModel> Items { get; }
+
+        public CollectionType CollectionType => CollectionType.PropertyValue;
 
         public bool CanAdd => false;
 
