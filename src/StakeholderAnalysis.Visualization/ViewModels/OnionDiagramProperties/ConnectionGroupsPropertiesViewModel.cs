@@ -14,7 +14,7 @@ namespace StakeholderAnalysis.Visualization.ViewModels.OnionDiagramProperties
     public class ConnectionGroupsPropertiesViewModel : ViewModelBase, IPropertyCollectionTreeNodeViewModel
     {
         private readonly ViewManager viewManager;
-        private bool isExpanded;
+        private bool isExpanded = true;
 
         public ConnectionGroupsPropertiesViewModel(ViewModelFactory factory, ViewManager viewManager) : base(factory)
         {
