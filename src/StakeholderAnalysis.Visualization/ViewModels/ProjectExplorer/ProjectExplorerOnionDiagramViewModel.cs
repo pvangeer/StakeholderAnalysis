@@ -39,6 +39,7 @@ namespace StakeholderAnalysis.Visualization.ViewModels.ProjectExplorer
         public string DisplayName
         {
             get => diagram.Name;
+            // TODO: Make name editable again
 /*            set
             {
                 diagram.Name = value;

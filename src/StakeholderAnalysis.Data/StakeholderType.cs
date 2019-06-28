@@ -2,7 +2,7 @@
 
 namespace StakeholderAnalysis.Data
 {
-    public class StakeholderType : NotifyPropertyChangedObservable
+    public class StakeholderType : NotifyPropertyChangedObservable, INameProperty
     {
         public string Name { get; set; }
 

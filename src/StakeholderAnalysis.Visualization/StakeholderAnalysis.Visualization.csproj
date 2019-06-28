@@ -44,6 +44,9 @@
     <Compile Include="ViewModels\OnionDiagramProperties\PercentagePropertyTreeNodeViewModel.cs" />
     <Compile Include="ViewModels\OnionDiagramProperties\StrokeColorPropertyTreeNodeViewModel.cs" />
     <Compile Include="ViewModels\OnionDiagramProperties\StrokeThicknessPropertyTreeNodeViewModel.cs" />
+    <Compile Include="ViewModels\ProjectExplorer\IStakeholderTypeIconPropertyTreeNodeViewModel.cs" />
+    <Compile Include="ViewModels\ProjectExplorer\StakeholderTypeIconPropertyTreeNodeViewModel.cs" />
+    <Compile Include="ViewModels\ProjectExplorer\ColorPropertyTreeNodeViewModel.cs" />
     <Compile Include="ViewModels\PropertiesTree\IBooleanPropertyTreeNodeViewModel.cs" />
     <Compile Include="ViewModels\PropertiesTree\BooleanPropertyTreeNodeViewModelBase.cs" />
     <Compile Include="ViewModels\PropertiesTree\IStringPropertyTreeNodeViewModelBase.cs" />
@@ -98,14 +101,12 @@
     <Compile Include="Behaviors\IDropHandler.cs" />
     <Compile Include="Behaviors\ISelectionRegister.cs" />
     <Compile Include="Converters\IsSelectedStakeholderToOffsetConverter.cs" />
-    <Compile Include="ViewModels\IExpandableContentViewModel.cs" />
     <Compile Include="ViewModels\OnionDiagramProperties\ConnectionGroupPropertiesViewModel.cs" />
     <Compile Include="ViewModels\OnionDiagramProperties\OnionDiagramPropertiesViewModel.cs" />
     <Compile Include="ViewModels\OnionDiagramProperties\OnionRingPropertiesViewModel.cs" />
     <Compile Include="ViewModels\OnionDiagramProperties\ConnectionGroupsPropertiesViewModel.cs" />
     <Compile Include="ViewModels\OnionDiagramProperties\OnionRingsPropertiesViewModel.cs" />
     <Compile Include="ViewModels\OnionDiagramView\OnionDiagramDrawConnectionViewModel.cs" />
-    <Compile Include="ViewModels\ProjectExplorer\IProjectExplorerDiagramViewModel.cs" />
     <Compile Include="ViewModels\ProjectExplorer\ProjectExplorerAttitudeImpactDiagramsViewModel.cs" />
     <Compile Include="ViewModels\ProjectExplorer\ProjectExplorerForceFieldDiagramsViewModel.cs" />
     <Compile Include="ViewModels\ProjectExplorer\ProjectExplorerAttitudeImpactDiagramViewModel.cs" />
@@ -126,7 +127,6 @@
     <Compile Include="ViewModels\TwoAxisDiagrams\AttitudeImpactDiagramStakeholderViewModel.cs" />
     <Compile Include="ViewModels\TwoAxisDiagrams\ForceFieldDiagramStakeholderViewModel.cs" />
     <Compile Include="ViewModels\OnionDiagramView\OnionDiagramStakeholderViewModel.cs" />
-    <Compile Include="ViewModels\ProjectExplorer\IExpandableDiagramCollectionViewModel.cs" />
     <Compile Include="Properties\AssemblyInfo.cs">
       <SubType>Code</SubType>
     </Compile>
@@ -186,14 +186,6 @@
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
-    <Page Include="DataTemplates\ProjectExplorer\ProjectExplorerStakeholderOverviewTableDataTemplate.xaml">
-      <SubType>Designer</SubType>
-      <Generator>MSBuild:Compile</Generator>
-    </Page>
-    <Page Include="DataTemplates\ProjectExplorer\ProjectExplorerStakeholderTypesDataTemplate.xaml">
-      <SubType>Designer</SubType>
-      <Generator>MSBuild:Compile</Generator>
-    </Page>
     <Page Include="DataTemplates\TreeViewDataTemplate.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
@@ -234,15 +226,11 @@
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
-    <Page Include="DataTemplates\ProjectExplorer\ExpandableElementDataTemplate.xaml">
-      <SubType>Designer</SubType>
-      <Generator>MSBuild:Compile</Generator>
-    </Page>
     <Page Include="DataTemplates\ProjectExplorer\ProjectExplorerDataTemplate.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
-    <Page Include="DataTemplates\ProjectExplorer\ProjectExplorerButtonStyles.xaml">
+    <Page Include="DataTemplates\TreeViewStyles.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>

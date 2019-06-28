@@ -31,7 +31,7 @@ namespace StakeholderAnalysis.Visualization.Commands.OnionDiagramProperties
 
         public bool CanExecute(object parameter)
         {
-            return diagram != null && stakeholder != null && stakeholder.Rank != diagram.Stakeholders.Max(s => s.Rank);
+            return diagram != null && stakeholder != null && diagram.Stakeholders.Any() && stakeholder.Rank != diagram.Stakeholders.Max(s => s.Rank);
         }
 
         public void Execute(object parameter)

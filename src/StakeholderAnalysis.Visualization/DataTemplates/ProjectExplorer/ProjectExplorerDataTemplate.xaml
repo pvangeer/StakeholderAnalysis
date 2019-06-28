@@ -3,8 +3,6 @@
                     xmlns:projectExplorer="clr-namespace:StakeholderAnalysis.Visualization.ViewModels.ProjectExplorer">
 
     <ResourceDictionary.MergedDictionaries>
-        <ResourceDictionary Source="ProjectExplorerStakeholderOverviewTableDataTemplate.xaml"/>
-        <ResourceDictionary Source="ProjectExplorerStakeholderTypesDataTemplate.xaml"/>
         <ResourceDictionary Source="/StakeholderAnalysis.Visualization;Component/DataTemplates/TreeViewDataTemplate.xaml" />
     </ResourceDictionary.MergedDictionaries>
 
@@ -25,7 +23,7 @@
                     ContentTemplate="{StaticResource IPropertyCollectionItemDataTemplate}"/>
                 <ContentPresenter
                     Content="{Binding StakeholderTypesViewModel}"
-                    ContentTemplate="{StaticResource ProjectExplorerStakeholderTypesDataTemplate}"/>
+                    ContentTemplate="{StaticResource IPropertyCollectionItemDataTemplate}"/>
             </StackPanel>
         </Grid>
     </DataTemplate>

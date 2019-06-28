@@ -11,6 +11,6 @@ namespace StakeholderAnalysis.Visualization.ViewModels.PropertiesTree
     public enum CollectionType
     {
         PropertyValue,
-        CollectionList
+        PropertyItemsCollection
     }
 }

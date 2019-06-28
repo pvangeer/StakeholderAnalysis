@@ -119,6 +119,6 @@ namespace StakeholderAnalysis.Visualization.ViewModels.OnionDiagramProperties
             }
         }
 
-        public CollectionType CollectionType => CollectionType.CollectionList;
+        public CollectionType CollectionType => CollectionType.PropertyItemsCollection;
     }
 }

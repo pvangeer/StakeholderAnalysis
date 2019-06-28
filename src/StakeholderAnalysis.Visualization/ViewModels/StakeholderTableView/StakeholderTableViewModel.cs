@@ -1,6 +1,7 @@
 ﻿using System.Collections.ObjectModel;
 using System.Collections.Specialized;
 using System.Linq;
+using System.Windows.Media;
 using StakeholderAnalysis.Data;
 
 namespace StakeholderAnalysis.Visualization.ViewModels.StakeholderTableView
@@ -24,7 +25,6 @@ namespace StakeholderAnalysis.Visualization.ViewModels.StakeholderTableView
 
         public ObservableCollection<StakeholderType> StakeholderTypes => analysis.StakeholderTypes;
 
-
         private void StakeholderViewModelsCollectionChanged(object sender, NotifyCollectionChangedEventArgs e)
         {
             if (analysis == null)
@@ -37,9 +37,13 @@ namespace StakeholderAnalysis.Visualization.ViewModels.StakeholderTableView
             switch (e.Action)
             {
                 case NotifyCollectionChangedAction.Add:
+                    var stakeholderType = GetDefaultStakeholderType();
                     foreach (var stakeholderViewModel in e.NewItems.OfType<StakeholderViewModel>())
                     {
-                        analysis.Stakeholders.Add(stakeholderViewModel.Stakeholder);
+                        var stakeholder = stakeholderViewModel.Stakeholder;
+                        stakeholder.Type = stakeholderType;
+                        stakeholder.OnPropertyChanged(nameof(Stakeholder.Type));
+                        analysis.Stakeholders.Add(stakeholder);
                     }
                     break;
                 case NotifyCollectionChangedAction.Remove:
@@ -53,7 +57,25 @@ namespace StakeholderAnalysis.Visualization.ViewModels.StakeholderTableView
             analysis.Stakeholders.CollectionChanged += StakeholdersCollectionChanged;
         }
 
-        
+        private StakeholderType GetDefaultStakeholderType()
+        {
+            var stakeholderType = new StakeholderType
+            {
+                Name = "Nieuw type",
+                Color = Colors.LightSkyBlue,
+                IconType = StakeholderIconType.Cloud
+            };
+            if (!analysis.StakeholderTypes.Any())
+            {
+                analysis.StakeholderTypes.Add(stakeholderType);
+            }
+            else
+            {
+                stakeholderType = analysis.StakeholderTypes.First();
+            }
+
+            return stakeholderType;
+        }
 
         private void StakeholdersCollectionChanged(object sender, NotifyCollectionChangedEventArgs e)
         {

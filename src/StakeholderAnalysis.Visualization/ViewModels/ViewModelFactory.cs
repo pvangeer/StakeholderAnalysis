@@ -1,5 +1,4 @@
 ﻿using System.Linq;
-using System.Net.NetworkInformation;
 using StakeholderAnalysis.Data;
 using StakeholderAnalysis.Data.AttitudeImpactDiagrams;
 using StakeholderAnalysis.Data.ForceFieldDiagrams;

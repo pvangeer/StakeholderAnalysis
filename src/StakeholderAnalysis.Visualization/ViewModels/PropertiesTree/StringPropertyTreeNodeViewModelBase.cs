@@ -11,13 +11,13 @@ namespace StakeholderAnalysis.Visualization.ViewModels.PropertiesTree
 
             if (Content != null)
             {
-                Content.PropertyChanged += ViewModelPropertyChanged;
+                Content.PropertyChanged += ContentPropertyChanged;
             }
         }
 
         public abstract string StringValue { get; set; }
 
-        protected virtual void ViewModelPropertyChanged(object sender, PropertyChangedEventArgs e) { }
+        protected virtual void ContentPropertyChanged(object sender, PropertyChangedEventArgs e) { }
 
         protected T Content { get; }
     }

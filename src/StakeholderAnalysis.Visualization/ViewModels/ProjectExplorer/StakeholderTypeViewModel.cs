@@ -1,12 +1,15 @@
-﻿using System.ComponentModel;
+﻿using System.Collections.ObjectModel;
+using System.ComponentModel;
 using System.Windows.Input;
 using System.Windows.Media;
 using StakeholderAnalysis.Data;
 using StakeholderAnalysis.Visualization.Converters;
+using StakeholderAnalysis.Visualization.ViewModels.OnionDiagramProperties;
+using StakeholderAnalysis.Visualization.ViewModels.PropertiesTree;
 
 namespace StakeholderAnalysis.Visualization.ViewModels.ProjectExplorer
 {
-    public class StakeholderTypeViewModel : ViewModelBase, IExpandableContentViewModel
+    public class StakeholderTypeViewModel : ViewModelBase, IPropertyCollectionTreeNodeViewModel
     {
         private readonly StakeholderType stakeholderType;
         private bool isExpanded;
@@ -14,7 +17,13 @@ namespace StakeholderAnalysis.Visualization.ViewModels.ProjectExplorer
         public StakeholderTypeViewModel(ViewModelFactory factory, StakeholderType stakeholderType) : base(factory)
         {
             this.stakeholderType = stakeholderType;
-            RemoveStakeholderTypeCommand = CommandFactory.CreateRemoveStakeholderTypeCommand(stakeholderType);
+            Items = new ObservableCollection<ITreeNodeViewModel>
+            {
+                new NamePropertyTreeNodeViewModel(stakeholderType),
+                new ColorPropertyTreeNodeViewModel(stakeholderType),
+                new StakeholderTypeIconPropertyTreeNodeViewModel(stakeholderType)
+            };
+            RemoveItemCommand = CommandFactory.CreateRemoveStakeholderTypeCommand(stakeholderType);
             stakeholderType.PropertyChanged += StakeholderTypePropertyChanged;
         }
 
@@ -35,6 +44,23 @@ namespace StakeholderAnalysis.Visualization.ViewModels.ProjectExplorer
         }
 
         public string IconSourceString => (string)new IconTypeToIconSourceConverter().Convert(stakeholderType.IconType, typeof(string), null, null);
+
+        public bool CanRemove => true;
+
+        public ICommand RemoveItemCommand { get; }
+
+        public bool CanAdd => false;
+
+        public ICommand AddItemCommand => null;
+
+        public bool CanOpen => false;
+
+        public ICommand OpenViewCommand => null;
+
+        public bool IsViewModelFor(object o)
+        {
+            return ReferenceEquals(o, stakeholderType);
+        }
 
         public StakeholderIconType IconType
         {
@@ -66,8 +92,6 @@ namespace StakeholderAnalysis.Visualization.ViewModels.ProjectExplorer
             }
         }
 
-        public ICommand RemoveStakeholderTypeCommand { get; }
-
         public bool IsViewModelFor(StakeholderType otherStakeholderType)
         {
             return stakeholderType == otherStakeholderType;
@@ -86,5 +110,9 @@ namespace StakeholderAnalysis.Visualization.ViewModels.ProjectExplorer
         }
 
         public ICommand ToggleIsExpandedCommand => CommandFactory.CreateToggleIsExpandedCommand(this);
+
+        public ObservableCollection<ITreeNodeViewModel> Items { get; }
+
+        public CollectionType CollectionType => CollectionType.PropertyValue;
     }
 }

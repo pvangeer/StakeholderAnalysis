@@ -27,7 +27,7 @@ namespace StakeholderAnalysis.Visualization.ViewModels.ProjectExplorer
 
         public ObservableCollection<ITreeNodeViewModel> Items { get; }
 
-        public CollectionType CollectionType => CollectionType.CollectionList;
+        public CollectionType CollectionType => CollectionType.PropertyItemsCollection;
 
         public bool IsExpandable => true;
 

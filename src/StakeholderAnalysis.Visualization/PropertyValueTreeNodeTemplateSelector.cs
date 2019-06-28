@@ -1,5 +1,6 @@
 using System.Windows;
 using System.Windows.Controls;
+using StakeholderAnalysis.Visualization.ViewModels.ProjectExplorer;
 using StakeholderAnalysis.Visualization.ViewModels.PropertiesTree;
 
 namespace StakeholderAnalysis.Visualization
@@ -28,9 +29,15 @@ namespace StakeholderAnalysis.Visualization
                 return CheckBoxTemplate;
             }
 
-            // TODO: throws exception in case of unsupported implementation of ITreeNodeViewModel (only property descriptors are accepted).
+            if (item is IStakeholderTypeIconPropertyTreeNodeViewModel)
+            {
+                return StakeholderTypeIconDataTemplate;
+            }
+
             return base.SelectTemplate(item,container);
         }
+
+        public DataTemplate StakeholderTypeIconDataTemplate { get; set; }
 
         public DataTemplate StringTempalte { get; set; }
 

@@ -25,7 +25,6 @@ namespace StakeholderAnalysis.Visualization.ViewModels.OnionDiagramProperties
             }
         }
 
-
         public string Name
         {
             get => SelectedOnionDiagram?.Name ?? "";

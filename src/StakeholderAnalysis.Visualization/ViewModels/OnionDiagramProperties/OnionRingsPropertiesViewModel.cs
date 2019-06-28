@@ -47,7 +47,7 @@ namespace StakeholderAnalysis.Visualization.ViewModels.OnionDiagramProperties
 
         public ObservableCollection<ITreeNodeViewModel> Items { get; private set; }
 
-        public CollectionType CollectionType => CollectionType.CollectionList;
+        public CollectionType CollectionType => CollectionType.PropertyItemsCollection;
 
         public ICommand ToggleIsExpandedCommand => CommandFactory.CreateToggleIsExpandedCommand(this);
 

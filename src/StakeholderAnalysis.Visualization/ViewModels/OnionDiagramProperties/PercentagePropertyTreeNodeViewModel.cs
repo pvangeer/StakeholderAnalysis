@@ -1,4 +1,5 @@
-﻿using StakeholderAnalysis.Data.OnionDiagrams;
+﻿using System.ComponentModel;
+using StakeholderAnalysis.Data.OnionDiagrams;
 using StakeholderAnalysis.Visualization.ViewModels.PropertiesTree;
 
 namespace StakeholderAnalysis.Visualization.ViewModels.OnionDiagramProperties
@@ -15,6 +16,17 @@ namespace StakeholderAnalysis.Visualization.ViewModels.OnionDiagramProperties
                 Content.Percentage = value;
                 Content.OnPropertyChanged(nameof(OnionRing.Percentage));
             }
+        }
+
+        protected override void ContentPropertyChanged(object sender, PropertyChangedEventArgs e)
+        {
+            switch (e.PropertyName)
+            {
+                case nameof(OnionRing.Percentage):
+                    OnPropertyChanged(nameof(DoubleValue));
+                    break;
+            }
+            base.ContentPropertyChanged(sender, e);
         }
 
         public override bool IsViewModelFor(object o)

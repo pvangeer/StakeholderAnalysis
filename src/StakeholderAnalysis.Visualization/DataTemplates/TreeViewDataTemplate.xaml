@@ -4,11 +4,23 @@
                     xmlns:visualization="clr-namespace:StakeholderAnalysis.Visualization"
                     xmlns:xctk="http://schemas.xceed.com/wpf/xaml/toolkit"
                     xmlns:behaviors="clr-namespace:StakeholderAnalysis.Visualization.Behaviors"
-                    xmlns:converters="clr-namespace:StakeholderAnalysis.Visualization.Converters">
+                    xmlns:converters="clr-namespace:StakeholderAnalysis.Visualization.Converters"
+                    xmlns:projectExplorer="clr-namespace:StakeholderAnalysis.Visualization.ViewModels.ProjectExplorer"
+                    xmlns:data="clr-namespace:StakeholderAnalysis.Data;assembly=StakeholderAnalysis.Data"
+                    xmlns:System="clr-namespace:System;assembly=mscorlib">
 
     <ResourceDictionary.MergedDictionaries>
-        <ResourceDictionary Source="ProjectExplorer/ProjectExplorerButtonStyles.xaml"/>
+        <ResourceDictionary Source="TreeViewStyles.xaml"/>
     </ResourceDictionary.MergedDictionaries>
+
+    <ObjectDataProvider x:Key="StakeholderTypeIconStyles" MethodName="GetValues"
+                        ObjectType="{x:Type System:Enum}">
+        <ObjectDataProvider.MethodParameters>
+            <x:Type TypeName="data:StakeholderIconType"/>
+        </ObjectDataProvider.MethodParameters>
+    </ObjectDataProvider>
+
+    <converters:IconTypeToIconSourceConverter x:Key="IconTypeToIconSourceConverter" />
 
     <DataTemplate x:Key="ColorPropertyDataTemplate" DataType="propertiesTree:IColorPropertyTreeNodeViewModel">
         <xctk:ColorPicker 
@@ -38,7 +50,23 @@
             Text="{Binding StringValue, UpdateSourceTrigger=PropertyChanged}"/>
     </DataTemplate>
 
+    <DataTemplate x:Key="StakeholderTypeIconDataTemplate" DataType="projectExplorer:IStakeholderTypeIconPropertyTreeNodeViewModel">
+        <ComboBox
+            ItemsSource="{Binding Source={StaticResource StakeholderTypeIconStyles}}"
+            SelectedItem="{Binding IconTypeValue}">
+            <ComboBox.ItemTemplate>
+                <DataTemplate DataType="data:StakeholderIconType">
+                    <Image 
+                        Width="16"
+                        Height="16"
+                        Source="{Binding Converter={StaticResource IconTypeToIconSourceConverter}}"/>
+                </DataTemplate>
+            </ComboBox.ItemTemplate>
+        </ComboBox>
+    </DataTemplate>
+
     <visualization:PropertyValueTreeNodeTemplateSelector x:Key="PropertyValueContentTemplateSelector"
+                                                         StakeholderTypeIconDataTemplate="{StaticResource StakeholderTypeIconDataTemplate}"
                                                          CheckBoxTemplate="{StaticResource CheckBoxTemplate}"
                                                          StringTempalte="{StaticResource StringTemplate}"
                                                          ColorTemplate="{StaticResource ColorPropertyDataTemplate}"
@@ -51,7 +79,7 @@
     <DataTemplate x:Key="ITreeNodeItemDataTemplate" DataType="propertiesTree:ITreeNodeViewModel">
         <Border BorderThickness="0">
             <Border.Style>
-                <Style TargetType="Border" BasedOn="{StaticResource ExpandableElementBorderStyle}">
+                <Style TargetType="Border" BasedOn="{StaticResource TreeNodeBorderStyle}">
                     <Style.Triggers>
                         <DataTrigger Binding="{Binding CanOpen}" Value="True">
                             <Setter Property="behaviors:AttachInputBindingsBehavior.InputBindings">
@@ -116,7 +144,7 @@
     </DataTemplate>
 
     <DataTemplate x:Key="PropertyValueItemDataTemplate" DataType="propertiesTree:ITreeNodeViewModel">
-        <Border Style="{StaticResource ExpandableElementBorderStyle}">
+        <Border Style="{StaticResource TreeNodeBorderStyle}">
             <Grid>
                 <Grid.Resources>
                 </Grid.Resources>
@@ -159,7 +187,7 @@
                                 <DataTrigger Binding="{Binding CollectionType}" Value="{x:Static propertiesTree:CollectionType.PropertyValue}">
                                     <Setter Property="ItemTemplate" Value="{StaticResource PropertyValueItemDataTemplate}"/>
                                 </DataTrigger>
-                                <DataTrigger Binding="{Binding CollectionType}" Value="{x:Static propertiesTree:CollectionType.CollectionList}">
+                                <DataTrigger Binding="{Binding CollectionType}" Value="{x:Static propertiesTree:CollectionType.PropertyItemsCollection}">
                                     <Setter Property="ItemTemplate" Value="{DynamicResource IPropertyCollectionItemDataTemplate}"/>
                                 </DataTrigger>
                             </Style.Triggers>
