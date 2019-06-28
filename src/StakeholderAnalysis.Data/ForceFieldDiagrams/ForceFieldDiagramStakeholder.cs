@@ -16,7 +16,6 @@ namespace StakeholderAnalysis.Data.ForceFieldDiagrams
 
         public Stakeholder Stakeholder { get; }
 
-        // TODO: Store Rank
         public int Rank { get; set; }
 
         public double Interest
