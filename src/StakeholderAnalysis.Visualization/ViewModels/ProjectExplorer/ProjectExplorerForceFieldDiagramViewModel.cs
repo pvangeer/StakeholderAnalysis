@@ -1,4 +1,5 @@
-﻿using System.ComponentModel;
+﻿using System.Collections.ObjectModel;
+using System.ComponentModel;
 using System.Linq;
 using System.Windows.Input;
 using StakeholderAnalysis.Data;
@@ -9,17 +10,22 @@ using StakeholderAnalysis.Visualization.ViewModels.TwoAxisDiagrams;
 
 namespace StakeholderAnalysis.Visualization.ViewModels.ProjectExplorer
 {
-    public class ProjectExplorerForceFieldDiagramViewModel : ViewModelBase, ITreeNodeViewModel
+    public class ProjectExplorerForceFieldDiagramViewModel : ViewModelBase, IPropertyCollectionTreeNodeViewModel
     {
         private readonly ForceFieldDiagram diagram;
         private readonly Analysis analysis;
         private readonly ViewManager viewManager;
+        private bool isExpanded;
 
         public ProjectExplorerForceFieldDiagramViewModel(ViewModelFactory factory, Analysis analysis, ForceFieldDiagram forceFieldDiagram, ViewManager viewManager) : base(factory)
         {
             this.viewManager = viewManager;
             this.analysis = analysis;
             diagram = forceFieldDiagram;
+            Items = new ObservableCollection<ITreeNodeViewModel>
+            {
+                new StringPropertyTreeNodeViewModel(diagram, nameof(ForceFieldDiagram.Name), "Naam")
+            };
             if (diagram != null)
             {
                 diagram.PropertyChanged += DiagramPropertyChanged;
@@ -36,15 +42,7 @@ namespace StakeholderAnalysis.Visualization.ViewModels.ProjectExplorer
             }
         }
 
-        public string DisplayName
-        {
-            get => diagram.Name;
-            set
-            {
-                diagram.Name = value;
-                OnPropertyChanged(nameof(DisplayName));
-            }
-        }
+        public string DisplayName => diagram.Name;
 
         public bool CanRemove => true;
 
@@ -83,10 +81,22 @@ namespace StakeholderAnalysis.Visualization.ViewModels.ProjectExplorer
             return otherObject as ForceFieldDiagram == diagram;
         }
 
-        public bool IsExpandable => false;
+        public bool IsExpandable => true;
 
-        public bool IsExpanded { get; set; }
+        public bool IsExpanded
+        {
+            get => isExpanded;
+            set
+            {
+                isExpanded = value;
+                OnPropertyChanged(nameof(IsExpanded));
+            }
+        }
 
-        public ICommand ToggleIsExpandedCommand => null;
+        public ICommand ToggleIsExpandedCommand => CommandFactory.CreateToggleIsExpandedCommand(this);
+
+        public ObservableCollection<ITreeNodeViewModel> Items { get; }
+
+        public CollectionType CollectionType => CollectionType.PropertyValue;
     }
 }
