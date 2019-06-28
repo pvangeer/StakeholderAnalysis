@@ -6,7 +6,7 @@ using StakeholderAnalysis.Visualization.ViewModels.OnionDiagramProperties;
 
 namespace StakeholderAnalysis.Visualization.Converters
 {
-    public class BooleanToVisibilityConverter : IValueConverter
+    public class QuickSelectionToVisibilityConverter : IValueConverter
     {
         public object Convert(object value, Type targetType, object parameter, CultureInfo culture)
         {

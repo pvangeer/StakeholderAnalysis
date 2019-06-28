@@ -4,10 +4,11 @@ using System.Linq;
 using System.Windows.Input;
 using StakeholderAnalysis.Data;
 using StakeholderAnalysis.Data.ForceFieldDiagrams;
+using StakeholderAnalysis.Visualization.ViewModels.PropertiesTree;
 
 namespace StakeholderAnalysis.Visualization.ViewModels.ProjectExplorer
 {
-    public class ProjectExplorerForceFieldDiagramsViewModel : ViewModelBase, IExpandableDiagramCollectionViewModel
+    public class ProjectExplorerForceFieldDiagramsViewModel : ViewModelBase, IPropertyCollectionTreeNodeViewModel
     {
         private readonly Analysis analysis;
         private bool isExpanded = true;
@@ -17,14 +18,16 @@ namespace StakeholderAnalysis.Visualization.ViewModels.ProjectExplorer
             this.analysis = analysis;
             analysis.ForceFieldDiagrams.CollectionChanged += ForceFieldDiagramsCollectionChanged;
 
-            Diagrams = new ObservableCollection<IProjectExplorerDiagramViewModel>();
+            Items = new ObservableCollection<ITreeNodeViewModel>();
             foreach (var forceFieldDiagram in analysis.ForceFieldDiagrams)
             {
-                Diagrams.Add(ViewModelFactory.CreateProjectExplorerForceFieldDiagramViewModel(forceFieldDiagram));
+                Items.Add(ViewModelFactory.CreateProjectExplorerForceFieldDiagramViewModel(forceFieldDiagram));
             }
         }
 
-        public ObservableCollection<IProjectExplorerDiagramViewModel> Diagrams { get; }
+        public ObservableCollection<ITreeNodeViewModel> Items { get; }
+
+        public CollectionType CollectionType => CollectionType.CollectionList;
 
         public bool IsExpandable => true;
 
@@ -40,12 +43,29 @@ namespace StakeholderAnalysis.Visualization.ViewModels.ProjectExplorer
 
         public ICommand ToggleIsExpandedCommand => CommandFactory.CreateToggleIsExpandedCommand(this);
 
-        public ICommand AddNewDiagramCommand => CommandFactory.CreateCanAlwaysExecuteActionCommand(p =>
+        public bool CanAdd => true;
+
+        public ICommand AddItemCommand => CommandFactory.CreateCanAlwaysExecuteActionCommand(p =>
         {
             analysis.ForceFieldDiagrams.Add(new ForceFieldDiagram("Nieuw diagram"));
         });
 
+        public bool CanOpen => false;
+
+        public ICommand OpenViewCommand => null;
+
+        public bool IsViewModelFor(object o)
+        {
+            return false;
+        }
+
         public string DisplayName => "Krachtenveld diagrammen";
+
+        public string IconSourceString { get; }
+
+        public bool CanRemove => false;
+
+        public ICommand RemoveItemCommand => null;
 
         private void ForceFieldDiagramsCollectionChanged(object sender, NotifyCollectionChangedEventArgs e)
         {
@@ -53,7 +73,7 @@ namespace StakeholderAnalysis.Visualization.ViewModels.ProjectExplorer
             {
                 foreach (var forceFieldDiagram in e.NewItems.OfType<ForceFieldDiagram>())
                 {
-                    Diagrams.Add(ViewModelFactory.CreateProjectExplorerForceFieldDiagramViewModel(forceFieldDiagram));
+                    Items.Add(ViewModelFactory.CreateProjectExplorerForceFieldDiagramViewModel(forceFieldDiagram));
                 }
             }
 
@@ -61,10 +81,10 @@ namespace StakeholderAnalysis.Visualization.ViewModels.ProjectExplorer
             {
                 foreach (var forceFieldDiagram in e.OldItems.OfType<ForceFieldDiagram>())
                 {
-                    var diagramToRemove = Diagrams.FirstOrDefault(d => d.IsViewModelFor(forceFieldDiagram));
+                    var diagramToRemove = Items.FirstOrDefault(d => d.IsViewModelFor(forceFieldDiagram));
                     if (diagramToRemove != null)
                     {
-                        Diagrams.Remove(diagramToRemove);
+                        Items.Remove(diagramToRemove);
                     }
                 }
             }

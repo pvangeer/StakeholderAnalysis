@@ -5,10 +5,11 @@ using StakeholderAnalysis.Data;
 using StakeholderAnalysis.Data.OnionDiagrams;
 using StakeholderAnalysis.Gui;
 using StakeholderAnalysis.Visualization.ViewModels.OnionDiagramView;
+using StakeholderAnalysis.Visualization.ViewModels.PropertiesTree;
 
 namespace StakeholderAnalysis.Visualization.ViewModels.ProjectExplorer
 {
-    public class ProjectExplorerOnionDiagramViewModel : ViewModelBase, IProjectExplorerDiagramViewModel
+    public class ProjectExplorerOnionDiagramViewModel : ViewModelBase, ITreeNodeViewModel
     {
         private readonly OnionDiagram diagram;
         private readonly Analysis analysis;
@@ -30,22 +31,24 @@ namespace StakeholderAnalysis.Visualization.ViewModels.ProjectExplorer
             switch (e.PropertyName)
             {
                 case nameof(OnionDiagram.Name):
-                    OnPropertyChanged(nameof(Name));
+                    OnPropertyChanged(nameof(DisplayName));
                     break;
             }
         }
 
-        public string Name
+        public string DisplayName
         {
             get => diagram.Name;
-            set
+/*            set
             {
                 diagram.Name = value;
-                OnPropertyChanged(nameof(Name));
-            }
+                OnPropertyChanged(nameof(DisplayName));
+            }*/
         }
 
-        public ICommand RemoveDiagramCommand => CommandFactory.CreateCanAlwaysExecuteActionCommand(p =>
+        public bool CanRemove => true;
+
+        public ICommand RemoveItemCommand => CommandFactory.CreateCanAlwaysExecuteActionCommand(p =>
         {
             var viewInfo = viewManager?.Views.FirstOrDefault(vi => vi.ViewModel is OnionDiagramViewModel diagramViewModel1 && diagramViewModel1.IsViewModelFor(diagram));
             if (viewInfo != null)
@@ -55,7 +58,13 @@ namespace StakeholderAnalysis.Visualization.ViewModels.ProjectExplorer
             analysis.OnionDiagrams.Remove(diagram);
         });
 
-        public ICommand OpenViewForDiagramCommand => CommandFactory.CreateCanAlwaysExecuteActionCommand(p =>
+        public bool CanAdd => false;
+
+        public ICommand AddItemCommand => null;
+
+        public bool CanOpen => true;
+
+        public ICommand OpenViewCommand => CommandFactory.CreateCanAlwaysExecuteActionCommand(p =>
         {
             var viewInfo = viewManager.Views.FirstOrDefault(v =>
                 v.ViewModel is OnionDiagramViewModel diagramViewModel && diagramViewModel.IsViewModelFor(diagram));
@@ -74,5 +83,11 @@ namespace StakeholderAnalysis.Visualization.ViewModels.ProjectExplorer
         }
 
         public string IconSourceString => "pack://application:,,,/StakeholderAnalysis.Visualization;component/Resources/onion.png";
+
+        public bool IsExpandable => false;
+
+        public bool IsExpanded { get; set; }
+
+        public ICommand ToggleIsExpandedCommand => null;
     }
 }

@@ -4,10 +4,11 @@ using System.Linq;
 using System.Windows.Input;
 using StakeholderAnalysis.Data;
 using StakeholderAnalysis.Data.AttitudeImpactDiagrams;
+using StakeholderAnalysis.Visualization.ViewModels.PropertiesTree;
 
 namespace StakeholderAnalysis.Visualization.ViewModels.ProjectExplorer
 {
-    public class ProjectExplorerAttitudeImpactDiagramsViewModel : ViewModelBase, IExpandableDiagramCollectionViewModel
+    public class ProjectExplorerAttitudeImpactDiagramsViewModel : ViewModelBase, IPropertyCollectionTreeNodeViewModel
     {
         private readonly Analysis analysis;
         private bool isExpanded = true;
@@ -17,14 +18,16 @@ namespace StakeholderAnalysis.Visualization.ViewModels.ProjectExplorer
             this.analysis = analysis;
             analysis.AttitudeImpactDiagrams.CollectionChanged += AttitudeImpactDiagramsCollectionChanged;
 
-            Diagrams = new ObservableCollection<IProjectExplorerDiagramViewModel>();
+            Items = new ObservableCollection<ITreeNodeViewModel>();
             foreach (var forceFieldDiagram in analysis.AttitudeImpactDiagrams)
             {
-                Diagrams.Add(ViewModelFactory.CreateProjectExplorerDiagramViewModel(forceFieldDiagram));
+                Items.Add(ViewModelFactory.CreateProjectExplorerDiagramViewModel(forceFieldDiagram));
             }
         }
 
-        public ObservableCollection<IProjectExplorerDiagramViewModel> Diagrams { get; }
+        public ObservableCollection<ITreeNodeViewModel> Items { get; }
+
+        public CollectionType CollectionType => CollectionType.CollectionList;
 
         public bool IsExpandable => true;
 
@@ -40,12 +43,29 @@ namespace StakeholderAnalysis.Visualization.ViewModels.ProjectExplorer
 
         public ICommand ToggleIsExpandedCommand => CommandFactory.CreateToggleIsExpandedCommand(this);
 
-        public ICommand AddNewDiagramCommand => CommandFactory.CreateCanAlwaysExecuteActionCommand(p =>
+        public bool CanAdd => true;
+
+        public ICommand AddItemCommand => CommandFactory.CreateCanAlwaysExecuteActionCommand(p =>
         {
             analysis.AttitudeImpactDiagrams.Add(new AttitudeImpactDiagram("Nieuw diagram"));
         });
 
+        public bool CanOpen => false;
+
+        public ICommand OpenViewCommand => null;
+
+        public bool IsViewModelFor(object o)
+        {
+            return false;
+        }
+
         public string DisplayName => "Houding - impact";
+
+        public string IconSourceString { get; }
+
+        public bool CanRemove => false;
+
+        public ICommand RemoveItemCommand => null;
 
         private void AttitudeImpactDiagramsCollectionChanged(object sender, NotifyCollectionChangedEventArgs e)
         {
@@ -53,7 +73,7 @@ namespace StakeholderAnalysis.Visualization.ViewModels.ProjectExplorer
             {
                 foreach (var attitudeImpactDiagram in e.NewItems.OfType<AttitudeImpactDiagram>())
                 {
-                    Diagrams.Add(ViewModelFactory.CreateProjectExplorerDiagramViewModel(attitudeImpactDiagram));
+                    Items.Add(ViewModelFactory.CreateProjectExplorerDiagramViewModel(attitudeImpactDiagram));
                 }
             }
 
@@ -61,10 +81,10 @@ namespace StakeholderAnalysis.Visualization.ViewModels.ProjectExplorer
             {
                 foreach (var attitudeImpactDiagram in e.OldItems.OfType<AttitudeImpactDiagram>())
                 {
-                    var diagramToRemove = Diagrams.FirstOrDefault(d => d.IsViewModelFor(attitudeImpactDiagram));
+                    var diagramToRemove = Items.FirstOrDefault(d => d.IsViewModelFor(attitudeImpactDiagram));
                     if (diagramToRemove != null)
                     {
-                        Diagrams.Remove(diagramToRemove);
+                        Items.Remove(diagramToRemove);
                     }
                 }
             }

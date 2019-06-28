@@ -3,9 +3,9 @@
                     xmlns:projectExplorer="clr-namespace:StakeholderAnalysis.Visualization.ViewModels.ProjectExplorer">
 
     <ResourceDictionary.MergedDictionaries>
-        <ResourceDictionary Source="ProjectExplorerExpandableContentGroupDataTemplate.xaml"/>
         <ResourceDictionary Source="ProjectExplorerStakeholderOverviewTableDataTemplate.xaml"/>
         <ResourceDictionary Source="ProjectExplorerStakeholderTypesDataTemplate.xaml"/>
+        <ResourceDictionary Source="/StakeholderAnalysis.Visualization;Component/DataTemplates/TreeViewDataTemplate.xaml" />
     </ResourceDictionary.MergedDictionaries>
 
     <DataTemplate x:Key="ProjectExplorerDataTemplate" DataType="projectExplorer:ProjectExplorerViewModel">
@@ -13,16 +13,16 @@
             <StackPanel Orientation="Vertical">
                 <ContentPresenter 
                     Content="{Binding OnionDiagramsViewModel}" 
-                    ContentTemplate="{StaticResource ProjectExplorerExpandableDiagramCollectionDataTemplate}"/>
+                    ContentTemplate="{StaticResource IPropertyCollectionItemDataTemplate}"/>
                 <ContentPresenter 
                     Content="{Binding ForceFieldDiagramsViewModel}" 
-                    ContentTemplate="{StaticResource ProjectExplorerExpandableDiagramCollectionDataTemplate}"/>
+                    ContentTemplate="{StaticResource IPropertyCollectionItemDataTemplate}"/>
                 <ContentPresenter 
                     Content="{Binding AttitudeImpactDiagramsViewModel}" 
-                    ContentTemplate="{StaticResource ProjectExplorerExpandableDiagramCollectionDataTemplate}"/>
+                    ContentTemplate="{StaticResource IPropertyCollectionItemDataTemplate}"/>
                 <ContentPresenter
                     Content="{Binding StakeholderOverviewTableViewModel}"
-                    ContentTemplate="{StaticResource ProjectExplorerStakeholderOverviewTableDataTemplate}"/>
+                    ContentTemplate="{StaticResource IPropertyCollectionItemDataTemplate}"/>
                 <ContentPresenter
                     Content="{Binding StakeholderTypesViewModel}"
                     ContentTemplate="{StaticResource ProjectExplorerStakeholderTypesDataTemplate}"/>

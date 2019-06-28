@@ -4,11 +4,12 @@ using System.Windows.Input;
 using StakeholderAnalysis.Data;
 using StakeholderAnalysis.Data.ForceFieldDiagrams;
 using StakeholderAnalysis.Gui;
+using StakeholderAnalysis.Visualization.ViewModels.PropertiesTree;
 using StakeholderAnalysis.Visualization.ViewModels.TwoAxisDiagrams;
 
 namespace StakeholderAnalysis.Visualization.ViewModels.ProjectExplorer
 {
-    public class ProjectExplorerForceFieldDiagramViewModel : ViewModelBase, IProjectExplorerDiagramViewModel
+    public class ProjectExplorerForceFieldDiagramViewModel : ViewModelBase, ITreeNodeViewModel
     {
         private readonly ForceFieldDiagram diagram;
         private readonly Analysis analysis;
@@ -30,22 +31,24 @@ namespace StakeholderAnalysis.Visualization.ViewModels.ProjectExplorer
             switch (e.PropertyName)
             {
                 case nameof(ForceFieldDiagram.Name):
-                    OnPropertyChanged(nameof(Name));
+                    OnPropertyChanged(nameof(DisplayName));
                     break;
             }
         }
 
-        public string Name
+        public string DisplayName
         {
             get => diagram.Name;
             set
             {
                 diagram.Name = value;
-                OnPropertyChanged(nameof(Name));
+                OnPropertyChanged(nameof(DisplayName));
             }
         }
 
-        public ICommand RemoveDiagramCommand => CommandFactory.CreateCanAlwaysExecuteActionCommand(p =>
+        public bool CanRemove => true;
+
+        public ICommand RemoveItemCommand => CommandFactory.CreateCanAlwaysExecuteActionCommand(p =>
         {
             var viewInfo = viewManager?.Views.FirstOrDefault(vi => vi.ViewModel is ForceFieldDiagramViewModel diagramViewModel1 && diagramViewModel1.IsViewModelFor(diagram));
             if (viewInfo != null)
@@ -55,7 +58,13 @@ namespace StakeholderAnalysis.Visualization.ViewModels.ProjectExplorer
             analysis.ForceFieldDiagrams.Remove(diagram);
         });
 
-        public ICommand OpenViewForDiagramCommand => CommandFactory.CreateCanAlwaysExecuteActionCommand(p =>
+        public bool CanAdd => false;
+
+        public ICommand AddItemCommand => null;
+
+        public bool CanOpen => true;
+
+        public ICommand OpenViewCommand => CommandFactory.CreateCanAlwaysExecuteActionCommand(p =>
         {
             var viewInfo = viewManager.Views.FirstOrDefault(v =>
                 v.ViewModel is ForceFieldDiagramViewModel diagramViewModel && diagramViewModel.IsViewModelFor(diagram));
@@ -73,5 +82,11 @@ namespace StakeholderAnalysis.Visualization.ViewModels.ProjectExplorer
         {
             return otherObject as ForceFieldDiagram == diagram;
         }
+
+        public bool IsExpandable => false;
+
+        public bool IsExpanded { get; set; }
+
+        public ICommand ToggleIsExpandedCommand => null;
     }
 }

@@ -1,24 +1,35 @@
-﻿using System;
-using System.Linq;
+﻿using System.Linq;
 using System.Windows.Input;
-using StakeholderAnalysis.Data;
 using StakeholderAnalysis.Gui;
+using StakeholderAnalysis.Visualization.ViewModels.PropertiesTree;
 using StakeholderAnalysis.Visualization.ViewModels.StakeholderTableView;
 
 namespace StakeholderAnalysis.Visualization.ViewModels.ProjectExplorer
 {
-    public class ProjectExplorerStakeholderOverviewTableViewModel : ViewModelBase 
+    public class ProjectExplorerStakeholderOverviewTableViewModel : ViewModelBase, ITreeNodeViewModel
     {
         private readonly ViewManager viewManager;
 
-        public ProjectExplorerStakeholderOverviewTableViewModel(ViewModelFactory factory, Analysis analysis, ViewManager viewManager) : base(factory)
+        public ProjectExplorerStakeholderOverviewTableViewModel(ViewModelFactory factory, ViewManager viewManager) : base(factory)
         {
             this.viewManager = viewManager;
         }
 
-        public ICommand OpenStakeholderTableViewCommand => new OpenStakeholderTableViewCommand(this);
+        public string DisplayName => "Stakeholders";
 
-        public void OpenDiagramInDocumentView()
+        public string IconSourceString => "pack://application:,,,/StakeholderAnalysis.Visualization;component/Resources/table.png";
+
+        public bool CanRemove => false;
+
+        public ICommand RemoveItemCommand => null;
+
+        public bool CanAdd => false;
+
+        public ICommand AddItemCommand => null;
+
+        public bool CanOpen => true;
+
+        public ICommand OpenViewCommand => CommandFactory.CreateCanAlwaysExecuteActionCommand(o =>
         {
             var viewInfo = viewManager.Views.FirstOrDefault(v => v.ViewModel is StakeholderTableViewModel);
             if (viewInfo == null)
@@ -27,28 +38,17 @@ namespace StakeholderAnalysis.Visualization.ViewModels.ProjectExplorer
                 viewManager.OpenView(viewInfo);
             }
             viewManager.BringToFront(viewInfo);
-        }
-    }
+        });
 
-    public class OpenStakeholderTableViewCommand : ICommand
-    {
-        private readonly ProjectExplorerStakeholderOverviewTableViewModel viewModel;
-
-        public OpenStakeholderTableViewCommand(ProjectExplorerStakeholderOverviewTableViewModel viewModel)
+        public bool IsViewModelFor(object o)
         {
-            this.viewModel = viewModel;
+            return false;
         }
 
-        public bool CanExecute(object parameter)
-        {
-            return true;
-        }
+        public bool IsExpandable => false;
 
-        public void Execute(object parameter)
-        {
-            viewModel.OpenDiagramInDocumentView();
-        }
+        public bool IsExpanded { get; set; }
 
-        public event EventHandler CanExecuteChanged;
+        public ICommand ToggleIsExpandedCommand => null;
     }
 }

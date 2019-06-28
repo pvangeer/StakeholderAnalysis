@@ -1,4 +1,5 @@
 ﻿using System.Linq;
+using System.Net.NetworkInformation;
 using StakeholderAnalysis.Data;
 using StakeholderAnalysis.Data.AttitudeImpactDiagrams;
 using StakeholderAnalysis.Data.ForceFieldDiagrams;
@@ -8,6 +9,7 @@ using StakeholderAnalysis.Visualization.Behaviors;
 using StakeholderAnalysis.Visualization.ViewModels.OnionDiagramProperties;
 using StakeholderAnalysis.Visualization.ViewModels.OnionDiagramView;
 using StakeholderAnalysis.Visualization.ViewModels.ProjectExplorer;
+using StakeholderAnalysis.Visualization.ViewModels.PropertiesTree;
 using StakeholderAnalysis.Visualization.ViewModels.Ribbon;
 using StakeholderAnalysis.Visualization.ViewModels.StakeholderTableView;
 using StakeholderAnalysis.Visualization.ViewModels.StatusBar;
@@ -114,7 +116,7 @@ namespace StakeholderAnalysis.Visualization.ViewModels
             return new ProjectExplorerForceFieldDiagramsViewModel(this, Analysis);
         }
 
-        public IProjectExplorerDiagramViewModel CreateProjectExplorerForceFieldDiagramViewModel(ForceFieldDiagram forceFieldDiagram)
+        public ITreeNodeViewModel CreateProjectExplorerForceFieldDiagramViewModel(ForceFieldDiagram forceFieldDiagram)
         {
             return new ProjectExplorerForceFieldDiagramViewModel(this, Analysis, forceFieldDiagram, ViewManager);
         }
@@ -124,9 +126,9 @@ namespace StakeholderAnalysis.Visualization.ViewModels
             return new ProjectExplorerAttitudeImpactDiagramsViewModel(this, Analysis);
         }
 
-        public IProjectExplorerDiagramViewModel CreateProjectExplorerDiagramViewModel(AttitudeImpactDiagram forceFieldDiagram)
+        public ITreeNodeViewModel CreateProjectExplorerDiagramViewModel(AttitudeImpactDiagram forceFieldDiagram)
         {
-            return new ProjectExplorerDiagramViewModel(this, Analysis, forceFieldDiagram, ViewManager);
+            return new ProjectExplorerAttitudeImpactDiagramViewModel(this, Analysis, forceFieldDiagram, ViewManager);
         }
 
         public AttitudeImpactDiagramViewModel CrateAttitudeImpactDiagramViewModel(AttitudeImpactDiagram diagram)
@@ -186,7 +188,7 @@ namespace StakeholderAnalysis.Visualization.ViewModels
 
         public ProjectExplorerStakeholderOverviewTableViewModel CreateProjectExplorerStakeholderOverviewTableViewModel()
         {
-            return new ProjectExplorerStakeholderOverviewTableViewModel(this, Analysis, ViewManager);
+            return new ProjectExplorerStakeholderOverviewTableViewModel(this, ViewManager);
         }
 
         public ProjectExplorerOnionDiagramsViewModel CreateProjectExplorerOnionDiagramsViewModel()
@@ -199,7 +201,7 @@ namespace StakeholderAnalysis.Visualization.ViewModels
             return new OnionDiagramViewModel(this, diagram);
         }
 
-        public IProjectExplorerDiagramViewModel CreateProjectExplorerOnionDiagramViewModel(OnionDiagram analysisOnionDiagram)
+        public ITreeNodeViewModel CreateProjectExplorerOnionDiagramViewModel(OnionDiagram analysisOnionDiagram)
         {
             return new ProjectExplorerOnionDiagramViewModel(this, Analysis, analysisOnionDiagram, ViewManager);
         }

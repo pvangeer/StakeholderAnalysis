@@ -4,10 +4,11 @@ using System.Linq;
 using System.Windows.Input;
 using StakeholderAnalysis.Data;
 using StakeholderAnalysis.Data.OnionDiagrams;
+using StakeholderAnalysis.Visualization.ViewModels.PropertiesTree;
 
 namespace StakeholderAnalysis.Visualization.ViewModels.ProjectExplorer
 {
-    public class ProjectExplorerOnionDiagramsViewModel : ViewModelBase, IExpandableDiagramCollectionViewModel
+    public class ProjectExplorerOnionDiagramsViewModel : ViewModelBase, IPropertyCollectionTreeNodeViewModel
     {
         private readonly Analysis analysis;
         private bool isExpanded = true;
@@ -17,14 +18,16 @@ namespace StakeholderAnalysis.Visualization.ViewModels.ProjectExplorer
             this.analysis = analysis;
             analysis.OnionDiagrams.CollectionChanged += OnionDiagramsCollectionChanged;
 
-            Diagrams = new ObservableCollection<IProjectExplorerDiagramViewModel>();
+            Items = new ObservableCollection<ITreeNodeViewModel>();
             foreach (var analysisOnionDiagram in analysis.OnionDiagrams)
             {
-                Diagrams.Add(ViewModelFactory.CreateProjectExplorerOnionDiagramViewModel(analysisOnionDiagram));
+                Items.Add(ViewModelFactory.CreateProjectExplorerOnionDiagramViewModel(analysisOnionDiagram));
             }
         }
 
-        public ObservableCollection<IProjectExplorerDiagramViewModel> Diagrams { get; }
+        public ObservableCollection<ITreeNodeViewModel> Items { get; }
+
+        public CollectionType CollectionType => CollectionType.CollectionList;
 
         public bool IsExpandable => true;
 
@@ -40,12 +43,29 @@ namespace StakeholderAnalysis.Visualization.ViewModels.ProjectExplorer
 
         public ICommand ToggleIsExpandedCommand => CommandFactory.CreateToggleIsExpandedCommand(this);
 
-        public ICommand AddNewDiagramCommand => CommandFactory.CreateCanAlwaysExecuteActionCommand(p =>
+        public bool CanAdd => true;
+
+        public ICommand AddItemCommand => CommandFactory.CreateCanAlwaysExecuteActionCommand(p =>
         {
             analysis.OnionDiagrams.Add(new OnionDiagram("Nieuw diagram"));
         });
 
+        public bool CanOpen => false;
+
+        public ICommand OpenViewCommand => null;
+
+        public bool IsViewModelFor(object o)
+        {
+            return false;
+        }
+
         public string DisplayName => "Ui-diagrammen";
+
+        public string IconSourceString { get; }
+
+        public bool CanRemove => false;
+
+        public ICommand RemoveItemCommand => null;
 
         private void OnionDiagramsCollectionChanged(object sender, NotifyCollectionChangedEventArgs e)
         {
@@ -53,7 +73,7 @@ namespace StakeholderAnalysis.Visualization.ViewModels.ProjectExplorer
             {
                 foreach (var onionDiagram in e.NewItems.OfType<OnionDiagram>())
                 {
-                    Diagrams.Add(ViewModelFactory.CreateProjectExplorerOnionDiagramViewModel(onionDiagram));
+                    Items.Add(ViewModelFactory.CreateProjectExplorerOnionDiagramViewModel(onionDiagram));
                 }
             }
 
@@ -61,10 +81,10 @@ namespace StakeholderAnalysis.Visualization.ViewModels.ProjectExplorer
             {
                 foreach (var onionDiagram in e.OldItems.OfType<OnionDiagram>())
                 {
-                    var diagramToRemove = Diagrams.FirstOrDefault(d => d.IsViewModelFor(onionDiagram));
+                    var diagramToRemove = Items.FirstOrDefault(d => d.IsViewModelFor(onionDiagram));
                     if (diagramToRemove != null)
                     {
-                        Diagrams.Remove(diagramToRemove);
+                        Items.Remove(diagramToRemove);
                     }
                 }
             }

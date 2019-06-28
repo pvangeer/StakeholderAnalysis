@@ -36,8 +36,8 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Behaviors\AttachInputBindingsBehavior.cs" />
-    <Compile Include="Converters\BooleanToVisibilityConverter.cs" />
-    <Compile Include="PropertyCollectionTemplateSelector.cs" />
+    <Compile Include="Converters\QuickSelectionToVisibilityConverter.cs" />
+    <Compile Include="Converters\SourceStringToVisibilityConverter.cs" />
     <Compile Include="ViewModels\OnionDiagramProperties\NamePropertyTreeNodeViewModel.cs" />
     <Compile Include="ViewModels\OnionDiagramProperties\VisibilityPropertyTreeNodeViewModel.cs" />
     <Compile Include="ViewModels\OnionDiagramProperties\BackgroundColorPropertyTreeNodeViewModel.cs" />
@@ -108,7 +108,7 @@
     <Compile Include="ViewModels\ProjectExplorer\IProjectExplorerDiagramViewModel.cs" />
     <Compile Include="ViewModels\ProjectExplorer\ProjectExplorerAttitudeImpactDiagramsViewModel.cs" />
     <Compile Include="ViewModels\ProjectExplorer\ProjectExplorerForceFieldDiagramsViewModel.cs" />
-    <Compile Include="ViewModels\ProjectExplorer\ProjectExplorerDiagramViewModel.cs" />
+    <Compile Include="ViewModels\ProjectExplorer\ProjectExplorerAttitudeImpactDiagramViewModel.cs" />
     <Compile Include="ViewModels\ProjectExplorer\ProjectExplorerForceFieldDiagramViewModel.cs" />
     <Compile Include="ViewModels\ProjectExplorer\ProjectExplorerStakeholderOverviewTableViewModel.cs" />
     <Compile Include="ViewModels\ProjectExplorer\StakeholderTypesViewModel.cs" />
@@ -185,10 +185,6 @@
     <Page Include="DataTemplates\OnionDiagram\OnionDiagramConnectionDrawingCanvasDataTemplate.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
-    </Page>
-    <Page Include="DataTemplates\ProjectExplorer\ProjectExplorerExpandableContentGroupDataTemplate.xaml">
-      <Generator>MSBuild:Compile</Generator>
-      <SubType>Designer</SubType>
     </Page>
     <Page Include="DataTemplates\ProjectExplorer\ProjectExplorerStakeholderOverviewTableDataTemplate.xaml">
       <SubType>Designer</SubType>
