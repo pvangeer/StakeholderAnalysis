@@ -8,9 +8,6 @@ namespace StakeholderAnalysis.Visualization.ViewModels.ProjectExplorer
         public ProjectExplorerViewModel(ViewModelFactory factory, StakeholderAnalysisGui gui) : base(factory)
         {
             gui.PropertyChanged += GuiPropertyChanged;
-            OnionDiagramsViewModel = ViewModelFactory.CreateProjectExplorerOnionDiagramsViewModel();
-            ForceFieldDiagramsViewModel = ViewModelFactory.CreateProjectExplorerForceFieldDiagramsViewModel();
-            AttitudeImpactDiagramsViewModel = ViewModelFactory.CreateProjectExplorerAttitudeImpactDiagramsViewModel();
         }
 
         private void GuiPropertyChanged(object sender, PropertyChangedEventArgs e)
@@ -27,11 +24,11 @@ namespace StakeholderAnalysis.Visualization.ViewModels.ProjectExplorer
             }
         }
 
-        public ProjectExplorerOnionDiagramsViewModel OnionDiagramsViewModel { get; }
+        public ProjectExplorerOnionDiagramsViewModel OnionDiagramsViewModel => ViewModelFactory.CreateProjectExplorerOnionDiagramsViewModel();
 
-        public ProjectExplorerForceFieldDiagramsViewModel ForceFieldDiagramsViewModel { get; }
+        public ProjectExplorerForceFieldDiagramsViewModel ForceFieldDiagramsViewModel => ViewModelFactory.CreateProjectExplorerForceFieldDiagramsViewModel();
 
-        public ProjectExplorerAttitudeImpactDiagramsViewModel AttitudeImpactDiagramsViewModel { get; }
+        public ProjectExplorerAttitudeImpactDiagramsViewModel AttitudeImpactDiagramsViewModel => ViewModelFactory.CreateProjectExplorerAttitudeImpactDiagramsViewModel();
 
         public ProjectExplorerStakeholderOverviewTableViewModel StakeholderOverviewTableViewModel => ViewModelFactory.CreateProjectExplorerStakeholderOverviewTableViewModel();
 

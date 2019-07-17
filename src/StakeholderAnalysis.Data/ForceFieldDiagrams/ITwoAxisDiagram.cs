@@ -6,7 +6,9 @@ namespace StakeholderAnalysis.Data.ForceFieldDiagrams
     {
         string Name { get; }
 
-        Brush BackgroundBrush { get; set; }
+        Color BrushStartColor { get; set; }
+
+        Color BrushEndColor { get; set; }
 
         string BackgroundTextLeftTop { get; set; }
 

@@ -11,7 +11,8 @@ namespace StakeholderAnalysis.Data.AttitudeImpactDiagrams
         {
             Name = name;
             Stakeholders = new ObservableCollection<AttitudeImpactDiagramStakeholder>();
-            BackgroundBrush = new LinearGradientBrush(Colors.LightYellow, Colors.PaleVioletRed, new Point(0, 0), new Point(1, 1));
+            BrushStartColor = Colors.LightYellow;
+            BrushEndColor = Colors.PaleVioletRed;
             BackgroundTextLeftTop = "Informeren";
             BackgroundTextLeftBottom = "Monitoren";
             BackgroundTextRightTop = "Betrekken";
@@ -26,7 +27,9 @@ namespace StakeholderAnalysis.Data.AttitudeImpactDiagrams
 
         public string Name { get; set; }
 
-        public Brush BackgroundBrush { get; set; }
+        public Color BrushStartColor { get; set; }
+
+        public Color BrushEndColor { get; set; }
 
         public string BackgroundTextLeftTop { get; set; }
 

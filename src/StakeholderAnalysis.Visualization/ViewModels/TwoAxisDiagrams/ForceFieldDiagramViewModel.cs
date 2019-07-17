@@ -2,6 +2,7 @@
 using System.Collections.Specialized;
 using System.ComponentModel;
 using System.Linq;
+using System.Windows;
 using System.Windows.Input;
 using System.Windows.Media;
 using StakeholderAnalysis.Data.ForceFieldDiagrams;
@@ -31,7 +32,7 @@ namespace StakeholderAnalysis.Visualization.ViewModels.TwoAxisDiagrams
 
         // TODO: Retrieve and store this property on the datamodel and make it editable
 
-        public Brush BackgroundBrush => diagram.BackgroundBrush;
+        public Brush BackgroundBrush => new LinearGradientBrush(diagram.BrushStartColor, diagram.BrushEndColor, new Point(0, 1), new Point(1, 0));
 
         public string BackgroundTextLeftTop => diagram.BackgroundTextLeftTop;
 
@@ -91,7 +92,8 @@ namespace StakeholderAnalysis.Visualization.ViewModels.TwoAxisDiagrams
         {
             switch (e.PropertyName)
             {
-                case nameof(ForceFieldDiagram.BackgroundBrush):
+                case nameof(ForceFieldDiagram.BrushStartColor):
+                case nameof(ForceFieldDiagram.BrushEndColor):
                     OnPropertyChanged(nameof(BackgroundBrush));
                     break;
                 case nameof(ForceFieldDiagram.BackgroundTextLeftTop):

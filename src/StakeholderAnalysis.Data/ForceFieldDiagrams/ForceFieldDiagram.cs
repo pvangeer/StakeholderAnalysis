@@ -10,7 +10,8 @@ namespace StakeholderAnalysis.Data.ForceFieldDiagrams
         {
             Name = name;
             Stakeholders = new ObservableCollection<ForceFieldDiagramStakeholder>();
-            BackgroundBrush = new LinearGradientBrush(Colors.PowderBlue, Colors.LightGreen, new Point(0, 1), new Point(1, 0));
+            BrushStartColor = Colors.PowderBlue;
+            BrushEndColor = Colors.LightGreen;
             BackgroundTextLeftTop = "Consulteren";
             BackgroundTextLeftBottom = "Monitoren";
             BackgroundTextRightTop = "Betrekken";
@@ -27,7 +28,9 @@ namespace StakeholderAnalysis.Data.ForceFieldDiagrams
 
         public ObservableCollection<ForceFieldDiagramStakeholder> Stakeholders { get; }
 
-        public Brush BackgroundBrush { get; set; }
+        public Color BrushStartColor { get; set; }
+
+        public Color BrushEndColor { get; set; }
 
         public string BackgroundTextLeftTop { get; set; }
 

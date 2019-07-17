@@ -2,6 +2,7 @@
 using System.Collections.Specialized;
 using System.ComponentModel;
 using System.Linq;
+using System.Windows;
 using System.Windows.Input;
 using System.Windows.Media;
 using StakeholderAnalysis.Data.AttitudeImpactDiagrams;
@@ -38,7 +39,7 @@ namespace StakeholderAnalysis.Visualization.ViewModels.TwoAxisDiagrams
                         viewModel.IsViewModelFor(stakeholder.Stakeholder)));
         }
 
-        public Brush BackgroundBrush => diagram.BackgroundBrush;
+        public Brush BackgroundBrush => new LinearGradientBrush(diagram.BrushStartColor, diagram.BrushEndColor, new Point(0,0), new Point(1,1));
 
         public string BackgroundTextLeftTop => diagram.BackgroundTextLeftTop;
 
@@ -86,7 +87,8 @@ namespace StakeholderAnalysis.Visualization.ViewModels.TwoAxisDiagrams
         {
             switch (e.PropertyName)
             {
-                case nameof(AttitudeImpactDiagram.BackgroundBrush):
+                case nameof(AttitudeImpactDiagram.BrushStartColor):
+                case nameof(AttitudeImpactDiagram.BrushEndColor):
                     OnPropertyChanged(nameof(BackgroundBrush));
                     break;
                 case nameof(AttitudeImpactDiagram.BackgroundTextLeftTop):
