@@ -5,6 +5,8 @@ using StakeholderAnalysis.Data.ForceFieldDiagrams;
 using StakeholderAnalysis.Data.OnionDiagrams;
 using StakeholderAnalysis.Gui;
 using StakeholderAnalysis.Visualization.Behaviors;
+using StakeholderAnalysis.Visualization.ViewModels.AttitudeImpactDiagramProperties;
+using StakeholderAnalysis.Visualization.ViewModels.ForceFieldDiagramProperties;
 using StakeholderAnalysis.Visualization.ViewModels.OnionDiagramProperties;
 using StakeholderAnalysis.Visualization.ViewModels.OnionDiagramView;
 using StakeholderAnalysis.Visualization.ViewModels.ProjectExplorer;
@@ -88,6 +90,16 @@ namespace StakeholderAnalysis.Visualization.ViewModels
         public OnionDiagramPropertiesViewModel CreateOnionDiagramPropertiesViewModel()
         {
             return new OnionDiagramPropertiesViewModel(this, ViewManager);
+        }
+
+        public ForceFieldDiagramPropertiesViewModel CreateForceFieldDiagramPropertiesViewModel()
+        {
+            return new ForceFieldDiagramPropertiesViewModel(this, ViewManager);
+        }
+
+        public AttitudeImpactDiagramPropertiesViewModel CreateAttitudeImpactDiagramPropertiesViewModel()
+        {
+            return new AttitudeImpactDiagramPropertiesViewModel(this, ViewManager);
         }
 
         public ProjectExplorerViewModel CreateProjectExplorerViewModel()
@@ -208,6 +220,11 @@ namespace StakeholderAnalysis.Visualization.ViewModels
         public StakeholderTableViewModel CreateStakeholderTableViewModel()
         {
             return new StakeholderTableViewModel(this, Analysis);
+        }
+
+        public TwoAxisDiagramTextsViewModel CreateTextsViewModel(ITwoAxisDiagram twoAxisDiagram)
+        {
+            return new TwoAxisDiagramTextsViewModel(this, twoAxisDiagram);
         }
     }
 }

@@ -1,7 +1,7 @@
 ﻿using System.Collections.ObjectModel;
 using System.Collections.Specialized;
+using System.ComponentModel;
 using System.Linq;
-using System.Windows;
 using System.Windows.Input;
 using System.Windows.Media;
 using StakeholderAnalysis.Data.AttitudeImpactDiagrams;
@@ -18,7 +18,8 @@ namespace StakeholderAnalysis.Visualization.ViewModels.TwoAxisDiagrams
             diagram = attitudeImpactDiagram;
             if (attitudeImpactDiagram != null)
             {
-                attitudeImpactDiagram.Stakeholders.CollectionChanged += StakeholdersCollectionChanged;
+                diagram.PropertyChanged += DiagramPropertyChanged;
+                diagram.Stakeholders.CollectionChanged += StakeholdersCollectionChanged;
                 PositionedStakeholders = new ObservableCollection<IPositionedStakeholderViewModel>(attitudeImpactDiagram.Stakeholders.Select(stakeholder => ViewModelFactory.CreateAttitudeImpactDiagramStakeholderViewModel(diagram, stakeholder, this)));
             }
         }
@@ -37,23 +38,23 @@ namespace StakeholderAnalysis.Visualization.ViewModels.TwoAxisDiagrams
                         viewModel.IsViewModelFor(stakeholder.Stakeholder)));
         }
 
-        public Brush BackgroundBrush => new LinearGradientBrush(Colors.LightYellow, Colors.PaleVioletRed, new Point(0,0), new Point(1,1));
+        public Brush BackgroundBrush => diagram.BackgroundBrush;
 
-        public string BackgroundTextLeftTop => "Informeren";
+        public string BackgroundTextLeftTop => diagram.BackgroundTextLeftTop;
 
-        public string BackgroundTextRightTop => "Betrekken";
+        public string BackgroundTextRightTop => diagram.BackgroundTextRightTop;
 
-        public string BackgroundTextLeftBottom => "Monitoren";
+        public string BackgroundTextLeftBottom => diagram.BackgroundTextLeftBottom;
 
-        public string BackgroundTextRightBottom => "Overtuigen";
+        public string BackgroundTextRightBottom => diagram.BackgroundTextRightBottom;
 
-        public string YAxisMaxLabel => "Positief";
+        public string YAxisMaxLabel => diagram.YAxisMaxLabel;
 
-        public string YAxisMinLabel => "Negatief";
+        public string YAxisMinLabel => diagram.YAxisMinLabel;
 
-        public string XAxisMaxLabel => "Hoge impact";
+        public string XAxisMaxLabel => diagram.XAxisMaxLabel;
 
-        public string XAxisMinLabel => "Lage impact";
+        public string XAxisMinLabel => diagram.XAxisMinLabel;
 
         public ICommand GridClickedCommand => CommandFactory.CreateClearSelectionCommand(this);
 
@@ -79,6 +80,40 @@ namespace StakeholderAnalysis.Visualization.ViewModels.TwoAxisDiagrams
         public AttitudeImpactDiagram GetDiagram()
         {
             return diagram;
+        }
+
+        private void DiagramPropertyChanged(object sender, PropertyChangedEventArgs e)
+        {
+            switch (e.PropertyName)
+            {
+                case nameof(AttitudeImpactDiagram.BackgroundBrush):
+                    OnPropertyChanged(nameof(BackgroundBrush));
+                    break;
+                case nameof(AttitudeImpactDiagram.BackgroundTextLeftTop):
+                    OnPropertyChanged(nameof(BackgroundTextLeftTop));
+                    break;
+                case nameof(AttitudeImpactDiagram.BackgroundTextRightTop):
+                    OnPropertyChanged(nameof(BackgroundTextRightTop));
+                    break;
+                case nameof(AttitudeImpactDiagram.BackgroundTextLeftBottom):
+                    OnPropertyChanged(nameof(BackgroundTextLeftBottom));
+                    break;
+                case nameof(AttitudeImpactDiagram.BackgroundTextRightBottom):
+                    OnPropertyChanged(nameof(BackgroundTextRightBottom));
+                    break;
+                case nameof(AttitudeImpactDiagram.YAxisMaxLabel):
+                    OnPropertyChanged(nameof(YAxisMaxLabel));
+                    break;
+                case nameof(AttitudeImpactDiagram.YAxisMinLabel):
+                    OnPropertyChanged(nameof(YAxisMinLabel));
+                    break;
+                case nameof(AttitudeImpactDiagram.XAxisMaxLabel):
+                    OnPropertyChanged(nameof(XAxisMaxLabel));
+                    break;
+                case nameof(AttitudeImpactDiagram.XAxisMinLabel):
+                    OnPropertyChanged(nameof(XAxisMinLabel));
+                    break;
+            }
         }
     }
 }

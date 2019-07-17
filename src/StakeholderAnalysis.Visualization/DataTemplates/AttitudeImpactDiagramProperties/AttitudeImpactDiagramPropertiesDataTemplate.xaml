@@ -1,0 +1,24 @@
+﻿<ResourceDictionary xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+                    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+                    xmlns:attitudeImpactDiagramProperties="clr-namespace:StakeholderAnalysis.Visualization.ViewModels.AttitudeImpactDiagramProperties">
+
+    <ResourceDictionary.MergedDictionaries>
+        <ResourceDictionary Source="/StakeholderAnalysis.Visualization;Component/DataTemplates/TreeViewDataTemplate.xaml" />
+    </ResourceDictionary.MergedDictionaries>
+
+    <DataTemplate x:Key="AttitudeImpactDiagramPropertiesDataTemplate" DataType="attitudeImpactDiagramProperties:AttitudeImpactDiagramPropertiesViewModel">
+        <Grid>
+            <StackPanel Orientation="Vertical">
+                <ContentPresenter 
+                    Content="{Binding TextsViewModel}" 
+                    ContentTemplate="{StaticResource IPropertyCollectionItemDataTemplate}"/>
+                <!--<ContentPresenter 
+                    Content="{Binding OnionRingsViewModel}" 
+                    ContentTemplate="{StaticResource IPropertyCollectionItemDataTemplate}"/>
+                <ContentPresenter 
+                    Content="{Binding ConnectionGroupsViewModel}" 
+                    ContentTemplate="{StaticResource IPropertyCollectionItemDataTemplate}"/>-->
+            </StackPanel>
+        </Grid>
+    </DataTemplate>
+</ResourceDictionary>

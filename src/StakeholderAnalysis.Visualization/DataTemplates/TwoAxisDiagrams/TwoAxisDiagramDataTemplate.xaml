@@ -3,13 +3,11 @@
                     xmlns:converters="clr-namespace:StakeholderAnalysis.Visualization.Converters"
                     xmlns:system="clr-namespace:System;assembly=mscorlib"
                     xmlns:twoAxisDiagrams="clr-namespace:StakeholderAnalysis.Visualization.ViewModels.TwoAxisDiagrams"
-                    xmlns:viewModels="clr-namespace:StakeholderAnalysis.Visualization.ViewModels"
                     xmlns:componentModel="clr-namespace:System.ComponentModel;assembly=WindowsBase">
 
     <ResourceDictionary.MergedDictionaries>
         <ResourceDictionary Source="/StakeholderAnalysis.Visualization;Component/DataTemplates/StakeholderDataTemplate.xaml" />
         <ResourceDictionary Source="/StakeholderAnalysis.Visualization;Component/DataTemplates/TwoAxisDiagrams/AxisLabelTextStyle.xaml" />
-        <ResourceDictionary Source="/StakeholderAnalysis.Visualization;Component/DataTemplates/TwoAxisDiagrams/CanvasBackgroundTextStyle.xaml" />
     </ResourceDictionary.MergedDictionaries>
 
     <converters:PercentageToDimensionConverter x:Key="PercentageToDimensionConverter" />
@@ -181,6 +179,15 @@
 
                 <!--Grid that holds all tekst objects inside the diagram-->
                 <Grid>
+                    <Grid.Resources>
+                        <Style x:Key="CanvasBackgroundTextStyle"  TargetType="TextBlock">
+                            <Setter Property="Margin" Value="15" />
+                            <Setter Property="FontWeight" Value="Bold" />
+                            <Setter Property="Foreground" Value="DimGray" />
+                            <Setter Property="FontStyle" Value="Italic" />
+                            <Setter Property="FontSize" Value="64" />
+                        </Style>
+                    </Grid.Resources>
                     <Grid.RowDefinitions>
                         <RowDefinition Height="Auto" />
                         <RowDefinition Height="*" />

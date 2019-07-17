@@ -9,6 +9,8 @@
     <ResourceDictionary.MergedDictionaries>
         <ResourceDictionary Source="OnionDiagram/OnionDiagramDataTemplate.xaml" />
         <ResourceDictionary Source="OnionDiagramProperties/OnionDiagramPropertiesDataTemplate.xaml" />
+        <ResourceDictionary Source="ForceFieldDiagramProperties/ForceFieldDiagramPropertiesDataTemplate.xaml" />
+        <ResourceDictionary Source="AttitudeImpactDiagramProperties/AttitudeImpactDiagramPropertiesDataTemplate.xaml" />
         <ResourceDictionary Source="TwoAxisDiagrams/TwoAxisDiagramDataTemplate.xaml" />
         <ResourceDictionary Source="StakeholderTable/StakeholderTableDataTemplate.xaml" />
         <ResourceDictionary Source="ProjectExplorer/ProjectExplorerDataTemplate.xaml" />
@@ -22,6 +24,8 @@
                                         ProjectExplorerDataTemplate="{StaticResource ProjectExplorerDataTemplate}"
                                         StakeholderForcesDiagramTemplate="{StaticResource TwoAxisDiagramDataTemplate}"
                                         AttitudeImpactDiagramTemplate="{StaticResource TwoAxisDiagramDataTemplate}"
+                                        ForceFieldDiagramPropertiesTemplate="{StaticResource ForceFieldDiagramPropertiesDataTemplate}"
+                                        AttitudeImpactDiagramPropertiesTemplate="{StaticResource AttitudeImpactDiagramPropertiesDataTemplate}"
                                         OnionDiagramPropertiesTemplate="{StaticResource OnionDiagramPropertiesDataTemplate}"/>
 
     <DataTemplate x:Key="DocumentViewDataTemplate" DataType="gui:ViewInfo">

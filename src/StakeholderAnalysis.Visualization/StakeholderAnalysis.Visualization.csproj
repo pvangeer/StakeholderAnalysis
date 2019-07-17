@@ -38,6 +38,8 @@
     <Compile Include="Behaviors\AttachInputBindingsBehavior.cs" />
     <Compile Include="Converters\QuickSelectionToVisibilityConverter.cs" />
     <Compile Include="Converters\SourceStringToVisibilityConverter.cs" />
+    <Compile Include="ViewModels\AttitudeImpactDiagramProperties\AttitudeImpactDiagramPropertiesViewModel.cs" />
+    <Compile Include="ViewModels\ForceFieldDiagramProperties\ForceFieldDiagramPropertiesViewModel.cs" />
     <Compile Include="ViewModels\ProjectExplorer\IStakeholderTypeIconPropertyTreeNodeViewModel.cs" />
     <Compile Include="ViewModels\ProjectExplorer\StakeholderTypeIconPropertyTreeNodeViewModel.cs" />
     <Compile Include="ViewModels\PropertiesTree\IBooleanPropertyTreeNodeViewModel.cs" />
@@ -152,6 +154,7 @@
     <Compile Include="ViewModels\StakeholderViewModel.cs" />
     <Compile Include="ViewModels\TwoAxisDiagrams\PositionedStakeholderViewModel.cs" />
     <Compile Include="ViewModels\TwoAxisDiagrams\RankedStakeholderViewModel.cs" />
+    <Compile Include="ViewModels\TwoAxisDiagrams\TwoAxisDiagramTextsViewModel.cs" />
     <Compile Include="ViewModels\ViewManagerViewModel.cs" />
     <Compile Include="ViewModels\ViewModelBase.cs" />
     <Compile Include="ViewModels\ViewModelFactory.cs" />
@@ -170,6 +173,14 @@
     <Page Include="Controls\SelectStakeholdersDialog.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="DataTemplates\AttitudeImpactDiagramProperties\AttitudeImpactDiagramPropertiesDataTemplate.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="DataTemplates\ForceFieldDiagramProperties\ForceFieldDiagramPropertiesDataTemplate.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
     </Page>
     <Page Include="DataTemplates\OnionDiagramProperties\OnionDiagramPropertiesDataTemplate.xaml">
       <SubType>Designer</SubType>
@@ -200,10 +211,6 @@
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="DataTemplates\TwoAxisDiagrams\AxisLabelTextStyle.xaml">
-      <SubType>Designer</SubType>
-      <Generator>MSBuild:Compile</Generator>
-    </Page>
-    <Page Include="DataTemplates\TwoAxisDiagrams\CanvasBackgroundTextStyle.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>

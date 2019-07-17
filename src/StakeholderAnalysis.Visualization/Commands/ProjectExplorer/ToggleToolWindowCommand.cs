@@ -3,6 +3,8 @@ using System.Linq;
 using System.Windows.Input;
 using StakeholderAnalysis.Gui;
 using StakeholderAnalysis.Visualization.ViewModels;
+using StakeholderAnalysis.Visualization.ViewModels.AttitudeImpactDiagramProperties;
+using StakeholderAnalysis.Visualization.ViewModels.ForceFieldDiagramProperties;
 using StakeholderAnalysis.Visualization.ViewModels.OnionDiagramProperties;
 using StakeholderAnalysis.Visualization.ViewModels.ProjectExplorer;
 
@@ -53,6 +55,16 @@ namespace StakeholderAnalysis.Visualization.Commands.ProjectExplorer
             if (type == typeof(OnionDiagramPropertiesViewModel))
             {
                 return new ViewInfo("UI-diagram", viewModelFactory.CreateOnionDiagramPropertiesViewModel(), "pack://application:,,,/StakeholderAnalysis.Visualization;component/Resources/onion.png", false);
+            }
+
+            if (type == typeof(ForceFieldDiagramPropertiesViewModel))
+            {
+                return new ViewInfo("Krachtenveld-diagram", viewModelFactory.CreateForceFieldDiagramPropertiesViewModel(), "pack://application:,,,/StakeholderAnalysis.Visualization;component/Resources/forces.png", false);
+            }
+
+            if (type == typeof(AttitudeImpactDiagramPropertiesViewModel))
+            {
+                return new ViewInfo("Houding-impact diagram", viewModelFactory.CreateAttitudeImpactDiagramPropertiesViewModel(), "pack://application:,,,/StakeholderAnalysis.Visualization;component/Resources/involvement.png", false);
             }
 
             return null;

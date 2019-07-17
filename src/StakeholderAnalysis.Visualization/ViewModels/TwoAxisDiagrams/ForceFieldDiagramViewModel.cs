@@ -1,13 +1,14 @@
 ﻿using System.Collections.ObjectModel;
 using System.Collections.Specialized;
+using System.ComponentModel;
 using System.Linq;
-using System.Windows;
 using System.Windows.Input;
 using System.Windows.Media;
 using StakeholderAnalysis.Data.ForceFieldDiagrams;
 
 namespace StakeholderAnalysis.Visualization.ViewModels.TwoAxisDiagrams
 {
+    // TODO: Possibly merge with AttitudeImpactDiagramViewModel
     public class ForceFieldDiagramViewModel : ViewModelBase, ITwoAxisDiagramViewModel
     {
         private readonly ForceFieldDiagram diagram;
@@ -19,6 +20,7 @@ namespace StakeholderAnalysis.Visualization.ViewModels.TwoAxisDiagrams
 
             if (diagram != null)
             {
+                diagram.PropertyChanged += DiagramPropertyChanged;
                 diagram.Stakeholders.CollectionChanged += StakeholdersCollectionChanged;
                 PositionedStakeholders = new ObservableCollection<IPositionedStakeholderViewModel>(diagram.Stakeholders.Select(stakeholder => ViewModelFactory.CreateForceFieldDiagramStakeholderViewModel(diagram, stakeholder, this)));
             }
@@ -26,35 +28,26 @@ namespace StakeholderAnalysis.Visualization.ViewModels.TwoAxisDiagrams
 
         public ObservableCollection<IPositionedStakeholderViewModel> PositionedStakeholders { get; }
 
-        private void StakeholdersCollectionChanged(object sender, NotifyCollectionChangedEventArgs e)
-        {
-            if (e.Action == NotifyCollectionChangedAction.Add)
-                foreach (var item in e.NewItems.OfType<ForceFieldDiagramStakeholder>())
-                    PositionedStakeholders.Add(ViewModelFactory.CreateForceFieldDiagramStakeholderViewModel(diagram, item, this));
 
-            if (e.Action == NotifyCollectionChangedAction.Remove)
-                foreach (var stakeholder in e.OldItems.OfType<ForceFieldDiagramStakeholder>())
-                    PositionedStakeholders.Remove(PositionedStakeholders.FirstOrDefault(viewModel =>
-                        viewModel.IsViewModelFor(stakeholder.Stakeholder)));
-        }
+        // TODO: Retrieve and store this property on the datamodel and make it editable
 
-        public Brush BackgroundBrush => new LinearGradientBrush(Colors.PowderBlue, Colors.LightGreen, new Point(0,1), new Point(1,0));
+        public Brush BackgroundBrush => diagram.BackgroundBrush;
 
-        public string BackgroundTextLeftTop => "Consulteren";
+        public string BackgroundTextLeftTop => diagram.BackgroundTextLeftTop;
 
-        public string BackgroundTextRightTop => "Betrekken";
+        public string BackgroundTextRightTop => diagram.BackgroundTextRightTop;
 
-        public string BackgroundTextLeftBottom => "Monitoren";
+        public string BackgroundTextLeftBottom => diagram.BackgroundTextLeftBottom;
 
-        public string BackgroundTextRightBottom => "Informeren";
+        public string BackgroundTextRightBottom => diagram.BackgroundTextRightBottom;
 
-        public string YAxisMaxLabel => "Veel invloed";
+        public string YAxisMaxLabel => diagram.YAxisMaxLabel;
 
-        public string YAxisMinLabel => "Weinig invloed";
+        public string YAxisMinLabel => diagram.YAxisMinLabel;
 
-        public string XAxisMaxLabel => "Groot belang";
+        public string XAxisMaxLabel => diagram.XAxisMaxLabel;
 
-        public string XAxisMinLabel => "Klein belang";
+        public string XAxisMinLabel => diagram.XAxisMinLabel;
 
         public ICommand GridClickedCommand => CommandFactory.CreateClearSelectionCommand(this);
 
@@ -80,6 +73,52 @@ namespace StakeholderAnalysis.Visualization.ViewModels.TwoAxisDiagrams
         public ForceFieldDiagram GetDiagram()
         {
             return diagram;
+        }
+
+        private void StakeholdersCollectionChanged(object sender, NotifyCollectionChangedEventArgs e)
+        {
+            if (e.Action == NotifyCollectionChangedAction.Add)
+                foreach (var item in e.NewItems.OfType<ForceFieldDiagramStakeholder>())
+                    PositionedStakeholders.Add(ViewModelFactory.CreateForceFieldDiagramStakeholderViewModel(diagram, item, this));
+
+            if (e.Action == NotifyCollectionChangedAction.Remove)
+                foreach (var stakeholder in e.OldItems.OfType<ForceFieldDiagramStakeholder>())
+                    PositionedStakeholders.Remove(PositionedStakeholders.FirstOrDefault(viewModel =>
+                        viewModel.IsViewModelFor(stakeholder.Stakeholder)));
+        }
+
+        private void DiagramPropertyChanged(object sender, PropertyChangedEventArgs e)
+        {
+            switch (e.PropertyName)
+            {
+                case nameof(ForceFieldDiagram.BackgroundBrush):
+                    OnPropertyChanged(nameof(BackgroundBrush));
+                    break;
+                case nameof(ForceFieldDiagram.BackgroundTextLeftTop):
+                    OnPropertyChanged(nameof(BackgroundTextLeftTop));
+                    break;
+                case nameof(ForceFieldDiagram.BackgroundTextRightTop):
+                    OnPropertyChanged(nameof(BackgroundTextRightTop));
+                    break;
+                case nameof(ForceFieldDiagram.BackgroundTextLeftBottom):
+                    OnPropertyChanged(nameof(BackgroundTextLeftBottom));
+                    break;
+                case nameof(ForceFieldDiagram.BackgroundTextRightBottom):
+                    OnPropertyChanged(nameof(BackgroundTextRightBottom));
+                    break;
+                case nameof(ForceFieldDiagram.YAxisMaxLabel):
+                    OnPropertyChanged(nameof(YAxisMaxLabel));
+                    break;
+                case nameof(ForceFieldDiagram.YAxisMinLabel):
+                    OnPropertyChanged(nameof(YAxisMinLabel));
+                    break;
+                case nameof(ForceFieldDiagram.XAxisMaxLabel):
+                    OnPropertyChanged(nameof(XAxisMaxLabel));
+                    break;
+                case nameof(ForceFieldDiagram.XAxisMinLabel):
+                    OnPropertyChanged(nameof(XAxisMinLabel));
+                    break;
+            }
         }
     }
 }
