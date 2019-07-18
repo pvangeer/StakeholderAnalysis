@@ -220,5 +220,10 @@ namespace StakeholderAnalysis.Visualization.ViewModels
         {
             return new TwoAxisDiagramTextsViewModel(this, twoAxisDiagram);
         }
+
+        public TwoAxisDiagramBushViewModel CreateTwoAxisDiagramBrushViewModel(ITwoAxisDiagram activeTwoAxisDiagram)
+        {
+            return new TwoAxisDiagramBushViewModel(this, activeTwoAxisDiagram);
+        }
     }
 }
