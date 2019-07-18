@@ -1,11 +1,10 @@
 ﻿using System.Windows;
 using System.Windows.Controls;
-using StakeholderAnalysis.Visualization.ViewModels.AttitudeImpactDiagramProperties;
-using StakeholderAnalysis.Visualization.ViewModels.ForceFieldDiagramProperties;
 using StakeholderAnalysis.Visualization.ViewModels.OnionDiagramProperties;
 using StakeholderAnalysis.Visualization.ViewModels.OnionDiagramView;
 using StakeholderAnalysis.Visualization.ViewModels.ProjectExplorer;
 using StakeholderAnalysis.Visualization.ViewModels.StakeholderTableView;
+using StakeholderAnalysis.Visualization.ViewModels.TwoAxisDiagramProperties;
 using StakeholderAnalysis.Visualization.ViewModels.TwoAxisDiagrams;
 
 namespace StakeholderAnalysis.Visualization
@@ -26,9 +25,7 @@ namespace StakeholderAnalysis.Visualization
 
         public DataTemplate OnionDiagramPropertiesTemplate { get; set; }
 
-        public DataTemplate AttitudeImpactDiagramPropertiesTemplate { get; set; }
-
-        public DataTemplate ForceFieldDiagramPropertiesTemplate { get; set; }
+        public DataTemplate TwoAxisDiagramPropertiesTemplate { get; set; }
 
         public override DataTemplate SelectTemplate(object item, DependencyObject container)
         {
@@ -56,13 +53,9 @@ namespace StakeholderAnalysis.Visualization
             {
                 return OnionDiagramPropertiesTemplate;
             }
-            if (item is ForceFieldDiagramPropertiesViewModel)
+            if (item is TwoAxisDiagramPropertiesViewModel)
             {
-                return ForceFieldDiagramPropertiesTemplate;
-            }
-            if (item is AttitudeImpactDiagramPropertiesViewModel)
-            {
-                return AttitudeImpactDiagramPropertiesTemplate;
+                return TwoAxisDiagramPropertiesTemplate;
             }
 
             return DefaultDataTemplate;

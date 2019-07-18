@@ -103,10 +103,10 @@ namespace StakeholderAnalysis.Visualization.Commands.Ribbon
                         ? viewModel.GetDiagram()
                         : null;
                     selectedForceFieldDiagram = viewManager?.ActiveDocument?.ViewModel is ForceFieldDiagramViewModel viewModel2
-                        ? viewModel2.GetDiagram()
+                        ? viewModel2.GetDiagram() as ForceFieldDiagram
                         : null;
                     selectedAttitudeImpactDiagram = viewManager?.ActiveDocument?.ViewModel is AttitudeImpactDiagramViewModel viewModel3
-                        ? viewModel3.GetDiagram()
+                        ? viewModel3.GetDiagram() as AttitudeImpactDiagram
                         : null;
 
                     CanExecuteChanged?.Invoke(this,null);

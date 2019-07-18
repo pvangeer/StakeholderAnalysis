@@ -10,8 +10,7 @@
                      xmlns:converters="clr-namespace:StakeholderAnalysis.Visualization.Converters;assembly=StakeholderAnalysis.Visualization"
                      xmlns:gui="clr-namespace:StakeholderAnalysis.Gui;assembly=StakeholderAnalysis.Gui"
                      xmlns:onionDiagrams="clr-namespace:StakeholderAnalysis.Data.OnionDiagrams;assembly=StakeholderAnalysis.Data"
-                     xmlns:forceFieldDiagramProperties="clr-namespace:StakeholderAnalysis.Visualization.ViewModels.ForceFieldDiagramProperties;assembly=StakeholderAnalysis.Visualization"
-                     xmlns:attitudeImpactDiagramPropertiesViewModel="clr-namespace:StakeholderAnalysis.Visualization.ViewModels.AttitudeImpactDiagramProperties;assembly=StakeholderAnalysis.Visualization"
+                     xmlns:twoAxisDiagramProperties="clr-namespace:StakeholderAnalysis.Visualization.ViewModels.TwoAxisDiagramProperties;assembly=StakeholderAnalysis.Visualization"
                      mc:Ignorable="d"
                      Closing="MainWindowClosing"
                      Loaded="MainWindow_OnLoaded"
@@ -113,18 +112,11 @@
                         CommandParameter="{x:Type onionDiagramProperties:OnionDiagramPropertiesViewModel}"/>
                     <fluent:ToggleButton 
                         Size="Middle"
-                        Header="Krachtenveld-diagram gegevens tonen" 
+                        Header="Verhoudingdiagram gegevens tonen" 
                         Icon="pack://application:,,,/StakeholderAnalysis.Visualization;component/Resources/forces.png"
-                        IsChecked="{Binding RibbonViewModel.ToolWindows, Converter={StaticResource IsActiveToolWindowConverter}, ConverterParameter={x:Type forceFieldDiagramProperties:ForceFieldDiagramPropertiesViewModel}}"
+                        IsChecked="{Binding RibbonViewModel.ToolWindows, Converter={StaticResource IsActiveToolWindowConverter}, ConverterParameter={x:Type twoAxisDiagramProperties:TwoAxisDiagramPropertiesViewModel}}"
                         Command="{Binding RibbonViewModel.ToggleToolWindowCommand}"
-                        CommandParameter="{x:Type forceFieldDiagramProperties:ForceFieldDiagramPropertiesViewModel}"/>
-                    <fluent:ToggleButton 
-                        Size="Middle"
-                        Header="Houding-impact diagram gegevens tonen" 
-                        Icon="pack://application:,,,/StakeholderAnalysis.Visualization;component/Resources/involvement.png"
-                        IsChecked="{Binding RibbonViewModel.ToolWindows, Converter={StaticResource IsActiveToolWindowConverter}, ConverterParameter={x:Type attitudeImpactDiagramPropertiesViewModel:AttitudeImpactDiagramPropertiesViewModel}}"
-                        Command="{Binding RibbonViewModel.ToggleToolWindowCommand}"
-                        CommandParameter="{x:Type attitudeImpactDiagramPropertiesViewModel:AttitudeImpactDiagramPropertiesViewModel}"/>
+                        CommandParameter="{x:Type twoAxisDiagramProperties:TwoAxisDiagramPropertiesViewModel}"/>
                     <fluent:ToggleButton
                         Header="Vergrootglas"
                         Size="Large"

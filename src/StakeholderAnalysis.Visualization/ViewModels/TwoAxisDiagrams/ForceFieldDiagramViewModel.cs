@@ -71,7 +71,7 @@ namespace StakeholderAnalysis.Visualization.ViewModels.TwoAxisDiagrams
             }
         }
 
-        public ForceFieldDiagram GetDiagram()
+        public ITwoAxisDiagram GetDiagram()
         {
             return diagram;
         }

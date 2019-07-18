@@ -1,6 +1,7 @@
 ﻿using System.Collections.ObjectModel;
 using System.Windows.Input;
 using System.Windows.Media;
+using StakeholderAnalysis.Data.ForceFieldDiagrams;
 using StakeholderAnalysis.Visualization.Behaviors;
 
 namespace StakeholderAnalysis.Visualization.ViewModels.TwoAxisDiagrams
@@ -26,6 +27,9 @@ namespace StakeholderAnalysis.Visualization.ViewModels.TwoAxisDiagrams
         string XAxisMaxLabel { get; }
 
         string XAxisMinLabel { get; }
+
         ICommand GridClickedCommand { get; }
+
+        ITwoAxisDiagram GetDiagram();
     }
 }

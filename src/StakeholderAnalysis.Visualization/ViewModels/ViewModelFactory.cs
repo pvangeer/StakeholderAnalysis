@@ -5,8 +5,6 @@ using StakeholderAnalysis.Data.ForceFieldDiagrams;
 using StakeholderAnalysis.Data.OnionDiagrams;
 using StakeholderAnalysis.Gui;
 using StakeholderAnalysis.Visualization.Behaviors;
-using StakeholderAnalysis.Visualization.ViewModels.AttitudeImpactDiagramProperties;
-using StakeholderAnalysis.Visualization.ViewModels.ForceFieldDiagramProperties;
 using StakeholderAnalysis.Visualization.ViewModels.OnionDiagramProperties;
 using StakeholderAnalysis.Visualization.ViewModels.OnionDiagramView;
 using StakeholderAnalysis.Visualization.ViewModels.ProjectExplorer;
@@ -14,6 +12,7 @@ using StakeholderAnalysis.Visualization.ViewModels.PropertiesTree;
 using StakeholderAnalysis.Visualization.ViewModels.Ribbon;
 using StakeholderAnalysis.Visualization.ViewModels.StakeholderTableView;
 using StakeholderAnalysis.Visualization.ViewModels.StatusBar;
+using StakeholderAnalysis.Visualization.ViewModels.TwoAxisDiagramProperties;
 using StakeholderAnalysis.Visualization.ViewModels.TwoAxisDiagrams;
 
 namespace StakeholderAnalysis.Visualization.ViewModels
@@ -92,14 +91,9 @@ namespace StakeholderAnalysis.Visualization.ViewModels
             return new OnionDiagramPropertiesViewModel(this, ViewManager);
         }
 
-        public ForceFieldDiagramPropertiesViewModel CreateForceFieldDiagramPropertiesViewModel()
+        public TwoAxisDiagramPropertiesViewModel CreateTwoAxisDiagramPropertiesViewModel()
         {
-            return new ForceFieldDiagramPropertiesViewModel(this, ViewManager);
-        }
-
-        public AttitudeImpactDiagramPropertiesViewModel CreateAttitudeImpactDiagramPropertiesViewModel()
-        {
-            return new AttitudeImpactDiagramPropertiesViewModel(this, ViewManager);
+            return new TwoAxisDiagramPropertiesViewModel(this, ViewManager);
         }
 
         public ProjectExplorerViewModel CreateProjectExplorerViewModel()

@@ -6,6 +6,7 @@ using System.Windows;
 using System.Windows.Input;
 using System.Windows.Media;
 using StakeholderAnalysis.Data.AttitudeImpactDiagrams;
+using StakeholderAnalysis.Data.ForceFieldDiagrams;
 
 namespace StakeholderAnalysis.Visualization.ViewModels.TwoAxisDiagrams
 {
@@ -78,7 +79,7 @@ namespace StakeholderAnalysis.Visualization.ViewModels.TwoAxisDiagrams
             }
         }
 
-        public AttitudeImpactDiagram GetDiagram()
+        public ITwoAxisDiagram GetDiagram()
         {
             return diagram;
         }

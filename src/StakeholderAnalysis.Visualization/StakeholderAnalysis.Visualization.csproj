@@ -38,8 +38,7 @@
     <Compile Include="Behaviors\AttachInputBindingsBehavior.cs" />
     <Compile Include="Converters\QuickSelectionToVisibilityConverter.cs" />
     <Compile Include="Converters\SourceStringToVisibilityConverter.cs" />
-    <Compile Include="ViewModels\AttitudeImpactDiagramProperties\AttitudeImpactDiagramPropertiesViewModel.cs" />
-    <Compile Include="ViewModels\ForceFieldDiagramProperties\ForceFieldDiagramPropertiesViewModel.cs" />
+    <Compile Include="ViewModels\TwoAxisDiagramProperties\TwoAxisDiagramPropertiesViewModel.cs" />
     <Compile Include="ViewModels\ProjectExplorer\IStakeholderTypeIconPropertyTreeNodeViewModel.cs" />
     <Compile Include="ViewModels\ProjectExplorer\StakeholderTypeIconPropertyTreeNodeViewModel.cs" />
     <Compile Include="ViewModels\PropertiesTree\IBooleanPropertyTreeNodeViewModel.cs" />
@@ -174,11 +173,7 @@
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
-    <Page Include="DataTemplates\AttitudeImpactDiagramProperties\AttitudeImpactDiagramPropertiesDataTemplate.xaml">
-      <Generator>MSBuild:Compile</Generator>
-      <SubType>Designer</SubType>
-    </Page>
-    <Page Include="DataTemplates\ForceFieldDiagramProperties\ForceFieldDiagramPropertiesDataTemplate.xaml">
+    <Page Include="DataTemplates\TwoAxisDiagramProperties\TwoAxisDiagramPropertiesDataTemplate.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </Page>

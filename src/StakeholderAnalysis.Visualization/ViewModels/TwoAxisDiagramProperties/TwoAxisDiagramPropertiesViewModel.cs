@@ -1,15 +1,14 @@
 ﻿using System.ComponentModel;
-using StakeholderAnalysis.Data.ForceFieldDiagrams;
 using StakeholderAnalysis.Gui;
 using StakeholderAnalysis.Visualization.ViewModels.TwoAxisDiagrams;
 
-namespace StakeholderAnalysis.Visualization.ViewModels.ForceFieldDiagramProperties
+namespace StakeholderAnalysis.Visualization.ViewModels.TwoAxisDiagramProperties
 {
-    public class ForceFieldDiagramPropertiesViewModel : ViewModelBase
+    public class TwoAxisDiagramPropertiesViewModel : ViewModelBase
     {
         private readonly ViewManager viewManager;
 
-        public ForceFieldDiagramPropertiesViewModel(ViewModelFactory factory, ViewManager viewManager) : base(factory)
+        public TwoAxisDiagramPropertiesViewModel(ViewModelFactory factory, ViewManager viewManager) : base(factory)
         {
             this.viewManager = viewManager;
             viewManager.PropertyChanged += ViewManagerPropertyChanged;
@@ -25,8 +24,8 @@ namespace StakeholderAnalysis.Visualization.ViewModels.ForceFieldDiagramProperti
             }
         }
 
-        private ForceFieldDiagram SelectedForceFieldDiagram => (viewManager?.ActiveDocument?.ViewModel as ForceFieldDiagramViewModel)?.GetDiagram();
-
-        public TwoAxisDiagramTextsViewModel TextsViewModel => ViewModelFactory.CreateTextsViewModel(SelectedForceFieldDiagram);
+        public TwoAxisDiagramTextsViewModel TextsViewModel =>
+            ViewModelFactory.CreateTextsViewModel((viewManager?.ActiveDocument?.ViewModel as ITwoAxisDiagramViewModel)
+                ?.GetDiagram());
     }
 }
