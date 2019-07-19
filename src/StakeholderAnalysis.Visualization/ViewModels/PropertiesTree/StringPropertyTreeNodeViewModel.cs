@@ -5,37 +5,55 @@ using StakeholderAnalysis.Data;
 
 namespace StakeholderAnalysis.Visualization.ViewModels.PropertiesTree
 {
-    public class StringPropertyTreeNodeViewModel : PropertyTreeNodeViewModelBaseBase, IStringPropertyTreeNodeViewModel
+    public class StringPropertyTreeNodeViewModel<TContent> : PropertyTreeNodeViewModelBaseBase, IStringPropertyTreeNodeViewModel where TContent : INotifyPropertyChangedImplementation
     {
         private readonly PropertyInfo propertyInfo;
-        private readonly INotifyPropertyChangedImplementation content;
+        private INotifyPropertyChangedImplementation content;
 
-        public StringPropertyTreeNodeViewModel(INotifyPropertyChangedImplementation content, string propertyName, string displayName) 
+        public StringPropertyTreeNodeViewModel(TContent content, string propertyName, string displayName) 
             : base(displayName)
         {
-            this.content = content;
+            this.Content = content;
 
-            propertyInfo = this.content.GetType().GetProperty(propertyName, BindingFlags.Public | BindingFlags.Instance);
+            propertyInfo = typeof(TContent).GetProperty(propertyName, BindingFlags.Public | BindingFlags.Instance);
             if (propertyInfo == null || propertyInfo.PropertyType != typeof(string))
             {
                 throw new ArgumentException();
             }
 
-            if (this.content != null)
+            if (this.Content != null)
             {
-                this.content.PropertyChanged += ContentPropertyChanged;
+                this.Content.PropertyChanged += ContentPropertyChanged;
+            }
+        }
+
+        public INotifyPropertyChangedImplementation Content
+        {
+            get => content;
+            set
+            {
+                if (this.Content != null)
+                {
+                    this.Content.PropertyChanged -= ContentPropertyChanged;
+                }
+                content = value;
+                if (this.Content != null)
+                {
+                    this.Content.PropertyChanged += ContentPropertyChanged;
+                }
+                OnPropertyChanged(nameof(StringValue));
             }
         }
 
         public string StringValue
         {
-            get => (string)propertyInfo.GetValue(content);
+            get => Content == null ? "" : (string)propertyInfo.GetValue(Content);
             set
             {
-                if (propertyInfo.CanWrite)
+                if (propertyInfo.CanWrite && Content != null)
                 {
-                    propertyInfo.SetValue(content, value, null);
-                    content.OnPropertyChanged(propertyInfo.Name);
+                    propertyInfo.SetValue(Content, value, null);
+                    Content.OnPropertyChanged(propertyInfo.Name);
                 }
             }
         }
@@ -50,7 +68,7 @@ namespace StakeholderAnalysis.Visualization.ViewModels.PropertiesTree
 
         public override bool IsViewModelFor(object o)
         {
-            return ReferenceEquals(o, content);
+            return ReferenceEquals(o, Content);
         }
     }
 }

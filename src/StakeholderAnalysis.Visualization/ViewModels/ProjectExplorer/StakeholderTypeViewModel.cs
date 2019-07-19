@@ -18,8 +18,8 @@ namespace StakeholderAnalysis.Visualization.ViewModels.ProjectExplorer
             this.stakeholderType = stakeholderType;
             Items = new ObservableCollection<ITreeNodeViewModel>
             {
-                new StringPropertyTreeNodeViewModel(stakeholderType, nameof(StakeholderType.Name), "Naam"),
-                new ColorPropertyTreeNodeViewModel(stakeholderType, nameof(StakeholderType.Color),"Kleur"),
+                new StringPropertyTreeNodeViewModel<StakeholderType>(stakeholderType, nameof(StakeholderType.Name), "Naam"),
+                new ColorPropertyTreeNodeViewModel<StakeholderType>(stakeholderType, nameof(StakeholderType.Color),"Kleur"),
                 new StakeholderTypeIconPropertyTreeNodeViewModel(stakeholderType)
             };
             RemoveItemCommand = CommandFactory.CreateRemoveStakeholderTypeCommand(stakeholderType);

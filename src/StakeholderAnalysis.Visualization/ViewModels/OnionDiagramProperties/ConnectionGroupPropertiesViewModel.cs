@@ -20,9 +20,9 @@ namespace StakeholderAnalysis.Visualization.ViewModels.OnionDiagramProperties
 
             Items = new ObservableCollection<ITreeNodeViewModel>
             {
-                new StringPropertyTreeNodeViewModel(connectionGroup,nameof(StakeholderConnectionGroup.Name), "Naam"),
+                new StringPropertyTreeNodeViewModel<StakeholderConnectionGroup>(connectionGroup,nameof(StakeholderConnectionGroup.Name), "Naam"),
                 new BooleanPropertyTreeNodeViewModel(connectionGroup, nameof(StakeholderConnectionGroup.Visible), "Weergeven"),
-                new ColorPropertyTreeNodeViewModel(connectionGroup, nameof(StakeholderConnectionGroup.StrokeColor), "Lijnkleur"),
+                new ColorPropertyTreeNodeViewModel<StakeholderConnectionGroup>(connectionGroup, nameof(StakeholderConnectionGroup.StrokeColor), "Lijnkleur"),
                 new DoubleUpDownPropertyTreeNodeViewModel(connectionGroup, nameof(StakeholderConnectionGroup.StrokeThickness), "Lijndikte", 0.0, 40.0, 0.5, "0.##")
             };
         }

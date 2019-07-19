@@ -6,43 +6,61 @@ using StakeholderAnalysis.Data;
 
 namespace StakeholderAnalysis.Visualization.ViewModels.PropertiesTree
 {
-    public class ColorPropertyTreeNodeViewModel : PropertyTreeNodeViewModelBaseBase, IColorPropertyTreeNodeViewModel
+    public class ColorPropertyTreeNodeViewModel<TContent> : PropertyTreeNodeViewModelBaseBase, IColorPropertyTreeNodeViewModel where TContent : INotifyPropertyChangedImplementation
     {
         private readonly PropertyInfo propertyInfo;
-        private readonly INotifyPropertyChangedImplementation content;
+        private TContent content;
 
-        public ColorPropertyTreeNodeViewModel(INotifyPropertyChangedImplementation content, string propertyName, string displayName) : base(displayName)
+        public ColorPropertyTreeNodeViewModel(TContent content, string propertyName, string displayName) : base(displayName)
         {
-            this.content = content;
+            this.Content = content;
 
-            propertyInfo = this.content.GetType().GetProperty(propertyName, BindingFlags.Public | BindingFlags.Instance);
+            propertyInfo = typeof(TContent).GetProperty(propertyName, BindingFlags.Public | BindingFlags.Instance);
             if (propertyInfo == null || propertyInfo.PropertyType != typeof(Color))
             {
                 throw new ArgumentException();
             }
 
-            if (this.content != null)
+            if (this.Content != null)
             {
-                this.content.PropertyChanged += ContentPropertyChanged;
+                this.Content.PropertyChanged += ContentPropertyChanged;
+            }
+        }
+
+        public TContent Content
+        {
+            get => content;
+            set
+            {
+                if (content != null)
+                {
+                    content.PropertyChanged -= ContentPropertyChanged;
+                }
+                content = value;
+                if (content != null)
+                {
+                    content.PropertyChanged += ContentPropertyChanged;
+                }
+                OnPropertyChanged(nameof(ColorValue));
             }
         }
 
         public Color ColorValue
         {
-            get => (Color)propertyInfo.GetValue(content);
+            get => Content != null ? (Color)propertyInfo.GetValue(Content) : Colors.Black;
             set
             {
-                if (propertyInfo.CanWrite)
+                if (propertyInfo.CanWrite && Content != null)
                 {
-                    propertyInfo.SetValue(content, value, null);
-                    content.OnPropertyChanged(propertyInfo.Name);
+                    propertyInfo.SetValue(Content, value, null);
+                    Content.OnPropertyChanged(propertyInfo.Name);
                 }
             }
         }
 
         public override bool IsViewModelFor(object o)
         {
-            return ReferenceEquals(o, content);
+            return ReferenceEquals(o, Content);
         }
 
         private void ContentPropertyChanged(object sender, PropertyChangedEventArgs e)

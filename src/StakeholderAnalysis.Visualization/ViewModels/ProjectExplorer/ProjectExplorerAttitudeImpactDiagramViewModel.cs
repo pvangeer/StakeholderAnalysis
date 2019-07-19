@@ -25,7 +25,7 @@ namespace StakeholderAnalysis.Visualization.ViewModels.ProjectExplorer
             diagram = attitudeImpactDiagram;
             Items = new ObservableCollection<ITreeNodeViewModel>
             {
-                new StringPropertyTreeNodeViewModel(diagram, nameof(AttitudeImpactDiagram.Name), "Naam")
+                new StringPropertyTreeNodeViewModel<AttitudeImpactDiagram>(diagram, nameof(AttitudeImpactDiagram.Name), "Naam")
             };
             if (diagram != null)
             {

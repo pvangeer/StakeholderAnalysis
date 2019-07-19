@@ -24,7 +24,7 @@ namespace StakeholderAnalysis.Visualization.ViewModels.ProjectExplorer
             diagram = forceFieldDiagram;
             Items = new ObservableCollection<ITreeNodeViewModel>
             {
-                new StringPropertyTreeNodeViewModel(diagram, nameof(ForceFieldDiagram.Name), "Naam")
+                new StringPropertyTreeNodeViewModel<ForceFieldDiagram>(diagram, nameof(ForceFieldDiagram.Name), "Naam")
             };
             if (diagram != null)
             {

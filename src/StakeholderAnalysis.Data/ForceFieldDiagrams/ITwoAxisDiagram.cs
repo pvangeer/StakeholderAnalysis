@@ -4,7 +4,7 @@ namespace StakeholderAnalysis.Data.ForceFieldDiagrams
 {
     public interface ITwoAxisDiagram : INotifyPropertyChangedImplementation
     {
-        string Name { get; }
+        string Name { get; set; }
 
         Color BrushStartColor { get; set; }
 

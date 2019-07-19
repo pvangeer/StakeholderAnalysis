@@ -1,4 +1,5 @@
-﻿using System.Linq;
+﻿using System.Collections.ObjectModel;
+using System.Linq;
 using StakeholderAnalysis.Data;
 using StakeholderAnalysis.Data.AttitudeImpactDiagrams;
 using StakeholderAnalysis.Data.ForceFieldDiagrams;
@@ -216,14 +217,9 @@ namespace StakeholderAnalysis.Visualization.ViewModels
             return new StakeholderTableViewModel(this, Analysis);
         }
 
-        public TwoAxisDiagramTextsViewModel CreateTextsViewModel(ITwoAxisDiagram twoAxisDiagram)
+        public PropertyCollectionTreeNodeViewModel CreatePropertyCollectionViewModel(string displayName, ObservableCollection<ITreeNodeViewModel> items, CollectionType collectionType)
         {
-            return new TwoAxisDiagramTextsViewModel(this, twoAxisDiagram);
-        }
-
-        public TwoAxisDiagramBushViewModel CreateTwoAxisDiagramBrushViewModel(ITwoAxisDiagram activeTwoAxisDiagram)
-        {
-            return new TwoAxisDiagramBushViewModel(this, activeTwoAxisDiagram);
+            return new PropertyCollectionTreeNodeViewModel(this, displayName, items, collectionType);
         }
     }
 }

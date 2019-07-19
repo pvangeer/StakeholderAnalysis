@@ -38,7 +38,7 @@
     <Compile Include="Behaviors\AttachInputBindingsBehavior.cs" />
     <Compile Include="Converters\QuickSelectionToVisibilityConverter.cs" />
     <Compile Include="Converters\SourceStringToVisibilityConverter.cs" />
-    <Compile Include="ViewModels\TwoAxisDiagramProperties\TwoAxisDiagramBushViewModel.cs" />
+    <Compile Include="ViewModels\PropertiesTree\PropertyCollectionTreeNodeViewModel.cs" />
     <Compile Include="ViewModels\TwoAxisDiagramProperties\TwoAxisDiagramPropertiesViewModel.cs" />
     <Compile Include="ViewModels\ProjectExplorer\IStakeholderTypeIconPropertyTreeNodeViewModel.cs" />
     <Compile Include="ViewModels\ProjectExplorer\StakeholderTypeIconPropertyTreeNodeViewModel.cs" />
@@ -154,7 +154,6 @@
     <Compile Include="ViewModels\StakeholderViewModel.cs" />
     <Compile Include="ViewModels\TwoAxisDiagrams\PositionedStakeholderViewModel.cs" />
     <Compile Include="ViewModels\TwoAxisDiagrams\RankedStakeholderViewModel.cs" />
-    <Compile Include="ViewModels\TwoAxisDiagrams\TwoAxisDiagramTextsViewModel.cs" />
     <Compile Include="ViewModels\ViewManagerViewModel.cs" />
     <Compile Include="ViewModels\ViewModelBase.cs" />
     <Compile Include="ViewModels\ViewModelFactory.cs" />

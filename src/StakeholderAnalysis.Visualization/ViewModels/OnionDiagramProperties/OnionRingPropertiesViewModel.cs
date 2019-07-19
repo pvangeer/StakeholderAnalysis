@@ -18,8 +18,8 @@ namespace StakeholderAnalysis.Visualization.ViewModels.OnionDiagramProperties
             Items = new ObservableCollection<ITreeNodeViewModel>
             {
                 new DoubleUpDownPropertyTreeNodeViewModel(ring, nameof(OnionRing.Percentage), "Grootte", 0.0, 1.0, 0.01, "0.###"),
-                new ColorPropertyTreeNodeViewModel(ring,nameof(OnionRing.BackgroundColor), "Achtergrondkleur"),
-                new ColorPropertyTreeNodeViewModel(ring, nameof(OnionRing.StrokeColor), "Lijnkleur"),
+                new ColorPropertyTreeNodeViewModel<OnionRing>(ring,nameof(OnionRing.BackgroundColor), "Achtergrondkleur"),
+                new ColorPropertyTreeNodeViewModel<OnionRing>(ring, nameof(OnionRing.StrokeColor), "Lijnkleur"),
                 new DoubleUpDownPropertyTreeNodeViewModel(ring, nameof(OnionRing.StrokeThickness), "Lijndikte", 0.0, 40.0, 0.5, "0.##")
             };
         }

@@ -10,17 +10,8 @@
         <Grid>
             <StackPanel Orientation="Vertical">
                 <ContentPresenter 
-                    Content="{Binding NameViewModel}"
+                    Content="{Binding TreeViewModel}"
                     ContentTemplate="{StaticResource IPropertyCollectionItemDataTemplate}"/>
-                <ContentPresenter 
-                    Content="{Binding TextsViewModel}" 
-                    ContentTemplate="{StaticResource IPropertyCollectionItemDataTemplate}"/>
-                <ContentPresenter 
-                    Content="{Binding BackgroundBrushViewModel}" 
-                    ContentTemplate="{StaticResource IPropertyCollectionItemDataTemplate}"/>
-                <!--<ContentPresenter 
-                    Content="{Binding BackgroundBrushViewModel}" 
-                    ContentTemplate="{StaticResource IPropertyCollectionItemDataTemplate}"/>-->
             </StackPanel>
         </Grid>
     </DataTemplate>
