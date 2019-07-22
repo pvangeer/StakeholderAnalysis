@@ -5,6 +5,7 @@ using System.Linq;
 using System.Windows;
 using System.Windows.Input;
 using System.Windows.Media;
+using StakeholderAnalysis.Data;
 using StakeholderAnalysis.Data.ForceFieldDiagrams;
 
 namespace StakeholderAnalysis.Visualization.ViewModels.TwoAxisDiagrams
@@ -29,9 +30,6 @@ namespace StakeholderAnalysis.Visualization.ViewModels.TwoAxisDiagrams
 
         public ObservableCollection<IPositionedStakeholderViewModel> PositionedStakeholders { get; }
 
-
-        // TODO: Retrieve and store this property on the datamodel and make it editable
-
         public Brush BackgroundBrush => new LinearGradientBrush(diagram.BrushStartColor, diagram.BrushEndColor, new Point(0, 1), new Point(1, 0));
 
         public string BackgroundTextLeftTop => diagram.BackgroundTextLeftTop;
@@ -42,6 +40,16 @@ namespace StakeholderAnalysis.Visualization.ViewModels.TwoAxisDiagrams
 
         public string BackgroundTextRightBottom => diagram.BackgroundTextRightBottom;
 
+        public FontFamily BackgroundFontFamily => diagram.BackgroundFontFamily;
+
+        public Brush BackgroundFontColor => new SolidColorBrush(diagram.BackgroundFontColor);
+
+        public FontWeight BackgroundFontWeight => diagram.BackgroundFontBold ? FontWeights.Bold : FontWeights.Normal;
+
+        public FontStyle BackgroundFontStyle => diagram.BackgroundFontItalic ? FontStyles.Italic : FontStyles.Normal;
+
+        public double BackgroundFontSize => diagram.BackgroundFontSize;
+
         public string YAxisMaxLabel => diagram.YAxisMaxLabel;
 
         public string YAxisMinLabel => diagram.YAxisMinLabel;
@@ -49,6 +57,16 @@ namespace StakeholderAnalysis.Visualization.ViewModels.TwoAxisDiagrams
         public string XAxisMaxLabel => diagram.XAxisMaxLabel;
 
         public string XAxisMinLabel => diagram.XAxisMinLabel;
+
+        public FontFamily AxisFontFamily => diagram.AxisFontFamily;
+
+        public Brush AxisFontColor => new SolidColorBrush(diagram.AxisFontColor);
+
+        public FontWeight AxisFontWeight => diagram.AxisFontBold ? FontWeights.Bold : FontWeights.Normal;
+
+        public FontStyle AxisFontStyle => diagram.AxisFontItalic ? FontStyles.Italic : FontStyles.Normal;
+
+        public double AxisFontSize => diagram.AxisFontSize;
 
         public ICommand GridClickedCommand => CommandFactory.CreateClearSelectionCommand(this);
 
@@ -108,6 +126,21 @@ namespace StakeholderAnalysis.Visualization.ViewModels.TwoAxisDiagrams
                 case nameof(ForceFieldDiagram.BackgroundTextRightBottom):
                     OnPropertyChanged(nameof(BackgroundTextRightBottom));
                     break;
+                case nameof(ForceFieldDiagram.BackgroundFontFamily):
+                    OnPropertyChanged(nameof(BackgroundFontFamily));
+                    break;
+                case nameof(ITwoAxisDiagram.BackgroundFontColor):
+                    OnPropertyChanged(nameof(BackgroundFontColor));
+                    break;
+                case nameof(ITwoAxisDiagram.BackgroundFontBold):
+                    OnPropertyChanged(nameof(BackgroundFontWeight));
+                    break;
+                case nameof(ITwoAxisDiagram.BackgroundFontItalic):
+                    OnPropertyChanged(nameof(BackgroundFontStyle));
+                    break;
+                case nameof(ITwoAxisDiagram.BackgroundFontSize):
+                    OnPropertyChanged(nameof(BackgroundFontSize));
+                    break;
                 case nameof(ForceFieldDiagram.YAxisMaxLabel):
                     OnPropertyChanged(nameof(YAxisMaxLabel));
                     break;
@@ -119,6 +152,21 @@ namespace StakeholderAnalysis.Visualization.ViewModels.TwoAxisDiagrams
                     break;
                 case nameof(ForceFieldDiagram.XAxisMinLabel):
                     OnPropertyChanged(nameof(XAxisMinLabel));
+                    break;
+                case nameof(ForceFieldDiagram.AxisFontFamily):
+                    OnPropertyChanged(nameof(AxisFontFamily));
+                    break;
+                case nameof(ITwoAxisDiagram.AxisFontColor):
+                    OnPropertyChanged(nameof(AxisFontColor));
+                    break;
+                case nameof(ITwoAxisDiagram.AxisFontBold):
+                    OnPropertyChanged(nameof(AxisFontWeight));
+                    break;
+                case nameof(ITwoAxisDiagram.AxisFontItalic):
+                    OnPropertyChanged(nameof(AxisFontStyle));
+                    break;
+                case nameof(ITwoAxisDiagram.AxisFontSize):
+                    OnPropertyChanged(nameof(AxisFontSize));
                     break;
             }
         }

@@ -1,6 +1,6 @@
 ﻿using System.Windows.Media;
 
-namespace StakeholderAnalysis.Data.ForceFieldDiagrams
+namespace StakeholderAnalysis.Data
 {
     public interface ITwoAxisDiagram : INotifyPropertyChangedImplementation
     {
@@ -18,6 +18,16 @@ namespace StakeholderAnalysis.Data.ForceFieldDiagrams
 
         string BackgroundTextRightBottom { get; set; }
 
+        FontFamily BackgroundFontFamily { get; set; }
+
+        Color BackgroundFontColor { get; set; }
+
+        bool BackgroundFontBold { get; set; }
+
+        bool BackgroundFontItalic { get; set; }
+
+        double BackgroundFontSize { get; set; }
+
         string YAxisMaxLabel { get; set; }
 
         string YAxisMinLabel { get; set; }
@@ -25,5 +35,15 @@ namespace StakeholderAnalysis.Data.ForceFieldDiagrams
         string XAxisMaxLabel { get; set; }
 
         string XAxisMinLabel { get; set; }
+
+        FontFamily AxisFontFamily { get; set; }
+
+        Color AxisFontColor { get; set; }
+
+        bool AxisFontBold { get; set; }
+
+        bool AxisFontItalic { get; set; }
+
+        double AxisFontSize { get; set; }
     }
 }

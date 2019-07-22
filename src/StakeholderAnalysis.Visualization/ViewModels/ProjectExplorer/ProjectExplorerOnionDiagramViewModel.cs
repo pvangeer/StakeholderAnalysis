@@ -25,7 +25,7 @@ namespace StakeholderAnalysis.Visualization.ViewModels.ProjectExplorer
             Items = new ObservableCollection<ITreeNodeViewModel>
             {
                 new StringPropertyTreeNodeViewModel<OnionDiagram>(diagram, nameof(OnionDiagram.Name), "Naam"),
-                new DoubleUpDownPropertyTreeNodeViewModel(diagram, nameof(OnionDiagram.Asymmetry), "Asymmetrie", 0, 1, 0.1, "0.#####")
+                new DoubleUpDownPropertyTreeNodeViewModel<OnionDiagram>(diagram, nameof(OnionDiagram.Asymmetry), "Asymmetrie", 0, 1, 0.1, "0.#####")
             };
 
             if (diagram != null)

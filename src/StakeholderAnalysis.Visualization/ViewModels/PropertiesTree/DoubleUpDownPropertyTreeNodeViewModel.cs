@@ -5,12 +5,12 @@ using StakeholderAnalysis.Data;
 
 namespace StakeholderAnalysis.Visualization.ViewModels.PropertiesTree
 {
-    public class DoubleUpDownPropertyTreeNodeViewModel : PropertyTreeNodeViewModelBaseBase, IDoubleUpDownPropertyTreeNodeViewModel
+    public class DoubleUpDownPropertyTreeNodeViewModel<TContent> : PropertyTreeNodeViewModelBaseBase, IDoubleUpDownPropertyTreeNodeViewModel where TContent : INotifyPropertyChangedImplementation
     {
         private readonly PropertyInfo propertyInfo;
-        private readonly INotifyPropertyChangedImplementation content;
+        private TContent content;
 
-        public DoubleUpDownPropertyTreeNodeViewModel(INotifyPropertyChangedImplementation content,string propertyName, string displayName, double minValue, double maxValue, double increment, string stringFormat) 
+        public DoubleUpDownPropertyTreeNodeViewModel(TContent content,string propertyName, string displayName, double minValue, double maxValue, double increment, string stringFormat) 
             : base(displayName)
         {
             this.content = content;
@@ -25,9 +25,27 @@ namespace StakeholderAnalysis.Visualization.ViewModels.PropertiesTree
             Increment = increment;
             StringFormat = stringFormat;
 
-            if (this.content != null)
+            if (this.Content != null)
             {
-                this.content.PropertyChanged += ContentPropertyChanged;
+                this.Content.PropertyChanged += ContentPropertyChanged;
+            }
+        }
+
+        public TContent Content
+        {
+            get => content;
+            set
+            {
+                if (content != null)
+                {
+                    content.PropertyChanged -= ContentPropertyChanged;
+                }
+                content = value;
+                if (content != null)
+                {
+                    content.PropertyChanged += ContentPropertyChanged;
+                }
+                OnPropertyChanged(nameof(DoubleValue));
             }
         }
 
@@ -52,17 +70,17 @@ namespace StakeholderAnalysis.Visualization.ViewModels.PropertiesTree
 
         public string StringFormat { get; }
 
+        public override bool IsViewModelFor(object o)
+        {
+            return ReferenceEquals(o,content);
+        }
+
         private void ContentPropertyChanged(object sender, PropertyChangedEventArgs e)
         {
             if (e.PropertyName == propertyInfo.Name)
             {
                 OnPropertyChanged(nameof(DoubleValue));
             }
-        }
-
-        public override bool IsViewModelFor(object o)
-        {
-            return ReferenceEquals(o,content);
         }
     }
 }

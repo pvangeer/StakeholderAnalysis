@@ -65,8 +65,15 @@
         </ComboBox>
     </DataTemplate>
 
+    <DataTemplate x:Key="FontFamilySelectorTemplate" DataType="propertiesTree:IFontFamilyPropertyTreeNodeViewModel">
+        <ComboBox
+            ItemsSource="{Binding Source={x:Static Fonts.SystemFontFamilies}}"
+            SelectedItem="{Binding SelectedValue}"/>
+    </DataTemplate>
+
     <visualization:PropertyValueTreeNodeTemplateSelector x:Key="PropertyValueContentTemplateSelector"
                                                          StakeholderTypeIconDataTemplate="{StaticResource StakeholderTypeIconDataTemplate}"
+                                                         FontFamilySelectorTemplate="{StaticResource FontFamilySelectorTemplate}"
                                                          CheckBoxTemplate="{StaticResource CheckBoxTemplate}"
                                                          StringTempalte="{StaticResource StringTemplate}"
                                                          ColorTemplate="{StaticResource ColorPropertyDataTemplate}"

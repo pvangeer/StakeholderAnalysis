@@ -34,8 +34,15 @@ namespace StakeholderAnalysis.Visualization
                 return StakeholderTypeIconDataTemplate;
             }
 
+            if (item is IFontFamilyPropertyTreeNodeViewModel)
+            {
+                return FontFamilySelectorTemplate;
+            }
+
             return base.SelectTemplate(item,container);
         }
+
+        public DataTemplate FontFamilySelectorTemplate { get; set; }
 
         public DataTemplate StakeholderTypeIconDataTemplate { get; set; }
 

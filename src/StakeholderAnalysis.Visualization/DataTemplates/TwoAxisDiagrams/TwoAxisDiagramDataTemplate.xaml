@@ -7,7 +7,6 @@
 
     <ResourceDictionary.MergedDictionaries>
         <ResourceDictionary Source="/StakeholderAnalysis.Visualization;Component/DataTemplates/StakeholderDataTemplate.xaml" />
-        <ResourceDictionary Source="/StakeholderAnalysis.Visualization;Component/DataTemplates/TwoAxisDiagrams/AxisLabelTextStyle.xaml" />
     </ResourceDictionary.MergedDictionaries>
 
     <converters:PercentageToDimensionConverter x:Key="PercentageToDimensionConverter" />
@@ -156,6 +155,16 @@
                         <componentModel:SortDescription PropertyName="Rank"  Direction="Ascending"/>
                     </CollectionViewSource.SortDescriptions>
                 </CollectionViewSource>
+                <Style x:Key="AxisLabelTextStyle" TargetType="TextBlock">
+                    <Setter Property="FontFamily" Value="{Binding AxisFontFamily}" />
+                    <Setter Property="Foreground" Value="{Binding AxisFontColor}" />
+                    <Setter Property="FontWeight" Value="{Binding AxisFontWeight}" />
+                    <Setter Property="FontStyle" Value="{Binding AxisFontStyle}" />
+                    <Setter Property="FontSize" Value="{Binding AxisFontSize}" />
+                    <Setter Property="TextAlignment" Value="Center" />
+                    <Setter Property="VerticalAlignment" Value="Center" />
+                    <Setter Property="Margin" Value="10" />
+                </Style>
             </Grid.Resources>
             <!--Diagram drawing grid (including twe canvasses-->
             <Grid Grid.Row="0" Grid.Column="1" Background="{Binding BackgroundBrush}">
@@ -182,10 +191,11 @@
                     <Grid.Resources>
                         <Style x:Key="CanvasBackgroundTextStyle"  TargetType="TextBlock">
                             <Setter Property="Margin" Value="15" />
-                            <Setter Property="FontWeight" Value="Bold" />
-                            <Setter Property="Foreground" Value="DimGray" />
-                            <Setter Property="FontStyle" Value="Italic" />
-                            <Setter Property="FontSize" Value="64" />
+                            <Setter Property="FontFamily" Value="{Binding BackgroundFontFamily}"/>
+                            <Setter Property="FontWeight" Value="{Binding BackgroundFontWeight}" />
+                            <Setter Property="Foreground" Value="{Binding BackgroundFontColor}" />
+                            <Setter Property="FontStyle" Value="{Binding BackgroundFontStyle}" />
+                            <Setter Property="FontSize" Value="{Binding BackgroundFontSize}" />
                         </Style>
                     </Grid.Resources>
                     <Grid.RowDefinitions>
@@ -258,6 +268,7 @@
                 </TextBlock>
             </Grid>
             <Grid Grid.Row="1" Grid.Column="1">
+
                 <Grid.ColumnDefinitions>
                     <ColumnDefinition Width="Auto" />
                     <ColumnDefinition Width="*" />

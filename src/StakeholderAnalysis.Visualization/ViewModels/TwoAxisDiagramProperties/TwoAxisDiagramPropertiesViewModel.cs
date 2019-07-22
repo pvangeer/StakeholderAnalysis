@@ -1,6 +1,7 @@
 ﻿using System.Collections.ObjectModel;
 using System.ComponentModel;
 using System.Linq;
+using StakeholderAnalysis.Data;
 using StakeholderAnalysis.Data.ForceFieldDiagrams;
 using StakeholderAnalysis.Gui;
 using StakeholderAnalysis.Visualization.ViewModels.PropertiesTree;
@@ -18,6 +19,7 @@ namespace StakeholderAnalysis.Visualization.ViewModels.TwoAxisDiagramProperties
         public TwoAxisDiagramPropertiesViewModel(ViewModelFactory factory, ViewManager viewManager) : base(factory)
         {
             this.viewManager = viewManager;
+            ChangeActiveDiagram();
             viewManager.PropertyChanged += ViewManagerPropertyChanged;
             TreeViewModel = ViewModelFactory.CreatePropertyCollectionViewModel(GetDisplayName(), GetItems(), CollectionType.PropertyItemsCollection);
         }
@@ -30,9 +32,13 @@ namespace StakeholderAnalysis.Visualization.ViewModels.TwoAxisDiagramProperties
                 new StringPropertyTreeNodeViewModel<ITwoAxisDiagram>(activeTwoAxisDiagram, nameof(ITwoAxisDiagram.BackgroundTextLeftTop), "Linksboven"),
                 new StringPropertyTreeNodeViewModel<ITwoAxisDiagram>(activeTwoAxisDiagram, nameof(ITwoAxisDiagram.BackgroundTextRightBottom), "Rechtsonder"),
                 new StringPropertyTreeNodeViewModel<ITwoAxisDiagram>(activeTwoAxisDiagram, nameof(ITwoAxisDiagram.BackgroundTextRightTop), "Rechtsboven"),
+                new FontFamilyPropertyTreeNodeViewModel<ITwoAxisDiagram>(activeTwoAxisDiagram, nameof(ITwoAxisDiagram.BackgroundFontFamily), "Lettertype"),
+                new ColorPropertyTreeNodeViewModel<ITwoAxisDiagram>(activeTwoAxisDiagram, nameof(ITwoAxisDiagram.BackgroundFontColor), "Tekstkleur"),
+                new BooleanPropertyTreeNodeViewModel<ITwoAxisDiagram>(activeTwoAxisDiagram, nameof(ITwoAxisDiagram.BackgroundFontBold), "Vet"),
+                new BooleanPropertyTreeNodeViewModel<ITwoAxisDiagram>(activeTwoAxisDiagram, nameof(ITwoAxisDiagram.BackgroundFontItalic), "Italic"),
+                new DoubleUpDownPropertyTreeNodeViewModel<ITwoAxisDiagram>(activeTwoAxisDiagram, nameof(ITwoAxisDiagram.BackgroundFontSize), "Tekstgrootte",1,120,1,"#"),
                 new ColorPropertyTreeNodeViewModel<ITwoAxisDiagram>(activeTwoAxisDiagram, nameof(ITwoAxisDiagram.BrushStartColor), "Startkleur"),
-                new ColorPropertyTreeNodeViewModel<ITwoAxisDiagram>(activeTwoAxisDiagram, nameof(ITwoAxisDiagram.BrushEndColor), "Eindkleur"),
-                // TODO: Add font characteristics
+                new ColorPropertyTreeNodeViewModel<ITwoAxisDiagram>(activeTwoAxisDiagram, nameof(ITwoAxisDiagram.BrushEndColor), "Eindkleur")
             };
             var backgroundViewModel = ViewModelFactory.CreatePropertyCollectionViewModel("Achtergrond", backgroundItems,CollectionType.PropertyValue);
 
@@ -42,7 +48,11 @@ namespace StakeholderAnalysis.Visualization.ViewModels.TwoAxisDiagramProperties
                 new StringPropertyTreeNodeViewModel<ITwoAxisDiagram>(activeTwoAxisDiagram, nameof(ITwoAxisDiagram.XAxisMinLabel), "Horizontaal -"),
                 new StringPropertyTreeNodeViewModel<ITwoAxisDiagram>(activeTwoAxisDiagram, nameof(ITwoAxisDiagram.YAxisMaxLabel), "Vertikaal +"),
                 new StringPropertyTreeNodeViewModel<ITwoAxisDiagram>(activeTwoAxisDiagram, nameof(ITwoAxisDiagram.YAxisMinLabel), "Vertikaal -"),
-                // TODO: Add font characteristics
+                new FontFamilyPropertyTreeNodeViewModel<ITwoAxisDiagram>(activeTwoAxisDiagram, nameof(ITwoAxisDiagram.AxisFontFamily), "Lettertype"),
+                new ColorPropertyTreeNodeViewModel<ITwoAxisDiagram>(activeTwoAxisDiagram, nameof(ITwoAxisDiagram.AxisFontColor), "Tekstkleur"),
+                new BooleanPropertyTreeNodeViewModel<ITwoAxisDiagram>(activeTwoAxisDiagram, nameof(ITwoAxisDiagram.AxisFontBold), "Vet"),
+                new BooleanPropertyTreeNodeViewModel<ITwoAxisDiagram>(activeTwoAxisDiagram, nameof(ITwoAxisDiagram.AxisFontItalic), "Italic"),
+                new DoubleUpDownPropertyTreeNodeViewModel<ITwoAxisDiagram>(activeTwoAxisDiagram, nameof(ITwoAxisDiagram.AxisFontSize), "Tekstgrootte",1,120,1,"#"),
             };
             var axisViewModel = ViewModelFactory.CreatePropertyCollectionViewModel("Aslabels", axisLabelItems, CollectionType.PropertyValue);
 
@@ -70,23 +80,40 @@ namespace StakeholderAnalysis.Visualization.ViewModels.TwoAxisDiagramProperties
                     TreeViewModel.OnPropertyChanged(nameof(PropertyCollectionTreeNodeViewModel.DisplayName));
                     TreeViewModel.IconSourceString = GetIconSourceString();
                     TreeViewModel.OnPropertyChanged(nameof(PropertyCollectionTreeNodeViewModel.IconSourceString));
-                    foreach (var textItem in backgroundItems.OfType<StringPropertyTreeNodeViewModel<ITwoAxisDiagram>>())
-                    {
-                        textItem.Content = activeTwoAxisDiagram;
-                    }
-                    foreach (var textItem in backgroundItems.OfType<ColorPropertyTreeNodeViewModel<ITwoAxisDiagram>>())
-                    {
-                        textItem.Content = activeTwoAxisDiagram;
-                    }
-                    foreach (var textItem in axisLabelItems.OfType<StringPropertyTreeNodeViewModel<ITwoAxisDiagram>>())
-                    {
-                        textItem.Content = activeTwoAxisDiagram;
-                    }
-                    foreach (var textItem in generalItems.OfType<StringPropertyTreeNodeViewModel<ITwoAxisDiagram>>())
-                    {
-                        textItem.Content = activeTwoAxisDiagram;
-                    }
+
+                    RefreshViewModelContent(backgroundItems, activeTwoAxisDiagram);
+                    RefreshViewModelContent(axisLabelItems, activeTwoAxisDiagram);
+                    RefreshViewModelContent(generalItems, activeTwoAxisDiagram);
+
                     break;
+            }
+        }
+
+        private void RefreshViewModelContent(ObservableCollection<ITreeNodeViewModel> list, ITwoAxisDiagram newContent)
+        {
+            foreach (var textItem in list.OfType<StringPropertyTreeNodeViewModel<ITwoAxisDiagram>>())
+            {
+                textItem.Content = newContent;
+            }
+
+            foreach (var textItem in list.OfType<FontFamilyPropertyTreeNodeViewModel<ITwoAxisDiagram>>())
+            {
+                textItem.Content = newContent;
+            }
+
+            foreach (var textItem in list.OfType<ColorPropertyTreeNodeViewModel<ITwoAxisDiagram>>())
+            {
+                textItem.Content = newContent;
+            }
+
+            foreach (var textItem in list.OfType<BooleanPropertyTreeNodeViewModel<ITwoAxisDiagram>>())
+            {
+                textItem.Content = newContent;
+            }
+
+            foreach (var textItem in list.OfType<DoubleUpDownPropertyTreeNodeViewModel<ITwoAxisDiagram>>())
+            {
+                textItem.Content = newContent;
             }
         }
 

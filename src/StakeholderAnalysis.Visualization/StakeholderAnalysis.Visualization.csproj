@@ -38,6 +38,8 @@
     <Compile Include="Behaviors\AttachInputBindingsBehavior.cs" />
     <Compile Include="Converters\QuickSelectionToVisibilityConverter.cs" />
     <Compile Include="Converters\SourceStringToVisibilityConverter.cs" />
+    <Compile Include="ViewModels\PropertiesTree\FontFamilyPropertyTreeNodeViewModel.cs" />
+    <Compile Include="ViewModels\PropertiesTree\IFontFamilyPropertyTreeNodeViewModel.cs" />
     <Compile Include="ViewModels\PropertiesTree\PropertyCollectionTreeNodeViewModel.cs" />
     <Compile Include="ViewModels\TwoAxisDiagramProperties\TwoAxisDiagramPropertiesViewModel.cs" />
     <Compile Include="ViewModels\ProjectExplorer\IStakeholderTypeIconPropertyTreeNodeViewModel.cs" />
@@ -202,10 +204,6 @@
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="DataTemplates\OnionDiagram\ConnectionsPresenterDataTemplate.xaml">
-      <SubType>Designer</SubType>
-      <Generator>MSBuild:Compile</Generator>
-    </Page>
-    <Page Include="DataTemplates\TwoAxisDiagrams\AxisLabelTextStyle.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>

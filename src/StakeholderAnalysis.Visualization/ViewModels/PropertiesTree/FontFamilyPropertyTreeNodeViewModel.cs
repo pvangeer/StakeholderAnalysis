@@ -1,27 +1,29 @@
 ﻿using System;
 using System.ComponentModel;
 using System.Reflection;
+using System.Windows.Media;
 using StakeholderAnalysis.Data;
 
 namespace StakeholderAnalysis.Visualization.ViewModels.PropertiesTree
 {
-    public class BooleanPropertyTreeNodeViewModel<TContent> : PropertyTreeNodeViewModelBaseBase, IBooleanPropertyTreeNodeViewModel where TContent : INotifyPropertyChangedImplementation
+    public class FontFamilyPropertyTreeNodeViewModel<TContent> : PropertyTreeNodeViewModelBaseBase, IFontFamilyPropertyTreeNodeViewModel where TContent : INotifyPropertyChangedImplementation
     {
-        private readonly PropertyInfo propertyInfo;
         private TContent content;
+        private readonly PropertyInfo propertyInfo;
 
-        public BooleanPropertyTreeNodeViewModel(TContent content, string propertyName, string displayName) : base(displayName)
+        public FontFamilyPropertyTreeNodeViewModel(TContent content, string propertyName, string displayName) : base(displayName)
         {
-            this.content = content;
+            Content = content;
+
             propertyInfo = typeof(TContent).GetProperty(propertyName, BindingFlags.Public | BindingFlags.Instance);
-            if (propertyInfo == null || propertyInfo.PropertyType != typeof(bool))
+            if (propertyInfo == null || propertyInfo.PropertyType != typeof(FontFamily))
             {
                 throw new ArgumentException();
             }
 
-            if (this.Content != null)
+            if (Content != null)
             {
-                this.Content.PropertyChanged += ContentPropertyChanged;
+                Content.PropertyChanged += ContentPropertyChanged;
             }
         }
 
@@ -39,34 +41,34 @@ namespace StakeholderAnalysis.Visualization.ViewModels.PropertiesTree
                 {
                     content.PropertyChanged += ContentPropertyChanged;
                 }
-                OnPropertyChanged(nameof(BooleanValue));
+                OnPropertyChanged(nameof(SelectedValue));
             }
         }
 
-        public bool BooleanValue
+        public FontFamily SelectedValue
         {
-            get => (bool)propertyInfo.GetValue(content);
+            get => Content != null ? (FontFamily)propertyInfo.GetValue(Content) : default(FontFamily);
             set
             {
-                if (propertyInfo.CanWrite)
+                if (propertyInfo.CanWrite && Content != null)
                 {
-                    propertyInfo.SetValue(content, value, null);
-                    content.OnPropertyChanged(propertyInfo.Name);
+                    propertyInfo.SetValue(Content, value, null);
+                    Content.OnPropertyChanged(propertyInfo.Name);
                 }
             }
+        }
+
+        public override bool IsViewModelFor(object o)
+        {
+            return ReferenceEquals(o, Content);
         }
 
         private void ContentPropertyChanged(object sender, PropertyChangedEventArgs e)
         {
             if (e.PropertyName == propertyInfo.Name)
             {
-                OnPropertyChanged(nameof(BooleanValue));
+                OnPropertyChanged(nameof(SelectedValue));
             }
-        }
-
-        public override bool IsViewModelFor(object o)
-        {
-            return ReferenceEquals(o, content);
         }
     }
 }

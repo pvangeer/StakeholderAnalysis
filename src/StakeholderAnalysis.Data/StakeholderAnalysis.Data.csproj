@@ -13,6 +13,7 @@
       <Private>False</Private>
     </Reference>
     <Reference Include="PresentationCore" />
+    <Reference Include="PresentationFramework" />
     <Reference Include="System" />
     <Reference Include="System.Core" />
     <Reference Include="WindowsBase" />
@@ -26,7 +27,7 @@
     <Compile Include="Exceptions\ValueOutOfBoundsException.cs" />
     <Compile Include="ForceFieldDiagrams\ForceFieldDiagram.cs" />
     <Compile Include="ForceFieldDiagrams\ForceFieldDiagramStakeholder.cs" />
-    <Compile Include="ForceFieldDiagrams\ITwoAxisDiagram.cs" />
+    <Compile Include="ITwoAxisDiagram.cs" />
     <Compile Include="INotifyPropertyChangedImplementation.cs" />
     <Compile Include="IRankedStakeholder.cs" />
     <Compile Include="IRankedStakeholderDiagram.cs" />
