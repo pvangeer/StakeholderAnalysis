@@ -1,4 +1,5 @@
-﻿using System.Collections.ObjectModel;
+﻿using System;
+using System.Collections.ObjectModel;
 using System.Linq;
 using StakeholderAnalysis.Data;
 using StakeholderAnalysis.Data.AttitudeImpactDiagrams;
@@ -172,9 +173,9 @@ namespace StakeholderAnalysis.Visualization.ViewModels
             return new OnionDiagramStakeholdersViewModel(this, onionDiagram, selectionRegister, drawConnectionHandler);
         }
 
-        public OnionDiagramConnectionsPresenterViewModel CreateOnionDiagramConnectionsPresenterViewModel(OnionDiagram diagram, ISelectionRegister selectionRegister)
+        public OnionDiagramConnectionsPresenterViewModel CreateOnionDiagramConnectionsPresenterViewModel(OnionDiagram diagram)
         {
-            return new OnionDiagramConnectionsPresenterViewModel(this, diagram, selectionRegister);
+            return new OnionDiagramConnectionsPresenterViewModel(this, diagram);
         }
 
         public OnionDiagramRingsCanvasViewModel CreateOnionDiagramRingsCanvasViewModel(OnionDiagram diagram)
@@ -187,9 +188,9 @@ namespace StakeholderAnalysis.Visualization.ViewModels
             return new OnionRingViewModel(this, onionRing);
         }
 
-        public StakeholderConnectionViewModel CreateStakeholderConnectionViewModel(StakeholderConnection stakeholderConnection, ISelectionRegister selectionRegister)
+        public StakeholderConnectionViewModel CreateStakeholderConnectionViewModel(StakeholderConnection stakeholderConnection, Action<StakeholderConnection> removeStakeholderConnectionAction)
         {
-            return new StakeholderConnectionViewModel(this, stakeholderConnection, selectionRegister);
+            return new StakeholderConnectionViewModel(this, stakeholderConnection, removeStakeholderConnectionAction);
         }
 
         public ProjectExplorerStakeholderOverviewTableViewModel CreateProjectExplorerStakeholderOverviewTableViewModel()

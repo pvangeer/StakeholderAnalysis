@@ -6,48 +6,9 @@
 
     <converters:PercentageToDimensionConverter x:Key="PercentageToDimensionConverter" />
     <BooleanToVisibilityConverter x:Key="BooleanToVisibilityConverter" />
-    <visualization:IsSelectedToStrokeThicknessConverter x:Key="IsSelectedToStrokeThicknessConverter" />
-    <converters:ToComplementColorConverter x:Key="ToComplementColorConverter" />
-
+    
     <DataTemplate x:Key="ConnectionDataTemplate" DataType="onionDiagramView:StakeholderConnectionViewModel">
         <Canvas>
-            <Line
-                Visibility="{Binding IsSelected, Converter={StaticResource BooleanToVisibilityConverter}}"
-                Stroke="{Binding StrokeColor, Converter={StaticResource ToComplementColorConverter}}">
-                <Line.StrokeThickness>
-                    <MultiBinding Converter="{StaticResource IsSelectedToStrokeThicknessConverter}">
-                        <Binding Path="StrokeThickness" UpdateSourceTrigger="PropertyChanged"/>
-                        <Binding Path="IsSelected" UpdateSourceTrigger="PropertyChanged"/>
-                    </MultiBinding>
-                </Line.StrokeThickness>
-                <Line.X1>
-                    <MultiBinding Converter="{StaticResource PercentageToDimensionConverter}">
-                        <Binding Path="ConnectFromLeft" />
-                        <Binding ElementName="LinesCanvas" Path="ActualWidth" />
-                    </MultiBinding>
-                </Line.X1>
-                <Line.Y1>
-                    <MultiBinding Converter="{StaticResource PercentageToDimensionConverter}">
-                        <Binding Path="ConnectFromTop" />
-                        <Binding ElementName="LinesCanvas" Path="ActualHeight" />
-                    </MultiBinding>
-                </Line.Y1>
-                <Line.X2>
-                    <MultiBinding Converter="{StaticResource PercentageToDimensionConverter}">
-                        <Binding Path="ConnectToLeft" />
-                        <Binding ElementName="LinesCanvas" Path="ActualWidth" />
-                    </MultiBinding>
-                </Line.X2>
-                <Line.Y2>
-                    <MultiBinding Converter="{StaticResource PercentageToDimensionConverter}">
-                        <Binding Path="ConnectToTop" />
-                        <Binding ElementName="LinesCanvas" Path="ActualHeight" />
-                    </MultiBinding>
-                </Line.Y2>
-                <Line.InputBindings>
-                    <MouseBinding MouseAction="LeftDoubleClick" Command="{Binding StakeholderConnectionClickedCommand}" />
-                </Line.InputBindings>
-            </Line>
             <Line
                 Visibility="{Binding IsVisible, Converter={StaticResource BooleanToVisibilityConverter}}"
                 Stroke="{Binding StrokeColor}"
@@ -76,9 +37,19 @@
                         <Binding ElementName="LinesCanvas" Path="ActualHeight" />
                     </MultiBinding>
                 </Line.Y2>
-                <Line.InputBindings>
-                    <MouseBinding MouseAction="LeftDoubleClick" Command="{Binding StakeholderConnectionClickedCommand}" />
-                </Line.InputBindings>
+                <Line.ContextMenu>
+                    <ContextMenu>
+                        <MenuItem 
+                            Header="Verwijderen" 
+                            Command="{Binding RemoveConnectionCommand}">
+                            <MenuItem.Icon>
+                                <Image Width="16" 
+                                       Height="16"
+                                       Source="pack://application:,,,/StakeholderAnalysis.Visualization;component/Resources/delete.png"/>
+                            </MenuItem.Icon>
+                        </MenuItem>
+                    </ContextMenu>
+                </Line.ContextMenu>
             </Line>
         </Canvas>
     </DataTemplate>

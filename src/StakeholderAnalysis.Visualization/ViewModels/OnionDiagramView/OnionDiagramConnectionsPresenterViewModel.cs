@@ -9,16 +9,14 @@ namespace StakeholderAnalysis.Visualization.ViewModels.OnionDiagramView
     public class OnionDiagramConnectionsPresenterViewModel : ViewModelBase
     {
         private readonly OnionDiagram diagram;
-        private readonly ISelectionRegister selectionRegister;
 
-        public OnionDiagramConnectionsPresenterViewModel(ViewModelFactory factory, OnionDiagram onionDiagram, ISelectionRegister selectionRegister) : base(factory)
+        public OnionDiagramConnectionsPresenterViewModel(ViewModelFactory factory, OnionDiagram onionDiagram) : base(factory)
         {
             this.diagram = onionDiagram;
-            this.selectionRegister = selectionRegister;
-
             if (diagram != null)
             {
-                StakeholderConnections = new ObservableCollection<StakeholderConnectionViewModel>(diagram.Connections.Select(c => ViewModelFactory.CreateStakeholderConnectionViewModel(c, selectionRegister)));
+                StakeholderConnections = new ObservableCollection<StakeholderConnectionViewModel>(
+                    diagram.Connections.Select(c => ViewModelFactory.CreateStakeholderConnectionViewModel(c, connection => diagram.Connections.Remove(connection))));
                 diagram.Connections.CollectionChanged += ConnectorsCollectionChanged;
             }
         }
@@ -29,7 +27,7 @@ namespace StakeholderAnalysis.Visualization.ViewModels.OnionDiagramView
         {
             if (e.Action == NotifyCollectionChangedAction.Add)
                 foreach (var connection in e.NewItems.OfType<StakeholderConnection>())
-                    StakeholderConnections.Add(ViewModelFactory.CreateStakeholderConnectionViewModel(connection, selectionRegister));
+                    StakeholderConnections.Add(ViewModelFactory.CreateStakeholderConnectionViewModel(connection, c => diagram.Connections.Remove(c)));
 
             if (e.Action == NotifyCollectionChangedAction.Remove)
                 foreach (var stakeholder in e.OldItems.OfType<StakeholderConnection>())

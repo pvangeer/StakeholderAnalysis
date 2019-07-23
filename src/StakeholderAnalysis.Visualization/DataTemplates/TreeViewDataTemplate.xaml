@@ -153,8 +153,6 @@
     <DataTemplate x:Key="PropertyValueItemDataTemplate" DataType="propertiesTree:ITreeNodeViewModel">
         <Border Style="{StaticResource TreeNodeBorderStyle}">
             <Grid>
-                <Grid.Resources>
-                </Grid.Resources>
                 <Grid.ColumnDefinitions>
                     <ColumnDefinition Width="*"/>
                     <ColumnDefinition Width="5"/>

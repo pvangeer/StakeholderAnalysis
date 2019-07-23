@@ -1,4 +1,5 @@
-﻿using System.ComponentModel;
+﻿using System;
+using System.ComponentModel;
 using System.Windows.Input;
 using System.Windows.Media;
 using StakeholderAnalysis.Data.OnionDiagrams;
@@ -10,21 +11,18 @@ namespace StakeholderAnalysis.Visualization.ViewModels.OnionDiagramView
     public class StakeholderConnectionViewModel : ViewModelBase
     {
         private readonly StakeholderAnalysisLog log = new StakeholderAnalysisLog(typeof(StakeholderConnectionViewModel));
-        private readonly ISelectionRegister selectionRegister;
-        
-        public StakeholderConnectionViewModel(ViewModelFactory factory, StakeholderConnection connection, ISelectionRegister selectionRegister) : base(factory)
+        private readonly Action<StakeholderConnection> removeStakeholderConnectionAction;
+
+        public StakeholderConnectionViewModel(ViewModelFactory factory, StakeholderConnection connection, Action<StakeholderConnection> removeStakeholderConnectionAction) : base(factory)
         {
-            this.selectionRegister = selectionRegister;
+            this.removeStakeholderConnectionAction = removeStakeholderConnectionAction;
             StakeholderConnection = connection;
             StakeholderConnection.StakeholderConnectionGroup.PropertyChanged += ConnectionGroupPropertyChanged;
             StakeholderConnection.ConnectFrom.PropertyChanged += ConnectFromPropertyChanged;
             StakeholderConnection.ConnectTo.PropertyChanged += ConnectToPropertyChanged;
         }
 
-
         public StakeholderConnection StakeholderConnection { get; }
-
-        public bool IsSelected => selectionRegister != null && selectionRegister.IsSelected(StakeholderConnection);
 
         public Brush StrokeColor => new SolidColorBrush(StakeholderConnection.StakeholderConnectionGroup.StrokeColor);
 
@@ -40,9 +38,9 @@ namespace StakeholderAnalysis.Visualization.ViewModels.OnionDiagramView
 
         public double ConnectToTop => StakeholderConnection.ConnectTo.Top;
 
-        public ICommand StakeholderConnectionClickedCommand => CommandFactory.CreateCanAlwaysExecuteActionCommand(p =>
+        public ICommand RemoveConnectionCommand => CommandFactory.CreateCanAlwaysExecuteActionCommand(p =>
         {
-            selectionRegister?.Select(StakeholderConnection);
+            removeStakeholderConnectionAction?.Invoke(StakeholderConnection);
         });
 
         private void ConnectToPropertyChanged(object sender, PropertyChangedEventArgs e)

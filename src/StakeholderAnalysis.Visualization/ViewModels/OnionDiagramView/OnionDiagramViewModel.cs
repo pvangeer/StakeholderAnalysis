@@ -16,7 +16,7 @@ namespace StakeholderAnalysis.Visualization.ViewModels.OnionDiagramView
             diagram = onionDiagram;
             OnionDiagramDrawConnectionViewModel = factory.CreateOnionDiagramDrawConnectionViewModel(onionDiagram);
             OnionDiagramRingsCanvasViewModel = ViewModelFactory.CreateOnionDiagramRingsCanvasViewModel(diagram);
-            OnionDiagramConnectionsPresenterViewModel = ViewModelFactory.CreateOnionDiagramConnectionsPresenterViewModel(diagram, this);
+            OnionDiagramConnectionsPresenterViewModel = ViewModelFactory.CreateOnionDiagramConnectionsPresenterViewModel(diagram);
             OnionDiagramStakeholdersViewModel = ViewModelFactory.CreateOnionDiagramStakeholdersViewModel(onionDiagram, this, OnionDiagramDrawConnectionViewModel);
         }
 
@@ -62,13 +62,6 @@ namespace StakeholderAnalysis.Visualization.ViewModels.OnionDiagramView
                 var viewModel = OnionDiagramStakeholdersViewModel.OnionDiagramStakeholders.FirstOrDefault(vm =>
                         vm.IsViewModelFor(stakeholder));
                 viewModel?.OnPropertyChanged(nameof(OnionDiagramStakeholderViewModel.IsSelectedStakeholder));
-            }
-
-            if (o is StakeholderConnection connection)
-            {
-                var viewModel = OnionDiagramConnectionsPresenterViewModel.StakeholderConnections.FirstOrDefault(vm =>
-                        vm.IsViewModelFor(connection));
-                viewModel?.OnPropertyChanged(nameof(StakeholderConnectionViewModel.IsSelected));
             }
         }
     }
