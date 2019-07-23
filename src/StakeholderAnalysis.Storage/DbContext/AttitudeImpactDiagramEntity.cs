@@ -24,6 +24,26 @@ namespace StakeholderAnalysis.Storage.DbContext
         public long AnalysisEntityId { get; set; }
         public string Name { get; set; }
         public long Order { get; set; }
+        public string BrushStartColor { get; set; }
+        public string BrushEndColor { get; set; }
+        public string BackgroundTextLeftTop { get; set; }
+        public string BackgroundTextLeftBottom { get; set; }
+        public string BackgroundTextRightTop { get; set; }
+        public string BackgroundTextRightBottom { get; set; }
+        public string BackgroundTextFontFamily { get; set; }
+        public string BackgroundTextFontColor { get; set; }
+        public byte BackgroundTextFontBold { get; set; }
+        public byte BackgroundTextFontItalic { get; set; }
+        public double BackgroundTextFontSize { get; set; }
+        public string YAxisMinLabel { get; set; }
+        public string YAxisMaxLabel { get; set; }
+        public string XAxisMinLabel { get; set; }
+        public string XAxisMaxLabel { get; set; }
+        public string AxisTextFontFamily { get; set; }
+        public string AxisTextFontColor { get; set; }
+        public byte AxisTextFontBold { get; set; }
+        public byte AxisTextFontItalic { get; set; }
+        public double AxisTextFontSize { get; set; }
     
         public virtual AnalysisEntity AnalysisEntity { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]

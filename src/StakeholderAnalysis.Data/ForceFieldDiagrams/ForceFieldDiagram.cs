@@ -1,4 +1,5 @@
-﻿using System.Collections.ObjectModel;
+﻿using System;
+using System.Collections.ObjectModel;
 using System.Windows;
 using System.Windows.Media;
 
@@ -6,6 +7,10 @@ namespace StakeholderAnalysis.Data.ForceFieldDiagrams
 {
     public class ForceFieldDiagram : NotifyPropertyChangedObservable, IRankedStakeholderDiagram<ForceFieldDiagramStakeholder>, ITwoAxisDiagram
     {
+        private double axisFontSize;
+        private double backgroundFontSize;
+
+        // TODO: Merge with AttitudeImpact diagram (only difference is the stakeholder type and even that can be the same).
         public ForceFieldDiagram(string name)
         {
             Name = name;
@@ -58,7 +63,18 @@ namespace StakeholderAnalysis.Data.ForceFieldDiagrams
 
         public bool BackgroundFontItalic { get; set; }
 
-        public double BackgroundFontSize { get; set; }
+        public double BackgroundFontSize
+        {
+            get => backgroundFontSize;
+            set
+            {
+                if (double.IsNaN(value))
+                {
+                    throw new ArgumentException("Value should not be NaN");
+                }
+                backgroundFontSize = value;
+            }
+        }
 
         public string YAxisMaxLabel { get; set; }
 
@@ -76,6 +92,17 @@ namespace StakeholderAnalysis.Data.ForceFieldDiagrams
 
         public bool AxisFontItalic { get; set; }
 
-        public double AxisFontSize { get; set; }
+        public double AxisFontSize
+        {
+            get => axisFontSize;
+            set
+            {
+                if (double.IsNaN(value))
+                {
+                    throw new ArgumentException("Value should not be NaN");
+                }
+                axisFontSize = value;
+            }
+        }
     }
 }

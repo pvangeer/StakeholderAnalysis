@@ -25,10 +25,54 @@ namespace StakeholderAnalysis.Storage.Test
             };
             analysis.OnionDiagrams.Add(onionDiagram);
 
-            var forceFieldDiagram = new ForceFieldDiagram("BOI-krachtenveld");
+            var forceFieldDiagram = new ForceFieldDiagram("BOI-krachtenveld")
+            {
+                BrushEndColor = Colors.Coral,
+                BrushStartColor = Colors.DarkRed,
+                BackgroundTextLeftBottom = "1",
+                BackgroundTextLeftTop = "2",
+                BackgroundTextRightBottom = "3",
+                BackgroundTextRightTop = "4",
+                BackgroundFontFamily = new FontFamily("Arial"),
+                BackgroundFontColor = Colors.Bisque,
+                BackgroundFontBold = false,
+                BackgroundFontItalic = false,
+                BackgroundFontSize = 124,
+                XAxisMaxLabel = "5",
+                XAxisMinLabel = "6",
+                YAxisMaxLabel = "7",
+                YAxisMinLabel = "8",
+                AxisFontFamily = new FontFamily("Times New Roman"),
+                AxisFontColor = Colors.CornflowerBlue,
+                AxisFontBold = true,
+                AxisFontItalic = true,
+                AxisFontSize = 12
+            };
             analysis.ForceFieldDiagrams.Add(forceFieldDiagram);
 
-            var attitudeImpactDiagram = new AttitudeImpactDiagram("BOI-houding/impact");
+            var attitudeImpactDiagram = new AttitudeImpactDiagram("BOI-houding/impact")
+            {
+                BrushEndColor = Colors.Coral,
+                BrushStartColor = Colors.DarkRed,
+                BackgroundTextLeftBottom = "1",
+                BackgroundTextLeftTop = "2",
+                BackgroundTextRightBottom = "3",
+                BackgroundTextRightTop = "4",
+                BackgroundFontFamily = new FontFamily("Arial"),
+                BackgroundFontColor = Colors.Bisque,
+                BackgroundFontBold = false,
+                BackgroundFontItalic = false,
+                BackgroundFontSize = 124,
+                XAxisMaxLabel = "5",
+                XAxisMinLabel = "6",
+                YAxisMaxLabel = "7",
+                YAxisMinLabel = "8",
+                AxisFontFamily = new FontFamily("Times New Roman"),
+                AxisFontColor = Colors.CornflowerBlue,
+                AxisFontBold = true,
+                AxisFontItalic = true,
+                AxisFontSize = 12
+            };
             analysis.AttitudeImpactDiagrams.Add(attitudeImpactDiagram);
 
             #region Add stakeholders

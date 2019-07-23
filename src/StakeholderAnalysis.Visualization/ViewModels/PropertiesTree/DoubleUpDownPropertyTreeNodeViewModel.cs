@@ -51,7 +51,7 @@ namespace StakeholderAnalysis.Visualization.ViewModels.PropertiesTree
 
         public double DoubleValue
         {
-            get => (double)propertyInfo.GetValue(content);
+            get => content != null ? (double)propertyInfo.GetValue(content) : double.NaN;
             set
             {
                 if (propertyInfo.CanWrite)

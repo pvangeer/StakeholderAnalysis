@@ -45,7 +45,7 @@ namespace StakeholderAnalysis.Visualization.ViewModels.PropertiesTree
 
         public bool BooleanValue
         {
-            get => (bool)propertyInfo.GetValue(content);
+            get => content != null && (bool)propertyInfo.GetValue(content);
             set
             {
                 if (propertyInfo.CanWrite)

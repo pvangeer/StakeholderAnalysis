@@ -19,6 +19,26 @@
           <Property Name="AnalysisEntityId" Type="integer" Nullable="false" />
           <Property Name="Name" Type="nvarchar" MaxLength="2147483647" Nullable="false" />
           <Property Name="Order" Type="integer" Nullable="false" />
+          <Property Name="BrushStartColor" Type="nvarchar" MaxLength="2147483647" />
+          <Property Name="BrushEndColor" Type="nvarchar" MaxLength="2147483647" />
+          <Property Name="BackgroundTextLeftTop" Type="nvarchar" MaxLength="2147483647" />
+          <Property Name="BackgroundTextLeftBottom" Type="nvarchar" MaxLength="2147483647" />
+          <Property Name="BackgroundTextRightTop" Type="nvarchar" MaxLength="2147483647" />
+          <Property Name="BackgroundTextRightBottom" Type="nvarchar" MaxLength="2147483647" />
+          <Property Name="BackgroundTextFontFamily" Type="nvarchar" MaxLength="2147483647" Nullable="false" />
+          <Property Name="BackgroundTextFontColor" Type="nvarchar" MaxLength="2147483647" Nullable="false" />
+          <Property Name="BackgroundTextFontBold" Type="tinyint" Nullable="false" />
+          <Property Name="BackgroundTextFontItalic" Type="tinyint" Nullable="false" />
+          <Property Name="BackgroundTextFontSize" Type="real" Nullable="false" />
+          <Property Name="YAxisMinLabel" Type="nvarchar" MaxLength="2147483647" />
+          <Property Name="YAxisMaxLabel" Type="nvarchar" MaxLength="2147483647" />
+          <Property Name="XAxisMinLabel" Type="nvarchar" MaxLength="2147483647" />
+          <Property Name="XAxisMaxLabel" Type="nvarchar" MaxLength="2147483647" />
+          <Property Name="AxisTextFontFamily" Type="nvarchar" MaxLength="2147483647" Nullable="false" />
+          <Property Name="AxisTextFontColor" Type="nvarchar" MaxLength="2147483647" Nullable="false" />
+          <Property Name="AxisTextFontBold" Type="tinyint" Nullable="false" />
+          <Property Name="AxisTextFontItalic" Type="tinyint" Nullable="false" />
+          <Property Name="AxisTextFontSize" Type="real" Nullable="false" />
         </EntityType>
         <EntityType Name="AttitudeImpactDiagramStakeholderEntity">
           <Key>
@@ -40,6 +60,26 @@
           <Property Name="AnalysisEntityId" Type="integer" Nullable="false" />
           <Property Name="Name" Type="nvarchar" MaxLength="2147483647" Nullable="false" />
           <Property Name="Order" Type="integer" Nullable="false" />
+          <Property Name="BrushStartColor" Type="nvarchar" MaxLength="2147483647" />
+          <Property Name="BrushEndColor" Type="nvarchar" MaxLength="2147483647" />
+          <Property Name="BackgroundTextLeftTop" Type="nvarchar" MaxLength="2147483647" />
+          <Property Name="BackgroundTextLeftBottom" Type="nvarchar" MaxLength="2147483647" />
+          <Property Name="BackgroundTextRightTop" Type="nvarchar" MaxLength="2147483647" />
+          <Property Name="BackgroundTextRightBottom" Type="nvarchar" MaxLength="2147483647" />
+          <Property Name="BackgroundTextFontFamily" Type="nvarchar" MaxLength="2147483647" Nullable="false" />
+          <Property Name="BackgroundTextFontColor" Type="nvarchar" MaxLength="2147483647" Nullable="false" />
+          <Property Name="BackgroundTextFontBold" Type="tinyint" Nullable="false" />
+          <Property Name="BackgroundTextFontItalic" Type="tinyint" Nullable="false" />
+          <Property Name="BackgroundTextFontSize" Type="real" Nullable="false" />
+          <Property Name="YAxisMinLabel" Type="nvarchar" MaxLength="2147483647" />
+          <Property Name="YAxisMaxLabel" Type="nvarchar" MaxLength="2147483647" />
+          <Property Name="XAxisMinLabel" Type="nvarchar" MaxLength="2147483647" />
+          <Property Name="XAxisMaxLabel" Type="nvarchar" MaxLength="2147483647" />
+          <Property Name="AxisTextFontFamily" Type="nvarchar" MaxLength="2147483647" Nullable="false" />
+          <Property Name="AxisTextFontColor" Type="nvarchar" MaxLength="2147483647" Nullable="false" />
+          <Property Name="AxisTextFontBold" Type="tinyint" Nullable="false" />
+          <Property Name="AxisTextFontItalic" Type="tinyint" Nullable="false" />
+          <Property Name="AxisTextFontSize" Type="real" Nullable="false" />
         </EntityType>
         <EntityType Name="ForceFieldDiagramStakeholderEntity">
           <Key>
@@ -553,6 +593,26 @@
           <Property Name="AnalysisEntityId" Type="Int64" Nullable="false" />
           <Property Name="Name" Type="String" Nullable="false" MaxLength="2147483647" FixedLength="false" Unicode="true" />
           <Property Name="Order" Type="Int64" Nullable="false" />
+          <Property Name="BrushStartColor" Type="String" MaxLength="2147483647" FixedLength="false" Unicode="true" />
+          <Property Name="BrushEndColor" Type="String" MaxLength="2147483647" FixedLength="false" Unicode="true" />
+          <Property Name="BackgroundTextLeftTop" Type="String" MaxLength="2147483647" FixedLength="false" Unicode="true" />
+          <Property Name="BackgroundTextLeftBottom" Type="String" MaxLength="2147483647" FixedLength="false" Unicode="true" />
+          <Property Name="BackgroundTextRightTop" Type="String" MaxLength="2147483647" FixedLength="false" Unicode="true" />
+          <Property Name="BackgroundTextRightBottom" Type="String" MaxLength="2147483647" FixedLength="false" Unicode="true" />
+          <Property Name="BackgroundTextFontFamily" Type="String" Nullable="false" MaxLength="2147483647" FixedLength="false" Unicode="true" />
+          <Property Name="BackgroundTextFontColor" Type="String" Nullable="false" MaxLength="2147483647" FixedLength="false" Unicode="true" />
+          <Property Name="BackgroundTextFontBold" Type="Byte" Nullable="false" />
+          <Property Name="BackgroundTextFontItalic" Type="Byte" Nullable="false" />
+          <Property Name="BackgroundTextFontSize" Type="Double" Nullable="false" />
+          <Property Name="YAxisMinLabel" Type="String" MaxLength="2147483647" FixedLength="false" Unicode="true" />
+          <Property Name="YAxisMaxLabel" Type="String" MaxLength="2147483647" FixedLength="false" Unicode="true" />
+          <Property Name="XAxisMinLabel" Type="String" MaxLength="2147483647" FixedLength="false" Unicode="true" />
+          <Property Name="XAxisMaxLabel" Type="String" MaxLength="2147483647" FixedLength="false" Unicode="true" />
+          <Property Name="AxisTextFontFamily" Type="String" Nullable="false" MaxLength="2147483647" FixedLength="false" Unicode="true" />
+          <Property Name="AxisTextFontColor" Type="String" Nullable="false" MaxLength="2147483647" FixedLength="false" Unicode="true" />
+          <Property Name="AxisTextFontBold" Type="Byte" Nullable="false" />
+          <Property Name="AxisTextFontItalic" Type="Byte" Nullable="false" />
+          <Property Name="AxisTextFontSize" Type="Double" Nullable="false" />
           <NavigationProperty Name="AnalysisEntity" Relationship="StakeholderAnalysisEntities.FK_AttitudeImpactDiagramEntity_0_0" FromRole="AttitudeImpactDiagramEntity" ToRole="AnalysisEntity" />
           <NavigationProperty Name="AttitudeImpactDiagramStakeholderEntities" Relationship="StakeholderAnalysisEntities.FK_AttitudeImpactDiagramStakeholderEntity_1_0" FromRole="AttitudeImpactDiagramEntity" ToRole="AttitudeImpactDiagramStakeholderEntity" />
         </EntityType>
@@ -578,6 +638,26 @@
           <Property Name="AnalysisEntityId" Type="Int64" Nullable="false" />
           <Property Name="Name" Type="String" Nullable="false" MaxLength="2147483647" FixedLength="false" Unicode="true" />
           <Property Name="Order" Type="Int64" Nullable="false" />
+          <Property Name="BrushStartColor" Type="String" MaxLength="2147483647" FixedLength="false" Unicode="true" />
+          <Property Name="BrushEndColor" Type="String" MaxLength="2147483647" FixedLength="false" Unicode="true" />
+          <Property Name="BackgroundTextLeftTop" Type="String" MaxLength="2147483647" FixedLength="false" Unicode="true" />
+          <Property Name="BackgroundTextLeftBottom" Type="String" MaxLength="2147483647" FixedLength="false" Unicode="true" />
+          <Property Name="BackgroundTextRightTop" Type="String" MaxLength="2147483647" FixedLength="false" Unicode="true" />
+          <Property Name="BackgroundTextRightBottom" Type="String" MaxLength="2147483647" FixedLength="false" Unicode="true" />
+          <Property Name="BackgroundTextFontFamily" Type="String" Nullable="false" MaxLength="2147483647" FixedLength="false" Unicode="true" />
+          <Property Name="BackgroundTextFontColor" Type="String" Nullable="false" MaxLength="2147483647" FixedLength="false" Unicode="true" />
+          <Property Name="BackgroundTextFontBold" Type="Byte" Nullable="false" />
+          <Property Name="BackgroundTextFontItalic" Type="Byte" Nullable="false" />
+          <Property Name="BackgroundTextFontSize" Type="Double" Nullable="false" />
+          <Property Name="YAxisMinLabel" Type="String" MaxLength="2147483647" FixedLength="false" Unicode="true" />
+          <Property Name="YAxisMaxLabel" Type="String" MaxLength="2147483647" FixedLength="false" Unicode="true" />
+          <Property Name="XAxisMinLabel" Type="String" MaxLength="2147483647" FixedLength="false" Unicode="true" />
+          <Property Name="XAxisMaxLabel" Type="String" MaxLength="2147483647" FixedLength="false" Unicode="true" />
+          <Property Name="AxisTextFontFamily" Type="String" Nullable="false" MaxLength="2147483647" FixedLength="false" Unicode="true" />
+          <Property Name="AxisTextFontColor" Type="String" Nullable="false" MaxLength="2147483647" FixedLength="false" Unicode="true" />
+          <Property Name="AxisTextFontBold" Type="Byte" Nullable="false" />
+          <Property Name="AxisTextFontItalic" Type="Byte" Nullable="false" />
+          <Property Name="AxisTextFontSize" Type="Double" Nullable="false" />
           <NavigationProperty Name="AnalysisEntity" Relationship="StakeholderAnalysisEntities.FK_ForceFieldDiagramEntity_0_0" FromRole="ForceFieldDiagramEntity" ToRole="AnalysisEntity" />
           <NavigationProperty Name="ForceFieldDiagramStakeholderEntities" Relationship="StakeholderAnalysisEntities.FK_ForceFieldDiagramStakeholderEntity_1_0" FromRole="ForceFieldDiagramEntity" ToRole="ForceFieldDiagramStakeholderEntity" />
         </EntityType>
@@ -937,6 +1017,26 @@
           <EntitySetMapping Name="AttitudeImpactDiagramEntities">
             <EntityTypeMapping TypeName="StakeholderAnalysisEntities.AttitudeImpactDiagramEntity">
               <MappingFragment StoreEntitySet="AttitudeImpactDiagramEntity">
+                <ScalarProperty Name="AxisTextFontSize" ColumnName="AxisTextFontSize" />
+                <ScalarProperty Name="AxisTextFontItalic" ColumnName="AxisTextFontItalic" />
+                <ScalarProperty Name="AxisTextFontBold" ColumnName="AxisTextFontBold" />
+                <ScalarProperty Name="AxisTextFontColor" ColumnName="AxisTextFontColor" />
+                <ScalarProperty Name="AxisTextFontFamily" ColumnName="AxisTextFontFamily" />
+                <ScalarProperty Name="XAxisMaxLabel" ColumnName="XAxisMaxLabel" />
+                <ScalarProperty Name="XAxisMinLabel" ColumnName="XAxisMinLabel" />
+                <ScalarProperty Name="YAxisMaxLabel" ColumnName="YAxisMaxLabel" />
+                <ScalarProperty Name="YAxisMinLabel" ColumnName="YAxisMinLabel" />
+                <ScalarProperty Name="BackgroundTextFontSize" ColumnName="BackgroundTextFontSize" />
+                <ScalarProperty Name="BackgroundTextFontItalic" ColumnName="BackgroundTextFontItalic" />
+                <ScalarProperty Name="BackgroundTextFontBold" ColumnName="BackgroundTextFontBold" />
+                <ScalarProperty Name="BackgroundTextFontColor" ColumnName="BackgroundTextFontColor" />
+                <ScalarProperty Name="BackgroundTextFontFamily" ColumnName="BackgroundTextFontFamily" />
+                <ScalarProperty Name="BackgroundTextRightBottom" ColumnName="BackgroundTextRightBottom" />
+                <ScalarProperty Name="BackgroundTextRightTop" ColumnName="BackgroundTextRightTop" />
+                <ScalarProperty Name="BackgroundTextLeftBottom" ColumnName="BackgroundTextLeftBottom" />
+                <ScalarProperty Name="BackgroundTextLeftTop" ColumnName="BackgroundTextLeftTop" />
+                <ScalarProperty Name="BrushEndColor" ColumnName="BrushEndColor" />
+                <ScalarProperty Name="BrushStartColor" ColumnName="BrushStartColor" />
                 <ScalarProperty Name="Order" ColumnName="Order" />
                 <ScalarProperty Name="Name" ColumnName="Name" />
                 <ScalarProperty Name="AnalysisEntityId" ColumnName="AnalysisEntityId" />
@@ -960,6 +1060,26 @@
           <EntitySetMapping Name="ForceFieldDiagramEntities">
             <EntityTypeMapping TypeName="StakeholderAnalysisEntities.ForceFieldDiagramEntity">
               <MappingFragment StoreEntitySet="ForceFieldDiagramEntity">
+                <ScalarProperty Name="AxisTextFontSize" ColumnName="AxisTextFontSize" />
+                <ScalarProperty Name="AxisTextFontItalic" ColumnName="AxisTextFontItalic" />
+                <ScalarProperty Name="AxisTextFontBold" ColumnName="AxisTextFontBold" />
+                <ScalarProperty Name="AxisTextFontColor" ColumnName="AxisTextFontColor" />
+                <ScalarProperty Name="AxisTextFontFamily" ColumnName="AxisTextFontFamily" />
+                <ScalarProperty Name="XAxisMaxLabel" ColumnName="XAxisMaxLabel" />
+                <ScalarProperty Name="XAxisMinLabel" ColumnName="XAxisMinLabel" />
+                <ScalarProperty Name="YAxisMaxLabel" ColumnName="YAxisMaxLabel" />
+                <ScalarProperty Name="YAxisMinLabel" ColumnName="YAxisMinLabel" />
+                <ScalarProperty Name="BackgroundTextFontSize" ColumnName="BackgroundTextFontSize" />
+                <ScalarProperty Name="BackgroundTextFontItalic" ColumnName="BackgroundTextFontItalic" />
+                <ScalarProperty Name="BackgroundTextFontBold" ColumnName="BackgroundTextFontBold" />
+                <ScalarProperty Name="BackgroundTextFontColor" ColumnName="BackgroundTextFontColor" />
+                <ScalarProperty Name="BackgroundTextFontFamily" ColumnName="BackgroundTextFontFamily" />
+                <ScalarProperty Name="BackgroundTextRightBottom" ColumnName="BackgroundTextRightBottom" />
+                <ScalarProperty Name="BackgroundTextRightTop" ColumnName="BackgroundTextRightTop" />
+                <ScalarProperty Name="BackgroundTextLeftBottom" ColumnName="BackgroundTextLeftBottom" />
+                <ScalarProperty Name="BackgroundTextLeftTop" ColumnName="BackgroundTextLeftTop" />
+                <ScalarProperty Name="BrushEndColor" ColumnName="BrushEndColor" />
+                <ScalarProperty Name="BrushStartColor" ColumnName="BrushStartColor" />
                 <ScalarProperty Name="Order" ColumnName="Order" />
                 <ScalarProperty Name="Name" ColumnName="Name" />
                 <ScalarProperty Name="AnalysisEntityId" ColumnName="AnalysisEntityId" />

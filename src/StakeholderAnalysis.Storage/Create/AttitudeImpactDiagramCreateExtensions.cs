@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Windows.Media;
 using StakeholderAnalysis.Data.AttitudeImpactDiagrams;
 using StakeholderAnalysis.Storage.DbContext;
 
@@ -18,9 +19,30 @@ namespace StakeholderAnalysis.Storage.Create
                 return registry.Get(diagram);
             }
 
+            var converter = new FontFamilyConverter();
             var entity = new AttitudeImpactDiagramEntity
             {
-                Name = diagram.Name.DeepClone()
+                Name = diagram.Name.DeepClone(),
+                BrushStartColor = diagram.BrushStartColor.ToHexString(),
+                BrushEndColor = diagram.BrushEndColor.ToHexString(),
+                BackgroundTextLeftBottom = diagram.BackgroundTextLeftBottom,
+                BackgroundTextLeftTop = diagram.BackgroundTextLeftTop,
+                BackgroundTextRightTop = diagram.BackgroundTextRightTop,
+                BackgroundTextRightBottom = diagram.BackgroundTextRightBottom,
+                BackgroundTextFontFamily = converter.ConvertToInvariantString(diagram.BackgroundFontFamily),
+                BackgroundTextFontBold = diagram.BackgroundFontBold ? (byte)1 : (byte)0,
+                BackgroundTextFontColor = diagram.BackgroundFontColor.ToHexString(),
+                BackgroundTextFontItalic = diagram.BackgroundFontItalic ? (byte)1 : (byte)0,
+                BackgroundTextFontSize = diagram.BackgroundFontSize,
+                XAxisMinLabel = diagram.XAxisMinLabel,
+                XAxisMaxLabel = diagram.XAxisMaxLabel,
+                YAxisMaxLabel = diagram.YAxisMaxLabel,
+                YAxisMinLabel = diagram.YAxisMinLabel,
+                AxisTextFontFamily = converter.ConvertToInvariantString(diagram.AxisFontFamily),
+                AxisTextFontBold = diagram.AxisFontBold ? (byte)1 : (byte)0,
+                AxisTextFontColor = diagram.AxisFontColor.ToHexString(),
+                AxisTextFontItalic = diagram.AxisFontItalic ? (byte)1 : (byte)0,
+                AxisTextFontSize = diagram.AxisFontSize
             };
 
             AddEntitiesForStakeholders(diagram, entity, registry);

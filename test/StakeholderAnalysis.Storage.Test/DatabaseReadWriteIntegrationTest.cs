@@ -156,10 +156,30 @@ namespace StakeholderAnalysis.Storage.Test
             Assert.AreEqual(forceFieldDiagrams.Count, twoCForceFieldDiagrams.Count);
             for (int i = 0; i < forceFieldDiagrams.Count; i++)
             {
-                var attitudeImpactDiagram = forceFieldDiagrams[i];
-                var twoCAttitudeImpactDiagram = twoCForceFieldDiagrams[i];
-                Assert.AreEqual(attitudeImpactDiagram.Name, twoCAttitudeImpactDiagram.Name);
-                AssertAreEqualForceFieldDiagramStakeholders(attitudeImpactDiagram.Stakeholders, twoCAttitudeImpactDiagram.Stakeholders);
+                var forceFieldDiagram = forceFieldDiagrams[i];
+                var twoCForceFieldDiagram = twoCForceFieldDiagrams[i];
+                Assert.AreEqual(forceFieldDiagram.Name, twoCForceFieldDiagram.Name);
+                Assert.AreEqual(forceFieldDiagram.BrushEndColor, twoCForceFieldDiagram.BrushEndColor);
+                Assert.AreEqual(forceFieldDiagram.BrushStartColor, twoCForceFieldDiagram.BrushStartColor);
+                Assert.AreEqual(forceFieldDiagram.BackgroundTextLeftBottom, twoCForceFieldDiagram.BackgroundTextLeftBottom);
+                Assert.AreEqual(forceFieldDiagram.BackgroundTextLeftTop, twoCForceFieldDiagram.BackgroundTextLeftTop);
+                Assert.AreEqual(forceFieldDiagram.BackgroundTextRightBottom, twoCForceFieldDiagram.BackgroundTextRightBottom);
+                Assert.AreEqual(forceFieldDiagram.BackgroundTextRightTop, twoCForceFieldDiagram.BackgroundTextRightTop);
+                Assert.AreEqual(forceFieldDiagram.BackgroundFontFamily, twoCForceFieldDiagram.BackgroundFontFamily);
+                Assert.AreEqual(forceFieldDiagram.BackgroundFontColor, twoCForceFieldDiagram.BackgroundFontColor);
+                Assert.AreEqual(forceFieldDiagram.BackgroundFontBold, twoCForceFieldDiagram.BackgroundFontBold);
+                Assert.AreEqual(forceFieldDiagram.BackgroundFontItalic, twoCForceFieldDiagram.BackgroundFontItalic);
+                Assert.AreEqual(forceFieldDiagram.BackgroundFontSize, twoCForceFieldDiagram.BackgroundFontSize);
+                Assert.AreEqual(forceFieldDiagram.XAxisMaxLabel, twoCForceFieldDiagram.XAxisMaxLabel);
+                Assert.AreEqual(forceFieldDiagram.XAxisMinLabel, twoCForceFieldDiagram.XAxisMinLabel);
+                Assert.AreEqual(forceFieldDiagram.YAxisMaxLabel, twoCForceFieldDiagram.YAxisMaxLabel);
+                Assert.AreEqual(forceFieldDiagram.YAxisMinLabel, twoCForceFieldDiagram.YAxisMinLabel);
+                Assert.AreEqual(forceFieldDiagram.AxisFontFamily, twoCForceFieldDiagram.AxisFontFamily);
+                Assert.AreEqual(forceFieldDiagram.AxisFontColor, twoCForceFieldDiagram.AxisFontColor);
+                Assert.AreEqual(forceFieldDiagram.AxisFontBold, twoCForceFieldDiagram.AxisFontBold);
+                Assert.AreEqual(forceFieldDiagram.AxisFontItalic, twoCForceFieldDiagram.AxisFontItalic);
+                Assert.AreEqual(forceFieldDiagram.AxisFontSize, twoCForceFieldDiagram.AxisFontSize);
+                AssertAreEqualForceFieldDiagramStakeholders(forceFieldDiagram.Stakeholders, twoCForceFieldDiagram.Stakeholders);
             }
         }
 
@@ -185,6 +205,26 @@ namespace StakeholderAnalysis.Storage.Test
                 var attitudeImpactDiagram = attitudeImpactDiagrams[i];
                 var twoCAttitudeImpactDiagram = twoCAttitudeImpactDiagrams[i];
                 Assert.AreEqual(attitudeImpactDiagram.Name, twoCAttitudeImpactDiagram.Name);
+                Assert.AreEqual(attitudeImpactDiagram.BrushEndColor, twoCAttitudeImpactDiagram.BrushEndColor);
+                Assert.AreEqual(attitudeImpactDiagram.BrushStartColor, twoCAttitudeImpactDiagram.BrushStartColor);
+                Assert.AreEqual(attitudeImpactDiagram.BackgroundTextLeftBottom, twoCAttitudeImpactDiagram.BackgroundTextLeftBottom);
+                Assert.AreEqual(attitudeImpactDiagram.BackgroundTextLeftTop, twoCAttitudeImpactDiagram.BackgroundTextLeftTop);
+                Assert.AreEqual(attitudeImpactDiagram.BackgroundTextRightBottom, twoCAttitudeImpactDiagram.BackgroundTextRightBottom);
+                Assert.AreEqual(attitudeImpactDiagram.BackgroundTextRightTop, twoCAttitudeImpactDiagram.BackgroundTextRightTop);
+                Assert.AreEqual(attitudeImpactDiagram.BackgroundFontFamily, twoCAttitudeImpactDiagram.BackgroundFontFamily);
+                Assert.AreEqual(attitudeImpactDiagram.BackgroundFontColor, twoCAttitudeImpactDiagram.BackgroundFontColor);
+                Assert.AreEqual(attitudeImpactDiagram.BackgroundFontBold, twoCAttitudeImpactDiagram.BackgroundFontBold);
+                Assert.AreEqual(attitudeImpactDiagram.BackgroundFontItalic, twoCAttitudeImpactDiagram.BackgroundFontItalic);
+                Assert.AreEqual(attitudeImpactDiagram.BackgroundFontSize, twoCAttitudeImpactDiagram.BackgroundFontSize);
+                Assert.AreEqual(attitudeImpactDiagram.XAxisMaxLabel, twoCAttitudeImpactDiagram.XAxisMaxLabel);
+                Assert.AreEqual(attitudeImpactDiagram.XAxisMinLabel, twoCAttitudeImpactDiagram.XAxisMinLabel);
+                Assert.AreEqual(attitudeImpactDiagram.YAxisMaxLabel, twoCAttitudeImpactDiagram.YAxisMaxLabel);
+                Assert.AreEqual(attitudeImpactDiagram.YAxisMinLabel, twoCAttitudeImpactDiagram.YAxisMinLabel);
+                Assert.AreEqual(attitudeImpactDiagram.AxisFontFamily, twoCAttitudeImpactDiagram.AxisFontFamily);
+                Assert.AreEqual(attitudeImpactDiagram.AxisFontColor, twoCAttitudeImpactDiagram.AxisFontColor);
+                Assert.AreEqual(attitudeImpactDiagram.AxisFontBold, twoCAttitudeImpactDiagram.AxisFontBold);
+                Assert.AreEqual(attitudeImpactDiagram.AxisFontItalic, twoCAttitudeImpactDiagram.AxisFontItalic);
+                Assert.AreEqual(attitudeImpactDiagram.AxisFontSize, twoCAttitudeImpactDiagram.AxisFontSize);
                 AssertAreEqualAttitudeImpactDiagramStakeholders(attitudeImpactDiagram.Stakeholders,twoCAttitudeImpactDiagram.Stakeholders);
             }
         }
