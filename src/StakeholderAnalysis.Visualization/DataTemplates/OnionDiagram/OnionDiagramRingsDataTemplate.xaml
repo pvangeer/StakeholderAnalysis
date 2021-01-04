@@ -9,7 +9,6 @@
     <converters:PercentageToDimensionConverter x:Key="PercentageToDimensionConverter" />
 
     <DataTemplate x:Key="OnionDiagramRingsDataTemplate" DataType="onionDiagramView:OnionDiagramRingsCanvasViewModel">
-        
         <Grid>
             <Grid.Resources>
                 <CollectionViewSource x:Key="SortedOnionRings" Source="{Binding OnionRings}">

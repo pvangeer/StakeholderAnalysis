@@ -23,6 +23,8 @@ namespace StakeholderAnalysis.Visualization.ViewModels.ProjectExplorer
             {
                 Items.Add(ViewModelFactory.CreateProjectExplorerForceFieldDiagramViewModel(forceFieldDiagram));
             }
+
+            ContextMenuItems = new ObservableCollection<ContextMenuItemViewModel>();
         }
 
         public ObservableCollection<ITreeNodeViewModel> Items { get; }
@@ -53,6 +55,8 @@ namespace StakeholderAnalysis.Visualization.ViewModels.ProjectExplorer
         public bool CanOpen => false;
 
         public ICommand OpenViewCommand => null;
+
+        public ObservableCollection<ContextMenuItemViewModel> ContextMenuItems { get; }
 
         public bool IsViewModelFor(object o)
         {

@@ -27,6 +27,16 @@ namespace StakeholderAnalysis.Visualization.ViewModels.ProjectExplorer
             {
                 new StringPropertyTreeNodeViewModel<AttitudeImpactDiagram>(diagram, nameof(AttitudeImpactDiagram.Name), "Naam")
             };
+
+            ContextMenuItems = new ObservableCollection<ContextMenuItemViewModel>
+            {
+                ViewModelFactory.CreateDuplicateMenuItemViewModel(diagram, CommandFactory.CreateCanAlwaysExecuteActionCommand(
+                    p =>
+                    {
+                        analysis.AttitudeImpactDiagrams.Add(diagram.Clone() as AttitudeImpactDiagram);
+                    }))
+            };
+
             if (diagram != null)
             {
                 diagram.PropertyChanged += DiagramPropertyChanged;
@@ -74,6 +84,8 @@ namespace StakeholderAnalysis.Visualization.ViewModels.ProjectExplorer
             }
             viewManager.BringToFront(viewInfo);
         });
+
+        public ObservableCollection<ContextMenuItemViewModel> ContextMenuItems { get; }
 
         public string IconSourceString => "pack://application:,,,/StakeholderAnalysis.Visualization;component/Resources/involvement.png";
 

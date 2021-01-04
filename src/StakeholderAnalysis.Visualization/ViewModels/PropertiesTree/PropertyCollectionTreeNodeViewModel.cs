@@ -1,5 +1,4 @@
 ﻿using System.Collections.ObjectModel;
-using System.Linq;
 using System.Windows.Input;
 
 namespace StakeholderAnalysis.Visualization.ViewModels.PropertiesTree
@@ -13,6 +12,8 @@ namespace StakeholderAnalysis.Visualization.ViewModels.PropertiesTree
         {
             DisplayName = displayName;
             Items = items;
+            // TODO: Pass context menu items in case this is necessary
+            ContextMenuItems = new ObservableCollection<ContextMenuItemViewModel>();
             CollectionType = collectionType;
         }
 
@@ -55,6 +56,8 @@ namespace StakeholderAnalysis.Visualization.ViewModels.PropertiesTree
         public bool CanOpen => false;
 
         public ICommand OpenViewCommand => null;
+
+        public ObservableCollection<ContextMenuItemViewModel> ContextMenuItems { get; }
 
         public bool IsViewModelFor(object o)
         {

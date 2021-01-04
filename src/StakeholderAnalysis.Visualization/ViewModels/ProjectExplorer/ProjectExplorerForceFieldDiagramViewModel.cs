@@ -26,6 +26,17 @@ namespace StakeholderAnalysis.Visualization.ViewModels.ProjectExplorer
             {
                 new StringPropertyTreeNodeViewModel<ForceFieldDiagram>(diagram, nameof(ForceFieldDiagram.Name), "Naam")
             };
+
+            ContextMenuItems = new ObservableCollection<ContextMenuItemViewModel>
+            {
+                // TODO: Add Openen, Verwijderen, ?
+                ViewModelFactory.CreateDuplicateMenuItemViewModel(diagram, CommandFactory.CreateCanAlwaysExecuteActionCommand(
+                    p =>
+                    {
+                        analysis.ForceFieldDiagrams.Add(diagram.Clone() as ForceFieldDiagram);
+                    }))
+            };
+
             if (diagram != null)
             {
                 diagram.PropertyChanged += DiagramPropertyChanged;
@@ -73,6 +84,8 @@ namespace StakeholderAnalysis.Visualization.ViewModels.ProjectExplorer
             }
             viewManager.BringToFront(viewInfo);
         });
+
+        public ObservableCollection<ContextMenuItemViewModel> ContextMenuItems { get; }
 
         public string IconSourceString => "pack://application:,,,/StakeholderAnalysis.Visualization;component/Resources/forces.png";
 

@@ -1,4 +1,5 @@
-﻿using System.Windows.Input;
+﻿using System.Collections.ObjectModel;
+using System.Windows.Input;
 
 namespace StakeholderAnalysis.Visualization.ViewModels.PropertiesTree
 {
@@ -19,6 +20,8 @@ namespace StakeholderAnalysis.Visualization.ViewModels.PropertiesTree
         bool CanOpen { get; }
 
         ICommand OpenViewCommand { get; }
+
+        ObservableCollection<ContextMenuItemViewModel> ContextMenuItems { get; }
 
         bool IsViewModelFor(object o);
     }

@@ -28,6 +28,15 @@ namespace StakeholderAnalysis.Visualization.ViewModels.ProjectExplorer
                 new DoubleUpDownPropertyTreeNodeViewModel<OnionDiagram>(diagram, nameof(OnionDiagram.Asymmetry), "Asymmetrie", 0, 1, 0.1, "0.#####")
             };
 
+            ContextMenuItems = new ObservableCollection<ContextMenuItemViewModel>
+            {
+                ViewModelFactory.CreateDuplicateMenuItemViewModel(diagram, CommandFactory.CreateCanAlwaysExecuteActionCommand(
+                    p =>
+                    {
+                        analysis.OnionDiagrams.Add(diagram.Clone() as OnionDiagram);
+                    }))
+            };
+
             if (diagram != null)
             {
                 diagram.PropertyChanged += DiagramPropertyChanged;
@@ -76,6 +85,8 @@ namespace StakeholderAnalysis.Visualization.ViewModels.ProjectExplorer
             }
             viewManager.BringToFront(viewInfo);
         });
+
+        public ObservableCollection<ContextMenuItemViewModel> ContextMenuItems { get; }
 
         public bool IsViewModelFor(object otherObject)
         {

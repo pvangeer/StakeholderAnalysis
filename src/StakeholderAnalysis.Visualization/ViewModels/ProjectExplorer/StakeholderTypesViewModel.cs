@@ -24,7 +24,7 @@ namespace StakeholderAnalysis.Visualization.ViewModels.ProjectExplorer
             {
                 Items = new ObservableCollection<ITreeNodeViewModel>();
             }
-
+            ContextMenuItems = new ObservableCollection<ContextMenuItemViewModel>();
         }
 
         public string DisplayName => "Stakeholder types";
@@ -40,6 +40,8 @@ namespace StakeholderAnalysis.Visualization.ViewModels.ProjectExplorer
         public bool CanOpen => false;
 
         public ICommand OpenViewCommand => null;
+
+        public ObservableCollection<ContextMenuItemViewModel> ContextMenuItems { get; }
 
         public bool IsViewModelFor(object o)
         {

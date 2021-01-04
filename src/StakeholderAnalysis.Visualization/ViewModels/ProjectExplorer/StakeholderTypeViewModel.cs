@@ -22,6 +22,7 @@ namespace StakeholderAnalysis.Visualization.ViewModels.ProjectExplorer
                 new ColorPropertyTreeNodeViewModel<StakeholderType>(stakeholderType, nameof(StakeholderType.Color),"Kleur"),
                 new StakeholderTypeIconPropertyTreeNodeViewModel(stakeholderType)
             };
+            ContextMenuItems = new ObservableCollection<ContextMenuItemViewModel>();
             RemoveItemCommand = CommandFactory.CreateRemoveStakeholderTypeCommand(stakeholderType);
             stakeholderType.PropertyChanged += StakeholderTypePropertyChanged;
         }
@@ -55,6 +56,8 @@ namespace StakeholderAnalysis.Visualization.ViewModels.ProjectExplorer
         public bool CanOpen => false;
 
         public ICommand OpenViewCommand => null;
+
+        public ObservableCollection<ContextMenuItemViewModel> ContextMenuItems { get; }
 
         public bool IsViewModelFor(object o)
         {

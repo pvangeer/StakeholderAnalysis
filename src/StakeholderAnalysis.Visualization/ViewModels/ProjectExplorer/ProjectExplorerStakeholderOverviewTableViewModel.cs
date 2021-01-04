@@ -1,4 +1,5 @@
-﻿using System.Linq;
+﻿using System.Collections.ObjectModel;
+using System.Linq;
 using System.Windows.Input;
 using StakeholderAnalysis.Gui;
 using StakeholderAnalysis.Visualization.ViewModels.PropertiesTree;
@@ -13,6 +14,7 @@ namespace StakeholderAnalysis.Visualization.ViewModels.ProjectExplorer
         public ProjectExplorerStakeholderOverviewTableViewModel(ViewModelFactory factory, ViewManager viewManager) : base(factory)
         {
             this.viewManager = viewManager;
+            ContextMenuItems = new ObservableCollection<ContextMenuItemViewModel>();
         }
 
         public string DisplayName => "Stakeholders";
@@ -39,6 +41,8 @@ namespace StakeholderAnalysis.Visualization.ViewModels.ProjectExplorer
             }
             viewManager.BringToFront(viewInfo);
         });
+
+        public ObservableCollection<ContextMenuItemViewModel> ContextMenuItems { get; }
 
         public bool IsViewModelFor(object o)
         {

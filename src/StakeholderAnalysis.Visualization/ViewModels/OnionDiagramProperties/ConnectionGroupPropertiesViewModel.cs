@@ -25,6 +25,8 @@ namespace StakeholderAnalysis.Visualization.ViewModels.OnionDiagramProperties
                 new ColorPropertyTreeNodeViewModel<StakeholderConnectionGroup>(connectionGroup, nameof(StakeholderConnectionGroup.StrokeColor), "Lijnkleur"),
                 new DoubleUpDownPropertyTreeNodeViewModel<StakeholderConnectionGroup>(connectionGroup, nameof(StakeholderConnectionGroup.StrokeThickness), "Lijndikte", 0.0, 40.0, 0.5, "0.##")
             };
+
+            ContextMenuItems = new ObservableCollection<ContextMenuItemViewModel>();
         }
 
         private void ConnectionGroupPropertyChanged(object sender, PropertyChangedEventArgs e)
@@ -72,6 +74,8 @@ namespace StakeholderAnalysis.Visualization.ViewModels.OnionDiagramProperties
         public bool CanOpen => false;
 
         public ICommand OpenViewCommand => null;
+
+        public ObservableCollection<ContextMenuItemViewModel> ContextMenuItems { get; }
 
         public bool IsViewModelFor(object o)
         {

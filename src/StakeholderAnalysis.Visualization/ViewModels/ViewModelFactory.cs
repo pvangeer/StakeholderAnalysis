@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.ObjectModel;
 using System.Linq;
+using System.Windows.Input;
 using StakeholderAnalysis.Data;
 using StakeholderAnalysis.Data.AttitudeImpactDiagrams;
 using StakeholderAnalysis.Data.ForceFieldDiagrams;
@@ -221,6 +222,18 @@ namespace StakeholderAnalysis.Visualization.ViewModels
         public PropertyCollectionTreeNodeViewModel CreatePropertyCollectionViewModel(string displayName, ObservableCollection<ITreeNodeViewModel> items, CollectionType collectionType)
         {
             return new PropertyCollectionTreeNodeViewModel(this, displayName, items, collectionType);
+        }
+
+        public ContextMenuItemViewModel CreateDuplicateMenuItemViewModel(ICloneable diagram, ICommand cloneCommand)
+        {
+            // TODO: Add icon
+            return new ContextMenuItemViewModel
+            {
+                Header = "Dupliceren",
+                Command = cloneCommand,
+                IsEnabled = true,
+                IconReference = "pack://application:,,,/StakeholderAnalysis.Visualization;component/Resources/document.png"
+            };
         }
     }
 }

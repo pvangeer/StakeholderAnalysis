@@ -22,6 +22,7 @@ namespace StakeholderAnalysis.Visualization.ViewModels.OnionDiagramProperties
                 new ColorPropertyTreeNodeViewModel<OnionRing>(ring, nameof(OnionRing.StrokeColor), "Lijnkleur"),
                 new DoubleUpDownPropertyTreeNodeViewModel<OnionRing>(ring, nameof(OnionRing.StrokeThickness), "Lijndikte", 0.0, 40.0, 0.5, "0.##")
             };
+            ContextMenuItems = new ObservableCollection<ContextMenuItemViewModel>();
         }
 
         public ICommand ToggleIsExpandedCommand => CommandFactory.CreateToggleIsExpandedCommand(this);
@@ -38,6 +39,8 @@ namespace StakeholderAnalysis.Visualization.ViewModels.OnionDiagramProperties
         public bool CanOpen => false;
 
         public ICommand OpenViewCommand => null;
+
+        public ObservableCollection<ContextMenuItemViewModel> ContextMenuItems { get; }
 
         public bool IsViewModelFor(object o)
         {

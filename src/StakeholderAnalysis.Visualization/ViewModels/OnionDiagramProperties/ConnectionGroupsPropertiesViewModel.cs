@@ -21,6 +21,7 @@ namespace StakeholderAnalysis.Visualization.ViewModels.OnionDiagramProperties
             this.viewManager = viewManager;
             viewManager.PropertyChanged += ViewManagerPropertyChanged;
             SetActiveOnionDiagram();
+            ContextMenuItems = new ObservableCollection<ContextMenuItemViewModel>();
         }
 
         private void ViewManagerPropertyChanged(object sender, PropertyChangedEventArgs e)
@@ -46,6 +47,8 @@ namespace StakeholderAnalysis.Visualization.ViewModels.OnionDiagramProperties
         public bool CanOpen => false;
 
         public ICommand OpenViewCommand => null;
+
+        public ObservableCollection<ContextMenuItemViewModel> ContextMenuItems { get; }
 
         public bool IsViewModelFor(object o)
         {

@@ -36,8 +36,12 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Behaviors\AttachInputBindingsBehavior.cs" />
+    <Compile Include="Converters\ContextMenuContentType.cs" />
     <Compile Include="Converters\QuickSelectionToVisibilityConverter.cs" />
     <Compile Include="Converters\SourceStringToVisibilityConverter.cs" />
+    <Compile Include="Converters\HasItemsToVisibilityConverter.cs" />
+    <Compile Include="TestConverter.cs" />
+    <Compile Include="ViewModels\PropertiesTree\ContextMenuItemViewModel.cs" />
     <Compile Include="ViewModels\PropertiesTree\FontFamilyPropertyTreeNodeViewModel.cs" />
     <Compile Include="ViewModels\PropertiesTree\IFontFamilyPropertyTreeNodeViewModel.cs" />
     <Compile Include="ViewModels\PropertiesTree\PropertyCollectionTreeNodeViewModel.cs" />
