@@ -13,6 +13,21 @@
         <ResourceDictionary Source="TreeViewStyles.xaml"/>
     </ResourceDictionary.MergedDictionaries>
 
+    <Image x:Key="MenuItemIcon" Width="18" Height="18" Source="{Binding IconReference}" x:Shared="False"/>
+    <Style x:Key="MenuItemStyle" TargetType="MenuItem">
+        <Style.Triggers>
+            <Trigger Property="IsFocused" Value="true">
+                <Setter Property="BorderBrush" Value="Red"/>
+                <Setter Property="Background" Value="Red" />
+                <Setter Property="Foreground" Value="White"/>
+            </Trigger>
+        </Style.Triggers>
+        <Setter Property="Command" Value="{Binding Command}"/>
+        <Setter Property="Icon" Value="{StaticResource MenuItemIcon}"/>
+        <Setter Property="Header" Value="{Binding Header}"/>
+        <Setter Property="IsEnabled" Value="{Binding IsEnabled}"/>
+    </Style>
+
     <ObjectDataProvider x:Key="StakeholderTypeIconStyles" MethodName="GetValues"
                         ObjectType="{x:Type System:Enum}">
         <ObjectDataProvider.MethodParameters>
@@ -110,46 +125,8 @@
             <Border.ContextMenu>
                 <ContextMenu
                     Visibility="{Binding ContextMenuItems, Converter={StaticResource HasItemsToVisibilityConverter}}" 
-                    ItemsSource="{Binding ContextMenuItems}">
-                    <ItemsControl.ItemContainerStyle>
-                        <Style TargetType="MenuItem">
-                            <Style.Triggers>
-                                <Trigger Property="IsMouseOver" Value="true">
-                                    <Setter Property="Background" Value="#0a99f3" />
-                                    <Setter Property="Foreground" Value="White"/>
-                                </Trigger>
-                            </Style.Triggers>
-                            <Setter Property="Command" Value="{Binding Command}"/>
-                            <Setter Property="Icon" Value="{Binding IconReference, Converter={StaticResource TestConverter}}"/>
-                            <Setter Property="Header" Value="{Binding Header}"/>
-                            <Setter Property="IsEnabled" Value="{Binding IsEnabled}"/>
-                            <!--<Setter.Value>
-                                    <ControlTemplate TargetType="{x:Type MenuItem}">
-                                        ~1~TODO: Close menu after performing command and improve styling@1@~1~ Do not use a button as it catches the click event. Use some other mechanism to style the menu item @1@
-                                        <Button
-                                            Command="{TemplateBinding Header, Converter={StaticResource TestConverter}, ConverterParameter={x:Static converters:ContextMenuContentType.Command}}"
-                                            IsEnabled="{TemplateBinding Header, Converter={StaticResource TestConverter}, ConverterParameter={x:Static converters:ContextMenuContentType.IsEnabled}}">
-                                            <Grid>
-                                                <Grid.ColumnDefinitions>
-                                                    <ColumnDefinition Width="30"/>
-                                                    <ColumnDefinition Width="1"/>
-                                                    <ColumnDefinition Width="*"/>
-                                                </Grid.ColumnDefinitions>
-                                                <Image 
-                                                    Source="{TemplateBinding Header, Converter={StaticResource TestConverter}, ConverterParameter={x:Static converters:ContextMenuContentType.IconReference}}" 
-                                                    Grid.Column="0"/>
-                                                <Grid Background="Gray" Grid.Column="1"/>
-                                                <TextBlock 
-                                                    Text="{TemplateBinding Header, Converter={StaticResource TestConverter}, ConverterParameter={x:Static converters:ContextMenuContentType.Header}}" 
-                                                    Grid.Column="2"/>
-                                            </Grid>
-                                        </Button>
-                                    </ControlTemplate>
-                                </Setter.Value>-->
-                            
-                        </Style>
-                    </ItemsControl.ItemContainerStyle>
-                   
+                    ItemsSource="{Binding ContextMenuItems}"
+                    ItemContainerStyle="{StaticResource MenuItemStyle}">
                 </ContextMenu>
             </Border.ContextMenu>
             <Grid>
