@@ -6,6 +6,7 @@
     <ProjectGuid>{1D562DF9-DF35-46FA-B33A-B8AEF5FC7CF0}</ProjectGuid>
     <RootNamespace>StakeholderAnalysis.Messaging</RootNamespace>
     <AssemblyName>StakeholderAnalysis.Messaging</AssemblyName>
+    <TargetFrameworkProfile />
   </PropertyGroup>
   <ItemGroup>
     <Reference Include="log4net, Version=2.0.8.0, Culture=neutral, PublicKeyToken=669e0ddf0bb1aa2a, processorArchitecture=MSIL">
