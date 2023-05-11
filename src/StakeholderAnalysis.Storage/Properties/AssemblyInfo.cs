@@ -19,6 +19,9 @@ using System.Runtime.InteropServices;
 // COM, set the ComVisible attribute to true on that type.
 [assembly: ComVisible(false)]
 
+// Make internals visibile for test project.
+[assembly: InternalsVisibleTo("StakeholderAnalysis.Storage.Test")]
+
 // The following GUID is for the ID of the typelib if this project is exposed to COM
 [assembly: Guid("89c312eb-73ec-4254-a6b2-336ba0448b04")]
 

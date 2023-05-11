@@ -27,20 +27,22 @@ using StakeholderAnalysis.Storage.Properties;
 namespace StakeholderAnalysis.Storage
 {
     /// <summary>
-    /// This class interacts with an empty or new SQLite database file.
+    ///     This class interacts with an empty or new SQLite database file.
     /// </summary>
     public static class StorageSqliteCreator
     {
         /// <summary>
-        /// Creates a new file with the basic database structure for a Ringtoets database at
-        /// <paramref name="databaseFilePath"/>.
+        ///     Creates a new file with the basic database structure for a Ringtoets database at
+        ///     <paramref name="databaseFilePath" />.
         /// </summary>
         /// <param name="databaseFilePath">Path of the new database file.</param>
-        /// <exception cref="ArgumentException">Thrown when either:
-        /// <list type="bullet">
-        /// <item><paramref name="databaseFilePath"/> is invalid</item>
-        /// <item><paramref name="databaseFilePath"/> points to an existing file</item>
-        /// </list></exception>
+        /// <exception cref="ArgumentException">
+        ///     Thrown when either:
+        ///     <list type="bullet">
+        ///         <item><paramref name="databaseFilePath" /> is invalid</item>
+        ///         <item><paramref name="databaseFilePath" /> points to an existing file</item>
+        ///     </list>
+        /// </exception>
         /// <exception cref="StorageException">Thrown when executing <c>DatabaseStructure</c> script fails.</exception>
         public static void CreateDatabaseStructure(string databaseFilePath)
         {
@@ -48,18 +50,18 @@ namespace StakeholderAnalysis.Storage
 
             if (File.Exists(databaseFilePath))
             {
-                string message = $"File '{databaseFilePath}' already exists.";
+                var message = $"File '{databaseFilePath}' already exists.";
                 throw new ArgumentException(message);
             }
 
             SQLiteConnection.CreateFile(databaseFilePath);
-            string connectionString = SqLiteConnectionStringBuilder.BuildSqLiteConnectionString(databaseFilePath, false);
+            var connectionString = SqLiteConnectionStringBuilder.BuildSqLiteConnectionString(databaseFilePath, false);
             try
             {
                 using (var dbContext = new SQLiteConnection(connectionString, true))
                 {
                     dbContext.Open();
-                    using (SQLiteCommand command = dbContext.CreateCommand())
+                    using (var command = dbContext.CreateCommand())
                     {
                         command.CommandText = Resources.StakeholderAnalysisDatabaseDesign;
                         command.ExecuteNonQuery();
@@ -68,7 +70,7 @@ namespace StakeholderAnalysis.Storage
             }
             catch (SQLiteException exception)
             {
-                string message = string.Format("Kon bestand \"{0}\" niet wegschrijven",databaseFilePath);
+                var message = string.Format("Kon bestand \"{0}\" niet wegschrijven", databaseFilePath);
                 throw new StorageException(message, exception);
             }
             finally

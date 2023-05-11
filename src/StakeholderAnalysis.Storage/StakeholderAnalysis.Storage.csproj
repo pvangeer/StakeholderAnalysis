@@ -24,9 +24,7 @@
       <HintPath>..\..\packages\System.Data.SQLite.EF6.1.0.109.0\lib\net45\System.Data.SQLite.EF6.dll</HintPath>
     </Reference>
     <Reference Include="System.Runtime.Serialization" />
-    <Reference Include="System.Security" />
     <Reference Include="System.ServiceModel" />
-    <Reference Include="System.Data.DataSetExtensions" />
     <Reference Include="System.Data" />
     <Reference Include="System.Xml" />
   </ItemGroup>
@@ -38,6 +36,7 @@
     <Compile Include="Create\AttitudeImpactDiagramStakeholderCreateExtensions.cs" />
     <Compile Include="Create\ForceFieldDiagramCreateExtensions.cs" />
     <Compile Include="Create\ForceFieldDiagramStakeholderCreateExtensions.cs" />
+    <Compile Include="XmlEntities\IXmlEntity.cs" />
     <Compile Include="Create\OnionDiagramCreateExtensions.cs" />
     <Compile Include="Create\OnionDiagramStakeholderCreateExtensions.cs" />
     <Compile Include="Create\OnionRingCreateExtensions.cs" />
@@ -127,11 +126,31 @@
     <Compile Include="ReferenceEqualityComparer.cs" />
     <Compile Include="SqliteConnectionStringBuilder.cs" />
     <Compile Include="SqLiteEntityConnectionStringBuilder.cs" />
+    <Compile Include="StorageXml.cs" />
     <Compile Include="StorageSqLite.cs" />
     <Compile Include="StorageSqliteCreator.cs" />
     <Compile Include="StakeholderAnalysisVersionComparer.cs" />
     <Compile Include="StakeholderAnalysisVersionHelper.cs" />
     <Compile Include="StringExtensions.cs" />
+    <Compile Include="XmlEntities\AnalysisXmlEntity.cs" />
+    <Compile Include="XmlEntities\AttitudeImpactDiagramStakeholderXmlEntity.cs" />
+    <Compile Include="XmlEntities\OnionDiagramStakeholderReferenceXmlEntity.cs" />
+    <Compile Include="XmlEntities\OnionDiagramStakeholderXmlEntity.cs" />
+    <Compile Include="XmlEntities\OnionDiagramXmlEntity.cs" />
+    <Compile Include="XmlEntities\ForceFieldDiagramStakeholderXmlEntity.cs" />
+    <Compile Include="XmlEntities\ForceFieldDiagramXmlEntity.cs" />
+    <Compile Include="XmlEntities\AttitudeImpactDiagramXmlEntity.cs" />
+    <Compile Include="XmlEntities\OnionRingXmlEntity.cs" />
+    <Compile Include="XmlEntities\StakeholderConnectionGroupReferenceXmlEntity.cs" />
+    <Compile Include="XmlEntities\StakeholderConnectionGroupXmlEntity.cs" />
+    <Compile Include="XmlEntities\StakeholderConnectionXmlEntity.cs" />
+    <Compile Include="XmlEntities\StakeholderReferenceXmlEntity.cs" />
+    <Compile Include="XmlEntities\StakeholderTypeReferenceXmlEntity.cs" />
+    <Compile Include="XmlEntities\StakeholderTypeXmlEntity.cs" />
+    <Compile Include="XmlEntities\StakeholderXmlEntity.cs" />
+    <Compile Include="XmlEntities\TwoAxisDiagramAxisXmlEntity.cs" />
+    <Compile Include="XmlEntities\TwoAxisDiagramBackgroundXmlEntity.cs" />
+    <Compile Include="XmlEntities\TwoAxisDiagramBrushXmlEntity.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="App.config" />

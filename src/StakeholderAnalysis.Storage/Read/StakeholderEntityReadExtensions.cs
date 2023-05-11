@@ -8,19 +8,10 @@ namespace StakeholderAnalysis.Storage.Read
     {
         internal static Stakeholder Read(this StakeholderEntity entity, ReadConversionCollector collector)
         {
-            if (entity == null)
-            {
-                throw new ArgumentNullException(nameof(entity));
-            }
-            if (collector == null)
-            {
-                throw new ArgumentNullException(nameof(collector));
-            }
+            if (entity == null) throw new ArgumentNullException(nameof(entity));
+            if (collector == null) throw new ArgumentNullException(nameof(collector));
 
-            if (collector.Contains(entity))
-            {
-                return collector.Get(entity);
-            }
+            if (collector.Contains(entity)) return collector.Get(entity);
 
             var stakeholder = new Stakeholder
             {
@@ -28,7 +19,7 @@ namespace StakeholderAnalysis.Storage.Read
                 Type = entity.StakeholderTypeEntity.Read(collector)
             };
 
-            collector.Collect(entity,stakeholder);
+            collector.Collect(entity, stakeholder);
 
             return stakeholder;
         }

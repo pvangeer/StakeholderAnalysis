@@ -15,7 +15,7 @@ namespace StakeholderAnalysis.Storage.DbContext
         }
 
         /// <summary>
-        /// Loads all tables into the context.
+        ///     Loads all tables into the context.
         /// </summary>
         public void LoadTablesIntoContext()
         {

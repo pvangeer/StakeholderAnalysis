@@ -1,28 +1,23 @@
 ﻿using System;
 using StakeholderAnalysis.Data.AttitudeImpactDiagrams;
-using StakeholderAnalysis.Storage.DbContext;
+using StakeholderAnalysis.Storage.XmlEntities;
 
 namespace StakeholderAnalysis.Storage.Create
 {
     internal static class AttitudeImpactDiagramStakeholderCreateExtensions
     {
-        internal static AttitudeImpactDiagramStakeholderEntity Create(this AttitudeImpactDiagramStakeholder stakeholder, PersistenceRegistry registry)
+        internal static AttitudeImpactDiagramStakeholderXmlEntity Create(
+            this AttitudeImpactDiagramStakeholder stakeholder, PersistenceRegistry registry)
         {
-            if (registry == null)
-            {
-                throw new ArgumentNullException(nameof(registry));
-            }
+            if (registry == null) throw new ArgumentNullException(nameof(registry));
 
-            if (registry.Contains(stakeholder))
-            {
-                return registry.Get(stakeholder);
-            }
+            if (registry.Contains(stakeholder)) return registry.Get(stakeholder);
 
-            var entity = new AttitudeImpactDiagramStakeholderEntity
+            var entity = new AttitudeImpactDiagramStakeholderXmlEntity
             {
-                StakeholderEntity = stakeholder.Stakeholder.Create(registry),
-                Attitude = stakeholder.Attitude.ToNaNAsNull(),
-                Impact = stakeholder.Impact.ToNaNAsNull(),
+                StakeholderReferenceEntity = stakeholder.Stakeholder.CreateReference(registry),
+                Attitude = stakeholder.Attitude,
+                Impact = stakeholder.Impact,
                 Rank = stakeholder.Rank
             };
 

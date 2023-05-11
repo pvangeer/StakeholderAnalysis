@@ -1,8 +1,4 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using StakeholderAnalysis.Data.OnionDiagrams;
 using StakeholderAnalysis.Storage.DbContext;
 
@@ -12,19 +8,10 @@ namespace StakeholderAnalysis.Storage.Read
     {
         internal static OnionRing Read(this OnionRingEntity entity, ReadConversionCollector collector)
         {
-            if (entity == null)
-            {
-                throw new ArgumentNullException(nameof(entity));
-            }
-            if (collector == null)
-            {
-                throw new ArgumentNullException(nameof(collector));
-            }
+            if (entity == null) throw new ArgumentNullException(nameof(entity));
+            if (collector == null) throw new ArgumentNullException(nameof(collector));
 
-            if (collector.Contains(entity))
-            {
-                return collector.Get(entity);
-            }
+            if (collector.Contains(entity)) return collector.Get(entity);
 
             var attitudeImpactDiagram = new OnionRing
             {

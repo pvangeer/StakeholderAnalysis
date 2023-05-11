@@ -10,21 +10,13 @@ namespace StakeholderAnalysis.Storage.Read
     {
         internal static ForceFieldDiagram Read(this ForceFieldDiagramEntity entity, ReadConversionCollector collector)
         {
-            if (entity == null)
-            {
-                throw new ArgumentNullException(nameof(entity));
-            }
-            if (collector == null)
-            {
-                throw new ArgumentNullException(nameof(collector));
-            }
+            if (entity == null) throw new ArgumentNullException(nameof(entity));
+            if (collector == null) throw new ArgumentNullException(nameof(collector));
 
-            if (collector.Contains(entity))
-            {
-                return collector.Get(entity);
-            }
+            if (collector.Contains(entity)) return collector.Get(entity);
 
-            var stakeholders = entity.ForceFieldDiagramStakeholderEntities.OrderBy(e => e.Order).Select(e => e.Read(collector));
+            var stakeholders = entity.ForceFieldDiagramStakeholderEntities.OrderBy(e => e.Order)
+                .Select(e => e.Read(collector));
 
             var forceFieldDiagram = new ForceFieldDiagram
             {
@@ -50,21 +42,15 @@ namespace StakeholderAnalysis.Storage.Read
             };
 
             var converter = new FontFamilyConverter();
-            if (converter.ConvertFromInvariantString(entity.BackgroundTextFontFamily) is FontFamily backgroundFontFamily)
-            {
+            if (converter.ConvertFromInvariantString(entity.BackgroundTextFontFamily) is FontFamily
+                backgroundFontFamily)
                 // TODO: Log warning/error in case of null value. Could not interpret stored font family
                 forceFieldDiagram.BackgroundFontFamily = backgroundFontFamily;
-            }
             if (converter.ConvertFromInvariantString(entity.AxisTextFontFamily) is FontFamily axisTextFontFamily)
-            {
                 // TODO: Log warning/error in case of null value. Could not interpret stored font family
                 forceFieldDiagram.AxisFontFamily = axisTextFontFamily;
-            }
 
-            foreach (var stakeholder in stakeholders)
-            {
-                forceFieldDiagram.Stakeholders.Add(stakeholder);
-            }
+            foreach (var stakeholder in stakeholders) forceFieldDiagram.Stakeholders.Add(stakeholder);
 
             collector.Collect(entity, forceFieldDiagram);
 

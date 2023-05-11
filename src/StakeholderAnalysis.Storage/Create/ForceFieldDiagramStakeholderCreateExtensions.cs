@@ -1,28 +1,23 @@
 ﻿using System;
 using StakeholderAnalysis.Data.ForceFieldDiagrams;
-using StakeholderAnalysis.Storage.DbContext;
+using StakeholderAnalysis.Storage.XmlEntities;
 
 namespace StakeholderAnalysis.Storage.Create
 {
     internal static class ForceFieldDiagramStakeholderCreateExtensions
     {
-        internal static ForceFieldDiagramStakeholderEntity Create(this ForceFieldDiagramStakeholder stakeholder, PersistenceRegistry registry)
+        internal static ForceFieldDiagramStakeholderXmlEntity Create(this ForceFieldDiagramStakeholder stakeholder,
+            PersistenceRegistry registry)
         {
-            if (registry == null)
-            {
-                throw new ArgumentNullException(nameof(registry));
-            }
+            if (registry == null) throw new ArgumentNullException(nameof(registry));
 
-            if (registry.Contains(stakeholder))
-            {
-                return registry.Get(stakeholder);
-            }
+            if (registry.Contains(stakeholder)) return registry.Get(stakeholder);
 
-            var entity = new ForceFieldDiagramStakeholderEntity
+            var entity = new ForceFieldDiagramStakeholderXmlEntity
             {
-                StakeholderEntity = stakeholder.Stakeholder.Create(registry),
-                Influence = stakeholder.Influence.ToNaNAsNull(),
-                Interest = stakeholder.Interest.ToNaNAsNull(),
+                StakeholderReferenceEntity = stakeholder.Stakeholder.CreateReference(registry),
+                Influence = stakeholder.Influence,
+                Interest = stakeholder.Interest,
                 Rank = stakeholder.Rank
             };
 

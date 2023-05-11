@@ -6,21 +6,13 @@ namespace StakeholderAnalysis.Storage.Read
 {
     internal static class StakeholderConnectionGroupEntityReadExtensions
     {
-        internal static StakeholderConnectionGroup Read(this StakeholderConnectionGroupEntity entity, ReadConversionCollector collector)
+        internal static StakeholderConnectionGroup Read(this StakeholderConnectionGroupEntity entity,
+            ReadConversionCollector collector)
         {
-            if (entity == null)
-            {
-                throw new ArgumentNullException(nameof(entity));
-            }
-            if (collector == null)
-            {
-                throw new ArgumentNullException(nameof(collector));
-            }
+            if (entity == null) throw new ArgumentNullException(nameof(entity));
+            if (collector == null) throw new ArgumentNullException(nameof(collector));
 
-            if (collector.Contains(entity))
-            {
-                return collector.Get(entity);
-            }
+            if (collector.Contains(entity)) return collector.Get(entity);
 
             var stakeholderConnectionGroup = new StakeholderConnectionGroup
             {

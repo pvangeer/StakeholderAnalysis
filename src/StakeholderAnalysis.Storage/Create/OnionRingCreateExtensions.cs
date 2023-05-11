@@ -1,29 +1,23 @@
 ﻿using System;
 using StakeholderAnalysis.Data.OnionDiagrams;
-using StakeholderAnalysis.Storage.DbContext;
+using StakeholderAnalysis.Storage.XmlEntities;
 
 namespace StakeholderAnalysis.Storage.Create
 {
     internal static class OnionRingCreateExtensions
     {
-        internal static OnionRingEntity Create(this OnionRing ring, PersistenceRegistry registry)
+        internal static OnionRingXmlEntity Create(this OnionRing ring, PersistenceRegistry registry)
         {
-            if (registry == null)
-            {
-                throw new ArgumentNullException(nameof(registry));
-            }
+            if (registry == null) throw new ArgumentNullException(nameof(registry));
 
-            if (registry.Contains(ring))
-            {
-                return registry.Get(ring);
-            }
+            if (registry.Contains(ring)) return registry.Get(ring);
 
-            var entity = new OnionRingEntity
+            var entity = new OnionRingXmlEntity
             {
-                Percentage = ring.Percentage.ToNaNAsNull(),
+                Percentage = ring.Percentage,
                 BackgroundColor = ring.BackgroundColor.ToHexString(),
                 StrokeColor = ring.StrokeColor.ToHexString(),
-                StrokeThickness = ring.StrokeThickness.ToNaNAsNull()
+                StrokeThickness = ring.StrokeThickness
             };
 
             registry.Register(ring, entity);

@@ -25,28 +25,32 @@ using System.Data.Entity.Core.EntityClient;
 namespace StakeholderAnalysis.Storage
 {
     /// <summary>
-    /// This class builds a connection string to a SQLite database file.
+    ///     This class builds a connection string to a SQLite database file.
     /// </summary>
     public static class SqLiteEntityConnectionStringBuilder
     {
         /// <summary>
-        /// Constructs a connection string to connect the Entity Framework to <paramref name="filePath"/>.
+        ///     Constructs a connection string to connect the Entity Framework to <paramref name="filePath" />.
         /// </summary>
         /// <param name="filePath">Location of the storage file.</param>
         /// <returns>A new connection string.</returns>
-        /// <exception cref="ArgumentNullException">Thrown when <paramref name="filePath"/> is <c>null</c> or empty (only whitespaces).</exception>
+        /// <exception cref="ArgumentNullException">
+        ///     Thrown when <paramref name="filePath" /> is <c>null</c> or empty (only
+        ///     whitespaces).
+        /// </exception>
         public static string BuildSqLiteEntityConnectionString(string filePath)
         {
             if (string.IsNullOrWhiteSpace(filePath))
-            {
-                throw new ArgumentNullException(nameof(filePath), @"Cannot create a connection string without the path to the file to connect to.");
-            }
+                throw new ArgumentNullException(nameof(filePath),
+                    @"Cannot create a connection string without the path to the file to connect to.");
 
             return new EntityConnectionStringBuilder
             {
-                Metadata = string.Format(@"res://*/{0}.csdl|res://*/{0}.ssdl|res://*/{0}.msl", "DbContext.StakeholderAnalysisEntityDataModel"),
+                Metadata = string.Format(@"res://*/{0}.csdl|res://*/{0}.ssdl|res://*/{0}.msl",
+                    "DbContext.StakeholderAnalysisEntityDataModel"),
                 Provider = @"System.Data.SQLite.EF6",
-                ProviderConnectionString = SqLiteConnectionStringBuilder.BuildSqLiteConnectionString(GetDataSourceLocation(filePath), false)
+                ProviderConnectionString =
+                    SqLiteConnectionStringBuilder.BuildSqLiteConnectionString(GetDataSourceLocation(filePath), false)
             }.ConnectionString;
         }
 

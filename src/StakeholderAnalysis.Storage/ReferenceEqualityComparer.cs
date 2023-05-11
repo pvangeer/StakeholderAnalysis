@@ -25,7 +25,7 @@ using System.Runtime.CompilerServices;
 namespace StakeholderAnalysis.Storage
 {
     /// <summary>
-    /// This class determines whether two objects are equal based on their references.
+    ///     This class determines whether two objects are equal based on their references.
     /// </summary>
     public class ReferenceEqualityComparer<T> : IEqualityComparer<T>
     {

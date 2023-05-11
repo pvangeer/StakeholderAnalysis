@@ -8,23 +8,16 @@ namespace StakeholderAnalysis.Storage.Read
 {
     internal static class AttitudeImpactDiagramEntityReadExtensions
     {
-        internal static AttitudeImpactDiagram Read(this AttitudeImpactDiagramEntity entity, ReadConversionCollector collector)
+        internal static AttitudeImpactDiagram Read(this AttitudeImpactDiagramEntity entity,
+            ReadConversionCollector collector)
         {
-            if (entity == null)
-            {
-                throw new ArgumentNullException(nameof(entity));
-            }
-            if (collector == null)
-            {
-                throw new ArgumentNullException(nameof(collector));
-            }
+            if (entity == null) throw new ArgumentNullException(nameof(entity));
+            if (collector == null) throw new ArgumentNullException(nameof(collector));
 
-            if (collector.Contains(entity))
-            {
-                return collector.Get(entity);
-            }
+            if (collector.Contains(entity)) return collector.Get(entity);
 
-            var stakeholders = entity.AttitudeImpactDiagramStakeholderEntities.OrderBy(e => e.Order).Select(e => e.Read(collector));
+            var stakeholders = entity.AttitudeImpactDiagramStakeholderEntities.OrderBy(e => e.Order)
+                .Select(e => e.Read(collector));
 
             var attitudeImpactDiagram = new AttitudeImpactDiagram
             {
@@ -50,21 +43,15 @@ namespace StakeholderAnalysis.Storage.Read
             };
 
             var converter = new FontFamilyConverter();
-            if (converter.ConvertFromInvariantString(entity.BackgroundTextFontFamily) is FontFamily backgroundFontFamily)
-            {
+            if (converter.ConvertFromInvariantString(entity.BackgroundTextFontFamily) is FontFamily
+                backgroundFontFamily)
                 // TODO: Log warning/error in case of null value. Could not interpret stored font family
                 attitudeImpactDiagram.BackgroundFontFamily = backgroundFontFamily;
-            }
             if (converter.ConvertFromInvariantString(entity.AxisTextFontFamily) is FontFamily axisTextFontFamily)
-            {
                 // TODO: Log warning/error in case of null value. Could not interpret stored font family
                 attitudeImpactDiagram.AxisFontFamily = axisTextFontFamily;
-            }
 
-            foreach (var stakeholder in stakeholders)
-            {
-                attitudeImpactDiagram.Stakeholders.Add(stakeholder);
-            }
+            foreach (var stakeholder in stakeholders) attitudeImpactDiagram.Stakeholders.Add(stakeholder);
 
             collector.Collect(entity, attitudeImpactDiagram);
 

@@ -28,7 +28,7 @@ using System.Linq;
 namespace StakeholderAnalysis.Storage
 {
     /// <summary>
-    /// This class can be used to compare Ringtoets database files.
+    ///     This class can be used to compare Ringtoets database files.
     /// </summary>
     public class StakeholderAnalysisVersionComparer : IComparer, IComparer<string>
     {
@@ -41,27 +41,18 @@ namespace StakeholderAnalysis.Storage
 
         public int Compare(string x, string y)
         {
-            if (x == null || y == null)
-            {
-                return string.Compare(x, y, StringComparison.InvariantCulture);
-            }
-            char[] separatorArray = versionSeparator.ToCharArray();
-            string[] firstVersionArray = x.Split(separatorArray, StringSplitOptions.RemoveEmptyEntries);
-            string[] secondVersionArray = y.Split(separatorArray, StringSplitOptions.RemoveEmptyEntries);
+            if (x == null || y == null) return string.Compare(x, y, StringComparison.InvariantCulture);
+            var separatorArray = versionSeparator.ToCharArray();
+            var firstVersionArray = x.Split(separatorArray, StringSplitOptions.RemoveEmptyEntries);
+            var secondVersionArray = y.Split(separatorArray, StringSplitOptions.RemoveEmptyEntries);
 
             if (firstVersionArray.Length < 1)
             {
-                if (secondVersionArray.Length < 1)
-                {
-                    return 0;
-                }
+                if (secondVersionArray.Length < 1) return 0;
                 return -1;
             }
 
-            if (secondVersionArray.Length < 1)
-            {
-                return 1;
-            }
+            if (secondVersionArray.Length < 1) return 1;
 
             int first;
             int.TryParse(firstVersionArray[0], out first);
@@ -69,17 +60,15 @@ namespace StakeholderAnalysis.Storage
             int second;
             int.TryParse(secondVersionArray[0], out second);
 
-            int compareTo = first.CompareTo(second);
-            if (compareTo > 0)
-            {
-                return compareTo;
-            }
+            var compareTo = first.CompareTo(second);
+            if (compareTo > 0) return compareTo;
             if (compareTo == 0 && (firstVersionArray.Length > 1 || secondVersionArray.Length > 1))
             {
-                string newVersionString = string.Join(versionSeparator, firstVersionArray.Skip(1).ToArray());
-                string newCurrentVersionString = string.Join(versionSeparator, secondVersionArray.Skip(1).ToArray());
+                var newVersionString = string.Join(versionSeparator, firstVersionArray.Skip(1).ToArray());
+                var newCurrentVersionString = string.Join(versionSeparator, secondVersionArray.Skip(1).ToArray());
                 return Compare(newVersionString, newCurrentVersionString);
             }
+
             return compareTo;
         }
 

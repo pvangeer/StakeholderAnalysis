@@ -25,19 +25,23 @@ using System.Data.SQLite;
 namespace StakeholderAnalysis.Storage
 {
     /// <summary>
-    /// This class builds a connection string to a SQLite database file.
+    ///     This class builds a connection string to a SQLite database file.
     /// </summary>
     public static class SqLiteConnectionStringBuilder
     {
         /// <summary>
-        /// Constructs a connection string to connect to <paramref name="filePath"/>.
+        ///     Constructs a connection string to connect to <paramref name="filePath" />.
         /// </summary>
         /// <param name="filePath">Location of the storage file.</param>
-        /// <param name="readOnly">When <c>true</c>, the database will be opened for read-only 
-        /// access and writing will be disabled.</param>
+        /// <param name="readOnly">
+        ///     When <c>true</c>, the database will be opened for read-only
+        ///     access and writing will be disabled.
+        /// </param>
         /// <returns>A new connection string.</returns>
-        /// <exception cref="ArgumentNullException">Thrown when <paramref name="filePath"/> is 
-        /// <c>null</c> or empty (only whitespaces).</exception>
+        /// <exception cref="ArgumentNullException">
+        ///     Thrown when <paramref name="filePath" /> is
+        ///     <c>null</c> or empty (only whitespaces).
+        /// </exception>
         public static string BuildSqLiteConnectionString(string filePath, bool readOnly)
         {
             if (string.IsNullOrWhiteSpace(filePath))
@@ -45,6 +49,7 @@ namespace StakeholderAnalysis.Storage
                 const string message = @"Cannot create a connection string without the path to the file to connect to.";
                 throw new ArgumentNullException(nameof(filePath), message);
             }
+
             return new SQLiteConnectionStringBuilder
             {
                 FailIfMissing = true,

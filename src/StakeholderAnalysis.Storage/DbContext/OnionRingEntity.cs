@@ -11,7 +11,8 @@ namespace StakeholderAnalysis.Storage.DbContext
 {
     using System;
     using System.Collections.Generic;
-    
+
+    [Serializable]
     public partial class OnionRingEntity
     {
         public long OnrionRingEntityId { get; set; }
@@ -22,6 +23,6 @@ namespace StakeholderAnalysis.Storage.DbContext
         public Nullable<double> StrokeThickness { get; set; }
         public long Order { get; set; }
     
-        public virtual OnionDiagramEntity OnionDiagramEntity { get; set; }
+        //public virtual OnionDiagramEntity OnionDiagramEntity { get; set; }
     }
 }

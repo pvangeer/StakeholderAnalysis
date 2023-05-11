@@ -13,12 +13,12 @@ namespace StakeholderAnalysis.Gui
     {
         private readonly StakeholderAnalysisLog log = new StakeholderAnalysisLog(typeof(GuiProjectServices));
         private readonly StakeholderAnalysisGui gui;
-        private readonly StorageSqLite storageSqLite;
+        private readonly StorageXml storageXml;
         
         public GuiProjectServices(StakeholderAnalysisGui gui)
         {
             this.gui = gui;
-            storageSqLite = new StorageSqLite();
+            storageXml = new StorageXml();
         }
 
         public void NewProject()
@@ -28,7 +28,7 @@ namespace StakeholderAnalysis.Gui
 
         private void CreateNewProject()
         {
-            storageSqLite.UnstageProject();
+            storageXml.UnStageProject();
             foreach (var viewInfo in gui.ViewManager.Views.ToArray())
             {
                 gui.ViewManager.CloseView(viewInfo);
@@ -44,7 +44,7 @@ namespace StakeholderAnalysis.Gui
 
         public void OpenProject()
         {
-            storageSqLite.UnstageProject();
+            storageXml.UnStageProject();
 
             HandleUnsavedChanges(gui, OpenNewProjectCore);
         }
@@ -83,13 +83,13 @@ namespace StakeholderAnalysis.Gui
 
         public void SaveProject()
         {
-            storageSqLite.UnstageProject();
+            storageXml.UnStageProject();
             SaveProject(null);
         }
 
         public void SaveProjectAs()
         {
-            storageSqLite.UnstageProject();
+            storageXml.UnStageProject();
             SaveProjectAs(null);
         }
 
@@ -111,7 +111,7 @@ namespace StakeholderAnalysis.Gui
                 CheckPathExists = true,
                 FileName = gui.ProjectFilePath,
                 OverwritePrompt = true,
-                Filter = "Stakeholder analyse bestand (*.sqlite)|*.sqlite"
+                Filter = "Stakeholder analyse bestand (*.xml)|*.xml"
             };
 
             if ((bool)dialog.ShowDialog(Application.Current.MainWindow))
@@ -168,7 +168,7 @@ namespace StakeholderAnalysis.Gui
             var fileName = e.Argument as string;
             try
             {
-                gui.Analysis = storageSqLite.LoadProject(fileName);
+                gui.Analysis = storageXml.LoadProject(fileName);
                 gui.OnPropertyChanged(nameof(StakeholderAnalysisGui.Analysis));
             }
             catch (Exception exception)
@@ -179,8 +179,8 @@ namespace StakeholderAnalysis.Gui
 
         public void HandleUnsavedChanges(StakeholderAnalysisGui gui, Action followingAction)
         {
-            storageSqLite.StageProject(gui.Analysis);
-            if (storageSqLite.HasStagedProjectChanges(gui.ProjectFilePath))
+            storageXml.StageProject(gui.Analysis);
+            if (storageXml.HasStagedProjectChanges(gui.ProjectFilePath))
             {
                 if (gui.ShouldSaveOpenChanges != null && gui.ShouldSaveOpenChanges())
                 {
@@ -199,12 +199,12 @@ namespace StakeholderAnalysis.Gui
 
         private void StageAndStoreProjectCore()
         {
-            if (!storageSqLite.HasStagedProject)
+            if (!storageXml.HasStagedProject)
             {
-                storageSqLite.StageProject(gui.Analysis);
+                storageXml.StageProject(gui.Analysis);
             }
 
-            storageSqLite.SaveProjectAs(gui.ProjectFilePath);
+            storageXml.SaveProjectAs(gui.ProjectFilePath);
         }
 
         private void ChangeState(StorageState state)

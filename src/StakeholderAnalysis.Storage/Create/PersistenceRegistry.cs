@@ -5,69 +5,102 @@ using StakeholderAnalysis.Data;
 using StakeholderAnalysis.Data.AttitudeImpactDiagrams;
 using StakeholderAnalysis.Data.ForceFieldDiagrams;
 using StakeholderAnalysis.Data.OnionDiagrams;
-using StakeholderAnalysis.Storage.DbContext;
+using StakeholderAnalysis.Storage.XmlEntities;
 
 namespace StakeholderAnalysis.Storage.Create
 {
     public class PersistenceRegistry
     {
-        private readonly Dictionary<Stakeholder, StakeholderEntity> stakeholders = CreateDictionary<Stakeholder, StakeholderEntity>();
-        private readonly Dictionary<StakeholderType, StakeholderTypeEntity> stakeholderTypes = CreateDictionary<StakeholderType, StakeholderTypeEntity>();
+        private readonly Dictionary<AttitudeImpactDiagram, AttitudeImpactDiagramXmlEntity> attitudeImpactDiagrams =
+            CreateDictionary<AttitudeImpactDiagram, AttitudeImpactDiagramXmlEntity>();
 
-        private readonly Dictionary<OnionDiagram, OnionDiagramEntity> onionDiagrams = CreateDictionary<OnionDiagram, OnionDiagramEntity>();
-        private readonly Dictionary<OnionDiagramStakeholder, OnionDiagramStakeholderEntity> onionDiagramStakeholders = CreateDictionary<OnionDiagramStakeholder, OnionDiagramStakeholderEntity>();
-        private readonly Dictionary<OnionRing, OnionRingEntity> onionRings = CreateDictionary<OnionRing, OnionRingEntity>();
-        private readonly Dictionary<StakeholderConnection, StakeholderConnectionEntity> onionDiagramStakeholderConnections = CreateDictionary<StakeholderConnection, StakeholderConnectionEntity>();
-        private readonly Dictionary<StakeholderConnectionGroup, StakeholderConnectionGroupEntity> onionDiagramStakeholderConnectionGroups = CreateDictionary<StakeholderConnectionGroup, StakeholderConnectionGroupEntity>();
+        private readonly Dictionary<AttitudeImpactDiagramStakeholder, AttitudeImpactDiagramStakeholderXmlEntity>
+            attitudeImpactDiagramStakeholders =
+                CreateDictionary<AttitudeImpactDiagramStakeholder, AttitudeImpactDiagramStakeholderXmlEntity>();
 
-        private readonly Dictionary<ForceFieldDiagram, ForceFieldDiagramEntity> forceFieldDiagrams = CreateDictionary<ForceFieldDiagram, ForceFieldDiagramEntity>();
-        private readonly Dictionary<ForceFieldDiagramStakeholder, ForceFieldDiagramStakeholderEntity> forceFieldDiagramStakeholders = CreateDictionary<ForceFieldDiagramStakeholder, ForceFieldDiagramStakeholderEntity>();
-        private readonly Dictionary<AttitudeImpactDiagram, AttitudeImpactDiagramEntity> attitudeImpactDiagrams = CreateDictionary<AttitudeImpactDiagram, AttitudeImpactDiagramEntity>();
-        private readonly Dictionary<AttitudeImpactDiagramStakeholder, AttitudeImpactDiagramStakeholderEntity> attitudeImpactDiagramStakeholders = CreateDictionary<AttitudeImpactDiagramStakeholder, AttitudeImpactDiagramStakeholderEntity>();
+        private readonly Dictionary<ForceFieldDiagram, ForceFieldDiagramXmlEntity> forceFieldDiagrams =
+            CreateDictionary<ForceFieldDiagram, ForceFieldDiagramXmlEntity>();
+
+        private readonly Dictionary<ForceFieldDiagramStakeholder, ForceFieldDiagramStakeholderXmlEntity>
+            forceFieldDiagramStakeholders =
+                CreateDictionary<ForceFieldDiagramStakeholder, ForceFieldDiagramStakeholderXmlEntity>();
+
+        private readonly Dictionary<OnionDiagram, OnionDiagramXmlEntity> onionDiagrams =
+            CreateDictionary<OnionDiagram, OnionDiagramXmlEntity>();
+
+        private readonly Dictionary<StakeholderConnectionGroup, StakeholderConnectionGroupXmlEntity>
+            onionDiagramStakeholderConnectionGroups =
+                CreateDictionary<StakeholderConnectionGroup, StakeholderConnectionGroupXmlEntity>();
+
+        private readonly Dictionary<StakeholderConnection, StakeholderConnectionXmlEntity>
+            onionDiagramStakeholderConnections =
+                CreateDictionary<StakeholderConnection, StakeholderConnectionXmlEntity>();
+
+        private readonly Dictionary<OnionDiagramStakeholder, OnionDiagramStakeholderXmlEntity>
+            onionDiagramStakeholders = CreateDictionary<OnionDiagramStakeholder, OnionDiagramStakeholderXmlEntity>();
+
+        private readonly Dictionary<OnionRing, OnionRingXmlEntity> onionRings =
+            CreateDictionary<OnionRing, OnionRingXmlEntity>();
+
+        private readonly Dictionary<Stakeholder, StakeholderXmlEntity> stakeholders =
+            CreateDictionary<Stakeholder, StakeholderXmlEntity>();
+
+        private readonly Dictionary<StakeholderType, StakeholderTypeXmlEntity> stakeholderTypes =
+            CreateDictionary<StakeholderType, StakeholderTypeXmlEntity>();
 
         #region Register Methods
 
-        internal void Register(Stakeholder model, StakeholderEntity entity)
+        internal void Register(Stakeholder model, StakeholderXmlEntity entity)
         {
             Register(stakeholders, model, entity);
         }
-        internal void Register(StakeholderType model, StakeholderTypeEntity entity)
+
+        internal void Register(StakeholderType model, StakeholderTypeXmlEntity entity)
         {
             Register(stakeholderTypes, model, entity);
         }
-        internal void Register(OnionDiagram model, OnionDiagramEntity entity)
+
+        internal void Register(OnionDiagram model, OnionDiagramXmlEntity entity)
         {
             Register(onionDiagrams, model, entity);
         }
-        internal void Register(OnionRing model, OnionRingEntity entity)
+
+        internal void Register(OnionRing model, OnionRingXmlEntity entity)
         {
             Register(onionRings, model, entity);
         }
-        internal void Register(OnionDiagramStakeholder model, OnionDiagramStakeholderEntity entity)
+
+        internal void Register(OnionDiagramStakeholder model, OnionDiagramStakeholderXmlEntity entity)
         {
             Register(onionDiagramStakeholders, model, entity);
         }
-        internal void Register(StakeholderConnection model, StakeholderConnectionEntity entity)
+
+        internal void Register(StakeholderConnection model, StakeholderConnectionXmlEntity entity)
         {
             Register(onionDiagramStakeholderConnections, model, entity);
         }
-        internal void Register(StakeholderConnectionGroup model, StakeholderConnectionGroupEntity entity)
+
+        internal void Register(StakeholderConnectionGroup model, StakeholderConnectionGroupXmlEntity entity)
         {
             Register(onionDiagramStakeholderConnectionGroups, model, entity);
         }
-        internal void Register(ForceFieldDiagram model, ForceFieldDiagramEntity entity)
+
+        internal void Register(ForceFieldDiagram model, ForceFieldDiagramXmlEntity entity)
         {
             Register(forceFieldDiagrams, model, entity);
         }
-        internal void Register(ForceFieldDiagramStakeholder model, ForceFieldDiagramStakeholderEntity entity)
+
+        internal void Register(ForceFieldDiagramStakeholder model, ForceFieldDiagramStakeholderXmlEntity entity)
         {
             Register(forceFieldDiagramStakeholders, model, entity);
         }
-        internal void Register(AttitudeImpactDiagram model, AttitudeImpactDiagramEntity entity)
+
+        internal void Register(AttitudeImpactDiagram model, AttitudeImpactDiagramXmlEntity entity)
         {
             Register(attitudeImpactDiagrams, model, entity);
         }
-        internal void Register(AttitudeImpactDiagramStakeholder model, AttitudeImpactDiagramStakeholderEntity entity)
+
+        internal void Register(AttitudeImpactDiagramStakeholder model, AttitudeImpactDiagramStakeholderXmlEntity entity)
         {
             Register(attitudeImpactDiagramStakeholders, model, entity);
         }
@@ -80,90 +113,112 @@ namespace StakeholderAnalysis.Storage.Create
         {
             return ContainsValue(stakeholders, model);
         }
+
         internal bool Contains(StakeholderType model)
         {
             return ContainsValue(stakeholderTypes, model);
         }
+
         internal bool Contains(OnionDiagram model)
         {
             return ContainsValue(onionDiagrams, model);
         }
+
         internal bool Contains(OnionRing model)
         {
             return ContainsValue(onionRings, model);
         }
+
         internal bool Contains(OnionDiagramStakeholder model)
         {
             return ContainsValue(onionDiagramStakeholders, model);
         }
+
         internal bool Contains(StakeholderConnection model)
         {
             return ContainsValue(onionDiagramStakeholderConnections, model);
         }
+
         internal bool Contains(StakeholderConnectionGroup model)
         {
             return ContainsValue(onionDiagramStakeholderConnectionGroups, model);
         }
+
         internal bool Contains(ForceFieldDiagram model)
         {
             return ContainsValue(forceFieldDiagrams, model);
         }
+
         internal bool Contains(ForceFieldDiagramStakeholder model)
         {
             return ContainsValue(forceFieldDiagramStakeholders, model);
         }
+
         internal bool Contains(AttitudeImpactDiagram model)
         {
             return ContainsValue(attitudeImpactDiagrams, model);
         }
+
         internal bool Contains(AttitudeImpactDiagramStakeholder model)
         {
             return ContainsValue(attitudeImpactDiagramStakeholders, model);
         }
+
         #endregion
 
         #region Get Methods
-        public StakeholderEntity Get(Stakeholder model)
+
+        public StakeholderXmlEntity Get(Stakeholder model)
         {
             return Get(stakeholders, model);
         }
-        public StakeholderTypeEntity Get(StakeholderType model)
+
+        public StakeholderTypeXmlEntity Get(StakeholderType model)
         {
             return Get(stakeholderTypes, model);
         }
-        public OnionDiagramEntity Get(OnionDiagram model)
+
+        public OnionDiagramXmlEntity Get(OnionDiagram model)
         {
             return Get(onionDiagrams, model);
         }
-        public OnionRingEntity Get(OnionRing model)
+
+        public OnionRingXmlEntity Get(OnionRing model)
         {
             return Get(onionRings, model);
         }
-        public OnionDiagramStakeholderEntity Get(OnionDiagramStakeholder model)
+
+        public OnionDiagramStakeholderXmlEntity Get(OnionDiagramStakeholder model)
         {
             return Get(onionDiagramStakeholders, model);
         }
-        public StakeholderConnectionEntity Get(StakeholderConnection model)
+
+        public StakeholderConnectionXmlEntity Get(StakeholderConnection model)
         {
             return Get(onionDiagramStakeholderConnections, model);
         }
-        public StakeholderConnectionGroupEntity Get(StakeholderConnectionGroup model)
+
+        public StakeholderConnectionGroupXmlEntity Get(StakeholderConnectionGroup model)
         {
             return Get(onionDiagramStakeholderConnectionGroups, model);
         }
-        public ForceFieldDiagramEntity Get(ForceFieldDiagram model)
+
+        public ForceFieldDiagramXmlEntity Get(ForceFieldDiagram model)
         {
             return Get(forceFieldDiagrams, model);
         }
-        public ForceFieldDiagramStakeholderEntity Get(ForceFieldDiagramStakeholder model)
+
+        public ForceFieldDiagramStakeholderXmlEntity Get(ForceFieldDiagramStakeholder model)
         {
             return Get(forceFieldDiagramStakeholders, model);
         }
-        public AttitudeImpactDiagramEntity Get(AttitudeImpactDiagram model)
+
+        public AttitudeImpactDiagramXmlEntity Get(AttitudeImpactDiagram model)
         {
             return Get(attitudeImpactDiagrams, model);
         }
-        public AttitudeImpactDiagramStakeholderEntity Get(AttitudeImpactDiagramStakeholder model)
+
+        public AttitudeImpactDiagramStakeholderXmlEntity Get(AttitudeImpactDiagramStakeholder model)
         {
             return Get(attitudeImpactDiagramStakeholders, model);
         }
@@ -171,6 +226,7 @@ namespace StakeholderAnalysis.Storage.Create
         #endregion
 
         #region helpers
+
         private static Dictionary<TEntity, TModel> CreateDictionary<TEntity, TModel>()
         {
             return new Dictionary<TEntity, TModel>(new ReferenceEqualityComparer<TEntity>());
@@ -178,37 +234,28 @@ namespace StakeholderAnalysis.Storage.Create
 
         private bool ContainsValue<TModel, TEntity>(Dictionary<TModel, TEntity> collection, TModel model)
         {
-            if (model == null)
-            {
-                throw new ArgumentNullException(nameof(model));
-            }
+            if (model == null) throw new ArgumentNullException(nameof(model));
 
             return collection.Keys.Contains(model, new ReferenceEqualityComparer<TModel>());
         }
 
         private void Register<TModel, TEntity>(Dictionary<TModel, TEntity> collection, TModel model, TEntity entity)
+            where TEntity : IXmlEntity
         {
-            if (entity == null)
-            {
-                throw new ArgumentNullException(nameof(entity));
-            }
-            if (model == null)
-            {
-                throw new ArgumentNullException(nameof(model));
-            }
+            if (entity == null) throw new ArgumentNullException(nameof(entity));
+            if (model == null) throw new ArgumentNullException(nameof(model));
 
             collection[model] = entity;
+            entity.Id = collection.Count - 1;
         }
 
         private TEntity Get<TModel, TEntity>(Dictionary<TModel, TEntity> collection, TModel model)
         {
-            if (model == null)
-            {
-                throw new ArgumentNullException(nameof(model));
-            }
+            if (model == null) throw new ArgumentNullException(nameof(model));
 
             return collection[model];
         }
+
         #endregion
     }
 }

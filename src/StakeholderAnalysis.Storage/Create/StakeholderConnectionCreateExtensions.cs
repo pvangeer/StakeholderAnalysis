@@ -1,28 +1,24 @@
 ﻿using System;
 using StakeholderAnalysis.Data.OnionDiagrams;
-using StakeholderAnalysis.Storage.DbContext;
+using StakeholderAnalysis.Storage.XmlEntities;
 
 namespace StakeholderAnalysis.Storage.Create
 {
     internal static class StakeholderConnectionCreateExtensions
     {
-        internal static StakeholderConnectionEntity Create(this StakeholderConnection connection, PersistenceRegistry registry)
+        internal static StakeholderConnectionXmlEntity Create(this StakeholderConnection connection,
+            PersistenceRegistry registry)
         {
-            if (registry == null)
-            {
-                throw new ArgumentNullException(nameof(registry));
-            }
+            if (registry == null) throw new ArgumentNullException(nameof(registry));
 
-            if (registry.Contains(connection))
-            {
-                return registry.Get(connection);
-            }
+            if (registry.Contains(connection)) return registry.Get(connection);
 
-            var entity = new StakeholderConnectionEntity
+            var entity = new StakeholderConnectionXmlEntity
             {
-                StakeholderConnectionGroupEntity = connection.StakeholderConnectionGroup.Create(registry),
-                OnionDiagramStakeholderEntity1 = connection.ConnectFrom.Create(registry),
-                OnionDiagramStakeholderEntity = connection.ConnectTo.Create(registry)
+                StakeholderConnectionGroupReferenceXmlEntity =
+                    connection.StakeholderConnectionGroup.CreateReference(registry),
+                StakeholderFrom = connection.ConnectFrom.CreateReference(registry),
+                StakeholderTo = connection.ConnectTo.CreateReference(registry)
             };
 
             registry.Register(connection, entity);

@@ -1,34 +1,49 @@
 ﻿using System;
 using StakeholderAnalysis.Data.OnionDiagrams;
-using StakeholderAnalysis.Storage.DbContext;
+using StakeholderAnalysis.Storage.XmlEntities;
 
 namespace StakeholderAnalysis.Storage.Create
 {
     internal static class OnionDiagramStakeholderCreateExtensions
     {
-        internal static OnionDiagramStakeholderEntity Create(this OnionDiagramStakeholder stakeholder, PersistenceRegistry registry)
+        internal static OnionDiagramStakeholderXmlEntity Create(this OnionDiagramStakeholder stakeholder,
+            PersistenceRegistry registry)
         {
-            if (registry == null)
-            {
-                throw new ArgumentNullException(nameof(registry));
-            }
+            if (registry == null) throw new ArgumentNullException(nameof(registry));
 
-            if (registry.Contains(stakeholder))
-            {
-                return registry.Get(stakeholder);
-            }
+            if (registry.Contains(stakeholder)) return registry.Get(stakeholder);
 
-            var entity = new OnionDiagramStakeholderEntity
+            var entity = new OnionDiagramStakeholderXmlEntity
             {
-                StakeholderEntity = stakeholder.Stakeholder.Create(registry),
-                Left = stakeholder.Left.ToNaNAsNull(),
-                Top = stakeholder.Top.ToNaNAsNull(),
+                StakeholderReferenceEntity = stakeholder.Stakeholder.CreateReference(registry),
+                Left = stakeholder.Left,
+                Top = stakeholder.Top,
                 Rank = stakeholder.Rank
             };
 
             registry.Register(stakeholder, entity);
 
             return entity;
+        }
+
+        internal static OnionDiagramStakeholderReferenceXmlEntity CreateReference(
+            this OnionDiagramStakeholder stakeholder, PersistenceRegistry registry)
+        {
+            if (registry == null) throw new ArgumentNullException(nameof(registry));
+
+            var entity = new OnionDiagramStakeholderXmlEntity
+            {
+                StakeholderReferenceEntity = stakeholder.Stakeholder.CreateReference(registry),
+                Left = stakeholder.Left,
+                Top = stakeholder.Top,
+                Rank = stakeholder.Rank
+            };
+            if (registry.Contains(stakeholder))
+                entity = registry.Get(stakeholder);
+            else
+                registry.Register(stakeholder, entity);
+
+            return new OnionDiagramStakeholderReferenceXmlEntity(entity);
         }
     }
 }
