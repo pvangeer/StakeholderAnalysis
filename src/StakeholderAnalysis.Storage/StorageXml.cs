@@ -134,12 +134,12 @@ namespace StakeholderAnalysis.Storage
         }
 
         /// <summary>
-        ///     Creates a configured instance of <see cref="StorageException" /> when writing to the storage file failed.
+        ///     Creates a configured instance of <see cref="XmlStorageException" /> when writing to the storage file failed.
         /// </summary>
         /// <param name="databaseFilePath">The path of the file that was attempted to connect with.</param>
         /// <param name="errorMessage">The critical error message.</param>
         /// <param name="innerException">Exception that caused this exception to be thrown.</param>
-        /// <returns>Returns a new <see cref="StorageException" />.</returns>
+        /// <returns>Returns a new <see cref="XmlStorageException" />.</returns>
         private static XmlStorageException CreateStorageWriterException(string databaseFilePath, string errorMessage,
             Exception innerException)
         {
@@ -149,12 +149,12 @@ namespace StakeholderAnalysis.Storage
         }
 
         /// <summary>
-        ///     Creates a configured instance of <see cref="StorageException" /> when reading the storage file failed.
+        ///     Creates a configured instance of <see cref="XmlStorageException" /> when reading the storage file failed.
         /// </summary>
         /// <param name="databaseFilePath">The path of the file that was attempted to connect with.</param>
         /// <param name="errorMessage">The critical error message.</param>
         /// <param name="innerException">Exception that caused this exception to be thrown.</param>
-        /// <returns>Returns a new <see cref="StorageException" />.</returns>
+        /// <returns>Returns a new <see cref="XmlStorageException" />.</returns>
         private static XmlStorageException CreateStorageReaderException(string databaseFilePath, string errorMessage,
             Exception innerException = null)
         {
@@ -171,6 +171,7 @@ namespace StakeholderAnalysis.Storage
             }
 
             public Analysis Model { get; }
+
             public AnalysisXmlEntity XmlEntity { get; }
         }
     }
