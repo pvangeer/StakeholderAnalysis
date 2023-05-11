@@ -13,27 +13,27 @@ namespace StakeholderAnalysis.Storage
     {
         private readonly byte[] emptyProjectHash;
         private byte[] lastOpenedOrSavedProjectHash;
-        private StagedProject stagedProject;
+        private AnalysisXmlEntity stagedAnalysisXmlEntity;
 
         public StorageXml()
         {
             var emptyProject = new Analysis();
-            var emptyStagedProject = new StagedProject(emptyProject, emptyProject.Create(new PersistenceRegistry()));
-            emptyProjectHash = FingerprintHelper.Get(emptyStagedProject.XmlEntity);
+            var emptyStagedAnalysisXmlEntity = emptyProject.Create(new PersistenceRegistry());
+            emptyProjectHash = FingerprintHelper.Get(emptyStagedAnalysisXmlEntity);
         }
 
-        public bool HasStagedProject => stagedProject != null;
+        public bool HasStagedProject => stagedAnalysisXmlEntity != null;
 
         public void StageProject(Analysis project)
         {
             if (project == null) throw new ArgumentNullException(nameof(project));
 
-            stagedProject = new StagedProject(project, project.Create(new PersistenceRegistry()));
+            stagedAnalysisXmlEntity = project.Create(new PersistenceRegistry());
         }
 
         public void UnStageProject()
         {
-            stagedProject = null;
+            stagedAnalysisXmlEntity = null;
         }
 
         public void SaveProjectAs(string databaseFilePath)
@@ -93,7 +93,7 @@ namespace StakeholderAnalysis.Storage
             if (!HasStagedProject)
                 throw new InvalidOperationException("Call 'StageProject(IProject)' first before calling this method.");
 
-            var hash = FingerprintHelper.Get(stagedProject.XmlEntity);
+            var hash = FingerprintHelper.Get(stagedAnalysisXmlEntity);
             if (FingerprintHelper.AreEqual(hash, emptyProjectHash)) return false;
 
             if (string.IsNullOrWhiteSpace(filePath)) return true;
@@ -112,10 +112,10 @@ namespace StakeholderAnalysis.Storage
                 var serializer = new XmlSerializer(typeof(AnalysisXmlEntity));
                 using (var writer = new StreamWriter(filePath))
                 {
-                    serializer.Serialize(writer, stagedProject.XmlEntity);
+                    serializer.Serialize(writer, stagedAnalysisXmlEntity);
                 }
 
-                lastOpenedOrSavedProjectHash = FingerprintHelper.Get(stagedProject.XmlEntity);
+                lastOpenedOrSavedProjectHash = FingerprintHelper.Get(stagedAnalysisXmlEntity);
             }
             // TODO: Change catch to catch proper exceptions
             catch (DataException exception)
@@ -160,19 +160,6 @@ namespace StakeholderAnalysis.Storage
         {
             var message = new FileReaderErrorMessageBuilder(databaseFilePath).Build(errorMessage);
             return new XmlStorageException(message, innerException);
-        }
-
-        private class StagedProject
-        {
-            public StagedProject(Analysis projectModel, AnalysisXmlEntity projectXmlEntity)
-            {
-                Model = projectModel;
-                XmlEntity = projectXmlEntity;
-            }
-
-            public Analysis Model { get; }
-
-            public AnalysisXmlEntity XmlEntity { get; }
         }
     }
 
