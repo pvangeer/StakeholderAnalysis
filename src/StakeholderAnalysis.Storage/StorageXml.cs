@@ -9,9 +9,6 @@ using StakeholderAnalysis.Storage.XmlEntities;
 
 namespace StakeholderAnalysis.Storage
 {
-    /// <summary>
-    ///     This class interacts with an SQLite database file using the XmlEntity Framework.
-    /// </summary>
     public class StorageXml
     {
         private readonly byte[] emptyProjectHash;

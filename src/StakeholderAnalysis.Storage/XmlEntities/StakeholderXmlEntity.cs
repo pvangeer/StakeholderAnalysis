@@ -6,6 +6,9 @@ namespace StakeholderAnalysis.Storage.XmlEntities
     [Serializable]
     public class StakeholderXmlEntity : IXmlEntity
     {
+        [XmlAttribute(AttributeName = "id")] 
+        public long Id { get; set; }
+
         [XmlAttribute(AttributeName = "name")] public string Name { get; set; }
 
         [XmlAttribute(AttributeName = "order")]
@@ -13,7 +16,5 @@ namespace StakeholderAnalysis.Storage.XmlEntities
 
         [XmlAttribute(AttributeName = "stakeholdertypeid")]
         public long StakeholderTypeId { get; set; }
-
-        [XmlAttribute(AttributeName = "id")] public long Id { get; set; }
     }
 }

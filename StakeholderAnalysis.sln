@@ -1,7 +1,7 @@
 ﻿
 Microsoft Visual Studio Solution File, Format Version 12.00
-# Visual Studio 15
-VisualStudioVersion = 15.0.28307.271
+# Visual Studio Version 17
+VisualStudioVersion = 17.5.33516.290
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "src", "src", "{729C9A16-269E-4907-BB51-4A2985072B43}"
 EndProject
@@ -16,8 +16,6 @@ EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "StakeholderAnalysis.Gui", "src\StakeholderAnalysis.Gui\StakeholderAnalysis.Gui.csproj", "{B9D3E8F2-C9B7-4201-8E05-A1C2827822CD}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "StakeholderAnalysis.Messaging", "src\StakeholderAnalysis.Messaging\StakeholderAnalysis.Messaging.csproj", "{1D562DF9-DF35-46FA-B33A-B8AEF5FC7CF0}"
-EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "StakeholderAnalysis.Storage.Preparation.Test", "test\StakeholderAnalysis.Storage.Preparation.Test\StakeholderAnalysis.Storage.Preparation.Test.csproj", "{86C303BF-EB5D-495E-A6A8-FDBDA806F9F4}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "StakeholderAnalysis.Storage", "src\StakeholderAnalysis.Storage\StakeholderAnalysis.Storage.csproj", "{89C312EB-73EC-4254-A6B2-336BA0448B04}"
 EndProject
@@ -49,10 +47,6 @@ Global
 		{1D562DF9-DF35-46FA-B33A-B8AEF5FC7CF0}.Debug|x64.Build.0 = Debug|x64
 		{1D562DF9-DF35-46FA-B33A-B8AEF5FC7CF0}.Release|x64.ActiveCfg = Release|x64
 		{1D562DF9-DF35-46FA-B33A-B8AEF5FC7CF0}.Release|x64.Build.0 = Release|x64
-		{86C303BF-EB5D-495E-A6A8-FDBDA806F9F4}.Debug|x64.ActiveCfg = Debug|x64
-		{86C303BF-EB5D-495E-A6A8-FDBDA806F9F4}.Debug|x64.Build.0 = Debug|x64
-		{86C303BF-EB5D-495E-A6A8-FDBDA806F9F4}.Release|x64.ActiveCfg = Release|x64
-		{86C303BF-EB5D-495E-A6A8-FDBDA806F9F4}.Release|x64.Build.0 = Release|x64
 		{89C312EB-73EC-4254-A6B2-336BA0448B04}.Debug|x64.ActiveCfg = Debug|x64
 		{89C312EB-73EC-4254-A6B2-336BA0448B04}.Debug|x64.Build.0 = Debug|x64
 		{89C312EB-73EC-4254-A6B2-336BA0448B04}.Release|x64.ActiveCfg = Release|x64
@@ -71,7 +65,6 @@ Global
 		{A1B8304F-DB80-4144-918B-558887B97F3B} = {729C9A16-269E-4907-BB51-4A2985072B43}
 		{B9D3E8F2-C9B7-4201-8E05-A1C2827822CD} = {729C9A16-269E-4907-BB51-4A2985072B43}
 		{1D562DF9-DF35-46FA-B33A-B8AEF5FC7CF0} = {729C9A16-269E-4907-BB51-4A2985072B43}
-		{86C303BF-EB5D-495E-A6A8-FDBDA806F9F4} = {181B3BC3-DE8D-4AE7-8E67-91DB884106E4}
 		{89C312EB-73EC-4254-A6B2-336BA0448B04} = {729C9A16-269E-4907-BB51-4A2985072B43}
 		{2F077DEA-2527-434B-8955-2BBB50007B33} = {181B3BC3-DE8D-4AE7-8E67-91DB884106E4}
 	EndGlobalSection
