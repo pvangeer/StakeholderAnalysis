@@ -1,23 +1,24 @@
 ﻿using System;
 using System.Linq;
 using StakeholderAnalysis.Data;
-using StakeholderAnalysis.Storage.DbContext;
+using StakeholderAnalysis.Storage.XmlEntities;
 
 namespace StakeholderAnalysis.Storage.Read
 {
     internal static class AnalysisEntityReadExtensions
     {
-        internal static Analysis Read(this AnalysisEntity entity, ReadConversionCollector collector)
+        internal static Analysis Read(this AnalysisXmlEntity entity, ReadConversionCollector collector)
         {
             if (entity == null) throw new ArgumentNullException(nameof(entity));
             if (collector == null) throw new ArgumentNullException(nameof(collector));
 
-            var stakeholderTypes = entity.StakeholderTypeEntities.OrderBy(e => e.Order).Select(e => e.Read(collector));
-            var stakeholders = entity.StakeholderEntities.OrderBy(e => e.Order).Select(e => e.Read(collector));
-            var onionDiagrams = entity.OnionDiagramEntities.OrderBy(e => e.Order).Select(e => e.Read(collector));
+            var stakeholderTypes =
+                entity.StakeholderTypeXmlEntities.OrderBy(e => e.Order).Select(e => e.Read(collector));
+            var stakeholders = entity.StakeholderXmlEntities.OrderBy(e => e.Order).Select(e => e.Read(collector));
+            var onionDiagrams = entity.OnionDiagramXmlEntities.OrderBy(e => e.Order).Select(e => e.Read(collector));
             var forceFieldDiagrams =
-                entity.ForceFieldDiagramEntities.OrderBy(e => e.Order).Select(e => e.Read(collector));
-            var attitudeImpactDiagrams = entity.AttitudeImpactDiagramEntities.OrderBy(e => e.Order)
+                entity.ForceFieldDiagramXmlEntities.OrderBy(e => e.Order).Select(e => e.Read(collector));
+            var attitudeImpactDiagrams = entity.AttitudeImpactDiagramXmlEntities.OrderBy(e => e.Order)
                 .Select(e => e.Read(collector));
 
             var analysis = new Analysis();

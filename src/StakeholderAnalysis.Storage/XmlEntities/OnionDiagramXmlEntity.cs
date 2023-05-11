@@ -24,7 +24,7 @@ namespace StakeholderAnalysis.Storage.XmlEntities
         public double Asymmetry { get; set; }
 
         [XmlArray(ElementName = "stakeholders")]
-        [XmlArrayItem(ElementName = "stakeolder")]
+        [XmlArrayItem(ElementName = "onionstakeholder")]
         public Collection<OnionDiagramStakeholderXmlEntity> OnionDiagramStakeholderXmlEntities { get; set; }
 
         [XmlArray(ElementName = "onionrings")]

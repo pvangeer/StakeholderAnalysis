@@ -15,10 +15,10 @@ namespace StakeholderAnalysis.Storage.Create
 
             var entity = new StakeholderConnectionXmlEntity
             {
-                StakeholderConnectionGroupReferenceXmlEntity =
-                    connection.StakeholderConnectionGroup.CreateReference(registry),
-                StakeholderFrom = connection.ConnectFrom.CreateReference(registry),
-                StakeholderTo = connection.ConnectTo.CreateReference(registry)
+                StakeholderConnectionGroupId =
+                    connection.StakeholderConnectionGroup.Create(registry).Id,
+                StakeholderFromId = connection.ConnectFrom.Create(registry).Id,
+                StakeholderToId = connection.ConnectTo.Create(registry).Id
             };
 
             registry.Register(connection, entity);

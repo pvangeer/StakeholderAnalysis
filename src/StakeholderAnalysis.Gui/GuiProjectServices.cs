@@ -54,7 +54,7 @@ namespace StakeholderAnalysis.Gui
             var dialog = new OpenFileDialog
             {
                 CheckFileExists = true,
-                Filter = "Stakeholder analyse bestand (*.sqlite)|*.sqlite",
+                Filter = "Stakeholder analyse bestand (*.xml)|*.xml",
                 FileName = gui.ProjectFilePath,
             };
 

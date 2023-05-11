@@ -25,7 +25,7 @@ namespace StakeholderAnalysis.Storage.XmlEntities
         [XmlElement(ElementName = "axis")] public TwoAxisDiagramAxisXmlEntity Axis { get; set; }
 
         [XmlArray(ElementName = "stakeholders")]
-        [XmlArrayItem(ElementName = "stakeholder")]
+        [XmlArrayItem(ElementName = "attitudeimpactstakeholder")]
         public Collection<AttitudeImpactDiagramStakeholderXmlEntity> AttitudeImpactDiagramStakeholderXmlEntities
         {
             get;

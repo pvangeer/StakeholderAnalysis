@@ -67,7 +67,6 @@
   <ItemGroup>
     <Compile Include="AnalysisGenerator.cs" />
     <Compile Include="Create\AnalysisCreateExtensionsTest.cs" />
-    <Compile Include="DatabaseReadWriteIntegrationTest.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="XmlEntities\AnalysisXmlEntityTest.cs" />
     <Compile Include="XmlEntities\OnionRingXmlEntityTest.cs" />

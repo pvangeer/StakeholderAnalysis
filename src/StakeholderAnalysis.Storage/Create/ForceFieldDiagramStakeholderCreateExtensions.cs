@@ -15,7 +15,7 @@ namespace StakeholderAnalysis.Storage.Create
 
             var entity = new ForceFieldDiagramStakeholderXmlEntity
             {
-                StakeholderReferenceEntity = stakeholder.Stakeholder.CreateReference(registry),
+                StakeholderId = stakeholder.Stakeholder.Create(registry).Id,
                 Influence = stakeholder.Influence,
                 Interest = stakeholder.Interest,
                 Rank = stakeholder.Rank

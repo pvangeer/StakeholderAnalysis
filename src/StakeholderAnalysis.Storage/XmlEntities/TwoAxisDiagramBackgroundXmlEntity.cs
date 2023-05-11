@@ -4,7 +4,7 @@ using System.Xml.Serialization;
 namespace StakeholderAnalysis.Storage.XmlEntities
 {
     [Serializable]
-    public class TwoAxisDiagramBackgroundXmlEntity : IXmlEntity
+    public class TwoAxisDiagramBackgroundXmlEntity
     {
         [XmlAttribute(AttributeName = "textlefttop")]
         public string BackgroundTextLeftTop { get; set; }
@@ -32,7 +32,5 @@ namespace StakeholderAnalysis.Storage.XmlEntities
 
         [XmlAttribute(AttributeName = "textfontsize")]
         public double BackgroundTextFontSize { get; set; }
-
-        [XmlAttribute(AttributeName = "id")] public long Id { get; set; }
     }
 }

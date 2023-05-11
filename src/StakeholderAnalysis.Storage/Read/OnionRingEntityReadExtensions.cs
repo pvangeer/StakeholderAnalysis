@@ -1,12 +1,12 @@
 ﻿using System;
 using StakeholderAnalysis.Data.OnionDiagrams;
-using StakeholderAnalysis.Storage.DbContext;
+using StakeholderAnalysis.Storage.XmlEntities;
 
 namespace StakeholderAnalysis.Storage.Read
 {
     public static class OnionRingEntityReadExtensions
     {
-        internal static OnionRing Read(this OnionRingEntity entity, ReadConversionCollector collector)
+        internal static OnionRing Read(this OnionRingXmlEntity entity, ReadConversionCollector collector)
         {
             if (entity == null) throw new ArgumentNullException(nameof(entity));
             if (collector == null) throw new ArgumentNullException(nameof(collector));
@@ -15,9 +15,9 @@ namespace StakeholderAnalysis.Storage.Read
 
             var attitudeImpactDiagram = new OnionRing
             {
-                Percentage = entity.Percentage.ToNullAsNaN(),
+                Percentage = entity.Percentage,
                 StrokeColor = entity.StrokeColor.ToColor(),
-                StrokeThickness = entity.StrokeThickness.ToNullAsNaN(),
+                StrokeThickness = entity.StrokeThickness,
                 BackgroundColor = entity.BackgroundColor.ToColor()
             };
 

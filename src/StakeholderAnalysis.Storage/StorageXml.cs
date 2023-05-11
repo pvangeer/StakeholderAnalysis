@@ -1,28 +1,28 @@
 ﻿using System;
 using System.Data;
 using System.IO;
-using System.Linq;
 using System.Xml.Serialization;
 using StakeholderAnalysis.Data;
 using StakeholderAnalysis.Storage.Create;
-using StakeholderAnalysis.Storage.DbContext;
+using StakeholderAnalysis.Storage.Read;
 using StakeholderAnalysis.Storage.XmlEntities;
 
 namespace StakeholderAnalysis.Storage
 {
     /// <summary>
-    ///     This class interacts with an SQLite database file using the Entity Framework.
+    ///     This class interacts with an SQLite database file using the XmlEntity Framework.
     /// </summary>
     public class StorageXml
     {
         private readonly byte[] emptyProjectHash;
+        private byte[] lastOpenedOrSavedProjectHash;
         private StagedProject stagedProject;
 
         public StorageXml()
         {
             var emptyProject = new Analysis();
             var emptyStagedProject = new StagedProject(emptyProject, emptyProject.Create(new PersistenceRegistry()));
-            emptyProjectHash = FingerprintHelper.Get(emptyStagedProject.Entity);
+            emptyProjectHash = FingerprintHelper.Get(emptyStagedProject.XmlEntity);
         }
 
         public bool HasStagedProject => stagedProject != null;
@@ -51,7 +51,7 @@ namespace StakeholderAnalysis.Storage
             }
             catch (IOException e)
             {
-                throw new StorageException(e.Message, e);
+                throw new XmlStorageException(e.Message, e);
             }
             finally
             {
@@ -63,46 +63,32 @@ namespace StakeholderAnalysis.Storage
         {
             IOUtils.ValidateFilePath(databaseFilePath);
 
-            /*var serializer = XmlSerializer(typeof(AnalysisEntity));
-            
             try
             {
-                Analysis project;
-                using (var dbContext = new Entities(connectionString))
+                AnalysisXmlEntity analysisXmlEntity;
+
+                var serializer = new XmlSerializer(typeof(AnalysisXmlEntity));
+
+                using (Stream reader = new FileStream(databaseFilePath, FileMode.Open))
                 {
-                    ValidateDatabaseVersion(dbContext, filePath);
-
-                    dbContext.LoadTablesIntoContext();
-
-                    AnalysisEntity projectEntity;
                     try
                     {
-                        projectEntity = dbContext.AnalysisEntities.Local.Single();
+                        analysisXmlEntity = (AnalysisXmlEntity)serializer.Deserialize(reader);
                     }
-                    catch (InvalidOperationException exception)
+                    catch (Exception exception)
                     {
-                        throw CreateStorageReaderException(filePath, "Geen geldige database", exception);
+                        throw CreateStorageReaderException(databaseFilePath, "Bestand kon niet worden gelezen",
+                            exception);
                     }
-
-                    project = projectEntity.Read(new ReadConversionCollector());
                 }
 
-                return project;
+                lastOpenedOrSavedProjectHash = FingerprintHelper.Get(analysisXmlEntity);
+                return analysisXmlEntity.Read(new ReadConversionCollector());
             }
-            catch (DataException exception)
+            catch (Exception exception)
             {
-                throw CreateStorageReaderException(filePath, "Geen geldige database", exception);
+                throw CreateStorageReaderException(databaseFilePath, "Project kon niet worden ingeladen", exception);
             }
-            catch (SystemException exception)
-            {
-                throw CreateStorageReaderException(filePath, "Geen geldige database", exception);
-            }*/
-            return new Analysis();
-        }
-
-        private object XmlSerializer(Type type)
-        {
-            throw new NotImplementedException();
         }
 
         public bool HasStagedProjectChanges(string filePath)
@@ -110,30 +96,14 @@ namespace StakeholderAnalysis.Storage
             if (!HasStagedProject)
                 throw new InvalidOperationException("Call 'StageProject(IProject)' first before calling this method.");
 
-            var hash = FingerprintHelper.Get(stagedProject.Entity);
+            var hash = FingerprintHelper.Get(stagedProject.XmlEntity);
             if (FingerprintHelper.AreEqual(hash, emptyProjectHash)) return false;
 
             if (string.IsNullOrWhiteSpace(filePath)) return true;
 
             IOUtils.ValidateFilePath(filePath);
-            return false;
-            // TODO: Read file and look at differences in fingerprint.
-            /*try
-            {
-                byte[] originalHash;
-                using (var dbContext = new Entities(connectionString))
-                    originalHash = dbContext.VersionEntities.Select(v => v.FingerPrint).First();
 
-                return !FingerprintHelper.AreEqual(originalHash, hash);
-            }
-            catch (Exception e)
-            {
-                if (e.InnerException is QuotaExceededException)
-                {
-                    throw new StorageException("Opgeslagen project bevat teveel objecten om een vingerafdruk van te maken", e);
-                }
-                throw new StorageException(e.Message, e);
-            }*/
+            return !FingerprintHelper.AreEqual(lastOpenedOrSavedProjectHash, hash);
         }
 
         private void SaveProjectInDatabase(string filePath)
@@ -145,8 +115,10 @@ namespace StakeholderAnalysis.Storage
                 var serializer = new XmlSerializer(typeof(AnalysisXmlEntity));
                 using (var writer = new StreamWriter(filePath))
                 {
-                    serializer.Serialize(writer, stagedProject.Entity);
+                    serializer.Serialize(writer, stagedProject.XmlEntity);
                 }
+
+                lastOpenedOrSavedProjectHash = FingerprintHelper.Get(stagedProject.XmlEntity);
             }
             // TODO: Change catch to catch proper exceptions
             catch (DataException exception)
@@ -164,63 +136,6 @@ namespace StakeholderAnalysis.Storage
             }
         }
 
-        private static void ValidateDatabaseVersion(Entities stakeholderAnalysisEntities, string databaseFilePath)
-        {
-            try
-            {
-                var databaseVersion = stakeholderAnalysisEntities.VersionEntities.Select(v => v.Version).Single();
-                if (!StakeholderAnalysisVersionHelper.IsValidVersion(databaseVersion))
-                {
-                    var m = string.Format("Database versie ('{0}') is ongeldig",
-                        databaseVersion);
-                    var message = new FileReaderErrorMessageBuilder(databaseFilePath).Build(m);
-                    throw new FormatException(message);
-                }
-
-                if (StakeholderAnalysisVersionHelper.IsNewerThanCurrent(databaseVersion))
-                {
-                    var m = string.Format("Database versie ('{0}') is nieuwer dan de huidige versie ('{1}')",
-                        databaseVersion, StakeholderAnalysisVersionHelper.GetCurrentDatabaseVersion());
-                    var message = new FileReaderErrorMessageBuilder(databaseFilePath).Build(m);
-                    throw new FormatException(message);
-                }
-            }
-            catch (InvalidOperationException e)
-            {
-                var message = new FileReaderErrorMessageBuilder(databaseFilePath).Build(
-                    "Er mag maximaal 1 rij aanwezig zijn in de VersionEntity tabel van het opslagformaat.");
-                throw new FormatException(message);
-            }
-        }
-
-        /// <summary>
-        ///     Sets the connection to the Ringtoets database.
-        /// </summary>
-        /// <param name="databaseFilePath">The path of the file, which is used for creating exceptions.</param>
-        /// <exception cref="StorageValidationException">Thrown when the database does not contain the table <c>version</c>.</exception>
-        private static string GetConnectionToStorage(string databaseFilePath)
-        {
-            var connectionString =
-                SqLiteEntityConnectionStringBuilder.BuildSqLiteEntityConnectionString(databaseFilePath);
-
-            using (var dbContext = new Entities(connectionString))
-            {
-                try
-                {
-                    dbContext.Database.Initialize(true);
-                    dbContext.LoadVersionTableIntoContext();
-                }
-                catch (Exception exception)
-                {
-                    var message =
-                        new FileReaderErrorMessageBuilder(databaseFilePath).Build("Geen geldig opslagbestand");
-                    throw new Exception(message, exception);
-                }
-            }
-
-            return connectionString;
-        }
-
         /// <summary>
         ///     Creates a configured instance of <see cref="StorageException" /> when writing to the storage file failed.
         /// </summary>
@@ -228,12 +143,12 @@ namespace StakeholderAnalysis.Storage
         /// <param name="errorMessage">The critical error message.</param>
         /// <param name="innerException">Exception that caused this exception to be thrown.</param>
         /// <returns>Returns a new <see cref="StorageException" />.</returns>
-        private static StorageException CreateStorageWriterException(string databaseFilePath, string errorMessage,
+        private static XmlStorageException CreateStorageWriterException(string databaseFilePath, string errorMessage,
             Exception innerException)
         {
             var message = string.Format("Het is niet gelukt om het bestand weg te schrijven op locatie \"{0}\": {1}",
                 databaseFilePath, errorMessage);
-            return new StorageException(message, innerException);
+            return new XmlStorageException(message, innerException);
         }
 
         /// <summary>
@@ -243,23 +158,23 @@ namespace StakeholderAnalysis.Storage
         /// <param name="errorMessage">The critical error message.</param>
         /// <param name="innerException">Exception that caused this exception to be thrown.</param>
         /// <returns>Returns a new <see cref="StorageException" />.</returns>
-        private static StorageException CreateStorageReaderException(string databaseFilePath, string errorMessage,
+        private static XmlStorageException CreateStorageReaderException(string databaseFilePath, string errorMessage,
             Exception innerException = null)
         {
             var message = new FileReaderErrorMessageBuilder(databaseFilePath).Build(errorMessage);
-            return new StorageException(message, innerException);
+            return new XmlStorageException(message, innerException);
         }
 
         private class StagedProject
         {
-            public StagedProject(Analysis projectModel, AnalysisXmlEntity projectEntity)
+            public StagedProject(Analysis projectModel, AnalysisXmlEntity projectXmlEntity)
             {
                 Model = projectModel;
-                Entity = projectEntity;
+                XmlEntity = projectXmlEntity;
             }
 
             public Analysis Model { get; }
-            public AnalysisXmlEntity Entity { get; }
+            public AnalysisXmlEntity XmlEntity { get; }
         }
     }
 

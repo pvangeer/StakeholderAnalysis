@@ -9,15 +9,17 @@ namespace StakeholderAnalysis.Storage.XmlEntities
         [XmlAttribute(AttributeName = "order")]
         public long Order { get; set; }
 
-        [XmlElement(ElementName = "connectiongroupreference")]
-        public StakeholderConnectionGroupReferenceXmlEntity StakeholderConnectionGroupReferenceXmlEntity { get; set; }
+        [XmlAttribute(AttributeName = "connectiongroupid")]
+        public long StakeholderConnectionGroupId { get; set; }
 
-        [XmlElement(ElementName = "stakeholderfromreference")]
-        public OnionDiagramStakeholderReferenceXmlEntity StakeholderFrom { get; set; }
+        [XmlAttribute(AttributeName = "onionstakeholderfromid")]
+        public long StakeholderFromId { get; set; }
 
-        [XmlElement(ElementName = "stakeholdertoreference")]
-        public OnionDiagramStakeholderReferenceXmlEntity StakeholderTo { get; set; }
+        [XmlAttribute(AttributeName = "onionstakeholdertoid")]
+        public long StakeholderToId { get; set; }
 
-        [XmlAttribute(AttributeName = "id")] public long Id { get; set; }
+        [XmlIgnore]
+        [XmlAttribute(AttributeName = "id")]
+        public long Id { get; set; }
     }
 }

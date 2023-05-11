@@ -1,214 +1,248 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Linq;
 using StakeholderAnalysis.Data;
 using StakeholderAnalysis.Data.AttitudeImpactDiagrams;
 using StakeholderAnalysis.Data.ForceFieldDiagrams;
 using StakeholderAnalysis.Data.OnionDiagrams;
-using StakeholderAnalysis.Storage.DbContext;
+using StakeholderAnalysis.Storage.XmlEntities;
 
 namespace StakeholderAnalysis.Storage.Read
 {
     internal class ReadConversionCollector
     {
-        private readonly Dictionary<AttitudeImpactDiagramEntity, AttitudeImpactDiagram> attitudeImpactDiagrams =
-            CreateDictionary<AttitudeImpactDiagramEntity, AttitudeImpactDiagram>();
+        private readonly Dictionary<AttitudeImpactDiagramXmlEntity, AttitudeImpactDiagram> attitudeImpactDiagrams =
+            CreateDictionary<AttitudeImpactDiagramXmlEntity, AttitudeImpactDiagram>();
 
-        private readonly Dictionary<AttitudeImpactDiagramStakeholderEntity, AttitudeImpactDiagramStakeholder>
+        private readonly Dictionary<AttitudeImpactDiagramStakeholderXmlEntity, AttitudeImpactDiagramStakeholder>
             attitudeImpactDiagramStakeholders =
-                CreateDictionary<AttitudeImpactDiagramStakeholderEntity, AttitudeImpactDiagramStakeholder>();
+                CreateDictionary<AttitudeImpactDiagramStakeholderXmlEntity, AttitudeImpactDiagramStakeholder>();
 
-        private readonly Dictionary<ForceFieldDiagramEntity, ForceFieldDiagram> forceFieldDiagrams =
-            CreateDictionary<ForceFieldDiagramEntity, ForceFieldDiagram>();
+        private readonly Dictionary<ForceFieldDiagramXmlEntity, ForceFieldDiagram> forceFieldDiagrams =
+            CreateDictionary<ForceFieldDiagramXmlEntity, ForceFieldDiagram>();
 
-        private readonly Dictionary<ForceFieldDiagramStakeholderEntity, ForceFieldDiagramStakeholder>
+        private readonly Dictionary<ForceFieldDiagramStakeholderXmlEntity, ForceFieldDiagramStakeholder>
             forceFieldDiagramStakeholders =
-                CreateDictionary<ForceFieldDiagramStakeholderEntity, ForceFieldDiagramStakeholder>();
+                CreateDictionary<ForceFieldDiagramStakeholderXmlEntity, ForceFieldDiagramStakeholder>();
 
-        private readonly Dictionary<OnionDiagramEntity, OnionDiagram> onionDiagrams =
-            CreateDictionary<OnionDiagramEntity, OnionDiagram>();
+        private readonly Dictionary<OnionDiagramXmlEntity, OnionDiagram> onionDiagrams =
+            CreateDictionary<OnionDiagramXmlEntity, OnionDiagram>();
 
-        private readonly Dictionary<OnionDiagramStakeholderEntity, OnionDiagramStakeholder> onionDiagramStakeholders =
-            CreateDictionary<OnionDiagramStakeholderEntity, OnionDiagramStakeholder>();
+        private readonly Dictionary<OnionDiagramStakeholderXmlEntity, OnionDiagramStakeholder>
+            onionDiagramStakeholders =
+                CreateDictionary<OnionDiagramStakeholderXmlEntity, OnionDiagramStakeholder>();
 
-        private readonly Dictionary<OnionRingEntity, OnionRing> onionRings =
-            CreateDictionary<OnionRingEntity, OnionRing>();
+        private readonly Dictionary<OnionRingXmlEntity, OnionRing> onionRings =
+            CreateDictionary<OnionRingXmlEntity, OnionRing>();
 
-        private readonly Dictionary<StakeholderConnectionGroupEntity, StakeholderConnectionGroup>
+        private readonly Dictionary<StakeholderConnectionGroupXmlEntity, StakeholderConnectionGroup>
             stakeholderConnectionGroups =
-                CreateDictionary<StakeholderConnectionGroupEntity, StakeholderConnectionGroup>();
+                CreateDictionary<StakeholderConnectionGroupXmlEntity, StakeholderConnectionGroup>();
 
-        private readonly Dictionary<StakeholderConnectionEntity, StakeholderConnection> stakeholderConnections =
-            CreateDictionary<StakeholderConnectionEntity, StakeholderConnection>();
+        private readonly Dictionary<StakeholderConnectionXmlEntity, StakeholderConnection> stakeholderConnections =
+            CreateDictionary<StakeholderConnectionXmlEntity, StakeholderConnection>();
 
-        private readonly Dictionary<StakeholderEntity, Stakeholder> stakeholders =
-            CreateDictionary<StakeholderEntity, Stakeholder>();
+        private readonly Dictionary<StakeholderXmlEntity, Stakeholder> stakeholders =
+            CreateDictionary<StakeholderXmlEntity, Stakeholder>();
 
-        private readonly Dictionary<StakeholderTypeEntity, StakeholderType> stakeholderTypes =
-            CreateDictionary<StakeholderTypeEntity, StakeholderType>();
+        private readonly Dictionary<StakeholderTypeXmlEntity, StakeholderType> stakeholderTypes =
+            CreateDictionary<StakeholderTypeXmlEntity, StakeholderType>();
 
-        internal void Collect(StakeholderEntity entity, Stakeholder model)
+        internal void Collect(StakeholderXmlEntity entity, Stakeholder model)
         {
             Collect(stakeholders, entity, model);
         }
 
-        internal void Collect(StakeholderTypeEntity entity, StakeholderType model)
+        internal void Collect(StakeholderTypeXmlEntity entity, StakeholderType model)
         {
             Collect(stakeholderTypes, entity, model);
         }
 
-        internal void Collect(OnionDiagramEntity entity, OnionDiagram model)
+        internal void Collect(OnionDiagramXmlEntity entity, OnionDiagram model)
         {
             Collect(onionDiagrams, entity, model);
         }
 
-        internal void Collect(OnionRingEntity entity, OnionRing model)
+        internal void Collect(OnionRingXmlEntity entity, OnionRing model)
         {
             Collect(onionRings, entity, model);
         }
 
-        internal void Collect(OnionDiagramStakeholderEntity entity, OnionDiagramStakeholder model)
+        internal void Collect(OnionDiagramStakeholderXmlEntity entity, OnionDiagramStakeholder model)
         {
             Collect(onionDiagramStakeholders, entity, model);
         }
 
-        internal void Collect(StakeholderConnectionGroupEntity entity, StakeholderConnectionGroup model)
+        internal void Collect(StakeholderConnectionGroupXmlEntity entity, StakeholderConnectionGroup model)
         {
             Collect(stakeholderConnectionGroups, entity, model);
         }
 
-        internal void Collect(StakeholderConnectionEntity entity, StakeholderConnection model)
+        internal void Collect(StakeholderConnectionXmlEntity entity, StakeholderConnection model)
         {
             Collect(stakeholderConnections, entity, model);
         }
 
-        internal void Collect(ForceFieldDiagramEntity entity, ForceFieldDiagram model)
+        internal void Collect(ForceFieldDiagramXmlEntity entity, ForceFieldDiagram model)
         {
             Collect(forceFieldDiagrams, entity, model);
         }
 
-        internal void Collect(ForceFieldDiagramStakeholderEntity entity, ForceFieldDiagramStakeholder model)
+        internal void Collect(ForceFieldDiagramStakeholderXmlEntity entity, ForceFieldDiagramStakeholder model)
         {
             Collect(forceFieldDiagramStakeholders, entity, model);
         }
 
-        internal void Collect(AttitudeImpactDiagramEntity entity, AttitudeImpactDiagram model)
+        internal void Collect(AttitudeImpactDiagramXmlEntity entity, AttitudeImpactDiagram model)
         {
             Collect(attitudeImpactDiagrams, entity, model);
         }
 
-        internal void Collect(AttitudeImpactDiagramStakeholderEntity entity, AttitudeImpactDiagramStakeholder model)
+        internal void Collect(AttitudeImpactDiagramStakeholderXmlEntity entity, AttitudeImpactDiagramStakeholder model)
         {
             Collect(attitudeImpactDiagramStakeholders, entity, model);
         }
 
-        internal bool Contains(StakeholderEntity entity)
+        internal bool Contains(StakeholderXmlEntity entity)
         {
             return Contains(stakeholders, entity);
         }
 
-        internal bool Contains(StakeholderTypeEntity entity)
+        internal bool Contains(StakeholderTypeXmlEntity entity)
         {
             return Contains(stakeholderTypes, entity);
         }
 
-        internal bool Contains(OnionDiagramEntity entity)
+        internal bool Contains(OnionDiagramXmlEntity entity)
         {
             return Contains(onionDiagrams, entity);
         }
 
-        internal bool Contains(OnionRingEntity entity)
+        internal bool Contains(OnionRingXmlEntity entity)
         {
             return Contains(onionRings, entity);
         }
 
-        internal bool Contains(OnionDiagramStakeholderEntity entity)
+        internal bool Contains(OnionDiagramStakeholderXmlEntity entity)
         {
             return Contains(onionDiagramStakeholders, entity);
         }
 
-        internal bool Contains(StakeholderConnectionEntity entity)
+        internal bool Contains(StakeholderConnectionXmlEntity entity)
         {
             return Contains(stakeholderConnections, entity);
         }
 
-        internal bool Contains(StakeholderConnectionGroupEntity entity)
+        internal bool Contains(StakeholderConnectionGroupXmlEntity entity)
         {
             return Contains(stakeholderConnectionGroups, entity);
         }
 
-        internal bool Contains(ForceFieldDiagramEntity entity)
+        internal bool Contains(ForceFieldDiagramXmlEntity entity)
         {
             return Contains(forceFieldDiagrams, entity);
         }
 
-        internal bool Contains(ForceFieldDiagramStakeholderEntity entity)
+        internal bool Contains(ForceFieldDiagramStakeholderXmlEntity entity)
         {
             return Contains(forceFieldDiagramStakeholders, entity);
         }
 
-        internal bool Contains(AttitudeImpactDiagramEntity entity)
+        internal bool Contains(AttitudeImpactDiagramXmlEntity entity)
         {
             return Contains(attitudeImpactDiagrams, entity);
         }
 
-        internal bool Contains(AttitudeImpactDiagramStakeholderEntity entity)
+        internal bool Contains(AttitudeImpactDiagramStakeholderXmlEntity entity)
         {
             return Contains(attitudeImpactDiagramStakeholders, entity);
         }
 
-        internal Stakeholder Get(StakeholderEntity entity)
+        internal Stakeholder Get(StakeholderXmlEntity entity)
         {
             return Get(stakeholders, entity);
         }
 
-        internal StakeholderType Get(StakeholderTypeEntity entity)
+        internal StakeholderType Get(StakeholderTypeXmlEntity entity)
         {
             return Get(stakeholderTypes, entity);
         }
 
-        internal OnionDiagram Get(OnionDiagramEntity entity)
+        internal OnionDiagram Get(OnionDiagramXmlEntity entity)
         {
             return Get(onionDiagrams, entity);
         }
 
-        internal OnionRing Get(OnionRingEntity entity)
+        internal OnionRing Get(OnionRingXmlEntity entity)
         {
             return Get(onionRings, entity);
         }
 
-        internal OnionDiagramStakeholder Get(OnionDiagramStakeholderEntity entity)
+        internal OnionDiagramStakeholder Get(OnionDiagramStakeholderXmlEntity entity)
         {
             return Get(onionDiagramStakeholders, entity);
         }
 
-        internal StakeholderConnection Get(StakeholderConnectionEntity entity)
+        internal StakeholderConnection Get(StakeholderConnectionXmlEntity entity)
         {
             return Get(stakeholderConnections, entity);
         }
 
-        internal StakeholderConnectionGroup Get(StakeholderConnectionGroupEntity entity)
+        internal StakeholderConnectionGroup Get(StakeholderConnectionGroupXmlEntity entity)
         {
             return Get(stakeholderConnectionGroups, entity);
         }
 
-        internal ForceFieldDiagram Get(ForceFieldDiagramEntity entity)
+        internal ForceFieldDiagram Get(ForceFieldDiagramXmlEntity entity)
         {
             return Get(forceFieldDiagrams, entity);
         }
 
-        internal ForceFieldDiagramStakeholder Get(ForceFieldDiagramStakeholderEntity entity)
+        internal ForceFieldDiagramStakeholder Get(ForceFieldDiagramStakeholderXmlEntity entity)
         {
             return Get(forceFieldDiagramStakeholders, entity);
         }
 
-        internal AttitudeImpactDiagram Get(AttitudeImpactDiagramEntity entity)
+        internal AttitudeImpactDiagram Get(AttitudeImpactDiagramXmlEntity entity)
         {
             return Get(attitudeImpactDiagrams, entity);
         }
 
-        internal AttitudeImpactDiagramStakeholder Get(AttitudeImpactDiagramStakeholderEntity entity)
+        internal AttitudeImpactDiagramStakeholder Get(AttitudeImpactDiagramStakeholderXmlEntity entity)
         {
             return Get(attitudeImpactDiagramStakeholders, entity);
+        }
+
+        public StakeholderType GetReferencedStakeholderType(long id)
+        {
+            var key = stakeholderTypes.Keys.FirstOrDefault(k => k.Id == id);
+            return key == null
+                ? throw new ReadReferencedObjectsFirstException(nameof(StakeholderType))
+                : Get(key);
+        }
+
+        public StakeholderConnectionGroup GetReferencedStakeholderConnectionGroup(long id)
+        {
+            var key = stakeholderConnectionGroups.Keys.FirstOrDefault(k => k.Id == id);
+            return key == null
+                ? throw new ReadReferencedObjectsFirstException(nameof(StakeholderConnectionGroup))
+                : Get(key);
+        }
+
+        public OnionDiagramStakeholder GetReferencedOnionDiagramStakeholder(long id)
+        {
+            var key = onionDiagramStakeholders.Keys.FirstOrDefault(k => k.Id == id);
+            return key == null
+                ? throw new ReadReferencedObjectsFirstException(nameof(OnionDiagramStakeholder))
+                : Get(key);
+        }
+
+        public Stakeholder GetReferencedStakeholder(long id)
+        {
+            var key = stakeholders.Keys.FirstOrDefault(k => k.Id == id);
+            return key == null
+                ? throw new ReadReferencedObjectsFirstException(nameof(Stakeholder))
+                : Get(key);
         }
 
         #region helpers

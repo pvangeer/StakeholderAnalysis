@@ -4,7 +4,7 @@ using System.Xml.Serialization;
 namespace StakeholderAnalysis.Storage.XmlEntities
 {
     [Serializable]
-    public class TwoAxisDiagramAxisXmlEntity : IXmlEntity
+    public class TwoAxisDiagramAxisXmlEntity
     {
         [XmlAttribute(AttributeName = "yaxisminlabel")]
         public string YAxisMinLabel { get; set; }
@@ -32,7 +32,5 @@ namespace StakeholderAnalysis.Storage.XmlEntities
 
         [XmlAttribute(AttributeName = "textfontsize")]
         public double AxisTextFontSize { get; set; }
-
-        [XmlAttribute(AttributeName = "id")] public long Id { get; set; }
     }
 }

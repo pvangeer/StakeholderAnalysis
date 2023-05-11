@@ -1,12 +1,12 @@
 ﻿using System;
 using StakeholderAnalysis.Data.AttitudeImpactDiagrams;
-using StakeholderAnalysis.Storage.DbContext;
+using StakeholderAnalysis.Storage.XmlEntities;
 
 namespace StakeholderAnalysis.Storage.Read
 {
     internal static class AttitudeImpactDiagramStakeholderEntityReadExtensions
     {
-        internal static AttitudeImpactDiagramStakeholder Read(this AttitudeImpactDiagramStakeholderEntity entity,
+        internal static AttitudeImpactDiagramStakeholder Read(this AttitudeImpactDiagramStakeholderXmlEntity entity,
             ReadConversionCollector collector)
         {
             if (entity == null) throw new ArgumentNullException(nameof(entity));
@@ -14,8 +14,9 @@ namespace StakeholderAnalysis.Storage.Read
 
             if (collector.Contains(entity)) return collector.Get(entity);
 
-            var attitudeImpactDiagram = new AttitudeImpactDiagramStakeholder(entity.StakeholderEntity.Read(collector),
-                entity.Attitude.ToNullAsNaN(), entity.Impact.ToNullAsNaN())
+            var attitudeImpactDiagram = new AttitudeImpactDiagramStakeholder(
+                collector.GetReferencedStakeholder(entity.StakeholderReferenceId),
+                entity.Attitude, entity.Impact)
             {
                 Rank = (int)entity.Rank
             };

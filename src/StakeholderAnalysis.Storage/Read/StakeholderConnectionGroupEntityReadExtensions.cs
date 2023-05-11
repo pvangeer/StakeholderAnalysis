@@ -1,12 +1,12 @@
 ﻿using System;
 using StakeholderAnalysis.Data.OnionDiagrams;
-using StakeholderAnalysis.Storage.DbContext;
+using StakeholderAnalysis.Storage.XmlEntities;
 
 namespace StakeholderAnalysis.Storage.Read
 {
     internal static class StakeholderConnectionGroupEntityReadExtensions
     {
-        internal static StakeholderConnectionGroup Read(this StakeholderConnectionGroupEntity entity,
+        internal static StakeholderConnectionGroup Read(this StakeholderConnectionGroupXmlEntity entity,
             ReadConversionCollector collector)
         {
             if (entity == null) throw new ArgumentNullException(nameof(entity));
@@ -17,7 +17,7 @@ namespace StakeholderAnalysis.Storage.Read
             var stakeholderConnectionGroup = new StakeholderConnectionGroup
             {
                 Name = entity.Name,
-                StrokeThickness = entity.StrokeThickness.ToNullAsNaN(),
+                StrokeThickness = entity.StrokeThickness,
                 StrokeColor = entity.Color.ToColor(),
                 Visible = entity.Visible == 1
             };

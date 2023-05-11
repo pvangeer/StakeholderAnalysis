@@ -1,12 +1,12 @@
 ﻿using System;
 using StakeholderAnalysis.Data.ForceFieldDiagrams;
-using StakeholderAnalysis.Storage.DbContext;
+using StakeholderAnalysis.Storage.XmlEntities;
 
 namespace StakeholderAnalysis.Storage.Read
 {
     internal static class ForceFieldDiagramStakeholderEntityReadExtensions
     {
-        internal static ForceFieldDiagramStakeholder Read(this ForceFieldDiagramStakeholderEntity entity,
+        internal static ForceFieldDiagramStakeholder Read(this ForceFieldDiagramStakeholderXmlEntity entity,
             ReadConversionCollector collector)
         {
             if (entity == null) throw new ArgumentNullException(nameof(entity));
@@ -14,15 +14,16 @@ namespace StakeholderAnalysis.Storage.Read
 
             if (collector.Contains(entity)) return collector.Get(entity);
 
-            var attitudeImpactDiagram = new ForceFieldDiagramStakeholder(entity.StakeholderEntity.Read(collector),
-                entity.Interest.ToNullAsNaN(), entity.Influence.ToNullAsNaN())
+            var forceFieldDiagramStakeholder = new ForceFieldDiagramStakeholder(
+                collector.GetReferencedStakeholder(entity.StakeholderId),
+                entity.Interest, entity.Influence)
             {
                 Rank = (int)entity.Rank
             };
 
-            collector.Collect(entity, attitudeImpactDiagram);
+            collector.Collect(entity, forceFieldDiagramStakeholder);
 
-            return attitudeImpactDiagram;
+            return forceFieldDiagramStakeholder;
         }
     }
 }

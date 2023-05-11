@@ -15,30 +15,12 @@ namespace StakeholderAnalysis.Storage.Create
             var entity = new StakeholderXmlEntity
             {
                 Name = stakeholder.Name.DeepClone(),
-                StakeholderTypeReference = stakeholder.Type.CreateReference(registry)
+                StakeholderTypeId = stakeholder.Type.Create(registry).Id
             };
 
             registry.Register(stakeholder, entity);
 
             return entity;
-        }
-
-        internal static StakeholderReferenceXmlEntity CreateReference(this Stakeholder stakeholder,
-            PersistenceRegistry registry)
-        {
-            if (registry == null) throw new ArgumentNullException(nameof(registry));
-
-            var entity = new StakeholderXmlEntity
-            {
-                Name = stakeholder.Name.DeepClone(),
-                StakeholderTypeReference = stakeholder.Type.CreateReference(registry)
-            };
-            if (registry.Contains(stakeholder))
-                entity = registry.Get(stakeholder);
-            else
-                registry.Register(stakeholder, entity);
-
-            return new StakeholderReferenceXmlEntity(entity);
         }
     }
 }

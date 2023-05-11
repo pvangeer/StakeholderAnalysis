@@ -1,12 +1,12 @@
 ﻿using System;
 using StakeholderAnalysis.Data;
-using StakeholderAnalysis.Storage.DbContext;
+using StakeholderAnalysis.Storage.XmlEntities;
 
 namespace StakeholderAnalysis.Storage.Read
 {
-    internal static class StakeholderTypeEntityReadExtensions
+    internal static class StakeholderTypeXmlEntityReadExtensions
     {
-        internal static StakeholderType Read(this StakeholderTypeEntity entity, ReadConversionCollector collector)
+        internal static StakeholderType Read(this StakeholderTypeXmlEntity entity, ReadConversionCollector collector)
         {
             if (entity == null) throw new ArgumentNullException(nameof(entity));
             if (collector == null) throw new ArgumentNullException(nameof(collector));
@@ -17,7 +17,7 @@ namespace StakeholderAnalysis.Storage.Read
             {
                 Name = entity.Name,
                 Color = entity.Color.ToColor(),
-                IconType = (StakeholderIconType)entity.Icontype
+                IconType = (StakeholderIconType)entity.IconType
             };
 
             collector.Collect(entity, stakeholderType);

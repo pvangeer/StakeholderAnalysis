@@ -11,8 +11,8 @@ namespace StakeholderAnalysis.Storage.XmlEntities
         [XmlAttribute(AttributeName = "order")]
         public long Order { get; set; }
 
-        [XmlElement(ElementName = "stakeholdertypereference")]
-        public StakeholderTypeReferenceXmlEntity StakeholderTypeReference { get; set; }
+        [XmlAttribute(AttributeName = "stakeholdertypeid")]
+        public long StakeholderTypeId { get; set; }
 
         [XmlAttribute(AttributeName = "id")] public long Id { get; set; }
     }

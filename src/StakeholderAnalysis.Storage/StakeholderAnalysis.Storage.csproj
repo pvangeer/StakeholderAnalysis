@@ -36,6 +36,7 @@
     <Compile Include="Create\AttitudeImpactDiagramStakeholderCreateExtensions.cs" />
     <Compile Include="Create\ForceFieldDiagramCreateExtensions.cs" />
     <Compile Include="Create\ForceFieldDiagramStakeholderCreateExtensions.cs" />
+    <Compile Include="Read\ReadReferencedObjectsFirstException.cs" />
     <Compile Include="XmlEntities\IXmlEntity.cs" />
     <Compile Include="Create\OnionDiagramCreateExtensions.cs" />
     <Compile Include="Create\OnionDiagramStakeholderCreateExtensions.cs" />
@@ -45,62 +46,6 @@
     <Compile Include="Create\StakeholderConnectionGroupCreateExtensions.cs" />
     <Compile Include="Create\StakeholderCreateExtensions.cs" />
     <Compile Include="Create\StakeholderTypeCreateExtensions.cs" />
-    <Compile Include="DbContext\AnalysisEntity.cs">
-      <DependentUpon>StakeholderAnalysisEntityDataModel.tt</DependentUpon>
-    </Compile>
-    <Compile Include="DbContext\AttitudeImpactDiagramEntity.cs">
-      <DependentUpon>StakeholderAnalysisEntityDataModel.tt</DependentUpon>
-    </Compile>
-    <Compile Include="DbContext\AttitudeImpactDiagramStakeholderEntity.cs">
-      <DependentUpon>StakeholderAnalysisEntityDataModel.tt</DependentUpon>
-    </Compile>
-    <Compile Include="DbContext\ForceFieldDiagramEntity.cs">
-      <DependentUpon>StakeholderAnalysisEntityDataModel.tt</DependentUpon>
-    </Compile>
-    <Compile Include="DbContext\ForceFieldDiagramStakeholderEntity.cs">
-      <DependentUpon>StakeholderAnalysisEntityDataModel.tt</DependentUpon>
-    </Compile>
-    <Compile Include="DbContext\OnionDiagramEntity.cs">
-      <DependentUpon>StakeholderAnalysisEntityDataModel.tt</DependentUpon>
-    </Compile>
-    <Compile Include="DbContext\OnionDiagramStakeholderEntity.cs">
-      <DependentUpon>StakeholderAnalysisEntityDataModel.tt</DependentUpon>
-    </Compile>
-    <Compile Include="DbContext\OnionRingEntity.cs">
-      <DependentUpon>StakeholderAnalysisEntityDataModel.tt</DependentUpon>
-    </Compile>
-    <Compile Include="DbContext\PartialEntities.cs" />
-    <Compile Include="DbContext\StakeholderAnalysisEntityDataModel.Context.cs">
-      <AutoGen>True</AutoGen>
-      <DesignTime>True</DesignTime>
-      <DependentUpon>StakeholderAnalysisEntityDataModel.Context.tt</DependentUpon>
-    </Compile>
-    <Compile Include="DbContext\StakeholderAnalysisEntityDataModel.cs">
-      <AutoGen>True</AutoGen>
-      <DesignTime>True</DesignTime>
-      <DependentUpon>StakeholderAnalysisEntityDataModel.tt</DependentUpon>
-    </Compile>
-    <Compile Include="DbContext\StakeholderAnalysisEntityDataModel.Designer.cs">
-      <AutoGen>True</AutoGen>
-      <DesignTime>True</DesignTime>
-      <DependentUpon>StakeholderAnalysisEntityDataModel.edmx</DependentUpon>
-    </Compile>
-    <Compile Include="DbContext\StakeholderConnectionEntity.cs">
-      <DependentUpon>StakeholderAnalysisEntityDataModel.tt</DependentUpon>
-    </Compile>
-    <Compile Include="DbContext\StakeholderConnectionGroupEntity.cs">
-      <DependentUpon>StakeholderAnalysisEntityDataModel.tt</DependentUpon>
-    </Compile>
-    <Compile Include="DbContext\StakeholderEntity.cs">
-      <DependentUpon>StakeholderAnalysisEntityDataModel.tt</DependentUpon>
-    </Compile>
-    <Compile Include="DbContext\StakeholderTypeEntity.cs">
-      <DependentUpon>StakeholderAnalysisEntityDataModel.tt</DependentUpon>
-    </Compile>
-    <Compile Include="DbContext\VersionEntity.cs">
-      <DependentUpon>StakeholderAnalysisEntityDataModel.tt</DependentUpon>
-    </Compile>
-    <Compile Include="DoubleConversionExtensions.cs" />
     <Compile Include="FileReaderErrorMessageBuilder.cs" />
     <Compile Include="FingerprintHelper.cs" />
     <Compile Include="IOUtils.cs" />
@@ -122,30 +67,22 @@
     <Compile Include="Read\StakeholderConnectionEntityReadExtensions.cs" />
     <Compile Include="Read\StakeholderConnectionGroupEntityReadExtensions.cs" />
     <Compile Include="Read\StakeholderEntityReadExtensions.cs" />
-    <Compile Include="Read\StakeholderTypeEntityReadExtensions.cs" />
+    <Compile Include="Read\StakeholderTypeXmlEntityReadExtensions.cs" />
     <Compile Include="ReferenceEqualityComparer.cs" />
-    <Compile Include="SqliteConnectionStringBuilder.cs" />
-    <Compile Include="SqLiteEntityConnectionStringBuilder.cs" />
     <Compile Include="StorageXml.cs" />
-    <Compile Include="StorageSqLite.cs" />
-    <Compile Include="StorageSqliteCreator.cs" />
     <Compile Include="StakeholderAnalysisVersionComparer.cs" />
     <Compile Include="StakeholderAnalysisVersionHelper.cs" />
     <Compile Include="StringExtensions.cs" />
     <Compile Include="XmlEntities\AnalysisXmlEntity.cs" />
     <Compile Include="XmlEntities\AttitudeImpactDiagramStakeholderXmlEntity.cs" />
-    <Compile Include="XmlEntities\OnionDiagramStakeholderReferenceXmlEntity.cs" />
     <Compile Include="XmlEntities\OnionDiagramStakeholderXmlEntity.cs" />
     <Compile Include="XmlEntities\OnionDiagramXmlEntity.cs" />
     <Compile Include="XmlEntities\ForceFieldDiagramStakeholderXmlEntity.cs" />
     <Compile Include="XmlEntities\ForceFieldDiagramXmlEntity.cs" />
     <Compile Include="XmlEntities\AttitudeImpactDiagramXmlEntity.cs" />
     <Compile Include="XmlEntities\OnionRingXmlEntity.cs" />
-    <Compile Include="XmlEntities\StakeholderConnectionGroupReferenceXmlEntity.cs" />
     <Compile Include="XmlEntities\StakeholderConnectionGroupXmlEntity.cs" />
     <Compile Include="XmlEntities\StakeholderConnectionXmlEntity.cs" />
-    <Compile Include="XmlEntities\StakeholderReferenceXmlEntity.cs" />
-    <Compile Include="XmlEntities\StakeholderTypeReferenceXmlEntity.cs" />
     <Compile Include="XmlEntities\StakeholderTypeXmlEntity.cs" />
     <Compile Include="XmlEntities\StakeholderXmlEntity.cs" />
     <Compile Include="XmlEntities\TwoAxisDiagramAxisXmlEntity.cs" />
@@ -154,30 +91,10 @@
   </ItemGroup>
   <ItemGroup>
     <None Include="App.config" />
-    <EntityDeploy Include="DbContext\StakeholderAnalysisEntityDataModel.edmx">
-      <Generator>EntityModelCodeGenerator</Generator>
-      <LastGenOutput>StakeholderAnalysisEntityDataModel.Designer.cs</LastGenOutput>
-    </EntityDeploy>
-    <None Include="DbContext\StakeholderAnalysisEntityDataModel.edmx.diagram">
-      <DependentUpon>StakeholderAnalysisEntityDataModel.edmx</DependentUpon>
-    </None>
     <None Include="packages.config" />
   </ItemGroup>
   <ItemGroup>
     <Service Include="{508349B6-6B84-4DF5-91F0-309BEEBAD82D}" />
-  </ItemGroup>
-  <ItemGroup>
-    <Content Include="DbContext\StakeholderAnalysisEntityDataModel.Context.tt">
-      <Generator>TextTemplatingFileGenerator</Generator>
-      <DependentUpon>StakeholderAnalysisEntityDataModel.edmx</DependentUpon>
-      <LastGenOutput>StakeholderAnalysisEntityDataModel.Context.cs</LastGenOutput>
-    </Content>
-    <Content Include="DbContext\StakeholderAnalysisEntityDataModel.tt">
-      <Generator>TextTemplatingFileGenerator</Generator>
-      <DependentUpon>StakeholderAnalysisEntityDataModel.edmx</DependentUpon>
-      <LastGenOutput>StakeholderAnalysisEntityDataModel.cs</LastGenOutput>
-    </Content>
-    <None Include="Resources\StakeholderAnalysisDatabaseDesign.sql" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\StakeholderAnalysis.Data\StakeholderAnalysis.Data.csproj">
@@ -189,6 +106,7 @@
     <EmbeddedResource Include="Properties\Resources.resx">
       <Generator>ResXFileCodeGenerator</Generator>
       <LastGenOutput>Resources.Designer.cs</LastGenOutput>
+      <SubType>Designer</SubType>
     </EmbeddedResource>
   </ItemGroup>
   <ItemGroup />

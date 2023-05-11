@@ -6,7 +6,7 @@ namespace StakeholderAnalysis.Storage.XmlEntities
 {
     [Serializable]
     [XmlRoot(ElementName = "analysis", IsNullable = false)]
-    public class AnalysisXmlEntity : IXmlEntity
+    public class AnalysisXmlEntity
     {
         public AnalysisXmlEntity()
         {
@@ -18,7 +18,7 @@ namespace StakeholderAnalysis.Storage.XmlEntities
         }
 
         [XmlArray(ElementName = "stakeholdertypes")]
-        [XmlArrayItem(ElementName = "stakeholdertypes")]
+        [XmlArrayItem(ElementName = "stakeholdertype")]
         public Collection<StakeholderTypeXmlEntity> StakeholderTypeXmlEntities { get; set; }
 
         [XmlArray(ElementName = "stakeholders")]
@@ -36,7 +36,5 @@ namespace StakeholderAnalysis.Storage.XmlEntities
         [XmlArray(ElementName = "oniondiagrams")]
         [XmlArrayItem(ElementName = "oniondiagram")]
         public Collection<OnionDiagramXmlEntity> OnionDiagramXmlEntities { get; set; }
-
-        [XmlAttribute(AttributeName = "id")] public long Id { get; set; }
     }
 }

@@ -2,51 +2,52 @@
 using System.Linq;
 using System.Windows.Media;
 using StakeholderAnalysis.Data.ForceFieldDiagrams;
-using StakeholderAnalysis.Storage.DbContext;
+using StakeholderAnalysis.Storage.XmlEntities;
 
 namespace StakeholderAnalysis.Storage.Read
 {
     internal static class ForceFieldDiagramEntityReadExtensions
     {
-        internal static ForceFieldDiagram Read(this ForceFieldDiagramEntity entity, ReadConversionCollector collector)
+        internal static ForceFieldDiagram Read(this ForceFieldDiagramXmlEntity entity,
+            ReadConversionCollector collector)
         {
             if (entity == null) throw new ArgumentNullException(nameof(entity));
             if (collector == null) throw new ArgumentNullException(nameof(collector));
 
             if (collector.Contains(entity)) return collector.Get(entity);
 
-            var stakeholders = entity.ForceFieldDiagramStakeholderEntities.OrderBy(e => e.Order)
+            var stakeholders = entity.ForceFieldDiagramStakeholderXmlEntities.OrderBy(e => e.Order)
                 .Select(e => e.Read(collector));
 
             var forceFieldDiagram = new ForceFieldDiagram
             {
                 Name = entity.Name,
-                BrushStartColor = entity.BrushStartColor.ToColor(),
-                BrushEndColor = entity.BrushEndColor.ToColor(),
-                BackgroundTextLeftBottom = entity.BackgroundTextLeftBottom,
-                BackgroundTextLeftTop = entity.BackgroundTextLeftTop,
-                BackgroundTextRightTop = entity.BackgroundTextRightTop,
-                BackgroundTextRightBottom = entity.BackgroundTextRightBottom,
-                BackgroundFontBold = entity.BackgroundTextFontBold == 1,
-                BackgroundFontColor = entity.BackgroundTextFontColor.ToColor(),
-                BackgroundFontItalic = entity.BackgroundTextFontItalic == 1,
-                BackgroundFontSize = entity.BackgroundTextFontSize,
-                XAxisMinLabel = entity.XAxisMinLabel,
-                XAxisMaxLabel = entity.XAxisMaxLabel,
-                YAxisMaxLabel = entity.YAxisMaxLabel,
-                YAxisMinLabel = entity.YAxisMinLabel,
-                AxisFontBold = entity.AxisTextFontBold == 1,
-                AxisFontColor = entity.AxisTextFontColor.ToColor(),
-                AxisFontItalic = entity.AxisTextFontItalic == 1,
-                AxisFontSize = entity.AxisTextFontSize
+                BrushStartColor = entity.Brush.BrushStartColor.ToColor(),
+                BrushEndColor = entity.Brush.BrushEndColor.ToColor(),
+                BackgroundTextLeftBottom = entity.Background.BackgroundTextLeftBottom,
+                BackgroundTextLeftTop = entity.Background.BackgroundTextLeftTop,
+                BackgroundTextRightTop = entity.Background.BackgroundTextRightTop,
+                BackgroundTextRightBottom = entity.Background.BackgroundTextRightBottom,
+                BackgroundFontBold = entity.Background.BackgroundTextFontBold == 1,
+                BackgroundFontColor = entity.Background.BackgroundTextFontColor.ToColor(),
+                BackgroundFontItalic = entity.Background.BackgroundTextFontItalic == 1,
+                BackgroundFontSize = entity.Background.BackgroundTextFontSize,
+                XAxisMinLabel = entity.Axis.XAxisMinLabel,
+                XAxisMaxLabel = entity.Axis.XAxisMaxLabel,
+                YAxisMaxLabel = entity.Axis.YAxisMaxLabel,
+                YAxisMinLabel = entity.Axis.YAxisMinLabel,
+                AxisFontBold = entity.Axis.AxisTextFontBold == 1,
+                AxisFontColor = entity.Axis.AxisTextFontColor.ToColor(),
+                AxisFontItalic = entity.Axis.AxisTextFontItalic == 1,
+                AxisFontSize = entity.Axis.AxisTextFontSize
             };
 
             var converter = new FontFamilyConverter();
-            if (converter.ConvertFromInvariantString(entity.BackgroundTextFontFamily) is FontFamily
+            if (converter.ConvertFromInvariantString(entity.Background.BackgroundTextFontFamily) is FontFamily
                 backgroundFontFamily)
                 // TODO: Log warning/error in case of null value. Could not interpret stored font family
                 forceFieldDiagram.BackgroundFontFamily = backgroundFontFamily;
-            if (converter.ConvertFromInvariantString(entity.AxisTextFontFamily) is FontFamily axisTextFontFamily)
+            if (converter.ConvertFromInvariantString(entity.Axis.AxisTextFontFamily) is FontFamily axisTextFontFamily)
                 // TODO: Log warning/error in case of null value. Could not interpret stored font family
                 forceFieldDiagram.AxisFontFamily = axisTextFontFamily;
 
