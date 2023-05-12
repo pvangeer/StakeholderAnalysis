@@ -16,14 +16,14 @@ namespace StakeholderAnalysis.Visualization.Converters
             {
                 percentage = GetValueAsDouble(values, 0);
                 elementSize = 0.0;
-                actualSize = GetValueAsDouble(values,1);
+                actualSize = GetValueAsDouble(values, 1);
             }
 
             if (values.Length == 3)
             {
-                percentage = GetValueAsDouble(values,0);
-                elementSize = GetValueAsDouble(values,1);
-                actualSize = GetValueAsDouble(values,2);
+                percentage = GetValueAsDouble(values, 0);
+                elementSize = GetValueAsDouble(values, 1);
+                actualSize = GetValueAsDouble(values, 2);
             }
 
             if (values.Length == 4)
@@ -33,17 +33,18 @@ namespace StakeholderAnalysis.Visualization.Converters
                 actualSize = GetValueAsDouble(values, 2);
                 pixelOffset = GetValueAsDouble(values, 3);
             }
-            return (percentage * actualSize - elementSize / 2) + pixelOffset;
-        }
 
-        private static double GetValueAsDouble(object[] values, int i)
-        {
-            return values[i] is double valueAsDouble ? valueAsDouble : 0.0;
+            return percentage * actualSize - elementSize / 2 + pixelOffset;
         }
 
         public object[] ConvertBack(object value, Type[] targetTypes, object parameter, CultureInfo culture)
         {
             throw new NotImplementedException();
+        }
+
+        private static double GetValueAsDouble(object[] values, int i)
+        {
+            return values[i] is double valueAsDouble ? valueAsDouble : 0.0;
         }
     }
 }

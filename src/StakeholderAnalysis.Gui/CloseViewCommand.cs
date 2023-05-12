@@ -5,8 +5,8 @@ namespace StakeholderAnalysis.Gui
 {
     public class CloseViewCommand : ICommand
     {
-        private readonly ViewManager viewManager;
         private readonly ViewInfo viewInfo;
+        private readonly ViewManager viewManager;
 
         public CloseViewCommand(ViewManager viewManager, ViewInfo viewInfo)
         {
@@ -24,13 +24,9 @@ namespace StakeholderAnalysis.Gui
             if (viewManager != null && viewInfo != null)
             {
                 if (viewInfo.IsDocumentView)
-                {
                     viewManager.CloseView(viewInfo);
-                }
                 else
-                {
                     viewManager.CloseToolWindow(viewInfo);
-                }
             }
         }
 

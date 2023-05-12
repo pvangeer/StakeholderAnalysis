@@ -12,12 +12,13 @@ namespace StakeholderAnalysis.Visualization.ViewModels.ProjectExplorer
 {
     public class ProjectExplorerForceFieldDiagramViewModel : ViewModelBase, IPropertyCollectionTreeNodeViewModel
     {
-        private readonly ForceFieldDiagram diagram;
         private readonly Analysis analysis;
+        private readonly ForceFieldDiagram diagram;
         private readonly ViewManager viewManager;
         private bool isExpanded;
 
-        public ProjectExplorerForceFieldDiagramViewModel(ViewModelFactory factory, Analysis analysis, ForceFieldDiagram forceFieldDiagram, ViewManager viewManager) : base(factory)
+        public ProjectExplorerForceFieldDiagramViewModel(ViewModelFactory factory, Analysis analysis,
+            ForceFieldDiagram forceFieldDiagram, ViewManager viewManager) : base(factory)
         {
             this.viewManager = viewManager;
             this.analysis = analysis;
@@ -30,27 +31,12 @@ namespace StakeholderAnalysis.Visualization.ViewModels.ProjectExplorer
             ContextMenuItems = new ObservableCollection<ContextMenuItemViewModel>
             {
                 // TODO: Add Openen, Verwijderen, ?
-                ViewModelFactory.CreateDuplicateMenuItemViewModel(diagram, CommandFactory.CreateCanAlwaysExecuteActionCommand(
-                    p =>
-                    {
-                        analysis.ForceFieldDiagrams.Add(diagram.Clone() as ForceFieldDiagram);
-                    }))
+                ViewModelFactory.CreateDuplicateMenuItemViewModel(diagram,
+                    CommandFactory.CreateCanAlwaysExecuteActionCommand(
+                        p => { analysis.ForceFieldDiagrams.Add(diagram.Clone() as ForceFieldDiagram); }))
             };
 
-            if (diagram != null)
-            {
-                diagram.PropertyChanged += DiagramPropertyChanged;
-            }
-        }
-
-        private void DiagramPropertyChanged(object sender, PropertyChangedEventArgs e)
-        {
-            switch (e.PropertyName)
-            {
-                case nameof(ForceFieldDiagram.Name):
-                    OnPropertyChanged(nameof(DisplayName));
-                    break;
-            }
+            if (diagram != null) diagram.PropertyChanged += DiagramPropertyChanged;
         }
 
         public string DisplayName => diagram.Name;
@@ -59,11 +45,10 @@ namespace StakeholderAnalysis.Visualization.ViewModels.ProjectExplorer
 
         public ICommand RemoveItemCommand => CommandFactory.CreateCanAlwaysExecuteActionCommand(p =>
         {
-            var viewInfo = viewManager?.Views.FirstOrDefault(vi => vi.ViewModel is ForceFieldDiagramViewModel diagramViewModel1 && diagramViewModel1.IsViewModelFor(diagram));
-            if (viewInfo != null)
-            {
-                viewManager.CloseView(viewInfo);
-            }
+            var viewInfo = viewManager?.Views.FirstOrDefault(vi =>
+                vi.ViewModel is ForceFieldDiagramViewModel diagramViewModel1 &&
+                diagramViewModel1.IsViewModelFor(diagram));
+            if (viewInfo != null) viewManager.CloseView(viewInfo);
             analysis.ForceFieldDiagrams.Remove(diagram);
         });
 
@@ -79,15 +64,18 @@ namespace StakeholderAnalysis.Visualization.ViewModels.ProjectExplorer
                 v.ViewModel is ForceFieldDiagramViewModel diagramViewModel && diagramViewModel.IsViewModelFor(diagram));
             if (viewInfo == null)
             {
-                viewInfo = new ViewInfo(diagram.Name, ViewModelFactory.CreateForceFieldDiagramViewModel(diagram),IconSourceString, true);
+                viewInfo = new ViewInfo(diagram.Name, ViewModelFactory.CreateForceFieldDiagramViewModel(diagram),
+                    IconSourceString, true);
                 viewManager.OpenView(viewInfo);
             }
+
             viewManager.BringToFront(viewInfo);
         });
 
         public ObservableCollection<ContextMenuItemViewModel> ContextMenuItems { get; }
 
-        public string IconSourceString => "pack://application:,,,/StakeholderAnalysis.Visualization;component/Resources/forces.png";
+        public string IconSourceString =>
+            "pack://application:,,,/StakeholderAnalysis.Visualization;component/Resources/forces.png";
 
         public bool IsViewModelFor(object otherObject)
         {
@@ -102,7 +90,7 @@ namespace StakeholderAnalysis.Visualization.ViewModels.ProjectExplorer
             set
             {
                 isExpanded = value;
-                OnPropertyChanged(nameof(IsExpanded));
+                OnPropertyChanged();
             }
         }
 
@@ -111,5 +99,15 @@ namespace StakeholderAnalysis.Visualization.ViewModels.ProjectExplorer
         public ObservableCollection<ITreeNodeViewModel> Items { get; }
 
         public CollectionType CollectionType => CollectionType.PropertyValue;
+
+        private void DiagramPropertyChanged(object sender, PropertyChangedEventArgs e)
+        {
+            switch (e.PropertyName)
+            {
+                case nameof(ForceFieldDiagram.Name):
+                    OnPropertyChanged(nameof(DisplayName));
+                    break;
+            }
+        }
     }
 }

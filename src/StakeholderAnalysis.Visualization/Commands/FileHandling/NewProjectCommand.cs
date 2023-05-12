@@ -1,5 +1,4 @@
 ﻿using StakeholderAnalysis.Gui;
-using StakeholderAnalysis.Visualization.ViewModels.Ribbon;
 
 namespace StakeholderAnalysis.Visualization.Commands.FileHandling
 {

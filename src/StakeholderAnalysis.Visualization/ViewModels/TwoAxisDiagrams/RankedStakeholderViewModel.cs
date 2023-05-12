@@ -7,26 +7,21 @@ using StakeholderAnalysis.Visualization.Behaviors;
 
 namespace StakeholderAnalysis.Visualization.ViewModels.TwoAxisDiagrams
 {
-    public abstract class RankedStakeholderViewModel<TStakeholder> : StakeholderViewModel, IRankedStakeholderViewModel where TStakeholder : class, IRankedStakeholder
+    public abstract class RankedStakeholderViewModel<TStakeholder> : StakeholderViewModel, IRankedStakeholderViewModel
+        where TStakeholder : class, IRankedStakeholder
     {
         protected readonly IRankedStakeholderDiagram<TStakeholder> Diagram;
 
-        public TStakeholder RankedStakeholder { get; set; }
-
-        protected RankedStakeholderViewModel(ViewModelFactory factory, TStakeholder stakeholder, IRankedStakeholderDiagram<TStakeholder> diagram, ISelectionRegister selectionRegister1, IDrawConnectionHandler drawConnectionHandler) 
+        protected RankedStakeholderViewModel(ViewModelFactory factory, TStakeholder stakeholder,
+            IRankedStakeholderDiagram<TStakeholder> diagram, ISelectionRegister selectionRegister1,
+            IDrawConnectionHandler drawConnectionHandler)
             : base(factory, stakeholder?.Stakeholder, selectionRegister1, drawConnectionHandler)
         {
-            this.Diagram = diagram;
+            Diagram = diagram;
 
-            if (Diagram != null)
-            {
-                Diagram.Stakeholders.CollectionChanged += DiagramStakeholdersCollectionChanged;
-            }
+            if (Diagram != null) Diagram.Stakeholders.CollectionChanged += DiagramStakeholdersCollectionChanged;
             RankedStakeholder = stakeholder;
-            if (RankedStakeholder != null)
-            {
-                RankedStakeholder.PropertyChanged += StakeholderPropertyChanged;
-            }
+            if (RankedStakeholder != null) RankedStakeholder.PropertyChanged += StakeholderPropertyChanged;
 
             MoveStakeholderToBottomCommand = CommandFactory.CreateMoveToBottomCommand(Diagram, RankedStakeholder);
             MoveStakeholderToTopCommand = CommandFactory.CreateMoveToTopCommand(Diagram, RankedStakeholder);
@@ -34,13 +29,7 @@ namespace StakeholderAnalysis.Visualization.ViewModels.TwoAxisDiagrams
             MoveStakeholderDownCommand = CommandFactory.CreateMoveDownCommand(Diagram, RankedStakeholder);
         }
 
-        private void DiagramStakeholdersCollectionChanged(object sender, NotifyCollectionChangedEventArgs e)
-        {
-            OnPropertyChanged(nameof(CanMoveToBottom));
-            OnPropertyChanged(nameof(CanMoveDown));
-            OnPropertyChanged(nameof(CanMoveToTop));
-            OnPropertyChanged(nameof(CanMoveUp));
-        }
+        public TStakeholder RankedStakeholder { get; set; }
 
         public int Rank
         {
@@ -51,6 +40,7 @@ namespace StakeholderAnalysis.Visualization.ViewModels.TwoAxisDiagrams
                 RankedStakeholder.OnPropertyChanged(nameof(IRankedStakeholder.Rank));
             }
         }
+
         public ICommand MoveStakeholderDownCommand { get; }
 
         public ICommand MoveStakeholderUpCommand { get; }
@@ -67,6 +57,14 @@ namespace StakeholderAnalysis.Visualization.ViewModels.TwoAxisDiagrams
 
         public bool CanMoveDown => MoveStakeholderDownCommand.CanExecute(null);
 
+        private void DiagramStakeholdersCollectionChanged(object sender, NotifyCollectionChangedEventArgs e)
+        {
+            OnPropertyChanged(nameof(CanMoveToBottom));
+            OnPropertyChanged(nameof(CanMoveDown));
+            OnPropertyChanged(nameof(CanMoveToTop));
+            OnPropertyChanged(nameof(CanMoveUp));
+        }
+
         protected override void StakeholderPropertyChanged(object sender, PropertyChangedEventArgs e)
         {
             switch (e.PropertyName)
@@ -79,9 +77,9 @@ namespace StakeholderAnalysis.Visualization.ViewModels.TwoAxisDiagrams
                     OnPropertyChanged(nameof(Rank));
                     break;
             }
+
             base.StakeholderPropertyChanged(sender, e);
         }
-
     }
 
     public interface IRankedStakeholderViewModel : IRemoveStakeholderViewModel

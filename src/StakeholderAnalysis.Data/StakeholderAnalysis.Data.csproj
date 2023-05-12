@@ -37,6 +37,7 @@
     <Compile Include="OnionDiagrams\OnionDiagramStakeholder.cs" />
     <Compile Include="OnionDiagrams\StakeholderConnectionGroup.cs" />
     <Compile Include="OnionDiagrams\OnionRing.cs" />
+    <Compile Include="OnionDiagrams\LineStyle.cs" />
     <Compile Include="Properties\Annotations.cs" />
     <Compile Include="NotifyPropertyChangedObservable.cs" />
     <Compile Include="Stakeholder.cs" />

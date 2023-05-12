@@ -54,10 +54,13 @@
     <Compile Include="Converters\QuickSelectionToVisibilityConverter.cs" />
     <Compile Include="Converters\SourceStringToVisibilityConverter.cs" />
     <Compile Include="Converters\HasItemsToVisibilityConverter.cs" />
+    <Compile Include="Converters\LineStyleToDashArrayConverter.cs" />
     <Compile Include="TestConverter.cs" />
+    <Compile Include="ViewModels\PropertiesTree\LineStylePropertyTreeNodeViewModel.cs" />
     <Compile Include="ViewModels\PropertiesTree\ContextMenuItemViewModel.cs" />
     <Compile Include="ViewModels\PropertiesTree\FontFamilyPropertyTreeNodeViewModel.cs" />
     <Compile Include="ViewModels\PropertiesTree\IFontFamilyPropertyTreeNodeViewModel.cs" />
+    <Compile Include="ViewModels\PropertiesTree\ILineStylePropertyTreeNodeViewModel.cs" />
     <Compile Include="ViewModels\PropertiesTree\PropertyCollectionTreeNodeViewModel.cs" />
     <Compile Include="ViewModels\TwoAxisDiagramProperties\TwoAxisDiagramPropertiesViewModel.cs" />
     <Compile Include="ViewModels\ProjectExplorer\IStakeholderTypeIconPropertyTreeNodeViewModel.cs" />

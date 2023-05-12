@@ -9,10 +9,7 @@ namespace StakeholderAnalysis.Visualization.Converters.StatusBar
     {
         public object Convert(object value, Type targetType, object parameter, CultureInfo culture)
         {
-            if (!(value is MessageListViewModel viewModel))
-            {
-                return value;
-            }
+            if (!(value is MessageListViewModel viewModel)) return value;
 
             return $"{viewModel.MessageList.Count} Berichten";
         }

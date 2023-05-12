@@ -1,9 +1,5 @@
 ﻿using System;
-using System.Collections.Generic;
 using System.Globalization;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using System.Windows.Data;
 using StakeholderAnalysis.Gui;
 
@@ -13,9 +9,9 @@ namespace StakeholderAnalysis.Visualization.Converters
     {
         public object Convert(object[] values, Type targetType, object parameter, CultureInfo culture)
         {
-            return (bool) values[0] &&
-                   values[1] is ViewInfo viewInfo && 
-                   values[2] != null && 
+            return (bool)values[0] &&
+                   values[1] is ViewInfo viewInfo &&
+                   values[2] != null &&
                    viewInfo.ViewModel == values[2];
         }
 

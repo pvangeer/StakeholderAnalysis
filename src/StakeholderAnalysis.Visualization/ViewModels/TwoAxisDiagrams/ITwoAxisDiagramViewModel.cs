@@ -3,12 +3,11 @@ using System.Windows;
 using System.Windows.Input;
 using System.Windows.Media;
 using StakeholderAnalysis.Data;
-using StakeholderAnalysis.Data.ForceFieldDiagrams;
 using StakeholderAnalysis.Visualization.Behaviors;
 
 namespace StakeholderAnalysis.Visualization.ViewModels.TwoAxisDiagrams
 {
-    interface ITwoAxisDiagramViewModel : ISelectionRegister
+    internal interface ITwoAxisDiagramViewModel : ISelectionRegister
     {
         Brush BackgroundBrush { get; }
 

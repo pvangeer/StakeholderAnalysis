@@ -2,7 +2,6 @@
 using System.Collections.Specialized;
 using System.Linq;
 using StakeholderAnalysis.Data.OnionDiagrams;
-using StakeholderAnalysis.Visualization.Behaviors;
 
 namespace StakeholderAnalysis.Visualization.ViewModels.OnionDiagramView
 {
@@ -10,13 +9,16 @@ namespace StakeholderAnalysis.Visualization.ViewModels.OnionDiagramView
     {
         private readonly OnionDiagram diagram;
 
-        public OnionDiagramConnectionsPresenterViewModel(ViewModelFactory factory, OnionDiagram onionDiagram) : base(factory)
+        public OnionDiagramConnectionsPresenterViewModel(ViewModelFactory factory, OnionDiagram onionDiagram) :
+            base(factory)
         {
-            this.diagram = onionDiagram;
+            diagram = onionDiagram;
             if (diagram != null)
             {
                 StakeholderConnections = new ObservableCollection<StakeholderConnectionViewModel>(
-                    diagram.Connections.Select(c => ViewModelFactory.CreateStakeholderConnectionViewModel(c, connection => diagram.Connections.Remove(connection))));
+                    diagram.Connections.Select(c =>
+                        ViewModelFactory.CreateStakeholderConnectionViewModel(c,
+                            connection => diagram.Connections.Remove(connection))));
                 diagram.Connections.CollectionChanged += ConnectorsCollectionChanged;
             }
         }
@@ -27,7 +29,9 @@ namespace StakeholderAnalysis.Visualization.ViewModels.OnionDiagramView
         {
             if (e.Action == NotifyCollectionChangedAction.Add)
                 foreach (var connection in e.NewItems.OfType<StakeholderConnection>())
-                    StakeholderConnections.Add(ViewModelFactory.CreateStakeholderConnectionViewModel(connection, c => diagram.Connections.Remove(c)));
+                    StakeholderConnections.Add(
+                        ViewModelFactory.CreateStakeholderConnectionViewModel(connection,
+                            c => diagram.Connections.Remove(c)));
 
             if (e.Action == NotifyCollectionChangedAction.Remove)
                 foreach (var stakeholder in e.OldItems.OfType<StakeholderConnection>())

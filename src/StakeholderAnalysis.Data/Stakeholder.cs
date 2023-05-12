@@ -8,7 +8,9 @@
             Type = type;
         }
 
-        public Stakeholder() { }
+        public Stakeholder()
+        {
+        }
 
         public string Name { get; set; }
 

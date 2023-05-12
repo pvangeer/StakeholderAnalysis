@@ -6,18 +6,21 @@ using StakeholderAnalysis.Visualization.Behaviors;
 
 namespace StakeholderAnalysis.Visualization.ViewModels.OnionDiagramView
 {
-    public class OnionDiagramViewModel: ViewModelBase, ISelectionRegister
+    public class OnionDiagramViewModel : ViewModelBase, ISelectionRegister
     {
         private readonly OnionDiagram diagram;
-        private object selectedObject = null;
+        private object selectedObject;
 
         public OnionDiagramViewModel(ViewModelFactory factory, OnionDiagram onionDiagram) : base(factory)
         {
             diagram = onionDiagram;
             OnionDiagramDrawConnectionViewModel = factory.CreateOnionDiagramDrawConnectionViewModel(onionDiagram);
             OnionDiagramRingsCanvasViewModel = ViewModelFactory.CreateOnionDiagramRingsCanvasViewModel(diagram);
-            OnionDiagramConnectionsPresenterViewModel = ViewModelFactory.CreateOnionDiagramConnectionsPresenterViewModel(diagram);
-            OnionDiagramStakeholdersViewModel = ViewModelFactory.CreateOnionDiagramStakeholdersViewModel(onionDiagram, this, OnionDiagramDrawConnectionViewModel);
+            OnionDiagramConnectionsPresenterViewModel =
+                ViewModelFactory.CreateOnionDiagramConnectionsPresenterViewModel(diagram);
+            OnionDiagramStakeholdersViewModel =
+                ViewModelFactory.CreateOnionDiagramStakeholdersViewModel(onionDiagram, this,
+                    OnionDiagramDrawConnectionViewModel);
         }
 
         public OnionDiagramRingsCanvasViewModel OnionDiagramRingsCanvasViewModel { get; }
@@ -29,16 +32,6 @@ namespace StakeholderAnalysis.Visualization.ViewModels.OnionDiagramView
         public ICommand GridClickedCommand => CommandFactory.CreateClearSelectionCommand(this);
 
         public OnionDiagramDrawConnectionViewModel OnionDiagramDrawConnectionViewModel { get; }
-
-        public bool IsViewModelFor(OnionDiagram otherDiagram)
-        {
-            return diagram == otherDiagram;
-        }
-
-        public OnionDiagram GetDiagram()
-        {
-            return diagram;
-        }
 
 
         public bool IsSelected(object o)
@@ -55,12 +48,22 @@ namespace StakeholderAnalysis.Visualization.ViewModels.OnionDiagramView
             RaiseIsSelectedPropertyChanged(selectedObject);
         }
 
+        public bool IsViewModelFor(OnionDiagram otherDiagram)
+        {
+            return diagram == otherDiagram;
+        }
+
+        public OnionDiagram GetDiagram()
+        {
+            return diagram;
+        }
+
         private void RaiseIsSelectedPropertyChanged(object o)
         {
             if (o is Stakeholder stakeholder)
             {
                 var viewModel = OnionDiagramStakeholdersViewModel.OnionDiagramStakeholders.FirstOrDefault(vm =>
-                        vm.IsViewModelFor(stakeholder));
+                    vm.IsViewModelFor(stakeholder));
                 viewModel?.OnPropertyChanged(nameof(OnionDiagramStakeholderViewModel.IsSelectedStakeholder));
             }
         }

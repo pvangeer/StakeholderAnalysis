@@ -14,10 +14,6 @@ namespace StakeholderAnalysis.Data.OnionDiagrams
             Left = left;
         }
 
-        public Stakeholder Stakeholder { get; }
-
-        public int Rank { get; set; }
-
         public double Left
         {
             get => left;
@@ -30,17 +26,15 @@ namespace StakeholderAnalysis.Data.OnionDiagrams
             set => top = ValidateRelativeValue(value);
         }
 
+        public Stakeholder Stakeholder { get; }
+
+        public int Rank { get; set; }
+
         private double ValidateRelativeValue(double value)
         {
-            if (double.IsNaN(value))
-            {
-                throw new NaNValueException();
-            }
+            if (double.IsNaN(value)) throw new NaNValueException();
 
-            if (value < 0 || value > 1.0)
-            {
-                throw new ValueOutOfBoundsException();
-            }
+            if (value < 0 || value > 1.0) throw new ValueOutOfBoundsException();
 
             return value;
         }

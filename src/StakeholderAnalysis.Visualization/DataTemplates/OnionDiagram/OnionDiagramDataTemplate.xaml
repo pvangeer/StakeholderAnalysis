@@ -2,10 +2,14 @@
                     xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
                     xmlns:onionDiagramView="clr-namespace:StakeholderAnalysis.Visualization.ViewModels.OnionDiagramView">
     <ResourceDictionary.MergedDictionaries>
-        <ResourceDictionary Source="/StakeholderAnalysis.Visualization;Component/DataTemplates/OnionDiagram/OnionDiagramRingsDataTemplate.xaml" />
-        <ResourceDictionary Source="/StakeholderAnalysis.Visualization;Component/DataTemplates/OnionDiagram/OnionDiagramStakeholdersDataTemplate.xaml" />
-        <ResourceDictionary Source="/StakeholderAnalysis.Visualization;Component/DataTemplates/OnionDiagram/OnionDiagramConnectionDrawingCanvasDataTemplate.xaml" />
-        <ResourceDictionary Source="/StakeholderAnalysis.Visualization;Component/DataTemplates/OnionDiagram/ConnectionsPresenterDataTemplate.xaml" />
+        <ResourceDictionary
+            Source="/StakeholderAnalysis.Visualization;Component/DataTemplates/OnionDiagram/OnionDiagramRingsDataTemplate.xaml" />
+        <ResourceDictionary
+            Source="/StakeholderAnalysis.Visualization;Component/DataTemplates/OnionDiagram/OnionDiagramStakeholdersDataTemplate.xaml" />
+        <ResourceDictionary
+            Source="/StakeholderAnalysis.Visualization;Component/DataTemplates/OnionDiagram/OnionDiagramConnectionDrawingCanvasDataTemplate.xaml" />
+        <ResourceDictionary
+            Source="/StakeholderAnalysis.Visualization;Component/DataTemplates/OnionDiagram/ConnectionsPresenterDataTemplate.xaml" />
     </ResourceDictionary.MergedDictionaries>
 
     <DataTemplate x:Key="OnionDiagramDataTemplate" DataType="onionDiagramView:OnionDiagramViewModel">
@@ -13,20 +17,20 @@
             <Grid.InputBindings>
                 <MouseBinding MouseAction="LeftDoubleClick" Command="{Binding GridClickedCommand}" />
             </Grid.InputBindings>
-            <ContentPresenter 
-                Name="OnionRingsPresenter" 
+            <ContentPresenter
+                Name="OnionRingsPresenter"
                 Content="{Binding OnionDiagramRingsCanvasViewModel}"
                 ContentTemplate="{StaticResource OnionDiagramRingsDataTemplate}" />
-            <ContentPresenter 
-                Name="ConnectionsPresenter" 
+            <ContentPresenter
+                Name="ConnectionsPresenter"
                 Content="{Binding OnionDiagramConnectionsPresenterViewModel}"
                 ContentTemplate="{StaticResource OnionDiagramConnectionsPresenterDataTemplate}" />
             <ContentPresenter
                 Name="ConnectionDrawingCanvas"
                 Content="{Binding OnionDiagramDrawConnectionViewModel}"
-                ContentTemplate="{StaticResource OnionDiagramConnectionDrawingCanvasDataTemplate}"/>
-            <ContentPresenter 
-                Name="StakeholdersPresenter" 
+                ContentTemplate="{StaticResource OnionDiagramConnectionDrawingCanvasDataTemplate}" />
+            <ContentPresenter
+                Name="StakeholdersPresenter"
                 Content="{Binding OnionDiagramStakeholdersViewModel}"
                 ContentTemplate="{StaticResource OnionDiagramStakeholdersDataTemplate}" />
         </Grid>

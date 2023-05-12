@@ -7,12 +7,15 @@ namespace StakeholderAnalysis.Visualization.ViewModels
 {
     public class StakeholderViewModel : ViewModelBase, IDropHandler, IRemoveStakeholderViewModel
     {
-        private readonly ISelectionRegister selectionRegister;
         private readonly IDrawConnectionHandler drawConnectionHandler;
+        private readonly ISelectionRegister selectionRegister;
 
-        public StakeholderViewModel() : this(null, new Stakeholder(), null, null) { }
+        public StakeholderViewModel() : this(null, new Stakeholder(), null, null)
+        {
+        }
 
-        public StakeholderViewModel(ViewModelFactory factory, Stakeholder stakeholder, ISelectionRegister selectionRegister, IDrawConnectionHandler drawConnectionHandler) : base(factory)
+        public StakeholderViewModel(ViewModelFactory factory, Stakeholder stakeholder,
+            ISelectionRegister selectionRegister, IDrawConnectionHandler drawConnectionHandler) : base(factory)
         {
             this.drawConnectionHandler = drawConnectionHandler;
             this.selectionRegister = selectionRegister;
@@ -23,18 +26,13 @@ namespace StakeholderAnalysis.Visualization.ViewModels
 
         public Stakeholder Stakeholder { get; }
 
-        public bool IsViewModelFor(Stakeholder stakeholder)
-        {
-            return Stakeholder == stakeholder;
-        }
-
         public string Name
         {
             get => Stakeholder.Name;
             set
             {
                 Stakeholder.Name = value;
-                Stakeholder.OnPropertyChanged(nameof(Stakeholder.Name));
+                Stakeholder.OnPropertyChanged();
             }
         }
 
@@ -46,23 +44,36 @@ namespace StakeholderAnalysis.Visualization.ViewModels
                 if (Stakeholder != null)
                 {
                     Stakeholder.Type = value;
-                    Stakeholder.OnPropertyChanged(nameof(Stakeholder.Type));
+                    Stakeholder.OnPropertyChanged();
                 }
             }
         }
 
-        public bool IsSelectedStakeholder => selectionRegister != null && selectionRegister.IsSelected(Stakeholder);
-
-        public virtual void RemoveFromDiagram() { }
-
-        public bool IsConnectionToTarget => drawConnectionHandler != null && drawConnectionHandler.IsConnectionTarget(Stakeholder);
+        public bool IsConnectionToTarget =>
+            drawConnectionHandler != null && drawConnectionHandler.IsConnectionTarget(Stakeholder);
 
         public ICommand StakeholderClickedCommand => CommandFactory.CreateCanAlwaysExecuteActionCommand(p =>
         {
             selectionRegister?.Select(Stakeholder);
         });
 
-        public ICommand RemoveStakeholderCommand => CommandFactory.CreateRemoveSelectedStakeholderFromDiagramCommand(this);
+        public virtual void Moved(double xRelativeNew, double yRelativeNew)
+        {
+        }
+
+        public bool IsSelectedStakeholder => selectionRegister != null && selectionRegister.IsSelected(Stakeholder);
+
+        public virtual void RemoveFromDiagram()
+        {
+        }
+
+        public ICommand RemoveStakeholderCommand =>
+            CommandFactory.CreateRemoveSelectedStakeholderFromDiagramCommand(this);
+
+        public bool IsViewModelFor(Stakeholder stakeholder)
+        {
+            return Stakeholder == stakeholder;
+        }
 
         protected virtual void StakeholderPropertyChanged(object sender, PropertyChangedEventArgs e)
         {
@@ -76,8 +87,6 @@ namespace StakeholderAnalysis.Visualization.ViewModels
                     break;
             }
         }
-
-        public virtual void Moved(double xRelativeNew, double yRelativeNew) { }
 
         public void SelectStakeholder()
         {

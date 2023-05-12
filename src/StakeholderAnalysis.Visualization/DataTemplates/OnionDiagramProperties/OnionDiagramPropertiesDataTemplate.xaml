@@ -3,18 +3,20 @@
                     xmlns:onionDiagramProperties="clr-namespace:StakeholderAnalysis.Visualization.ViewModels.OnionDiagramProperties">
 
     <ResourceDictionary.MergedDictionaries>
-        <ResourceDictionary Source="/StakeholderAnalysis.Visualization;Component/DataTemplates/TreeViewDataTemplate.xaml" />
+        <ResourceDictionary
+            Source="/StakeholderAnalysis.Visualization;Component/DataTemplates/TreeViewDataTemplate.xaml" />
     </ResourceDictionary.MergedDictionaries>
 
-    <DataTemplate x:Key="OnionDiagramPropertiesDataTemplate" DataType="onionDiagramProperties:OnionDiagramPropertiesViewModel">
+    <DataTemplate x:Key="OnionDiagramPropertiesDataTemplate"
+                  DataType="onionDiagramProperties:OnionDiagramPropertiesViewModel">
         <Grid>
             <StackPanel Orientation="Vertical">
-                <ContentPresenter 
-                    Content="{Binding OnionRingsViewModel}" 
-                    ContentTemplate="{StaticResource IPropertyCollectionItemDataTemplate}"/>
-                <ContentPresenter 
-                    Content="{Binding ConnectionGroupsViewModel}" 
-                    ContentTemplate="{StaticResource IPropertyCollectionItemDataTemplate}"/>
+                <ContentPresenter
+                    Content="{Binding OnionRingsViewModel}"
+                    ContentTemplate="{StaticResource IPropertyCollectionItemDataTemplate}" />
+                <ContentPresenter
+                    Content="{Binding ConnectionGroupsViewModel}"
+                    ContentTemplate="{StaticResource IPropertyCollectionItemDataTemplate}" />
             </StackPanel>
         </Grid>
     </DataTemplate>

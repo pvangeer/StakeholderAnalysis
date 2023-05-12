@@ -27,14 +27,14 @@
                         <!--TODO: Move color to viewmodel and away from this datatemplate -->
                         <DataTrigger Value="True">
                             <DataTrigger.Binding>
-                                <Binding Path="IsSelectedStakeholder"/>
+                                <Binding Path="IsSelectedStakeholder" />
                             </DataTrigger.Binding>
                             <Setter Property="BorderBrush" Value="DarkRed" />
                             <Setter Property="BorderThickness" Value="2" />
                         </DataTrigger>
                         <DataTrigger Value="True">
                             <DataTrigger.Binding>
-                                <Binding Path="IsConnectionToTarget"/>
+                                <Binding Path="IsConnectionToTarget" />
                             </DataTrigger.Binding>
                             <Setter Property="BorderBrush" Value="DarkGreen" />
                             <Setter Property="BorderThickness" Value="2" />
@@ -44,7 +44,7 @@
             </Border.Style>
             <Grid IsHitTestVisible="True">
                 <Grid.Background>
-                    <SolidColorBrush Color="{Binding Type.Color}"/>
+                    <SolidColorBrush Color="{Binding Type.Color}" />
                 </Grid.Background>
                 <Grid.RowDefinitions>
                     <RowDefinition Height="Auto" />
@@ -52,14 +52,14 @@
                 </Grid.RowDefinitions>
 
                 <TextBlock Grid.Row="0" Text="{Binding Name}" TextAlignment="Center" HorizontalAlignment="Center"
-                           Margin="1" MaxWidth="90" TextWrapping="Wrap" IsHitTestVisible="False"/>
-                <Image 
-                    Grid.Row="1" 
-                    Margin="2" 
-                    Width="30" 
-                    Height="30" 
-                    IsHitTestVisible="False" 
-                    Source="{Binding Type.IconType, Converter={StaticResource IconTypeToIconSourceConverter}}"/>
+                           Margin="1" MaxWidth="90" TextWrapping="Wrap" IsHitTestVisible="False" />
+                <Image
+                    Grid.Row="1"
+                    Margin="2"
+                    Width="30"
+                    Height="30"
+                    IsHitTestVisible="False"
+                    Source="{Binding Type.IconType, Converter={StaticResource IconTypeToIconSourceConverter}}" />
                 <Popup Name="popLogFile"
                        PlacementTarget="{Binding ElementName=btnLogFile}" Placement="MousePoint"
                        HorizontalOffset="0" VerticalOffset="0"

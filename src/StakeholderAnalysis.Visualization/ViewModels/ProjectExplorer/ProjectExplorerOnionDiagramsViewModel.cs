@@ -12,7 +12,7 @@ namespace StakeholderAnalysis.Visualization.ViewModels.ProjectExplorer
     {
         private readonly Analysis analysis;
         private bool isExpanded = true;
-        
+
         public ProjectExplorerOnionDiagramsViewModel(ViewModelFactory factory, Analysis analysis) : base(factory)
         {
             this.analysis = analysis;
@@ -20,9 +20,7 @@ namespace StakeholderAnalysis.Visualization.ViewModels.ProjectExplorer
 
             Items = new ObservableCollection<ITreeNodeViewModel>();
             foreach (var analysisOnionDiagram in analysis.OnionDiagrams)
-            {
                 Items.Add(ViewModelFactory.CreateProjectExplorerOnionDiagramViewModel(analysisOnionDiagram));
-            }
             ContextMenuItems = new ObservableCollection<ContextMenuItemViewModel>();
         }
 
@@ -38,7 +36,7 @@ namespace StakeholderAnalysis.Visualization.ViewModels.ProjectExplorer
             set
             {
                 isExpanded = value;
-                OnPropertyChanged(nameof(IsExpanded));
+                OnPropertyChanged();
             }
         }
 
@@ -73,24 +71,15 @@ namespace StakeholderAnalysis.Visualization.ViewModels.ProjectExplorer
         private void OnionDiagramsCollectionChanged(object sender, NotifyCollectionChangedEventArgs e)
         {
             if (e.Action == NotifyCollectionChangedAction.Add)
-            {
                 foreach (var onionDiagram in e.NewItems.OfType<OnionDiagram>())
-                {
                     Items.Add(ViewModelFactory.CreateProjectExplorerOnionDiagramViewModel(onionDiagram));
-                }
-            }
 
             if (e.Action == NotifyCollectionChangedAction.Remove)
-            {
                 foreach (var onionDiagram in e.OldItems.OfType<OnionDiagram>())
                 {
                     var diagramToRemove = Items.FirstOrDefault(d => d.IsViewModelFor(onionDiagram));
-                    if (diagramToRemove != null)
-                    {
-                        Items.Remove(diagramToRemove);
-                    }
+                    if (diagramToRemove != null) Items.Remove(diagramToRemove);
                 }
-            }
         }
     }
 }

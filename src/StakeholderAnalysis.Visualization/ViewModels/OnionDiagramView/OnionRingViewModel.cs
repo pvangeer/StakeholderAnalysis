@@ -20,6 +20,8 @@ namespace StakeholderAnalysis.Visualization.ViewModels.OnionDiagramView
 
         public double StrokeThickness => Ring.StrokeThickness;
 
+        public LineStyle LineStyle => Ring.LineStyle;
+
         public double Percentage
         {
             get => Ring.Percentage;
@@ -38,6 +40,9 @@ namespace StakeholderAnalysis.Visualization.ViewModels.OnionDiagramView
                     break;
                 case nameof(OnionRing.StrokeThickness):
                     OnPropertyChanged(nameof(StrokeThickness));
+                    break;
+                case nameof(OnionRing.LineStyle):
+                    OnPropertyChanged(nameof(LineStyle));
                     break;
                 case nameof(OnionRing.Percentage):
                     OnPropertyChanged(nameof(Percentage));

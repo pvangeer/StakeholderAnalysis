@@ -13,16 +13,15 @@ namespace StakeholderAnalysis.Visualization.ViewModels.ProjectExplorer
         private readonly Analysis analysis;
         private bool isExpanded = true;
 
-        public ProjectExplorerAttitudeImpactDiagramsViewModel(ViewModelFactory factory, Analysis analysis) : base(factory)
+        public ProjectExplorerAttitudeImpactDiagramsViewModel(ViewModelFactory factory, Analysis analysis) :
+            base(factory)
         {
             this.analysis = analysis;
             analysis.AttitudeImpactDiagrams.CollectionChanged += AttitudeImpactDiagramsCollectionChanged;
 
             Items = new ObservableCollection<ITreeNodeViewModel>();
             foreach (var forceFieldDiagram in analysis.AttitudeImpactDiagrams)
-            {
                 Items.Add(ViewModelFactory.CreateProjectExplorerDiagramViewModel(forceFieldDiagram));
-            }
 
             ContextMenuItems = new ObservableCollection<ContextMenuItemViewModel>();
         }
@@ -39,7 +38,7 @@ namespace StakeholderAnalysis.Visualization.ViewModels.ProjectExplorer
             set
             {
                 isExpanded = value;
-                OnPropertyChanged(nameof(IsExpanded));
+                OnPropertyChanged();
             }
         }
 
@@ -74,24 +73,15 @@ namespace StakeholderAnalysis.Visualization.ViewModels.ProjectExplorer
         private void AttitudeImpactDiagramsCollectionChanged(object sender, NotifyCollectionChangedEventArgs e)
         {
             if (e.Action == NotifyCollectionChangedAction.Add)
-            {
                 foreach (var attitudeImpactDiagram in e.NewItems.OfType<AttitudeImpactDiagram>())
-                {
                     Items.Add(ViewModelFactory.CreateProjectExplorerDiagramViewModel(attitudeImpactDiagram));
-                }
-            }
 
             if (e.Action == NotifyCollectionChangedAction.Remove)
-            {
                 foreach (var attitudeImpactDiagram in e.OldItems.OfType<AttitudeImpactDiagram>())
                 {
                     var diagramToRemove = Items.FirstOrDefault(d => d.IsViewModelFor(attitudeImpactDiagram));
-                    if (diagramToRemove != null)
-                    {
-                        Items.Remove(diagramToRemove);
-                    }
+                    if (diagramToRemove != null) Items.Remove(diagramToRemove);
                 }
-            }
         }
     }
 }

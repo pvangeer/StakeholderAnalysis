@@ -37,33 +37,27 @@ namespace StakeholderAnalysis.Visualization.Commands.ProjectExplorer
             else
             {
                 var viewInfoByType = GetViewInfoByType(type);
-                if (viewInfoByType != null)
-                {
-                    viewManager.OpenToolWindow(viewInfoByType);
-                }
+                if (viewInfoByType != null) viewManager.OpenToolWindow(viewInfoByType);
             }
         }
+
+        public event EventHandler CanExecuteChanged;
 
         private ViewInfo GetViewInfoByType(Type type)
         {
             if (type == typeof(ProjectExplorerViewModel))
-            {
-                return new ViewInfo("Projectgegevens", viewModelFactory.CreateProjectExplorerViewModel(), "pack://application:,,,/StakeholderAnalysis.Visualization;component/Resources/document.png", false);
-            }
+                return new ViewInfo("Projectgegevens", viewModelFactory.CreateProjectExplorerViewModel(),
+                    "pack://application:,,,/StakeholderAnalysis.Visualization;component/Resources/document.png", false);
 
             if (type == typeof(OnionDiagramPropertiesViewModel))
-            {
-                return new ViewInfo("UI-diagram", viewModelFactory.CreateOnionDiagramPropertiesViewModel(), "pack://application:,,,/StakeholderAnalysis.Visualization;component/Resources/onion.png", false);
-            }
+                return new ViewInfo("UI-diagram", viewModelFactory.CreateOnionDiagramPropertiesViewModel(),
+                    "pack://application:,,,/StakeholderAnalysis.Visualization;component/Resources/onion.png", false);
 
             if (type == typeof(TwoAxisDiagramPropertiesViewModel))
-            {
-                return new ViewInfo("Verhoudingendiagram", viewModelFactory.CreateTwoAxisDiagramPropertiesViewModel(), "pack://application:,,,/StakeholderAnalysis.Visualization;component/Resources/forces.png", false);
-            }
+                return new ViewInfo("Verhoudingendiagram", viewModelFactory.CreateTwoAxisDiagramPropertiesViewModel(),
+                    "pack://application:,,,/StakeholderAnalysis.Visualization;component/Resources/forces.png", false);
 
             return null;
         }
-
-        public event EventHandler CanExecuteChanged;
     }
 }

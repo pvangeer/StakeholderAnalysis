@@ -8,8 +8,8 @@ namespace StakeholderAnalysis.Visualization.Converters
     {
         public object Convert(object[] values, Type targetType, object parameter, CultureInfo culture)
         {
-            var percentage = (double) values[0];
-            var width = (double) values[1];
+            var percentage = (double)values[0];
+            var width = (double)values[1];
 
             return (1 - percentage) * width / 2.0;
         }

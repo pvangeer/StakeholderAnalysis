@@ -8,21 +8,18 @@ namespace StakeholderAnalysis.Visualization.ViewModels.StatusBar
     {
         public MessageListViewModel(ViewModelFactory factory, MessageList messageList) : base(factory)
         {
-            this.MessageList = messageList;
-            if (messageList != null)
-            {
-                MessageList.CollectionChanged += MessageListCollectionChanged;
-            }
+            MessageList = messageList;
+            if (messageList != null) MessageList.CollectionChanged += MessageListCollectionChanged;
         }
+
+        public MessageList MessageList { get; }
+
+        public ICommand RemoveAllMessagesCommand => CommandFactory.CreateRemoveAllMessagesCommand(MessageList);
 
         private void MessageListCollectionChanged(object sender, NotifyCollectionChangedEventArgs e)
         {
             OnPropertyChanged(nameof(RemoveAllMessagesCommand));
             OnPropertyChanged(nameof(MessageList));
         }
-
-        public MessageList MessageList { get; }
-
-        public ICommand RemoveAllMessagesCommand => CommandFactory.CreateRemoveAllMessagesCommand(MessageList);
     }
 }

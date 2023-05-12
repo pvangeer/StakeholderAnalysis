@@ -11,10 +11,7 @@ namespace StakeholderAnalysis.Visualization.ViewModels
         public MainContentPresenterViewModel(ViewModelFactory factory, StakeholderAnalysisGui gui) : base(factory)
         {
             this.gui = gui;
-            if (gui != null)
-            {
-                gui.PropertyChanged += GuiPropertyChanged;
-            }
+            if (gui != null) gui.PropertyChanged += GuiPropertyChanged;
             ViewManager = ViewModelFactory.CreateViewManagerViewModel();
         }
 
@@ -26,7 +23,7 @@ namespace StakeholderAnalysis.Visualization.ViewModels
             set
             {
                 gui.IsSaveToImage = value;
-                gui.OnPropertyChanged(nameof(gui.IsSaveToImage));
+                gui.OnPropertyChanged();
             }
         }
 
@@ -36,7 +33,7 @@ namespace StakeholderAnalysis.Visualization.ViewModels
             set
             {
                 gui.IsMagnifierActive = value;
-                gui.OnPropertyChanged(nameof(StakeholderAnalysisGui.IsMagnifierActive));
+                gui.OnPropertyChanged();
             }
         }
 
@@ -51,10 +48,7 @@ namespace StakeholderAnalysis.Visualization.ViewModels
                     OnPropertyChanged(nameof(IsSaveToImage));
                     break;
                 case nameof(StakeholderAnalysisGui.Analysis):
-                    foreach (var viewInfo in gui.ViewManager.Views.ToList())
-                    {
-                        gui.ViewManager.CloseView(viewInfo);
-                    }
+                    foreach (var viewInfo in gui.ViewManager.Views.ToList()) gui.ViewManager.CloseView(viewInfo);
                     break;
             }
         }

@@ -12,13 +12,24 @@ namespace StakeholderAnalysis.Visualization.ViewModels.OnionDiagramView
 
         public OnionDiagramRingsCanvasViewModel(ViewModelFactory factory, OnionDiagram diagram) : base(factory)
         {
-            this.onionDiagram = diagram;
+            onionDiagram = diagram;
             if (diagram != null)
             {
                 onionDiagram.OnionRings.CollectionChanged += RingsCollectionChanged;
                 onionDiagram.PropertyChanged += OnionDiagramPropertyChanged;
             }
-            OnionRings = new ObservableCollection<OnionRingViewModel>(onionDiagram.OnionRings.Select(r => ViewModelFactory.CreateOnionRingViewModel(r)));
+
+            OnionRings =
+                new ObservableCollection<OnionRingViewModel>(
+                    onionDiagram.OnionRings.Select(r => ViewModelFactory.CreateOnionRingViewModel(r)));
+        }
+
+        public ObservableCollection<OnionRingViewModel> OnionRings { get; }
+
+        public double Asymmetry
+        {
+            get => onionDiagram?.Asymmetry ?? double.NaN;
+            set => onionDiagram.Asymmetry = value;
         }
 
         private void OnionDiagramPropertyChanged(object sender, PropertyChangedEventArgs e)
@@ -31,23 +42,11 @@ namespace StakeholderAnalysis.Visualization.ViewModels.OnionDiagramView
             }
         }
 
-        public ObservableCollection<OnionRingViewModel> OnionRings { get; }
-
-        public double Asymmetry
-        {
-            get => onionDiagram?.Asymmetry ?? double.NaN;
-            set => onionDiagram.Asymmetry = value;
-        }
-
         private void RingsCollectionChanged(object sender, NotifyCollectionChangedEventArgs e)
         {
             if (e.Action == NotifyCollectionChangedAction.Add)
-            {
                 foreach (var onionRing in e.NewItems.OfType<OnionRing>())
-                {
                     OnionRings.Add(ViewModelFactory.CreateOnionRingViewModel(onionRing));
-                }
-            }
 
             if (e.Action == NotifyCollectionChangedAction.Remove)
                 foreach (var onionRing in e.OldItems.OfType<OnionRing>())

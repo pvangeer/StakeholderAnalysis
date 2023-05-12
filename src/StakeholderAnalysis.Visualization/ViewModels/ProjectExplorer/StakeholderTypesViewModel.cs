@@ -17,13 +17,15 @@ namespace StakeholderAnalysis.Visualization.ViewModels.ProjectExplorer
             this.analysis = analysis;
             if (analysis != null)
             {
-                Items = new ObservableCollection<ITreeNodeViewModel>(analysis?.StakeholderTypes.Select(st => ViewModelFactory.CreateStakeholderTypeViewModel(st)));
+                Items = new ObservableCollection<ITreeNodeViewModel>(
+                    analysis?.StakeholderTypes.Select(st => ViewModelFactory.CreateStakeholderTypeViewModel(st)));
                 analysis.StakeholderTypes.CollectionChanged += StakeholderTypesCollectionChanged;
             }
             else
             {
                 Items = new ObservableCollection<ITreeNodeViewModel>();
             }
+
             ContextMenuItems = new ObservableCollection<ContextMenuItemViewModel>();
         }
 
@@ -56,7 +58,7 @@ namespace StakeholderAnalysis.Visualization.ViewModels.ProjectExplorer
             set
             {
                 isExpanded = value;
-                OnPropertyChanged(nameof(IsExpanded));
+                OnPropertyChanged();
             }
         }
 
@@ -74,19 +76,16 @@ namespace StakeholderAnalysis.Visualization.ViewModels.ProjectExplorer
             {
                 case NotifyCollectionChangedAction.Add:
                     foreach (var stakeholderType in e.NewItems.OfType<StakeholderType>())
-                    {
                         Items.Add(ViewModelFactory.CreateStakeholderTypeViewModel(stakeholderType));
-                    }
                     break;
                 case NotifyCollectionChangedAction.Remove:
                     foreach (var stakeholderType in e.OldItems.OfType<StakeholderType>())
                     {
-                        var viewModelToRemove = Items.FirstOrDefault(viewModel => viewModel.IsViewModelFor(stakeholderType));
-                        if (viewModelToRemove != null)
-                        {
-                            Items.Remove(viewModelToRemove);
-                        }
+                        var viewModelToRemove =
+                            Items.FirstOrDefault(viewModel => viewModel.IsViewModelFor(stakeholderType));
+                        if (viewModelToRemove != null) Items.Remove(viewModelToRemove);
                     }
+
                     break;
             }
         }

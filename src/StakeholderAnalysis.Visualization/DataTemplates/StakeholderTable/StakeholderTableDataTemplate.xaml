@@ -13,18 +13,20 @@
                 SelectionUnit="CellOrRowHeader">
                 <DataGrid.Columns>
                     <DataGridTextColumn Header="Naam" Binding="{Binding Name, Mode=TwoWay}" />
-                    <DataGridComboBoxColumn 
-                        Header="Type" 
+                    <DataGridComboBoxColumn
+                        Header="Type"
                         DisplayMemberPath="Name"
                         SelectedItemBinding="{Binding Type}">
                         <DataGridComboBoxColumn.ElementStyle>
                             <Style TargetType="ComboBox">
-                                <Setter Property="ItemsSource" Value="{Binding ElementName=TableGrid, Path=DataContext.StakeholderTypes}"/>
+                                <Setter Property="ItemsSource"
+                                        Value="{Binding ElementName=TableGrid, Path=DataContext.StakeholderTypes}" />
                             </Style>
                         </DataGridComboBoxColumn.ElementStyle>
                         <DataGridComboBoxColumn.EditingElementStyle>
                             <Style TargetType="ComboBox">
-                                <Setter Property="ItemsSource" Value="{Binding ElementName=TableGrid, Path=DataContext.StakeholderTypes}"/>
+                                <Setter Property="ItemsSource"
+                                        Value="{Binding ElementName=TableGrid, Path=DataContext.StakeholderTypes}" />
                             </Style>
                         </DataGridComboBoxColumn.EditingElementStyle>
                     </DataGridComboBoxColumn>

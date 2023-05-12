@@ -7,13 +7,14 @@
     <converters:PercentageToCanvasTopValueConverter x:Key="PercentageToCanvasTopValueConverter" />
     <converters:PercentageToCanvasLeftValueConverter x:Key="PercentageToCanvasLeftValueConverter" />
     <converters:PercentageToDimensionConverter x:Key="PercentageToDimensionConverter" />
+    <converters:LineStyleToDashArrayConverter x:Key="StrokeTypeToDashArrayConverter" />
 
     <DataTemplate x:Key="OnionDiagramRingsDataTemplate" DataType="onionDiagramView:OnionDiagramRingsCanvasViewModel">
         <Grid>
             <Grid.Resources>
                 <CollectionViewSource x:Key="SortedOnionRings" Source="{Binding OnionRings}">
                     <CollectionViewSource.SortDescriptions>
-                        <componentModel:SortDescription PropertyName="Percentage"  Direction="Descending"/>
+                        <componentModel:SortDescription PropertyName="Percentage" Direction="Descending" />
                     </CollectionViewSource.SortDescriptions>
                 </CollectionViewSource>
             </Grid.Resources>
@@ -22,7 +23,9 @@
                 <ItemsControl.ItemTemplate>
                     <DataTemplate DataType="onionDiagramView:OnionRingViewModel">
                         <Grid>
-                            <Ellipse Fill="{Binding BackgroundColor}" Stroke="{Binding StrokeColor}"
+                            <Ellipse Fill="{Binding BackgroundColor}"
+                                     Stroke="{Binding StrokeColor}"
+                                     StrokeDashArray="{Binding LineStyle, Converter={StaticResource StrokeTypeToDashArrayConverter}}"
                                      StrokeThickness="{Binding StrokeThickness}">
                                 <Ellipse.Width>
                                     <MultiBinding Converter="{StaticResource PercentageToDimensionConverter}">
@@ -63,7 +66,7 @@
                 </ItemsControl.ItemContainerStyle>
                 <ItemsControl.ItemsPanel>
                     <ItemsPanelTemplate>
-                        <Canvas Name="Canvas" IsItemsHost="True"/>
+                        <Canvas Name="Canvas" IsItemsHost="True" />
                     </ItemsPanelTemplate>
                 </ItemsControl.ItemsPanel>
             </ItemsControl>

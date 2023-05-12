@@ -14,10 +14,6 @@ namespace StakeholderAnalysis.Data.AttitudeImpactDiagrams
             Attitude = attitude;
         }
 
-        public Stakeholder Stakeholder { get; }
-
-        public int Rank { get; set; }
-
         public double Attitude
         {
             get => attitude;
@@ -30,17 +26,15 @@ namespace StakeholderAnalysis.Data.AttitudeImpactDiagrams
             set => impact = ValidateRelativeValue(value);
         }
 
+        public Stakeholder Stakeholder { get; }
+
+        public int Rank { get; set; }
+
         private double ValidateRelativeValue(double value)
         {
-            if (double.IsNaN(value))
-            {
-                throw new NaNValueException();
-            }
+            if (double.IsNaN(value)) throw new NaNValueException();
 
-            if (value < 0 || value > 1.0)
-            {
-                throw new ValueOutOfBoundsException();
-            }
+            if (value < 0 || value > 1.0) throw new ValueOutOfBoundsException();
 
             return value;
         }

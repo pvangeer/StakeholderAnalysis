@@ -11,8 +11,8 @@ namespace StakeholderAnalysis.Visualization.Converters
     {
         public object Convert(object[] values, Type targetType, object parameter, CultureInfo culture)
         {
-            var width = (double) values[0];
-            var height = (double) values[1];
+            var width = (double)values[0];
+            var height = (double)values[1];
 
             var segments = new List<LineSegment>();
             double xMargin = 0;
@@ -26,8 +26,11 @@ namespace StakeholderAnalysis.Visualization.Converters
             segments.Add(new LineSegment(new Point(xMargin, yMargin), true));
             segments.Add(new LineSegment(new Point(xMargin, height - yMargin), false));
             segments.Add(new LineSegment(new Point(width - xMargin, height - yMargin), true));
-            segments.Add(new LineSegment(new Point(width - xMargin - arrowHeadLength, height - yMargin + arrowHeadWidth), true));
-            segments.Add(new LineSegment(new Point(width - xMargin - arrowHeadLength, height - yMargin - arrowHeadWidth), false));
+            segments.Add(
+                new LineSegment(new Point(width - xMargin - arrowHeadLength, height - yMargin + arrowHeadWidth), true));
+            segments.Add(
+                new LineSegment(new Point(width - xMargin - arrowHeadLength, height - yMargin - arrowHeadWidth),
+                    false));
             segments.Add(new LineSegment(new Point(width - xMargin, height - yMargin), true));
             var figure = new PathFigure(new Point(xMargin, height - yMargin), segments, false); //true if closed
             var geometry = new PathGeometry();

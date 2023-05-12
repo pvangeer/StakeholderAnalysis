@@ -6,7 +6,8 @@ namespace StakeholderAnalysis.Visualization.Behaviors
     public class AttachInputBindingsBehavior
     {
         public static readonly DependencyProperty InputBindingsProperty =
-            DependencyProperty.RegisterAttached("InputBindings", typeof(InputBindingCollection), typeof(AttachInputBindingsBehavior),
+            DependencyProperty.RegisterAttached("InputBindings", typeof(InputBindingCollection),
+                typeof(AttachInputBindingsBehavior),
                 new FrameworkPropertyMetadata(new InputBindingCollection(),
                     (sender, e) =>
                     {

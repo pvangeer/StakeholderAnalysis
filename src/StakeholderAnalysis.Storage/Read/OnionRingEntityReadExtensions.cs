@@ -18,7 +18,8 @@ namespace StakeholderAnalysis.Storage.Read
                 Percentage = entity.Percentage,
                 StrokeColor = entity.StrokeColor.ToColor(),
                 StrokeThickness = entity.StrokeThickness,
-                BackgroundColor = entity.BackgroundColor.ToColor()
+                BackgroundColor = entity.BackgroundColor.ToColor(),
+                LineStyle = (LineStyle)entity.LineStyle
             };
 
             collector.Collect(entity, attitudeImpactDiagram);

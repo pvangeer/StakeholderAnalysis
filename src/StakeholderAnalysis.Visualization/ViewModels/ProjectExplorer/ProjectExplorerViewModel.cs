@@ -10,6 +10,21 @@ namespace StakeholderAnalysis.Visualization.ViewModels.ProjectExplorer
             gui.PropertyChanged += GuiPropertyChanged;
         }
 
+        public ProjectExplorerOnionDiagramsViewModel OnionDiagramsViewModel =>
+            ViewModelFactory.CreateProjectExplorerOnionDiagramsViewModel();
+
+        public ProjectExplorerForceFieldDiagramsViewModel ForceFieldDiagramsViewModel =>
+            ViewModelFactory.CreateProjectExplorerForceFieldDiagramsViewModel();
+
+        public ProjectExplorerAttitudeImpactDiagramsViewModel AttitudeImpactDiagramsViewModel =>
+            ViewModelFactory.CreateProjectExplorerAttitudeImpactDiagramsViewModel();
+
+        public ProjectExplorerStakeholderOverviewTableViewModel StakeholderOverviewTableViewModel =>
+            ViewModelFactory.CreateProjectExplorerStakeholderOverviewTableViewModel();
+
+        public StakeholderTypesViewModel StakeholderTypesViewModel =>
+            ViewModelFactory.CreateStakeholderTypesViewModel();
+
         private void GuiPropertyChanged(object sender, PropertyChangedEventArgs e)
         {
             switch (e.PropertyName)
@@ -23,15 +38,5 @@ namespace StakeholderAnalysis.Visualization.ViewModels.ProjectExplorer
                     break;
             }
         }
-
-        public ProjectExplorerOnionDiagramsViewModel OnionDiagramsViewModel => ViewModelFactory.CreateProjectExplorerOnionDiagramsViewModel();
-
-        public ProjectExplorerForceFieldDiagramsViewModel ForceFieldDiagramsViewModel => ViewModelFactory.CreateProjectExplorerForceFieldDiagramsViewModel();
-
-        public ProjectExplorerAttitudeImpactDiagramsViewModel AttitudeImpactDiagramsViewModel => ViewModelFactory.CreateProjectExplorerAttitudeImpactDiagramsViewModel();
-
-        public ProjectExplorerStakeholderOverviewTableViewModel StakeholderOverviewTableViewModel => ViewModelFactory.CreateProjectExplorerStakeholderOverviewTableViewModel();
-
-        public StakeholderTypesViewModel StakeholderTypesViewModel => ViewModelFactory.CreateStakeholderTypesViewModel();
     }
 }

@@ -7,20 +7,25 @@ namespace StakeholderAnalysis.Visualization.ViewModels.OnionDiagramProperties
 {
     public class OnionRingPropertiesViewModel : ViewModelBase, IPropertyCollectionTreeNodeViewModel
     {
-        private readonly OnionRing ring;
         private readonly OnionDiagram diagram;
+        private readonly OnionRing ring;
         private bool isExpanded;
 
-        public OnionRingPropertiesViewModel(ViewModelFactory factory, OnionRing ring, OnionDiagram diagram) : base(factory)
+        public OnionRingPropertiesViewModel(ViewModelFactory factory, OnionRing ring, OnionDiagram diagram) :
+            base(factory)
         {
             this.diagram = diagram;
             this.ring = ring;
             Items = new ObservableCollection<ITreeNodeViewModel>
             {
-                new DoubleUpDownPropertyTreeNodeViewModel<OnionRing>(ring, nameof(OnionRing.Percentage), "Grootte", 0.0, 1.0, 0.01, "0.###"),
-                new ColorPropertyTreeNodeViewModel<OnionRing>(ring,nameof(OnionRing.BackgroundColor), "Achtergrondkleur"),
+                new DoubleUpDownPropertyTreeNodeViewModel<OnionRing>(ring, nameof(OnionRing.Percentage), "Grootte", 0.0,
+                    1.0, 0.01, "0.###"),
+                new ColorPropertyTreeNodeViewModel<OnionRing>(ring, nameof(OnionRing.BackgroundColor),
+                    "Achtergrondkleur"),
                 new ColorPropertyTreeNodeViewModel<OnionRing>(ring, nameof(OnionRing.StrokeColor), "Lijnkleur"),
-                new DoubleUpDownPropertyTreeNodeViewModel<OnionRing>(ring, nameof(OnionRing.StrokeThickness), "Lijndikte", 0.0, 40.0, 0.5, "0.##")
+                new DoubleUpDownPropertyTreeNodeViewModel<OnionRing>(ring, nameof(OnionRing.StrokeThickness),
+                    "Lijndikte", 0.0, 40.0, 0.5, "0.##"),
+                new LineStylePropertyTreeNodeViewModel<OnionRing>(ring, nameof(OnionRing.LineStyle), "Lijnstijl")
             };
             ContextMenuItems = new ObservableCollection<ContextMenuItemViewModel>();
         }
@@ -57,7 +62,7 @@ namespace StakeholderAnalysis.Visualization.ViewModels.OnionDiagramProperties
             set
             {
                 isExpanded = value;
-                OnPropertyChanged(nameof(IsExpanded));
+                OnPropertyChanged();
             }
         }
 

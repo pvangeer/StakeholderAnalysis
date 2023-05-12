@@ -3,27 +3,28 @@
                     xmlns:projectExplorer="clr-namespace:StakeholderAnalysis.Visualization.ViewModels.ProjectExplorer">
 
     <ResourceDictionary.MergedDictionaries>
-        <ResourceDictionary Source="/StakeholderAnalysis.Visualization;Component/DataTemplates/TreeViewDataTemplate.xaml" />
+        <ResourceDictionary
+            Source="/StakeholderAnalysis.Visualization;Component/DataTemplates/TreeViewDataTemplate.xaml" />
     </ResourceDictionary.MergedDictionaries>
 
     <DataTemplate x:Key="ProjectExplorerDataTemplate" DataType="projectExplorer:ProjectExplorerViewModel">
         <Grid>
             <StackPanel Orientation="Vertical">
-                <ContentPresenter 
-                    Content="{Binding OnionDiagramsViewModel}" 
-                    ContentTemplate="{StaticResource IPropertyCollectionItemDataTemplate}"/>
-                <ContentPresenter 
-                    Content="{Binding ForceFieldDiagramsViewModel}" 
-                    ContentTemplate="{StaticResource IPropertyCollectionItemDataTemplate}"/>
-                <ContentPresenter 
-                    Content="{Binding AttitudeImpactDiagramsViewModel}" 
-                    ContentTemplate="{StaticResource IPropertyCollectionItemDataTemplate}"/>
+                <ContentPresenter
+                    Content="{Binding OnionDiagramsViewModel}"
+                    ContentTemplate="{StaticResource IPropertyCollectionItemDataTemplate}" />
+                <ContentPresenter
+                    Content="{Binding ForceFieldDiagramsViewModel}"
+                    ContentTemplate="{StaticResource IPropertyCollectionItemDataTemplate}" />
+                <ContentPresenter
+                    Content="{Binding AttitudeImpactDiagramsViewModel}"
+                    ContentTemplate="{StaticResource IPropertyCollectionItemDataTemplate}" />
                 <ContentPresenter
                     Content="{Binding StakeholderOverviewTableViewModel}"
-                    ContentTemplate="{StaticResource IPropertyCollectionItemDataTemplate}"/>
+                    ContentTemplate="{StaticResource IPropertyCollectionItemDataTemplate}" />
                 <ContentPresenter
                     Content="{Binding StakeholderTypesViewModel}"
-                    ContentTemplate="{StaticResource IPropertyCollectionItemDataTemplate}"/>
+                    ContentTemplate="{StaticResource IPropertyCollectionItemDataTemplate}" />
             </StackPanel>
         </Grid>
     </DataTemplate>

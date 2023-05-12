@@ -26,8 +26,10 @@
         <ResourceDictionary>
             <ResourceDictionary.MergedDictionaries>
                 <ResourceDictionary Source="/Fluent;Component/Themes/generic.xaml" />
-                <ResourceDictionary Source="/StakeholderAnalysis.Visualization;Component/DataTemplates/MainContentPresenterDataTemplate.xaml" />
-                <ResourceDictionary Source="/StakeholderAnalysis.Visualization;Component/DataTemplates/StatusBar/StatusBarDataTemplate.xaml" />
+                <ResourceDictionary
+                    Source="/StakeholderAnalysis.Visualization;Component/DataTemplates/MainContentPresenterDataTemplate.xaml" />
+                <ResourceDictionary
+                    Source="/StakeholderAnalysis.Visualization;Component/DataTemplates/StatusBar/StatusBarDataTemplate.xaml" />
             </ResourceDictionary.MergedDictionaries>
 
             <converters:IsSelectedViewTypeToVisibilityConverter x:Key="IsSelectedViewInfoToVisibilityConverter" />
@@ -37,7 +39,7 @@
         </ResourceDictionary>
     </Window.Resources>
 
-    
+
     <Grid>
         <Grid.RowDefinitions>
             <RowDefinition Height="Auto" />
@@ -86,37 +88,37 @@
                     Background="Green"
                     Foreground="DarkSeaGreen">
                     <fluent:RibbonContextualTabGroup.Visibility>
-                        <Binding 
+                        <Binding
                             Path="RibbonViewModel.ViewManagerViewModel.ActiveDocument"
-                            Converter="{StaticResource IsSelectedViewInfoToVisibilityConverter}" 
-                            UpdateSourceTrigger="PropertyChanged"/>
+                            Converter="{StaticResource IsSelectedViewInfoToVisibilityConverter}"
+                            UpdateSourceTrigger="PropertyChanged" />
                     </fluent:RibbonContextualTabGroup.Visibility>
                 </fluent:RibbonContextualTabGroup>
             </fluent:Ribbon.ContextualGroups>
 
             <fluent:RibbonTabItem Header="Start">
                 <fluent:RibbonGroupBox Header="Beeld">
-                    <fluent:ToggleButton 
+                    <fluent:ToggleButton
                         Size="Middle"
-                        Header="Projectgegevens tonen" 
+                        Header="Projectgegevens tonen"
                         Icon="pack://application:,,,/StakeholderAnalysis.Visualization;component/Resources/document.png"
                         IsChecked="{Binding RibbonViewModel.ToolWindows, Converter={StaticResource IsActiveToolWindowConverter}, ConverterParameter={x:Type projectExplorer:ProjectExplorerViewModel}}"
                         Command="{Binding RibbonViewModel.ToggleToolWindowCommand}"
-                        CommandParameter="{x:Type projectExplorer:ProjectExplorerViewModel}"/>
-                    <fluent:ToggleButton 
+                        CommandParameter="{x:Type projectExplorer:ProjectExplorerViewModel}" />
+                    <fluent:ToggleButton
                         Size="Middle"
-                        Header="UI-diagram gegevens tonen" 
+                        Header="UI-diagram gegevens tonen"
                         Icon="pack://application:,,,/StakeholderAnalysis.Visualization;component/Resources/onion.png"
                         IsChecked="{Binding RibbonViewModel.ToolWindows, Converter={StaticResource IsActiveToolWindowConverter}, ConverterParameter={x:Type onionDiagramProperties:OnionDiagramPropertiesViewModel}}"
                         Command="{Binding RibbonViewModel.ToggleToolWindowCommand}"
-                        CommandParameter="{x:Type onionDiagramProperties:OnionDiagramPropertiesViewModel}"/>
-                    <fluent:ToggleButton 
+                        CommandParameter="{x:Type onionDiagramProperties:OnionDiagramPropertiesViewModel}" />
+                    <fluent:ToggleButton
                         Size="Middle"
-                        Header="Verhoudingdiagram gegevens tonen" 
+                        Header="Verhoudingdiagram gegevens tonen"
                         Icon="pack://application:,,,/StakeholderAnalysis.Visualization;component/Resources/forces.png"
                         IsChecked="{Binding RibbonViewModel.ToolWindows, Converter={StaticResource IsActiveToolWindowConverter}, ConverterParameter={x:Type twoAxisDiagramProperties:TwoAxisDiagramPropertiesViewModel}}"
                         Command="{Binding RibbonViewModel.ToggleToolWindowCommand}"
-                        CommandParameter="{x:Type twoAxisDiagramProperties:TwoAxisDiagramPropertiesViewModel}"/>
+                        CommandParameter="{x:Type twoAxisDiagramProperties:TwoAxisDiagramPropertiesViewModel}" />
                     <fluent:ToggleButton
                         Header="Vergrootglas"
                         Size="Large"
@@ -131,34 +133,34 @@
                 </fluent:RibbonGroupBox>
 
                 <fluent:RibbonGroupBox Header="Diagram">
-                    <fluent:Button 
-                        Header="Stakeholder(s) toevoegen" 
+                    <fluent:Button
+                        Header="Stakeholder(s) toevoegen"
                         Command="{Binding RibbonViewModel.AddStakeholdersCommand, Converter={StaticResource DummyConverter}}"
                         Size="Large"
-                        LargeIcon="pack://application:,,,/StakeholderAnalysis.Visualization;component/Resources/plus.png"/>
+                        LargeIcon="pack://application:,,,/StakeholderAnalysis.Visualization;component/Resources/plus.png" />
                 </fluent:RibbonGroupBox>
 
             </fluent:RibbonTabItem>
 
             <fluent:RibbonTabItem Header="Ui-diagram" Group="{Binding Source={x:Reference onionGroup}}">
                 <fluent:RibbonGroupBox Header="Ringen">
-                    <fluent:Button 
-                        Header="Ring toevoegen" 
+                    <fluent:Button
+                        Header="Ring toevoegen"
                         Command="{Binding RibbonViewModel.AddOnionRingCommand, Converter={StaticResource DummyConverter}}"
                         Size="Middle"
-                        Icon="pack://application:,,,/StakeholderAnalysis.Visualization;component/Resources/plus.png"/>
-                    <fluent:Spinner 
-                        Value="{Binding RibbonViewModel.Asymmetry, Converter={StaticResource DummyConverter}}" 
+                        Icon="pack://application:,,,/StakeholderAnalysis.Visualization;component/Resources/plus.png" />
+                    <fluent:Spinner
+                        Value="{Binding RibbonViewModel.Asymmetry, Converter={StaticResource DummyConverter}}"
                         Header="Asymmetrie"
                         Format="0.#####"
-                        Minimum="0.0" 
-                        Maximum="1.0" 
-                        Increment="0.1"/>
+                        Minimum="0.0"
+                        Maximum="1.0"
+                        Increment="0.1" />
                 </fluent:RibbonGroupBox>
 
 
                 <fluent:RibbonGroupBox Header="Verbindingsgroepen">
-                    <fluent:ComboBox 
+                    <fluent:ComboBox
                         IsEditable="False"
                         ItemsSource="{Binding RibbonViewModel.StakeholderConnectionGroups}"
                         SelectedItem="{Binding RibbonViewModel.SelectedStakeholderConnectionGroup}">
@@ -166,9 +168,9 @@
                             <DataTemplate DataType="onionDiagrams:StakeholderConnectionGroup">
                                 <Border BorderThickness="0 0 0 3">
                                     <Border.BorderBrush>
-                                        <SolidColorBrush Color="{Binding StrokeColor}"/>
+                                        <SolidColorBrush Color="{Binding StrokeColor}" />
                                     </Border.BorderBrush>
-                                    <TextBlock Text="{Binding Name}"/>
+                                    <TextBlock Text="{Binding Name}" />
                                 </Border>
                             </DataTemplate>
                         </ComboBox.ItemTemplate>
@@ -179,12 +181,12 @@
 
         <Grid Name="MainContentPresenter" Grid.Row="1" DataContext="{Binding MainContentPresenterViewModel}">
             <Grid.ColumnDefinitions>
-                <ColumnDefinition Width="Auto"/>
-                <ColumnDefinition Width="5"/>
-                <ColumnDefinition Width="*"/>
+                <ColumnDefinition Width="Auto" />
+                <ColumnDefinition Width="5" />
+                <ColumnDefinition Width="*" />
             </Grid.ColumnDefinitions>
-            <TabControl 
-                Grid.Column="0" 
+            <TabControl
+                Grid.Column="0"
                 ContentTemplate="{StaticResource ToolWindowDataTemplate}"
                 ItemsSource="{Binding ViewManager.ToolWindows}"
                 SelectedIndex="{Binding ViewManager.SelectedToolWindowIndex}">
@@ -192,11 +194,12 @@
                     <DataTemplate DataType="gui:ViewInfo">
                         <Grid>
                             <Grid.ColumnDefinitions>
-                                <ColumnDefinition Width="Auto"/>
-                                <ColumnDefinition Width="*"/>
-                                <ColumnDefinition Width="Auto"/>
+                                <ColumnDefinition Width="Auto" />
+                                <ColumnDefinition Width="*" />
+                                <ColumnDefinition Width="Auto" />
                             </Grid.ColumnDefinitions>
-                            <Image Grid.Column="0" Source="{Binding IconReference}" Margin="0,0,4,0" Height="16" Width="16"/>
+                            <Image Grid.Column="0" Source="{Binding IconReference}" Margin="0,0,4,0" Height="16"
+                                   Width="16" />
                             <TextBlock Grid.Column="1" TextAlignment="Left" Text="{Binding Title}" />
                             <Button Grid.Column="2" Command="{Binding CloseViewCommand}">
                                 <Button.Style>
@@ -204,11 +207,11 @@
                                         <Setter Property="Template">
                                             <Setter.Value>
                                                 <ControlTemplate TargetType="Button">
-                                                    <Image Width="16" 
+                                                    <Image Width="16"
                                                            Height="16"
                                                            VerticalAlignment="Center"
                                                            HorizontalAlignment="Center"
-                                                           Source="pack://application:,,,/StakeholderAnalysis.Visualization;component/Resources/remove.png"/>
+                                                           Source="pack://application:,,,/StakeholderAnalysis.Visualization;component/Resources/remove.png" />
                                                 </ControlTemplate>
                                             </Setter.Value>
                                         </Setter>
@@ -219,9 +222,10 @@
                     </DataTemplate>
                 </TabControl.ItemTemplate>
             </TabControl>
-            <GridSplitter Grid.Column="1" Width="5" Background="Gainsboro" HorizontalAlignment="Stretch" ResizeBehavior="BasedOnAlignment"/>
-            <TabControl 
-                Grid.Column="2" 
+            <GridSplitter Grid.Column="1" Width="5" Background="Gainsboro" HorizontalAlignment="Stretch"
+                          ResizeBehavior="BasedOnAlignment" />
+            <TabControl
+                Grid.Column="2"
                 ContentTemplate="{StaticResource DocumentViewDataTemplate}"
                 SelectedIndex="{Binding ViewManager.ActiveDocumentIndex, Mode=TwoWay}"
                 ItemsSource="{Binding ViewManager.Views}">
@@ -229,11 +233,12 @@
                     <DataTemplate DataType="gui:ViewInfo">
                         <Grid>
                             <Grid.ColumnDefinitions>
-                                <ColumnDefinition Width="Auto"/>
-                                <ColumnDefinition Width="*"/>
-                                <ColumnDefinition Width="Auto"/>
+                                <ColumnDefinition Width="Auto" />
+                                <ColumnDefinition Width="*" />
+                                <ColumnDefinition Width="Auto" />
                             </Grid.ColumnDefinitions>
-                            <Image Grid.Column="0" Source="{Binding IconReference}" Margin="0,0,4,0" Height="16" Width="16"/>
+                            <Image Grid.Column="0" Source="{Binding IconReference}" Margin="0,0,4,0" Height="16"
+                                   Width="16" />
                             <TextBlock Grid.Column="1" TextAlignment="Left" Text="{Binding Title}" />
                             <Button Grid.Column="2" Command="{Binding CloseViewCommand}">
                                 <Button.Style>
@@ -241,11 +246,11 @@
                                         <Setter Property="Template">
                                             <Setter.Value>
                                                 <ControlTemplate TargetType="Button">
-                                                    <Image Width="16" 
+                                                    <Image Width="16"
                                                            Height="16"
                                                            VerticalAlignment="Center"
                                                            HorizontalAlignment="Center"
-                                                           Source="pack://application:,,,/StakeholderAnalysis.Visualization;component/Resources/remove.png"/>
+                                                           Source="pack://application:,,,/StakeholderAnalysis.Visualization;component/Resources/remove.png" />
                                                 </ControlTemplate>
                                             </Setter.Value>
                                         </Setter>
@@ -257,9 +262,9 @@
                 </TabControl.ItemTemplate>
             </TabControl>
         </Grid>
-        <ContentPresenter 
+        <ContentPresenter
             Grid.Row="2"
             Content="{Binding StatusBarViewModel}"
-            ContentTemplate="{StaticResource StatusBarDataTemplate}"/>
+            ContentTemplate="{StaticResource StatusBarDataTemplate}" />
     </Grid>
 </fluent:RibbonWindow>

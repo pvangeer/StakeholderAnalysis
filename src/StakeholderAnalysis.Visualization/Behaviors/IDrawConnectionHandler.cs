@@ -6,6 +6,7 @@ namespace StakeholderAnalysis.Visualization.Behaviors
 {
     public interface IDrawConnectionHandler : INotifyPropertyChanged
     {
+        bool IsActive { get; }
         void PositionMoved(double relativeLeft, double relativeTop);
 
         void ChangeTarget(OnionDiagramStakeholderViewModel viewModel);
@@ -15,7 +16,5 @@ namespace StakeholderAnalysis.Visualization.Behaviors
         void FinishConnecting();
 
         bool IsConnectionTarget(Stakeholder stakeholder);
-
-        bool IsActive { get; }
     }
 }

@@ -5,10 +5,11 @@ namespace StakeholderAnalysis.Visualization.ViewModels.PropertiesTree
 {
     public class PropertyCollectionTreeNodeViewModel : ViewModelBase, IPropertyCollectionTreeNodeViewModel
     {
-        private bool isExpanded;
         private string iconSourceString;
+        private bool isExpanded;
 
-        public PropertyCollectionTreeNodeViewModel(ViewModelFactory factory, string displayName, ObservableCollection<ITreeNodeViewModel> items, CollectionType collectionType) : base(factory)
+        public PropertyCollectionTreeNodeViewModel(ViewModelFactory factory, string displayName,
+            ObservableCollection<ITreeNodeViewModel> items, CollectionType collectionType) : base(factory)
         {
             DisplayName = displayName;
             Items = items;
@@ -25,7 +26,7 @@ namespace StakeholderAnalysis.Visualization.ViewModels.PropertiesTree
             set
             {
                 isExpanded = value;
-                OnPropertyChanged(nameof(IsExpanded));
+                OnPropertyChanged();
             }
         }
 

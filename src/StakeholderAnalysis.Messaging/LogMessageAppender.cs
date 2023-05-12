@@ -5,12 +5,12 @@ namespace StakeholderAnalysis.Messaging
 {
     public class LogMessageAppender : AppenderSkeleton
     {
-        public IMessageCollection MessageCollection { get; set; }
-
         public LogMessageAppender()
         {
             Instance = this;
         }
+
+        public IMessageCollection MessageCollection { get; set; }
 
         public static LogMessageAppender Instance { get; set; }
 
@@ -27,7 +27,7 @@ namespace StakeholderAnalysis.Messaging
                 };
             }
 
-            MessageCollection.Messages.Insert(0,message);
+            MessageCollection.Messages.Insert(0, message);
         }
 
         private MessageSeverity GetMessageSeverityFromNativeLevel(Level loggingEventLevel)
@@ -37,14 +37,9 @@ namespace StakeholderAnalysis.Messaging
                 loggingEventLevel == Level.Error ||
                 loggingEventLevel == Level.Fatal ||
                 loggingEventLevel == Level.Severe)
-            {
                 return MessageSeverity.Error;
-            }
 
-            if (loggingEventLevel == Level.Warn)
-            {
-                return MessageSeverity.Warning;
-            }
+            if (loggingEventLevel == Level.Warn) return MessageSeverity.Warning;
 
             return MessageSeverity.Information;
         }

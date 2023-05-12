@@ -11,12 +11,10 @@ namespace StakeholderAnalysis.Visualization.ViewModels.StatusBar
     {
         private MessageListViewModel messageListViewModel;
 
-        public StatusBarViewModel(ViewModelFactory viewModelFactory, StakeholderAnalysisGui gui) : base(viewModelFactory)
+        public StatusBarViewModel(ViewModelFactory viewModelFactory, StakeholderAnalysisGui gui) : base(
+            viewModelFactory)
         {
-            if (gui == null)
-            {
-                return;
-            }
+            if (gui == null) return;
             gui.PropertyChanged += GuiPropertyChanged;
             gui.Messages.CollectionChanged += GuiMessagesCollectionChanged;
         }
@@ -50,6 +48,7 @@ namespace StakeholderAnalysis.Visualization.ViewModels.StatusBar
                     PriorityMessage = newItem;
                     OnPropertyChanged(nameof(PriorityMessage));
                 }
+
                 OnPropertyChanged(nameof(MessagesViewModel));
             }
 
@@ -57,19 +56,18 @@ namespace StakeholderAnalysis.Visualization.ViewModels.StatusBar
             {
                 var items = e.OldItems.OfType<LogMessage>();
                 foreach (var logMessage in items)
-                {
                     if (PriorityMessage == logMessage)
                     {
                         PriorityMessage = null;
                         OnPropertyChanged(nameof(PriorityMessage));
                     }
-                }
 
                 if (!MessagesViewModel.MessageList.Any())
                 {
                     ShowMessages = false;
                     OnPropertyChanged(nameof(ShowMessages));
                 }
+
                 OnPropertyChanged(nameof(MessagesViewModel));
             }
 
@@ -87,7 +85,7 @@ namespace StakeholderAnalysis.Visualization.ViewModels.StatusBar
         {
             switch (e.PropertyName)
             {
-               case nameof(StakeholderAnalysisGui.Messages):
+                case nameof(StakeholderAnalysisGui.Messages):
                     messageListViewModel = null;
                     OnPropertyChanged(nameof(MessagesViewModel));
                     break;

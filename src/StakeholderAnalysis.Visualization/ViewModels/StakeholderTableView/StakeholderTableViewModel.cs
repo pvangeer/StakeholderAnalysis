@@ -16,7 +16,9 @@ namespace StakeholderAnalysis.Visualization.ViewModels.StakeholderTableView
             if (analysis != null)
             {
                 analysis.Stakeholders.CollectionChanged += StakeholdersCollectionChanged;
-                Stakeholders = new ObservableCollection<StakeholderViewModel>(analysis.Stakeholders.Select(stakeholder => ViewModelFactory.CreateStakeholderViewModel(stakeholder, null, null)));
+                Stakeholders = new ObservableCollection<StakeholderViewModel>(
+                    analysis.Stakeholders.Select(stakeholder =>
+                        ViewModelFactory.CreateStakeholderViewModel(stakeholder, null, null)));
                 Stakeholders.CollectionChanged += StakeholderViewModelsCollectionChanged;
             }
         }
@@ -27,10 +29,7 @@ namespace StakeholderAnalysis.Visualization.ViewModels.StakeholderTableView
 
         private void StakeholderViewModelsCollectionChanged(object sender, NotifyCollectionChangedEventArgs e)
         {
-            if (analysis == null)
-            {
-                return;
-            }
+            if (analysis == null) return;
 
             analysis.Stakeholders.CollectionChanged -= StakeholdersCollectionChanged;
 
@@ -45,12 +44,11 @@ namespace StakeholderAnalysis.Visualization.ViewModels.StakeholderTableView
                         stakeholder.OnPropertyChanged(nameof(Stakeholder.Type));
                         analysis.Stakeholders.Add(stakeholder);
                     }
+
                     break;
                 case NotifyCollectionChangedAction.Remove:
                     foreach (var stakeholderViewModel in e.OldItems.OfType<StakeholderViewModel>())
-                    {
-                        AnalysisServices.RemoveStakeholderFromAnalysis(analysis,stakeholderViewModel.Stakeholder);
-                    }
+                        AnalysisServices.RemoveStakeholderFromAnalysis(analysis, stakeholderViewModel.Stakeholder);
                     break;
             }
 
@@ -66,13 +64,9 @@ namespace StakeholderAnalysis.Visualization.ViewModels.StakeholderTableView
                 IconType = StakeholderIconType.Cloud
             };
             if (!analysis.StakeholderTypes.Any())
-            {
                 analysis.StakeholderTypes.Add(stakeholderType);
-            }
             else
-            {
                 stakeholderType = analysis.StakeholderTypes.First();
-            }
 
             return stakeholderType;
         }

@@ -23,10 +23,7 @@ namespace StakeholderAnalysis.App
 
         private void MainWindowClosing(object sender, CancelEventArgs e)
         {
-            if (DataContext is MainWindowViewModel viewModel)
-            {
-                viewModel.ForcedClosingMainWindow();
-            }
+            if (DataContext is MainWindowViewModel viewModel) viewModel.ForcedClosingMainWindow();
         }
     }
 }

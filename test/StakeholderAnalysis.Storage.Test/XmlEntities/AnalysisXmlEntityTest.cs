@@ -1,10 +1,10 @@
-﻿using StakeholderAnalysis.Storage.XmlEntities;
-using System;
+﻿using System;
 using System.Collections.ObjectModel;
 using System.IO;
 using System.Windows.Media;
 using System.Xml.Serialization;
 using NUnit.Framework;
+using StakeholderAnalysis.Storage.XmlEntities;
 
 namespace StakeholderAnalysis.Storage.Test.XmlEntities
 {
@@ -37,21 +37,22 @@ namespace StakeholderAnalysis.Storage.Test.XmlEntities
                 },
                 StakeholderXmlEntities = new Collection<StakeholderXmlEntity>
                 {
-                    new StakeholderXmlEntity{Name = "Stakeholder 1", Order = 1, Id = 1, StakeholderTypeId = stakeholderType2XmlEntity.Id}
+                    new StakeholderXmlEntity
+                        { Name = "Stakeholder 1", Order = 1, Id = 1, StakeholderTypeId = stakeholderType2XmlEntity.Id }
                 },
                 AttitudeImpactDiagramXmlEntities = new Collection<AttitudeImpactDiagramXmlEntity>
                 {
                     new AttitudeImpactDiagramXmlEntity
                     {
-                        Id = 30,
+                        Id = 30
                     },
                     new AttitudeImpactDiagramXmlEntity
                     {
-                        Id = 31,
+                        Id = 31
                     },
                     new AttitudeImpactDiagramXmlEntity
                     {
-                        Id = 32,
+                        Id = 32
                     }
                 }
             };

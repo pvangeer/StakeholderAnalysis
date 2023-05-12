@@ -13,44 +13,31 @@ namespace StakeholderAnalysis.Visualization.ViewModels.ProjectExplorer
 {
     public class ProjectExplorerAttitudeImpactDiagramViewModel : ViewModelBase, IPropertyCollectionTreeNodeViewModel
     {
-        private readonly AttitudeImpactDiagram diagram;
         private readonly Analysis analysis;
+        private readonly AttitudeImpactDiagram diagram;
         private readonly ViewManager viewManager;
         private bool isExpanded;
 
-        public ProjectExplorerAttitudeImpactDiagramViewModel(ViewModelFactory factory, Analysis analysis, AttitudeImpactDiagram attitudeImpactDiagram, ViewManager viewManager) : base(factory)
+        public ProjectExplorerAttitudeImpactDiagramViewModel(ViewModelFactory factory, Analysis analysis,
+            AttitudeImpactDiagram attitudeImpactDiagram, ViewManager viewManager) : base(factory)
         {
             this.viewManager = viewManager;
             this.analysis = analysis;
             diagram = attitudeImpactDiagram;
             Items = new ObservableCollection<ITreeNodeViewModel>
             {
-                new StringPropertyTreeNodeViewModel<AttitudeImpactDiagram>(diagram, nameof(AttitudeImpactDiagram.Name), "Naam")
+                new StringPropertyTreeNodeViewModel<AttitudeImpactDiagram>(diagram, nameof(AttitudeImpactDiagram.Name),
+                    "Naam")
             };
 
             ContextMenuItems = new ObservableCollection<ContextMenuItemViewModel>
             {
-                ViewModelFactory.CreateDuplicateMenuItemViewModel(diagram, CommandFactory.CreateCanAlwaysExecuteActionCommand(
-                    p =>
-                    {
-                        analysis.AttitudeImpactDiagrams.Add(diagram.Clone() as AttitudeImpactDiagram);
-                    }))
+                ViewModelFactory.CreateDuplicateMenuItemViewModel(diagram,
+                    CommandFactory.CreateCanAlwaysExecuteActionCommand(
+                        p => { analysis.AttitudeImpactDiagrams.Add(diagram.Clone() as AttitudeImpactDiagram); }))
             };
 
-            if (diagram != null)
-            {
-                diagram.PropertyChanged += DiagramPropertyChanged;
-            }
-        }
-
-        private void DiagramPropertyChanged(object sender, PropertyChangedEventArgs e)
-        {
-            switch (e.PropertyName)
-            {
-                case nameof(ForceFieldDiagram.Name):
-                    OnPropertyChanged(nameof(DisplayName));
-                    break;
-            }
+            if (diagram != null) diagram.PropertyChanged += DiagramPropertyChanged;
         }
 
         public string DisplayName => diagram.Name;
@@ -59,11 +46,10 @@ namespace StakeholderAnalysis.Visualization.ViewModels.ProjectExplorer
 
         public ICommand RemoveItemCommand => CommandFactory.CreateCanAlwaysExecuteActionCommand(p =>
         {
-            var viewInfo = viewManager?.Views.FirstOrDefault(vi => vi.ViewModel is AttitudeImpactDiagramViewModel diagramViewModel1 && diagramViewModel1.IsViewModelFor(diagram));
-            if (viewInfo != null)
-            {
-                viewManager.CloseView(viewInfo);
-            }
+            var viewInfo = viewManager?.Views.FirstOrDefault(vi =>
+                vi.ViewModel is AttitudeImpactDiagramViewModel diagramViewModel1 &&
+                diagramViewModel1.IsViewModelFor(diagram));
+            if (viewInfo != null) viewManager.CloseView(viewInfo);
             analysis.AttitudeImpactDiagrams.Remove(diagram);
         });
 
@@ -76,18 +62,22 @@ namespace StakeholderAnalysis.Visualization.ViewModels.ProjectExplorer
         public ICommand OpenViewCommand => CommandFactory.CreateCanAlwaysExecuteActionCommand(p =>
         {
             var viewInfo = viewManager.Views.FirstOrDefault(v =>
-                v.ViewModel is AttitudeImpactDiagramViewModel diagramViewModel && diagramViewModel.IsViewModelFor(diagram));
+                v.ViewModel is AttitudeImpactDiagramViewModel diagramViewModel &&
+                diagramViewModel.IsViewModelFor(diagram));
             if (viewInfo == null)
             {
-                viewInfo = new ViewInfo(diagram.Name, ViewModelFactory.CrateAttitudeImpactDiagramViewModel(diagram),IconSourceString, true);
+                viewInfo = new ViewInfo(diagram.Name, ViewModelFactory.CrateAttitudeImpactDiagramViewModel(diagram),
+                    IconSourceString, true);
                 viewManager.OpenView(viewInfo);
             }
+
             viewManager.BringToFront(viewInfo);
         });
 
         public ObservableCollection<ContextMenuItemViewModel> ContextMenuItems { get; }
 
-        public string IconSourceString => "pack://application:,,,/StakeholderAnalysis.Visualization;component/Resources/involvement.png";
+        public string IconSourceString =>
+            "pack://application:,,,/StakeholderAnalysis.Visualization;component/Resources/involvement.png";
 
         public bool IsViewModelFor(object otherObject)
         {
@@ -102,7 +92,7 @@ namespace StakeholderAnalysis.Visualization.ViewModels.ProjectExplorer
             set
             {
                 isExpanded = value;
-                OnPropertyChanged(nameof(IsExpanded));
+                OnPropertyChanged();
             }
         }
 
@@ -111,5 +101,15 @@ namespace StakeholderAnalysis.Visualization.ViewModels.ProjectExplorer
         public ObservableCollection<ITreeNodeViewModel> Items { get; }
 
         public CollectionType CollectionType => CollectionType.PropertyValue;
+
+        private void DiagramPropertyChanged(object sender, PropertyChangedEventArgs e)
+        {
+            switch (e.PropertyName)
+            {
+                case nameof(ForceFieldDiagram.Name):
+                    OnPropertyChanged(nameof(DisplayName));
+                    break;
+            }
+        }
     }
 }

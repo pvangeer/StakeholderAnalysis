@@ -16,26 +16,26 @@ namespace StakeholderAnalysis.Visualization.Commands.Ribbon
 {
     public class AddStakeholdersToDiagramCommand : ICommand
     {
-        private readonly ViewManager viewManager;
         private readonly Analysis analysis;
+        private readonly ViewManager viewManager;
+        private AttitudeImpactDiagram selectedAttitudeImpactDiagram;
+
+        private ForceFieldDiagram selectedForceFieldDiagram;
+
         // TODO: Solve this with a generic interfact (similar to IRankedStakeholderDiagram)
         private OnionDiagram selectedOnionDiagram;
-        private ForceFieldDiagram selectedForceFieldDiagram;
-        private AttitudeImpactDiagram selectedAttitudeImpactDiagram;
 
         public AddStakeholdersToDiagramCommand(ViewManager viewManager, Analysis analysis)
         {
             this.viewManager = viewManager;
-            if (viewManager != null)
-            {
-                viewManager.PropertyChanged += ViewManagerPropertyChanged;
-            }
+            if (viewManager != null) viewManager.PropertyChanged += ViewManagerPropertyChanged;
             this.analysis = analysis;
         }
 
         public bool CanExecute(object parameter)
         {
-            return selectedOnionDiagram != null || selectedAttitudeImpactDiagram != null || selectedForceFieldDiagram != null;
+            return selectedOnionDiagram != null || selectedAttitudeImpactDiagram != null ||
+                   selectedForceFieldDiagram != null;
         }
 
         public void Execute(object parameter)
@@ -46,10 +46,7 @@ namespace StakeholderAnalysis.Visualization.Commands.Ribbon
                 Owner = Application.Current.MainWindow
             };
 
-            if (dialog.ShowDialog() != true)
-            {
-                return;
-            }
+            if (dialog.ShowDialog() != true) return;
 
             // Add stakeholders to viewManager
             var selectedStakeholders = dialog.SelectedStakeholders.ToArray();
@@ -72,10 +69,11 @@ namespace StakeholderAnalysis.Visualization.Commands.Ribbon
                 var currentStakeholders = selectedAttitudeImpactDiagram.Stakeholders.Select(s => s.Stakeholder);
                 foreach (var selectedStakeholder in selectedStakeholders.Except(currentStakeholders))
                 {
-                    var attitudeImpactDiagramStakeholder = new AttitudeImpactDiagramStakeholder(selectedStakeholder, 0.5, 0.5)
-                    {
-                        Rank = selectedAttitudeImpactDiagram.Stakeholders.Count
-                    };
+                    var attitudeImpactDiagramStakeholder =
+                        new AttitudeImpactDiagramStakeholder(selectedStakeholder, 0.5, 0.5)
+                        {
+                            Rank = selectedAttitudeImpactDiagram.Stakeholders.Count
+                        };
                     selectedAttitudeImpactDiagram.Stakeholders.Add(attitudeImpactDiagramStakeholder);
                 }
             }
@@ -94,6 +92,8 @@ namespace StakeholderAnalysis.Visualization.Commands.Ribbon
             }
         }
 
+        public event EventHandler CanExecuteChanged;
+
         private void ViewManagerPropertyChanged(object sender, PropertyChangedEventArgs e)
         {
             switch (e.PropertyName)
@@ -102,18 +102,18 @@ namespace StakeholderAnalysis.Visualization.Commands.Ribbon
                     selectedOnionDiagram = viewManager?.ActiveDocument?.ViewModel is OnionDiagramViewModel viewModel
                         ? viewModel.GetDiagram()
                         : null;
-                    selectedForceFieldDiagram = viewManager?.ActiveDocument?.ViewModel is ForceFieldDiagramViewModel viewModel2
-                        ? viewModel2.GetDiagram() as ForceFieldDiagram
-                        : null;
-                    selectedAttitudeImpactDiagram = viewManager?.ActiveDocument?.ViewModel is AttitudeImpactDiagramViewModel viewModel3
-                        ? viewModel3.GetDiagram() as AttitudeImpactDiagram
-                        : null;
+                    selectedForceFieldDiagram =
+                        viewManager?.ActiveDocument?.ViewModel is ForceFieldDiagramViewModel viewModel2
+                            ? viewModel2.GetDiagram() as ForceFieldDiagram
+                            : null;
+                    selectedAttitudeImpactDiagram =
+                        viewManager?.ActiveDocument?.ViewModel is AttitudeImpactDiagramViewModel viewModel3
+                            ? viewModel3.GetDiagram() as AttitudeImpactDiagram
+                            : null;
 
-                    CanExecuteChanged?.Invoke(this,null);
+                    CanExecuteChanged?.Invoke(this, null);
                     break;
             }
         }
-
-        public event EventHandler CanExecuteChanged;
     }
 }

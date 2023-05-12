@@ -1,5 +1,4 @@
-﻿using System.Collections;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using System.Linq;
 using System.Windows;
 using StakeholderAnalysis.Data;
@@ -8,14 +7,15 @@ using StakeholderAnalysis.Visualization.ViewModels;
 namespace StakeholderAnalysis.Visualization.Controls
 {
     /// <summary>
-    /// Interaction logic for SelectStakeholdersDialog.xaml
+    ///     Interaction logic for SelectStakeholdersDialog.xaml
     /// </summary>
     public partial class SelectStakeholdersDialog : Window
     {
         public SelectStakeholdersDialog(Analysis analysis)
         {
             InitializeComponent();
-            ListBox.ItemsSource = analysis.Stakeholders.Select(st => new StakeholderViewModel(null, st, null, null)).ToList();
+            ListBox.ItemsSource = analysis.Stakeholders.Select(st => new StakeholderViewModel(null, st, null, null))
+                .ToList();
         }
 
         public IEnumerable<Stakeholder> SelectedStakeholders { get; private set; }
@@ -29,9 +29,7 @@ namespace StakeholderAnalysis.Visualization.Controls
         {
             var selectedStakeholders = new List<Stakeholder>();
             foreach (var item in ListBox.SelectedItems.OfType<StakeholderViewModel>())
-            {
                 selectedStakeholders.Add(item.Stakeholder);
-            }
 
             SelectedStakeholders = selectedStakeholders;
             DialogResult = true;

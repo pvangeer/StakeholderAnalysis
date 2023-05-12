@@ -60,15 +60,15 @@ namespace StakeholderAnalysis.Storage.Test.Create
         {
             var stakeholderType = new StakeholderType
             {
-                Color = Colors.Aqua, 
-                IconType = StakeholderIconType.Coffee, 
+                Color = Colors.Aqua,
+                IconType = StakeholderIconType.Coffee,
                 Name = "Test 1"
             };
             var analysis = new Analysis
             {
                 StakeholderTypes =
                 {
-                    stakeholderType,
+                    stakeholderType
                 },
                 Stakeholders =
                 {
@@ -152,11 +152,15 @@ namespace StakeholderAnalysis.Storage.Test.Create
                 Assert.AreEqual(diagram.BackgroundTextLeftTop, diagramXmlEntity.Background.BackgroundTextLeftTop);
                 Assert.AreEqual(diagram.BackgroundTextLeftBottom, diagramXmlEntity.Background.BackgroundTextLeftBottom);
                 Assert.AreEqual(diagram.BackgroundTextRightTop, diagramXmlEntity.Background.BackgroundTextRightTop);
-                Assert.AreEqual(diagram.BackgroundTextRightBottom, diagramXmlEntity.Background.BackgroundTextRightBottom);
-                Assert.AreEqual(diagram.BackgroundFontColor.ToHexString(), diagramXmlEntity.Background.BackgroundTextFontColor);
+                Assert.AreEqual(diagram.BackgroundTextRightBottom,
+                    diagramXmlEntity.Background.BackgroundTextRightBottom);
+                Assert.AreEqual(diagram.BackgroundFontColor.ToHexString(),
+                    diagramXmlEntity.Background.BackgroundTextFontColor);
                 Assert.AreEqual(diagram.BackgroundFontSize, diagramXmlEntity.Background.BackgroundTextFontSize);
-                Assert.AreEqual(diagram.BackgroundFontBold ? (byte)1 : (byte)0, diagramXmlEntity.Background.BackgroundTextFontBold);
-                Assert.AreEqual(diagram.BackgroundFontItalic ? (byte)1 : (byte)0, diagramXmlEntity.Background.BackgroundTextFontItalic);
+                Assert.AreEqual(diagram.BackgroundFontBold ? (byte)1 : (byte)0,
+                    diagramXmlEntity.Background.BackgroundTextFontBold);
+                Assert.AreEqual(diagram.BackgroundFontItalic ? (byte)1 : (byte)0,
+                    diagramXmlEntity.Background.BackgroundTextFontItalic);
                 Assert.AreEqual(diagram.YAxisMaxLabel, diagramXmlEntity.Axis.YAxisMaxLabel);
                 Assert.AreEqual(diagram.YAxisMinLabel, diagramXmlEntity.Axis.YAxisMinLabel);
                 Assert.AreEqual(diagram.XAxisMaxLabel, diagramXmlEntity.Axis.XAxisMaxLabel);
@@ -190,7 +194,7 @@ namespace StakeholderAnalysis.Storage.Test.Create
             {
                 StakeholderTypes =
                 {
-                    stakeholderType,
+                    stakeholderType
                 },
                 Stakeholders =
                 {
@@ -204,8 +208,8 @@ namespace StakeholderAnalysis.Storage.Test.Create
                     {
                         Stakeholders =
                         {
-                            new AttitudeImpactDiagramStakeholder(stakeholder1,0.15,0.5), 
-                            new AttitudeImpactDiagramStakeholder(stakeholder3,0.25,0.6)
+                            new AttitudeImpactDiagramStakeholder(stakeholder1, 0.15, 0.5),
+                            new AttitudeImpactDiagramStakeholder(stakeholder3, 0.25, 0.6)
                         }
                     }
                 }
@@ -220,7 +224,8 @@ namespace StakeholderAnalysis.Storage.Test.Create
             var firstXmlEntity = xmlEntity.AttitudeImpactDiagramXmlEntities.FirstOrDefault();
             Assert.IsNotNull(firstXmlEntity);
 
-            Assert.AreEqual(firstDiagram.Stakeholders.Count, firstXmlEntity.AttitudeImpactDiagramStakeholderXmlEntities.Count);
+            Assert.AreEqual(firstDiagram.Stakeholders.Count,
+                firstXmlEntity.AttitudeImpactDiagramStakeholderXmlEntities.Count);
             for (var index = 0; index < firstXmlEntity.AttitudeImpactDiagramStakeholderXmlEntities.Count; index++)
             {
                 var xmlDiagramStakeholder = firstXmlEntity.AttitudeImpactDiagramStakeholderXmlEntities[index];
@@ -255,7 +260,7 @@ namespace StakeholderAnalysis.Storage.Test.Create
             {
                 StakeholderTypes =
                 {
-                    stakeholderType,
+                    stakeholderType
                 },
                 Stakeholders =
                 {
@@ -264,13 +269,13 @@ namespace StakeholderAnalysis.Storage.Test.Create
                     stakeholder3
                 },
                 ForceFieldDiagrams =
-                {  
+                {
                     new ForceFieldDiagram("Diagram 1")
                     {
                         Stakeholders =
                         {
-                            new ForceFieldDiagramStakeholder(stakeholder1,0.15,0.5),
-                            new ForceFieldDiagramStakeholder(stakeholder3,0.25,0.6)
+                            new ForceFieldDiagramStakeholder(stakeholder1, 0.15, 0.5),
+                            new ForceFieldDiagramStakeholder(stakeholder3, 0.25, 0.6)
                         }
                     }
                 }
@@ -285,7 +290,8 @@ namespace StakeholderAnalysis.Storage.Test.Create
             var firstXmlEntity = xmlEntity.ForceFieldDiagramXmlEntities.FirstOrDefault();
             Assert.IsNotNull(firstXmlEntity);
 
-            Assert.AreEqual(firstDiagram.Stakeholders.Count, firstXmlEntity.ForceFieldDiagramStakeholderXmlEntities.Count);
+            Assert.AreEqual(firstDiagram.Stakeholders.Count,
+                firstXmlEntity.ForceFieldDiagramStakeholderXmlEntities.Count);
             for (var index = 0; index < firstXmlEntity.ForceFieldDiagramStakeholderXmlEntities.Count; index++)
             {
                 var xmlDiagramStakeholder = firstXmlEntity.ForceFieldDiagramStakeholderXmlEntities[index];
@@ -294,7 +300,7 @@ namespace StakeholderAnalysis.Storage.Test.Create
                 Assert.AreEqual(diagramStakeholder.Interest, xmlDiagramStakeholder.Interest);
                 Assert.AreEqual(diagramStakeholder.Influence, xmlDiagramStakeholder.Influence);
                 Assert.AreEqual(diagramStakeholder.Rank, xmlDiagramStakeholder.Rank);
-                Assert.AreEqual(index,xmlDiagramStakeholder.Order);
+                Assert.AreEqual(index, xmlDiagramStakeholder.Order);
 
                 Assert.IsTrue(registry.Contains(diagramStakeholder.Stakeholder));
                 var xmlStakeholder = registry.Get(diagramStakeholder.Stakeholder);
@@ -321,7 +327,7 @@ namespace StakeholderAnalysis.Storage.Test.Create
             var diagramStakeholder3 = new OnionDiagramStakeholder(stakeholder3, 0.3, 0.6);
             var onionDiagram = new OnionDiagram("Beoordelen", new ObservableCollection<OnionRing>
             {
-                new OnionRing(1.0) { BackgroundColor = Colors.LightBlue },
+                new OnionRing() { BackgroundColor = Colors.LightBlue },
                 new OnionRing(0.65) { BackgroundColor = Colors.CornflowerBlue },
                 new OnionRing(0.3) { BackgroundColor = Colors.DarkSlateBlue }
             })
@@ -331,7 +337,7 @@ namespace StakeholderAnalysis.Storage.Test.Create
                 {
                     diagramStakeholder1,
                     diagramStakeholder2,
-                    diagramStakeholder3,
+                    diagramStakeholder3
                 },
                 ConnectionGroups = { connectionGroup },
                 Connections = { new StakeholderConnection(connectionGroup, diagramStakeholder1, diagramStakeholder3) }
@@ -341,7 +347,7 @@ namespace StakeholderAnalysis.Storage.Test.Create
             {
                 StakeholderTypes =
                 {
-                    stakeholderType,
+                    stakeholderType
                 },
                 Stakeholders =
                 {
@@ -392,7 +398,8 @@ namespace StakeholderAnalysis.Storage.Test.Create
                 Assert.IsTrue(registry.Contains(diagramOnionRing));
             }
 
-            Assert.AreEqual(firstDiagram.ConnectionGroups.Count, firstXmlEntity.StakeholderConnectionGroupXmlEntities.Count);
+            Assert.AreEqual(firstDiagram.ConnectionGroups.Count,
+                firstXmlEntity.StakeholderConnectionGroupXmlEntities.Count);
             for (var index = 0; index < firstXmlEntity.StakeholderConnectionGroupXmlEntities.Count; index++)
             {
                 var connectionGroupXmlEntity = firstXmlEntity.StakeholderConnectionGroupXmlEntities[index];
@@ -416,7 +423,8 @@ namespace StakeholderAnalysis.Storage.Test.Create
                 Assert.AreEqual(index, connectionXmlEntity.Order);
 
                 Assert.IsTrue(registry.Contains(diagramConnection.StakeholderConnectionGroup));
-                Assert.AreEqual(registry.Get(diagramConnection.StakeholderConnectionGroup).Id, connectionXmlEntity.StakeholderConnectionGroupId);
+                Assert.AreEqual(registry.Get(diagramConnection.StakeholderConnectionGroup).Id,
+                    connectionXmlEntity.StakeholderConnectionGroupId);
 
                 Assert.IsTrue(registry.Contains(diagramConnection.ConnectFrom));
                 Assert.AreEqual(registry.Get(diagramConnection.ConnectFrom).Id, connectionXmlEntity.StakeholderFromId);

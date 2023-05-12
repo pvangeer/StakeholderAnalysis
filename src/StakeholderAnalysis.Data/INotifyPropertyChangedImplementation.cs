@@ -2,7 +2,7 @@
 
 namespace StakeholderAnalysis.Data
 {
-    public interface INotifyPropertyChangedImplementation: INotifyPropertyChanged
+    public interface INotifyPropertyChangedImplementation : INotifyPropertyChanged
     {
         void OnPropertyChanged(string propertyName);
     }

@@ -16,16 +16,6 @@ namespace StakeholderAnalysis.Visualization.Commands
             onionDiagramViewModel.PropertyChanged += ViewModelPropertyChanged;
         }
 
-        private void ViewModelPropertyChanged(object sender, PropertyChangedEventArgs e)
-        {
-            switch (e.PropertyName)
-            {
-                case nameof(OnionDiagramStakeholderViewModel.IsSelectedStakeholder):
-                    CanExecuteChanged?.Invoke(this,null);
-                    break;
-            }
-        }
-
         public bool CanExecute(object parameter)
         {
             return onionDiagramViewModel.IsSelectedStakeholder;
@@ -37,5 +27,15 @@ namespace StakeholderAnalysis.Visualization.Commands
         }
 
         public event EventHandler CanExecuteChanged;
+
+        private void ViewModelPropertyChanged(object sender, PropertyChangedEventArgs e)
+        {
+            switch (e.PropertyName)
+            {
+                case nameof(OnionDiagramStakeholderViewModel.IsSelectedStakeholder):
+                    CanExecuteChanged?.Invoke(this, null);
+                    break;
+            }
+        }
     }
 }

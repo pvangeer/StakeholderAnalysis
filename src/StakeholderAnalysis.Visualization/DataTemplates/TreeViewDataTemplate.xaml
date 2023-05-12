@@ -7,74 +7,105 @@
                     xmlns:converters="clr-namespace:StakeholderAnalysis.Visualization.Converters"
                     xmlns:projectExplorer="clr-namespace:StakeholderAnalysis.Visualization.ViewModels.ProjectExplorer"
                     xmlns:data="clr-namespace:StakeholderAnalysis.Data;assembly=StakeholderAnalysis.Data"
-                    xmlns:System="clr-namespace:System;assembly=mscorlib">
+                    xmlns:System="clr-namespace:System;assembly=mscorlib"
+                    xmlns:onionDiagrams="clr-namespace:StakeholderAnalysis.Data.OnionDiagrams;assembly=StakeholderAnalysis.Data">
 
     <ResourceDictionary.MergedDictionaries>
-        <ResourceDictionary Source="TreeViewStyles.xaml"/>
+        <ResourceDictionary Source="TreeViewStyles.xaml" />
     </ResourceDictionary.MergedDictionaries>
 
-    <Image x:Key="MenuItemIcon" Width="18" Height="18" Source="{Binding IconReference}" x:Shared="False"/>
+    <Image x:Key="MenuItemIcon" Width="18" Height="18" Source="{Binding IconReference}" x:Shared="False" />
     <Style x:Key="MenuItemStyle" TargetType="MenuItem">
         <Style.Triggers>
             <Trigger Property="IsFocused" Value="true">
-                <Setter Property="BorderBrush" Value="Red"/>
+                <Setter Property="BorderBrush" Value="Red" />
                 <Setter Property="Background" Value="Red" />
-                <Setter Property="Foreground" Value="White"/>
+                <Setter Property="Foreground" Value="White" />
             </Trigger>
         </Style.Triggers>
-        <Setter Property="Command" Value="{Binding Command}"/>
-        <Setter Property="Icon" Value="{StaticResource MenuItemIcon}"/>
-        <Setter Property="Header" Value="{Binding Header}"/>
-        <Setter Property="IsEnabled" Value="{Binding IsEnabled}"/>
+        <Setter Property="Command" Value="{Binding Command}" />
+        <Setter Property="Icon" Value="{StaticResource MenuItemIcon}" />
+        <Setter Property="Header" Value="{Binding Header}" />
+        <Setter Property="IsEnabled" Value="{Binding IsEnabled}" />
     </Style>
 
     <ObjectDataProvider x:Key="StakeholderTypeIconStyles" MethodName="GetValues"
                         ObjectType="{x:Type System:Enum}">
         <ObjectDataProvider.MethodParameters>
-            <x:Type TypeName="data:StakeholderIconType"/>
+            <x:Type TypeName="data:StakeholderIconType" />
+        </ObjectDataProvider.MethodParameters>
+    </ObjectDataProvider>
+
+    <ObjectDataProvider x:Key="LineStyles" MethodName="GetValues"
+                        ObjectType="{x:Type System:Enum}">
+        <ObjectDataProvider.MethodParameters>
+            <x:Type TypeName="onionDiagrams:LineStyle" />
         </ObjectDataProvider.MethodParameters>
     </ObjectDataProvider>
 
     <converters:IconTypeToIconSourceConverter x:Key="IconTypeToIconSourceConverter" />
+    <converters:LineStyleToDashArrayConverter x:Key="LineStyleToStrokeArrayConverter" />
 
     <DataTemplate x:Key="ColorPropertyDataTemplate" DataType="propertiesTree:IColorPropertyTreeNodeViewModel">
-        <xctk:ColorPicker 
+        <xctk:ColorPicker
             Height="20"
-            SelectedColor="{Binding ColorValue}"/>
+            SelectedColor="{Binding ColorValue}" />
     </DataTemplate>
 
-    <DataTemplate x:Key="DoubleUpDownPropertyDataTemplate" DataType="propertiesTree:IDoubleUpDownPropertyTreeNodeViewModel">
+    <DataTemplate x:Key="LineStyleDataTemplate" DataType="{x:Type propertiesTree:ILineStylePropertyTreeNodeViewModel}">
+        <ComboBox
+            ItemsSource="{Binding Source={StaticResource LineStyles}}"
+            SelectedItem="{Binding LineStyleValue}">
+            <ComboBox.ItemTemplate>
+                <DataTemplate DataType="{x:Type onionDiagrams:LineStyle}">
+                    <StackPanel Orientation="Horizontal" Height="20" VerticalAlignment="Center">
+                        <Canvas>
+                            <Line
+                                StrokeThickness="3"
+                                Stroke="Black"
+                                X1="5" X2="50" Y1="10" Y2="10"
+                                StrokeDashArray="{Binding Converter={StaticResource LineStyleToStrokeArrayConverter}}" />
+                        </Canvas>
+                    </StackPanel>
+                </DataTemplate>
+            </ComboBox.ItemTemplate>
+        </ComboBox>
+    </DataTemplate>
+
+    <DataTemplate x:Key="DoubleUpDownPropertyDataTemplate"
+                  DataType="propertiesTree:IDoubleUpDownPropertyTreeNodeViewModel">
         <xctk:DoubleUpDown
             Value="{Binding DoubleValue}"
             Minimum="{Binding MinValue}"
             Maximum="{Binding MaxValue}"
             Increment="{Binding Increment}"
-            FormatString="{Binding StringFormat}"/>
+            FormatString="{Binding StringFormat}" />
     </DataTemplate>
 
     <DataTemplate x:Key="CheckBoxTemplate" DataType="propertiesTree:IBooleanPropertyTreeNodeViewModel">
-        <CheckBox 
+        <CheckBox
             Height="20"
             HorizontalAlignment="Center"
             VerticalContentAlignment="Center"
-            IsChecked="{Binding BooleanValue}"/>
+            IsChecked="{Binding BooleanValue}" />
     </DataTemplate>
 
     <DataTemplate x:Key="StringTemplate" DataType="propertiesTree:IStringPropertyTreeNodeViewModel">
-        <TextBox 
-            Text="{Binding StringValue, UpdateSourceTrigger=PropertyChanged}"/>
+        <TextBox
+            Text="{Binding StringValue, UpdateSourceTrigger=PropertyChanged}" />
     </DataTemplate>
 
-    <DataTemplate x:Key="StakeholderTypeIconDataTemplate" DataType="projectExplorer:IStakeholderTypeIconPropertyTreeNodeViewModel">
+    <DataTemplate x:Key="StakeholderTypeIconDataTemplate"
+                  DataType="projectExplorer:IStakeholderTypeIconPropertyTreeNodeViewModel">
         <ComboBox
             ItemsSource="{Binding Source={StaticResource StakeholderTypeIconStyles}}"
             SelectedItem="{Binding IconTypeValue}">
             <ComboBox.ItemTemplate>
                 <DataTemplate DataType="data:StakeholderIconType">
-                    <Image 
+                    <Image
                         Width="16"
                         Height="16"
-                        Source="{Binding Converter={StaticResource IconTypeToIconSourceConverter}}"/>
+                        Source="{Binding Converter={StaticResource IconTypeToIconSourceConverter}}" />
                 </DataTemplate>
             </ComboBox.ItemTemplate>
         </ComboBox>
@@ -83,16 +114,17 @@
     <DataTemplate x:Key="FontFamilySelectorTemplate" DataType="propertiesTree:IFontFamilyPropertyTreeNodeViewModel">
         <ComboBox
             ItemsSource="{Binding Source={x:Static Fonts.SystemFontFamilies}}"
-            SelectedItem="{Binding SelectedValue}"/>
+            SelectedItem="{Binding SelectedValue}" />
     </DataTemplate>
 
     <visualization:PropertyValueTreeNodeTemplateSelector x:Key="PropertyValueContentTemplateSelector"
                                                          StakeholderTypeIconDataTemplate="{StaticResource StakeholderTypeIconDataTemplate}"
                                                          FontFamilySelectorTemplate="{StaticResource FontFamilySelectorTemplate}"
                                                          CheckBoxTemplate="{StaticResource CheckBoxTemplate}"
-                                                         StringTempalte="{StaticResource StringTemplate}"
+                                                         StringTemplate="{StaticResource StringTemplate}"
                                                          ColorTemplate="{StaticResource ColorPropertyDataTemplate}"
-                                                         DoubleUpDownTemplate="{StaticResource DoubleUpDownPropertyDataTemplate}"/>
+                                                         LineStyleTemplate="{StaticResource LineStyleDataTemplate}"
+                                                         DoubleUpDownTemplate="{StaticResource DoubleUpDownPropertyDataTemplate}" />
 
     <BooleanToVisibilityConverter x:Key="BooleanToVisibilityConverter" />
     <converters:QuickSelectionToVisibilityConverter x:Key="QuickSelectionToVisibilityConverter" />
@@ -101,7 +133,7 @@
     <converters:HasItemsToVisibilityConverter x:Key="HasItemsToVisibilityConverter" />
 
     <ControlTemplate x:Key="MenuItemContainerStyleTemplate" TargetType="MenuItem">
-        <Button Command="{Binding Command}"></Button>
+        <Button Command="{Binding Command}" />
     </ControlTemplate>
 
     <visualization:TestConverter x:Key="TestConverter" />
@@ -114,7 +146,7 @@
                             <Setter Property="behaviors:AttachInputBindingsBehavior.InputBindings">
                                 <Setter.Value>
                                     <InputBindingCollection>
-                                        <MouseBinding MouseAction="LeftDoubleClick" Command="{Binding OpenViewCommand}"></MouseBinding>
+                                        <MouseBinding MouseAction="LeftDoubleClick" Command="{Binding OpenViewCommand}" />
                                     </InputBindingCollection>
                                 </Setter.Value>
                             </Setter>
@@ -124,57 +156,56 @@
             </Border.Style>
             <Border.ContextMenu>
                 <ContextMenu
-                    Visibility="{Binding ContextMenuItems, Converter={StaticResource HasItemsToVisibilityConverter}}" 
+                    Visibility="{Binding ContextMenuItems, Converter={StaticResource HasItemsToVisibilityConverter}}"
                     ItemsSource="{Binding ContextMenuItems}"
-                    ItemContainerStyle="{StaticResource MenuItemStyle}">
-                </ContextMenu>
+                    ItemContainerStyle="{StaticResource MenuItemStyle}" />
             </Border.ContextMenu>
             <Grid>
                 <Grid.ColumnDefinitions>
-                    <ColumnDefinition Width="Auto"/>
-                    <ColumnDefinition Width="Auto"/>
-                    <ColumnDefinition Width="Auto"/>
-                    <ColumnDefinition Width="*"/>
-                    <ColumnDefinition Width="Auto"/>
-                    <ColumnDefinition Width="Auto"/>
+                    <ColumnDefinition Width="Auto" />
+                    <ColumnDefinition Width="Auto" />
+                    <ColumnDefinition Width="Auto" />
+                    <ColumnDefinition Width="*" />
+                    <ColumnDefinition Width="Auto" />
+                    <ColumnDefinition Width="Auto" />
                 </Grid.ColumnDefinitions>
-                <Button 
+                <Button
                     Grid.Column="0"
                     Width="24"
                     Command="{Binding ToggleIsExpandedCommand}"
                     Visibility="{Binding IsExpandable, Converter={StaticResource BooleanToVisibilityConverter}}"
-                    Style="{StaticResource ExpandCollapseButtonStyle}"/>
+                    Style="{StaticResource ExpandCollapseButtonStyle}" />
                 <Image
                     Grid.Column="1"
                     Width="20"
                     Height="20"
                     Margin="2,0,2,0"
                     Visibility="{Binding IconSourceString, Converter={StaticResource SourceStringToVisibilityConverter}}"
-                    Source="{Binding IconSourceString}"/>
+                    Source="{Binding IconSourceString}" />
                 <CheckBox Grid.Column="2"
                           VerticalContentAlignment="Center"
                           Margin="0,0,2,0"
                           Visibility="{Binding Converter={StaticResource QuickSelectionToVisibilityConverter}}"
-                          IsChecked="{Binding IsSelected}"/>
-                <TextBlock 
+                          IsChecked="{Binding IsSelected}" />
+                <TextBlock
                     TextAlignment="Left"
-                    Grid.Column="3" 
-                    Text="{Binding DisplayName}" 
+                    Grid.Column="3"
+                    Text="{Binding DisplayName}"
                     HorizontalAlignment="Stretch"
                     VerticalAlignment="Center"
-                    FontSize="12"/>
-                <Button 
+                    FontSize="12" />
+                <Button
                     Grid.Column="4"
                     Margin="2"
                     Visibility="{Binding CanRemove, Converter={StaticResource BooleanToVisibilityConverter}}"
                     Command="{Binding RemoveItemCommand}"
-                    Style="{StaticResource RemoveButtonStyle}"/>
-                <Button 
+                    Style="{StaticResource RemoveButtonStyle}" />
+                <Button
                     Grid.Column="5"
                     Margin="2"
                     Visibility="{Binding CanAdd, Converter={StaticResource BooleanToVisibilityConverter}}"
                     Command="{Binding AddItemCommand}"
-                    Style="{StaticResource AddButtonStyle}"/>
+                    Style="{StaticResource AddButtonStyle}" />
             </Grid>
         </Border>
     </DataTemplate>
@@ -183,46 +214,51 @@
         <Border Style="{StaticResource TreeNodeBorderStyle}">
             <Grid>
                 <Grid.ColumnDefinitions>
-                    <ColumnDefinition Width="*"/>
-                    <ColumnDefinition Width="5"/>
-                    <ColumnDefinition Width="Auto" SharedSizeGroup="True"/>
+                    <ColumnDefinition Width="*" />
+                    <ColumnDefinition Width="5" />
+                    <ColumnDefinition Width="Auto" SharedSizeGroup="True" />
                 </Grid.ColumnDefinitions>
-                <TextBlock 
-                    Grid.Column="0" 
-                    Text="{Binding DisplayName}" 
+                <TextBlock
+                    Grid.Column="0"
+                    Text="{Binding DisplayName}"
                     TextAlignment="Left"
                     VerticalAlignment="Center"
-                    Background="Transparent"/>
-                <GridSplitter Grid.Column="1" Width="5" Background="Gainsboro" HorizontalAlignment="Stretch" ResizeBehavior="BasedOnAlignment"/>
-                <ContentPresenter 
-                    Grid.Column="2" 
-                    Content="{Binding }" 
-                    ContentTemplateSelector="{StaticResource PropertyValueContentTemplateSelector}">
-                </ContentPresenter>
+                    Background="Transparent" />
+                <GridSplitter Grid.Column="1" Width="5" Background="Gainsboro" HorizontalAlignment="Stretch"
+                              ResizeBehavior="BasedOnAlignment" />
+                <ContentPresenter
+                    Grid.Column="2"
+                    Content="{Binding }"
+                    ContentTemplateSelector="{StaticResource PropertyValueContentTemplateSelector}" />
             </Grid>
         </Border>
     </DataTemplate>
 
-    <DataTemplate x:Key="IPropertyCollectionItemDataTemplate" DataType="propertiesTree:IPropertyCollectionTreeNodeViewModel">
+    <DataTemplate x:Key="IPropertyCollectionItemDataTemplate"
+                  DataType="propertiesTree:IPropertyCollectionTreeNodeViewModel">
         <StackPanel Orientation="Vertical">
-            <ContentPresenter Content="{Binding }" ContentTemplate="{StaticResource ITreeNodeItemDataTemplate}"/>
-            <Grid Visibility="{Binding IsExpanded, Converter={StaticResource BooleanToVisibilityConverter}}" >
+            <ContentPresenter Content="{Binding }" ContentTemplate="{StaticResource ITreeNodeItemDataTemplate}" />
+            <Grid Visibility="{Binding IsExpanded, Converter={StaticResource BooleanToVisibilityConverter}}">
                 <Grid.ColumnDefinitions>
-                    <ColumnDefinition Width="24"/>
-                    <ColumnDefinition Width="*"/>
+                    <ColumnDefinition Width="24" />
+                    <ColumnDefinition Width="*" />
                 </Grid.ColumnDefinitions>
-                <ItemsControl 
+                <ItemsControl
                     Grid.Column="1"
-                    ItemsSource="{Binding Items}" 
+                    ItemsSource="{Binding Items}"
                     Grid.IsSharedSizeScope="True">
                     <ItemsControl.Style>
                         <Style TargetType="ItemsControl">
                             <Style.Triggers>
-                                <DataTrigger Binding="{Binding CollectionType}" Value="{x:Static propertiesTree:CollectionType.PropertyValue}">
-                                    <Setter Property="ItemTemplate" Value="{StaticResource PropertyValueItemDataTemplate}"/>
+                                <DataTrigger Binding="{Binding CollectionType}"
+                                             Value="{x:Static propertiesTree:CollectionType.PropertyValue}">
+                                    <Setter Property="ItemTemplate"
+                                            Value="{StaticResource PropertyValueItemDataTemplate}" />
                                 </DataTrigger>
-                                <DataTrigger Binding="{Binding CollectionType}" Value="{x:Static propertiesTree:CollectionType.PropertyItemsCollection}">
-                                    <Setter Property="ItemTemplate" Value="{DynamicResource IPropertyCollectionItemDataTemplate}"/>
+                                <DataTrigger Binding="{Binding CollectionType}"
+                                             Value="{x:Static propertiesTree:CollectionType.PropertyItemsCollection}">
+                                    <Setter Property="ItemTemplate"
+                                            Value="{DynamicResource IPropertyCollectionItemDataTemplate}" />
                                 </DataTrigger>
                             </Style.Triggers>
                         </Style>

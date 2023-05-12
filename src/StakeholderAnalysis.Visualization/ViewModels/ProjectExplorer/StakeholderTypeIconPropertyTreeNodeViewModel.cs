@@ -3,7 +3,8 @@ using StakeholderAnalysis.Visualization.ViewModels.PropertiesTree;
 
 namespace StakeholderAnalysis.Visualization.ViewModels.ProjectExplorer
 {
-    public class StakeholderTypeIconPropertyTreeNodeViewModel : PropertyTreeNodeViewModelBaseBase, IStakeholderTypeIconPropertyTreeNodeViewModel
+    public class StakeholderTypeIconPropertyTreeNodeViewModel : PropertyTreeNodeViewModelBaseBase,
+        IStakeholderTypeIconPropertyTreeNodeViewModel
     {
         private readonly StakeholderType content;
 

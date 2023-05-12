@@ -17,18 +17,18 @@
 
     <converters:IsProneToExportConverter x:Key="IsProneToExportConverter" />
 
-    <visualization:ViewTemplateSelector x:Key="ViewTemplateSelector" 
+    <visualization:ViewTemplateSelector x:Key="ViewTemplateSelector"
                                         StakeholderTableViewTemplate="{StaticResource StakeholderTableDataTemplate}"
                                         OnionDiagramViewTemplate="{StaticResource OnionDiagramDataTemplate}"
                                         ProjectExplorerDataTemplate="{StaticResource ProjectExplorerDataTemplate}"
                                         StakeholderForcesDiagramTemplate="{StaticResource TwoAxisDiagramDataTemplate}"
                                         AttitudeImpactDiagramTemplate="{StaticResource TwoAxisDiagramDataTemplate}"
                                         TwoAxisDiagramPropertiesTemplate="{StaticResource TwoAxisDiagramPropertiesDataTemplate}"
-                                        OnionDiagramPropertiesTemplate="{StaticResource OnionDiagramPropertiesDataTemplate}"/>
+                                        OnionDiagramPropertiesTemplate="{StaticResource OnionDiagramPropertiesDataTemplate}" />
 
     <DataTemplate x:Key="DocumentViewDataTemplate" DataType="gui:ViewInfo">
-        <ContentPresenter 
-            Content="{Binding ViewModel}" 
+        <ContentPresenter
+            Content="{Binding ViewModel}"
             ContentTemplateSelector="{StaticResource ViewTemplateSelector}">
             <ContentPresenter.Style>
                 <Style TargetType="ContentPresenter">
@@ -36,14 +36,17 @@
                         <DataTrigger Value="True">
                             <DataTrigger.Binding>
                                 <MultiBinding Converter="{StaticResource IsProneToExportConverter}">
-                                    <Binding ElementName="MainContentPresenter" Path="DataContext.IsSaveToImage"/>
-                                    <Binding ElementName="MainContentPresenter" Path="DataContext.ViewManager.ActiveDocument"/>
-                                    <Binding/>
+                                    <Binding ElementName="MainContentPresenter" Path="DataContext.IsSaveToImage" />
+                                    <Binding ElementName="MainContentPresenter"
+                                             Path="DataContext.ViewManager.ActiveDocument" />
+                                    <Binding />
                                 </MultiBinding>
                             </DataTrigger.Binding>
                             <Setter Property="behaviors:SaveToImageBehavior.SaveToImage" Value="True" />
                         </DataTrigger>
-                        <DataTrigger Binding="{Binding ElementName=MainContentPresenter, Path=DataContext.IsSaveToImage}" Value="False">
+                        <DataTrigger
+                            Binding="{Binding ElementName=MainContentPresenter, Path=DataContext.IsSaveToImage}"
+                            Value="False">
                             <Setter Property="behaviors:SaveToImageBehavior.SaveToImage" Value="False" />
                         </DataTrigger>
                     </Style.Triggers>
@@ -55,9 +58,11 @@
                     BorderThickness="1"
                     Radius="150"
                     ZoomFactor=".4"
-                    FrameType="Circle" >
+                    FrameType="Circle">
                     <xctk:Magnifier.Visibility>
-                        <Binding Path="MainContentPresenterViewModel.IsMagnifierActive" Converter="{StaticResource BooleanToVisibilityConverter}" UpdateSourceTrigger="PropertyChanged"/>
+                        <Binding Path="MainContentPresenterViewModel.IsMagnifierActive"
+                                 Converter="{StaticResource BooleanToVisibilityConverter}"
+                                 UpdateSourceTrigger="PropertyChanged" />
                     </xctk:Magnifier.Visibility>
                 </xctk:Magnifier>
             </xctk:MagnifierManager.Magnifier>
@@ -65,10 +70,9 @@
     </DataTemplate>
 
     <DataTemplate x:Key="ToolWindowDataTemplate" DataType="gui:ViewInfo">
-        <ContentPresenter 
-            Content="{Binding ViewModel}" 
-            ContentTemplateSelector="{StaticResource ViewTemplateSelector}">
-        </ContentPresenter>
+        <ContentPresenter
+            Content="{Binding ViewModel}"
+            ContentTemplateSelector="{StaticResource ViewTemplateSelector}" />
     </DataTemplate>
 
 </ResourceDictionary>

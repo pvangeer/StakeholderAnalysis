@@ -3,15 +3,17 @@
                     xmlns:twoAxisDiagramProperties="clr-namespace:StakeholderAnalysis.Visualization.ViewModels.TwoAxisDiagramProperties">
 
     <ResourceDictionary.MergedDictionaries>
-        <ResourceDictionary Source="/StakeholderAnalysis.Visualization;Component/DataTemplates/TreeViewDataTemplate.xaml" />
+        <ResourceDictionary
+            Source="/StakeholderAnalysis.Visualization;Component/DataTemplates/TreeViewDataTemplate.xaml" />
     </ResourceDictionary.MergedDictionaries>
 
-    <DataTemplate x:Key="TwoAxisDiagramPropertiesDataTemplate" DataType="twoAxisDiagramProperties:TwoAxisDiagramPropertiesViewModel">
+    <DataTemplate x:Key="TwoAxisDiagramPropertiesDataTemplate"
+                  DataType="twoAxisDiagramProperties:TwoAxisDiagramPropertiesViewModel">
         <Grid>
             <StackPanel Orientation="Vertical">
-                <ContentPresenter 
+                <ContentPresenter
                     Content="{Binding TreeViewModel}"
-                    ContentTemplate="{StaticResource IPropertyCollectionItemDataTemplate}"/>
+                    ContentTemplate="{StaticResource IPropertyCollectionItemDataTemplate}" />
             </StackPanel>
         </Grid>
     </DataTemplate>

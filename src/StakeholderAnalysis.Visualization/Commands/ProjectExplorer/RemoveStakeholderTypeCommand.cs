@@ -7,8 +7,8 @@ namespace StakeholderAnalysis.Visualization.Commands.ProjectExplorer
 {
     public class RemoveStakeholderTypeCommand : ICommand
     {
-        private readonly StakeholderType stakeholderType;
         private readonly Analysis analysis;
+        private readonly StakeholderType stakeholderType;
 
         public RemoveStakeholderTypeCommand(StakeholderType stakeholderType, Analysis analysis)
         {
@@ -24,9 +24,7 @@ namespace StakeholderAnalysis.Visualization.Commands.ProjectExplorer
         public void Execute(object parameter)
         {
             foreach (var stakeholder in analysis.Stakeholders.Where(s => s.Type == stakeholderType).ToList())
-            {
                 AnalysisServices.RemoveStakeholderFromAnalysis(analysis, stakeholder);
-            }
 
             analysis.StakeholderTypes.Remove(stakeholderType);
         }

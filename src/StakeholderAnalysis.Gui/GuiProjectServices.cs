@@ -11,10 +11,10 @@ namespace StakeholderAnalysis.Gui
 {
     public class GuiProjectServices
     {
-        private readonly StakeholderAnalysisLog log = new StakeholderAnalysisLog(typeof(GuiProjectServices));
         private readonly StakeholderAnalysisGui gui;
+        private readonly StakeholderAnalysisLog log = new StakeholderAnalysisLog(typeof(GuiProjectServices));
         private readonly StorageXml storageXml;
-        
+
         public GuiProjectServices(StakeholderAnalysisGui gui)
         {
             this.gui = gui;
@@ -29,13 +29,10 @@ namespace StakeholderAnalysis.Gui
         private void CreateNewProject()
         {
             storageXml.UnStageProject();
-            foreach (var viewInfo in gui.ViewManager.Views.ToArray())
-            {
-                gui.ViewManager.CloseView(viewInfo);
-            }
+            foreach (var viewInfo in gui.ViewManager.Views.ToArray()) gui.ViewManager.CloseView(viewInfo);
 
             gui.ProjectFilePath = "";
-            
+
             gui.Analysis = new Analysis();
 
             gui.OnPropertyChanged(nameof(StakeholderAnalysisGui.Analysis));
@@ -55,15 +52,12 @@ namespace StakeholderAnalysis.Gui
             {
                 CheckFileExists = true,
                 Filter = "Stakeholder analyse bestand (*.xml)|*.xml",
-                FileName = gui.ProjectFilePath,
+                FileName = gui.ProjectFilePath
             };
 
-            if ((bool) dialog.ShowDialog(Application.Current.MainWindow))
+            if ((bool)dialog.ShowDialog(Application.Current.MainWindow))
             {
-                foreach (var viewInfo in gui.ViewManager.Views.ToArray())
-                {
-                    gui.ViewManager.CloseView(viewInfo);
-                }
+                foreach (var viewInfo in gui.ViewManager.Views.ToArray()) gui.ViewManager.CloseView(viewInfo);
 
                 ChangeState(StorageState.Busy);
 
@@ -149,16 +143,13 @@ namespace StakeholderAnalysis.Gui
             }
         }
 
-        private void BackgroundWorkerAsyncFinished(object sender, RunWorkerCompletedEventArgs e, Action workFinishedAction)
+        private void BackgroundWorkerAsyncFinished(object sender, RunWorkerCompletedEventArgs e,
+            Action workFinishedAction)
         {
             if (e.Result is Exception exception)
-            {
                 log.Error(exception.Message);
-            }
             else
-            {
                 workFinishedAction();
-            }
 
             ChangeState(StorageState.Idle);
         }
@@ -183,13 +174,9 @@ namespace StakeholderAnalysis.Gui
             if (storageXml.HasStagedProjectChanges())
             {
                 if (gui.ShouldSaveOpenChanges != null && gui.ShouldSaveOpenChanges())
-                {
                     SaveProject(followingAction);
-                }
                 else
-                {
                     followingAction();
-                }
             }
             else
             {
@@ -199,10 +186,7 @@ namespace StakeholderAnalysis.Gui
 
         private void StageAndStoreProjectCore()
         {
-            if (!storageXml.HasStagedProject)
-            {
-                storageXml.StageProject(gui.Analysis);
-            }
+            if (!storageXml.HasStagedProject) storageXml.StageProject(gui.Analysis);
 
             storageXml.SaveProjectAs(gui.ProjectFilePath);
         }

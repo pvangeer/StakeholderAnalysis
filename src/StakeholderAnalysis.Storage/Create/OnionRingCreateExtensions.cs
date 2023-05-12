@@ -17,7 +17,8 @@ namespace StakeholderAnalysis.Storage.Create
                 Percentage = ring.Percentage,
                 BackgroundColor = ring.BackgroundColor.ToHexString(),
                 StrokeColor = ring.StrokeColor.ToHexString(),
-                StrokeThickness = ring.StrokeThickness
+                StrokeThickness = ring.StrokeThickness,
+                LineStyle = Convert.ToByte(ring.LineStyle)
             };
 
             registry.Register(ring, entity);

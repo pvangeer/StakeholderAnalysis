@@ -10,21 +10,17 @@ namespace StakeholderAnalysis.Visualization.Commands.OnionDiagramProperties
         private readonly IRankedStakeholderDiagram<TStakeholder> diagram;
         private readonly IRankedStakeholder stakeholder;
 
-        public MoveStakeholderDownCommand(IRankedStakeholderDiagram<TStakeholder> diagram, IRankedStakeholder stakeholder)
+        public MoveStakeholderDownCommand(IRankedStakeholderDiagram<TStakeholder> diagram,
+            IRankedStakeholder stakeholder)
         {
             this.diagram = diagram;
             this.stakeholder = stakeholder;
             if (diagram != null)
-            {
                 diagram.Stakeholders.CollectionChanged += (o, e) => CanExecuteChanged?.Invoke(this, null);
-            }
 
             stakeholder.PropertyChanged += (o, e) =>
             {
-                if (e.PropertyName == nameof(IRankedStakeholder.Rank))
-                {
-                    CanExecuteChanged?.Invoke(this, null);
-                }
+                if (e.PropertyName == nameof(IRankedStakeholder.Rank)) CanExecuteChanged?.Invoke(this, null);
             };
         }
 

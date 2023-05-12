@@ -1,4 +1,3 @@
-using System.Linq.Expressions;
 using StakeholderAnalysis.Gui;
 using StakeholderAnalysis.Visualization.ViewModels.OnionDiagramProperties;
 using StakeholderAnalysis.Visualization.ViewModels.ProjectExplorer;
@@ -11,7 +10,9 @@ namespace StakeholderAnalysis.Visualization.ViewModels
     {
         private readonly StakeholderAnalysisGui gui;
 
-        public MainWindowViewModel() : this(new StakeholderAnalysisGui()){ }
+        public MainWindowViewModel() : this(new StakeholderAnalysisGui())
+        {
+        }
 
         public MainWindowViewModel(StakeholderAnalysisGui guiInput) : base(new ViewModelFactory(guiInput))
         {
@@ -30,7 +31,7 @@ namespace StakeholderAnalysis.Visualization.ViewModels
 
         public void ForcedClosingMainWindow()
         {
-            gui.GuiProjectServices.HandleUnsavedChanges(gui, () => {});
+            gui.GuiProjectServices.HandleUnsavedChanges(gui, () => { });
         }
     }
 }

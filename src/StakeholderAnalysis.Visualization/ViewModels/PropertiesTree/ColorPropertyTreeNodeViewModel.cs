@@ -6,25 +6,21 @@ using StakeholderAnalysis.Data;
 
 namespace StakeholderAnalysis.Visualization.ViewModels.PropertiesTree
 {
-    public class ColorPropertyTreeNodeViewModel<TContent> : PropertyTreeNodeViewModelBaseBase, IColorPropertyTreeNodeViewModel where TContent : INotifyPropertyChangedImplementation
+    public class ColorPropertyTreeNodeViewModel<TContent> : PropertyTreeNodeViewModelBaseBase,
+        IColorPropertyTreeNodeViewModel where TContent : INotifyPropertyChangedImplementation
     {
         private readonly PropertyInfo propertyInfo;
         private TContent content;
 
-        public ColorPropertyTreeNodeViewModel(TContent content, string propertyName, string displayName) : base(displayName)
+        public ColorPropertyTreeNodeViewModel(TContent content, string propertyName, string displayName) : base(
+            displayName)
         {
-            this.Content = content;
+            Content = content;
 
             propertyInfo = typeof(TContent).GetProperty(propertyName, BindingFlags.Public | BindingFlags.Instance);
-            if (propertyInfo == null || propertyInfo.PropertyType != typeof(Color))
-            {
-                throw new ArgumentException();
-            }
+            if (propertyInfo == null || propertyInfo.PropertyType != typeof(Color)) throw new ArgumentException();
 
-            if (this.Content != null)
-            {
-                this.Content.PropertyChanged += ContentPropertyChanged;
-            }
+            if (Content != null) Content.PropertyChanged += ContentPropertyChanged;
         }
 
         public TContent Content
@@ -32,15 +28,9 @@ namespace StakeholderAnalysis.Visualization.ViewModels.PropertiesTree
             get => content;
             set
             {
-                if (content != null)
-                {
-                    content.PropertyChanged -= ContentPropertyChanged;
-                }
+                if (content != null) content.PropertyChanged -= ContentPropertyChanged;
                 content = value;
-                if (content != null)
-                {
-                    content.PropertyChanged += ContentPropertyChanged;
-                }
+                if (content != null) content.PropertyChanged += ContentPropertyChanged;
                 OnPropertyChanged(nameof(ColorValue));
             }
         }
@@ -65,10 +55,7 @@ namespace StakeholderAnalysis.Visualization.ViewModels.PropertiesTree
 
         private void ContentPropertyChanged(object sender, PropertyChangedEventArgs e)
         {
-            if (e.PropertyName == propertyInfo.Name)
-            {
-                OnPropertyChanged(nameof(ColorValue));
-            }
+            if (e.PropertyName == propertyInfo.Name) OnPropertyChanged(nameof(ColorValue));
         }
     }
 }

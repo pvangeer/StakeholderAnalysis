@@ -2,7 +2,7 @@
 
 namespace StakeholderAnalysis.Visualization.ViewModels.PropertiesTree
 {
-    interface IFontFamilyPropertyTreeNodeViewModel : ITreeNodeViewModel
+    internal interface IFontFamilyPropertyTreeNodeViewModel : ITreeNodeViewModel
     {
         FontFamily SelectedValue { get; set; }
     }

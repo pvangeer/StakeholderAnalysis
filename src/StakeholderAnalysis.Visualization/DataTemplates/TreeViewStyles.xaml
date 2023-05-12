@@ -4,10 +4,10 @@
     <Style x:Key="TreeNodeBorderStyle" TargetType="{x:Type Border}">
         <Style.Triggers>
             <Trigger Property="IsMouseOver" Value="True">
-                <Setter Property="Background" Value="CornflowerBlue"/>
+                <Setter Property="Background" Value="CornflowerBlue" />
             </Trigger>
             <Trigger Property="IsMouseOver" Value="False">
-                <Setter Property="Background" Value="GhostWhite"/>
+                <Setter Property="Background" Value="GhostWhite" />
             </Trigger>
         </Style.Triggers>
     </Style>
@@ -16,16 +16,18 @@
         <Setter Property="Template">
             <Setter.Value>
                 <ControlTemplate TargetType="Button">
-                    <Image Width="16" 
+                    <Image Width="16"
                            Height="16">
                         <Image.Style>
                             <Style TargetType="Image">
                                 <Style.Triggers>
                                     <DataTrigger Binding="{Binding IsExpanded}" Value="True">
-                                        <Setter Property="Source" Value="pack://application:,,,/StakeholderAnalysis.Visualization;component/Resources/expanded.png"/>
+                                        <Setter Property="Source"
+                                                Value="pack://application:,,,/StakeholderAnalysis.Visualization;component/Resources/expanded.png" />
                                     </DataTrigger>
                                     <DataTrigger Binding="{Binding IsExpanded}" Value="False">
-                                        <Setter Property="Source" Value="pack://application:,,,/StakeholderAnalysis.Visualization;component/Resources/collapsed.png"/>
+                                        <Setter Property="Source"
+                                                Value="pack://application:,,,/StakeholderAnalysis.Visualization;component/Resources/collapsed.png" />
                                     </DataTrigger>
                                 </Style.Triggers>
                             </Style>
@@ -40,11 +42,11 @@
         <Setter Property="Template">
             <Setter.Value>
                 <ControlTemplate TargetType="Button">
-                    <Image Width="16" 
+                    <Image Width="16"
                            Height="16"
                            VerticalAlignment="Center"
                            HorizontalAlignment="Center"
-                           Source="pack://application:,,,/StakeholderAnalysis.Visualization;component/Resources/plus.png"/>
+                           Source="pack://application:,,,/StakeholderAnalysis.Visualization;component/Resources/plus.png" />
                 </ControlTemplate>
             </Setter.Value>
         </Setter>
@@ -54,11 +56,11 @@
         <Setter Property="Template">
             <Setter.Value>
                 <ControlTemplate TargetType="Button">
-                    <Image Width="16" 
+                    <Image Width="16"
                            Height="16"
                            VerticalAlignment="Center"
                            HorizontalAlignment="Center"
-                           Source="pack://application:,,,/StakeholderAnalysis.Visualization;component/Resources/remove.png"/>
+                           Source="pack://application:,,,/StakeholderAnalysis.Visualization;component/Resources/remove.png" />
                 </ControlTemplate>
             </Setter.Value>
         </Setter>

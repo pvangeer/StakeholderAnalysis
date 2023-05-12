@@ -24,11 +24,6 @@ namespace StakeholderAnalysis.Visualization.ViewModels.OnionDiagramView
             GetSelectedStakeholderConnectionGroup = diagram => diagram?.ConnectionGroups.FirstOrDefault();
         }
 
-        private void RelevantCollectionChanged(object sender, NotifyCollectionChangedEventArgs e)
-        {
-            OnPropertyChanged(nameof(IsActive));
-        }
-
         public double NewConnectionToRelativePositionTop { get; set; }
 
         public double NewConnectionToRelativePositionLeft { get; set; }
@@ -53,6 +48,8 @@ namespace StakeholderAnalysis.Visualization.ViewModels.OnionDiagramView
         public OnionDiagramStakeholderViewModel NewConnectionPossibleToViewModel { get; set; }
 
         public bool IsDrawing { get; set; }
+
+        public Func<OnionDiagram, StakeholderConnectionGroup> GetSelectedStakeholderConnectionGroup { get; set; }
 
         public void PositionMoved(double relativeLeft, double relativeTop)
         {
@@ -85,22 +82,19 @@ namespace StakeholderAnalysis.Visualization.ViewModels.OnionDiagramView
             OnPropertyChanged(nameof(IsDrawing));
         }
 
-        public Func<OnionDiagram, StakeholderConnectionGroup> GetSelectedStakeholderConnectionGroup { get; set; }
-
         public void FinishConnecting()
         {
             OnionDiagramStakeholderViewModel oldTarget = null;
-            if (NewConnectionPossibleToViewModel != null)
-            {
-                oldTarget = NewConnectionPossibleToViewModel;
-            }
+            if (NewConnectionPossibleToViewModel != null) oldTarget = NewConnectionPossibleToViewModel;
 
             if (NewConnectionFromViewModel != null && NewConnectionPossibleToViewModel != null &&
                 NewConnectionFromViewModel != NewConnectionPossibleToViewModel &&
                 GetSelectedStakeholderConnectionGroup != null)
             {
                 var stakeholderConnectionGroup = GetSelectedStakeholderConnectionGroup(onionDiagram);
-                onionDiagram.Connections.Add(new StakeholderConnection(stakeholderConnectionGroup, NewConnectionFromViewModel.GetOnionDiagramStakeholder(), NewConnectionPossibleToViewModel.GetOnionDiagramStakeholder()));
+                onionDiagram.Connections.Add(new StakeholderConnection(stakeholderConnectionGroup,
+                    NewConnectionFromViewModel.GetOnionDiagramStakeholder(),
+                    NewConnectionPossibleToViewModel.GetOnionDiagramStakeholder()));
             }
 
             IsDrawing = false;
@@ -124,5 +118,10 @@ namespace StakeholderAnalysis.Visualization.ViewModels.OnionDiagramView
         }
 
         public bool IsActive => onionDiagram.ConnectionGroups.Any() && onionDiagram.Stakeholders.Count > 1;
+
+        private void RelevantCollectionChanged(object sender, NotifyCollectionChangedEventArgs e)
+        {
+            OnPropertyChanged(nameof(IsActive));
+        }
     }
 }

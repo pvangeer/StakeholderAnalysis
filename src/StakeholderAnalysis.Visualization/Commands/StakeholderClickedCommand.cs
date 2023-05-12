@@ -1,8 +1,4 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using System.Windows.Input;
 using StakeholderAnalysis.Visualization.ViewModels;
 
@@ -10,7 +6,7 @@ namespace StakeholderAnalysis.Visualization.Commands
 {
     public class StakeholderClickedCommand : ICommand
     {
-        private StakeholderViewModel stakeholderViewModel;
+        private readonly StakeholderViewModel stakeholderViewModel;
 
         public StakeholderClickedCommand(StakeholderViewModel stakeholderViewModel)
         {

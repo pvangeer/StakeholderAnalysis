@@ -16,15 +16,14 @@ namespace StakeholderAnalysis.Visualization.Behaviors
 
         public static bool GetSaveToImage(DependencyObject obj)
         {
-            return (bool) obj.GetValue(SaveToImageProperty);
+            return (bool)obj.GetValue(SaveToImageProperty);
         }
 
         private static void OnSaveToImage(DependencyObject obj, DependencyPropertyChangedEventArgs e)
         {
-            if ((bool) e.NewValue)
-            {
-                if (obj is FrameworkElement frameworkElement) frameworkElement.SaveToFile();
-            }
+            if ((bool)e.NewValue)
+                if (obj is FrameworkElement frameworkElement)
+                    frameworkElement.SaveToFile();
         }
     }
 }

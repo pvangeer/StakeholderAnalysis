@@ -16,19 +16,22 @@ namespace StakeholderAnalysis.Gui
 {
     public class StakeholderAnalysisGui : IMessageCollection
     {
-        public StakeholderAnalysisGui() : this(new Analysis()) { }
+        public readonly ObservableCollection<StakeholderConnectionGroupSelection> SelectedStakeholderConnectionGroups;
+        private Analysis analysis;
+
+        public StakeholderAnalysisGui() : this(new Analysis())
+        {
+        }
 
         public StakeholderAnalysisGui(Analysis analysis)
         {
             SelectedStakeholderConnectionGroups = analysis == null
                 ? new ObservableCollection<StakeholderConnectionGroupSelection>()
-                : new ObservableCollection<StakeholderConnectionGroupSelection>(analysis.OnionDiagrams.Select(d => new StakeholderConnectionGroupSelection(d, d.ConnectionGroups.FirstOrDefault())));
+                : new ObservableCollection<StakeholderConnectionGroupSelection>(analysis.OnionDiagrams.Select(d =>
+                    new StakeholderConnectionGroupSelection(d, d.ConnectionGroups.FirstOrDefault())));
 
             this.analysis = analysis;
-            if (analysis != null)
-            {
-                analysis.OnionDiagrams.CollectionChanged += OnionDiagramsCollectionChanged;
-            }
+            if (analysis != null) analysis.OnionDiagrams.CollectionChanged += OnionDiagramsCollectionChanged;
 
             GuiProjectServices = new GuiProjectServices(this);
 
@@ -40,71 +43,6 @@ namespace StakeholderAnalysis.Gui
             LogMessageAppender.Instance.MessageCollection = this;
         }
 
-        private void OnionDiagramsCollectionChanged(object sender, NotifyCollectionChangedEventArgs e)
-        {
-            switch (e.Action)
-            {
-                case NotifyCollectionChangedAction.Add:
-                    foreach (var onionDiagram in e.NewItems.OfType<OnionDiagram>())
-                    {
-                        var selection = SelectedStakeholderConnectionGroups.FirstOrDefault(g => g.OnionDiagram == onionDiagram);
-                        if (selection == null)
-                        {
-                            SelectedStakeholderConnectionGroups.Add( new StakeholderConnectionGroupSelection(onionDiagram, onionDiagram.ConnectionGroups.FirstOrDefault()));
-                            onionDiagram.ConnectionGroups.CollectionChanged += OnionDiagramConnectionGroupsCollectionChanged;
-                        }
-                    }
-                    break;
-                case NotifyCollectionChangedAction.Remove:
-                    foreach (var onionDiagram in e.OldItems.OfType<OnionDiagram>())
-                    {
-                        var selection = SelectedStakeholderConnectionGroups.FirstOrDefault(g => g.OnionDiagram == onionDiagram);
-                        if (selection != null)
-                        {
-                            onionDiagram.ConnectionGroups.CollectionChanged -= OnionDiagramConnectionGroupsCollectionChanged;
-                            SelectedStakeholderConnectionGroups.Remove(selection);
-                        }
-                    }
-                    break;
-            }
-        }
-
-        private void OnionDiagramConnectionGroupsCollectionChanged(object sender, NotifyCollectionChangedEventArgs e)
-        {
-            var diagram = Analysis.OnionDiagrams.FirstOrDefault(d =>
-                d.ConnectionGroups == sender as ObservableCollection<StakeholderConnectionGroup>);
-            if (diagram == null)
-            {
-                return;
-            }
-            var selection = SelectedStakeholderConnectionGroups.FirstOrDefault(s => s.OnionDiagram == diagram);
-            if (selection == null)
-            {
-                return;
-            }
-
-            switch (e.Action)
-            {
-                case NotifyCollectionChangedAction.Add:
-                    if (selection.StakeholderConnectionGroup == null)
-                    {
-                        selection.StakeholderConnectionGroup = diagram.ConnectionGroups.FirstOrDefault();
-                        selection.OnPropertyChanged(nameof(StakeholderConnectionGroupSelection.StakeholderConnectionGroup));
-                    }
-                    break;
-                case NotifyCollectionChangedAction.Remove:
-                    foreach (var stakeholderConnectionGroup in e.OldItems.OfType<StakeholderConnectionGroup>())
-                    {
-                        if (selection.StakeholderConnectionGroup == stakeholderConnectionGroup)
-                        {
-                            selection.StakeholderConnectionGroup = diagram.ConnectionGroups.FirstOrDefault();
-                            selection.OnPropertyChanged(nameof(StakeholderConnectionGroupSelection.StakeholderConnectionGroup));
-                        }
-                    }
-                    break;
-            }
-        }
-
         public string ProjectFilePath { get; set; }
 
         public Analysis Analysis
@@ -112,26 +50,20 @@ namespace StakeholderAnalysis.Gui
             get => analysis;
             set
             {
-                if (analysis != null)
-                {
-                    analysis.OnionDiagrams.CollectionChanged -= OnionDiagramsCollectionChanged;
-                }
+                if (analysis != null) analysis.OnionDiagrams.CollectionChanged -= OnionDiagramsCollectionChanged;
                 analysis = value;
                 SelectedStakeholderConnectionGroups.Clear();
                 if (analysis != null)
                 {
                     analysis.OnionDiagrams.CollectionChanged += OnionDiagramsCollectionChanged;
                     foreach (var onionDiagram in analysis.OnionDiagrams)
-                    {
-                        SelectedStakeholderConnectionGroups.Add(new StakeholderConnectionGroupSelection(onionDiagram, onionDiagram.ConnectionGroups.FirstOrDefault()));
-                    }
+                        SelectedStakeholderConnectionGroups.Add(new StakeholderConnectionGroupSelection(onionDiagram,
+                            onionDiagram.ConnectionGroups.FirstOrDefault()));
                 }
             }
         }
 
         public ViewManager ViewManager { get; }
-
-        public MessageList Messages { get; }
 
         public StorageState BusyIndicator { get; set; }
 
@@ -142,19 +74,7 @@ namespace StakeholderAnalysis.Gui
         public Func<bool> ShouldSaveOpenChanges { get; set; }
         public GuiProjectServices GuiProjectServices { get; }
 
-        public readonly ObservableCollection<StakeholderConnectionGroupSelection> SelectedStakeholderConnectionGroups;
-        private Analysis analysis;
-
-        private void ConfigureMessaging()
-        {
-            Logger rootLogger = ((Hierarchy)LogManager.GetRepository()).Root;
-
-            if (!rootLogger.Appenders.Cast<IAppender>().Any(a => a is LogMessageAppender))
-            {
-                rootLogger.AddAppender(new LogMessageAppender());
-                rootLogger.Repository.Configured = true;
-            }
-        }
+        public MessageList Messages { get; }
 
         public event PropertyChangedEventHandler PropertyChanged;
 
@@ -162,6 +82,86 @@ namespace StakeholderAnalysis.Gui
         public virtual void OnPropertyChanged([CallerMemberName] string propertyName = null)
         {
             PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(propertyName));
+        }
+
+        private void OnionDiagramsCollectionChanged(object sender, NotifyCollectionChangedEventArgs e)
+        {
+            switch (e.Action)
+            {
+                case NotifyCollectionChangedAction.Add:
+                    foreach (var onionDiagram in e.NewItems.OfType<OnionDiagram>())
+                    {
+                        var selection =
+                            SelectedStakeholderConnectionGroups.FirstOrDefault(g => g.OnionDiagram == onionDiagram);
+                        if (selection == null)
+                        {
+                            SelectedStakeholderConnectionGroups.Add(
+                                new StakeholderConnectionGroupSelection(onionDiagram,
+                                    onionDiagram.ConnectionGroups.FirstOrDefault()));
+                            onionDiagram.ConnectionGroups.CollectionChanged +=
+                                OnionDiagramConnectionGroupsCollectionChanged;
+                        }
+                    }
+
+                    break;
+                case NotifyCollectionChangedAction.Remove:
+                    foreach (var onionDiagram in e.OldItems.OfType<OnionDiagram>())
+                    {
+                        var selection =
+                            SelectedStakeholderConnectionGroups.FirstOrDefault(g => g.OnionDiagram == onionDiagram);
+                        if (selection != null)
+                        {
+                            onionDiagram.ConnectionGroups.CollectionChanged -=
+                                OnionDiagramConnectionGroupsCollectionChanged;
+                            SelectedStakeholderConnectionGroups.Remove(selection);
+                        }
+                    }
+
+                    break;
+            }
+        }
+
+        private void OnionDiagramConnectionGroupsCollectionChanged(object sender, NotifyCollectionChangedEventArgs e)
+        {
+            var diagram = Analysis.OnionDiagrams.FirstOrDefault(d =>
+                d.ConnectionGroups == sender as ObservableCollection<StakeholderConnectionGroup>);
+            if (diagram == null) return;
+            var selection = SelectedStakeholderConnectionGroups.FirstOrDefault(s => s.OnionDiagram == diagram);
+            if (selection == null) return;
+
+            switch (e.Action)
+            {
+                case NotifyCollectionChangedAction.Add:
+                    if (selection.StakeholderConnectionGroup == null)
+                    {
+                        selection.StakeholderConnectionGroup = diagram.ConnectionGroups.FirstOrDefault();
+                        selection.OnPropertyChanged(nameof(StakeholderConnectionGroupSelection
+                            .StakeholderConnectionGroup));
+                    }
+
+                    break;
+                case NotifyCollectionChangedAction.Remove:
+                    foreach (var stakeholderConnectionGroup in e.OldItems.OfType<StakeholderConnectionGroup>())
+                        if (selection.StakeholderConnectionGroup == stakeholderConnectionGroup)
+                        {
+                            selection.StakeholderConnectionGroup = diagram.ConnectionGroups.FirstOrDefault();
+                            selection.OnPropertyChanged(nameof(StakeholderConnectionGroupSelection
+                                .StakeholderConnectionGroup));
+                        }
+
+                    break;
+            }
+        }
+
+        private void ConfigureMessaging()
+        {
+            var rootLogger = ((Hierarchy)LogManager.GetRepository()).Root;
+
+            if (!rootLogger.Appenders.Cast<IAppender>().Any(a => a is LogMessageAppender))
+            {
+                rootLogger.AddAppender(new LogMessageAppender());
+                rootLogger.Repository.Configured = true;
+            }
         }
     }
 }

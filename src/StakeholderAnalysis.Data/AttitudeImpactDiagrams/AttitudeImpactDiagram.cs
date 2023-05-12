@@ -5,7 +5,8 @@ using System.Windows.Media;
 
 namespace StakeholderAnalysis.Data.AttitudeImpactDiagrams
 {
-    public class AttitudeImpactDiagram : NotifyPropertyChangedObservable, IRankedStakeholderDiagram<AttitudeImpactDiagramStakeholder>, ITwoAxisDiagram, ICloneable
+    public class AttitudeImpactDiagram : NotifyPropertyChangedObservable,
+        IRankedStakeholderDiagram<AttitudeImpactDiagramStakeholder>, ITwoAxisDiagram, ICloneable
     {
         public AttitudeImpactDiagram(string name)
         {
@@ -33,7 +34,52 @@ namespace StakeholderAnalysis.Data.AttitudeImpactDiagrams
             AxisFontItalic = false;
         }
 
-        public AttitudeImpactDiagram() : this("") { }
+        public AttitudeImpactDiagram() : this("")
+        {
+        }
+
+        public object Clone()
+        {
+            var converter = new FontFamilyConverter();
+
+            var diagram = new AttitudeImpactDiagram
+            {
+                AxisFontBold = AxisFontBold,
+                AxisFontColor = AxisFontColor.Clone(),
+                AxisFontFamily =
+                    converter.ConvertFromInvariantString(converter.ConvertToInvariantString(AxisFontFamily)) as
+                        FontFamily,
+                AxisFontItalic = AxisFontItalic,
+                AxisFontSize = AxisFontSize,
+                BackgroundFontBold = AxisFontBold,
+                BackgroundFontColor = BackgroundFontColor.Clone(),
+                BackgroundFontFamily =
+                    converter.ConvertFromInvariantString(converter.ConvertToInvariantString(BackgroundFontFamily)) as
+                        FontFamily,
+                BackgroundFontItalic = BackgroundFontItalic,
+                BackgroundFontSize = BackgroundFontSize,
+                BackgroundTextLeftBottom = BackgroundTextLeftBottom,
+                BackgroundTextLeftTop = BackgroundTextLeftTop,
+                BackgroundTextRightBottom = BackgroundTextRightBottom,
+                BackgroundTextRightTop = BackgroundTextRightTop,
+                BrushEndColor = BrushEndColor.Clone(),
+                BrushStartColor = BrushStartColor.Clone(),
+                Name = Name,
+                XAxisMaxLabel = XAxisMaxLabel,
+                XAxisMinLabel = XAxisMinLabel,
+                YAxisMaxLabel = YAxisMaxLabel,
+                YAxisMinLabel = YAxisMinLabel
+            };
+            foreach (var stakeholder in Stakeholders)
+                diagram.Stakeholders.Add(
+                    new AttitudeImpactDiagramStakeholder(stakeholder.Stakeholder, stakeholder.Attitude,
+                            stakeholder.Impact)
+                        { Rank = stakeholder.Rank });
+
+            return diagram;
+        }
+
+        public ObservableCollection<AttitudeImpactDiagramStakeholder> Stakeholders { get; }
 
         public string Name { get; set; }
 
@@ -69,8 +115,6 @@ namespace StakeholderAnalysis.Data.AttitudeImpactDiagrams
 
         public FontFamily AxisFontFamily { get; set; }
 
-        public ObservableCollection<AttitudeImpactDiagramStakeholder> Stakeholders { get; }
-
         public Color AxisFontColor { get; set; }
 
         public bool AxisFontBold { get; set; }
@@ -78,44 +122,5 @@ namespace StakeholderAnalysis.Data.AttitudeImpactDiagrams
         public bool AxisFontItalic { get; set; }
 
         public double AxisFontSize { get; set; }
-
-        public object Clone()
-        {
-                var converter = new FontFamilyConverter();
-
-                var diagram = new AttitudeImpactDiagram
-                {
-                    AxisFontBold = this.AxisFontBold,
-                    AxisFontColor = this.AxisFontColor.Clone(),
-                    AxisFontFamily = converter.ConvertFromInvariantString(converter.ConvertToInvariantString(this.AxisFontFamily)) as FontFamily,
-                    AxisFontItalic = this.AxisFontItalic,
-                    AxisFontSize = this.AxisFontSize,
-                    BackgroundFontBold = this.AxisFontBold,
-                    BackgroundFontColor = this.BackgroundFontColor.Clone(),
-                    BackgroundFontFamily = converter.ConvertFromInvariantString(converter.ConvertToInvariantString(this.BackgroundFontFamily)) as FontFamily,
-                    BackgroundFontItalic = this.BackgroundFontItalic,
-                    BackgroundFontSize = this.BackgroundFontSize,
-                    BackgroundTextLeftBottom = this.BackgroundTextLeftBottom,
-                    BackgroundTextLeftTop = this.BackgroundTextLeftTop,
-                    BackgroundTextRightBottom = this.BackgroundTextRightBottom,
-                    BackgroundTextRightTop = this.BackgroundTextRightTop,
-                    BrushEndColor = this.BrushEndColor.Clone(),
-                    BrushStartColor = this.BrushStartColor.Clone(),
-                    Name = this.Name,
-                    XAxisMaxLabel = this.XAxisMaxLabel,
-                    XAxisMinLabel = this.XAxisMinLabel,
-                    YAxisMaxLabel = this.YAxisMaxLabel,
-                    YAxisMinLabel = this.YAxisMinLabel
-                };
-                foreach (var stakeholder in Stakeholders)
-                {
-                    diagram.Stakeholders.Add(
-                        new AttitudeImpactDiagramStakeholder(stakeholder.Stakeholder, stakeholder.Attitude,
-                                stakeholder.Impact)
-                            { Rank = stakeholder.Rank });
-                }
-
-                return diagram;
-            }
     }
 }

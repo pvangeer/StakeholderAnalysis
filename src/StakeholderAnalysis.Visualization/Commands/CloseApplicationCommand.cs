@@ -7,8 +7,8 @@ namespace StakeholderAnalysis.Visualization.Commands
 {
     public class CloseApplicationCommand : ICommand
     {
-        private readonly GuiProjectServices projectServices;
         private readonly StakeholderAnalysisGui gui;
+        private readonly GuiProjectServices projectServices;
 
         public CloseApplicationCommand(StakeholderAnalysisGui gui, GuiProjectServices guiProjectServices)
         {
@@ -24,13 +24,9 @@ namespace StakeholderAnalysis.Visualization.Commands
         public void Execute(object parameter)
         {
             if (projectServices != null && gui != null)
-            {
                 projectServices.HandleUnsavedChanges(gui, () => Application.Current.Shutdown());
-            }
             else
-            {
                 Application.Current.Shutdown();
-            }
         }
 
         public event EventHandler CanExecuteChanged;

@@ -10,7 +10,7 @@ namespace StakeholderAnalysis.Visualization.Commands.FileHandling
 
         protected FileHandlingCommandBase(GuiProjectServices guiProjectServices)
         {
-            this.GuiProjectServices = guiProjectServices;
+            GuiProjectServices = guiProjectServices;
         }
 
         public virtual bool CanExecute(object parameter)

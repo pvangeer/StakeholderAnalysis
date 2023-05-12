@@ -5,6 +5,8 @@ namespace StakeholderAnalysis.Visualization.Commands
 {
     public class CanAlwaysExecuteActionCommand : ICommand
     {
+        public Action<object> ExecuteAction;
+
         public bool CanExecute(object parameter)
         {
             return true;
@@ -16,7 +18,5 @@ namespace StakeholderAnalysis.Visualization.Commands
         }
 
         public event EventHandler CanExecuteChanged;
-
-        public Action<object> ExecuteAction;
     }
 }

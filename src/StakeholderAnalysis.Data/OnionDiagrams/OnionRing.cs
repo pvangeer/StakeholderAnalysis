@@ -19,5 +19,7 @@ namespace StakeholderAnalysis.Data.OnionDiagrams
         public Color StrokeColor { get; set; }
 
         public double StrokeThickness { get; set; }
+
+        public LineStyle LineStyle { get; set; }
     }
 }

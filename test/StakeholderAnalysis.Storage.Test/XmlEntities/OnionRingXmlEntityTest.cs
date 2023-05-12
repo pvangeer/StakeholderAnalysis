@@ -1,8 +1,9 @@
-﻿using NUnit.Framework;
-using System;
+﻿using System;
 using System.IO;
 using System.Windows.Media;
 using System.Xml.Serialization;
+using NUnit.Framework;
+using StakeholderAnalysis.Data.OnionDiagrams;
 using StakeholderAnalysis.Storage.XmlEntities;
 
 namespace StakeholderAnalysis.Storage.Test.XmlEntities
@@ -22,7 +23,8 @@ namespace StakeholderAnalysis.Storage.Test.XmlEntities
                 Percentage = percentage,
                 BackgroundColor = backgroundColor.ToHexString(),
                 StrokeColor = strokeColor.ToHexString(),
-                StrokeThickness = strokeThickness
+                StrokeThickness = strokeThickness,
+                LineStyle = Convert.ToByte(LineStyle.DashDotDot)
             };
 
             Stream stream = new MemoryStream();

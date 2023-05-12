@@ -11,7 +11,8 @@ namespace StakeholderAnalysis.Visualization.ViewModels.ProjectExplorer
     {
         private readonly ViewManager viewManager;
 
-        public ProjectExplorerStakeholderOverviewTableViewModel(ViewModelFactory factory, ViewManager viewManager) : base(factory)
+        public ProjectExplorerStakeholderOverviewTableViewModel(ViewModelFactory factory, ViewManager viewManager) :
+            base(factory)
         {
             this.viewManager = viewManager;
             ContextMenuItems = new ObservableCollection<ContextMenuItemViewModel>();
@@ -19,7 +20,8 @@ namespace StakeholderAnalysis.Visualization.ViewModels.ProjectExplorer
 
         public string DisplayName => "Stakeholders";
 
-        public string IconSourceString => "pack://application:,,,/StakeholderAnalysis.Visualization;component/Resources/table.png";
+        public string IconSourceString =>
+            "pack://application:,,,/StakeholderAnalysis.Visualization;component/Resources/table.png";
 
         public bool CanRemove => false;
 
@@ -36,9 +38,11 @@ namespace StakeholderAnalysis.Visualization.ViewModels.ProjectExplorer
             var viewInfo = viewManager.Views.FirstOrDefault(v => v.ViewModel is StakeholderTableViewModel);
             if (viewInfo == null)
             {
-                viewInfo = new ViewInfo("Tabel", ViewModelFactory.CreateStakeholderTableViewModel(), "pack://application:,,,/StakeholderAnalysis.Visualization;component/Resources/table.png", true);
+                viewInfo = new ViewInfo("Tabel", ViewModelFactory.CreateStakeholderTableViewModel(),
+                    "pack://application:,,,/StakeholderAnalysis.Visualization;component/Resources/table.png", true);
                 viewManager.OpenView(viewInfo);
             }
+
             viewManager.BringToFront(viewInfo);
         });
 

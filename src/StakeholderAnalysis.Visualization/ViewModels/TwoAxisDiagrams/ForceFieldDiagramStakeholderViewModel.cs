@@ -5,20 +5,20 @@ using StakeholderAnalysis.Visualization.Behaviors;
 
 namespace StakeholderAnalysis.Visualization.ViewModels.TwoAxisDiagrams
 {
-    public class ForceFieldDiagramStakeholderViewModel : RankedStakeholderViewModel<ForceFieldDiagramStakeholder>, IPositionedStakeholderViewModel
+    public class ForceFieldDiagramStakeholderViewModel : RankedStakeholderViewModel<ForceFieldDiagramStakeholder>,
+        IPositionedStakeholderViewModel
     {
-        private readonly ForceFieldDiagramStakeholder forceFieldDiagramStakeholder;
         private readonly ForceFieldDiagram diagram;
+        private readonly ForceFieldDiagramStakeholder forceFieldDiagramStakeholder;
 
-        public ForceFieldDiagramStakeholderViewModel(ViewModelFactory factory, ForceFieldDiagram diagram, ForceFieldDiagramStakeholder stakeholder, ISelectionRegister selectionRegister) : 
+        public ForceFieldDiagramStakeholderViewModel(ViewModelFactory factory, ForceFieldDiagram diagram,
+            ForceFieldDiagramStakeholder stakeholder, ISelectionRegister selectionRegister) :
             base(factory, stakeholder, diagram, selectionRegister, null)
         {
             this.diagram = diagram;
             forceFieldDiagramStakeholder = stakeholder;
             if (forceFieldDiagramStakeholder != null)
-            {
                 forceFieldDiagramStakeholder.PropertyChanged += StakeholderPropertyChanged;
-            }
         }
 
         public double RelativePositionLeft
@@ -41,18 +41,15 @@ namespace StakeholderAnalysis.Visualization.ViewModels.TwoAxisDiagrams
             }
         }
 
+        public override void RemoveFromDiagram()
+        {
+            if (IsSelectedStakeholder) diagram.Stakeholders.Remove(forceFieldDiagramStakeholder);
+        }
+
         public override void Moved(double xRelativeNew, double yRelativeNew)
         {
             RelativePositionLeft = Math.Min(1.0, Math.Max(0.0, xRelativeNew));
             RelativePositionTop = Math.Min(1.0, Math.Max(0.0, yRelativeNew));
-        }
-
-        public override void RemoveFromDiagram()
-        {
-            if (IsSelectedStakeholder)
-            {
-                diagram.Stakeholders.Remove(forceFieldDiagramStakeholder);
-            }
         }
 
         protected override void StakeholderPropertyChanged(object sender, PropertyChangedEventArgs e)
@@ -66,7 +63,8 @@ namespace StakeholderAnalysis.Visualization.ViewModels.TwoAxisDiagrams
                     OnPropertyChanged(nameof(RelativePositionTop));
                     break;
             }
-            base.StakeholderPropertyChanged(sender,e);
+
+            base.StakeholderPropertyChanged(sender, e);
         }
     }
 }

@@ -6,7 +6,8 @@
                     xmlns:componentModel="clr-namespace:System.ComponentModel;assembly=WindowsBase">
 
     <ResourceDictionary.MergedDictionaries>
-        <ResourceDictionary Source="/StakeholderAnalysis.Visualization;Component/DataTemplates/StakeholderDataTemplate.xaml" />
+        <ResourceDictionary
+            Source="/StakeholderAnalysis.Visualization;Component/DataTemplates/StakeholderDataTemplate.xaml" />
     </ResourceDictionary.MergedDictionaries>
 
     <converters:PercentageToDimensionConverter x:Key="PercentageToDimensionConverter" />
@@ -17,29 +18,31 @@
     <DataTemplate x:Key="TwoAxisDiagramStakeholderDataTemplate" DataType="twoAxisDiagrams:IRankedStakeholderViewModel">
         <Grid>
             <Grid.ColumnDefinitions>
-                <ColumnDefinition Width="Auto"/>
-                <ColumnDefinition Width="Auto"/>
-                <ColumnDefinition Width="Auto"/>
+                <ColumnDefinition Width="Auto" />
+                <ColumnDefinition Width="Auto" />
+                <ColumnDefinition Width="Auto" />
             </Grid.ColumnDefinitions>
-            <StackPanel Grid.Column="0" 
+            <StackPanel Grid.Column="0"
                         Orientation="Vertical"
-                        Width="20" 
+                        Width="20"
                         Visibility="{Binding IsSelectedStakeholder, 
                 Converter={StaticResource BoolToVisibilityConverter}}">
-                <Button 
+                <Button
                     Command="{Binding MoveStakeholderToTopCommand}">
                     <Button.Template>
                         <ControlTemplate TargetType="Button">
-                            <Image Width="16" 
+                            <Image Width="16"
                                    Height="16">
                                 <Image.Style>
                                     <Style TargetType="Image">
                                         <Style.Triggers>
                                             <DataTrigger Binding="{Binding CanMoveToTop}" Value="True">
-                                                <Setter Property="Source" Value="pack://application:,,,/StakeholderAnalysis.Visualization;component/Resources/arrow_top_black.png"/>
+                                                <Setter Property="Source"
+                                                        Value="pack://application:,,,/StakeholderAnalysis.Visualization;component/Resources/arrow_top_black.png" />
                                             </DataTrigger>
                                             <DataTrigger Binding="{Binding CanMoveToTop}" Value="False">
-                                                <Setter Property="Source" Value="pack://application:,,,/StakeholderAnalysis.Visualization;component/Resources/arrow_top_gray.png"/>
+                                                <Setter Property="Source"
+                                                        Value="pack://application:,,,/StakeholderAnalysis.Visualization;component/Resources/arrow_top_gray.png" />
                                             </DataTrigger>
                                         </Style.Triggers>
                                     </Style>
@@ -48,20 +51,22 @@
                         </ControlTemplate>
                     </Button.Template>
                 </Button>
-                <Button 
+                <Button
                     Command="{Binding MoveStakeholderUpCommand}">
                     <Button.Template>
                         <ControlTemplate TargetType="Button">
-                            <Image Width="16" 
+                            <Image Width="16"
                                    Height="16">
                                 <Image.Style>
                                     <Style TargetType="Image">
                                         <Style.Triggers>
                                             <DataTrigger Binding="{Binding CanMoveUp}" Value="True">
-                                                <Setter Property="Source" Value="pack://application:,,,/StakeholderAnalysis.Visualization;component/Resources/arrow_up_black.png"/>
+                                                <Setter Property="Source"
+                                                        Value="pack://application:,,,/StakeholderAnalysis.Visualization;component/Resources/arrow_up_black.png" />
                                             </DataTrigger>
                                             <DataTrigger Binding="{Binding CanMoveUp}" Value="False">
-                                                <Setter Property="Source" Value="pack://application:,,,/StakeholderAnalysis.Visualization;component/Resources/arrow_up_gray.png"/>
+                                                <Setter Property="Source"
+                                                        Value="pack://application:,,,/StakeholderAnalysis.Visualization;component/Resources/arrow_up_gray.png" />
                                             </DataTrigger>
                                         </Style.Triggers>
                                     </Style>
@@ -70,20 +75,22 @@
                         </ControlTemplate>
                     </Button.Template>
                 </Button>
-                <Button 
+                <Button
                     Command="{Binding MoveStakeholderDownCommand}">
                     <Button.Template>
                         <ControlTemplate TargetType="Button">
-                            <Image Width="16" 
+                            <Image Width="16"
                                    Height="16">
                                 <Image.Style>
                                     <Style TargetType="Image">
                                         <Style.Triggers>
                                             <DataTrigger Binding="{Binding CanMoveDown}" Value="True">
-                                                <Setter Property="Source" Value="pack://application:,,,/StakeholderAnalysis.Visualization;component/Resources/arrow_down_black.png"/>
+                                                <Setter Property="Source"
+                                                        Value="pack://application:,,,/StakeholderAnalysis.Visualization;component/Resources/arrow_down_black.png" />
                                             </DataTrigger>
                                             <DataTrigger Binding="{Binding CanMoveDown}" Value="False">
-                                                <Setter Property="Source" Value="pack://application:,,,/StakeholderAnalysis.Visualization;component/Resources/arrow_down_gray.png"/>
+                                                <Setter Property="Source"
+                                                        Value="pack://application:,,,/StakeholderAnalysis.Visualization;component/Resources/arrow_down_gray.png" />
                                             </DataTrigger>
                                         </Style.Triggers>
                                     </Style>
@@ -92,20 +99,22 @@
                         </ControlTemplate>
                     </Button.Template>
                 </Button>
-                <Button 
+                <Button
                     Command="{Binding MoveStakeholderToBottomCommand}">
                     <Button.Template>
                         <ControlTemplate TargetType="Button">
-                            <Image Width="16" 
+                            <Image Width="16"
                                    Height="16">
                                 <Image.Style>
                                     <Style TargetType="Image">
                                         <Style.Triggers>
                                             <DataTrigger Binding="{Binding CanMoveToBottom}" Value="True">
-                                                <Setter Property="Source" Value="pack://application:,,,/StakeholderAnalysis.Visualization;component/Resources/arrow_bottom_black.png"/>
+                                                <Setter Property="Source"
+                                                        Value="pack://application:,,,/StakeholderAnalysis.Visualization;component/Resources/arrow_bottom_black.png" />
                                             </DataTrigger>
                                             <DataTrigger Binding="{Binding CanMoveToBottom}" Value="False">
-                                                <Setter Property="Source" Value="pack://application:,,,/StakeholderAnalysis.Visualization;component/Resources/arrow_bottom_gray.png"/>
+                                                <Setter Property="Source"
+                                                        Value="pack://application:,,,/StakeholderAnalysis.Visualization;component/Resources/arrow_bottom_gray.png" />
                                             </DataTrigger>
                                         </Style.Triggers>
                                     </Style>
@@ -115,19 +124,20 @@
                     </Button.Template>
                 </Button>
             </StackPanel>
-            <ContentPresenter 
-                Grid.Column="1" 
-                Content="{Binding}" 
-                ContentTemplate="{StaticResource StakeholderDataTemplate}" 
-                IsHitTestVisible="True"/>
-            <StackPanel Grid.Column="2" Width="20" Visibility="{Binding IsSelectedStakeholder, Converter={StaticResource BoolToVisibilityConverter}}">
-                <Button 
+            <ContentPresenter
+                Grid.Column="1"
+                Content="{Binding}"
+                ContentTemplate="{StaticResource StakeholderDataTemplate}"
+                IsHitTestVisible="True" />
+            <StackPanel Grid.Column="2" Width="20"
+                        Visibility="{Binding IsSelectedStakeholder, Converter={StaticResource BoolToVisibilityConverter}}">
+                <Button
                     Command="{Binding RemoveStakeholderCommand}">
                     <Button.Template>
                         <ControlTemplate TargetType="Button">
-                            <Image Width="16" 
+                            <Image Width="16"
                                    Height="16"
-                                   Source="pack://application:,,,/StakeholderAnalysis.Visualization;component/Resources/delete.png"/>
+                                   Source="pack://application:,,,/StakeholderAnalysis.Visualization;component/Resources/delete.png" />
                         </ControlTemplate>
                     </Button.Template>
                 </Button>
@@ -150,9 +160,10 @@
                 <ColumnDefinition Width="*" />
             </Grid.ColumnDefinitions>
             <Grid.Resources>
-                <CollectionViewSource x:Key="SortedDiagramStakeholders" Source="{Binding PositionedStakeholders}" IsLiveSortingRequested="True">
+                <CollectionViewSource x:Key="SortedDiagramStakeholders" Source="{Binding PositionedStakeholders}"
+                                      IsLiveSortingRequested="True">
                     <CollectionViewSource.SortDescriptions>
-                        <componentModel:SortDescription PropertyName="Rank"  Direction="Ascending"/>
+                        <componentModel:SortDescription PropertyName="Rank" Direction="Ascending" />
                     </CollectionViewSource.SortDescriptions>
                 </CollectionViewSource>
                 <Style x:Key="AxisLabelTextStyle" TargetType="TextBlock">
@@ -189,9 +200,9 @@
                 <!--Grid that holds all tekst objects inside the diagram-->
                 <Grid>
                     <Grid.Resources>
-                        <Style x:Key="CanvasBackgroundTextStyle"  TargetType="TextBlock">
+                        <Style x:Key="CanvasBackgroundTextStyle" TargetType="TextBlock">
                             <Setter Property="Margin" Value="15" />
-                            <Setter Property="FontFamily" Value="{Binding BackgroundFontFamily}"/>
+                            <Setter Property="FontFamily" Value="{Binding BackgroundFontFamily}" />
                             <Setter Property="FontWeight" Value="{Binding BackgroundFontWeight}" />
                             <Setter Property="Foreground" Value="{Binding BackgroundFontColor}" />
                             <Setter Property="FontStyle" Value="{Binding BackgroundFontStyle}" />
@@ -208,10 +219,14 @@
                         <ColumnDefinition Width="*" />
                         <ColumnDefinition Width="Auto" />
                     </Grid.ColumnDefinitions>
-                    <TextBlock Grid.Row="0" Grid.Column="0" Text="{Binding BackgroundTextLeftTop}" TextAlignment="Left" Style="{StaticResource CanvasBackgroundTextStyle}"/>
-                    <TextBlock Grid.Row="2" Grid.Column="0" Text="{Binding BackgroundTextLeftBottom}" TextAlignment="Left" Style="{StaticResource CanvasBackgroundTextStyle}" />
-                    <TextBlock Grid.Row="2" Grid.Column="2" Text="{Binding BackgroundTextRightBottom}" TextAlignment="Right" Style="{StaticResource CanvasBackgroundTextStyle}" />
-                    <TextBlock Grid.Row="0" Grid.Column="2" Text="{Binding BackgroundTextRightTop}" TextAlignment="Right" Style="{StaticResource CanvasBackgroundTextStyle}" />
+                    <TextBlock Grid.Row="0" Grid.Column="0" Text="{Binding BackgroundTextLeftTop}" TextAlignment="Left"
+                               Style="{StaticResource CanvasBackgroundTextStyle}" />
+                    <TextBlock Grid.Row="2" Grid.Column="0" Text="{Binding BackgroundTextLeftBottom}"
+                               TextAlignment="Left" Style="{StaticResource CanvasBackgroundTextStyle}" />
+                    <TextBlock Grid.Row="2" Grid.Column="2" Text="{Binding BackgroundTextRightBottom}"
+                               TextAlignment="Right" Style="{StaticResource CanvasBackgroundTextStyle}" />
+                    <TextBlock Grid.Row="0" Grid.Column="2" Text="{Binding BackgroundTextRightTop}"
+                               TextAlignment="Right" Style="{StaticResource CanvasBackgroundTextStyle}" />
                 </Grid>
                 <!--Canvas that holds all stakeholders-->
                 <ItemsControl ItemsSource="{Binding Source={StaticResource SortedDiagramStakeholders}}"
@@ -242,7 +257,7 @@
                     </ItemsControl.ItemContainerStyle>
                     <ItemsControl.ItemsPanel>
                         <ItemsPanelTemplate>
-                            <Canvas Name="Canvas" IsItemsHost="True"/>
+                            <Canvas Name="Canvas" IsItemsHost="True" />
                         </ItemsPanelTemplate>
                     </ItemsControl.ItemsPanel>
                 </ItemsControl>

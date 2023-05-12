@@ -2,7 +2,8 @@
 {
     public class StakeholderConnection : NotifyPropertyChangedObservable
     {
-        public StakeholderConnection(StakeholderConnectionGroup group, OnionDiagramStakeholder connectFrom, OnionDiagramStakeholder connectTo)
+        public StakeholderConnection(StakeholderConnectionGroup group, OnionDiagramStakeholder connectFrom,
+            OnionDiagramStakeholder connectTo)
         {
             StakeholderConnectionGroup = group;
             ConnectFrom = connectFrom;

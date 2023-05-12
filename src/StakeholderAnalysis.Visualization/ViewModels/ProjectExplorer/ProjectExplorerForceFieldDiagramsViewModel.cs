@@ -20,9 +20,7 @@ namespace StakeholderAnalysis.Visualization.ViewModels.ProjectExplorer
 
             Items = new ObservableCollection<ITreeNodeViewModel>();
             foreach (var forceFieldDiagram in analysis.ForceFieldDiagrams)
-            {
                 Items.Add(ViewModelFactory.CreateProjectExplorerForceFieldDiagramViewModel(forceFieldDiagram));
-            }
 
             ContextMenuItems = new ObservableCollection<ContextMenuItemViewModel>();
         }
@@ -39,7 +37,7 @@ namespace StakeholderAnalysis.Visualization.ViewModels.ProjectExplorer
             set
             {
                 isExpanded = value;
-                OnPropertyChanged(nameof(IsExpanded));
+                OnPropertyChanged();
             }
         }
 
@@ -74,24 +72,15 @@ namespace StakeholderAnalysis.Visualization.ViewModels.ProjectExplorer
         private void ForceFieldDiagramsCollectionChanged(object sender, NotifyCollectionChangedEventArgs e)
         {
             if (e.Action == NotifyCollectionChangedAction.Add)
-            {
                 foreach (var forceFieldDiagram in e.NewItems.OfType<ForceFieldDiagram>())
-                {
                     Items.Add(ViewModelFactory.CreateProjectExplorerForceFieldDiagramViewModel(forceFieldDiagram));
-                }
-            }
 
             if (e.Action == NotifyCollectionChangedAction.Remove)
-            {
                 foreach (var forceFieldDiagram in e.OldItems.OfType<ForceFieldDiagram>())
                 {
                     var diagramToRemove = Items.FirstOrDefault(d => d.IsViewModelFor(forceFieldDiagram));
-                    if (diagramToRemove != null)
-                    {
-                        Items.Remove(diagramToRemove);
-                    }
+                    if (diagramToRemove != null) Items.Remove(diagramToRemove);
                 }
-            }
         }
     }
 }

@@ -22,17 +22,17 @@ namespace StakeholderAnalysis.Visualization.ViewModels
 {
     public class ViewModelFactory
     {
-        private readonly StakeholderAnalysisGui gui;
         private readonly CommandFactory commandFactory;
-
-        private ViewManager ViewManager => gui?.ViewManager;
-        private Analysis Analysis => gui?.Analysis;
+        private readonly StakeholderAnalysisGui gui;
 
         public ViewModelFactory(StakeholderAnalysisGui gui)
         {
             this.gui = gui;
             commandFactory = new CommandFactory(gui, this);
         }
+
+        private ViewManager ViewManager => gui?.ViewManager;
+        private Analysis Analysis => gui?.Analysis;
 
         public OnionDiagramDrawConnectionViewModel CreateOnionDiagramDrawConnectionViewModel(OnionDiagram onionDiagram)
         {
@@ -66,7 +66,7 @@ namespace StakeholderAnalysis.Visualization.ViewModels
 
         public StatusBarViewModel CreateStatusBarViewModel()
         {
-            return new StatusBarViewModel(this,gui);
+            return new StatusBarViewModel(this, gui);
         }
 
         public CommandFactory GetCommandFactory()
@@ -81,7 +81,7 @@ namespace StakeholderAnalysis.Visualization.ViewModels
 
         public MessageListViewModel CreateMessageListViewModel()
         {
-            return new MessageListViewModel(this,gui?.Messages);
+            return new MessageListViewModel(this, gui?.Messages);
         }
 
         public ConnectionGroupsPropertiesViewModel CreateConnectionGroupsPropertiesViewModel()
@@ -104,7 +104,8 @@ namespace StakeholderAnalysis.Visualization.ViewModels
             return new ProjectExplorerViewModel(this, gui);
         }
 
-        public OnionRingPropertiesViewModel CreateOnionRingPropertiesViewModel(OnionRing onionRing, OnionDiagram selectedOnionDiagram)
+        public OnionRingPropertiesViewModel CreateOnionRingPropertiesViewModel(OnionRing onionRing,
+            OnionDiagram selectedOnionDiagram)
         {
             return new OnionRingPropertiesViewModel(this, onionRing, selectedOnionDiagram);
         }
@@ -114,7 +115,8 @@ namespace StakeholderAnalysis.Visualization.ViewModels
             return new OnionRingsPropertiesViewModel(this, ViewManager);
         }
 
-        public ConnectionGroupPropertiesViewModel CreateConnectionGroupPropertiesViewModel(StakeholderConnectionGroup connectionGroup, OnionDiagram selectedOnionDiagram)
+        public ConnectionGroupPropertiesViewModel CreateConnectionGroupPropertiesViewModel(
+            StakeholderConnectionGroup connectionGroup, OnionDiagram selectedOnionDiagram)
         {
             return new ConnectionGroupPropertiesViewModel(this, connectionGroup, selectedOnionDiagram);
         }
@@ -149,32 +151,41 @@ namespace StakeholderAnalysis.Visualization.ViewModels
             return new ForceFieldDiagramViewModel(this, diagram);
         }
 
-        public AttitudeImpactDiagramStakeholderViewModel CreateAttitudeImpactDiagramStakeholderViewModel(AttitudeImpactDiagram diagram, AttitudeImpactDiagramStakeholder stakeholder, ISelectionRegister selectionRegister)
+        public AttitudeImpactDiagramStakeholderViewModel CreateAttitudeImpactDiagramStakeholderViewModel(
+            AttitudeImpactDiagram diagram, AttitudeImpactDiagramStakeholder stakeholder,
+            ISelectionRegister selectionRegister)
         {
             return new AttitudeImpactDiagramStakeholderViewModel(this, diagram, stakeholder, selectionRegister);
         }
 
-        public StakeholderViewModel CreateStakeholderViewModel(Stakeholder stakeholder, ISelectionRegister selectionRegister, IDrawConnectionHandler drawConnectionHandler)
+        public StakeholderViewModel CreateStakeholderViewModel(Stakeholder stakeholder,
+            ISelectionRegister selectionRegister, IDrawConnectionHandler drawConnectionHandler)
         {
             return new StakeholderViewModel(this, stakeholder, selectionRegister, drawConnectionHandler);
         }
 
-        public ForceFieldDiagramStakeholderViewModel CreateForceFieldDiagramStakeholderViewModel(ForceFieldDiagram diagram, ForceFieldDiagramStakeholder stakeholder, ISelectionRegister selectionRegister)
+        public ForceFieldDiagramStakeholderViewModel CreateForceFieldDiagramStakeholderViewModel(
+            ForceFieldDiagram diagram, ForceFieldDiagramStakeholder stakeholder, ISelectionRegister selectionRegister)
         {
             return new ForceFieldDiagramStakeholderViewModel(this, diagram, stakeholder, selectionRegister);
         }
 
-        public OnionDiagramStakeholderViewModel CreateOnionDiagramStakeholderViewModel(OnionDiagram diagram, OnionDiagramStakeholder stakeholder, ISelectionRegister selectionRegister, IDrawConnectionHandler drawConnectionHandler)
+        public OnionDiagramStakeholderViewModel CreateOnionDiagramStakeholderViewModel(OnionDiagram diagram,
+            OnionDiagramStakeholder stakeholder, ISelectionRegister selectionRegister,
+            IDrawConnectionHandler drawConnectionHandler)
         {
-            return new OnionDiagramStakeholderViewModel(this, diagram, stakeholder, selectionRegister, drawConnectionHandler);
+            return new OnionDiagramStakeholderViewModel(this, diagram, stakeholder, selectionRegister,
+                drawConnectionHandler);
         }
 
-        public OnionDiagramStakeholdersViewModel CreateOnionDiagramStakeholdersViewModel(OnionDiagram onionDiagram, ISelectionRegister selectionRegister, IDrawConnectionHandler drawConnectionHandler)
+        public OnionDiagramStakeholdersViewModel CreateOnionDiagramStakeholdersViewModel(OnionDiagram onionDiagram,
+            ISelectionRegister selectionRegister, IDrawConnectionHandler drawConnectionHandler)
         {
             return new OnionDiagramStakeholdersViewModel(this, onionDiagram, selectionRegister, drawConnectionHandler);
         }
 
-        public OnionDiagramConnectionsPresenterViewModel CreateOnionDiagramConnectionsPresenterViewModel(OnionDiagram diagram)
+        public OnionDiagramConnectionsPresenterViewModel CreateOnionDiagramConnectionsPresenterViewModel(
+            OnionDiagram diagram)
         {
             return new OnionDiagramConnectionsPresenterViewModel(this, diagram);
         }
@@ -189,7 +200,9 @@ namespace StakeholderAnalysis.Visualization.ViewModels
             return new OnionRingViewModel(this, onionRing);
         }
 
-        public StakeholderConnectionViewModel CreateStakeholderConnectionViewModel(StakeholderConnection stakeholderConnection, Action<StakeholderConnection> removeStakeholderConnectionAction)
+        public StakeholderConnectionViewModel CreateStakeholderConnectionViewModel(
+            StakeholderConnection stakeholderConnection,
+            Action<StakeholderConnection> removeStakeholderConnectionAction)
         {
             return new StakeholderConnectionViewModel(this, stakeholderConnection, removeStakeholderConnectionAction);
         }
@@ -219,7 +232,8 @@ namespace StakeholderAnalysis.Visualization.ViewModels
             return new StakeholderTableViewModel(this, Analysis);
         }
 
-        public PropertyCollectionTreeNodeViewModel CreatePropertyCollectionViewModel(string displayName, ObservableCollection<ITreeNodeViewModel> items, CollectionType collectionType)
+        public PropertyCollectionTreeNodeViewModel CreatePropertyCollectionViewModel(string displayName,
+            ObservableCollection<ITreeNodeViewModel> items, CollectionType collectionType)
         {
             return new PropertyCollectionTreeNodeViewModel(this, displayName, items, collectionType);
         }
@@ -232,7 +246,8 @@ namespace StakeholderAnalysis.Visualization.ViewModels
                 Header = "Dupliceren",
                 Command = cloneCommand,
                 IsEnabled = true,
-                IconReference = "pack://application:,,,/StakeholderAnalysis.Visualization;component/Resources/document.png"
+                IconReference =
+                    "pack://application:,,,/StakeholderAnalysis.Visualization;component/Resources/document.png"
             };
         }
     }

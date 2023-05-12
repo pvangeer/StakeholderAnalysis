@@ -17,7 +17,7 @@ namespace StakeholderAnalysis.Visualization
 
         public DataTemplate ProjectExplorerDataTemplate { get; set; }
 
-        public DataTemplate StakeholderTableViewTemplate {get;set;}
+        public DataTemplate StakeholderTableViewTemplate { get; set; }
 
         public DataTemplate StakeholderForcesDiagramTemplate { get; set; }
 
@@ -29,34 +29,13 @@ namespace StakeholderAnalysis.Visualization
 
         public override DataTemplate SelectTemplate(object item, DependencyObject container)
         {
-            if (item is OnionDiagramViewModel)
-            {
-                return OnionDiagramViewTemplate;
-            }
-            if (item is ProjectExplorerViewModel)
-            {
-                return ProjectExplorerDataTemplate;
-            }
-            if (item is StakeholderTableViewModel)
-            {
-                return StakeholderTableViewTemplate;
-            }
-            if (item is ForceFieldDiagramViewModel)
-            {
-                return StakeholderForcesDiagramTemplate;
-            }
-            if (item is AttitudeImpactDiagramViewModel)
-            {
-                return AttitudeImpactDiagramTemplate;
-            }
-            if (item is OnionDiagramPropertiesViewModel)
-            {
-                return OnionDiagramPropertiesTemplate;
-            }
-            if (item is TwoAxisDiagramPropertiesViewModel)
-            {
-                return TwoAxisDiagramPropertiesTemplate;
-            }
+            if (item is OnionDiagramViewModel) return OnionDiagramViewTemplate;
+            if (item is ProjectExplorerViewModel) return ProjectExplorerDataTemplate;
+            if (item is StakeholderTableViewModel) return StakeholderTableViewTemplate;
+            if (item is ForceFieldDiagramViewModel) return StakeholderForcesDiagramTemplate;
+            if (item is AttitudeImpactDiagramViewModel) return AttitudeImpactDiagramTemplate;
+            if (item is OnionDiagramPropertiesViewModel) return OnionDiagramPropertiesTemplate;
+            if (item is TwoAxisDiagramPropertiesViewModel) return TwoAxisDiagramPropertiesTemplate;
 
             return DefaultDataTemplate;
         }

@@ -7,7 +7,6 @@ using System.Windows.Input;
 using System.Windows.Media;
 using StakeholderAnalysis.Data;
 using StakeholderAnalysis.Data.AttitudeImpactDiagrams;
-using StakeholderAnalysis.Data.ForceFieldDiagrams;
 
 namespace StakeholderAnalysis.Visualization.ViewModels.TwoAxisDiagrams
 {
@@ -16,32 +15,24 @@ namespace StakeholderAnalysis.Visualization.ViewModels.TwoAxisDiagrams
         private readonly AttitudeImpactDiagram diagram;
         private object selectedObject;
 
-        public AttitudeImpactDiagramViewModel(ViewModelFactory factory, AttitudeImpactDiagram attitudeImpactDiagram) : base(factory)
+        public AttitudeImpactDiagramViewModel(ViewModelFactory factory, AttitudeImpactDiagram attitudeImpactDiagram) :
+            base(factory)
         {
             diagram = attitudeImpactDiagram;
             if (attitudeImpactDiagram != null)
             {
                 diagram.PropertyChanged += DiagramPropertyChanged;
                 diagram.Stakeholders.CollectionChanged += StakeholdersCollectionChanged;
-                PositionedStakeholders = new ObservableCollection<IPositionedStakeholderViewModel>(attitudeImpactDiagram.Stakeholders.Select(stakeholder => ViewModelFactory.CreateAttitudeImpactDiagramStakeholderViewModel(diagram, stakeholder, this)));
+                PositionedStakeholders = new ObservableCollection<IPositionedStakeholderViewModel>(
+                    attitudeImpactDiagram.Stakeholders.Select(stakeholder =>
+                        ViewModelFactory.CreateAttitudeImpactDiagramStakeholderViewModel(diagram, stakeholder, this)));
             }
         }
 
         public ObservableCollection<IPositionedStakeholderViewModel> PositionedStakeholders { get; }
 
-        private void StakeholdersCollectionChanged(object sender, NotifyCollectionChangedEventArgs e)
-        {
-            if (e.Action == NotifyCollectionChangedAction.Add)
-                foreach (var item in e.NewItems.OfType<AttitudeImpactDiagramStakeholder>())
-                    PositionedStakeholders.Add(ViewModelFactory.CreateAttitudeImpactDiagramStakeholderViewModel(diagram, item, this));
-
-            if (e.Action == NotifyCollectionChangedAction.Remove)
-                foreach (var stakeholder in e.OldItems.OfType<AttitudeImpactDiagramStakeholder>())
-                    PositionedStakeholders.Remove(PositionedStakeholders.FirstOrDefault(viewModel =>
-                        viewModel.IsViewModelFor(stakeholder.Stakeholder)));
-        }
-
-        public Brush BackgroundBrush => new LinearGradientBrush(diagram.BrushStartColor, diagram.BrushEndColor, new Point(0,0), new Point(1,1));
+        public Brush BackgroundBrush => new LinearGradientBrush(diagram.BrushStartColor, diagram.BrushEndColor,
+            new Point(0, 0), new Point(1, 1));
 
         public string BackgroundTextLeftTop => diagram.BackgroundTextLeftTop;
 
@@ -81,11 +72,6 @@ namespace StakeholderAnalysis.Visualization.ViewModels.TwoAxisDiagrams
 
         public ICommand GridClickedCommand => CommandFactory.CreateClearSelectionCommand(this);
 
-        public bool IsViewModelFor(AttitudeImpactDiagram otherDiagram)
-        {
-            return otherDiagram == diagram;
-        }
-
         public bool IsSelected(object o)
         {
             return selectedObject == o;
@@ -95,14 +81,30 @@ namespace StakeholderAnalysis.Visualization.ViewModels.TwoAxisDiagrams
         {
             selectedObject = o;
             foreach (var stakeholder in PositionedStakeholders.OfType<StakeholderViewModel>())
-            {
                 stakeholder.OnPropertyChanged(nameof(StakeholderViewModel.IsSelectedStakeholder));
-            }
         }
 
         public ITwoAxisDiagram GetDiagram()
         {
             return diagram;
+        }
+
+        private void StakeholdersCollectionChanged(object sender, NotifyCollectionChangedEventArgs e)
+        {
+            if (e.Action == NotifyCollectionChangedAction.Add)
+                foreach (var item in e.NewItems.OfType<AttitudeImpactDiagramStakeholder>())
+                    PositionedStakeholders.Add(
+                        ViewModelFactory.CreateAttitudeImpactDiagramStakeholderViewModel(diagram, item, this));
+
+            if (e.Action == NotifyCollectionChangedAction.Remove)
+                foreach (var stakeholder in e.OldItems.OfType<AttitudeImpactDiagramStakeholder>())
+                    PositionedStakeholders.Remove(PositionedStakeholders.FirstOrDefault(viewModel =>
+                        viewModel.IsViewModelFor(stakeholder.Stakeholder)));
+        }
+
+        public bool IsViewModelFor(AttitudeImpactDiagram otherDiagram)
+        {
+            return otherDiagram == diagram;
         }
 
         private void DiagramPropertyChanged(object sender, PropertyChangedEventArgs e)

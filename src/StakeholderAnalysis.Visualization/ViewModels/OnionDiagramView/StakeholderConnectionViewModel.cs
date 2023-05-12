@@ -4,16 +4,18 @@ using System.Windows.Input;
 using System.Windows.Media;
 using StakeholderAnalysis.Data.OnionDiagrams;
 using StakeholderAnalysis.Messaging;
-using StakeholderAnalysis.Visualization.Behaviors;
 
 namespace StakeholderAnalysis.Visualization.ViewModels.OnionDiagramView
 {
     public class StakeholderConnectionViewModel : ViewModelBase
     {
-        private readonly StakeholderAnalysisLog log = new StakeholderAnalysisLog(typeof(StakeholderConnectionViewModel));
+        private readonly StakeholderAnalysisLog
+            log = new StakeholderAnalysisLog(typeof(StakeholderConnectionViewModel));
+
         private readonly Action<StakeholderConnection> removeStakeholderConnectionAction;
 
-        public StakeholderConnectionViewModel(ViewModelFactory factory, StakeholderConnection connection, Action<StakeholderConnection> removeStakeholderConnectionAction) : base(factory)
+        public StakeholderConnectionViewModel(ViewModelFactory factory, StakeholderConnection connection,
+            Action<StakeholderConnection> removeStakeholderConnectionAction) : base(factory)
         {
             this.removeStakeholderConnectionAction = removeStakeholderConnectionAction;
             StakeholderConnection = connection;

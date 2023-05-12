@@ -24,13 +24,16 @@ namespace StakeholderAnalysis.Visualization.ViewModels.TwoAxisDiagrams
             {
                 diagram.PropertyChanged += DiagramPropertyChanged;
                 diagram.Stakeholders.CollectionChanged += StakeholdersCollectionChanged;
-                PositionedStakeholders = new ObservableCollection<IPositionedStakeholderViewModel>(diagram.Stakeholders.Select(stakeholder => ViewModelFactory.CreateForceFieldDiagramStakeholderViewModel(diagram, stakeholder, this)));
+                PositionedStakeholders = new ObservableCollection<IPositionedStakeholderViewModel>(
+                    diagram.Stakeholders.Select(stakeholder =>
+                        ViewModelFactory.CreateForceFieldDiagramStakeholderViewModel(diagram, stakeholder, this)));
             }
         }
 
         public ObservableCollection<IPositionedStakeholderViewModel> PositionedStakeholders { get; }
 
-        public Brush BackgroundBrush => new LinearGradientBrush(diagram.BrushStartColor, diagram.BrushEndColor, new Point(0, 1), new Point(1, 0));
+        public Brush BackgroundBrush => new LinearGradientBrush(diagram.BrushStartColor, diagram.BrushEndColor,
+            new Point(0, 1), new Point(1, 0));
 
         public string BackgroundTextLeftTop => diagram.BackgroundTextLeftTop;
 
@@ -70,11 +73,6 @@ namespace StakeholderAnalysis.Visualization.ViewModels.TwoAxisDiagrams
 
         public ICommand GridClickedCommand => CommandFactory.CreateClearSelectionCommand(this);
 
-        public bool IsViewModelFor(ForceFieldDiagram otherDiagram)
-        {
-            return otherDiagram == diagram;
-        }
-
         public bool IsSelected(object o)
         {
             return selectedObject == o;
@@ -84,9 +82,7 @@ namespace StakeholderAnalysis.Visualization.ViewModels.TwoAxisDiagrams
         {
             selectedObject = o;
             foreach (var stakeholderViewModel in PositionedStakeholders.OfType<StakeholderViewModel>())
-            {
                 stakeholderViewModel.OnPropertyChanged(nameof(StakeholderViewModel.IsSelectedStakeholder));
-            }
         }
 
         public ITwoAxisDiagram GetDiagram()
@@ -94,11 +90,17 @@ namespace StakeholderAnalysis.Visualization.ViewModels.TwoAxisDiagrams
             return diagram;
         }
 
+        public bool IsViewModelFor(ForceFieldDiagram otherDiagram)
+        {
+            return otherDiagram == diagram;
+        }
+
         private void StakeholdersCollectionChanged(object sender, NotifyCollectionChangedEventArgs e)
         {
             if (e.Action == NotifyCollectionChangedAction.Add)
                 foreach (var item in e.NewItems.OfType<ForceFieldDiagramStakeholder>())
-                    PositionedStakeholders.Add(ViewModelFactory.CreateForceFieldDiagramStakeholderViewModel(diagram, item, this));
+                    PositionedStakeholders.Add(
+                        ViewModelFactory.CreateForceFieldDiagramStakeholderViewModel(diagram, item, this));
 
             if (e.Action == NotifyCollectionChangedAction.Remove)
                 foreach (var stakeholder in e.OldItems.OfType<ForceFieldDiagramStakeholder>())

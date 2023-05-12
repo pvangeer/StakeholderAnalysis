@@ -14,32 +14,20 @@ namespace StakeholderAnalysis.Visualization.ViewModels.OnionDiagramView
         private readonly OnionDiagram diagram;
         private readonly OnionDiagramStakeholder onionDiagramStakeholder;
 
-        public OnionDiagramStakeholderViewModel(ViewModelFactory factory, OnionDiagram diagram, OnionDiagramStakeholder stakeholder,
-            ISelectionRegister selectionRegister, IDrawConnectionHandler drawConnectionHandler) : base(factory, stakeholder?.Stakeholder, selectionRegister, drawConnectionHandler)
+        public OnionDiagramStakeholderViewModel(ViewModelFactory factory, OnionDiagram diagram,
+            OnionDiagramStakeholder stakeholder,
+            ISelectionRegister selectionRegister, IDrawConnectionHandler drawConnectionHandler) : base(factory,
+            stakeholder?.Stakeholder, selectionRegister, drawConnectionHandler)
         {
             DrawConnectionHandler = drawConnectionHandler;
             this.diagram = diagram;
-            if (diagram != null)
-            {
-                diagram.Stakeholders.CollectionChanged += DiagramStakeholdersCollectionChanged;
-            }
+            if (diagram != null) diagram.Stakeholders.CollectionChanged += DiagramStakeholdersCollectionChanged;
             onionDiagramStakeholder = stakeholder;
-            if (onionDiagramStakeholder != null)
-            {
-                onionDiagramStakeholder.PropertyChanged += StakeholderPropertyChanged;
-            }
+            if (onionDiagramStakeholder != null) onionDiagramStakeholder.PropertyChanged += StakeholderPropertyChanged;
             MoveStakeholderToBottomCommand = CommandFactory.CreateMoveToBottomCommand(diagram, onionDiagramStakeholder);
             MoveStakeholderToTopCommand = CommandFactory.CreateMoveToTopCommand(diagram, onionDiagramStakeholder);
             MoveStakeholderUpCommand = CommandFactory.CreateMoveUpCommand(diagram, onionDiagramStakeholder);
             MoveStakeholderDownCommand = CommandFactory.CreateMoveDownCommand(diagram, onionDiagramStakeholder);
-        }
-
-        private void DiagramStakeholdersCollectionChanged(object sender, NotifyCollectionChangedEventArgs e)
-        {
-            OnPropertyChanged(nameof(CanMoveToBottom));
-            OnPropertyChanged(nameof(CanMoveDown));
-            OnPropertyChanged(nameof(CanMoveToTop));
-            OnPropertyChanged(nameof(CanMoveUp));
         }
 
         public int Rank
@@ -48,7 +36,7 @@ namespace StakeholderAnalysis.Visualization.ViewModels.OnionDiagramView
             set
             {
                 onionDiagramStakeholder.Rank = value;
-                onionDiagramStakeholder.OnPropertyChanged(nameof(OnionDiagramStakeholder.Rank));
+                onionDiagramStakeholder.OnPropertyChanged();
             }
         }
 
@@ -90,9 +78,17 @@ namespace StakeholderAnalysis.Visualization.ViewModels.OnionDiagramView
 
         public bool CanMoveDown => MoveStakeholderDownCommand.CanExecute(null);
 
+        private void DiagramStakeholdersCollectionChanged(object sender, NotifyCollectionChangedEventArgs e)
+        {
+            OnPropertyChanged(nameof(CanMoveToBottom));
+            OnPropertyChanged(nameof(CanMoveDown));
+            OnPropertyChanged(nameof(CanMoveToTop));
+            OnPropertyChanged(nameof(CanMoveUp));
+        }
+
         public override void Moved(double xRelativeNew, double yRelativeNew)
         {
-            LeftPercentage = Math.Min(1.0,Math.Max(0.0,xRelativeNew));
+            LeftPercentage = Math.Min(1.0, Math.Max(0.0, xRelativeNew));
             TopPercentage = Math.Min(1.0, Math.Max(0.0, yRelativeNew));
         }
 
@@ -114,7 +110,8 @@ namespace StakeholderAnalysis.Visualization.ViewModels.OnionDiagramView
                     OnPropertyChanged(nameof(Rank));
                     break;
             }
-            base.StakeholderPropertyChanged(sender,e);
+
+            base.StakeholderPropertyChanged(sender, e);
         }
 
         public bool IsViewModelFor(OnionDiagramStakeholder stakeholder)
@@ -129,11 +126,7 @@ namespace StakeholderAnalysis.Visualization.ViewModels.OnionDiagramView
                 diagram.Stakeholders.Remove(onionDiagramStakeholder);
                 var connectionsToRemove = diagram.Connections.Where(c =>
                     c.ConnectFrom == onionDiagramStakeholder || c.ConnectTo == onionDiagramStakeholder).ToList();
-                foreach (var connection in connectionsToRemove)
-                {
-                    diagram.Connections.Remove(connection);
-                }
-
+                foreach (var connection in connectionsToRemove) diagram.Connections.Remove(connection);
             }
         }
 

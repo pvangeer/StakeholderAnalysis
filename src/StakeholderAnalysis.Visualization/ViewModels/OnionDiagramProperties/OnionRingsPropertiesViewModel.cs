@@ -24,15 +24,7 @@ namespace StakeholderAnalysis.Visualization.ViewModels.OnionDiagramProperties
             ContextMenuItems = new ObservableCollection<ContextMenuItemViewModel>();
         }
 
-        private void ViewManagerPropertyChanged(object sender, PropertyChangedEventArgs e)
-        {
-            switch (e.PropertyName)
-            {
-                case nameof(ViewManager.ActiveDocument):
-                    SetActiveOnionDiagram();
-                    break;
-            }
-        }
+        private OnionDiagram SelectedOnionDiagram { get; set; }
 
         public string DisplayName => "Ringen";
 
@@ -43,8 +35,6 @@ namespace StakeholderAnalysis.Visualization.ViewModels.OnionDiagramProperties
         public ICommand RemoveItemCommand => null;
 
         public bool CanAdd => true;
-
-        private OnionDiagram SelectedOnionDiagram { get; set; }
 
         public ObservableCollection<ITreeNodeViewModel> Items { get; private set; }
 
@@ -73,7 +63,17 @@ namespace StakeholderAnalysis.Visualization.ViewModels.OnionDiagramProperties
             set
             {
                 isExpanded = value;
-                OnPropertyChanged(nameof(IsExpanded));
+                OnPropertyChanged();
+            }
+        }
+
+        private void ViewManagerPropertyChanged(object sender, PropertyChangedEventArgs e)
+        {
+            switch (e.PropertyName)
+            {
+                case nameof(ViewManager.ActiveDocument):
+                    SetActiveOnionDiagram();
+                    break;
             }
         }
 
@@ -83,19 +83,16 @@ namespace StakeholderAnalysis.Visualization.ViewModels.OnionDiagramProperties
             if (SelectedOnionDiagram != activeOnionDiagram)
             {
                 if (SelectedOnionDiagram != null)
-                {
                     SelectedOnionDiagram.OnionRings.CollectionChanged += OnionRingsCollectionChanged;
-                }
 
                 SelectedOnionDiagram = activeOnionDiagram;
                 Items = new ObservableCollection<ITreeNodeViewModel>(
-                    SelectedOnionDiagram?.OnionRings.Select(r => ViewModelFactory.CreateOnionRingPropertiesViewModel(r, SelectedOnionDiagram)) ??
+                    SelectedOnionDiagram?.OnionRings.Select(r =>
+                        ViewModelFactory.CreateOnionRingPropertiesViewModel(r, SelectedOnionDiagram)) ??
                     new List<OnionRingPropertiesViewModel>());
 
                 if (SelectedOnionDiagram != null)
-                {
                     SelectedOnionDiagram.OnionRings.CollectionChanged += OnionRingsCollectionChanged;
-                }
 
                 OnPropertyChanged(nameof(Items));
             }
@@ -107,19 +104,15 @@ namespace StakeholderAnalysis.Visualization.ViewModels.OnionDiagramProperties
             {
                 case NotifyCollectionChangedAction.Add:
                     foreach (var onionRing in e.NewItems.OfType<OnionRing>())
-                    {
                         Items.Add(ViewModelFactory.CreateOnionRingPropertiesViewModel(onionRing, SelectedOnionDiagram));
-                    }
                     break;
                 case NotifyCollectionChangedAction.Remove:
                     foreach (var ringViewModel in e.OldItems.OfType<OnionRing>())
                     {
                         var viewModel = Items.FirstOrDefault(vm => vm.IsViewModelFor(ringViewModel));
-                        if (viewModel != null)
-                        {
-                            Items.Remove(viewModel);
-                        }
+                        if (viewModel != null) Items.Remove(viewModel);
                     }
+
                     break;
             }
         }

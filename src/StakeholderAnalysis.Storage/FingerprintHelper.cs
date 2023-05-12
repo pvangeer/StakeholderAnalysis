@@ -68,7 +68,7 @@ namespace StakeholderAnalysis.Storage
         private static int ComputeHash(AnalysisXmlEntity entity)
         {
             var xmlSerializer = new XmlSerializer(typeof(AnalysisXmlEntity));
-            using (StringWriter textWriter = new StringWriter())
+            using (var textWriter = new StringWriter())
             {
                 xmlSerializer.Serialize(textWriter, entity);
                 return textWriter.ToString().GetHashCode();

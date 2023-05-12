@@ -6,13 +6,15 @@ using StakeholderAnalysis.Visualization.ViewModels.PropertiesTree;
 
 namespace StakeholderAnalysis.Visualization.ViewModels.OnionDiagramProperties
 {
-    public class ConnectionGroupPropertiesViewModel : ViewModelBase, IPropertyCollectionTreeNodeViewModel, IQuickSelectionViewModel
+    public class ConnectionGroupPropertiesViewModel : ViewModelBase, IPropertyCollectionTreeNodeViewModel,
+        IQuickSelectionViewModel
     {
         private readonly StakeholderConnectionGroup connectionGroup;
-        private bool isExpanded;
         private readonly OnionDiagram diagram;
+        private bool isExpanded;
 
-        public ConnectionGroupPropertiesViewModel(ViewModelFactory factory, StakeholderConnectionGroup connectionGroup, OnionDiagram selectedOnionDiagram) : base(factory)
+        public ConnectionGroupPropertiesViewModel(ViewModelFactory factory, StakeholderConnectionGroup connectionGroup,
+            OnionDiagram selectedOnionDiagram) : base(factory)
         {
             diagram = selectedOnionDiagram;
             this.connectionGroup = connectionGroup;
@@ -20,26 +22,17 @@ namespace StakeholderAnalysis.Visualization.ViewModels.OnionDiagramProperties
 
             Items = new ObservableCollection<ITreeNodeViewModel>
             {
-                new StringPropertyTreeNodeViewModel<StakeholderConnectionGroup>(connectionGroup,nameof(StakeholderConnectionGroup.Name), "Naam"),
-                new BooleanPropertyTreeNodeViewModel<StakeholderConnectionGroup>(connectionGroup, nameof(StakeholderConnectionGroup.Visible), "Weergeven"),
-                new ColorPropertyTreeNodeViewModel<StakeholderConnectionGroup>(connectionGroup, nameof(StakeholderConnectionGroup.StrokeColor), "Lijnkleur"),
-                new DoubleUpDownPropertyTreeNodeViewModel<StakeholderConnectionGroup>(connectionGroup, nameof(StakeholderConnectionGroup.StrokeThickness), "Lijndikte", 0.0, 40.0, 0.5, "0.##")
+                new StringPropertyTreeNodeViewModel<StakeholderConnectionGroup>(connectionGroup,
+                    nameof(StakeholderConnectionGroup.Name), "Naam"),
+                new BooleanPropertyTreeNodeViewModel<StakeholderConnectionGroup>(connectionGroup,
+                    nameof(StakeholderConnectionGroup.Visible), "Weergeven"),
+                new ColorPropertyTreeNodeViewModel<StakeholderConnectionGroup>(connectionGroup,
+                    nameof(StakeholderConnectionGroup.StrokeColor), "Lijnkleur"),
+                new DoubleUpDownPropertyTreeNodeViewModel<StakeholderConnectionGroup>(connectionGroup,
+                    nameof(StakeholderConnectionGroup.StrokeThickness), "Lijndikte", 0.0, 40.0, 0.5, "0.##")
             };
 
             ContextMenuItems = new ObservableCollection<ContextMenuItemViewModel>();
-        }
-
-        private void ConnectionGroupPropertyChanged(object sender, PropertyChangedEventArgs e)
-        {
-            switch (e.PropertyName)
-            {
-                case nameof(StakeholderConnectionGroup.Name):
-                    OnPropertyChanged(nameof(DisplayName));
-                    break;
-                case nameof(StakeholderConnectionGroup.Visible):
-                    OnPropertyChanged(nameof(IsSelected));
-                    break;
-            }
         }
 
         public string DisplayName => connectionGroup.Name;
@@ -56,7 +49,7 @@ namespace StakeholderAnalysis.Visualization.ViewModels.OnionDiagramProperties
             set
             {
                 isExpanded = value;
-                OnPropertyChanged(nameof(IsExpanded));
+                OnPropertyChanged();
             }
         }
 
@@ -95,6 +88,19 @@ namespace StakeholderAnalysis.Visualization.ViewModels.OnionDiagramProperties
             {
                 connectionGroup.Visible = value;
                 connectionGroup.OnPropertyChanged(nameof(StakeholderConnectionGroup.Visible));
+            }
+        }
+
+        private void ConnectionGroupPropertyChanged(object sender, PropertyChangedEventArgs e)
+        {
+            switch (e.PropertyName)
+            {
+                case nameof(StakeholderConnectionGroup.Name):
+                    OnPropertyChanged(nameof(DisplayName));
+                    break;
+                case nameof(StakeholderConnectionGroup.Visible):
+                    OnPropertyChanged(nameof(IsSelected));
+                    break;
             }
         }
     }

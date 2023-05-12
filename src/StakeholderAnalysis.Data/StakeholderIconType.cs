@@ -1,6 +1,4 @@
-﻿using System.Net.Mime;
-
-namespace StakeholderAnalysis.Data
+﻿namespace StakeholderAnalysis.Data
 {
     public enum StakeholderIconType
     {

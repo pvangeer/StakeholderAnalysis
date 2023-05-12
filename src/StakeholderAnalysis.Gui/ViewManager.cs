@@ -22,6 +22,8 @@ namespace StakeholderAnalysis.Gui
 
         public ViewInfo ActiveDocument { get; set; }
 
+        public event PropertyChangedEventHandler PropertyChanged;
+
         public void OpenView(ViewInfo viewInfo)
         {
             if (IsAvailableView(viewInfo))
@@ -46,10 +48,7 @@ namespace StakeholderAnalysis.Gui
 
         public void BringToFront(ViewInfo viewInfo)
         {
-            if (!IsAvailableView(viewInfo))
-            {
-                OpenView(viewInfo);
-            }
+            if (!IsAvailableView(viewInfo)) OpenView(viewInfo);
 
             ActiveDocument = viewInfo;
             OnPropertyChanged(nameof(ActiveDocument));
@@ -57,10 +56,7 @@ namespace StakeholderAnalysis.Gui
 
         public void OpenToolWindow(ViewInfo viewInfo)
         {
-            if (viewInfo.IsDocumentView)
-            {
-                throw new ArgumentException();
-            }
+            if (viewInfo.IsDocumentView) throw new ArgumentException();
 
             if (!ToolWindows.Contains(viewInfo))
             {
@@ -77,8 +73,6 @@ namespace StakeholderAnalysis.Gui
                 OnPropertyChanged(nameof(ActiveDocument));
             }
         }
-
-        public event PropertyChangedEventHandler PropertyChanged;
 
         [NotifyPropertyChangedInvocator]
         public void OnPropertyChanged([CallerMemberName] string propertyName = null)

@@ -12,18 +12,13 @@ namespace StakeholderAnalysis.Visualization
         public object Convert(object value, Type targetType, object parameter, CultureInfo culture)
         {
             var source = value as string;
-            if (string.IsNullOrWhiteSpace(source))
-            {
-                return value;
-            }
+            if (string.IsNullOrWhiteSpace(source)) return value;
 
-            Uri iconUri = new Uri(source, UriKind.RelativeOrAbsolute);
+            var iconUri = new Uri(source, UriKind.RelativeOrAbsolute);
             return BitmapFrame.Create(iconUri);
 
             if (!(value is ContextMenuItemViewModel viewModel) || !(parameter is ContextMenuContentType type))
-            {
                 return value;
-            }
 
             switch (type)
             {

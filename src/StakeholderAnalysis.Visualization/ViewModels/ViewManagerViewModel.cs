@@ -20,24 +20,6 @@ namespace StakeholderAnalysis.Visualization.ViewModels
             OnPropertyChanged(nameof(SelectedToolWindowIndex));
         }
 
-        private void ToolWindowsCollectionChanged(object sender, NotifyCollectionChangedEventArgs e)
-        {
-            if (e.Action == NotifyCollectionChangedAction.Remove)
-            {
-                if (SelectedToolWindowIndex >= viewManager.ToolWindows.Count)
-                {
-                    SelectedToolWindowIndex = viewManager.ToolWindows.Count - 1;
-                    OnPropertyChanged(nameof(SelectedToolWindowIndex));
-                }
-            }
-
-            if (e.Action == NotifyCollectionChangedAction.Add)
-            {
-                SelectedToolWindowIndex = viewManager.ToolWindows.Count - 1;
-                OnPropertyChanged(nameof(SelectedToolWindowIndex));
-            }
-        }
-
         public ViewInfo ActiveDocument => viewManager?.ActiveDocument;
 
         public int ActiveDocumentIndex
@@ -63,6 +45,22 @@ namespace StakeholderAnalysis.Visualization.ViewModels
         public ObservableCollection<ViewInfo> ToolWindows => viewManager.ToolWindows;
 
         public int SelectedToolWindowIndex { get; set; }
+
+        private void ToolWindowsCollectionChanged(object sender, NotifyCollectionChangedEventArgs e)
+        {
+            if (e.Action == NotifyCollectionChangedAction.Remove)
+                if (SelectedToolWindowIndex >= viewManager.ToolWindows.Count)
+                {
+                    SelectedToolWindowIndex = viewManager.ToolWindows.Count - 1;
+                    OnPropertyChanged(nameof(SelectedToolWindowIndex));
+                }
+
+            if (e.Action == NotifyCollectionChangedAction.Add)
+            {
+                SelectedToolWindowIndex = viewManager.ToolWindows.Count - 1;
+                OnPropertyChanged(nameof(SelectedToolWindowIndex));
+            }
+        }
 
         private void ViewManagerPropertyChanged(object sender, PropertyChangedEventArgs e)
         {

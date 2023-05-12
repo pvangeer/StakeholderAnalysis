@@ -14,11 +14,11 @@ namespace StakeholderAnalysis.Storage.Test
         {
             var analysis = new Analysis();
 
-            var onionDiagram = new OnionDiagram("Beoordelen",new ObservableCollection<OnionRing>
+            var onionDiagram = new OnionDiagram("Beoordelen", new ObservableCollection<OnionRing>
             {
-                new OnionRing(1.0) {BackgroundColor = Colors.LightBlue},
-                new OnionRing(0.65) {BackgroundColor = Colors.CornflowerBlue},
-                new OnionRing(0.3) {BackgroundColor = Colors.DarkSlateBlue}
+                new OnionRing() { BackgroundColor = Colors.LightBlue },
+                new OnionRing(0.65) { BackgroundColor = Colors.CornflowerBlue },
+                new OnionRing(0.3) { BackgroundColor = Colors.DarkSlateBlue }
             })
             {
                 Asymmetry = 0.7
@@ -76,68 +76,106 @@ namespace StakeholderAnalysis.Storage.Test
             analysis.AttitudeImpactDiagrams.Add(attitudeImpactDiagram);
 
             #region Add stakeholders
+
             //Team
-            var rijksoverheidStakeholderType = AddStakeholderType(analysis, "Rijksoverheid", StakeholderIconType.Suit, Colors.MistyRose);
-            var knowledgeInstituteStakeholderType = AddStakeholderType(analysis, "Kennisinstituut", StakeholderIconType.Knowledge, Colors.DarkSeaGreen);
-            var stakeholderGroupStakeholderType = AddStakeholderType(analysis, "Stakeholdergroep", StakeholderIconType.GroupTable, Colors.DarkGray);
-            var miscStakeholderType = AddStakeholderType(analysis, "Other", StakeholderIconType.Other, Colors.Chocolate);
-            var waterDefenceMaintainerStakeholderType = AddStakeholderType(analysis, "Waterkeringbeheerder", StakeholderIconType.Group5, Colors.AliceBlue);
-            var marketStakeholderType = AddStakeholderType(analysis, "Ingenieursbureau", StakeholderIconType.Dollar, Colors.CadetBlue);
+            var rijksoverheidStakeholderType =
+                AddStakeholderType(analysis, "Rijksoverheid", StakeholderIconType.Suit, Colors.MistyRose);
+            var knowledgeInstituteStakeholderType = AddStakeholderType(analysis, "Kennisinstituut",
+                StakeholderIconType.Knowledge, Colors.DarkSeaGreen);
+            var stakeholderGroupStakeholderType = AddStakeholderType(analysis, "Stakeholdergroep",
+                StakeholderIconType.GroupTable, Colors.DarkGray);
+            var miscStakeholderType =
+                AddStakeholderType(analysis, "Other", StakeholderIconType.Other, Colors.Chocolate);
+            var waterDefenceMaintainerStakeholderType = AddStakeholderType(analysis, "Waterkeringbeheerder",
+                StakeholderIconType.Group5, Colors.AliceBlue);
+            var marketStakeholderType = AddStakeholderType(analysis, "Ingenieursbureau", StakeholderIconType.Dollar,
+                Colors.CadetBlue);
 
             var wlvStakeholder = AddStakeholderToAnalysis(analysis, "WVL", rijksoverheidStakeholderType);
             var dgwbStakeholder = AddStakeholderToAnalysis(analysis, "DGWB", rijksoverheidStakeholderType);
             var deltaresStakeholder = AddStakeholderToAnalysis(analysis, "Deltares", knowledgeInstituteStakeholderType);
-            var markedStakeholder = AddStakeholderToAnalysis(analysis, "Ontwikkelaars (overig)", knowledgeInstituteStakeholderType);
-            
+            var markedStakeholder =
+                AddStakeholderToAnalysis(analysis, "Ontwikkelaars (overig)", knowledgeInstituteStakeholderType);
+
             // Groepen
             var kkpStakeholder = AddStakeholderToAnalysis(analysis, "KKP", stakeholderGroupStakeholderType);
             var enwStakeholder = AddStakeholderToAnalysis(analysis, "ENW", stakeholderGroupStakeholderType);
             var enwCoastStakeholder = AddStakeholderToAnalysis(analysis, "ENW-Kust", stakeholderGroupStakeholderType);
-            var enwRiversStakeholder = AddStakeholderToAnalysis(analysis, "ENW-Rivieren", stakeholderGroupStakeholderType);
-            var enwTechnicStakeholder = AddStakeholderToAnalysis(analysis, "ENW-Techniek", stakeholderGroupStakeholderType);
-            var enwSafetyStakeholder = AddStakeholderToAnalysis(analysis, "ENW-Veiligheid", stakeholderGroupStakeholderType);
+            var enwRiversStakeholder =
+                AddStakeholderToAnalysis(analysis, "ENW-Rivieren", stakeholderGroupStakeholderType);
+            var enwTechnicStakeholder =
+                AddStakeholderToAnalysis(analysis, "ENW-Techniek", stakeholderGroupStakeholderType);
+            var enwSafetyStakeholder =
+                AddStakeholderToAnalysis(analysis, "ENW-Veiligheid", stakeholderGroupStakeholderType);
 
             var uvwStakeholder = AddStakeholderToAnalysis(analysis, "UvW", stakeholderGroupStakeholderType);
             var wwkStakeholder = AddStakeholderToAnalysis(analysis, "WWK", stakeholderGroupStakeholderType);
             var cwkStakeholder = AddStakeholderToAnalysis(analysis, "CWK", stakeholderGroupStakeholderType);
             var aioStakeholder = AddStakeholderToAnalysis(analysis, "AIO", stakeholderGroupStakeholderType);
             var dkiStakeholder = AddStakeholderToAnalysis(analysis, "DKI", stakeholderGroupStakeholderType);
-            var nlIngenieursStakeholder = AddStakeholderToAnalysis(analysis, "NL-ingenieurs", stakeholderGroupStakeholderType);
+            var nlIngenieursStakeholder =
+                AddStakeholderToAnalysis(analysis, "NL-ingenieurs", stakeholderGroupStakeholderType);
             var hwbpStakeholder = AddStakeholderToAnalysis(analysis, "HWBP", miscStakeholderType);
 
             // kpr, POVs
             var iltStakeholder = AddStakeholderToAnalysis(analysis, "ILT", rijksoverheidStakeholderType);
-            var wateropleidingenStakeholder = AddStakeholderToAnalysis(analysis, "Water- opleidingen", miscStakeholderType);
-            var kvkStakeholder = AddStakeholderToAnalysis(analysis, "Kennis voor keringen", knowledgeInstituteStakeholderType);
+            var wateropleidingenStakeholder =
+                AddStakeholderToAnalysis(analysis, "Water- opleidingen", miscStakeholderType);
+            var kvkStakeholder =
+                AddStakeholderToAnalysis(analysis, "Kennis voor keringen", knowledgeInstituteStakeholderType);
 
-            var themagroepKustStakeholder = AddStakeholderToAnalysis(analysis, "Themagroep Kust", stakeholderGroupStakeholderType);
+            var themagroepKustStakeholder =
+                AddStakeholderToAnalysis(analysis, "Themagroep Kust", stakeholderGroupStakeholderType);
             var stowaStakeholder = AddStakeholderToAnalysis(analysis, "STOWA", stakeholderGroupStakeholderType);
 
             // Waterschappen
-            var waterAuthoritiesStakeholder = AddStakeholderToAnalysis(analysis, "Waterkeringbeheerders", waterDefenceMaintainerStakeholderType);
-            var hhnkStakeholder = AddStakeholderToAnalysis(analysis, "Hollands Noorderkwartier", waterDefenceMaintainerStakeholderType);
-            var scheldeStromenStakeholder = AddStakeholderToAnalysis(analysis, "Scheldestromen", waterDefenceMaintainerStakeholderType);
-            var wetterskipStakeholder = AddStakeholderToAnalysis(analysis, "Wetterskip", waterDefenceMaintainerStakeholderType);
-            var rijnlandStakeholder = AddStakeholderToAnalysis(analysis, "Rijnland", waterDefenceMaintainerStakeholderType);
-            var delflandStakeholder = AddStakeholderToAnalysis(analysis, "Delfland", waterDefenceMaintainerStakeholderType);
-            var hollandseDeltaStakeholder = AddStakeholderToAnalysis(analysis, "Hollandse Delta", waterDefenceMaintainerStakeholderType);
-            var rwsZenDStakeholder = AddStakeholderToAnalysis(analysis, "RWS - Z&D", waterDefenceMaintainerStakeholderType);
-            var rwsNNStakeholder = AddStakeholderToAnalysis(analysis, "RWS - NN", waterDefenceMaintainerStakeholderType);
-            var nzvStakeholder = AddStakeholderToAnalysis(analysis, "Noordezijlvest", waterDefenceMaintainerStakeholderType);
-            var henaStakeholder = AddStakeholderToAnalysis(analysis, "Hunze en Aa's", waterDefenceMaintainerStakeholderType);
-            var wdodStakeholder = AddStakeholderToAnalysis(analysis, "Drents Overijsselse Delta", waterDefenceMaintainerStakeholderType);
-            var zzlStakeholder = AddStakeholderToAnalysis(analysis, "Zuiderzeeland", waterDefenceMaintainerStakeholderType);
-            var agenvStakeholder = AddStakeholderToAnalysis(analysis, "Amstel Gooi en Vecht", waterDefenceMaintainerStakeholderType);
-            var wsvvStakeholder = AddStakeholderToAnalysis(analysis, "Vallei en Veluwen", waterDefenceMaintainerStakeholderType);
-            var wrijStakeholder = AddStakeholderToAnalysis(analysis, "Rijn en IJssel", waterDefenceMaintainerStakeholderType);
-            var aaenmStakeholder = AddStakeholderToAnalysis(analysis, "Aa en Maas", waterDefenceMaintainerStakeholderType);
-            var limburgStakeholder = AddStakeholderToAnalysis(analysis, "Limburg", waterDefenceMaintainerStakeholderType);
-            var bdeltaStakeholder = AddStakeholderToAnalysis(analysis, "Brabantse Delta", waterDefenceMaintainerStakeholderType);
-            var rivierenlandStakeholder = AddStakeholderToAnalysis(analysis, "Rivierenland", waterDefenceMaintainerStakeholderType);
-            var srijStakeholder = AddStakeholderToAnalysis(analysis, "Stichtse Rijnlanden", waterDefenceMaintainerStakeholderType);
-            var hhskStakeholder = AddStakeholderToAnalysis(analysis, "Schieland en de krimpenerwaard", waterDefenceMaintainerStakeholderType);
+            var waterAuthoritiesStakeholder = AddStakeholderToAnalysis(analysis, "Waterkeringbeheerders",
+                waterDefenceMaintainerStakeholderType);
+            var hhnkStakeholder = AddStakeholderToAnalysis(analysis, "Hollands Noorderkwartier",
+                waterDefenceMaintainerStakeholderType);
+            var scheldeStromenStakeholder =
+                AddStakeholderToAnalysis(analysis, "Scheldestromen", waterDefenceMaintainerStakeholderType);
+            var wetterskipStakeholder =
+                AddStakeholderToAnalysis(analysis, "Wetterskip", waterDefenceMaintainerStakeholderType);
+            var rijnlandStakeholder =
+                AddStakeholderToAnalysis(analysis, "Rijnland", waterDefenceMaintainerStakeholderType);
+            var delflandStakeholder =
+                AddStakeholderToAnalysis(analysis, "Delfland", waterDefenceMaintainerStakeholderType);
+            var hollandseDeltaStakeholder =
+                AddStakeholderToAnalysis(analysis, "Hollandse Delta", waterDefenceMaintainerStakeholderType);
+            var rwsZenDStakeholder =
+                AddStakeholderToAnalysis(analysis, "RWS - Z&D", waterDefenceMaintainerStakeholderType);
+            var rwsNNStakeholder =
+                AddStakeholderToAnalysis(analysis, "RWS - NN", waterDefenceMaintainerStakeholderType);
+            var nzvStakeholder =
+                AddStakeholderToAnalysis(analysis, "Noordezijlvest", waterDefenceMaintainerStakeholderType);
+            var henaStakeholder =
+                AddStakeholderToAnalysis(analysis, "Hunze en Aa's", waterDefenceMaintainerStakeholderType);
+            var wdodStakeholder = AddStakeholderToAnalysis(analysis, "Drents Overijsselse Delta",
+                waterDefenceMaintainerStakeholderType);
+            var zzlStakeholder =
+                AddStakeholderToAnalysis(analysis, "Zuiderzeeland", waterDefenceMaintainerStakeholderType);
+            var agenvStakeholder =
+                AddStakeholderToAnalysis(analysis, "Amstel Gooi en Vecht", waterDefenceMaintainerStakeholderType);
+            var wsvvStakeholder =
+                AddStakeholderToAnalysis(analysis, "Vallei en Veluwen", waterDefenceMaintainerStakeholderType);
+            var wrijStakeholder =
+                AddStakeholderToAnalysis(analysis, "Rijn en IJssel", waterDefenceMaintainerStakeholderType);
+            var aaenmStakeholder =
+                AddStakeholderToAnalysis(analysis, "Aa en Maas", waterDefenceMaintainerStakeholderType);
+            var limburgStakeholder =
+                AddStakeholderToAnalysis(analysis, "Limburg", waterDefenceMaintainerStakeholderType);
+            var bdeltaStakeholder =
+                AddStakeholderToAnalysis(analysis, "Brabantse Delta", waterDefenceMaintainerStakeholderType);
+            var rivierenlandStakeholder =
+                AddStakeholderToAnalysis(analysis, "Rivierenland", waterDefenceMaintainerStakeholderType);
+            var srijStakeholder =
+                AddStakeholderToAnalysis(analysis, "Stichtse Rijnlanden", waterDefenceMaintainerStakeholderType);
+            var hhskStakeholder = AddStakeholderToAnalysis(analysis, "Schieland en de krimpenerwaard",
+                waterDefenceMaintainerStakeholderType);
 
-            var allMarkedPartiesStakeholder = AddStakeholderToAnalysis(analysis, "Marktpartijen", marketStakeholderType);
+            var allMarkedPartiesStakeholder =
+                AddStakeholderToAnalysis(analysis, "Marktpartijen", marketStakeholderType);
             var hkvStakeholder = AddStakeholderToAnalysis(analysis, "HKV", marketStakeholderType);
             var rhdhvStakeholder = AddStakeholderToAnalysis(analysis, "RHDHV", marketStakeholderType);
             var fugroStakeholder = AddStakeholderToAnalysis(analysis, "Fugro", marketStakeholderType);
@@ -165,7 +203,8 @@ namespace StakeholderAnalysis.Storage.Test
 
             var ihwStakeholder = AddStakeholderToAnalysis(analysis, "IHW", miscStakeholderType);
             var waterschapshuisStakeholder = AddStakeholderToAnalysis(analysis, "Waterschapshuis", miscStakeholderType);
-            var technolutionStakeholder = AddStakeholderToAnalysis(analysis, "Technolution", knowledgeInstituteStakeholderType);
+            var technolutionStakeholder =
+                AddStakeholderToAnalysis(analysis, "Technolution", knowledgeInstituteStakeholderType);
             var vortechStakeholder = AddStakeholderToAnalysis(analysis, "Vortech", knowledgeInstituteStakeholderType);
             var altenStakeholder = AddStakeholderToAnalysis(analysis, "Alten", knowledgeInstituteStakeholderType);
             //CIO
@@ -179,9 +218,11 @@ namespace StakeholderAnalysis.Storage.Test
             var tnoStakeholder = AddStakeholderToAnalysis(analysis, "TNO", knowledgeInstituteStakeholderType);
             var knmiStakeholder = AddStakeholderToAnalysis(analysis, "KNMI", knowledgeInstituteStakeholderType);
             var alterraStakeholder = AddStakeholderToAnalysis(analysis, "Alterra", knowledgeInstituteStakeholderType);
+
             #endregion
 
             #region Add Onion diagram
+
             var wvl = AddStakeholderToOnionDiagram(wlvStakeholder, onionDiagram, 0.5, 0.8);
             var dgwb = AddStakeholderToOnionDiagram(dgwbStakeholder, onionDiagram, 0.45, 0.75);
             var deltares = AddStakeholderToOnionDiagram(deltaresStakeholder, onionDiagram, 0.55, 0.75);
@@ -276,8 +317,8 @@ namespace StakeholderAnalysis.Storage.Test
             var aiodekiGroup = AddConnectionGroup(onionDiagram, "DKI/AIO", Colors.BlanchedAlmond);
             var kkpGroup = AddConnectionGroup(onionDiagram, "KKP netwerk", Colors.DarkGreen);
             var marketDevelopersGroup = AddConnectionGroup(onionDiagram, "Marktontwikkelaars", Colors.DeepPink);
-            var enwGroup = AddConnectionGroup(onionDiagram, "ENW", Colors.DarkCyan,true);
-            var enwInternal = AddConnectionGroup(onionDiagram, "ENW - intern", Colors.Black, true);
+            var enwGroup = AddConnectionGroup(onionDiagram, "ENW", Colors.DarkCyan);
+            var enwInternal = AddConnectionGroup(onionDiagram, "ENW - intern", Colors.Black);
             var enwCoast = AddConnectionGroup(onionDiagram, "ENW - Kust", Colors.Black);
             var enwTechniek = AddConnectionGroup(onionDiagram, "ENW - Techniek", Colors.Black);
             var enwVeiligheid = AddConnectionGroup(onionDiagram, "ENW - Veiligheid", Colors.Black);
@@ -288,17 +329,18 @@ namespace StakeholderAnalysis.Storage.Test
 
             // Connections
             // NL-ingenieurs
-            AddMultipleConnections(onionDiagram,nlIngenieurs, nlingenieurs,new[]
+            AddMultipleConnections(onionDiagram, nlIngenieurs, nlingenieurs, new[]
             {
                 sweco, rhdhv, antea, aveco, fugro, wibo, tauw, arc, hydrologic, cso, ivInfa, movares
             });
 
             // ENW intern
-            AddMultipleConnections(onionDiagram, enwInternal, enw, new[] {enwkust, enwrivieren, enwveiligheid, enwtechniek});
+            AddMultipleConnections(onionDiagram, enwInternal, enw,
+                new[] { enwkust, enwrivieren, enwveiligheid, enwtechniek });
 
             // Themagroep kust
             AddMultipleConnections(onionDiagram, coastGroup, themagroepKust,
-                new[] {hhnk, scheldeStromen, wetterskip, rijnland, delfland, hollandseDelta, rwsNN});
+                new[] { hhnk, scheldeStromen, wetterskip, rijnland, delfland, hollandseDelta, rwsNN });
 
             // Unie van Waterschappen
             AddMultipleConnections(onionDiagram, uvWgroup, uvw,
@@ -319,36 +361,44 @@ namespace StakeholderAnalysis.Storage.Test
             });
 
             // AIO en DKI
-            AddMultipleConnections(onionDiagram, aiodekiGroup, aio, new[] {dki, dgwb, wvl, kvk, uvw, stowa, ilt});
+            AddMultipleConnections(onionDiagram, aiodekiGroup, aio, new[] { dki, dgwb, wvl, kvk, uvw, stowa, ilt });
 
             // Markt ontwikkelars
-            AddMultipleConnections(onionDiagram, marketDevelopersGroup, markt, new []{hkv,arc,rhdhv,cso,alten,vortech,wibo,rps,infram,greenrivers,tno,knmi, zzpers});
+            AddMultipleConnections(onionDiagram, marketDevelopersGroup, markt,
+                new[] { hkv, arc, rhdhv, cso, alten, vortech, wibo, rps, infram, greenrivers, tno, knmi, zzpers });
 
             // ENW plenair
-            AddMultipleConnections(onionDiagram, enwGroup, enw, new[] {dgwb, wdod, tud, deltares, tut, vu, hkv, hhnk, aaenm, wvl});
+            AddMultipleConnections(onionDiagram, enwGroup, enw,
+                new[] { dgwb, wdod, tud, deltares, tut, vu, hkv, hhnk, aaenm, wvl });
 
             // ENW - Kust
-            AddMultipleConnections(onionDiagram, enwCoast, enwkust, new []{tud, delfland, hhnk, tut, wetterskip, deltares, rijnland, zzpers, arc, boskalis, rwsZenD});
+            AddMultipleConnections(onionDiagram, enwCoast, enwkust,
+                new[] { tud, delfland, hhnk, tut, wetterskip, deltares, rijnland, zzpers, arc, boskalis, rwsZenD });
 
             //ENW - Rivieren
-            AddMultipleConnections(onionDiagram, enwRivers, enwrivieren, new []{tut,zzpers,hkv,deltares,tud,alterra,limburg,uu, wvl});
+            AddMultipleConnections(onionDiagram, enwRivers, enwrivieren,
+                new[] { tut, zzpers, hkv, deltares, tud, alterra, limburg, uu, wvl });
             // provincie N-Brabant
 
             //ENW-Veiligheid
-            AddMultipleConnections(onionDiagram, enwVeiligheid, enwveiligheid, new[] {hkv, tud, tno, fugro, deltares, zzpers, scheldeStromen, wvl, arc});
+            AddMultipleConnections(onionDiagram, enwVeiligheid, enwveiligheid,
+                new[] { hkv, tud, tno, fugro, deltares, zzpers, scheldeStromen, wvl, arc });
             //cpb
             // Provincie Overijssel
             // Planbureau voor de leefomgeving
 
             //ENW-Techniek
-            AddMultipleConnections(onionDiagram, enwTechniek, enwtechniek, new []{deltares, wibo, hhsk, wvl, tud, fugro, zzpers, rivierenland});
+            AddMultipleConnections(onionDiagram, enwTechniek, enwtechniek,
+                new[] { deltares, wibo, hhsk, wvl, tud, fugro, zzpers, rivierenland });
             // Volker staal en funderingen
             // Hogeschool Rotterdam
             // GPO
             // WL Vlaanderen
+
             #endregion
 
             #region Add Force field diagram
+
             forceFieldDiagram.Stakeholders.Add(new ForceFieldDiagramStakeholder(wlvStakeholder, 0.9, 1.0));
             forceFieldDiagram.Stakeholders.Add(new ForceFieldDiagramStakeholder(dgwbStakeholder, 0.94, 1.0));
             forceFieldDiagram.Stakeholders.Add(new ForceFieldDiagramStakeholder(deltaresStakeholder, 0.9, 0.9));
@@ -435,10 +485,8 @@ namespace StakeholderAnalysis.Storage.Test
             forceFieldDiagram.Stakeholders.Add(new ForceFieldDiagramStakeholder(knmiStakeholder, 0.6, 0.5));
             forceFieldDiagram.Stakeholders.Add(new ForceFieldDiagramStakeholder(alterraStakeholder, 0.6, 0.5));
 
-            for (int i = 0; i < forceFieldDiagram.Stakeholders.Count; i++)
-            {
-                forceFieldDiagram.Stakeholders[i].Rank = i;
-            }
+            for (var i = 0; i < forceFieldDiagram.Stakeholders.Count; i++) forceFieldDiagram.Stakeholders[i].Rank = i;
+
             #endregion
 
             #region Add Force field diagram 2
@@ -467,9 +515,11 @@ namespace StakeholderAnalysis.Storage.Test
             forceFieldDiagram.Stakeholders.Add(new ForceFieldDiagramStakeholder(themagroepKustStakeholder, 0.9, 0.3));
             forceFieldDiagram.Stakeholders.Add(new ForceFieldDiagramStakeholder(stowaStakeholder, 0.7, 0.3));
 
-            forceFieldDiagram.Stakeholders.Add(new ForceFieldDiagramStakeholder(waterAuthoritiesStakeholder, 0.8, 0.55));
+            forceFieldDiagram.Stakeholders.Add(new ForceFieldDiagramStakeholder(waterAuthoritiesStakeholder, 0.8,
+                0.55));
 
-            forceFieldDiagram.Stakeholders.Add(new ForceFieldDiagramStakeholder(allMarkedPartiesStakeholder, 0.7, 0.65));
+            forceFieldDiagram.Stakeholders.Add(new ForceFieldDiagramStakeholder(allMarkedPartiesStakeholder, 0.7,
+                0.65));
 
             forceFieldDiagram.Stakeholders.Add(new ForceFieldDiagramStakeholder(ihwStakeholder, 0.3, 0.5));
             forceFieldDiagram.Stakeholders.Add(new ForceFieldDiagramStakeholder(waterschapshuisStakeholder, 0.25, 0.4));
@@ -484,13 +534,12 @@ namespace StakeholderAnalysis.Storage.Test
             forceFieldDiagram.Stakeholders.Add(new ForceFieldDiagramStakeholder(tnoStakeholder, 0.23, 0.56));
             forceFieldDiagram.Stakeholders.Add(new ForceFieldDiagramStakeholder(knmiStakeholder, 0.6, 0.5));
             forceFieldDiagram.Stakeholders.Add(new ForceFieldDiagramStakeholder(alterraStakeholder, 0.6, 0.5));
-            for (int i = 0; i < forceFieldDiagram.Stakeholders.Count; i++)
-            {
-                forceFieldDiagram.Stakeholders[i].Rank = i;
-            }
+            for (var i = 0; i < forceFieldDiagram.Stakeholders.Count; i++) forceFieldDiagram.Stakeholders[i].Rank = i;
+
             #endregion
 
             #region Attitude impact diagram
+
             attitudeImpactDiagram.Stakeholders.Add(new AttitudeImpactDiagramStakeholder(wlvStakeholder, 0.95, 0.9));
             attitudeImpactDiagram.Stakeholders.Add(new AttitudeImpactDiagramStakeholder(dgwbStakeholder, 0.9, 0.95));
             attitudeImpactDiagram.Stakeholders.Add(new AttitudeImpactDiagramStakeholder(deltaresStakeholder, 0.9, 0.8));
@@ -499,31 +548,41 @@ namespace StakeholderAnalysis.Storage.Test
             attitudeImpactDiagram.Stakeholders.Add(new AttitudeImpactDiagramStakeholder(kkpStakeholder, 0.9, 0.9));
             attitudeImpactDiagram.Stakeholders.Add(new AttitudeImpactDiagramStakeholder(enwStakeholder, 0.7, 0.7));
             attitudeImpactDiagram.Stakeholders.Add(new AttitudeImpactDiagramStakeholder(enwCoastStakeholder, 0.5, 0.4));
-            attitudeImpactDiagram.Stakeholders.Add(new AttitudeImpactDiagramStakeholder(enwRiversStakeholder, 0.6, 0.4));
-            attitudeImpactDiagram.Stakeholders.Add(new AttitudeImpactDiagramStakeholder(enwTechnicStakeholder, 0.55, 0.4));
-            attitudeImpactDiagram.Stakeholders.Add(new AttitudeImpactDiagramStakeholder(enwSafetyStakeholder, 0.5, 0.43));
+            attitudeImpactDiagram.Stakeholders.Add(
+                new AttitudeImpactDiagramStakeholder(enwRiversStakeholder, 0.6, 0.4));
+            attitudeImpactDiagram.Stakeholders.Add(
+                new AttitudeImpactDiagramStakeholder(enwTechnicStakeholder, 0.55, 0.4));
+            attitudeImpactDiagram.Stakeholders.Add(
+                new AttitudeImpactDiagramStakeholder(enwSafetyStakeholder, 0.5, 0.43));
 
             attitudeImpactDiagram.Stakeholders.Add(new AttitudeImpactDiagramStakeholder(uvwStakeholder, 0.4, 0.8));
             attitudeImpactDiagram.Stakeholders.Add(new AttitudeImpactDiagramStakeholder(wwkStakeholder, 0.4, 0.6));
             attitudeImpactDiagram.Stakeholders.Add(new AttitudeImpactDiagramStakeholder(cwkStakeholder, 0.4, 0.5));
             attitudeImpactDiagram.Stakeholders.Add(new AttitudeImpactDiagramStakeholder(aioStakeholder, 0.7, 0.7));
             attitudeImpactDiagram.Stakeholders.Add(new AttitudeImpactDiagramStakeholder(dkiStakeholder, 0.6, 0.8));
-            attitudeImpactDiagram.Stakeholders.Add(new AttitudeImpactDiagramStakeholder(nlIngenieursStakeholder, 0.8, 0.1));
+            attitudeImpactDiagram.Stakeholders.Add(
+                new AttitudeImpactDiagramStakeholder(nlIngenieursStakeholder, 0.8, 0.1));
             attitudeImpactDiagram.Stakeholders.Add(new AttitudeImpactDiagramStakeholder(hwbpStakeholder, 0.3, 0.98));
 
             attitudeImpactDiagram.Stakeholders.Add(new AttitudeImpactDiagramStakeholder(iltStakeholder, 0.7, 0.55));
-            attitudeImpactDiagram.Stakeholders.Add(new AttitudeImpactDiagramStakeholder(wateropleidingenStakeholder, 0.9, 0.3));
+            attitudeImpactDiagram.Stakeholders.Add(
+                new AttitudeImpactDiagramStakeholder(wateropleidingenStakeholder, 0.9, 0.3));
             attitudeImpactDiagram.Stakeholders.Add(new AttitudeImpactDiagramStakeholder(kvkStakeholder, 0.75, 0.4));
 
-            attitudeImpactDiagram.Stakeholders.Add(new AttitudeImpactDiagramStakeholder(themagroepKustStakeholder, 0.7, 0.4));
+            attitudeImpactDiagram.Stakeholders.Add(
+                new AttitudeImpactDiagramStakeholder(themagroepKustStakeholder, 0.7, 0.4));
             attitudeImpactDiagram.Stakeholders.Add(new AttitudeImpactDiagramStakeholder(stowaStakeholder, 0.6, 0.5));
 
             attitudeImpactDiagram.Stakeholders.Add(new AttitudeImpactDiagramStakeholder(hhnkStakeholder, 0.8, 0.8));
-            attitudeImpactDiagram.Stakeholders.Add(new AttitudeImpactDiagramStakeholder(scheldeStromenStakeholder, 0.5, 0.65));
-            attitudeImpactDiagram.Stakeholders.Add(new AttitudeImpactDiagramStakeholder(wetterskipStakeholder, 0.55, 0.68));
-            attitudeImpactDiagram.Stakeholders.Add(new AttitudeImpactDiagramStakeholder(rijnlandStakeholder, 0.8, 0.45));
+            attitudeImpactDiagram.Stakeholders.Add(
+                new AttitudeImpactDiagramStakeholder(scheldeStromenStakeholder, 0.5, 0.65));
+            attitudeImpactDiagram.Stakeholders.Add(
+                new AttitudeImpactDiagramStakeholder(wetterskipStakeholder, 0.55, 0.68));
+            attitudeImpactDiagram.Stakeholders.Add(
+                new AttitudeImpactDiagramStakeholder(rijnlandStakeholder, 0.8, 0.45));
             attitudeImpactDiagram.Stakeholders.Add(new AttitudeImpactDiagramStakeholder(delflandStakeholder, 0.7, 0.4));
-            attitudeImpactDiagram.Stakeholders.Add(new AttitudeImpactDiagramStakeholder(hollandseDeltaStakeholder, 0.7, 0.4));
+            attitudeImpactDiagram.Stakeholders.Add(
+                new AttitudeImpactDiagramStakeholder(hollandseDeltaStakeholder, 0.7, 0.4));
             attitudeImpactDiagram.Stakeholders.Add(new AttitudeImpactDiagramStakeholder(rwsZenDStakeholder, 0.6, 0.2));
             attitudeImpactDiagram.Stakeholders.Add(new AttitudeImpactDiagramStakeholder(rwsNNStakeholder, 0.6, 0.2));
             attitudeImpactDiagram.Stakeholders.Add(new AttitudeImpactDiagramStakeholder(nzvStakeholder, 0.6, 0.67));
@@ -536,7 +595,8 @@ namespace StakeholderAnalysis.Storage.Test
             attitudeImpactDiagram.Stakeholders.Add(new AttitudeImpactDiagramStakeholder(aaenmStakeholder, 0.61, 0.43));
             attitudeImpactDiagram.Stakeholders.Add(new AttitudeImpactDiagramStakeholder(limburgStakeholder, 0.7, 0.8));
             attitudeImpactDiagram.Stakeholders.Add(new AttitudeImpactDiagramStakeholder(bdeltaStakeholder, 0.65, 0.43));
-            attitudeImpactDiagram.Stakeholders.Add(new AttitudeImpactDiagramStakeholder(rivierenlandStakeholder, 0.82, 0.8));
+            attitudeImpactDiagram.Stakeholders.Add(
+                new AttitudeImpactDiagramStakeholder(rivierenlandStakeholder, 0.82, 0.8));
             attitudeImpactDiagram.Stakeholders.Add(new AttitudeImpactDiagramStakeholder(srijStakeholder, 0.6, 0.41));
             attitudeImpactDiagram.Stakeholders.Add(new AttitudeImpactDiagramStakeholder(hhskStakeholder, 0.6, 0.72));
 
@@ -548,14 +608,16 @@ namespace StakeholderAnalysis.Storage.Test
             attitudeImpactDiagram.Stakeholders.Add(new AttitudeImpactDiagramStakeholder(wnetStakeholder, 0.6, 0.1));
             attitudeImpactDiagram.Stakeholders.Add(new AttitudeImpactDiagramStakeholder(ivInfraStakeholder, 0.6, 0.05));
             attitudeImpactDiagram.Stakeholders.Add(new AttitudeImpactDiagramStakeholder(anteaStakeholder, 0.6, 0.01));
-            attitudeImpactDiagram.Stakeholders.Add(new AttitudeImpactDiagramStakeholder(greenRiversStakeholder, 0.6, 0.35));
+            attitudeImpactDiagram.Stakeholders.Add(
+                new AttitudeImpactDiagramStakeholder(greenRiversStakeholder, 0.6, 0.35));
             attitudeImpactDiagram.Stakeholders.Add(new AttitudeImpactDiagramStakeholder(bwzStakeholder, 0.6, 0.02));
             attitudeImpactDiagram.Stakeholders.Add(new AttitudeImpactDiagramStakeholder(inframStakeholder, 0.6, 0.15));
             attitudeImpactDiagram.Stakeholders.Add(new AttitudeImpactDiagramStakeholder(swecoStakeholder, 0.6, 0.15));
             attitudeImpactDiagram.Stakeholders.Add(new AttitudeImpactDiagramStakeholder(tauwStakeholder, 0.6, 0.15));
             attitudeImpactDiagram.Stakeholders.Add(new AttitudeImpactDiagramStakeholder(movaresStakeholder, 0.6, 0.25));
             attitudeImpactDiagram.Stakeholders.Add(new AttitudeImpactDiagramStakeholder(csoStakeholder, 0.6, 0.3));
-            attitudeImpactDiagram.Stakeholders.Add(new AttitudeImpactDiagramStakeholder(hydrologicStakeholder, 0.6, 0.02));
+            attitudeImpactDiagram.Stakeholders.Add(
+                new AttitudeImpactDiagramStakeholder(hydrologicStakeholder, 0.6, 0.02));
             attitudeImpactDiagram.Stakeholders.Add(new AttitudeImpactDiagramStakeholder(avecoStakeholder, 0.6, 0.01));
             attitudeImpactDiagram.Stakeholders.Add(new AttitudeImpactDiagramStakeholder(rpsStakeholder, 0.6, 0.15));
             attitudeImpactDiagram.Stakeholders.Add(new AttitudeImpactDiagramStakeholder(cruxStakeholder, 0.6, 0.01));
@@ -563,11 +625,14 @@ namespace StakeholderAnalysis.Storage.Test
             attitudeImpactDiagram.Stakeholders.Add(new AttitudeImpactDiagramStakeholder(geobestStakeholder, 0.6, 0.01));
             attitudeImpactDiagram.Stakeholders.Add(new AttitudeImpactDiagramStakeholder(bzimStakeholder, 0.6, 0.03));
             attitudeImpactDiagram.Stakeholders.Add(new AttitudeImpactDiagramStakeholder(zzpersStakeholder, 0.6, 0.35));
-            attitudeImpactDiagram.Stakeholders.Add(new AttitudeImpactDiagramStakeholder(boskalisStakeholder, 0.6, 0.15));
+            attitudeImpactDiagram.Stakeholders.Add(
+                new AttitudeImpactDiagramStakeholder(boskalisStakeholder, 0.6, 0.15));
 
             attitudeImpactDiagram.Stakeholders.Add(new AttitudeImpactDiagramStakeholder(ihwStakeholder, 0.56, 0.4));
-            attitudeImpactDiagram.Stakeholders.Add(new AttitudeImpactDiagramStakeholder(waterschapshuisStakeholder, 0.6, 0.15));
-            attitudeImpactDiagram.Stakeholders.Add(new AttitudeImpactDiagramStakeholder(technolutionStakeholder, 0.6, 0.03));
+            attitudeImpactDiagram.Stakeholders.Add(
+                new AttitudeImpactDiagramStakeholder(waterschapshuisStakeholder, 0.6, 0.15));
+            attitudeImpactDiagram.Stakeholders.Add(
+                new AttitudeImpactDiagramStakeholder(technolutionStakeholder, 0.6, 0.03));
             attitudeImpactDiagram.Stakeholders.Add(new AttitudeImpactDiagramStakeholder(vortechStakeholder, 0.7, 0.26));
             attitudeImpactDiagram.Stakeholders.Add(new AttitudeImpactDiagramStakeholder(altenStakeholder, 0.6, 0.15));
 
@@ -578,38 +643,41 @@ namespace StakeholderAnalysis.Storage.Test
             attitudeImpactDiagram.Stakeholders.Add(new AttitudeImpactDiagramStakeholder(tnoStakeholder, 0.8, 0.3));
             attitudeImpactDiagram.Stakeholders.Add(new AttitudeImpactDiagramStakeholder(knmiStakeholder, 0.76, 0.36));
             attitudeImpactDiagram.Stakeholders.Add(new AttitudeImpactDiagramStakeholder(alterraStakeholder, 0.6, 0.15));
-            for (int i = 0; i < attitudeImpactDiagram.Stakeholders.Count; i++)
-            {
+            for (var i = 0; i < attitudeImpactDiagram.Stakeholders.Count; i++)
                 attitudeImpactDiagram.Stakeholders[i].Rank = i;
-            }
+
             #endregion
 
             return analysis;
         }
 
-        private static StakeholderType AddStakeholderType(Analysis analysis, string name, StakeholderIconType iconType, Color color)
+        private static StakeholderType AddStakeholderType(Analysis analysis, string name, StakeholderIconType iconType,
+            Color color)
         {
-            var stakeholderType = new StakeholderType {Name = name, IconType = iconType, Color = color };
+            var stakeholderType = new StakeholderType { Name = name, IconType = iconType, Color = color };
             analysis.StakeholderTypes.Add(stakeholderType);
             return stakeholderType;
         }
 
-        private static void AddMultipleConnections(OnionDiagram diagram, StakeholderConnectionGroup stakeholderConnectionGroup, OnionDiagramStakeholder baseStakeholder, IEnumerable<OnionDiagramStakeholder> stakeholders)
+        private static void AddMultipleConnections(OnionDiagram diagram,
+            StakeholderConnectionGroup stakeholderConnectionGroup, OnionDiagramStakeholder baseStakeholder,
+            IEnumerable<OnionDiagramStakeholder> stakeholders)
         {
             foreach (var stakeholder in stakeholders)
-            {
-                diagram.Connections.Add(new StakeholderConnection(stakeholderConnectionGroup,baseStakeholder,stakeholder));
-            }
+                diagram.Connections.Add(new StakeholderConnection(stakeholderConnectionGroup, baseStakeholder,
+                    stakeholder));
         }
 
-        private static StakeholderConnectionGroup AddConnectionGroup(OnionDiagram diagram, string groupName, Color groupColor, bool isVisible = true)
+        private static StakeholderConnectionGroup AddConnectionGroup(OnionDiagram diagram, string groupName,
+            Color groupColor, bool isVisible = true)
         {
             var coastGroup = new StakeholderConnectionGroup(groupName, groupColor, 1.0, isVisible);
             diagram.ConnectionGroups.Add(coastGroup);
             return coastGroup;
         }
 
-        private static OnionDiagramStakeholder AddStakeholderToOnionDiagram(Stakeholder stakeholder, OnionDiagram diagram,
+        private static OnionDiagramStakeholder AddStakeholderToOnionDiagram(Stakeholder stakeholder,
+            OnionDiagram diagram,
             double leftPercentage, double rightPercentage)
         {
             var diagramStakeholder = new OnionDiagramStakeholder(stakeholder, leftPercentage, rightPercentage)

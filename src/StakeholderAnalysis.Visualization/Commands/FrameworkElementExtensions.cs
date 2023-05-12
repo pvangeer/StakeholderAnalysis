@@ -42,8 +42,8 @@ namespace StakeholderAnalysis.Visualization.Commands
             var scale = dpi / 96.0;
             var renderBitmap =
                 new RenderTargetBitmap(
-                    (int) (presenter.ActualWidth * scale),
-                    (int) (presenter.ActualHeight * scale),
+                    (int)(presenter.ActualWidth * scale),
+                    (int)(presenter.ActualHeight * scale),
                     dpi,
                     dpi,
                     PixelFormats.Pbgra32);

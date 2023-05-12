@@ -6,9 +6,10 @@
     <converters:PercentageToDimensionConverter x:Key="PercentageToDimensionConverter" />
     <BooleanToVisibilityConverter x:Key="BoolToVisibilityConverter" />
 
-    <DataTemplate x:Key="OnionDiagramConnectionDrawingCanvasDataTemplate" DataType="onionDiagramView:OnionDiagramDrawConnectionViewModel">
+    <DataTemplate x:Key="OnionDiagramConnectionDrawingCanvasDataTemplate"
+                  DataType="onionDiagramView:OnionDiagramDrawConnectionViewModel">
         <Canvas Name="Canvas" Visibility="{Binding IsDrawing, Converter={StaticResource BoolToVisibilityConverter}}">
-            <Line 
+            <Line
                 Visibility="{Binding IsDrawing, Converter={StaticResource BoolToVisibilityConverter}}"
                 Stroke="Brown"
                 StrokeThickness="2"

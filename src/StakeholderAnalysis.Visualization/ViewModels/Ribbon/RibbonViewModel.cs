@@ -33,44 +33,6 @@ namespace StakeholderAnalysis.Visualization.ViewModels.Ribbon
             ViewManagerViewModel = ViewModelFactory.CreateViewManagerViewModel();
         }
 
-        private void SetCurrentSelectedDiagramAndGroups()
-        {
-            var selectedOnionDiagram = gui?.ViewManager?.ActiveDocument?.ViewModel is OnionDiagramViewModel viewModel
-                ? viewModel.GetDiagram()
-                : null;
-
-            if (stakeholderConnectionGroupSelection != null)
-            {
-                stakeholderConnectionGroupSelection.PropertyChanged -= StakeholderConnectionGroupSelectionPropertyChanged;
-            }
-
-            stakeholderConnectionGroupSelection = null;
-            OnPropertyChanged(nameof(StakeholderConnectionGroups));
-            OnPropertyChanged(nameof(SelectedStakeholderConnectionGroup));
-            
-            stakeholderConnectionGroupSelection =
-                gui?.SelectedStakeholderConnectionGroups.FirstOrDefault(g => g.OnionDiagram == selectedOnionDiagram);
-
-            if (stakeholderConnectionGroupSelection != null)
-            {
-                stakeholderConnectionGroupSelection.PropertyChanged += StakeholderConnectionGroupSelectionPropertyChanged;
-            }
-
-            OnPropertyChanged(nameof(Asymmetry));
-            OnPropertyChanged(nameof(AddOnionRingCommand));
-            OnPropertyChanged(nameof(StakeholderConnectionGroups));
-            OnPropertyChanged(nameof(SelectedStakeholderConnectionGroup));
-            OnPropertyChanged(nameof(ToggleToolWindowCommand));
-        }
-
-        private void StakeholderConnectionGroupSelectionPropertyChanged(object sender, PropertyChangedEventArgs e)
-        {
-            if (e.PropertyName == nameof(StakeholderConnectionGroupSelection.StakeholderConnectionGroup))
-            {
-                OnPropertyChanged(nameof(SelectedStakeholderConnectionGroup));
-            }
-        }
-
         public ViewManagerViewModel ViewManagerViewModel { get; }
 
         public ICommand OpenCommand => CommandFactory.CreateOpenFileCommand();
@@ -91,13 +53,15 @@ namespace StakeholderAnalysis.Visualization.ViewModels.Ribbon
             set
             {
                 gui.IsMagnifierActive = value;
-                gui.OnPropertyChanged(nameof(StakeholderAnalysisGui.IsMagnifierActive));
+                gui.OnPropertyChanged();
             }
         }
 
-        public ICommand SaveImageCommand => saveCanvasCommand ?? (saveCanvasCommand = CommandFactory.CreateSaveImageCommand());
+        public ICommand SaveImageCommand =>
+            saveCanvasCommand ?? (saveCanvasCommand = CommandFactory.CreateSaveImageCommand());
 
-        public ICommand AddOnionRingCommand => CommandFactory.CreateAddOnionRingCommand(stakeholderConnectionGroupSelection?.OnionDiagram);
+        public ICommand AddOnionRingCommand =>
+            CommandFactory.CreateAddOnionRingCommand(stakeholderConnectionGroupSelection?.OnionDiagram);
 
         public double Asymmetry
         {
@@ -107,7 +71,7 @@ namespace StakeholderAnalysis.Visualization.ViewModels.Ribbon
                 if (stakeholderConnectionGroupSelection?.OnionDiagram != null)
                 {
                     stakeholderConnectionGroupSelection.OnionDiagram.Asymmetry = value;
-                    stakeholderConnectionGroupSelection.OnionDiagram.OnPropertyChanged(nameof(OnionDiagram.Asymmetry));
+                    stakeholderConnectionGroupSelection.OnionDiagram.OnPropertyChanged();
                 }
             }
         }
@@ -119,6 +83,56 @@ namespace StakeholderAnalysis.Visualization.ViewModels.Ribbon
         {
             get => ViewManagerViewModel.ToolWindows;
             set { }
+        }
+
+        public ObservableCollection<StakeholderConnectionGroup> StakeholderConnectionGroups =>
+            stakeholderConnectionGroupSelection?.OnionDiagram?.ConnectionGroups;
+
+        public StakeholderConnectionGroup SelectedStakeholderConnectionGroup
+        {
+            get => stakeholderConnectionGroupSelection?.StakeholderConnectionGroup;
+            set
+            {
+                if (stakeholderConnectionGroupSelection == null || value == null) return;
+
+                stakeholderConnectionGroupSelection.StakeholderConnectionGroup = value;
+                stakeholderConnectionGroupSelection.OnPropertyChanged(nameof(StakeholderConnectionGroupSelection
+                    .StakeholderConnectionGroup));
+            }
+        }
+
+        private void SetCurrentSelectedDiagramAndGroups()
+        {
+            var selectedOnionDiagram = gui?.ViewManager?.ActiveDocument?.ViewModel is OnionDiagramViewModel viewModel
+                ? viewModel.GetDiagram()
+                : null;
+
+            if (stakeholderConnectionGroupSelection != null)
+                stakeholderConnectionGroupSelection.PropertyChanged -=
+                    StakeholderConnectionGroupSelectionPropertyChanged;
+
+            stakeholderConnectionGroupSelection = null;
+            OnPropertyChanged(nameof(StakeholderConnectionGroups));
+            OnPropertyChanged(nameof(SelectedStakeholderConnectionGroup));
+
+            stakeholderConnectionGroupSelection =
+                gui?.SelectedStakeholderConnectionGroups.FirstOrDefault(g => g.OnionDiagram == selectedOnionDiagram);
+
+            if (stakeholderConnectionGroupSelection != null)
+                stakeholderConnectionGroupSelection.PropertyChanged +=
+                    StakeholderConnectionGroupSelectionPropertyChanged;
+
+            OnPropertyChanged(nameof(Asymmetry));
+            OnPropertyChanged(nameof(AddOnionRingCommand));
+            OnPropertyChanged(nameof(StakeholderConnectionGroups));
+            OnPropertyChanged(nameof(SelectedStakeholderConnectionGroup));
+            OnPropertyChanged(nameof(ToggleToolWindowCommand));
+        }
+
+        private void StakeholderConnectionGroupSelectionPropertyChanged(object sender, PropertyChangedEventArgs e)
+        {
+            if (e.PropertyName == nameof(StakeholderConnectionGroupSelection.StakeholderConnectionGroup))
+                OnPropertyChanged(nameof(SelectedStakeholderConnectionGroup));
         }
 
         private void ToolWindowsCollectionChanged(object sender, NotifyCollectionChangedEventArgs e)
@@ -150,28 +164,12 @@ namespace StakeholderAnalysis.Visualization.ViewModels.Ribbon
             }
         }
 
-        public ObservableCollection<StakeholderConnectionGroup> StakeholderConnectionGroups => stakeholderConnectionGroupSelection?.OnionDiagram?.ConnectionGroups;
-
-        public StakeholderConnectionGroup SelectedStakeholderConnectionGroup
-        {
-            get => stakeholderConnectionGroupSelection?.StakeholderConnectionGroup;
-            set 
-            {
-                if (stakeholderConnectionGroupSelection == null || value == null)
-                {
-                    return;
-                }
-
-                stakeholderConnectionGroupSelection.StakeholderConnectionGroup = value;
-                stakeholderConnectionGroupSelection.OnPropertyChanged(nameof(StakeholderConnectionGroupSelection.StakeholderConnectionGroup));
-            }
-        }
-
         private bool ShouldSaveOpenChanges()
         {
-            string messageBoxText = "U heeft aanpassingen aan uw project nog niet opgeslagen. Wilt u dat alsnog doen?";
-            string caption = "Aanpassingen opslaan";
-            MessageBoxResult messageBoxResult = MessageBox.Show(messageBoxText, caption, MessageBoxButton.YesNo, MessageBoxImage.Question);
+            var messageBoxText = "U heeft aanpassingen aan uw project nog niet opgeslagen. Wilt u dat alsnog doen?";
+            var caption = "Aanpassingen opslaan";
+            var messageBoxResult =
+                MessageBox.Show(messageBoxText, caption, MessageBoxButton.YesNo, MessageBoxImage.Question);
 
             return messageBoxResult == MessageBoxResult.Yes;
         }
