@@ -7,6 +7,7 @@ using StakeholderAnalysis.Storage.XmlEntities;
 
 namespace StakeholderAnalysis.Storage.Test.XmlEntities
 {
+    [TestFixture]
     public class OnionRingXmlEntityTest
     {
         [Test]

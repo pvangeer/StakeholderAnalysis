@@ -1,10 +1,10 @@
-﻿using NUnit.Framework;
-using StakeholderAnalysis.Storage.XmlEntities;
+﻿using StakeholderAnalysis.Storage.XmlEntities;
 using System;
 using System.Collections.ObjectModel;
 using System.IO;
 using System.Windows.Media;
 using System.Xml.Serialization;
+using NUnit.Framework;
 
 namespace StakeholderAnalysis.Storage.Test.XmlEntities
 {

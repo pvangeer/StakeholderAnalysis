@@ -180,7 +180,7 @@ namespace StakeholderAnalysis.Gui
         public void HandleUnsavedChanges(StakeholderAnalysisGui gui, Action followingAction)
         {
             storageXml.StageProject(gui.Analysis);
-            if (storageXml.HasStagedProjectChanges(gui.ProjectFilePath))
+            if (storageXml.HasStagedProjectChanges())
             {
                 if (gui.ShouldSaveOpenChanges != null && gui.ShouldSaveOpenChanges())
                 {

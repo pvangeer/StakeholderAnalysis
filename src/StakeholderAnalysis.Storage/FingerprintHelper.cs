@@ -21,11 +21,8 @@
 
 using System;
 using System.IO;
-using System.Linq;
-using System.Runtime.Serialization;
-using System.Security.Cryptography;
 using System.ServiceModel;
-using System.Xml;
+using System.Xml.Serialization;
 using StakeholderAnalysis.Storage.XmlEntities;
 
 namespace StakeholderAnalysis.Storage
@@ -37,59 +34,23 @@ namespace StakeholderAnalysis.Storage
     public static class FingerprintHelper
     {
         /// <summary>
-        ///     Gets the fingerprint for the given <see cref="AnalysisEntity" />.
+        ///     Gets the fingerprint for the given <see cref="AnalysisXmlEntity" />.
         /// </summary>
-        /// <param name="entity">The <see cref="AnalysisEntity" /> to generate a hashcode for.</param>
+        /// <param name="entity">The <see cref="AnalysisXmlEntity" /> to generate a hashcode for.</param>
         /// <returns>The binary hashcode for <paramref name="entity" />.</returns>
         /// <exception cref="ArgumentNullException">Thrown when <paramref name="entity" /> is <c>null</c>.</exception>
-        /// <exception cref="CannotDetermineFingerprintException">
-        ///     Thrown when a critical
-        ///     error occurs when trying to determine the fingerprint.
-        /// </exception>
-        public static byte[] Get(AnalysisXmlEntity entity)
+        public static int Get(AnalysisXmlEntity entity)
         {
             if (entity == null) throw new ArgumentNullException(nameof(entity));
 
-            try
-            {
-                var filePath = Path.GetTempFileName();
-
-                var computeHash = ComputeHash(entity, filePath);
-
-                File.Delete(filePath);
-
-                return computeHash;
-            }
-            catch (Exception e) when (e is UnauthorizedAccessException || e is IOException ||
-                                      e is QuotaExceededException)
-            {
-                throw new Exception("Het was niet mogelijk om een fingerprint te bepalen",
-                    e); // TODO: Create separate Exception (CannotDetermineFingerprintException)
-            }
-        }
-
-        /// <summary>
-        ///     Determines if two fingerprint byte arrays are equal to each other.
-        /// </summary>
-        /// <param name="array1">The first array, cannot be <c>null</c>.</param>
-        /// <param name="array2">The second array, cannot be <c>null</c>.</param>
-        /// <returns><c>true</c> if the two fingerprints are equal, <c>false</c> otherwise.</returns>
-        public static bool AreEqual(byte[] array1, byte[] array2)
-        {
-            if (array1.Length != array2.Length) return false;
-            // Note: Do not turn this into a linq query, as that is less performance optimal!
-            for (var i = 0; i < array1.Length; i++)
-                if (!array1[i].Equals(array2[i]))
-                    return false;
-            return true;
+            return ComputeHash(entity);
         }
 
         /// <summary>
         ///     While using a target file as storage, determines the fingerprint for the given
-        ///     <see cref="AnalysisEntity" />.
+        ///     <see cref="AnalysisXmlEntity" />.
         /// </summary>
-        /// <param name="entity">The <see cref="AnalysisEntity" /> to generate a hashcode for.</param>
-        /// <param name="filePath">The filepath to use as temporary storage.</param>
+        /// <param name="entity">The <see cref="AnalysisXmlEntity" /> to generate a hashcode for.</param>
         /// <returns>The binary hashcode for <paramref name="entity" />.</returns>
         /// <exception cref="ArgumentNullException">Thrown when <paramref name="entity" /> is <c>null</c>.</exception>
         /// <exception cref="QuotaExceededException">
@@ -104,19 +65,13 @@ namespace StakeholderAnalysis.Storage
         ///     An I/O exception occurred while creating the file
         ///     at <paramref name="filePath" />.
         /// </exception>
-        private static byte[] ComputeHash(AnalysisXmlEntity entity, string filePath)
+        private static int ComputeHash(AnalysisXmlEntity entity)
         {
-            using (HashAlgorithm hashingAlgorithm = MD5.Create())
-            using (var stream = File.Create(filePath))
-            using (var writer = XmlDictionaryWriter.CreateBinaryWriter(stream))
+            var xmlSerializer = new XmlSerializer(typeof(AnalysisXmlEntity));
+            using (StringWriter textWriter = new StringWriter())
             {
-                var serializer = new DataContractSerializer(entity.GetType(),
-                    Enumerable.Empty<Type>(),
-                    int.MaxValue, false, true, null);
-                serializer.WriteObject(writer, entity);
-                writer.Flush();
-                stream.Seek(0, SeekOrigin.Begin);
-                return hashingAlgorithm.ComputeHash(stream);
+                xmlSerializer.Serialize(textWriter, entity);
+                return textWriter.ToString().GetHashCode();
             }
         }
     }

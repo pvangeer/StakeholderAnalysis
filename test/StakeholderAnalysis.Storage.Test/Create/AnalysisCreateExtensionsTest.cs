@@ -8,7 +8,6 @@ using StakeholderAnalysis.Data.AttitudeImpactDiagrams;
 using StakeholderAnalysis.Data.ForceFieldDiagrams;
 using StakeholderAnalysis.Data.OnionDiagrams;
 using StakeholderAnalysis.Storage.Create;
-using StakeholderAnalysis.Storage.XmlEntities;
 
 namespace StakeholderAnalysis.Storage.Test.Create
 {
@@ -428,6 +427,5 @@ namespace StakeholderAnalysis.Storage.Test.Create
                 Assert.IsTrue(registry.Contains(diagramConnection));
             }
         }
-
     }
 }

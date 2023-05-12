@@ -11,8 +11,8 @@ namespace StakeholderAnalysis.Storage
 {
     public class StorageXml
     {
-        private readonly byte[] emptyProjectHash;
-        private byte[] lastOpenedOrSavedProjectHash;
+        private readonly int emptyProjectHash;
+        private int lastOpenedOrSavedProjectHash;
         private AnalysisXmlEntity stagedAnalysisXmlEntity;
 
         public StorageXml()
@@ -88,19 +88,14 @@ namespace StakeholderAnalysis.Storage
             }
         }
 
-        public bool HasStagedProjectChanges(string filePath)
+        public bool HasStagedProjectChanges()
         {
             if (!HasStagedProject)
                 throw new InvalidOperationException("Call 'StageProject(IProject)' first before calling this method.");
 
             var hash = FingerprintHelper.Get(stagedAnalysisXmlEntity);
-            if (FingerprintHelper.AreEqual(hash, emptyProjectHash)) return false;
-
-            if (string.IsNullOrWhiteSpace(filePath)) return true;
-
-            IOUtils.ValidateFilePath(filePath);
-
-            return !FingerprintHelper.AreEqual(lastOpenedOrSavedProjectHash, hash);
+            return hash != emptyProjectHash &&
+                   lastOpenedOrSavedProjectHash != hash;
         }
 
         private void SaveProjectInDatabase(string filePath)
