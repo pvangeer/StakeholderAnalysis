@@ -23,6 +23,7 @@ namespace StakeholderAnalysis.Visualization.ViewModels.Ribbon
             if (gui != null)
             {
                 gui.ShouldSaveOpenChanges = ShouldSaveOpenChanges;
+                gui.ShouldMigrateProject = ShouldMigrateProject;
                 gui.PropertyChanged += GuiPropertyChanged;
                 gui.ViewManager.PropertyChanged += ViewManagerPropertyChanged;
                 gui.ViewManager.ToolWindows.CollectionChanged += ToolWindowsCollectionChanged;
@@ -168,6 +169,16 @@ namespace StakeholderAnalysis.Visualization.ViewModels.Ribbon
         {
             var messageBoxText = "U heeft aanpassingen aan uw project nog niet opgeslagen. Wilt u dat alsnog doen?";
             var caption = "Aanpassingen opslaan";
+            var messageBoxResult =
+                MessageBox.Show(messageBoxText, caption, MessageBoxButton.YesNo, MessageBoxImage.Question);
+
+            return messageBoxResult == MessageBoxResult.Yes;
+        }
+
+        private bool ShouldMigrateProject()
+        {
+            var messageBoxText = "U wilt een verouderd bestand openen. Wilt u dit bestand migreren naar het nieuwe format om het te kunnen openen?";
+            var caption = "Bestand migreren naar nieuwste versie";
             var messageBoxResult =
                 MessageBox.Show(messageBoxText, caption, MessageBoxButton.YesNo, MessageBoxImage.Question);
 

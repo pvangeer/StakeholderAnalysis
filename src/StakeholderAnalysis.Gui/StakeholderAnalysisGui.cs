@@ -72,10 +72,13 @@ namespace StakeholderAnalysis.Gui
         public bool IsSaveToImage { get; set; }
 
         public Func<bool> ShouldSaveOpenChanges { get; set; }
+
+        public Func<bool> ShouldMigrateProject { get; set; }
+
         public GuiProjectServices GuiProjectServices { get; }
 
         public MessageList Messages { get; }
-
+        
         public event PropertyChangedEventHandler PropertyChanged;
 
         [NotifyPropertyChangedInvocator]

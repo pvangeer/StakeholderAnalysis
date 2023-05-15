@@ -69,6 +69,7 @@
     <Compile Include="XmlEntities\ForceFieldDiagramXmlEntity.cs" />
     <Compile Include="XmlEntities\AttitudeImpactDiagramXmlEntity.cs" />
     <Compile Include="XmlEntities\OnionRingXmlEntity.cs" />
+    <Compile Include="XmlEntities\ProjectXmlEntity.cs" />
     <Compile Include="XmlEntities\StakeholderConnectionGroupXmlEntity.cs" />
     <Compile Include="XmlEntities\StakeholderConnectionXmlEntity.cs" />
     <Compile Include="XmlEntities\StakeholderTypeXmlEntity.cs" />
@@ -76,6 +77,8 @@
     <Compile Include="XmlEntities\TwoAxisDiagramAxisXmlEntity.cs" />
     <Compile Include="XmlEntities\TwoAxisDiagramBackgroundXmlEntity.cs" />
     <Compile Include="XmlEntities\TwoAxisDiagramBrushXmlEntity.cs" />
+    <Compile Include="Migration\XmlStorageMigrationService.cs" />
+    <Compile Include="XmlEntities\VersionXmlEntity.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="App.config" />

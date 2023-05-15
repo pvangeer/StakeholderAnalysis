@@ -11,35 +11,35 @@ namespace StakeholderAnalysis.Storage
 {
     public class StorageXml
     {
-        private readonly int emptyProjectHash;
+        private readonly int emptyAnalysisHash;
         private int lastOpenedOrSavedProjectHash;
         private AnalysisXmlEntity stagedAnalysisXmlEntity;
 
         public StorageXml()
         {
-            var emptyProject = new Analysis();
-            var emptyStagedAnalysisXmlEntity = emptyProject.Create(new PersistenceRegistry());
-            emptyProjectHash = FingerprintHelper.Get(emptyStagedAnalysisXmlEntity);
+            var emptyAnalysis = new Analysis();
+            var emptyStagedAnalysisXmlEntity = emptyAnalysis.Create(new PersistenceRegistry());
+            emptyAnalysisHash = FingerprintHelper.Get(emptyStagedAnalysisXmlEntity);
         }
 
-        public bool HasStagedProject => stagedAnalysisXmlEntity != null;
+        public bool HasStagedAnalysis => stagedAnalysisXmlEntity != null;
 
-        public void StageProject(Analysis project)
+        public void StageAnalysis(Analysis project)
         {
             if (project == null) throw new ArgumentNullException(nameof(project));
 
             stagedAnalysisXmlEntity = project.Create(new PersistenceRegistry());
         }
 
-        public void UnStageProject()
+        public void UnStageAnalysis()
         {
             stagedAnalysisXmlEntity = null;
         }
 
         public void SaveProjectAs(string databaseFilePath)
         {
-            if (!HasStagedProject)
-                throw new InvalidOperationException("Call 'StageProject(IProject)' first before calling this method.");
+            if (!HasStagedAnalysis)
+                throw new InvalidOperationException("Call 'StageAnalysis(IProject)' first before calling this method.");
 
             try
             {
@@ -52,49 +52,49 @@ namespace StakeholderAnalysis.Storage
             }
             finally
             {
-                UnStageProject();
+                UnStageAnalysis();
             }
         }
 
-        public Analysis LoadProject(string databaseFilePath)
+        public Analysis LoadProject(string filePath)
         {
-            IOUtils.ValidateFilePath(databaseFilePath);
+            IOUtils.ValidateFilePath(filePath);
 
             try
             {
-                AnalysisXmlEntity analysisXmlEntity;
+                ProjectXmlEntity projectXmlEntity;
 
-                var serializer = new XmlSerializer(typeof(AnalysisXmlEntity));
+                var serializer = new XmlSerializer(typeof(ProjectXmlEntity));
 
-                using (Stream reader = new FileStream(databaseFilePath, FileMode.Open))
+                using (Stream reader = new FileStream(filePath, FileMode.Open))
                 {
                     try
                     {
-                        analysisXmlEntity = (AnalysisXmlEntity)serializer.Deserialize(reader);
+                        projectXmlEntity = (ProjectXmlEntity)serializer.Deserialize(reader);
                     }
                     catch (Exception exception)
                     {
-                        throw CreateStorageReaderException(databaseFilePath, "Bestand kon niet worden gelezen",
+                        throw CreateStorageReaderException(filePath, "Bestand kon niet worden gelezen",
                             exception);
                     }
                 }
 
-                lastOpenedOrSavedProjectHash = FingerprintHelper.Get(analysisXmlEntity);
-                return analysisXmlEntity.Read(new ReadConversionCollector());
+                lastOpenedOrSavedProjectHash = FingerprintHelper.Get(projectXmlEntity.Analysis);
+                return projectXmlEntity.Analysis.Read(new ReadConversionCollector());
             }
             catch (Exception exception)
             {
-                throw CreateStorageReaderException(databaseFilePath, "Project kon niet worden ingeladen", exception);
+                throw CreateStorageReaderException(filePath, "Project kon niet worden ingeladen", exception);
             }
         }
 
         public bool HasStagedProjectChanges()
         {
-            if (!HasStagedProject)
-                throw new InvalidOperationException("Call 'StageProject(IProject)' first before calling this method.");
+            if (!HasStagedAnalysis)
+                throw new InvalidOperationException("Call 'StageAnalysis(IProject)' first before calling this method.");
 
             var hash = FingerprintHelper.Get(stagedAnalysisXmlEntity);
-            return hash != emptyProjectHash &&
+            return hash != emptyAnalysisHash &&
                    lastOpenedOrSavedProjectHash != hash;
         }
 
@@ -104,10 +104,10 @@ namespace StakeholderAnalysis.Storage
 
             try
             {
-                var serializer = new XmlSerializer(typeof(AnalysisXmlEntity));
+                var serializer = new XmlSerializer(typeof(ProjectXmlEntity));
                 using (var writer = new StreamWriter(filePath))
                 {
-                    serializer.Serialize(writer, stagedAnalysisXmlEntity);
+                    serializer.Serialize(writer, new ProjectXmlEntity { Analysis = stagedAnalysisXmlEntity });
                 }
 
                 lastOpenedOrSavedProjectHash = FingerprintHelper.Get(stagedAnalysisXmlEntity);

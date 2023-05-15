@@ -6,6 +6,7 @@ using Microsoft.Win32;
 using StakeholderAnalysis.Data;
 using StakeholderAnalysis.Messaging;
 using StakeholderAnalysis.Storage;
+using StakeholderAnalysis.Storage.Migration;
 
 namespace StakeholderAnalysis.Gui
 {
@@ -14,6 +15,7 @@ namespace StakeholderAnalysis.Gui
         private readonly StakeholderAnalysisGui gui;
         private readonly StakeholderAnalysisLog log = new StakeholderAnalysisLog(typeof(GuiProjectServices));
         private readonly StorageXml storageXml;
+        private readonly XmlStorageMigrationService migrationService = new XmlStorageMigrationService();
 
         public GuiProjectServices(StakeholderAnalysisGui gui)
         {
@@ -28,7 +30,7 @@ namespace StakeholderAnalysis.Gui
 
         private void CreateNewProject()
         {
-            storageXml.UnStageProject();
+            storageXml.UnStageAnalysis();
             foreach (var viewInfo in gui.ViewManager.Views.ToArray()) gui.ViewManager.CloseView(viewInfo);
 
             gui.ProjectFilePath = "";
@@ -41,7 +43,7 @@ namespace StakeholderAnalysis.Gui
 
         public void OpenProject()
         {
-            storageXml.UnStageProject();
+            storageXml.UnStageAnalysis();
 
             HandleUnsavedChanges(gui, OpenNewProjectCore);
         }
@@ -57,6 +59,15 @@ namespace StakeholderAnalysis.Gui
 
             if ((bool)dialog.ShowDialog(Application.Current.MainWindow))
             {
+                var fileName = dialog.FileName;
+                if (migrationService.NeedsMigration(fileName) && gui.ShouldMigrateProject != null && gui.ShouldMigrateProject())
+                {
+                    if (!MigrateProject(fileName, out var newFileName))
+                        return;
+
+                    fileName = newFileName;
+                }
+
                 foreach (var viewInfo in gui.ViewManager.Views.ToArray()) gui.ViewManager.CloseView(viewInfo);
 
                 ChangeState(StorageState.Busy);
@@ -66,7 +77,7 @@ namespace StakeholderAnalysis.Gui
                 worker.RunWorkerCompleted += (o, e) => BackgroundWorkerAsyncFinished(o, e,
                     () =>
                     {
-                        gui.ProjectFilePath = dialog.FileName;
+                        gui.ProjectFilePath = fileName;
                         log.Info($"Klaar met openen van project uit bestand '{gui.ProjectFilePath}'.");
                     });
                 worker.WorkerSupportsCancellation = false;
@@ -77,13 +88,13 @@ namespace StakeholderAnalysis.Gui
 
         public void SaveProject()
         {
-            storageXml.UnStageProject();
+            storageXml.UnStageAnalysis();
             SaveProject(null);
         }
 
         public void SaveProjectAs()
         {
-            storageXml.UnStageProject();
+            storageXml.UnStageAnalysis();
             SaveProjectAs(null);
         }
 
@@ -157,6 +168,7 @@ namespace StakeholderAnalysis.Gui
         private void OpenProjectAsync(object sender, DoWorkEventArgs e)
         {
             var fileName = e.Argument as string;
+            
             try
             {
                 gui.Analysis = storageXml.LoadProject(fileName);
@@ -168,9 +180,31 @@ namespace StakeholderAnalysis.Gui
             }
         }
 
+        private bool MigrateProject(string fileName, out string newFileName)
+        {
+            // TODO: Add suffix to file name?
+            var dialog = new SaveFileDialog
+            {
+                CheckPathExists = true,
+                FileName = fileName,
+                OverwritePrompt = true,
+                Filter = "Stakeholder analyse bestand (*.xml)|*.xml"
+            };
+
+            if ((bool)dialog.ShowDialog(Application.Current.MainWindow))
+            {
+                migrationService.MigrateFile(fileName, dialog.FileName);
+                newFileName = dialog.FileName;
+                return true;
+            }
+
+            newFileName = null;
+            return false;
+        }
+
         public void HandleUnsavedChanges(StakeholderAnalysisGui gui, Action followingAction)
         {
-            storageXml.StageProject(gui.Analysis);
+            storageXml.StageAnalysis(gui.Analysis);
             if (storageXml.HasStagedProjectChanges())
             {
                 if (gui.ShouldSaveOpenChanges != null && gui.ShouldSaveOpenChanges())
@@ -186,7 +220,7 @@ namespace StakeholderAnalysis.Gui
 
         private void StageAndStoreProjectCore()
         {
-            if (!storageXml.HasStagedProject) storageXml.StageProject(gui.Analysis);
+            if (!storageXml.HasStagedAnalysis) storageXml.StageAnalysis(gui.Analysis);
 
             storageXml.SaveProjectAs(gui.ProjectFilePath);
         }
