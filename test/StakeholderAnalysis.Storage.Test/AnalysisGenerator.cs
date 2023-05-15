@@ -16,7 +16,7 @@ namespace StakeholderAnalysis.Storage.Test
 
             var onionDiagram = new OnionDiagram("Beoordelen", new ObservableCollection<OnionRing>
             {
-                new OnionRing() { BackgroundColor = Colors.LightBlue },
+                new OnionRing { BackgroundColor = Colors.LightBlue },
                 new OnionRing(0.65) { BackgroundColor = Colors.CornflowerBlue },
                 new OnionRing(0.3) { BackgroundColor = Colors.DarkSlateBlue }
             })
@@ -669,9 +669,9 @@ namespace StakeholderAnalysis.Storage.Test
         }
 
         private static StakeholderConnectionGroup AddConnectionGroup(OnionDiagram diagram, string groupName,
-            Color groupColor, bool isVisible = true)
+            Color groupColor, LineStyle lineStyle = LineStyle.Solid, bool isVisible = true)
         {
-            var coastGroup = new StakeholderConnectionGroup(groupName, groupColor, 1.0, isVisible);
+            var coastGroup = new StakeholderConnectionGroup(groupName, groupColor, 1.0, lineStyle, isVisible);
             diagram.ConnectionGroups.Add(coastGroup);
             return coastGroup;
         }

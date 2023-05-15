@@ -19,6 +19,7 @@ namespace StakeholderAnalysis.Storage.Read
                 Name = entity.Name,
                 StrokeThickness = entity.StrokeThickness,
                 StrokeColor = entity.Color.ToColor(),
+                LineStyle = (LineStyle)entity.LineStyle,
                 Visible = entity.Visible == 1
             };
 

@@ -4,6 +4,7 @@
                     xmlns:onionDiagramView="clr-namespace:StakeholderAnalysis.Visualization.ViewModels.OnionDiagramView">
 
     <converters:PercentageToDimensionConverter x:Key="PercentageToDimensionConverter" />
+    <converters:LineStyleToDashArrayConverter x:Key="LineStyleToDashArrayConverter" />
     <BooleanToVisibilityConverter x:Key="BooleanToVisibilityConverter" />
 
     <DataTemplate x:Key="ConnectionDataTemplate" DataType="onionDiagramView:StakeholderConnectionViewModel">
@@ -11,7 +12,8 @@
             <Line
                 Visibility="{Binding IsVisible, Converter={StaticResource BooleanToVisibilityConverter}}"
                 Stroke="{Binding StrokeColor}"
-                StrokeThickness="{Binding StrokeThickness}">
+                StrokeThickness="{Binding StrokeThickness}"
+                StrokeDashArray="{Binding LineStyle, Converter={StaticResource LineStyleToDashArrayConverter}}">
                 <Line.X1>
                     <MultiBinding Converter="{StaticResource PercentageToDimensionConverter}">
                         <Binding Path="ConnectFromLeft" />

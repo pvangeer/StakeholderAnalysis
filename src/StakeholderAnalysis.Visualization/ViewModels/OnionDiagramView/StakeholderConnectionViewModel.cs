@@ -30,6 +30,8 @@ namespace StakeholderAnalysis.Visualization.ViewModels.OnionDiagramView
 
         public double StrokeThickness => StakeholderConnection.StakeholderConnectionGroup.StrokeThickness;
 
+        public LineStyle LineStyle => StakeholderConnection.StakeholderConnectionGroup.LineStyle;
+
         public bool IsVisible => StakeholderConnection.StakeholderConnectionGroup.Visible;
 
         public double ConnectFromLeft => StakeholderConnection.ConnectFrom.Left;
@@ -83,6 +85,9 @@ namespace StakeholderAnalysis.Visualization.ViewModels.OnionDiagramView
                     break;
                 case nameof(StakeholderConnectionGroup.StrokeThickness):
                     OnPropertyChanged(nameof(StrokeThickness));
+                    break;
+                case nameof(StakeholderConnectionGroup.LineStyle):
+                    OnPropertyChanged(nameof(LineStyle));
                     break;
             }
         }

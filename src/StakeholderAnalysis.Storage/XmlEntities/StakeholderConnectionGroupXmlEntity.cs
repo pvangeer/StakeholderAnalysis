@@ -20,6 +20,9 @@ namespace StakeholderAnalysis.Storage.XmlEntities
         [XmlAttribute(AttributeName = "strokethickness")]
         public double StrokeThickness { get; set; }
 
+        [XmlAttribute(AttributeName = "linestyle")]
+        public byte LineStyle { get; set; }
+
         [XmlAttribute(AttributeName = "id")] public long Id { get; set; }
     }
 }

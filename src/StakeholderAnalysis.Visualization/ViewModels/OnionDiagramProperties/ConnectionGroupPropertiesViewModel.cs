@@ -29,7 +29,9 @@ namespace StakeholderAnalysis.Visualization.ViewModels.OnionDiagramProperties
                 new ColorPropertyTreeNodeViewModel<StakeholderConnectionGroup>(connectionGroup,
                     nameof(StakeholderConnectionGroup.StrokeColor), "Lijnkleur"),
                 new DoubleUpDownPropertyTreeNodeViewModel<StakeholderConnectionGroup>(connectionGroup,
-                    nameof(StakeholderConnectionGroup.StrokeThickness), "Lijndikte", 0.0, 40.0, 0.5, "0.##")
+                    nameof(StakeholderConnectionGroup.StrokeThickness), "Lijndikte", 0.0, 40.0, 0.5, "0.##"),
+                new LineStylePropertyTreeNodeViewModel<StakeholderConnectionGroup>(connectionGroup,
+                    nameof(StakeholderConnectionGroup.LineStyle), "Lijnstijl")
             };
 
             ContextMenuItems = new ObservableCollection<ContextMenuItemViewModel>();

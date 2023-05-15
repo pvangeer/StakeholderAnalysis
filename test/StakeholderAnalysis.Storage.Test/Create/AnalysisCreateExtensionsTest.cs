@@ -317,7 +317,8 @@ namespace StakeholderAnalysis.Storage.Test.Create
                 IconType = StakeholderIconType.Coffee,
                 Name = "Test 1"
             };
-            var connectionGroup = new StakeholderConnectionGroup("Test", Colors.Cornsilk, 2.3, false);
+            var connectionGroup =
+                new StakeholderConnectionGroup("Test", Colors.Cornsilk, 2.3, LineStyle.DashDot, false);
 
             var stakeholder1 = new Stakeholder("Stakeholder 1", stakeholderType);
             var stakeholder2 = new Stakeholder("Stakeholder 2", stakeholderType);
@@ -327,7 +328,7 @@ namespace StakeholderAnalysis.Storage.Test.Create
             var diagramStakeholder3 = new OnionDiagramStakeholder(stakeholder3, 0.3, 0.6);
             var onionDiagram = new OnionDiagram("Beoordelen", new ObservableCollection<OnionRing>
             {
-                new OnionRing() { BackgroundColor = Colors.LightBlue },
+                new OnionRing { BackgroundColor = Colors.LightBlue },
                 new OnionRing(0.65) { BackgroundColor = Colors.CornflowerBlue },
                 new OnionRing(0.3) { BackgroundColor = Colors.DarkSlateBlue }
             })
@@ -408,6 +409,7 @@ namespace StakeholderAnalysis.Storage.Test.Create
                 Assert.AreEqual(diagramConnectionGroup.StrokeColor.ToHexString(), connectionGroupXmlEntity.Color);
                 Assert.AreEqual(diagramConnectionGroup.Name, connectionGroupXmlEntity.Name);
                 Assert.AreEqual(diagramConnectionGroup.StrokeThickness, connectionGroupXmlEntity.StrokeThickness);
+                Assert.AreEqual(Convert.ToByte(diagramConnectionGroup.LineStyle), connectionGroupXmlEntity.LineStyle);
                 Assert.AreEqual(diagramConnectionGroup.Visible ? (byte)1 : (byte)0, connectionGroupXmlEntity.Visible);
                 Assert.AreEqual(index, connectionGroupXmlEntity.Order);
 

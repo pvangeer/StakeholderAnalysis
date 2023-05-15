@@ -57,7 +57,8 @@ namespace StakeholderAnalysis.Data.OnionDiagrams
 
             foreach (var connectionGroup in ConnectionGroups)
                 clone.ConnectionGroups.Add(new StakeholderConnectionGroup(connectionGroup.Name,
-                    connectionGroup.StrokeColor.Clone(), connectionGroup.StrokeThickness, connectionGroup.Visible));
+                    connectionGroup.StrokeColor.Clone(), connectionGroup.StrokeThickness, connectionGroup.LineStyle,
+                    connectionGroup.Visible));
 
             foreach (var connection in Connections)
             {
