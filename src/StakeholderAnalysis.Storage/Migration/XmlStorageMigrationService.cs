@@ -1,5 +1,4 @@
 ﻿using System;
-using System.IO;
 using System.Xml;
 using StakeholderAnalysis.Storage.XmlEntities;
 
@@ -18,9 +17,8 @@ namespace StakeholderAnalysis.Storage.Migration
 
                 var versionInformation = GetVersionInformation(xmlDoc);
                 if (versionInformation == null)
-                {
-                    throw new XmlStorageException("Het gespecificeerde bestand heeft geen versieinformatie en kan niet worden gelezen.", null);
-                }
+                    throw new XmlStorageException(
+                        "Het gespecificeerde bestand heeft geen versieinformatie en kan niet worden gelezen.", null);
 
                 return !HasCurrentVersion(versionInformation);
             }
@@ -50,12 +48,12 @@ namespace StakeholderAnalysis.Storage.Migration
                 : null;
         }
 
-        private static XmlNode GetCreatedNode(XmlDocument xmlDoc)
+        private static XmlNode GetLastChangedNode(XmlDocument xmlDoc)
         {
             return xmlDoc.ChildNodes.Count == 2 &&
                    xmlDoc.ChildNodes[1].ChildNodes.Count == 2 &&
                    xmlDoc.ChildNodes[1].FirstChild.Name == "versioninformation" &&
-                   xmlDoc.ChildNodes[1].FirstChild.ChildNodes[1].Name == "created"
+                   xmlDoc.ChildNodes[1].FirstChild.ChildNodes[1].Name == "lastchanged"
                 ? xmlDoc.ChildNodes[1].FirstChild.ChildNodes[1]
                 : null;
         }
@@ -69,16 +67,10 @@ namespace StakeholderAnalysis.Storage.Migration
             var versionXmlEntity = new VersionXmlEntity();
 
             var versionNode = GetVersionNode(xmlDoc);
-            if (versionNode != null)
-            {
-                versionNode.InnerText = versionXmlEntity.Version;
-            }
+            if (versionNode != null) versionNode.InnerText = versionXmlEntity.Version;
 
-            var createdNode = GetCreatedNode(xmlDoc);
-            if (createdNode != null)
-            {
-                createdNode.InnerText = versionXmlEntity.Created;
-            }
+            var createdNode = GetLastChangedNode(xmlDoc);
+            if (createdNode != null) createdNode.InnerText = versionXmlEntity.LastChanged;
 
             xmlDoc.Save(newFileName);
         }

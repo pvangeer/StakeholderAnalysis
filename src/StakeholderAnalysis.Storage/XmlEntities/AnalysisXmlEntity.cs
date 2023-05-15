@@ -5,7 +5,6 @@ using System.Xml.Serialization;
 namespace StakeholderAnalysis.Storage.XmlEntities
 {
     [Serializable]
-    
     public class AnalysisXmlEntity
     {
         public AnalysisXmlEntity()

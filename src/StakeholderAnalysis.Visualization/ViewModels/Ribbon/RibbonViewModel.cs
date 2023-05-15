@@ -177,7 +177,8 @@ namespace StakeholderAnalysis.Visualization.ViewModels.Ribbon
 
         private bool ShouldMigrateProject()
         {
-            var messageBoxText = "U wilt een verouderd bestand openen. Wilt u dit bestand migreren naar het nieuwe format om het te kunnen openen?";
+            var messageBoxText =
+                "U wilt een verouderd bestand openen. Wilt u dit bestand migreren naar het nieuwe format om het te kunnen openen?";
             var caption = "Bestand migreren naar nieuwste versie";
             var messageBoxResult =
                 MessageBox.Show(messageBoxText, caption, MessageBoxButton.YesNo, MessageBoxImage.Question);

@@ -14,8 +14,8 @@ namespace StakeholderAnalysis.Gui
     {
         private readonly StakeholderAnalysisGui gui;
         private readonly StakeholderAnalysisLog log = new StakeholderAnalysisLog(typeof(GuiProjectServices));
-        private readonly StorageXml storageXml;
         private readonly XmlStorageMigrationService migrationService = new XmlStorageMigrationService();
+        private readonly StorageXml storageXml;
 
         public GuiProjectServices(StakeholderAnalysisGui gui)
         {
@@ -60,7 +60,8 @@ namespace StakeholderAnalysis.Gui
             if ((bool)dialog.ShowDialog(Application.Current.MainWindow))
             {
                 var fileName = dialog.FileName;
-                if (migrationService.NeedsMigration(fileName) && gui.ShouldMigrateProject != null && gui.ShouldMigrateProject())
+                if (migrationService.NeedsMigration(fileName) && gui.ShouldMigrateProject != null &&
+                    gui.ShouldMigrateProject())
                 {
                     if (!MigrateProject(fileName, out var newFileName))
                         return;
@@ -168,7 +169,7 @@ namespace StakeholderAnalysis.Gui
         private void OpenProjectAsync(object sender, DoWorkEventArgs e)
         {
             var fileName = e.Argument as string;
-            
+
             try
             {
                 gui.Analysis = storageXml.LoadProject(fileName);

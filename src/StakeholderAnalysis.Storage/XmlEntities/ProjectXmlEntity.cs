@@ -15,7 +15,6 @@ namespace StakeholderAnalysis.Storage.XmlEntities
         [XmlElement(ElementName = "versioninformation")]
         public VersionXmlEntity VersionInformation { get; set; }
 
-        [XmlElement(ElementName = "analysis")]
-        public AnalysisXmlEntity Analysis { get; set; }
+        [XmlElement(ElementName = "analysis")] public AnalysisXmlEntity Analysis { get; set; }
     }
 }

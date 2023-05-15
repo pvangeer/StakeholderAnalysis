@@ -78,7 +78,7 @@ namespace StakeholderAnalysis.Gui
         public GuiProjectServices GuiProjectServices { get; }
 
         public MessageList Messages { get; }
-        
+
         public event PropertyChangedEventHandler PropertyChanged;
 
         [NotifyPropertyChangedInvocator]
