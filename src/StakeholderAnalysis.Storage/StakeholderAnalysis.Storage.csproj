@@ -11,6 +11,7 @@
     <Reference Include="PresentationCore" />
     <Reference Include="System" />
     <Reference Include="System.Core" />
+    <Reference Include="System.DirectoryServices.AccountManagement" />
     <Reference Include="System.Runtime.Serialization" />
     <Reference Include="System.ServiceModel" />
     <Reference Include="System.Data" />
@@ -25,6 +26,7 @@
     <Compile Include="Create\ForceFieldDiagramCreateExtensions.cs" />
     <Compile Include="Create\ForceFieldDiagramStakeholderCreateExtensions.cs" />
     <Compile Include="Read\ReadReferencedObjectsFirstException.cs" />
+    <Compile Include="VersionInfo.cs" />
     <Compile Include="XmlEntities\IXmlEntity.cs" />
     <Compile Include="Create\OnionDiagramCreateExtensions.cs" />
     <Compile Include="Create\OnionDiagramStakeholderCreateExtensions.cs" />

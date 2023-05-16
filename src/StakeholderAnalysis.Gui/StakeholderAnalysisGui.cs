@@ -2,6 +2,7 @@
 using System.Collections.ObjectModel;
 using System.Collections.Specialized;
 using System.ComponentModel;
+using System.Diagnostics;
 using System.Linq;
 using System.Runtime.CompilerServices;
 using log4net;
@@ -11,6 +12,7 @@ using StakeholderAnalysis.Data;
 using StakeholderAnalysis.Data.OnionDiagrams;
 using StakeholderAnalysis.Gui.Annotations;
 using StakeholderAnalysis.Messaging;
+using StakeholderAnalysis.Storage;
 
 namespace StakeholderAnalysis.Gui
 {
@@ -23,7 +25,7 @@ namespace StakeholderAnalysis.Gui
         {
         }
 
-        public StakeholderAnalysisGui(Analysis analysis)
+        private StakeholderAnalysisGui(Analysis analysis)
         {
             SelectedStakeholderConnectionGroups = analysis == null
                 ? new ObservableCollection<StakeholderConnectionGroupSelection>()
@@ -44,6 +46,8 @@ namespace StakeholderAnalysis.Gui
         }
 
         public string ProjectFilePath { get; set; }
+
+        public VersionInfo VersionInfo { get; set; }
 
         public Analysis Analysis
         {

@@ -25,15 +25,18 @@ namespace StakeholderAnalysis.Gui
 
         public void NewProject()
         {
-            HandleUnsavedChanges(gui, CreateNewProject);
+            HandleUnsavedChanges(CreateNewProject);
         }
 
         private void CreateNewProject()
         {
             storageXml.UnStageAnalysis();
+            storageXml.UnStageVersionInformation();
+
             foreach (var viewInfo in gui.ViewManager.Views.ToArray()) gui.ViewManager.CloseView(viewInfo);
 
             gui.ProjectFilePath = "";
+            gui.VersionInfo = null;
 
             gui.Analysis = new Analysis();
 
@@ -44,8 +47,9 @@ namespace StakeholderAnalysis.Gui
         public void OpenProject()
         {
             storageXml.UnStageAnalysis();
+            storageXml.UnStageVersionInformation();
 
-            HandleUnsavedChanges(gui, OpenNewProjectCore);
+            HandleUnsavedChanges(OpenNewProjectCore);
         }
 
         private void OpenNewProjectCore()
@@ -90,12 +94,14 @@ namespace StakeholderAnalysis.Gui
         public void SaveProject()
         {
             storageXml.UnStageAnalysis();
+            storageXml.UnStageVersionInformation();
             SaveProject(null);
         }
 
         public void SaveProjectAs()
         {
             storageXml.UnStageAnalysis();
+            storageXml.UnStageVersionInformation();
             SaveProjectAs(null);
         }
 
@@ -172,7 +178,14 @@ namespace StakeholderAnalysis.Gui
 
             try
             {
-                gui.Analysis = storageXml.LoadProject(fileName);
+                ProjectData readProjectData = storageXml.LoadProject(fileName);
+                gui.Analysis = readProjectData.Analysis;
+                gui.VersionInfo = new VersionInfo
+                {
+                    AuthorCreated = readProjectData.Author,
+                    DateCreated = readProjectData.Created
+                };
+
                 gui.OnPropertyChanged(nameof(StakeholderAnalysisGui.Analysis));
             }
             catch (Exception exception)
@@ -203,9 +216,10 @@ namespace StakeholderAnalysis.Gui
             return false;
         }
 
-        public void HandleUnsavedChanges(StakeholderAnalysisGui gui, Action followingAction)
+        public void HandleUnsavedChanges(Action followingAction)
         {
             storageXml.StageAnalysis(gui.Analysis);
+            storageXml.StageVersionInformation(gui.VersionInfo);
             if (storageXml.HasStagedProjectChanges())
             {
                 if (gui.ShouldSaveOpenChanges != null && gui.ShouldSaveOpenChanges())
@@ -221,7 +235,11 @@ namespace StakeholderAnalysis.Gui
 
         private void StageAndStoreProjectCore()
         {
-            if (!storageXml.HasStagedAnalysis) storageXml.StageAnalysis(gui.Analysis);
+            if (!storageXml.HasStagedAnalysis)
+            {
+                storageXml.StageAnalysis(gui.Analysis);
+            }
+            storageXml.StageVersionInformation(gui.VersionInfo);
 
             storageXml.SaveProjectAs(gui.ProjectFilePath);
         }

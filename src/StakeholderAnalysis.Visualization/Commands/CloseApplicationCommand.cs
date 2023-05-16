@@ -24,7 +24,7 @@ namespace StakeholderAnalysis.Visualization.Commands
         public void Execute(object parameter)
         {
             if (projectServices != null && gui != null)
-                projectServices.HandleUnsavedChanges(gui, () => Application.Current.Shutdown());
+                projectServices.HandleUnsavedChanges(() => Application.Current.Shutdown());
             else
                 Application.Current.Shutdown();
         }

@@ -8,17 +8,26 @@ namespace StakeholderAnalysis.Storage.XmlEntities
     {
         public VersionXmlEntity()
         {
-            Version = CurrentVersion;
-            LastChanged = DateTime.Now.ToString("yyyy-MM-DD : hh:mm:ss");
+            FileVersion = CurrentVersion;
+            LastChanged = VersionInfo.CurrentDateTime;
+            LastAuthor = VersionInfo.CurrentUser;
         }
 
-        public static string CurrentVersion => "23.1.1";
+        public static string CurrentVersion => $"{VersionInfo.Year}.{VersionInfo.MajorVersion}";
 
-        [XmlElement(ElementName = "version")] public string Version { get; set; }
+        [XmlElement(ElementName = "fileversion")] 
+        public string FileVersion { get; set; }
+
+        [XmlElement(ElementName = "creator")]
+        public string Creator { get; set; }
+
+        [XmlElement(ElementName = "created")]
+        public string Created { get; set; }
+
+        [XmlElement(ElementName = "lastauthor")]
+        public string LastAuthor { get; set; }
 
         [XmlElement(ElementName = "lastchanged")]
         public string LastChanged { get; set; }
-
-        // TODO: Add author
     }
 }

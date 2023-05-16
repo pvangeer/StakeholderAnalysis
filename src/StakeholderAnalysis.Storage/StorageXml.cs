@@ -14,6 +14,7 @@ namespace StakeholderAnalysis.Storage
         private readonly int emptyAnalysisHash;
         private int lastOpenedOrSavedProjectHash;
         private AnalysisXmlEntity stagedAnalysisXmlEntity;
+        private VersionInfo versionInfo;
 
         public StorageXml()
         {
@@ -23,6 +24,11 @@ namespace StakeholderAnalysis.Storage
         }
 
         public bool HasStagedAnalysis => stagedAnalysisXmlEntity != null;
+
+        public void StageVersionInformation(VersionInfo newVersionInfo)
+        {
+            versionInfo = newVersionInfo;
+        }
 
         public void StageAnalysis(Analysis project)
         {
@@ -34,6 +40,11 @@ namespace StakeholderAnalysis.Storage
         public void UnStageAnalysis()
         {
             stagedAnalysisXmlEntity = null;
+        }
+
+        public void UnStageVersionInformation()
+        {
+            versionInfo = null;
         }
 
         public void SaveProjectAs(string databaseFilePath)
@@ -53,10 +64,11 @@ namespace StakeholderAnalysis.Storage
             finally
             {
                 UnStageAnalysis();
+                UnStageVersionInformation();
             }
         }
 
-        public Analysis LoadProject(string filePath)
+        public ProjectData LoadProject(string filePath)
         {
             IOUtils.ValidateFilePath(filePath);
 
@@ -80,7 +92,13 @@ namespace StakeholderAnalysis.Storage
                 }
 
                 lastOpenedOrSavedProjectHash = FingerprintHelper.Get(projectXmlEntity.Analysis);
-                return projectXmlEntity.Analysis.Read(new ReadConversionCollector());
+                return new ProjectData
+                {
+                    Analysis = projectXmlEntity.Analysis.Read(new ReadConversionCollector()),
+                    Created = projectXmlEntity.VersionInformation.Created,
+                    Author = projectXmlEntity.VersionInformation.Creator
+                };
+
             }
             catch (Exception exception)
             {
@@ -107,7 +125,14 @@ namespace StakeholderAnalysis.Storage
                 var serializer = new XmlSerializer(typeof(ProjectXmlEntity));
                 using (var writer = new StreamWriter(filePath))
                 {
-                    serializer.Serialize(writer, new ProjectXmlEntity { Analysis = stagedAnalysisXmlEntity });
+                    var projectXmlEntity = new ProjectXmlEntity { Analysis = stagedAnalysisXmlEntity };
+                    projectXmlEntity.VersionInformation.Created = versionInfo != null
+                        ? versionInfo.DateCreated
+                        : projectXmlEntity.VersionInformation.LastChanged;
+                    projectXmlEntity.VersionInformation.Creator = versionInfo != null
+                        ? versionInfo.AuthorCreated
+                        : projectXmlEntity.VersionInformation.LastAuthor;
+                    serializer.Serialize(writer, projectXmlEntity);
                 }
 
                 lastOpenedOrSavedProjectHash = FingerprintHelper.Get(stagedAnalysisXmlEntity);
@@ -156,6 +181,15 @@ namespace StakeholderAnalysis.Storage
             var message = new FileReaderErrorMessageBuilder(databaseFilePath).Build(errorMessage);
             return new XmlStorageException(message, innerException);
         }
+    }
+
+    public class ProjectData
+    {
+        public Analysis Analysis { get; set; }
+
+        public string Created { get; set; }
+
+        public string Author { get; set; }
     }
 
     public class XmlStorageException : Exception

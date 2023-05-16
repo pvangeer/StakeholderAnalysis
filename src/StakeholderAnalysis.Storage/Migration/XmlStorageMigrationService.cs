@@ -67,7 +67,7 @@ namespace StakeholderAnalysis.Storage.Migration
             var versionXmlEntity = new VersionXmlEntity();
 
             var versionNode = GetVersionNode(xmlDoc);
-            if (versionNode != null) versionNode.InnerText = versionXmlEntity.Version;
+            if (versionNode != null) versionNode.InnerText = versionXmlEntity.FileVersion;
 
             var createdNode = GetLastChangedNode(xmlDoc);
             if (createdNode != null) createdNode.InnerText = versionXmlEntity.LastChanged;
