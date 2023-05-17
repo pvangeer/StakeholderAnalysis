@@ -6,6 +6,9 @@ namespace StakeholderAnalysis.Storage.XmlEntities
     [Serializable]
     public class VersionXmlEntity
     {
+        public const string FileVersionElementName = "fileversion";
+        public const string LastChangedElementName = "lastchanged";
+
         public VersionXmlEntity()
         {
             FileVersion = CurrentVersion;
@@ -15,7 +18,7 @@ namespace StakeholderAnalysis.Storage.XmlEntities
 
         public static string CurrentVersion => $"{VersionInfo.Year}.{VersionInfo.MajorVersion}";
 
-        [XmlElement(ElementName = "fileversion")] 
+        [XmlElement(ElementName = FileVersionElementName)] 
         public string FileVersion { get; set; }
 
         [XmlElement(ElementName = "creator")]
@@ -27,7 +30,7 @@ namespace StakeholderAnalysis.Storage.XmlEntities
         [XmlElement(ElementName = "lastauthor")]
         public string LastAuthor { get; set; }
 
-        [XmlElement(ElementName = "lastchanged")]
+        [XmlElement(ElementName = LastChangedElementName)]
         public string LastChanged { get; set; }
     }
 }

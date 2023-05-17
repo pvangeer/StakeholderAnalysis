@@ -7,12 +7,14 @@ namespace StakeholderAnalysis.Storage.XmlEntities
     [XmlRoot(ElementName = "project", IsNullable = false)]
     public class ProjectXmlEntity
     {
+        public const string VersionInformationElementName = "versioninformation";
+
         public ProjectXmlEntity()
         {
             VersionInformation = new VersionXmlEntity();
         }
 
-        [XmlElement(ElementName = "versioninformation")]
+        [XmlElement(ElementName = VersionInformationElementName)]
         public VersionXmlEntity VersionInformation { get; set; }
 
         [XmlElement(ElementName = "analysis")] 

@@ -42,8 +42,8 @@ namespace StakeholderAnalysis.Storage.Migration
         {
             return xmlDoc.ChildNodes.Count == 2 &&
                    xmlDoc.ChildNodes[1].ChildNodes.Count == 2 &&
-                   xmlDoc.ChildNodes[1].FirstChild.Name == "versioninformation" &&
-                   xmlDoc.ChildNodes[1].FirstChild.FirstChild.Name == "version"
+                   xmlDoc.ChildNodes[1].FirstChild.Name == ProjectXmlEntity.VersionInformationElementName &&
+                   xmlDoc.ChildNodes[1].FirstChild.FirstChild.Name == VersionXmlEntity.FileVersionElementName
                 ? xmlDoc.ChildNodes[1].FirstChild.FirstChild
                 : null;
         }
@@ -52,8 +52,8 @@ namespace StakeholderAnalysis.Storage.Migration
         {
             return xmlDoc.ChildNodes.Count == 2 &&
                    xmlDoc.ChildNodes[1].ChildNodes.Count == 2 &&
-                   xmlDoc.ChildNodes[1].FirstChild.Name == "versioninformation" &&
-                   xmlDoc.ChildNodes[1].FirstChild.ChildNodes[1].Name == "lastchanged"
+                   xmlDoc.ChildNodes[1].FirstChild.Name == ProjectXmlEntity.VersionInformationElementName &&
+                   xmlDoc.ChildNodes[1].FirstChild.ChildNodes[1].Name == VersionXmlEntity.LastChangedElementName
                 ? xmlDoc.ChildNodes[1].FirstChild.ChildNodes[1]
                 : null;
         }

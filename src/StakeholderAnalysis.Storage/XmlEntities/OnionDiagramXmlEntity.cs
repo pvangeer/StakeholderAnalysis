@@ -23,6 +23,9 @@ namespace StakeholderAnalysis.Storage.XmlEntities
         [XmlAttribute(AttributeName = "asymmetry")]
         public double Asymmetry { get; set; }
 
+        [XmlAttribute(AttributeName = "orientation")]
+        public double Orientation { get; set; }
+
         [XmlArray(ElementName = "stakeholders")]
         [XmlArrayItem(ElementName = "onionstakeholder")]
         public Collection<OnionDiagramStakeholderXmlEntity> OnionDiagramStakeholderXmlEntities { get; set; }

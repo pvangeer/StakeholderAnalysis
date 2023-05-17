@@ -25,7 +25,8 @@ namespace StakeholderAnalysis.Storage.Read
             var onionDiagram = new OnionDiagram
             {
                 Name = entity.Name,
-                Asymmetry = entity.Asymmetry
+                Asymmetry = entity.Asymmetry,
+                Orientation = entity.Orientation
             };
 
             foreach (var stakeholder in stakeholders) onionDiagram.Stakeholders.Add(stakeholder);
