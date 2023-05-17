@@ -21,9 +21,13 @@ namespace StakeholderAnalysis.Visualization
 
         public DataTemplate DoubleUpDownTemplate { get; set; }
 
+        public DataTemplate SliderTemplate { get; set; }
+
         public override DataTemplate SelectTemplate(object item, DependencyObject container)
         {
             if (item is IDoubleUpDownPropertyTreeNodeViewModel) return DoubleUpDownTemplate;
+
+            if (item is ISliderPropertyTreeNodeViewModel) return SliderTemplate;
 
             if (item is IColorPropertyTreeNodeViewModel) return ColorTemplate;
 

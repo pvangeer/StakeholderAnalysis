@@ -77,6 +77,19 @@ namespace StakeholderAnalysis.Visualization.ViewModels.Ribbon
             }
         }
 
+        public double Orientation
+        {
+            get => stakeholderConnectionGroupSelection?.OnionDiagram?.Orientation ?? 180.0;
+            set
+            {
+                if (stakeholderConnectionGroupSelection?.OnionDiagram != null)
+                {
+                    stakeholderConnectionGroupSelection.OnionDiagram.Orientation = value;
+                    stakeholderConnectionGroupSelection.OnionDiagram.OnPropertyChanged();
+                }
+            }
+        }
+
 
         public ICommand ToggleToolWindowCommand => CommandFactory.CreateToggleToolWindowCommand();
 
@@ -109,8 +122,11 @@ namespace StakeholderAnalysis.Visualization.ViewModels.Ribbon
                 : null;
 
             if (stakeholderConnectionGroupSelection != null)
+            {
                 stakeholderConnectionGroupSelection.PropertyChanged -=
                     StakeholderConnectionGroupSelectionPropertyChanged;
+                stakeholderConnectionGroupSelection.OnionDiagram.PropertyChanged += OnionDiagramPropertyChanged;
+            }
 
             stakeholderConnectionGroupSelection = null;
             OnPropertyChanged(nameof(StakeholderConnectionGroups));
@@ -120,14 +136,26 @@ namespace StakeholderAnalysis.Visualization.ViewModels.Ribbon
                 gui?.SelectedStakeholderConnectionGroups.FirstOrDefault(g => g.OnionDiagram == selectedOnionDiagram);
 
             if (stakeholderConnectionGroupSelection != null)
+            {
                 stakeholderConnectionGroupSelection.PropertyChanged +=
                     StakeholderConnectionGroupSelectionPropertyChanged;
+                stakeholderConnectionGroupSelection.OnionDiagram.PropertyChanged += OnionDiagramPropertyChanged;
+            }
 
             OnPropertyChanged(nameof(Asymmetry));
+            OnPropertyChanged(nameof(Orientation));
             OnPropertyChanged(nameof(AddOnionRingCommand));
             OnPropertyChanged(nameof(StakeholderConnectionGroups));
             OnPropertyChanged(nameof(SelectedStakeholderConnectionGroup));
             OnPropertyChanged(nameof(ToggleToolWindowCommand));
+        }
+
+        private void OnionDiagramPropertyChanged(object sender, PropertyChangedEventArgs e)
+        {
+            if (e.PropertyName == nameof(OnionDiagram.Asymmetry))
+                OnPropertyChanged(nameof(Asymmetry));
+            if (e.PropertyName == nameof(OnionDiagram.Orientation))
+                OnPropertyChanged(nameof(Orientation));
         }
 
         private void StakeholderConnectionGroupSelectionPropertyChanged(object sender, PropertyChangedEventArgs e)

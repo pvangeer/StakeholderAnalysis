@@ -11,6 +11,7 @@
                      xmlns:gui="clr-namespace:StakeholderAnalysis.Gui;assembly=StakeholderAnalysis.Gui"
                      xmlns:onionDiagrams="clr-namespace:StakeholderAnalysis.Data.OnionDiagrams;assembly=StakeholderAnalysis.Data"
                      xmlns:twoAxisDiagramProperties="clr-namespace:StakeholderAnalysis.Visualization.ViewModels.TwoAxisDiagramProperties;assembly=StakeholderAnalysis.Visualization"
+                     xmlns:controls="clr-namespace:StakeholderAnalysis.Visualization.Controls;assembly=StakeholderAnalysis.Visualization"
                      mc:Ignorable="d"
                      Closing="MainWindowClosing"
                      Loaded="MainWindow_OnLoaded"
@@ -33,7 +34,7 @@
             </ResourceDictionary.MergedDictionaries>
 
             <converters:IsSelectedViewTypeToVisibilityConverter x:Key="IsSelectedViewInfoToVisibilityConverter" />
-            <converters:ValueToSameConverter x:Key="DummyConverter" />
+            <converters:ValueToSameConverter x:Key="ValueToSameConverter" />
             <converters:IsActiveToolWindowConverter x:Key="IsActiveToolWindowConverter" />
 
         </ResourceDictionary>
@@ -135,7 +136,7 @@
                 <fluent:RibbonGroupBox Header="Diagram">
                     <fluent:Button
                         Header="Stakeholder(s) toevoegen"
-                        Command="{Binding RibbonViewModel.AddStakeholdersCommand, Converter={StaticResource DummyConverter}}"
+                        Command="{Binding RibbonViewModel.AddStakeholdersCommand, Converter={StaticResource ValueToSameConverter}}"
                         Size="Large"
                         LargeIcon="pack://application:,,,/StakeholderAnalysis.Visualization;component/Resources/plus.png" />
                 </fluent:RibbonGroupBox>
@@ -146,16 +147,49 @@
                 <fluent:RibbonGroupBox Header="Ringen">
                     <fluent:Button
                         Header="Ring toevoegen"
-                        Command="{Binding RibbonViewModel.AddOnionRingCommand, Converter={StaticResource DummyConverter}}"
+                        Command="{Binding RibbonViewModel.AddOnionRingCommand, Converter={StaticResource ValueToSameConverter}}"
                         Size="Middle"
                         Icon="pack://application:,,,/StakeholderAnalysis.Visualization;component/Resources/plus.png" />
                     <fluent:Spinner
-                        Value="{Binding RibbonViewModel.Asymmetry, Converter={StaticResource DummyConverter}}"
+                        Value="{Binding RibbonViewModel.Asymmetry, Converter={StaticResource ValueToSameConverter}}"
                         Header="Asymmetrie"
                         Format="0.#####"
                         Minimum="0.0"
                         Maximum="1.0"
                         Increment="0.1" />
+                    <StackPanel Orientation="Vertical" Margin="5,5,5,1">
+                        <controls:RotaryControl 
+                            x:Name="_dialTemperature" 
+                            Value="{Binding RibbonViewModel.Orientation, Converter={StaticResource ValueToSameConverter}, Mode=TwoWay}"
+                            FontBrush="Black" FontSize="28"
+                            Foreground="Black" 
+                            Background="Transparent">
+                            <controls:RotaryControl.MinimumValue>0</controls:RotaryControl.MinimumValue>
+                            <controls:RotaryControl.NumberOfMajorTicks>9</controls:RotaryControl.NumberOfMajorTicks>
+                            <controls:RotaryControl.MajorTickIncrement>45</controls:RotaryControl.MajorTickIncrement>
+                            <controls:RotaryControl.MajorTickBrush>White</controls:RotaryControl.MajorTickBrush>
+                            <controls:RotaryControl.NumberOfMinorTicks>6</controls:RotaryControl.NumberOfMinorTicks>
+                            <controls:RotaryControl.MinorTickBrush>White</controls:RotaryControl.MinorTickBrush>
+                            <controls:RotaryControl.OuterDialFill>SteelBlue</controls:RotaryControl.OuterDialFill>
+                            <controls:RotaryControl.OuterDialBorder>Transparent</controls:RotaryControl.OuterDialBorder>
+                            <controls:RotaryControl.OuterDialBorderThickness>1</controls:RotaryControl.OuterDialBorderThickness>
+                            <controls:RotaryControl.InnerDialRadius>60</controls:RotaryControl.InnerDialRadius>
+                            <controls:RotaryControl.StartAngleInDegrees>0</controls:RotaryControl.StartAngleInDegrees>
+                            <controls:RotaryControl.EndAngleInDegrees>360</controls:RotaryControl.EndAngleInDegrees>
+                            <controls:RotaryControl.PointerFill>
+                                <LinearGradientBrush EndPoint="0.5,0" StartPoint="0.5,1">
+                                    <GradientStop Color="DimGray" Offset="0"/>
+                                    <GradientStop Color="#BBBBBB" Offset="1.0"/>
+                                </LinearGradientBrush>
+                            </controls:RotaryControl.PointerFill>
+                            <controls:RotaryControl.LayoutTransform>
+                                <ScaleTransform ScaleX="0.26" ScaleY="0.26"/>
+                            </controls:RotaryControl.LayoutTransform>
+                        </controls:RotaryControl>
+                        <TextBlock 
+                            Text="Orientatie"
+                            Margin="5,1,5,1"/>
+                    </StackPanel>
                 </fluent:RibbonGroupBox>
 
 

@@ -117,6 +117,16 @@
             SelectedItem="{Binding SelectedValue}" />
     </DataTemplate>
 
+    <DataTemplate x:Key="SliderPropertyDataTemplate" DataType="{x:Type propertiesTree:ISliderPropertyTreeNodeViewModel}">
+        <Slider
+                            Value="{Binding Value}"
+                            Margin="5,1,0,1"
+                            BorderBrush="DimGray"
+                            MinWidth="80"
+                            Minimum="{Binding MinValue}"
+                            Maximum="{Binding MaxValue}"/>
+    </DataTemplate>
+
     <visualization:PropertyValueTreeNodeTemplateSelector x:Key="PropertyValueContentTemplateSelector"
                                                          StakeholderTypeIconDataTemplate="{StaticResource StakeholderTypeIconDataTemplate}"
                                                          FontFamilySelectorTemplate="{StaticResource FontFamilySelectorTemplate}"
@@ -124,7 +134,8 @@
                                                          StringTemplate="{StaticResource StringTemplate}"
                                                          ColorTemplate="{StaticResource ColorPropertyDataTemplate}"
                                                          LineStyleTemplate="{StaticResource LineStyleDataTemplate}"
-                                                         DoubleUpDownTemplate="{StaticResource DoubleUpDownPropertyDataTemplate}" />
+                                                         DoubleUpDownTemplate="{StaticResource DoubleUpDownPropertyDataTemplate}"
+                                                         SliderTemplate="{StaticResource SliderPropertyDataTemplate}"/>
 
     <BooleanToVisibilityConverter x:Key="BooleanToVisibilityConverter" />
     <converters:QuickSelectionToVisibilityConverter x:Key="QuickSelectionToVisibilityConverter" />

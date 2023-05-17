@@ -5,20 +5,18 @@ using StakeholderAnalysis.Data;
 
 namespace StakeholderAnalysis.Visualization.ViewModels.PropertiesTree
 {
-    public class DoubleUpDownPropertyTreeNodeViewModel<TContent> : PropertyTreeNodeViewModelBaseBase,
-        IDoubleUpDownPropertyTreeNodeViewModel where TContent : INotifyPropertyChangedImplementation
+    public class SliderPropertyTreeNodeViewModel<TContent> : PropertyTreeNodeViewModelBaseBase,
+        ISliderPropertyTreeNodeViewModel where TContent : INotifyPropertyChangedImplementation
     {
         private readonly PropertyInfo propertyInfo;
         private TContent content;
 
-        public DoubleUpDownPropertyTreeNodeViewModel(TContent content, string propertyName, string displayName,
-            double minValue, double maxValue, double increment, string stringFormat)
+        public SliderPropertyTreeNodeViewModel(TContent content, string propertyName, string displayName,
+            double minValue, double maxValue)
             : base(displayName)
         {
             MinValue = minValue;
             MaxValue = maxValue;
-            Increment = increment;
-            StringFormat = stringFormat;
 
             propertyInfo = typeof(TContent)
                 .GetProperty(propertyName, BindingFlags.Public | BindingFlags.Instance);
@@ -36,11 +34,11 @@ namespace StakeholderAnalysis.Visualization.ViewModels.PropertiesTree
                 if (content != null) content.PropertyChanged -= ContentPropertyChanged;
                 content = value;
                 if (content != null) content.PropertyChanged += ContentPropertyChanged;
-                OnPropertyChanged(nameof(DoubleValue));
+                OnPropertyChanged(nameof(Value));
             }
         }
 
-        public double DoubleValue
+        public double Value
         {
             get => content != null ? (double)propertyInfo.GetValue(content) : double.NaN;
             set
@@ -57,10 +55,6 @@ namespace StakeholderAnalysis.Visualization.ViewModels.PropertiesTree
 
         public double MaxValue { get; }
 
-        public double Increment { get; }
-
-        public string StringFormat { get; }
-
         public override bool IsViewModelFor(object o)
         {
             return ReferenceEquals(o, content);
@@ -68,7 +62,7 @@ namespace StakeholderAnalysis.Visualization.ViewModels.PropertiesTree
 
         private void ContentPropertyChanged(object sender, PropertyChangedEventArgs e)
         {
-            if (e.PropertyName == propertyInfo.Name) OnPropertyChanged(nameof(DoubleValue));
+            if (e.PropertyName == propertyInfo.Name) OnPropertyChanged(nameof(Value));
         }
     }
 }

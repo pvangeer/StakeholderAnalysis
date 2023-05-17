@@ -9,9 +9,15 @@ namespace StakeholderAnalysis.Visualization.Converters
         public object Convert(object[] values, Type targetType, object parameter, CultureInfo culture)
         {
             var percentage = (double)values[0];
-            var width = (double)values[1];
+            var asymmetry = (double)values[1];
+            var orientationDegrees = (double)values[2];
+            var orientation = Math.PI * (orientationDegrees - 90) / 180.0;
+            var actualWidth = (double)values[3];
 
-            return (1 - percentage) * width / 2.0;
+            if (Math.Abs(actualWidth) < 1e-8) return 0.0;
+
+            var elementLeftOnCanvas = (1 - percentage) * actualWidth / 2.0;
+            return elementLeftOnCanvas + Math.Cos(orientation) * asymmetry * elementLeftOnCanvas;
         }
 
         public object[] ConvertBack(object value, Type[] targetTypes, object parameter, CultureInfo culture)

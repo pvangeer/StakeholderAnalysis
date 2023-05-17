@@ -27,7 +27,8 @@ namespace StakeholderAnalysis.Visualization.ViewModels.ProjectExplorer
             {
                 new StringPropertyTreeNodeViewModel<OnionDiagram>(diagram, nameof(OnionDiagram.Name), "Naam"),
                 new DoubleUpDownPropertyTreeNodeViewModel<OnionDiagram>(diagram, nameof(OnionDiagram.Asymmetry),
-                    "Asymmetrie", 0, 1, 0.1, "0.#####")
+                    "Asymmetrie", 0, 1, 0.1, "0.#####"),
+                new SliderPropertyTreeNodeViewModel<OnionDiagram>(diagram, nameof(OnionDiagram.Orientation), "Orientatie", 0, 360)
             };
 
             ContextMenuItems = new ObservableCollection<ContextMenuItemViewModel>

@@ -50,12 +50,17 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Behaviors\AttachInputBindingsBehavior.cs" />
+    <Compile Include="Controls\RotaryControl.xaml.cs">
+      <DependentUpon>RotaryControl.xaml</DependentUpon>
+    </Compile>
     <Compile Include="Converters\ContextMenuContentType.cs" />
     <Compile Include="Converters\QuickSelectionToVisibilityConverter.cs" />
     <Compile Include="Converters\SourceStringToVisibilityConverter.cs" />
     <Compile Include="Converters\HasItemsToVisibilityConverter.cs" />
     <Compile Include="Converters\LineStyleToDashArrayConverter.cs" />
     <Compile Include="TestConverter.cs" />
+    <Compile Include="ViewModels\PropertiesTree\ISliderPropertyTreeNodeViewModel.cs" />
+    <Compile Include="ViewModels\PropertiesTree\SliderPropertyTreeNodeViewModel.cs" />
     <Compile Include="ViewModels\PropertiesTree\LineStylePropertyTreeNodeViewModel.cs" />
     <Compile Include="ViewModels\PropertiesTree\ContextMenuItemViewModel.cs" />
     <Compile Include="ViewModels\PropertiesTree\FontFamilyPropertyTreeNodeViewModel.cs" />
@@ -190,6 +195,10 @@
     </None>
   </ItemGroup>
   <ItemGroup>
+    <Page Include="Controls\RotaryControl.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
     <Page Include="Controls\SelectStakeholdersDialog.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>

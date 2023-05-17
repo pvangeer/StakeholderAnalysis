@@ -49,6 +49,8 @@
                             <Setter.Value>
                                 <MultiBinding Converter="{StaticResource PercentageToCanvasLeftValueConverter}">
                                     <Binding Path="Percentage" />
+                                    <Binding ElementName="OnionRingsPresenter" Path="Content.Asymmetry" />
+                                    <Binding ElementName="OnionRingsPresenter" Path="Content.Orientation" />
                                     <Binding ElementName="Canvas" Path="ActualWidth" />
                                 </MultiBinding>
                             </Setter.Value>
@@ -58,6 +60,7 @@
                                 <MultiBinding Converter="{StaticResource PercentageToCanvasTopValueConverter}">
                                     <Binding Path="Percentage" />
                                     <Binding ElementName="OnionRingsPresenter" Path="Content.Asymmetry" />
+                                    <Binding ElementName="OnionRingsPresenter" Path="Content.Orientation" />
                                     <Binding ElementName="Canvas" Path="ActualHeight" />
                                 </MultiBinding>
                             </Setter.Value>

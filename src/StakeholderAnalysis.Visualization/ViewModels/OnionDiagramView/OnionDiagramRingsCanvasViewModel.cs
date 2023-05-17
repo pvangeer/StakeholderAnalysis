@@ -32,12 +32,21 @@ namespace StakeholderAnalysis.Visualization.ViewModels.OnionDiagramView
             set => onionDiagram.Asymmetry = value;
         }
 
+        public double Orientation
+        {
+            get => onionDiagram?.Orientation ?? double.NaN;
+            set => onionDiagram.Orientation = value;
+        }
+
         private void OnionDiagramPropertyChanged(object sender, PropertyChangedEventArgs e)
         {
             switch (e.PropertyName)
             {
                 case nameof(OnionDiagram.Asymmetry):
                     OnPropertyChanged(nameof(Asymmetry));
+                    break;
+                case nameof(OnionDiagram.Orientation):
+                    OnPropertyChanged(nameof(Orientation));
                     break;
             }
         }

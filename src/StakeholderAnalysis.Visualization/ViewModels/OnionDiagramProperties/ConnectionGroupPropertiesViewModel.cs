@@ -6,8 +6,7 @@ using StakeholderAnalysis.Visualization.ViewModels.PropertiesTree;
 
 namespace StakeholderAnalysis.Visualization.ViewModels.OnionDiagramProperties
 {
-    public class ConnectionGroupPropertiesViewModel : ViewModelBase, IPropertyCollectionTreeNodeViewModel,
-        IQuickSelectionViewModel
+    public class ConnectionGroupPropertiesViewModel : ViewModelBase, IPropertyCollectionTreeNodeViewModel
     {
         private readonly StakeholderConnectionGroup connectionGroup;
         private readonly OnionDiagram diagram;
@@ -105,12 +104,5 @@ namespace StakeholderAnalysis.Visualization.ViewModels.OnionDiagramProperties
                     break;
             }
         }
-    }
-
-    public interface IQuickSelectionViewModel
-    {
-        bool IsQuickSelection { get; }
-
-        bool IsSelected { get; set; }
     }
 }

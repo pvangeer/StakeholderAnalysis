@@ -10,7 +10,7 @@ namespace StakeholderAnalysis.Visualization.Converters
     {
         public object Convert(object value, Type targetType, object parameter, CultureInfo culture)
         {
-            if (value is IQuickSelectionViewModel) return Visibility.Visible;
+            if (value is ConnectionGroupPropertiesViewModel) return Visibility.Visible;
 
             return Visibility.Collapsed;
         }
