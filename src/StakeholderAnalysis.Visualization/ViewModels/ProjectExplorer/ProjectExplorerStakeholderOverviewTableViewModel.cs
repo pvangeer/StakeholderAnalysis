@@ -39,7 +39,7 @@ namespace StakeholderAnalysis.Visualization.ViewModels.ProjectExplorer
             if (viewInfo == null)
             {
                 viewInfo = new ViewInfo("Tabel", ViewModelFactory.CreateStakeholderTableViewModel(),
-                    "pack://application:,,,/StakeholderAnalysis.Visualization;component/Resources/table.png", true);
+                    "pack://application:,,,/StakeholderAnalysis.Visualization;component/Resources/table.png");
                 viewManager.OpenView(viewInfo);
             }
 

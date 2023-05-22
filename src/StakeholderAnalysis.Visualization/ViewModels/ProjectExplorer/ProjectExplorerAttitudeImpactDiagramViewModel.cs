@@ -67,7 +67,7 @@ namespace StakeholderAnalysis.Visualization.ViewModels.ProjectExplorer
             if (viewInfo == null)
             {
                 viewInfo = new ViewInfo(diagram.Name, ViewModelFactory.CrateAttitudeImpactDiagramViewModel(diagram),
-                    IconSourceString, true);
+                    IconSourceString);
                 viewManager.OpenView(viewInfo);
             }
 

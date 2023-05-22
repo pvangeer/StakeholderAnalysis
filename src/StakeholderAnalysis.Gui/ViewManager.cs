@@ -12,13 +12,10 @@ namespace StakeholderAnalysis.Gui
         public ViewManager()
         {
             Views = new ObservableCollection<ViewInfo>();
-            ToolWindows = new ObservableCollection<ViewInfo>();
             ActiveDocument = null;
         }
 
         public ObservableCollection<ViewInfo> Views { get; }
-
-        public ObservableCollection<ViewInfo> ToolWindows { get; }
 
         public ViewInfo ActiveDocument { get; set; }
 
@@ -36,7 +33,6 @@ namespace StakeholderAnalysis.Gui
             Views.Add(viewInfo);
         }
 
-
         public void CloseView(ViewInfo viewInfo)
         {
             if (IsAvailableView(viewInfo))
@@ -52,26 +48,6 @@ namespace StakeholderAnalysis.Gui
 
             ActiveDocument = viewInfo;
             OnPropertyChanged(nameof(ActiveDocument));
-        }
-
-        public void OpenToolWindow(ViewInfo viewInfo)
-        {
-            if (viewInfo.IsDocumentView) throw new ArgumentException();
-
-            if (!ToolWindows.Contains(viewInfo))
-            {
-                viewInfo.CloseViewCommand = new CloseViewCommand(this, viewInfo);
-                ToolWindows.Add(viewInfo);
-            }
-        }
-
-        public void CloseToolWindow(ViewInfo viewInfo)
-        {
-            if (ToolWindows.Contains(viewInfo))
-            {
-                ToolWindows.Remove(viewInfo);
-                OnPropertyChanged(nameof(ActiveDocument));
-            }
         }
 
         [NotifyPropertyChangedInvocator]

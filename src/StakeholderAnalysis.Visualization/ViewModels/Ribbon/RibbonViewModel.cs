@@ -26,7 +26,6 @@ namespace StakeholderAnalysis.Visualization.ViewModels.Ribbon
                 gui.ShouldMigrateProject = ShouldMigrateProject;
                 gui.PropertyChanged += GuiPropertyChanged;
                 gui.ViewManager.PropertyChanged += ViewManagerPropertyChanged;
-                gui.ViewManager.ToolWindows.CollectionChanged += ToolWindowsCollectionChanged;
                 gui.ViewManager.PropertyChanged += ViewManagerPropertyChanged;
                 SetCurrentSelectedDiagramAndGroups();
             }
@@ -110,15 +109,6 @@ namespace StakeholderAnalysis.Visualization.ViewModels.Ribbon
             }
         }
 
-
-        public ICommand ToggleToolWindowCommand => CommandFactory.CreateToggleToolWindowCommand();
-
-        public ObservableCollection<ViewInfo> ToolWindows
-        {
-            get => ViewManagerViewModel.ToolWindows;
-            set { }
-        }
-
         public ObservableCollection<StakeholderConnectionGroup> StakeholderConnectionGroups =>
             stakeholderConnectionGroupSelection?.OnionDiagram?.ConnectionGroups;
 
@@ -167,7 +157,6 @@ namespace StakeholderAnalysis.Visualization.ViewModels.Ribbon
             OnPropertyChanged(nameof(AddOnionRingCommand));
             OnPropertyChanged(nameof(StakeholderConnectionGroups));
             OnPropertyChanged(nameof(SelectedStakeholderConnectionGroup));
-            OnPropertyChanged(nameof(ToggleToolWindowCommand));
         }
 
         private void OnionDiagramPropertyChanged(object sender, PropertyChangedEventArgs e)
@@ -182,11 +171,6 @@ namespace StakeholderAnalysis.Visualization.ViewModels.Ribbon
         {
             if (e.PropertyName == nameof(StakeholderConnectionGroupSelection.StakeholderConnectionGroup))
                 OnPropertyChanged(nameof(SelectedStakeholderConnectionGroup));
-        }
-
-        private void ToolWindowsCollectionChanged(object sender, NotifyCollectionChangedEventArgs e)
-        {
-            OnPropertyChanged(nameof(ToolWindows));
         }
 
         private void GuiPropertyChanged(object sender, PropertyChangedEventArgs e)

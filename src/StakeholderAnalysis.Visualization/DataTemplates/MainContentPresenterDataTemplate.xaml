@@ -16,6 +16,7 @@
     </ResourceDictionary.MergedDictionaries>
 
     <converters:IsProneToExportConverter x:Key="IsProneToExportConverter" />
+    <converters:DocumentViewInfoToPropertiesViewInfoConverter x:Key="DocumentViewInfoToPropertiesViewInfoConverter" />
 
     <visualization:ViewTemplateSelector x:Key="ViewTemplateSelector"
                                         StakeholderTableViewTemplate="{StaticResource StakeholderTableDataTemplate}"
@@ -71,7 +72,7 @@
 
     <DataTemplate x:Key="ToolWindowDataTemplate" DataType="gui:ViewInfo">
         <ContentPresenter
-            Content="{Binding ViewModel}"
+            Content="{Binding ViewModel, Converter={StaticResource DocumentViewInfoToPropertiesViewInfoConverter}}"
             ContentTemplateSelector="{StaticResource ViewTemplateSelector}" />
     </DataTemplate>
 

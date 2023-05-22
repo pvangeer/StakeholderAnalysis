@@ -4,6 +4,7 @@ using System.Windows.Input;
 using System.Windows.Media;
 using StakeholderAnalysis.Data;
 using StakeholderAnalysis.Visualization.Behaviors;
+using StakeholderAnalysis.Visualization.ViewModels.TwoAxisDiagramProperties;
 
 namespace StakeholderAnalysis.Visualization.ViewModels.TwoAxisDiagrams
 {
@@ -52,5 +53,7 @@ namespace StakeholderAnalysis.Visualization.ViewModels.TwoAxisDiagrams
         double AxisFontSize { get; }
 
         ITwoAxisDiagram GetDiagram();
+
+        TwoAxisDiagramPropertiesViewModel GetPropertiesViewModel();
     }
 }

@@ -7,6 +7,7 @@ using System.Windows.Input;
 using System.Windows.Media;
 using StakeholderAnalysis.Data;
 using StakeholderAnalysis.Data.AttitudeImpactDiagrams;
+using StakeholderAnalysis.Visualization.ViewModels.TwoAxisDiagramProperties;
 
 namespace StakeholderAnalysis.Visualization.ViewModels.TwoAxisDiagrams
 {
@@ -87,6 +88,11 @@ namespace StakeholderAnalysis.Visualization.ViewModels.TwoAxisDiagrams
         public ITwoAxisDiagram GetDiagram()
         {
             return diagram;
+        }
+
+        public TwoAxisDiagramPropertiesViewModel GetPropertiesViewModel()
+        {
+            return ViewModelFactory.CreateTwoAxisDiagramPropertiesViewModel();
         }
 
         private void StakeholdersCollectionChanged(object sender, NotifyCollectionChangedEventArgs e)

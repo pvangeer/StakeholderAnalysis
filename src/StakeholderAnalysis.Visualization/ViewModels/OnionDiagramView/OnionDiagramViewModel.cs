@@ -3,6 +3,7 @@ using System.Windows.Input;
 using StakeholderAnalysis.Data;
 using StakeholderAnalysis.Data.OnionDiagrams;
 using StakeholderAnalysis.Visualization.Behaviors;
+using StakeholderAnalysis.Visualization.ViewModels.OnionDiagramProperties;
 
 namespace StakeholderAnalysis.Visualization.ViewModels.OnionDiagramView
 {
@@ -33,7 +34,6 @@ namespace StakeholderAnalysis.Visualization.ViewModels.OnionDiagramView
 
         public OnionDiagramDrawConnectionViewModel OnionDiagramDrawConnectionViewModel { get; }
 
-
         public bool IsSelected(object o)
         {
             return selectedObject == o;
@@ -58,6 +58,12 @@ namespace StakeholderAnalysis.Visualization.ViewModels.OnionDiagramView
             return diagram;
         }
 
+        public OnionDiagramPropertiesViewModel GetPropertiesViewModel()
+        {
+            return ViewModelFactory.CreateOnionDiagramPropertiesViewModel();
+        }
+
+        public OnionDiagramPropertiesViewModel PropertiesViewModel => ViewModelFactory.CreateOnionDiagramPropertiesViewModel();
         private void RaiseIsSelectedPropertyChanged(object o)
         {
             if (o is Stakeholder stakeholder)

@@ -4,9 +4,8 @@ namespace StakeholderAnalysis.Gui
 {
     public class ViewInfo
     {
-        public ViewInfo(string title, object viewModel, string iconReference, bool isDocumentView)
+        public ViewInfo(string title, object viewModel, string iconReference)
         {
-            IsDocumentView = isDocumentView;
             IconReference = iconReference;
             Title = title;
             ViewModel = viewModel;
@@ -20,7 +19,5 @@ namespace StakeholderAnalysis.Gui
         public object ViewModel { get; }
 
         public ICommand CloseViewCommand { get; set; }
-
-        public bool IsDocumentView { get; }
     }
 }

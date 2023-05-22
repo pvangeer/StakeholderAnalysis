@@ -99,20 +99,6 @@
             <fluent:RibbonTabItem Header="Start" Height="30">
                 <fluent:RibbonGroupBox Header="Beeld">
                     <fluent:ToggleButton
-                        Size="Middle"
-                        Header="UI-diagram gegevens tonen"
-                        Icon="pack://application:,,,/StakeholderAnalysis.Visualization;component/Resources/onion.png"
-                        IsChecked="{Binding RibbonViewModel.ToolWindows, Converter={StaticResource IsActiveToolWindowConverter}, ConverterParameter={x:Type onionDiagramProperties:OnionDiagramPropertiesViewModel}}"
-                        Command="{Binding RibbonViewModel.ToggleToolWindowCommand}"
-                        CommandParameter="{x:Type onionDiagramProperties:OnionDiagramPropertiesViewModel}" />
-                    <fluent:ToggleButton
-                        Size="Middle"
-                        Header="Verhoudingdiagram gegevens tonen"
-                        Icon="pack://application:,,,/StakeholderAnalysis.Visualization;component/Resources/forces.png"
-                        IsChecked="{Binding RibbonViewModel.ToolWindows, Converter={StaticResource IsActiveToolWindowConverter}, ConverterParameter={x:Type twoAxisDiagramProperties:TwoAxisDiagramPropertiesViewModel}}"
-                        Command="{Binding RibbonViewModel.ToggleToolWindowCommand}"
-                        CommandParameter="{x:Type twoAxisDiagramProperties:TwoAxisDiagramPropertiesViewModel}" />
-                    <fluent:ToggleButton
                         Header="Projectgegevens"
                         Size="Large"
                         LargeIcon="pack://application:,,,/StakeholderAnalysis.Visualization;component/Resources/document.png"
@@ -279,46 +265,31 @@
                     </DataTemplate>
                 </TabControl.ItemTemplate>
             </TabControl>
-            <GridSplitter Grid.Column="3" Width="5" Background="{StaticResource Fluent.Ribbon.Brushes.Separator.Background}" HorizontalAlignment="Stretch"
+            <GridSplitter Grid.Column="3" 
+                          Visibility="{Binding IsPropertiesVisible, Converter={StaticResource BoolToVisibilityConverter} }"
+                          Width="5" 
+                          Background="{StaticResource Fluent.Ribbon.Brushes.Separator.Background}" 
+                          HorizontalAlignment="Stretch"
                           ResizeBehavior="BasedOnAlignment" />
-            <TabControl
-                Visibility="{Binding IsPropertiesVisible, Converter={StaticResource BoolToVisibilityConverter}}"
-                Grid.Column="4"
-                ContentTemplate="{StaticResource ToolWindowDataTemplate}"
-                ItemsSource="{Binding ViewManager.ToolWindows}"
-                SelectedIndex="{Binding ViewManager.SelectedToolWindowIndex}">
-                <TabControl.ItemTemplate>
-                    <DataTemplate DataType="gui:ViewInfo">
-                        <Grid Margin="10">
-                            <Grid.ColumnDefinitions>
-                                <ColumnDefinition Width="Auto" />
-                                <ColumnDefinition Width="*" />
-                                <ColumnDefinition Width="Auto" />
-                            </Grid.ColumnDefinitions>
-                            <Image Grid.Column="0" Source="{Binding IconReference}" Margin="0,0,4,0" Height="16"
-                                   Width="16" />
-                            <TextBlock Grid.Column="1" TextAlignment="Left" Text="{Binding Title}" Margin="2,0,5,0"/>
-                            <Button Grid.Column="2" Command="{Binding CloseViewCommand}">
-                                <Button.Style>
-                                    <Style TargetType="Button">
-                                        <Setter Property="Template">
-                                            <Setter.Value>
-                                                <ControlTemplate TargetType="Button">
-                                                    <Image Width="16"
-                                                           Height="16"
-                                                           VerticalAlignment="Center"
-                                                           HorizontalAlignment="Center"
-                                                           Source="pack://application:,,,/StakeholderAnalysis.Visualization;component/Resources/remove.png" />
-                                                </ControlTemplate>
-                                            </Setter.Value>
-                                        </Setter>
-                                    </Style>
-                                </Button.Style>
-                            </Button>
-                        </Grid>
-                    </DataTemplate>
-                </TabControl.ItemTemplate>
-            </TabControl>
+
+            <StackPanel Grid.Column="4" Orientation="Vertical" Visibility="{Binding IsPropertiesVisible, Converter={StaticResource BoolToVisibilityConverter} }">
+                <Grid Background="#0EBBF0">
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="Auto" />
+                        <ColumnDefinition Width="*" />
+                    </Grid.ColumnDefinitions>
+                    <Image Grid.Column="0" 
+                           Source="pack://application:,,,/StakeholderAnalysis.Visualization;component/Resources/document.png"
+                           Margin="10" Height="16"
+                           Width="16" />
+                    <TextBlock Grid.Column="1" 
+                               VerticalAlignment="Center" 
+                               Text="Eigenschappen"/>
+                </Grid>
+                <ContentPresenter
+                    Content="{Binding ViewManager.ActiveDocument}"
+                    ContentTemplate="{StaticResource ToolWindowDataTemplate}"/>
+            </StackPanel>
         </Grid>
         <ContentPresenter
             Grid.Row="2"

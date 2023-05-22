@@ -64,6 +64,7 @@
     <Compile Include="Converters\SourceStringToVisibilityConverter.cs" />
     <Compile Include="Converters\HasItemsToVisibilityConverter.cs" />
     <Compile Include="Converters\LineStyleToDashArrayConverter.cs" />
+    <Compile Include="Converters\DocumentViewInfoToPropertiesViewInfoConverter.cs" />
     <Compile Include="TestConverter.cs" />
     <Compile Include="ViewModels\PropertiesTree\ISliderPropertyTreeNodeViewModel.cs" />
     <Compile Include="ViewModels\PropertiesTree\SliderPropertyTreeNodeViewModel.cs" />
@@ -95,7 +96,6 @@
     <Compile Include="Commands\OnionDiagramProperties\AddConnectionGroupCommand.cs" />
     <Compile Include="Commands\RemoveSelectedStakeholderFromDiagramCommand.cs" />
     <Compile Include="Commands\Ribbon\AddOnionRingCommand.cs" />
-    <Compile Include="Commands\ProjectExplorer\ToggleToolWindowCommand.cs" />
     <Compile Include="Commands\CloseApplicationCommand.cs" />
     <Compile Include="Commands\FileHandling\FileHandlingCommandBase.cs" />
     <Compile Include="Commands\FileHandling\NewProjectCommand.cs" />

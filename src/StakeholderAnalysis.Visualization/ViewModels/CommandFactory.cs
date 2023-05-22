@@ -78,11 +78,6 @@ namespace StakeholderAnalysis.Visualization.ViewModels
                 () => gui?.ViewManager.ActiveDocument != null);
         }
 
-        public ICommand CreateToggleToolWindowCommand()
-        {
-            return new ToggleToolWindowCommand(viewModelFactory, gui?.ViewManager);
-        }
-
         public ICommand CreateAddOnionRingCommand(OnionDiagram onionDiagram)
         {
             return new AddOnionRingCommand(onionDiagram);

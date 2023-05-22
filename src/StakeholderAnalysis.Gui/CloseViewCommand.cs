@@ -23,10 +23,7 @@ namespace StakeholderAnalysis.Gui
         {
             if (viewManager != null && viewInfo != null)
             {
-                if (viewInfo.IsDocumentView)
-                    viewManager.CloseView(viewInfo);
-                else
-                    viewManager.CloseToolWindow(viewInfo);
+                 viewManager.CloseView(viewInfo);
             }
         }
 
