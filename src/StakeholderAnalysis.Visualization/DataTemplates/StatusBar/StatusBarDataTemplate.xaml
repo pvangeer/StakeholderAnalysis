@@ -12,7 +12,7 @@
     <statusBar1:ShouldShowPriorityMessageToBoolConverter x:Key="ShouldShowPriorityMessageToBoolConverter" />
 
     <DataTemplate x:Key="StatusBarDataTemplate" DataType="statusBar:StatusBarViewModel">
-        <fluent:StatusBar>
+        <fluent:StatusBar Background="#0EBBF0">
             <fluent:StatusBarItem
                 HorizontalAlignment="Right">
                 <StackPanel>

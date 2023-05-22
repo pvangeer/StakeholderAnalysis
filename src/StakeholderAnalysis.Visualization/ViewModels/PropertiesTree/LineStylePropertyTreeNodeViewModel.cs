@@ -6,7 +6,7 @@ using StakeholderAnalysis.Data.OnionDiagrams;
 
 namespace StakeholderAnalysis.Visualization.ViewModels.PropertiesTree
 {
-    public class LineStylePropertyTreeNodeViewModel<TContent> : PropertyTreeNodeViewModelBaseBase,
+    public class LineStylePropertyTreeNodeViewModel<TContent> : PropertyTreeNodeViewModelBase,
         ILineStylePropertyTreeNodeViewModel where TContent : INotifyPropertyChangedImplementation
     {
         private readonly PropertyInfo propertyInfo;

@@ -4,9 +4,9 @@ using StakeholderAnalysis.Data;
 
 namespace StakeholderAnalysis.Visualization.ViewModels.PropertiesTree
 {
-    public abstract class PropertyTreeNodeViewModelBaseBase : NotifyPropertyChangedObservable, ITreeNodeViewModel
+    public abstract class PropertyTreeNodeViewModelBase : NotifyPropertyChangedObservable, ITreeNodeViewModel
     {
-        public PropertyTreeNodeViewModelBaseBase(string displayName)
+        public PropertyTreeNodeViewModelBase(string displayName)
         {
             DisplayName = displayName;
             ContextMenuItems = new ObservableCollection<ContextMenuItemViewModel>();

@@ -5,7 +5,7 @@ using StakeholderAnalysis.Data;
 
 namespace StakeholderAnalysis.Visualization.ViewModels.PropertiesTree
 {
-    public class BooleanPropertyTreeNodeViewModel<TContent> : PropertyTreeNodeViewModelBaseBase,
+    public class BooleanPropertyTreeNodeViewModel<TContent> : PropertyTreeNodeViewModelBase,
         IBooleanPropertyTreeNodeViewModel where TContent : INotifyPropertyChangedImplementation
     {
         private readonly PropertyInfo propertyInfo;

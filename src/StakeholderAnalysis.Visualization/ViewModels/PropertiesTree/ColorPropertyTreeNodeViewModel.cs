@@ -6,7 +6,7 @@ using StakeholderAnalysis.Data;
 
 namespace StakeholderAnalysis.Visualization.ViewModels.PropertiesTree
 {
-    public class ColorPropertyTreeNodeViewModel<TContent> : PropertyTreeNodeViewModelBaseBase,
+    public class ColorPropertyTreeNodeViewModel<TContent> : PropertyTreeNodeViewModelBase,
         IColorPropertyTreeNodeViewModel where TContent : INotifyPropertyChangedImplementation
     {
         private readonly PropertyInfo propertyInfo;

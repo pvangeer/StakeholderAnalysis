@@ -7,7 +7,7 @@ namespace StakeholderAnalysis.Data.OnionDiagrams
         public OnionRing(double percentage = 1.0)
         {
             Percentage = percentage;
-            BackgroundColor = Colors.Azure;
+            BackgroundColor = (Color)ColorConverter.ConvertFromString("#0EBBF0");
             StrokeColor = Colors.Gray;
             StrokeThickness = 1.0;
         }

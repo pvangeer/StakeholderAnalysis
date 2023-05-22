@@ -147,7 +147,7 @@
     <Compile Include="ViewModels\PropertiesTree\IDoubleUpDownPropertyTreeNodeViewModel.cs" />
     <Compile Include="ViewModels\PropertiesTree\IPropertyCollectionTreeNodeViewModel.cs" />
     <Compile Include="ViewModels\PropertiesTree\ITreeNodeViewModel.cs" />
-    <Compile Include="ViewModels\PropertiesTree\PropertyTreeNodeViewModelBaseBase.cs" />
+    <Compile Include="ViewModels\PropertiesTree\PropertyTreeNodeViewModelBase.cs" />
     <Compile Include="ViewModels\StatusBar\MessagesViewModel.cs" />
     <Compile Include="ViewModels\StatusBar\StatusBarViewModel.cs" />
     <Compile Include="ViewModels\TwoAxisDiagrams\ITwoAxisDiagramViewModel.cs" />
@@ -270,6 +270,10 @@
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="DataTemplates\StakeholderTable\StakeholderTableDataTemplate.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Theme\StakeholderAnalysisTheme.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>

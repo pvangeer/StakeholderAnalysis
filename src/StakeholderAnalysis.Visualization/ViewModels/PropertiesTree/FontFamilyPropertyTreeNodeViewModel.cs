@@ -6,7 +6,7 @@ using StakeholderAnalysis.Data;
 
 namespace StakeholderAnalysis.Visualization.ViewModels.PropertiesTree
 {
-    public class FontFamilyPropertyTreeNodeViewModel<TContent> : PropertyTreeNodeViewModelBaseBase,
+    public class FontFamilyPropertyTreeNodeViewModel<TContent> : PropertyTreeNodeViewModelBase,
         IFontFamilyPropertyTreeNodeViewModel where TContent : INotifyPropertyChangedImplementation
     {
         private readonly PropertyInfo propertyInfo;

@@ -5,7 +5,7 @@ using StakeholderAnalysis.Data;
 
 namespace StakeholderAnalysis.Visualization.ViewModels.PropertiesTree
 {
-    public class DoubleUpDownPropertyTreeNodeViewModel<TContent> : PropertyTreeNodeViewModelBaseBase,
+    public class DoubleUpDownPropertyTreeNodeViewModel<TContent> : PropertyTreeNodeViewModelBase,
         IDoubleUpDownPropertyTreeNodeViewModel where TContent : INotifyPropertyChangedImplementation
     {
         private readonly PropertyInfo propertyInfo;

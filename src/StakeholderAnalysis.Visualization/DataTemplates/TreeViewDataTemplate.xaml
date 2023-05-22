@@ -171,7 +171,7 @@
                     ItemsSource="{Binding ContextMenuItems}"
                     ItemContainerStyle="{StaticResource MenuItemStyle}" />
             </Border.ContextMenu>
-            <Grid>
+            <Grid Margin="10">
                 <Grid.ColumnDefinitions>
                     <ColumnDefinition Width="Auto" />
                     <ColumnDefinition Width="Auto" />
@@ -223,7 +223,7 @@
 
     <DataTemplate x:Key="PropertyValueItemDataTemplate" DataType="propertiesTree:ITreeNodeViewModel">
         <Border Style="{StaticResource TreeNodeBorderStyle}">
-            <Grid>
+            <Grid Margin="10">
                 <Grid.ColumnDefinitions>
                     <ColumnDefinition Width="*" />
                     <ColumnDefinition Width="5" />
