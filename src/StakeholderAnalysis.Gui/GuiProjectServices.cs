@@ -64,7 +64,18 @@ namespace StakeholderAnalysis.Gui
             if ((bool)dialog.ShowDialog(Application.Current.MainWindow))
             {
                 var fileName = dialog.FileName;
-                if (migrationService.NeedsMigration(fileName) && gui.ShouldMigrateProject != null &&
+                var needsMigration = false;
+                try
+                {
+                    needsMigration = migrationService.NeedsMigration(fileName);
+                }
+                catch (XmlStorageException e)
+                {
+                    log.Error("Bestand kon niet worden geopend.",true);
+                    return;
+                }
+
+                if (needsMigration && gui.ShouldMigrateProject != null &&
                     gui.ShouldMigrateProject())
                 {
                     if (!MigrateProject(fileName, out var newFileName))
@@ -202,7 +213,7 @@ namespace StakeholderAnalysis.Gui
                 CheckPathExists = true,
                 FileName = fileName,
                 OverwritePrompt = true,
-                Filter = "Stakeholder analyse bestand (*.xml)|*.xml"
+                Filter = "Stakeholderanalyse bestand (*.xml)|*.xml"
             };
 
             if ((bool)dialog.ShowDialog(Application.Current.MainWindow))
@@ -212,6 +223,7 @@ namespace StakeholderAnalysis.Gui
                 return true;
             }
 
+            log.Info("Migratie gestopt door de gebruiker. Bestand wordt niet geopend.");
             newFileName = null;
             return false;
         }
