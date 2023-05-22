@@ -20,7 +20,27 @@ namespace StakeholderAnalysis.Visualization.ViewModels
         public ViewManagerViewModel ViewManager { get; }
 
         public ProjectExplorerViewModel ProjectExplorerViewModel { get; }
-        
+
+        public bool IsProjectExplorerVisible
+        {
+            get => gui.IsProjectExplorerVisible;
+            set
+            {
+                gui.IsProjectExplorerVisible = value;
+                gui.OnPropertyChanged();
+            }
+        }
+
+        public bool IsPropertiesVisible
+        {
+            get => gui.IsPropertiesVisible;
+            set
+            {
+                gui.IsPropertiesVisible = value;
+                gui.OnPropertyChanged();
+            }
+        }
+
         public bool IsSaveToImage
         {
             get => gui.IsSaveToImage;
@@ -50,6 +70,12 @@ namespace StakeholderAnalysis.Visualization.ViewModels
                     break;
                 case nameof(StakeholderAnalysisGui.IsSaveToImage):
                     OnPropertyChanged(nameof(IsSaveToImage));
+                    break;
+                case nameof(StakeholderAnalysisGui.IsProjectExplorerVisible):
+                    OnPropertyChanged(nameof(IsProjectExplorerVisible));
+                    break;
+                case nameof(StakeholderAnalysisGui.IsPropertiesVisible):
+                    OnPropertyChanged(nameof(IsPropertiesVisible));
                     break;
                 case nameof(StakeholderAnalysisGui.Analysis):
                     foreach (var viewInfo in gui.ViewManager.Views.ToList()) gui.ViewManager.CloseView(viewInfo);

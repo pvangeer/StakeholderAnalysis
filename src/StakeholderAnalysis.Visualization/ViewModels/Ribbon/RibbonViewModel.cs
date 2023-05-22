@@ -48,6 +48,26 @@ namespace StakeholderAnalysis.Visualization.ViewModels.Ribbon
 
         public ICommand AddStakeholdersCommand => CommandFactory.CreateAddStakeholdersCommand();
 
+        public bool IsProjectExplorerVisible
+        {
+            get => gui.IsProjectExplorerVisible;
+            set
+            {
+                gui.IsProjectExplorerVisible = value;
+                gui.OnPropertyChanged();
+            }
+        }
+
+        public bool IsPropertiesVisible
+        {
+            get => gui.IsPropertiesVisible;
+            set
+            {
+                gui.IsPropertiesVisible = value;
+                gui.OnPropertyChanged();
+            }
+        }
+
         public bool IsMagnifierActive
         {
             get => gui.IsMagnifierActive;
@@ -179,6 +199,12 @@ namespace StakeholderAnalysis.Visualization.ViewModels.Ribbon
                 case nameof(StakeholderAnalysisGui.Analysis):
                     SetCurrentSelectedDiagramAndGroups();
                     OnPropertyChanged(nameof(AddStakeholdersCommand));
+                    break;
+                case nameof(StakeholderAnalysisGui.IsProjectExplorerVisible):
+                    OnPropertyChanged(nameof(IsProjectExplorerVisible));
+                    break;
+                case nameof(StakeholderAnalysisGui.IsPropertiesVisible):
+                    OnPropertyChanged(nameof(IsPropertiesVisible));
                     break;
             }
         }

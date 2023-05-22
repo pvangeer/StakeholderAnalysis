@@ -18,8 +18,6 @@ namespace StakeholderAnalysis.Gui
 
         public ObservableCollection<ViewInfo> Views { get; }
 
-        public ViewInfo ProjectWindow { get; }
-
         public ObservableCollection<ViewInfo> ToolWindows { get; }
 
         public ViewInfo ActiveDocument { get; set; }

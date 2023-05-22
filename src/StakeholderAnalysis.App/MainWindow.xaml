@@ -113,6 +113,16 @@
                         Command="{Binding RibbonViewModel.ToggleToolWindowCommand}"
                         CommandParameter="{x:Type twoAxisDiagramProperties:TwoAxisDiagramPropertiesViewModel}" />
                     <fluent:ToggleButton
+                        Header="Projectgegevens"
+                        Size="Large"
+                        LargeIcon="pack://application:,,,/StakeholderAnalysis.Visualization;component/Resources/document.png"
+                        IsChecked="{Binding RibbonViewModel.IsProjectExplorerVisible}" />
+                    <fluent:ToggleButton
+                        Header="Eigenschappen"
+                        Size="Large"
+                        LargeIcon="pack://application:,,,/StakeholderAnalysis.Visualization;component/Resources/document.png"
+                        IsChecked="{Binding RibbonViewModel.IsPropertiesVisible}" />
+                    <fluent:ToggleButton
                         Header="Vergrootglas"
                         Size="Large"
                         LargeIcon="pack://application:,,,/StakeholderAnalysis.Visualization;component/Resources/Magnifier.png"
@@ -122,7 +132,6 @@
                         Size="Large"
                         LargeIcon="pack://application:,,,/StakeholderAnalysis.Visualization;component/Resources/SaveImage.png"
                         Command="{Binding RibbonViewModel.SaveImageCommand}" />
-
                 </fluent:RibbonGroupBox>
 
                 <fluent:RibbonGroupBox Header="Diagram">
@@ -204,7 +213,7 @@
             </fluent:RibbonTabItem>
         </fluent:Ribbon>
 
-        <Grid Grid.Row="1" DataContext="{Binding MainContentPresenterViewModel}">
+        <Grid Name="MainContentPresenter" Grid.Row="1" DataContext="{Binding MainContentPresenterViewModel}">
             <Grid.ColumnDefinitions>
                 <ColumnDefinition Width="Auto" />
                 <ColumnDefinition Width="5" />
@@ -212,7 +221,8 @@
                 <ColumnDefinition Width="5" />
                 <ColumnDefinition Width="Auto" />
             </Grid.ColumnDefinitions>
-            <StackPanel Grid.Column="0" Orientation="Vertical">
+            
+            <StackPanel Grid.Column="0" Orientation="Vertical" Visibility="{Binding IsProjectExplorerVisible, Converter={StaticResource BoolToVisibilityConverter} }">
                 <Grid Background="#0EBBF0">
                     <Grid.ColumnDefinitions>
                         <ColumnDefinition Width="Auto" />
@@ -272,6 +282,7 @@
             <GridSplitter Grid.Column="3" Width="5" Background="{StaticResource Fluent.Ribbon.Brushes.Separator.Background}" HorizontalAlignment="Stretch"
                           ResizeBehavior="BasedOnAlignment" />
             <TabControl
+                Visibility="{Binding IsPropertiesVisible, Converter={StaticResource BoolToVisibilityConverter}}"
                 Grid.Column="4"
                 ContentTemplate="{StaticResource ToolWindowDataTemplate}"
                 ItemsSource="{Binding ViewManager.ToolWindows}"

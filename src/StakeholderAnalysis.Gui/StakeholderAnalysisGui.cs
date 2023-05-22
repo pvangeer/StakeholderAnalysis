@@ -37,6 +37,9 @@ namespace StakeholderAnalysis.Gui
 
             GuiProjectServices = new GuiProjectServices(this);
 
+            IsProjectExplorerVisible = true;
+            IsPropertiesVisible = true;
+
             ConfigureMessaging();
             Messages = new MessageList();
             IsMagnifierActive = false;
@@ -70,6 +73,10 @@ namespace StakeholderAnalysis.Gui
         public ViewManager ViewManager { get; }
 
         public StorageState BusyIndicator { get; set; }
+
+        public bool IsProjectExplorerVisible { get; set; }
+
+        public bool IsPropertiesVisible { get; set; }
 
         public bool IsMagnifierActive { get; set; }
 
