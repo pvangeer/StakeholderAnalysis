@@ -1,6 +1,7 @@
 ﻿using System.ComponentModel;
 using System.Linq;
 using StakeholderAnalysis.Gui;
+using StakeholderAnalysis.Visualization.ViewModels.ProjectExplorer;
 
 namespace StakeholderAnalysis.Visualization.ViewModels
 {
@@ -13,10 +14,13 @@ namespace StakeholderAnalysis.Visualization.ViewModels
             this.gui = gui;
             if (gui != null) gui.PropertyChanged += GuiPropertyChanged;
             ViewManager = ViewModelFactory.CreateViewManagerViewModel();
+            ProjectExplorerViewModel = ViewModelFactory.CreateProjectExplorerViewModel();
         }
 
         public ViewManagerViewModel ViewManager { get; }
 
+        public ProjectExplorerViewModel ProjectExplorerViewModel { get; }
+        
         public bool IsSaveToImage
         {
             get => gui.IsSaveToImage;

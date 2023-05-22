@@ -18,12 +18,14 @@ namespace StakeholderAnalysis.Visualization.ViewModels
         {
             gui = guiInput;
             RibbonViewModel = ViewModelFactory.CreateRibbonViewModel();
-            RibbonViewModel.ToggleToolWindowCommand.Execute(typeof(ProjectExplorerViewModel));
             RibbonViewModel.ToggleToolWindowCommand.Execute(typeof(OnionDiagramPropertiesViewModel));
             MainContentPresenterViewModel = ViewModelFactory.CreateMainContentPresenterViewModel();
+            ProjectExplorerViewModel = ViewModelFactory.CreateProjectExplorerViewModel();
         }
 
         public MainContentPresenterViewModel MainContentPresenterViewModel { get; }
+
+        public ProjectExplorerViewModel ProjectExplorerViewModel { get; }
 
         public RibbonViewModel RibbonViewModel { get; }
 

@@ -5,7 +5,6 @@
                      xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
                      xmlns:viewmodels="clr-namespace:StakeholderAnalysis.Visualization.ViewModels;assembly=StakeholderAnalysis.Visualization"
                      xmlns:fluent="urn:fluent-ribbon"
-                     xmlns:projectExplorer="clr-namespace:StakeholderAnalysis.Visualization.ViewModels.ProjectExplorer;assembly=StakeholderAnalysis.Visualization"
                      xmlns:onionDiagramProperties="clr-namespace:StakeholderAnalysis.Visualization.ViewModels.OnionDiagramProperties;assembly=StakeholderAnalysis.Visualization"
                      xmlns:converters="clr-namespace:StakeholderAnalysis.Visualization.Converters;assembly=StakeholderAnalysis.Visualization"
                      xmlns:gui="clr-namespace:StakeholderAnalysis.Gui;assembly=StakeholderAnalysis.Gui"
@@ -16,6 +15,7 @@
                      Closing="MainWindowClosing"
                      Loaded="MainWindow_OnLoaded"
                      Title="Stakeholderanalyse"
+                     WindowStartupLocation="CenterScreen"
                      Height="900"
                      Width="1500">
 
@@ -100,13 +100,6 @@
                 <fluent:RibbonGroupBox Header="Beeld">
                     <fluent:ToggleButton
                         Size="Middle"
-                        Header="Projectgegevens tonen"
-                        Icon="pack://application:,,,/StakeholderAnalysis.Visualization;component/Resources/document.png"
-                        IsChecked="{Binding RibbonViewModel.ToolWindows, Converter={StaticResource IsActiveToolWindowConverter}, ConverterParameter={x:Type projectExplorer:ProjectExplorerViewModel}}"
-                        Command="{Binding RibbonViewModel.ToggleToolWindowCommand}"
-                        CommandParameter="{x:Type projectExplorer:ProjectExplorerViewModel}" />
-                    <fluent:ToggleButton
-                        Size="Middle"
                         Header="UI-diagram gegevens tonen"
                         Icon="pack://application:,,,/StakeholderAnalysis.Visualization;component/Resources/onion.png"
                         IsChecked="{Binding RibbonViewModel.ToolWindows, Converter={StaticResource IsActiveToolWindowConverter}, ConverterParameter={x:Type onionDiagramProperties:OnionDiagramPropertiesViewModel}}"
@@ -158,7 +151,6 @@
                         Increment="0.1" />
                     <StackPanel Orientation="Vertical" Margin="5,5,5,1">
                         <controls:RotaryControl 
-                            x:Name="_dialTemperature" 
                             Value="{Binding RibbonViewModel.Orientation, Converter={StaticResource ValueToSameConverter}, Mode=TwoWay}"
                             FontBrush="Black" FontSize="28"
                             Foreground="Black" 
@@ -212,17 +204,39 @@
             </fluent:RibbonTabItem>
         </fluent:Ribbon>
 
-        <Grid Name="MainContentPresenter" Grid.Row="1" DataContext="{Binding MainContentPresenterViewModel}">
+        <Grid Grid.Row="1" DataContext="{Binding MainContentPresenterViewModel}">
             <Grid.ColumnDefinitions>
                 <ColumnDefinition Width="Auto" />
                 <ColumnDefinition Width="5" />
                 <ColumnDefinition Width="*" />
+                <ColumnDefinition Width="5" />
+                <ColumnDefinition Width="Auto" />
             </Grid.ColumnDefinitions>
+            <StackPanel Grid.Column="0" Orientation="Vertical">
+                <Grid Background="#0EBBF0">
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="Auto" />
+                        <ColumnDefinition Width="*" />
+                    </Grid.ColumnDefinitions>
+                    <Image Grid.Column="0" 
+                           Source="pack://application:,,,/StakeholderAnalysis.Visualization;component/Resources/document.png"
+                           Margin="10" Height="16"
+                           Width="16" />
+                    <TextBlock Grid.Column="1" 
+                               VerticalAlignment="Center" 
+                               Text="Projectgegevens"/>
+                </Grid>
+                <ContentPresenter
+                    Content="{Binding ProjectExplorerViewModel}"
+                    ContentTemplateSelector="{StaticResource ViewTemplateSelector}"/>
+            </StackPanel>
+            <GridSplitter Grid.Column="1" Width="5" Background="{StaticResource Fluent.Ribbon.Brushes.Separator.Background}" HorizontalAlignment="Stretch"
+                          ResizeBehavior="BasedOnAlignment" />
             <TabControl
-                Grid.Column="0"
-                ContentTemplate="{StaticResource ToolWindowDataTemplate}"
-                ItemsSource="{Binding ViewManager.ToolWindows}"
-                SelectedIndex="{Binding ViewManager.SelectedToolWindowIndex}">
+                Grid.Column="2"
+                ContentTemplate="{StaticResource DocumentViewDataTemplate}"
+                SelectedIndex="{Binding ViewManager.ActiveDocumentIndex, Mode=TwoWay}"
+                ItemsSource="{Binding ViewManager.Views}">
                 <TabControl.ItemTemplate>
                     <DataTemplate DataType="gui:ViewInfo">
                         <Grid Margin="10">
@@ -233,7 +247,7 @@
                             </Grid.ColumnDefinitions>
                             <Image Grid.Column="0" Source="{Binding IconReference}" Margin="0,0,4,0" Height="16"
                                    Width="16" />
-                            <TextBlock Grid.Column="1" TextAlignment="Left" Text="{Binding Title}" Margin="2,0,5,0"/>
+                            <TextBlock Grid.Column="1" TextAlignment="Left" Text="{Binding Title}" />
                             <Button Grid.Column="2" Command="{Binding CloseViewCommand}">
                                 <Button.Style>
                                     <Style TargetType="Button">
@@ -255,13 +269,13 @@
                     </DataTemplate>
                 </TabControl.ItemTemplate>
             </TabControl>
-            <GridSplitter Grid.Column="1" Width="5" Background="{StaticResource Fluent.Ribbon.Brushes.Separator.Background}" HorizontalAlignment="Stretch"
+            <GridSplitter Grid.Column="3" Width="5" Background="{StaticResource Fluent.Ribbon.Brushes.Separator.Background}" HorizontalAlignment="Stretch"
                           ResizeBehavior="BasedOnAlignment" />
             <TabControl
-                Grid.Column="2"
-                ContentTemplate="{StaticResource DocumentViewDataTemplate}"
-                SelectedIndex="{Binding ViewManager.ActiveDocumentIndex, Mode=TwoWay}"
-                ItemsSource="{Binding ViewManager.Views}">
+                Grid.Column="4"
+                ContentTemplate="{StaticResource ToolWindowDataTemplate}"
+                ItemsSource="{Binding ViewManager.ToolWindows}"
+                SelectedIndex="{Binding ViewManager.SelectedToolWindowIndex}">
                 <TabControl.ItemTemplate>
                     <DataTemplate DataType="gui:ViewInfo">
                         <Grid Margin="10">
@@ -272,7 +286,7 @@
                             </Grid.ColumnDefinitions>
                             <Image Grid.Column="0" Source="{Binding IconReference}" Margin="0,0,4,0" Height="16"
                                    Width="16" />
-                            <TextBlock Grid.Column="1" TextAlignment="Left" Text="{Binding Title}" />
+                            <TextBlock Grid.Column="1" TextAlignment="Left" Text="{Binding Title}" Margin="2,0,5,0"/>
                             <Button Grid.Column="2" Command="{Binding CloseViewCommand}">
                                 <Button.Style>
                                     <Style TargetType="Button">
