@@ -5,12 +5,11 @@
                      xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
                      xmlns:viewmodels="clr-namespace:StakeholderAnalysis.Visualization.ViewModels;assembly=StakeholderAnalysis.Visualization"
                      xmlns:fluent="urn:fluent-ribbon"
-                     xmlns:onionDiagramProperties="clr-namespace:StakeholderAnalysis.Visualization.ViewModels.OnionDiagramProperties;assembly=StakeholderAnalysis.Visualization"
                      xmlns:converters="clr-namespace:StakeholderAnalysis.Visualization.Converters;assembly=StakeholderAnalysis.Visualization"
                      xmlns:gui="clr-namespace:StakeholderAnalysis.Gui;assembly=StakeholderAnalysis.Gui"
                      xmlns:onionDiagrams="clr-namespace:StakeholderAnalysis.Data.OnionDiagrams;assembly=StakeholderAnalysis.Data"
-                     xmlns:twoAxisDiagramProperties="clr-namespace:StakeholderAnalysis.Visualization.ViewModels.TwoAxisDiagramProperties;assembly=StakeholderAnalysis.Visualization"
                      xmlns:controls="clr-namespace:StakeholderAnalysis.Visualization.Controls;assembly=StakeholderAnalysis.Visualization"
+                     xmlns:visualization="clr-namespace:StakeholderAnalysis.Visualization;assembly=StakeholderAnalysis.Visualization"
                      mc:Ignorable="d"
                      Closing="MainWindowClosing"
                      Loaded="MainWindow_OnLoaded"
@@ -208,7 +207,9 @@
                 <ColumnDefinition Width="Auto" />
             </Grid.ColumnDefinitions>
             
-            <StackPanel Grid.Column="0" Orientation="Vertical" Visibility="{Binding IsProjectExplorerVisible, Converter={StaticResource BoolToVisibilityConverter} }">
+            <StackPanel Grid.Column="0" 
+                        Visibility="{Binding IsProjectExplorerVisible, Converter={StaticResource BoolToVisibilityConverter} }"
+                        Orientation="Vertical">
                 <Grid Background="#0EBBF0">
                     <Grid.ColumnDefinitions>
                         <ColumnDefinition Width="Auto" />
@@ -219,6 +220,7 @@
                            Margin="10" Height="16"
                            Width="16" />
                     <TextBlock Grid.Column="1" 
+                               Margin="0,0,10,0"
                                VerticalAlignment="Center" 
                                Text="Projectgegevens"/>
                 </Grid>
@@ -226,8 +228,14 @@
                     Content="{Binding ProjectExplorerViewModel}"
                     ContentTemplateSelector="{StaticResource ViewTemplateSelector}"/>
             </StackPanel>
-            <GridSplitter Grid.Column="1" Width="5" Background="{StaticResource Fluent.Ribbon.Brushes.Separator.Background}" HorizontalAlignment="Stretch"
-                          ResizeBehavior="BasedOnAlignment" />
+            <visualization:HidableGridSplitter 
+                Grid.Column="1" 
+                HideDirection ="Left"
+                Visibility="{Binding IsProjectExplorerVisible, Converter={StaticResource BoolToVisibilityConverter} }"
+                Width="5" 
+                Background="{StaticResource Fluent.Ribbon.Brushes.Separator.Background}" 
+                HorizontalAlignment="Stretch"
+                ResizeBehavior="BasedOnAlignment" />
             <TabControl
                 Grid.Column="2"
                 ContentTemplate="{StaticResource DocumentViewDataTemplate}"
@@ -265,14 +273,16 @@
                     </DataTemplate>
                 </TabControl.ItemTemplate>
             </TabControl>
-            <GridSplitter Grid.Column="3" 
-                          Visibility="{Binding IsPropertiesVisible, Converter={StaticResource BoolToVisibilityConverter} }"
-                          Width="5" 
-                          Background="{StaticResource Fluent.Ribbon.Brushes.Separator.Background}" 
-                          HorizontalAlignment="Stretch"
-                          ResizeBehavior="BasedOnAlignment" />
+            <visualization:HidableGridSplitter Grid.Column="3" 
+                                 Visibility="{Binding IsPropertiesVisible, Converter={StaticResource BoolToVisibilityConverter} }"
+                                 Width="5" 
+                                 HideDirection="Right"
+                                 Background="{StaticResource Fluent.Ribbon.Brushes.Separator.Background}" 
+                                 HorizontalAlignment="Stretch"
+                                 ResizeBehavior="BasedOnAlignment" />
 
-            <StackPanel Grid.Column="4" Orientation="Vertical" Visibility="{Binding IsPropertiesVisible, Converter={StaticResource BoolToVisibilityConverter} }">
+            <StackPanel Grid.Column="4" 
+                        Orientation="Vertical">
                 <Grid Background="#0EBBF0">
                     <Grid.ColumnDefinitions>
                         <ColumnDefinition Width="Auto" />
@@ -284,6 +294,7 @@
                            Width="16" />
                     <TextBlock Grid.Column="1" 
                                VerticalAlignment="Center" 
+                               Margin="0,0,10,0"
                                Text="Eigenschappen"/>
                 </Grid>
                 <ContentPresenter
