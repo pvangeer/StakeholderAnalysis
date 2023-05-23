@@ -6,13 +6,15 @@
 
     <ResourceDictionary.MergedDictionaries>
         <ResourceDictionary Source="MessageDataTemplates.xaml" />
+        <ResourceDictionary Source="/StakeholderAnalysis.Visualization;Component/Theme/DeltaresColorTheme.xaml" />
     </ResourceDictionary.MergedDictionaries>
 
     <statusBar1:MessageListToLabelConverter x:Key="MessageListToLabelConverter" />
     <statusBar1:ShouldShowPriorityMessageToBoolConverter x:Key="ShouldShowPriorityMessageToBoolConverter" />
 
     <DataTemplate x:Key="StatusBarDataTemplate" DataType="statusBar:StatusBarViewModel">
-        <fluent:StatusBar Background="#0EBBF0">
+        <fluent:StatusBar Background="{StaticResource Deltares.Brushes.LightBlue}" 
+                          Height="35">
             <fluent:StatusBarItem
                 HorizontalAlignment="Right">
                 <StackPanel>

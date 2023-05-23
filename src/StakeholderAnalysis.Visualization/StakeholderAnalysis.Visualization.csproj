@@ -112,7 +112,6 @@
     <Compile Include="Controls\SelectStakeholdersDialog.xaml.cs">
       <DependentUpon>SelectStakeholdersDialog.xaml</DependentUpon>
     </Compile>
-    <Compile Include="Converters\IsActiveToolWindowConverter.cs" />
     <Compile Include="Converters\IsProneToExportConverter.cs" />
     <Compile Include="Converters\IsSelectedViewTypeToVisibilityConverter.cs" />
     <Compile Include="Converters\PercentageToCanvasLeftValueConverter.cs" />

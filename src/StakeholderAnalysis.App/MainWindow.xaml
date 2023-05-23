@@ -14,7 +14,9 @@
                      Closing="MainWindowClosing"
                      Loaded="MainWindow_OnLoaded"
                      Title="Stakeholderanalyse"
+                     IsIconVisible="False"
                      WindowStartupLocation="CenterScreen"
+                     TitleBarHeight="35"
                      Height="900"
                      Width="1500">
 
@@ -35,7 +37,6 @@
 
             <converters:IsSelectedViewTypeToVisibilityConverter x:Key="IsSelectedViewInfoToVisibilityConverter" />
             <converters:ValueToSameConverter x:Key="ValueToSameConverter" />
-            <converters:IsActiveToolWindowConverter x:Key="IsActiveToolWindowConverter" />
 
         </ResourceDictionary>
     </Window.Resources>
