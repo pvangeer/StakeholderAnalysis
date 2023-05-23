@@ -66,7 +66,6 @@
     <Compile Include="Converters\LineStyleToDashArrayConverter.cs" />
     <Compile Include="Converters\DocumentViewInfoToPropertiesViewInfoConverter.cs" />
     <Compile Include="HidableGridSplitter.cs" />
-    <Compile Include="TestConverter.cs" />
     <Compile Include="ViewModels\PropertiesTree\ISliderPropertyTreeNodeViewModel.cs" />
     <Compile Include="ViewModels\PropertiesTree\SliderPropertyTreeNodeViewModel.cs" />
     <Compile Include="ViewModels\PropertiesTree\LineStylePropertyTreeNodeViewModel.cs" />
@@ -342,6 +341,7 @@
   </ItemGroup>
   <ItemGroup>
     <Resource Include="Resources\document.png" />
+    <Resource Include="Resources\duplicate.png" />
   </ItemGroup>
   <ItemGroup>
     <Resource Include="Resources\alert-icon 32x32.png" />

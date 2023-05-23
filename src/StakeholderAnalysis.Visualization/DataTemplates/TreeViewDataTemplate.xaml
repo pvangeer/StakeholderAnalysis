@@ -19,12 +19,13 @@
 
     <Style x:Key="MenuItemStyle" TargetType="MenuItem">
         <Style.Triggers>
-            <Trigger Property="IsFocused" Value="true">
-                <Setter Property="BorderBrush" Value="Red" />
-                <Setter Property="Background" Value="Red" />
-                <Setter Property="Foreground" Value="White" />
+            <Trigger Property="IsMouseOver" Value="True">
+                <Setter Property="Background" Value="{StaticResource Deltares.Brushes.MouseOverHighlight}" />
             </Trigger>
         </Style.Triggers>
+        <Setter Property="Foreground" Value="Black" />
+        <Setter Property="MinHeight" Value="30"/>
+        <Setter Property="Margin" Value="0"/>
         <Setter Property="Command" Value="{Binding Command}" />
         <Setter Property="Icon" Value="{StaticResource MenuItemIcon}" />
         <Setter Property="Header" Value="{Binding Header}" />
@@ -142,14 +143,8 @@
     <BooleanToVisibilityConverter x:Key="BooleanToVisibilityConverter" />
     <converters:QuickSelectionToVisibilityConverter x:Key="QuickSelectionToVisibilityConverter" />
     <converters:SourceStringToVisibilityConverter x:Key="SourceStringToVisibilityConverter" />
-
     <converters:HasItemsToVisibilityConverter x:Key="HasItemsToVisibilityConverter" />
-
-    <ControlTemplate x:Key="MenuItemContainerStyleTemplate" TargetType="MenuItem">
-        <Button Command="{Binding Command}" />
-    </ControlTemplate>
-
-    <visualization:TestConverter x:Key="TestConverter" />
+    
     <DataTemplate x:Key="ITreeNodeItemDataTemplate" DataType="propertiesTree:ITreeNodeViewModel">
         <Border BorderThickness="0">
             <Border.Style>

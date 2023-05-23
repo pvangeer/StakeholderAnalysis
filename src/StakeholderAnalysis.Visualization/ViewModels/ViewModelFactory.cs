@@ -247,7 +247,7 @@ namespace StakeholderAnalysis.Visualization.ViewModels
                 Command = cloneCommand,
                 IsEnabled = true,
                 IconReference =
-                    "pack://application:,,,/StakeholderAnalysis.Visualization;component/Resources/document.png"
+                    "pack://application:,,,/StakeholderAnalysis.Visualization;component/Resources/duplicate.png"
             };
         }
     }
