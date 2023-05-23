@@ -10,10 +10,12 @@
                      xmlns:onionDiagrams="clr-namespace:StakeholderAnalysis.Data.OnionDiagrams;assembly=StakeholderAnalysis.Data"
                      xmlns:controls="clr-namespace:StakeholderAnalysis.Visualization.Controls;assembly=StakeholderAnalysis.Visualization"
                      xmlns:visualization="clr-namespace:StakeholderAnalysis.Visualization;assembly=StakeholderAnalysis.Visualization"
+                     xmlns:system="clr-namespace:System;assembly=mscorlib"
                      mc:Ignorable="d"
                      Closing="MainWindowClosing"
                      Loaded="MainWindow_OnLoaded"
-                     Title="Stakeholderanalyse"
+                     Title="{Binding WindowTitle}"
+                     Icon="pack://application:,,,/StakeholderAnalysis.App;component/Logo.png"
                      IsIconVisible="False"
                      WindowStartupLocation="CenterScreen"
                      TitleBarHeight="35"
@@ -38,6 +40,9 @@
             <converters:IsSelectedViewTypeToVisibilityConverter x:Key="IsSelectedViewInfoToVisibilityConverter" />
             <converters:ValueToSameConverter x:Key="ValueToSameConverter" />
 
+            <Style TargetType="{x:Type fluent:RibbonTitleBar}">
+                <Setter Property="FontSize" Value="16"/>
+            </Style>
         </ResourceDictionary>
     </Window.Resources>
 

@@ -37,7 +37,6 @@ namespace StakeholderAnalysis.Gui
 
             gui.ProjectFilePath = "";
             gui.VersionInfo = null;
-
             gui.Analysis = new Analysis();
 
             gui.OnPropertyChanged(nameof(StakeholderAnalysisGui.Analysis));
@@ -140,6 +139,7 @@ namespace StakeholderAnalysis.Gui
             if ((bool)dialog.ShowDialog(Application.Current.MainWindow))
             {
                 gui.ProjectFilePath = dialog.FileName;
+                gui.OnPropertyChanged(nameof(gui.ProjectFilePath));
                 StageProjectAndStore(followingAction);
             }
         }
@@ -196,8 +196,10 @@ namespace StakeholderAnalysis.Gui
                     AuthorCreated = readProjectData.Author,
                     DateCreated = readProjectData.Created
                 };
+                gui.ProjectFilePath = fileName;
 
                 gui.OnPropertyChanged(nameof(StakeholderAnalysisGui.Analysis));
+                gui.OnPropertyChanged(nameof(StakeholderAnalysisGui.ProjectFilePath));
             }
             catch (Exception exception)
             {

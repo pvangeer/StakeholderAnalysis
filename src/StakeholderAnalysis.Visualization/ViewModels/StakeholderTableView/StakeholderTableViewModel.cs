@@ -57,12 +57,7 @@ namespace StakeholderAnalysis.Visualization.ViewModels.StakeholderTableView
 
         private StakeholderType GetDefaultStakeholderType()
         {
-            var stakeholderType = new StakeholderType
-            {
-                Name = "Nieuw type",
-                Color = Colors.LightSkyBlue,
-                IconType = StakeholderIconType.Cloud
-            };
+            var stakeholderType = new StakeholderType();
             if (!analysis.StakeholderTypes.Any())
                 analysis.StakeholderTypes.Add(stakeholderType);
             else

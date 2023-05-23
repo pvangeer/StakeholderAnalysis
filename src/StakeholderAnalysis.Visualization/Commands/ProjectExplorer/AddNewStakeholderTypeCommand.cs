@@ -21,8 +21,7 @@ namespace StakeholderAnalysis.Visualization.Commands.ProjectExplorer
 
         public void Execute(object parameter)
         {
-            analysis.StakeholderTypes.Add(new StakeholderType
-                { Name = "Nieuw type", Color = Colors.Black, IconType = StakeholderIconType.Other });
+            analysis.StakeholderTypes.Add(new StakeholderType());
         }
 
         public event EventHandler CanExecuteChanged;
