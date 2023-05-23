@@ -1,0 +1,24 @@
+﻿<Project Sdk="WixToolset.Sdk/4.0.0">
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|x64'">
+    <Cultures>nl-NL</Cultures>
+    <Platforms>x64</Platforms>
+  </PropertyGroup>
+  <ItemGroup>
+    <Content Include="Logo.ico" />
+  </ItemGroup>
+  <!--<ItemGroup>
+    <HarvestDirectory Include="..\..\bin\Release">
+      <ComponentGroupName>StakeholderAnalysis.Binaries</ComponentGroupName>
+      <DirectoryRefId>ApplicationFolder</DirectoryRefId>
+      <SuppressRootDirectory>true</SuppressRootDirectory>
+    </HarvestDirectory>
+  </ItemGroup>-->
+  <ItemGroup>
+    <ProjectReference Include="..\StakeholderAnalysis.Data\StakeholderAnalysis.Data.csproj" />
+    <ProjectReference Include="..\StakeholderAnalysis.Messaging\StakeholderAnalysis.Messaging.csproj" />
+    <ProjectReference Include="..\StakeholderAnalysis.Visualization\StakeholderAnalysis.Visualization.csproj" />
+    <ProjectReference Include="..\StakeholderAnalysis.Storage\StakeholderAnalysis.Storage.csproj" />
+    <ProjectReference Include="..\StakeholderAnalysis.Gui\StakeholderAnalysis.Gui.csproj" />
+    <ProjectReference Include="..\StakeholderAnalysis.App\StakeholderAnalysis.App.csproj" />
+  </ItemGroup>
+</Project>
