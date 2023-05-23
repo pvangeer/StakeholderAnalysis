@@ -12,9 +12,11 @@
 
     <ResourceDictionary.MergedDictionaries>
         <ResourceDictionary Source="TreeViewStyles.xaml" />
+        <ResourceDictionary Source="/StakeholderAnalysis.Visualization;Component/Theme/DeltaresColorTheme.xaml" />
     </ResourceDictionary.MergedDictionaries>
 
     <Image x:Key="MenuItemIcon" Width="18" Height="18" Source="{Binding IconReference}" x:Shared="False" />
+
     <Style x:Key="MenuItemStyle" TargetType="MenuItem">
         <Style.Triggers>
             <Trigger Property="IsFocused" Value="true">
