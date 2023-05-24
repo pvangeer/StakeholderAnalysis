@@ -212,7 +212,7 @@
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
-    <Page Include="DataTemplates\MainWindow\Ribbon.xaml">
+    <Page Include="DataTemplates\MainWindow\MainContentPresenterRibbonResources.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
@@ -232,11 +232,11 @@
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
-    <Page Include="DataTemplates\StatusBar\MessageDataTemplates.xaml">
+    <Page Include="DataTemplates\MainWindow\StatusBar\MessageDataTemplates.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
-    <Page Include="DataTemplates\StatusBar\StatusBarDataTemplate.xaml">
+    <Page Include="DataTemplates\MainWindow\StatusBar\StatusBarDataTemplate.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>

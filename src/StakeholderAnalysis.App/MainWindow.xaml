@@ -5,7 +5,6 @@
                      xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
                      xmlns:viewmodels="clr-namespace:StakeholderAnalysis.Visualization.ViewModels;assembly=StakeholderAnalysis.Visualization"
                      xmlns:fluent="urn:fluent-ribbon"
-                     xmlns:converters="clr-namespace:StakeholderAnalysis.Visualization.Converters;assembly=StakeholderAnalysis.Visualization"
                      xmlns:onionDiagrams="clr-namespace:StakeholderAnalysis.Data.OnionDiagrams;assembly=StakeholderAnalysis.Data"
                      xmlns:controls="clr-namespace:StakeholderAnalysis.Visualization.Controls;assembly=StakeholderAnalysis.Visualization"
                      mc:Ignorable="d"
@@ -29,12 +28,9 @@
                 <ResourceDictionary Source="/Fluent;Component/Themes/generic.xaml" />
                 <ResourceDictionary Source="/StakeholderAnalysis.Visualization;Component/Theme/StakeholderAnalysisTheme.xaml" />
                 <ResourceDictionary Source="/StakeholderAnalysis.Visualization;Component/DataTemplates/MainWindow/MainContentPresenterDataTemplate.xaml" />
-                <ResourceDictionary Source="/StakeholderAnalysis.Visualization;Component/DataTemplates/MainContentPresenterDataTemplate.xaml" />
-                <ResourceDictionary Source="/StakeholderAnalysis.Visualization;Component/DataTemplates/StatusBar/StatusBarDataTemplate.xaml" />
+                <ResourceDictionary Source="/StakeholderAnalysis.Visualization;Component/DataTemplates/MainWindow/MainContentPresenterRibbonResources.xaml" />
+                <ResourceDictionary Source="/StakeholderAnalysis.Visualization;Component/DataTemplates/MainWindow/StatusBar/StatusBarDataTemplate.xaml" />
             </ResourceDictionary.MergedDictionaries>
-
-            <converters:IsSelectedViewTypeToVisibilityConverter x:Key="IsSelectedViewInfoToVisibilityConverter" />
-            <converters:ValueToSameConverter x:Key="ValueToSameConverter" />
         </ResourceDictionary>
     </Window.Resources>
 
@@ -82,8 +78,8 @@
                 <fluent:RibbonContextualTabGroup
                     x:Name="onionGroup"
                     Header="Ui-diagram"
-                    Background="Green"
-                    Foreground="DarkSeaGreen">
+                    Background="{StaticResource Deltares.Brushes.DarkGreen}"
+                    Foreground="White">
                     <fluent:RibbonContextualTabGroup.Visibility>
                         <Binding
                             Path="RibbonViewModel.ViewManagerViewModel.ActiveDocument"
@@ -120,7 +116,7 @@
                 <fluent:RibbonGroupBox Header="Diagram">
                     <fluent:Button
                         Header="Stakeholder(s) toevoegen"
-                        Command="{Binding RibbonViewModel.AddStakeholdersCommand, Converter={StaticResource ValueToSameConverter}}"
+                        Command="{Binding RibbonViewModel.AddStakeholdersCommand}"
                         Size="Large"
                         LargeIcon="pack://application:,,,/StakeholderAnalysis.Visualization;component/Resources/plus.png" />
                 </fluent:RibbonGroupBox>
@@ -131,11 +127,11 @@
                 <fluent:RibbonGroupBox Header="Ringen">
                     <fluent:Button
                         Header="Ring toevoegen"
-                        Command="{Binding RibbonViewModel.AddOnionRingCommand, Converter={StaticResource ValueToSameConverter}}"
+                        Command="{Binding RibbonViewModel.AddOnionRingCommand}"
                         Size="Middle"
                         Icon="pack://application:,,,/StakeholderAnalysis.Visualization;component/Resources/plus.png" />
                     <fluent:Spinner
-                        Value="{Binding RibbonViewModel.Asymmetry, Converter={StaticResource ValueToSameConverter}}"
+                        Value="{Binding RibbonViewModel.Asymmetry}"
                         Header="Asymmetrie"
                         Format="0.#####"
                         Minimum="0.0"
@@ -143,7 +139,7 @@
                         Increment="0.1" />
                     <StackPanel Orientation="Vertical" Margin="5,5,5,1">
                         <controls:RotaryControl
-                            Value="{Binding RibbonViewModel.Orientation, Converter={StaticResource ValueToSameConverter}, Mode=TwoWay}"
+                            Value="{Binding RibbonViewModel.Orientation, Mode=TwoWay}"
                             FontBrush="Black" FontSize="28"
                             Foreground="Black"
                             Background="Transparent">
