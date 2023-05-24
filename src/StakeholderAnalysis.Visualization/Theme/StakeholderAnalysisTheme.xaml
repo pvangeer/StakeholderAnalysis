@@ -4,11 +4,16 @@
                     xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
                     xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
                     xmlns:system="clr-namespace:System;assembly=mscorlib"
+                    xmlns:fluent="urn:fluent-ribbon"
                     mc:Ignorable="options d">
 
     <ResourceDictionary.MergedDictionaries>
         <ResourceDictionary Source="/StakeholderAnalysis.Visualization;Component/Theme/DeltaresColorTheme.xaml" />
     </ResourceDictionary.MergedDictionaries>
+
+    <Style TargetType="{x:Type fluent:RibbonTitleBar}">
+        <Setter Property="FontSize" Value="16" />
+    </Style>
 
     <!-- Matadata -->
     <system:String x:Key="Theme.Name">Deltares</system:String>

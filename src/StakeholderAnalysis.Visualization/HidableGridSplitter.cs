@@ -33,7 +33,7 @@ namespace StakeholderAnalysis.Visualization
             {
                 case HideDirection.Left:
                     columnIndex = Grid.GetColumn(this);
-                    if (columnIndex - 1 > 0) return;
+                    if (columnIndex - 1 < 0) return;
 
                     columnToHide = parent.ColumnDefinitions[columnIndex - 1];
 
