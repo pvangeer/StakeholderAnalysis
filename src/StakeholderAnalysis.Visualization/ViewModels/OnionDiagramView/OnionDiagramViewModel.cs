@@ -1,13 +1,15 @@
-﻿using System.Linq;
+﻿using System.ComponentModel;
+using System.Linq;
 using System.Windows.Input;
 using StakeholderAnalysis.Data;
 using StakeholderAnalysis.Data.OnionDiagrams;
+using StakeholderAnalysis.Gui;
 using StakeholderAnalysis.Visualization.Behaviors;
 using StakeholderAnalysis.Visualization.ViewModels.OnionDiagramProperties;
 
 namespace StakeholderAnalysis.Visualization.ViewModels.OnionDiagramView
 {
-    public class OnionDiagramViewModel : ViewModelBase, ISelectionRegister
+    public class OnionDiagramViewModel : ViewModelBase, ISelectionRegister, INameableViewModel
     {
         private readonly OnionDiagram diagram;
         private object selectedObject;
@@ -15,6 +17,7 @@ namespace StakeholderAnalysis.Visualization.ViewModels.OnionDiagramView
         public OnionDiagramViewModel(ViewModelFactory factory, OnionDiagram onionDiagram) : base(factory)
         {
             diagram = onionDiagram;
+            onionDiagram.PropertyChanged += DiagramPropertyChanged;
             OnionDiagramDrawConnectionViewModel = factory.CreateOnionDiagramDrawConnectionViewModel(onionDiagram);
             OnionDiagramRingsCanvasViewModel = ViewModelFactory.CreateOnionDiagramRingsCanvasViewModel(diagram);
             OnionDiagramConnectionsPresenterViewModel =
@@ -63,7 +66,29 @@ namespace StakeholderAnalysis.Visualization.ViewModels.OnionDiagramView
             return ViewModelFactory.CreateOnionDiagramPropertiesViewModel();
         }
 
-        public OnionDiagramPropertiesViewModel PropertiesViewModel => ViewModelFactory.CreateOnionDiagramPropertiesViewModel();
+        public string DisplayName
+        {
+            get => diagram.Name;
+            set
+            {
+                if (diagram != null)
+                {
+                    diagram.Name = value;
+                    diagram.OnPropertyChanged(nameof(OnionDiagram.Name));
+                }
+            }
+        }
+
+        private void DiagramPropertyChanged(object sender, PropertyChangedEventArgs e)
+        {
+            switch (e.PropertyName)
+            {
+                case nameof(OnionDiagram.Name):
+                    OnPropertyChanged(nameof(DisplayName));
+                    break;
+            }
+        }
+
         private void RaiseIsSelectedPropertyChanged(object o)
         {
             if (o is Stakeholder stakeholder)

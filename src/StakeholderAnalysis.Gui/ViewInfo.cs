@@ -1,18 +1,54 @@
-﻿using System.Windows.Input;
+﻿using StakeholderAnalysis.Data;
+using System.ComponentModel;
+using System.Windows.Input;
 
 namespace StakeholderAnalysis.Gui
 {
-    public class ViewInfo
+    public class ViewInfo : NotifyPropertyChangedObservable
     {
+        private readonly string bufferedTitle;
+        private readonly INameableViewModel nameableViewModel;
+
         public ViewInfo(string title, object viewModel, string iconReference)
         {
             IconReference = iconReference;
-            Title = title;
+            bufferedTitle = title;
             ViewModel = viewModel;
+            nameableViewModel = viewModel as INameableViewModel;
+            if (nameableViewModel != null)
+            {
+                nameableViewModel.PropertyChanged += ViewModelPropertyChanged;
+            }
         }
 
-        // TODO: Update title in case of property change
-        public string Title { get; }
+        private void ViewModelPropertyChanged(object sender, PropertyChangedEventArgs e)
+        {
+            switch (e.PropertyName)
+            {
+                case nameof(INameableViewModel.DisplayName):
+                    OnPropertyChanged(nameof(Title));
+                    break;
+            }
+        }
+
+        public string Title
+        {
+            get
+            {
+                if (nameableViewModel != null)
+                {
+                    return nameableViewModel.DisplayName;
+                }
+                return bufferedTitle;
+            }
+            set
+            {
+                if (nameableViewModel != null)
+                {
+                    nameableViewModel.DisplayName = value;
+                }
+            }
+        }
 
         public string IconReference { get; }
 

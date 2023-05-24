@@ -13,12 +13,11 @@ namespace StakeholderAnalysis.Visualization.ViewModels.PropertiesTree
         {
             DisplayName = displayName;
             Items = items;
-            // TODO: Pass context menu items in case this is necessary
             ContextMenuItems = new ObservableCollection<ContextMenuItemViewModel>();
             CollectionType = collectionType;
         }
 
-        public virtual bool IsExpandable => true;
+        public bool IsExpandable => true;
 
         public bool IsExpanded
         {
@@ -30,7 +29,7 @@ namespace StakeholderAnalysis.Visualization.ViewModels.PropertiesTree
             }
         }
 
-        public virtual CollectionType CollectionType { get; }
+        public CollectionType CollectionType { get; }
 
         public ICommand ToggleIsExpandedCommand => CommandFactory.CreateToggleIsExpandedCommand(this);
 

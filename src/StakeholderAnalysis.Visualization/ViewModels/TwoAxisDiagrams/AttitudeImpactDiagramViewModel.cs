@@ -175,6 +175,22 @@ namespace StakeholderAnalysis.Visualization.ViewModels.TwoAxisDiagrams
                 case nameof(ITwoAxisDiagram.AxisFontSize):
                     OnPropertyChanged(nameof(AxisFontSize));
                     break;
+                case nameof(ITwoAxisDiagram.Name):
+                    OnPropertyChanged(nameof(DisplayName));
+                    break;
+            }
+        }
+
+        public string DisplayName
+        {
+            get => diagram?.Name;
+            set
+            {
+                if (diagram != null)
+                {
+                    diagram.Name = value;
+                    diagram.OnPropertyChanged(nameof(ITwoAxisDiagram.Name));
+                }
             }
         }
     }
