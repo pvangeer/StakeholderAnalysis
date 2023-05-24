@@ -15,7 +15,8 @@ namespace StakeholderAnalysis.Storage.XmlEntities
             StakeholderConnectionGroupXmlEntities = new Collection<StakeholderConnectionGroupXmlEntity>();
         }
 
-        [XmlAttribute(AttributeName = "name")] public string Name { get; set; }
+        [XmlAttribute(AttributeName = "name")]
+        public string Name { get; set; }
 
         [XmlAttribute(AttributeName = "order")]
         public long Order { get; set; }
@@ -42,6 +43,7 @@ namespace StakeholderAnalysis.Storage.XmlEntities
         [XmlArrayItem(ElementName = "connectiongroup")]
         public Collection<StakeholderConnectionGroupXmlEntity> StakeholderConnectionGroupXmlEntities { get; set; }
 
-        [XmlAttribute(AttributeName = "id")] public long Id { get; set; }
+        [XmlAttribute(AttributeName = "id")]
+        public long Id { get; set; }
     }
 }

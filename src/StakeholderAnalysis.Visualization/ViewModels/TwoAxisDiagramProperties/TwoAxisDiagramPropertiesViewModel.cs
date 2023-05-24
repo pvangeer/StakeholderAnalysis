@@ -141,12 +141,12 @@ namespace StakeholderAnalysis.Visualization.ViewModels.TwoAxisDiagramProperties
 
         private void ChangeActiveDiagram()
         {
-            if (activeTwoAxisDiagram != null) 
+            if (activeTwoAxisDiagram != null)
                 activeTwoAxisDiagram.PropertyChanged -= ActiveDiagramPropertyChanged;
 
             activeTwoAxisDiagram = (viewManager?.ActiveDocument?.ViewModel as ITwoAxisDiagramViewModel)?.GetDiagram();
 
-            if (activeTwoAxisDiagram != null) 
+            if (activeTwoAxisDiagram != null)
                 activeTwoAxisDiagram.PropertyChanged += ActiveDiagramPropertyChanged;
         }
 

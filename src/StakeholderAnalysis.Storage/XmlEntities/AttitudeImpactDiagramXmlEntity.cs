@@ -12,26 +12,26 @@ namespace StakeholderAnalysis.Storage.XmlEntities
             AttitudeImpactDiagramStakeholderXmlEntities = new Collection<AttitudeImpactDiagramStakeholderXmlEntity>();
         }
 
-        [XmlAttribute(AttributeName = "name")] public string Name { get; set; }
+        [XmlAttribute(AttributeName = "name")]
+        public string Name { get; set; }
 
         [XmlAttribute(AttributeName = "order")]
         public long Order { get; set; }
 
-        [XmlElement(ElementName = "brush")] public TwoAxisDiagramBrushXmlEntity Brush { get; set; }
+        [XmlElement(ElementName = "brush")]
+        public TwoAxisDiagramBrushXmlEntity Brush { get; set; }
 
         [XmlElement(ElementName = "background")]
         public TwoAxisDiagramBackgroundXmlEntity Background { get; set; }
 
-        [XmlElement(ElementName = "axis")] public TwoAxisDiagramAxisXmlEntity Axis { get; set; }
+        [XmlElement(ElementName = "axis")]
+        public TwoAxisDiagramAxisXmlEntity Axis { get; set; }
 
         [XmlArray(ElementName = "stakeholders")]
         [XmlArrayItem(ElementName = "attitudeimpactstakeholder")]
-        public Collection<AttitudeImpactDiagramStakeholderXmlEntity> AttitudeImpactDiagramStakeholderXmlEntities
-        {
-            get;
-            set;
-        }
+        public Collection<AttitudeImpactDiagramStakeholderXmlEntity> AttitudeImpactDiagramStakeholderXmlEntities { get; set; }
 
-        [XmlAttribute(AttributeName = "id")] public long Id { get; set; }
+        [XmlAttribute(AttributeName = "id")]
+        public long Id { get; set; }
     }
 }

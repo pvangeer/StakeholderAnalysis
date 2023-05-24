@@ -36,10 +36,7 @@ namespace StakeholderAnalysis.Visualization.ViewModels.OnionDiagramProperties
 
         public bool CanRemove => true;
 
-        public ICommand RemoveItemCommand => CommandFactory.CreateCanAlwaysExecuteActionCommand(p =>
-        {
-            diagram.OnionRings.Remove(ring);
-        });
+        public ICommand RemoveItemCommand => CommandFactory.CreateCanAlwaysExecuteActionCommand(p => { diagram.OnionRings.Remove(ring); });
 
         public bool CanOpen => false;
 

@@ -7,6 +7,5 @@
         double MinValue { get; }
 
         double MaxValue { get; }
-
     }
 }

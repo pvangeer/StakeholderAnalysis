@@ -1,7 +1,6 @@
 ﻿using System.Collections.ObjectModel;
 using System.Collections.Specialized;
 using System.Linq;
-using System.Windows.Media;
 using StakeholderAnalysis.Data;
 
 namespace StakeholderAnalysis.Visualization.ViewModels.StakeholderTableView

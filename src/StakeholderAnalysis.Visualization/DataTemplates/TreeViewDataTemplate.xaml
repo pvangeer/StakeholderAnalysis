@@ -24,8 +24,8 @@
             </Trigger>
         </Style.Triggers>
         <Setter Property="Foreground" Value="Black" />
-        <Setter Property="MinHeight" Value="30"/>
-        <Setter Property="Margin" Value="0"/>
+        <Setter Property="MinHeight" Value="30" />
+        <Setter Property="Margin" Value="0" />
         <Setter Property="Command" Value="{Binding Command}" />
         <Setter Property="Icon" Value="{StaticResource MenuItemIcon}" />
         <Setter Property="Header" Value="{Binding Header}" />
@@ -120,14 +120,15 @@
             SelectedItem="{Binding SelectedValue}" />
     </DataTemplate>
 
-    <DataTemplate x:Key="SliderPropertyDataTemplate" DataType="{x:Type propertiesTree:ISliderPropertyTreeNodeViewModel}">
+    <DataTemplate x:Key="SliderPropertyDataTemplate"
+                  DataType="{x:Type propertiesTree:ISliderPropertyTreeNodeViewModel}">
         <Slider
-                            Value="{Binding Value}"
-                            Margin="5,1,0,1"
-                            BorderBrush="DimGray"
-                            MinWidth="80"
-                            Minimum="{Binding MinValue}"
-                            Maximum="{Binding MaxValue}"/>
+            Value="{Binding Value}"
+            Margin="5,1,0,1"
+            BorderBrush="DimGray"
+            MinWidth="80"
+            Minimum="{Binding MinValue}"
+            Maximum="{Binding MaxValue}" />
     </DataTemplate>
 
     <visualization:PropertyValueTreeNodeTemplateSelector x:Key="PropertyValueContentTemplateSelector"
@@ -138,13 +139,13 @@
                                                          ColorTemplate="{StaticResource ColorPropertyDataTemplate}"
                                                          LineStyleTemplate="{StaticResource LineStyleDataTemplate}"
                                                          DoubleUpDownTemplate="{StaticResource DoubleUpDownPropertyDataTemplate}"
-                                                         SliderTemplate="{StaticResource SliderPropertyDataTemplate}"/>
+                                                         SliderTemplate="{StaticResource SliderPropertyDataTemplate}" />
 
     <BooleanToVisibilityConverter x:Key="BooleanToVisibilityConverter" />
     <converters:QuickSelectionToVisibilityConverter x:Key="QuickSelectionToVisibilityConverter" />
     <converters:SourceStringToVisibilityConverter x:Key="SourceStringToVisibilityConverter" />
     <converters:HasItemsToVisibilityConverter x:Key="HasItemsToVisibilityConverter" />
-    
+
     <DataTemplate x:Key="ITreeNodeItemDataTemplate" DataType="propertiesTree:ITreeNodeViewModel">
         <Border BorderThickness="0">
             <Border.Style>

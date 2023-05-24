@@ -1,6 +1,6 @@
-﻿using StakeholderAnalysis.Data;
-using System.ComponentModel;
+﻿using System.ComponentModel;
 using System.Windows.Input;
+using StakeholderAnalysis.Data;
 
 namespace StakeholderAnalysis.Gui
 {
@@ -15,11 +15,27 @@ namespace StakeholderAnalysis.Gui
             bufferedTitle = title;
             ViewModel = viewModel;
             nameableViewModel = viewModel as INameableViewModel;
-            if (nameableViewModel != null)
+            if (nameableViewModel != null) nameableViewModel.PropertyChanged += ViewModelPropertyChanged;
+        }
+
+        public string Title
+        {
+            get
             {
-                nameableViewModel.PropertyChanged += ViewModelPropertyChanged;
+                if (nameableViewModel != null) return nameableViewModel.DisplayName;
+                return bufferedTitle;
+            }
+            set
+            {
+                if (nameableViewModel != null) nameableViewModel.DisplayName = value;
             }
         }
+
+        public string IconReference { get; }
+
+        public object ViewModel { get; }
+
+        public ICommand CloseViewCommand { get; set; }
 
         private void ViewModelPropertyChanged(object sender, PropertyChangedEventArgs e)
         {
@@ -30,30 +46,5 @@ namespace StakeholderAnalysis.Gui
                     break;
             }
         }
-
-        public string Title
-        {
-            get
-            {
-                if (nameableViewModel != null)
-                {
-                    return nameableViewModel.DisplayName;
-                }
-                return bufferedTitle;
-            }
-            set
-            {
-                if (nameableViewModel != null)
-                {
-                    nameableViewModel.DisplayName = value;
-                }
-            }
-        }
-
-        public string IconReference { get; }
-
-        public object ViewModel { get; }
-
-        public ICommand CloseViewCommand { get; set; }
     }
 }

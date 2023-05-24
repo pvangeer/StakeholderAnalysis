@@ -10,15 +10,9 @@ namespace StakeholderAnalysis.Visualization.Converters
     {
         public object Convert(object value, Type targetType, object parameter, CultureInfo culture)
         {
-            if (value is OnionDiagramViewModel onionDiagramViewModel)
-            {
-                return onionDiagramViewModel.GetPropertiesViewModel();
-            }
+            if (value is OnionDiagramViewModel onionDiagramViewModel) return onionDiagramViewModel.GetPropertiesViewModel();
 
-            if (value is ITwoAxisDiagramViewModel twoAxisDiagramViewModel)
-            {
-                return twoAxisDiagramViewModel.GetPropertiesViewModel();
-            }
+            if (value is ITwoAxisDiagramViewModel twoAxisDiagramViewModel) return twoAxisDiagramViewModel.GetPropertiesViewModel();
 
             return value;
         }

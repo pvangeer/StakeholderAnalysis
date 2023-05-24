@@ -70,7 +70,7 @@ namespace StakeholderAnalysis.Gui
                 }
                 catch (XmlStorageException e)
                 {
-                    log.Error("Bestand kon niet worden geopend.",true);
+                    log.Error("Bestand kon niet worden geopend.");
                     return;
                 }
 
@@ -189,7 +189,7 @@ namespace StakeholderAnalysis.Gui
 
             try
             {
-                ProjectData readProjectData = storageXml.LoadProject(fileName);
+                var readProjectData = storageXml.LoadProject(fileName);
                 gui.Analysis = readProjectData.Analysis;
                 gui.VersionInfo = new VersionInfo
                 {
@@ -249,10 +249,7 @@ namespace StakeholderAnalysis.Gui
 
         private void StageAndStoreProjectCore()
         {
-            if (!storageXml.HasStagedAnalysis)
-            {
-                storageXml.StageAnalysis(gui.Analysis);
-            }
+            if (!storageXml.HasStagedAnalysis) storageXml.StageAnalysis(gui.Analysis);
             storageXml.StageVersionInformation(gui.VersionInfo);
 
             storageXml.SaveProjectAs(gui.ProjectFilePath);

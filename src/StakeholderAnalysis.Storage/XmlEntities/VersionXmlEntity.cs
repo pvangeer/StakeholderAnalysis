@@ -18,7 +18,7 @@ namespace StakeholderAnalysis.Storage.XmlEntities
 
         public static string CurrentVersion => $"{VersionInfo.Year}.{VersionInfo.MajorVersion}";
 
-        [XmlElement(ElementName = FileVersionElementName)] 
+        [XmlElement(ElementName = FileVersionElementName)]
         public string FileVersion { get; set; }
 
         [XmlElement(ElementName = "creator")]

@@ -8,7 +8,7 @@ namespace StakeholderAnalysis.Visualization.Behaviors
 {
     public class DragOnCanvasBehavior
     {
-        private static DragOnCanvasBehavior Instance = new DragOnCanvasBehavior();
+        private static DragOnCanvasBehavior instance = new DragOnCanvasBehavior();
 
         public static readonly DependencyProperty DropHandlerProperty =
             DependencyProperty.RegisterAttached(
@@ -36,19 +36,19 @@ namespace StakeholderAnalysis.Visualization.Behaviors
             var element = (UIElement)sender;
             var handler = (IDropHandler)e.NewValue;
 
-            Instance = new DragOnCanvasBehavior { DropHandler = handler };
+            instance = new DragOnCanvasBehavior { DropHandler = handler };
 
-            if (Instance.DropHandler != null)
+            if (instance.DropHandler != null)
             {
-                element.MouseLeftButtonDown += Instance.ElementOnMouseLeftButtonDown;
-                element.MouseLeftButtonUp += Instance.ElementOnMouseLeftButtonUp;
-                element.MouseMove += Instance.ElementOnMouseMove;
+                element.MouseLeftButtonDown += instance.ElementOnMouseLeftButtonDown;
+                element.MouseLeftButtonUp += instance.ElementOnMouseLeftButtonUp;
+                element.MouseMove += instance.ElementOnMouseMove;
             }
             else
             {
-                element.MouseLeftButtonDown -= Instance.ElementOnMouseLeftButtonDown;
-                element.MouseLeftButtonUp -= Instance.ElementOnMouseLeftButtonUp;
-                element.MouseMove -= Instance.ElementOnMouseMove;
+                element.MouseLeftButtonDown -= instance.ElementOnMouseLeftButtonDown;
+                element.MouseLeftButtonUp -= instance.ElementOnMouseLeftButtonUp;
+                element.MouseMove -= instance.ElementOnMouseMove;
             }
         }
 

@@ -96,6 +96,19 @@ namespace StakeholderAnalysis.Visualization.ViewModels.TwoAxisDiagrams
             return ViewModelFactory.CreateTwoAxisDiagramPropertiesViewModel();
         }
 
+        public string DisplayName
+        {
+            get => diagram?.Name;
+            set
+            {
+                if (diagram != null)
+                {
+                    diagram.Name = value;
+                    diagram.OnPropertyChanged(nameof(ITwoAxisDiagram.Name));
+                }
+            }
+        }
+
         public bool IsViewModelFor(ForceFieldDiagram otherDiagram)
         {
             return otherDiagram == diagram;
@@ -179,19 +192,6 @@ namespace StakeholderAnalysis.Visualization.ViewModels.TwoAxisDiagrams
                 case nameof(ITwoAxisDiagram.Name):
                     OnPropertyChanged(nameof(DisplayName));
                     break;
-            }
-        }
-
-        public string DisplayName
-        {
-            get => diagram?.Name;
-            set
-            {
-                if (diagram != null)
-                {
-                    diagram.Name = value;
-                    diagram.OnPropertyChanged(nameof(ITwoAxisDiagram.Name));
-                }
             }
         }
     }

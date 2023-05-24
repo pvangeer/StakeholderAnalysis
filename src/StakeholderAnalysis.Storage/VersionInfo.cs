@@ -7,6 +7,12 @@ namespace StakeholderAnalysis.Storage
 {
     public class VersionInfo
     {
+        public VersionInfo()
+        {
+            DateCreated = CurrentDateTime;
+            AuthorCreated = CurrentUser;
+        }
+
         public static string CurrentDateTime => DateTime.Now.ToString("yyyy-MM-dd : hh:mm:ss");
 
         public static string CurrentUser
@@ -23,21 +29,15 @@ namespace StakeholderAnalysis.Storage
                     // No user principal. Not possible to retrieve the display name of the user.
                 }
 
-                return userPrincipal == null ?
-                    $"({WindowsIdentity.GetCurrent().Name.Split('\\').Last()})"
+                return userPrincipal == null
+                    ? $"({WindowsIdentity.GetCurrent().Name.Split('\\').Last()})"
                     : $"{UserPrincipal.Current.DisplayName} ({WindowsIdentity.GetCurrent().Name.Split('\\').Last()})";
             }
         }
 
         public static int Year => 23;
-        
-        public static int MajorVersion => 1;
 
-        public VersionInfo()
-        {
-            DateCreated = CurrentDateTime;
-            AuthorCreated = CurrentUser;
-        }
+        public static int MajorVersion => 1;
 
         public string DateCreated { get; set; }
 

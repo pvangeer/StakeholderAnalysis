@@ -12,22 +12,26 @@ namespace StakeholderAnalysis.Storage.XmlEntities
             ForceFieldDiagramStakeholderXmlEntities = new Collection<ForceFieldDiagramStakeholderXmlEntity>();
         }
 
-        [XmlAttribute(AttributeName = "name")] public string Name { get; set; }
+        [XmlAttribute(AttributeName = "name")]
+        public string Name { get; set; }
 
         [XmlAttribute(AttributeName = "order")]
         public long Order { get; set; }
 
-        [XmlElement(ElementName = "brush")] public TwoAxisDiagramBrushXmlEntity Brush { get; set; }
+        [XmlElement(ElementName = "brush")]
+        public TwoAxisDiagramBrushXmlEntity Brush { get; set; }
 
         [XmlElement(ElementName = "background")]
         public TwoAxisDiagramBackgroundXmlEntity Background { get; set; }
 
-        [XmlElement(ElementName = "axis")] public TwoAxisDiagramAxisXmlEntity Axis { get; set; }
+        [XmlElement(ElementName = "axis")]
+        public TwoAxisDiagramAxisXmlEntity Axis { get; set; }
 
         [XmlArray(ElementName = "stakeholders")]
         [XmlArrayItem(ElementName = "stakeholder")]
         public Collection<ForceFieldDiagramStakeholderXmlEntity> ForceFieldDiagramStakeholderXmlEntities { get; set; }
 
-        [XmlAttribute(AttributeName = "id")] public long Id { get; set; }
+        [XmlAttribute(AttributeName = "id")]
+        public long Id { get; set; }
     }
 }

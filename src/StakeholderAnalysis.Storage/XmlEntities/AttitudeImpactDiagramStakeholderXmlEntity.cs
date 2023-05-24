@@ -12,7 +12,8 @@ namespace StakeholderAnalysis.Storage.XmlEntities
         [XmlAttribute(AttributeName = "impact")]
         public double Impact { get; set; }
 
-        [XmlAttribute(AttributeName = "rank")] public long Rank { get; set; }
+        [XmlAttribute(AttributeName = "rank")]
+        public long Rank { get; set; }
 
         [XmlAttribute(AttributeName = "order")]
         public long Order { get; set; }

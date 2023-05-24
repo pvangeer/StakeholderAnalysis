@@ -6,7 +6,7 @@ namespace StakeholderAnalysis.Data
     {
         public StakeholderType()
         {
-            Color = Color.FromRgb(0,204,150);
+            Color = Color.FromRgb(0, 204, 150);
             Name = "Nieuw type";
             IconType = StakeholderIconType.Other;
         }

@@ -37,6 +37,19 @@ namespace StakeholderAnalysis.Visualization.ViewModels.OnionDiagramView
 
         public OnionDiagramDrawConnectionViewModel OnionDiagramDrawConnectionViewModel { get; }
 
+        public string DisplayName
+        {
+            get => diagram.Name;
+            set
+            {
+                if (diagram != null)
+                {
+                    diagram.Name = value;
+                    diagram.OnPropertyChanged(nameof(OnionDiagram.Name));
+                }
+            }
+        }
+
         public bool IsSelected(object o)
         {
             return selectedObject == o;
@@ -64,19 +77,6 @@ namespace StakeholderAnalysis.Visualization.ViewModels.OnionDiagramView
         public OnionDiagramPropertiesViewModel GetPropertiesViewModel()
         {
             return ViewModelFactory.CreateOnionDiagramPropertiesViewModel();
-        }
-
-        public string DisplayName
-        {
-            get => diagram.Name;
-            set
-            {
-                if (diagram != null)
-                {
-                    diagram.Name = value;
-                    diagram.OnPropertyChanged(nameof(OnionDiagram.Name));
-                }
-            }
         }
 
         private void DiagramPropertyChanged(object sender, PropertyChangedEventArgs e)

@@ -95,6 +95,19 @@ namespace StakeholderAnalysis.Visualization.ViewModels.TwoAxisDiagrams
             return ViewModelFactory.CreateTwoAxisDiagramPropertiesViewModel();
         }
 
+        public string DisplayName
+        {
+            get => diagram?.Name;
+            set
+            {
+                if (diagram != null)
+                {
+                    diagram.Name = value;
+                    diagram.OnPropertyChanged(nameof(ITwoAxisDiagram.Name));
+                }
+            }
+        }
+
         private void StakeholdersCollectionChanged(object sender, NotifyCollectionChangedEventArgs e)
         {
             if (e.Action == NotifyCollectionChangedAction.Add)
@@ -178,19 +191,6 @@ namespace StakeholderAnalysis.Visualization.ViewModels.TwoAxisDiagrams
                 case nameof(ITwoAxisDiagram.Name):
                     OnPropertyChanged(nameof(DisplayName));
                     break;
-            }
-        }
-
-        public string DisplayName
-        {
-            get => diagram?.Name;
-            set
-            {
-                if (diagram != null)
-                {
-                    diagram.Name = value;
-                    diagram.OnPropertyChanged(nameof(ITwoAxisDiagram.Name));
-                }
             }
         }
     }

@@ -21,10 +21,7 @@ namespace StakeholderAnalysis.Gui
 
         public void Execute(object parameter)
         {
-            if (viewManager != null && viewInfo != null)
-            {
-                 viewManager.CloseView(viewInfo);
-            }
+            if (viewManager != null && viewInfo != null) viewManager.CloseView(viewInfo);
         }
 
         public event EventHandler CanExecuteChanged;

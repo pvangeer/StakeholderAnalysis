@@ -9,7 +9,8 @@ namespace StakeholderAnalysis.Storage.XmlEntities
         [XmlAttribute(AttributeName = "order")]
         public long Order { get; set; }
 
-        [XmlAttribute(AttributeName = "name")] public string Name { get; set; }
+        [XmlAttribute(AttributeName = "name")]
+        public string Name { get; set; }
 
         [XmlAttribute(AttributeName = "color")]
         public string Color { get; set; }
@@ -23,6 +24,7 @@ namespace StakeholderAnalysis.Storage.XmlEntities
         [XmlAttribute(AttributeName = "linestyle")]
         public byte LineStyle { get; set; }
 
-        [XmlAttribute(AttributeName = "id")] public long Id { get; set; }
+        [XmlAttribute(AttributeName = "id")]
+        public long Id { get; set; }
     }
 }

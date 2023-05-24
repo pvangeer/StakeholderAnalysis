@@ -36,6 +36,18 @@ namespace StakeholderAnalysis.Visualization.ViewModels.OnionDiagramProperties
             ContextMenuItems = new ObservableCollection<ContextMenuItemViewModel>();
         }
 
+        public bool IsQuickSelection => true;
+
+        public bool IsSelected
+        {
+            get => connectionGroup.Visible;
+            set
+            {
+                connectionGroup.Visible = value;
+                connectionGroup.OnPropertyChanged(nameof(StakeholderConnectionGroup.Visible));
+            }
+        }
+
         public string DisplayName => connectionGroup.Name;
 
         public string IconSourceString { get; }
@@ -79,18 +91,6 @@ namespace StakeholderAnalysis.Visualization.ViewModels.OnionDiagramProperties
         public ObservableCollection<ITreeNodeViewModel> Items { get; }
 
         public CollectionType CollectionType => CollectionType.PropertyValue;
-
-        public bool IsQuickSelection => true;
-
-        public bool IsSelected
-        {
-            get => connectionGroup.Visible;
-            set
-            {
-                connectionGroup.Visible = value;
-                connectionGroup.OnPropertyChanged(nameof(StakeholderConnectionGroup.Visible));
-            }
-        }
 
         private void ConnectionGroupPropertyChanged(object sender, PropertyChangedEventArgs e)
         {

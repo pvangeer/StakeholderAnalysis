@@ -98,7 +98,6 @@ namespace StakeholderAnalysis.Storage
                     Created = projectXmlEntity.VersionInformation.Created,
                     Author = projectXmlEntity.VersionInformation.Creator
                 };
-
             }
             catch (Exception exception)
             {

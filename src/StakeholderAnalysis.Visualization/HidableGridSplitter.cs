@@ -1,30 +1,28 @@
-﻿using System;
-using System.Windows;
+﻿using System.Windows;
 using System.Windows.Controls;
 
 namespace StakeholderAnalysis.Visualization
 {
     /// <summary>
-    /// Grid splitter that show or hides the following row when the visibility of the splitter is changed. 
+    ///     Grid splitter that show or hides the following row when the visibility of the splitter is changed.
     /// </summary>
     public class HidableGridSplitter : GridSplitter
     {
-
-        GridLength height;
-        GridLength width;
+        private GridLength height;
+        private GridLength width;
 
         public HidableGridSplitter()
         {
-            this.IsVisibleChanged += HidableGridSplitter_IsVisibleChanged;
+            IsVisibleChanged += HidableGridSplitter_IsVisibleChanged;
             height = new GridLength(0, GridUnitType.Auto);
             width = new GridLength(0, GridUnitType.Auto);
         }
 
         public HideDirection HideDirection { get; set; }
 
-        void HidableGridSplitter_IsVisibleChanged(object sender, DependencyPropertyChangedEventArgs e)
+        private void HidableGridSplitter_IsVisibleChanged(object sender, DependencyPropertyChangedEventArgs e)
         {
-            Grid parent = base.Parent as Grid;
+            var parent = Parent as Grid;
             if (parent == null) return;
 
             int columnIndex;
@@ -39,7 +37,7 @@ namespace StakeholderAnalysis.Visualization
 
                     columnToHide = parent.ColumnDefinitions[columnIndex - 1];
 
-                    if (this.Visibility == Visibility.Visible)
+                    if (Visibility == Visibility.Visible)
                     {
                         columnToHide.Width = width;
                     }
@@ -48,6 +46,7 @@ namespace StakeholderAnalysis.Visualization
                         width = columnToHide.Width;
                         columnToHide.Width = new GridLength(0);
                     }
+
                     break;
                 case HideDirection.Right:
                     columnIndex = Grid.GetColumn(this);
@@ -55,7 +54,7 @@ namespace StakeholderAnalysis.Visualization
 
                     columnToHide = parent.ColumnDefinitions[columnIndex + 1];
 
-                    if (this.Visibility == Visibility.Visible)
+                    if (Visibility == Visibility.Visible)
                     {
                         columnToHide.Width = width;
                     }
@@ -64,6 +63,7 @@ namespace StakeholderAnalysis.Visualization
                         width = columnToHide.Width;
                         columnToHide.Width = new GridLength(0);
                     }
+
                     break;
                 case HideDirection.Up:
                     rowIndex = Grid.GetRow(this);
@@ -72,7 +72,7 @@ namespace StakeholderAnalysis.Visualization
 
                     rowToHide = parent.RowDefinitions[rowIndex - 1];
 
-                    if (this.Visibility == Visibility.Visible)
+                    if (Visibility == Visibility.Visible)
                     {
                         rowToHide.Height = height;
                     }
@@ -81,6 +81,7 @@ namespace StakeholderAnalysis.Visualization
                         height = rowToHide.Height;
                         rowToHide.Height = new GridLength(0);
                     }
+
                     break;
                 case HideDirection.Down:
                     rowIndex = Grid.GetRow(this);
@@ -89,7 +90,7 @@ namespace StakeholderAnalysis.Visualization
 
                     rowToHide = parent.RowDefinitions[rowIndex + 1];
 
-                    if (this.Visibility == Visibility.Visible)
+                    if (Visibility == Visibility.Visible)
                     {
                         rowToHide.Height = height;
                     }
@@ -98,6 +99,7 @@ namespace StakeholderAnalysis.Visualization
                         height = rowToHide.Height;
                         rowToHide.Height = new GridLength(0);
                     }
+
                     break;
             }
         }

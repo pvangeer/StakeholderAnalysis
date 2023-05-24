@@ -12,7 +12,8 @@ namespace StakeholderAnalysis.Storage.XmlEntities
         [XmlAttribute(AttributeName = "influence")]
         public double Influence { get; set; }
 
-        [XmlAttribute(AttributeName = "rank")] public long Rank { get; set; }
+        [XmlAttribute(AttributeName = "rank")]
+        public long Rank { get; set; }
 
         [XmlAttribute(AttributeName = "order")]
         public long Order { get; set; }
@@ -20,6 +21,7 @@ namespace StakeholderAnalysis.Storage.XmlEntities
         [XmlAttribute(AttributeName = "stakeholderid")]
         public long StakeholderId { get; set; }
 
-        [XmlAttribute(AttributeName = "id")] public long Id { get; set; }
+        [XmlAttribute(AttributeName = "id")]
+        public long Id { get; set; }
     }
 }
