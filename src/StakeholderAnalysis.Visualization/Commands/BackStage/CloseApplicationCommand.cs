@@ -3,7 +3,7 @@ using System.Windows;
 using System.Windows.Input;
 using StakeholderAnalysis.Gui;
 
-namespace StakeholderAnalysis.Visualization.Commands
+namespace StakeholderAnalysis.Visualization.Commands.BackStage
 {
     public class CloseApplicationCommand : ICommand
     {

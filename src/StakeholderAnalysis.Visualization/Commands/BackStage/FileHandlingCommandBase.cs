@@ -2,7 +2,7 @@
 using System.Windows.Input;
 using StakeholderAnalysis.Gui;
 
-namespace StakeholderAnalysis.Visualization.Commands.FileHandling
+namespace StakeholderAnalysis.Visualization.Commands.BackStage
 {
     public abstract class FileHandlingCommandBase : ICommand
     {

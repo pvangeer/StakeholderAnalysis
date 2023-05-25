@@ -4,7 +4,7 @@ using System.Windows.Input;
 using StakeholderAnalysis.Visualization.ViewModels.DocumentViews;
 using StakeholderAnalysis.Visualization.ViewModels.DocumentViews.OnionDiagramView;
 
-namespace StakeholderAnalysis.Visualization.Commands
+namespace StakeholderAnalysis.Visualization.Commands.Diagrams
 {
     public class RemoveSelectedStakeholderFromDiagramCommand : ICommand
     {

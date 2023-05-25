@@ -5,7 +5,7 @@ using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using Microsoft.Win32;
 
-namespace StakeholderAnalysis.Visualization.Commands
+namespace StakeholderAnalysis.Visualization
 {
     public static class FrameworkElementExtensions
     {
