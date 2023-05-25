@@ -33,7 +33,8 @@
         <Setter Property="IsEnabled" Value="{Binding IsEnabled}" />
     </Style>
 
-    <ObjectDataProvider x:Key="StakeholderTypeIconStyles" MethodName="GetValues"
+    <ObjectDataProvider x:Key="StakeholderTypeIconStyles" 
+                        MethodName="GetValues"
                         ObjectType="{x:Type System:Enum}">
         <ObjectDataProvider.MethodParameters>
             <x:Type TypeName="data:StakeholderIconType" />
@@ -125,8 +126,7 @@
                   DataType="{x:Type propertiesTree:ISliderPropertyTreeNodeViewModel}">
         <Slider
             Value="{Binding Value}"
-            Margin="5,1,0,1"
-            BorderBrush="DimGray"
+            BorderBrush="{StaticResource Deltares.Brushes.DarkGreen}"
             MinWidth="80"
             Minimum="{Binding MinValue}"
             Maximum="{Binding MaxValue}" />
@@ -222,13 +222,14 @@
 
     <DataTemplate x:Key="PropertyValueItemDataTemplate" DataType="propertiesTree:ITreeNodeViewModel">
         <Border Style="{StaticResource TreeNodeBorderStyle}">
-            <Grid Margin="10">
+            <Grid>
                 <Grid.ColumnDefinitions>
                     <ColumnDefinition Width="*" />
                     <ColumnDefinition Width="5" />
                     <ColumnDefinition Width="Auto" SharedSizeGroup="True" />
                 </Grid.ColumnDefinitions>
                 <TextBlock
+                    Margin="10"
                     Grid.Column="0"
                     Text="{Binding DisplayName}"
                     TextAlignment="Left"
@@ -238,6 +239,8 @@
                               ResizeBehavior="BasedOnAlignment" />
                 <ContentPresenter
                     Grid.Column="2"
+                    Margin="5,0"
+                    VerticalAlignment="Center"
                     Content="{Binding }"
                     ContentTemplateSelector="{StaticResource PropertyValueContentTemplateSelector}" />
             </Grid>
