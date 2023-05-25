@@ -3,17 +3,20 @@
                     xmlns:converters="clr-namespace:StakeholderAnalysis.Visualization.Converters"
                     xmlns:system="clr-namespace:System;assembly=mscorlib"
                     xmlns:twoAxisDiagrams="clr-namespace:StakeholderAnalysis.Visualization.ViewModels.TwoAxisDiagrams"
-                    xmlns:componentModel="clr-namespace:System.ComponentModel;assembly=WindowsBase">
+                    xmlns:componentModel="clr-namespace:System.ComponentModel;assembly=WindowsBase"
+                    xmlns:onionDiagram="clr-namespace:StakeholderAnalysis.Visualization.Converters.Diagrams.OnionDiagram"
+                    xmlns:twoAxisDiagram="clr-namespace:StakeholderAnalysis.Visualization.Converters.Diagrams.TwoAxisDiagram"
+                    xmlns:diagrams="clr-namespace:StakeholderAnalysis.Visualization.Converters.Diagrams">
 
     <ResourceDictionary.MergedDictionaries>
         <ResourceDictionary
             Source="/StakeholderAnalysis.Visualization;Component/DataTemplates/StakeholderDataTemplate.xaml" />
     </ResourceDictionary.MergedDictionaries>
 
-    <converters:PercentageToDimensionConverter x:Key="PercentageToDimensionConverter" />
-    <converters:CanvasSizeToArrowsPathDataConverter x:Key="SizeToArrowsPathDataConverter" />
+    <onionDiagram:PercentageToDimensionConverter x:Key="PercentageToDimensionConverter" />
+    <twoAxisDiagram:CanvasSizeToArrowsPathDataConverter x:Key="SizeToArrowsPathDataConverter" />
     <BooleanToVisibilityConverter x:Key="BoolToVisibilityConverter" />
-    <converters:IsSelectedStakeholderToOffsetConverter x:Key="IsSelectedStakeholderToOffsetConverter" />
+    <diagrams:IsSelectedStakeholderToOffsetConverter x:Key="IsSelectedStakeholderToOffsetConverter" />
 
     <DataTemplate x:Key="TwoAxisDiagramStakeholderDataTemplate" DataType="twoAxisDiagrams:IRankedStakeholderViewModel">
         <Grid>

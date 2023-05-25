@@ -2,11 +2,12 @@
                     xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
                     xmlns:converters="clr-namespace:StakeholderAnalysis.Visualization.Converters"
                     xmlns:onionDiagramView="clr-namespace:StakeholderAnalysis.Visualization.ViewModels.OnionDiagramView"
-                    xmlns:componentModel="clr-namespace:System.ComponentModel;assembly=WindowsBase">
+                    xmlns:componentModel="clr-namespace:System.ComponentModel;assembly=WindowsBase"
+                    xmlns:onionDiagram="clr-namespace:StakeholderAnalysis.Visualization.Converters.Diagrams.OnionDiagram">
 
-    <converters:PercentageToCanvasTopValueConverter x:Key="PercentageToCanvasTopValueConverter" />
-    <converters:PercentageToCanvasLeftValueConverter x:Key="PercentageToCanvasLeftValueConverter" />
-    <converters:PercentageToDimensionConverter x:Key="PercentageToDimensionConverter" />
+    <onionDiagram:PercentageToCanvasTopValueConverter x:Key="PercentageToCanvasTopValueConverter" />
+    <onionDiagram:PercentageToCanvasLeftValueConverter x:Key="PercentageToCanvasLeftValueConverter" />
+    <onionDiagram:PercentageToDimensionConverter x:Key="PercentageToDimensionConverter" />
     <converters:LineStyleToDashArrayConverter x:Key="StrokeTypeToDashArrayConverter" />
 
     <DataTemplate x:Key="OnionDiagramRingsDataTemplate" DataType="onionDiagramView:OnionDiagramRingsCanvasViewModel">

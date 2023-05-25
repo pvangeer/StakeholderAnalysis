@@ -4,7 +4,7 @@ using System.Windows;
 using System.Windows.Data;
 using StakeholderAnalysis.Visualization.ViewModels.OnionDiagramProperties;
 
-namespace StakeholderAnalysis.Visualization.Converters
+namespace StakeholderAnalysis.Visualization.Converters.TreeView
 {
     public class QuickSelectionToVisibilityConverter : IValueConverter
     {

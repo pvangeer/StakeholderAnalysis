@@ -3,7 +3,7 @@ using System.Globalization;
 using System.Windows.Data;
 using StakeholderAnalysis.Gui;
 
-namespace StakeholderAnalysis.Visualization.Converters
+namespace StakeholderAnalysis.Visualization.Converters.MainContentPresenter
 {
     public class IsProneToExportConverter : IMultiValueConverter
     {

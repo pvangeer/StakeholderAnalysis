@@ -8,7 +8,8 @@
                     xmlns:projectExplorer="clr-namespace:StakeholderAnalysis.Visualization.ViewModels.ProjectExplorer"
                     xmlns:data="clr-namespace:StakeholderAnalysis.Data;assembly=StakeholderAnalysis.Data"
                     xmlns:System="clr-namespace:System;assembly=mscorlib"
-                    xmlns:onionDiagrams="clr-namespace:StakeholderAnalysis.Data.OnionDiagrams;assembly=StakeholderAnalysis.Data">
+                    xmlns:onionDiagrams="clr-namespace:StakeholderAnalysis.Data.OnionDiagrams;assembly=StakeholderAnalysis.Data"
+                    xmlns:treeView="clr-namespace:StakeholderAnalysis.Visualization.Converters.TreeView">
 
     <ResourceDictionary.MergedDictionaries>
         <ResourceDictionary Source="TreeViewStyles.xaml" />
@@ -142,9 +143,9 @@
                                                          SliderTemplate="{StaticResource SliderPropertyDataTemplate}" />
 
     <BooleanToVisibilityConverter x:Key="BooleanToVisibilityConverter" />
-    <converters:QuickSelectionToVisibilityConverter x:Key="QuickSelectionToVisibilityConverter" />
-    <converters:SourceStringToVisibilityConverter x:Key="SourceStringToVisibilityConverter" />
-    <converters:HasItemsToVisibilityConverter x:Key="HasItemsToVisibilityConverter" />
+    <treeView:QuickSelectionToVisibilityConverter x:Key="QuickSelectionToVisibilityConverter" />
+    <treeView:SourceStringToVisibilityConverter x:Key="SourceStringToVisibilityConverter" />
+    <treeView:HasItemsToVisibilityConverter x:Key="HasItemsToVisibilityConverter" />
 
     <DataTemplate x:Key="ITreeNodeItemDataTemplate" DataType="propertiesTree:ITreeNodeViewModel">
         <Border BorderThickness="0">

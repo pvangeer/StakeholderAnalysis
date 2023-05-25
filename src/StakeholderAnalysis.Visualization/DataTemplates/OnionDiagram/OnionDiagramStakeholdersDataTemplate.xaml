@@ -3,14 +3,16 @@
                     xmlns:converters="clr-namespace:StakeholderAnalysis.Visualization.Converters"
                     xmlns:onionDiagramView="clr-namespace:StakeholderAnalysis.Visualization.ViewModels.OnionDiagramView"
                     xmlns:behaviors="clr-namespace:StakeholderAnalysis.Visualization.Behaviors"
-                    xmlns:componentModel="clr-namespace:System.ComponentModel;assembly=WindowsBase">
+                    xmlns:componentModel="clr-namespace:System.ComponentModel;assembly=WindowsBase"
+                    xmlns:onionDiagram="clr-namespace:StakeholderAnalysis.Visualization.Converters.Diagrams.OnionDiagram"
+                    xmlns:diagrams="clr-namespace:StakeholderAnalysis.Visualization.Converters.Diagrams">
 
     <ResourceDictionary.MergedDictionaries>
         <ResourceDictionary
             Source="/StakeholderAnalysis.Visualization;Component/DataTemplates/StakeholderDataTemplate.xaml" />
     </ResourceDictionary.MergedDictionaries>
 
-    <converters:PercentageToDimensionConverter x:Key="PercentageToDimensionConverter" />
+    <onionDiagram:PercentageToDimensionConverter x:Key="PercentageToDimensionConverter" />
     <BooleanToVisibilityConverter x:Key="BoolToVisibilityConverter" />
 
     <DataTemplate x:Key="OnionDiagramStakeholderDataTemplate"
@@ -163,7 +165,7 @@
         </Grid>
     </DataTemplate>
 
-    <converters:IsSelectedStakeholderToOffsetConverter x:Key="IsSelectedStakeholderToOffsetConverter" />
+    <diagrams:IsSelectedStakeholderToOffsetConverter x:Key="IsSelectedStakeholderToOffsetConverter" />
     <DataTemplate x:Key="OnionDiagramStakeholdersDataTemplate"
                   DataType="onionDiagramView:OnionDiagramStakeholdersViewModel">
         <Grid>

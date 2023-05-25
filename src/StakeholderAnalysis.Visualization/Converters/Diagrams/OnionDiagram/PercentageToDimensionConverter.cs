@@ -2,7 +2,7 @@ using System;
 using System.Globalization;
 using System.Windows.Data;
 
-namespace StakeholderAnalysis.Visualization.Converters
+namespace StakeholderAnalysis.Visualization.Converters.Diagrams.OnionDiagram
 {
     public class PercentageToDimensionConverter : IMultiValueConverter
     {

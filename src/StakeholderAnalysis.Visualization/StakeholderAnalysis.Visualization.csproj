@@ -24,20 +24,14 @@
       <HintPath>..\..\packages\Microsoft.Xaml.Behaviors.Wpf.1.1.39\lib\net45\Microsoft.Xaml.Behaviors.dll</HintPath>
     </Reference>
     <Reference Include="System" />
-    <Reference Include="System.Configuration" />
-    <Reference Include="System.Web" />
-    <Reference Include="System.Web.Extensions" />
     <Reference Include="System.Xml" />
     <Reference Include="System.Core" />
     <Reference Include="System.Xaml">
       <RequiredTargetFramework>4.0</RequiredTargetFramework>
     </Reference>
-    <Reference Include="UIAutomationProvider" />
-    <Reference Include="UIAutomationTypes" />
     <Reference Include="WindowsBase" />
     <Reference Include="PresentationCore" />
     <Reference Include="PresentationFramework" />
-    <Reference Include="WindowsFormsIntegration" />
     <Reference Include="Xceed.Wpf.AvalonDock, Version=4.5.0.0, Culture=neutral, PublicKeyToken=3e4669d2f30244f4, processorArchitecture=MSIL">
       <HintPath>..\..\packages\Extended.Wpf.Toolkit.4.5.0\lib\net40\Xceed.Wpf.AvalonDock.dll</HintPath>
     </Reference>
@@ -59,12 +53,11 @@
     <Compile Include="Controls\RotaryControl.xaml.cs">
       <DependentUpon>RotaryControl.xaml</DependentUpon>
     </Compile>
-    <Compile Include="Converters\ContextMenuContentType.cs" />
-    <Compile Include="Converters\QuickSelectionToVisibilityConverter.cs" />
-    <Compile Include="Converters\SourceStringToVisibilityConverter.cs" />
-    <Compile Include="Converters\HasItemsToVisibilityConverter.cs" />
+    <Compile Include="Converters\TreeView\QuickSelectionToVisibilityConverter.cs" />
+    <Compile Include="Converters\TreeView\SourceStringToVisibilityConverter.cs" />
+    <Compile Include="Converters\TreeView\HasItemsToVisibilityConverter.cs" />
     <Compile Include="Converters\LineStyleToDashArrayConverter.cs" />
-    <Compile Include="Converters\DocumentViewInfoToPropertiesViewInfoConverter.cs" />
+    <Compile Include="Converters\MainContentPresenter\DocumentViewInfoToPropertiesViewInfoConverter.cs" />
     <Compile Include="HidableGridSplitter.cs" />
     <Compile Include="ViewModels\PropertiesTree\ISliderPropertyTreeNodeViewModel.cs" />
     <Compile Include="ViewModels\PropertiesTree\SliderPropertyTreeNodeViewModel.cs" />
@@ -112,21 +105,20 @@
     <Compile Include="Controls\SelectStakeholdersDialog.xaml.cs">
       <DependentUpon>SelectStakeholdersDialog.xaml</DependentUpon>
     </Compile>
-    <Compile Include="Converters\IsProneToExportConverter.cs" />
-    <Compile Include="Converters\IsSelectedViewTypeToVisibilityConverter.cs" />
-    <Compile Include="Converters\PercentageToCanvasLeftValueConverter.cs" />
-    <Compile Include="Converters\PercentageToCanvasTopValueConverter.cs" />
-    <Compile Include="Converters\PercentageToDimensionConverter.cs" />
-    <Compile Include="Converters\CanvasSizeToArrowsPathDataConverter.cs" />
+    <Compile Include="Converters\MainContentPresenter\IsProneToExportConverter.cs" />
+    <Compile Include="Converters\Ribbon\IsSelectedViewTypeToVisibilityConverter.cs" />
+    <Compile Include="Converters\Diagrams\OnionDiagram\PercentageToCanvasLeftValueConverter.cs" />
+    <Compile Include="Converters\Diagrams\OnionDiagram\PercentageToCanvasTopValueConverter.cs" />
+    <Compile Include="Converters\Diagrams\OnionDiagram\PercentageToDimensionConverter.cs" />
+    <Compile Include="Converters\Diagrams\TwoAxisDiagram\CanvasSizeToArrowsPathDataConverter.cs" />
     <Compile Include="Converters\StatusBar\ShouldShowPriorityMessageToBoolConverter.cs" />
     <Compile Include="Converters\StatusBar\MessageListToLabelConverter.cs" />
-    <Compile Include="Converters\ValueToSameConverter.cs" />
     <Compile Include="Behaviors\DrawConnectionBehavior.cs" />
     <Compile Include="Behaviors\DragOnCanvasBehavior.cs" />
     <Compile Include="Behaviors\IDrawConnectionHandler.cs" />
     <Compile Include="Behaviors\IDropHandler.cs" />
     <Compile Include="Behaviors\ISelectionRegister.cs" />
-    <Compile Include="Converters\IsSelectedStakeholderToOffsetConverter.cs" />
+    <Compile Include="Converters\Diagrams\IsSelectedStakeholderToOffsetConverter.cs" />
     <Compile Include="ViewModels\OnionDiagramProperties\ConnectionGroupPropertiesViewModel.cs" />
     <Compile Include="ViewModels\OnionDiagramProperties\OnionDiagramPropertiesViewModel.cs" />
     <Compile Include="ViewModels\OnionDiagramProperties\OnionRingPropertiesViewModel.cs" />

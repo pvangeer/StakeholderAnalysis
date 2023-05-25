@@ -1,15 +1,14 @@
-﻿using System;
+using System;
 using System.Globalization;
-using System.Windows;
 using System.Windows.Data;
 
-namespace StakeholderAnalysis.Visualization.Converters
+namespace StakeholderAnalysis.Visualization.Converters.Diagrams
 {
-    public class SourceStringToVisibilityConverter : IValueConverter
+    public class IsSelectedStakeholderToOffsetConverter : IValueConverter
     {
         public object Convert(object value, Type targetType, object parameter, CultureInfo culture)
         {
-            return value is string s && !string.IsNullOrWhiteSpace(s) ? Visibility.Visible : Visibility.Collapsed;
+            return value != null && (bool)value ? 10.0 : 0.0;
         }
 
         public object ConvertBack(object value, Type targetType, object parameter, CultureInfo culture)

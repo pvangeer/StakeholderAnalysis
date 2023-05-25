@@ -5,7 +5,7 @@ using System.Windows.Data;
 using StakeholderAnalysis.Gui;
 using StakeholderAnalysis.Visualization.ViewModels.OnionDiagramView;
 
-namespace StakeholderAnalysis.Visualization.Converters
+namespace StakeholderAnalysis.Visualization.Converters.Ribbon
 {
     public class IsSelectedViewTypeToVisibilityConverter : IValueConverter
     {

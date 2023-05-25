@@ -5,7 +5,7 @@ using System.Windows;
 using System.Windows.Data;
 using System.Windows.Media;
 
-namespace StakeholderAnalysis.Visualization.Converters
+namespace StakeholderAnalysis.Visualization.Converters.Diagrams.TwoAxisDiagram
 {
     public class CanvasSizeToArrowsPathDataConverter : IMultiValueConverter
     {

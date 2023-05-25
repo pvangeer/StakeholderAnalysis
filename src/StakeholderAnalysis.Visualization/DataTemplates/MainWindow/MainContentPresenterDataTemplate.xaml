@@ -5,7 +5,8 @@
                     xmlns:gui="clr-namespace:StakeholderAnalysis.Gui;assembly=StakeholderAnalysis.Gui"
                     xmlns:converters="clr-namespace:StakeholderAnalysis.Visualization.Converters"
                     xmlns:behaviors="clr-namespace:StakeholderAnalysis.Visualization.Behaviors"
-                    xmlns:xctk="http://schemas.xceed.com/wpf/xaml/toolkit">
+                    xmlns:xctk="http://schemas.xceed.com/wpf/xaml/toolkit"
+                    xmlns:mainContentPresenter="clr-namespace:StakeholderAnalysis.Visualization.Converters.MainContentPresenter">
 
     <ResourceDictionary.MergedDictionaries>
         <ResourceDictionary Source="/StakeholderAnalysis.Visualization;Component/DataTemplates/OnionDiagram/OnionDiagramDataTemplate.xaml" />
@@ -20,8 +21,8 @@
         <BooleanToVisibilityConverter x:Key="BoolToVisibilityConverter" />
 
 
-        <converters:IsProneToExportConverter x:Key="IsProneToExportConverter" />
-        <converters:DocumentViewInfoToPropertiesViewInfoConverter x:Key="DocumentViewInfoToPropertiesViewInfoConverter" />
+        <mainContentPresenter:IsProneToExportConverter x:Key="IsProneToExportConverter" />
+        <mainContentPresenter:DocumentViewInfoToPropertiesViewInfoConverter x:Key="DocumentViewInfoToPropertiesViewInfoConverter" />
 
         <visualization:ViewTemplateSelector x:Key="ViewTemplateSelector"
                                             StakeholderTableViewTemplate="{StaticResource StakeholderTableDataTemplate}"

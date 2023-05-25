@@ -4,17 +4,21 @@ using System.Windows.Data;
 using StakeholderAnalysis.Visualization.ViewModels.OnionDiagramView;
 using StakeholderAnalysis.Visualization.ViewModels.TwoAxisDiagrams;
 
-namespace StakeholderAnalysis.Visualization.Converters
+namespace StakeholderAnalysis.Visualization.Converters.MainContentPresenter
 {
     public class DocumentViewInfoToPropertiesViewInfoConverter : IValueConverter
     {
         public object Convert(object value, Type targetType, object parameter, CultureInfo culture)
         {
-            if (value is OnionDiagramViewModel onionDiagramViewModel) return onionDiagramViewModel.GetPropertiesViewModel();
-
-            if (value is ITwoAxisDiagramViewModel twoAxisDiagramViewModel) return twoAxisDiagramViewModel.GetPropertiesViewModel();
-
-            return value;
+            switch (value)
+            {
+                case OnionDiagramViewModel onionDiagramViewModel:
+                    return onionDiagramViewModel.GetPropertiesViewModel();
+                case ITwoAxisDiagramViewModel twoAxisDiagramViewModel:
+                    return twoAxisDiagramViewModel.GetPropertiesViewModel();
+                default:
+                    return value;
+            }
         }
 
         public object ConvertBack(object value, Type targetType, object parameter, CultureInfo culture)
