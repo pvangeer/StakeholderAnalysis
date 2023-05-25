@@ -30,19 +30,26 @@
     <mainContentPresenter:DocumentViewInfoToPropertiesViewInfoConverter
         x:Key="DocumentViewInfoToPropertiesViewInfoConverter" />
 
-    <visualization:ViewTemplateSelector x:Key="ViewTemplateSelector"
-                                        StakeholderTableViewTemplate="{StaticResource StakeholderTableDataTemplate}"
-                                        OnionDiagramViewTemplate="{StaticResource OnionDiagramDataTemplate}"
-                                        ProjectExplorerDataTemplate="{StaticResource ProjectExplorerDataTemplate}"
-                                        StakeholderForcesDiagramTemplate="{StaticResource TwoAxisDiagramDataTemplate}"
-                                        AttitudeImpactDiagramTemplate="{StaticResource TwoAxisDiagramDataTemplate}"
-                                        TwoAxisDiagramPropertiesTemplate="{StaticResource TwoAxisDiagramPropertiesDataTemplate}"
-                                        OnionDiagramPropertiesTemplate="{StaticResource OnionDiagramPropertiesDataTemplate}" />
+    <DataTemplate x:Key="NoDataTemplate">
+        <Grid/>
+    </DataTemplate>
+
+    <visualization:DocumentViewTemplateSelector x:Key="DocumentViewTemplateSelector"
+                                                DefaultDataTemplate="{StaticResource NoDataTemplate}"
+                                                StakeholderTableViewTemplate="{StaticResource StakeholderTableDataTemplate}"
+                                                OnionDiagramViewTemplate="{StaticResource OnionDiagramDataTemplate}"
+                                                StakeholderForcesDiagramTemplate="{StaticResource TwoAxisDiagramDataTemplate}"
+                                                AttitudeImpactDiagramTemplate="{StaticResource TwoAxisDiagramDataTemplate}" />
+
+    <visualization:PropertiesViewTemplateSelector x:Key="PropertiesViewTemplateSelector"
+                                                  DefaultDataTemplate="{StaticResource NoDataTemplate}"
+                                                TwoAxisDiagramPropertiesTemplate="{StaticResource TwoAxisDiagramPropertiesDataTemplate}"
+                                                OnionDiagramPropertiesTemplate="{StaticResource OnionDiagramPropertiesDataTemplate}" />
 
     <DataTemplate x:Key="DocumentViewDataTemplate" DataType="gui:ViewInfo">
         <ContentPresenter
             Content="{Binding ViewModel}"
-            ContentTemplateSelector="{StaticResource ViewTemplateSelector}">
+            ContentTemplateSelector="{StaticResource DocumentViewTemplateSelector}">
             <ContentPresenter.Style>
                 <Style TargetType="ContentPresenter">
                     <Style.Triggers>
@@ -73,9 +80,7 @@
                     ZoomFactor=".4"
                     FrameType="Circle">
                     <xctk:Magnifier.Visibility>
-                        <Binding 
-                            ElementName="MainContentPresenter" 
-                            Path="DataContext.IsMagnifierActive"
+                        <Binding Path="MainContentPresenterViewModel.IsMagnifierActive"
                                  Converter="{StaticResource BooleanToVisibilityConverter}"
                                  UpdateSourceTrigger="PropertyChanged" />
                     </xctk:Magnifier.Visibility>
@@ -84,14 +89,13 @@
         </ContentPresenter>
     </DataTemplate>
 
-    <DataTemplate x:Key="ToolWindowDataTemplate" DataType="gui:ViewInfo">
+    <DataTemplate x:Key="PropertiesWindowDataTemplate" DataType="gui:ViewInfo">
         <ContentPresenter
             Content="{Binding ViewModel, Converter={StaticResource DocumentViewInfoToPropertiesViewInfoConverter}}"
-            ContentTemplateSelector="{StaticResource ViewTemplateSelector}" />
+            ContentTemplateSelector="{StaticResource PropertiesViewTemplateSelector}" />
     </DataTemplate>
 
-    <DataTemplate x:Key="MainContentPresenterDataTemplate"
-                  DataType="{x:Type viewModels:MainContentPresenterViewModel}">
+    <DataTemplate x:Key="MainContentPresenterDataTemplate" DataType="{x:Type viewModels:MainContentPresenterViewModel}">
         <Grid Name="MainContentPresenter" Grid.Row="1">
             <Grid.ColumnDefinitions>
                 <ColumnDefinition Width="Auto" />
@@ -125,7 +129,7 @@
                 <ScrollViewer Grid.Row="1" VerticalScrollBarVisibility="Auto">
                     <ContentPresenter
                         Content="{Binding ProjectExplorerViewModel}"
-                        ContentTemplateSelector="{StaticResource ViewTemplateSelector}" />
+                        ContentTemplate="{StaticResource ProjectExplorerDataTemplate}" />
                 </ScrollViewer>
             </Grid>
             <visualization:HidableGridSplitter
@@ -229,7 +233,7 @@
                 <ScrollViewer Grid.Row="1" VerticalScrollBarVisibility="Auto">
                     <ContentPresenter
                         Content="{Binding ViewManager.ActiveDocument}"
-                        ContentTemplate="{StaticResource ToolWindowDataTemplate}" />
+                        ContentTemplate="{StaticResource PropertiesWindowDataTemplate}" />
                 </ScrollViewer>
             </Grid>
         </Grid>
