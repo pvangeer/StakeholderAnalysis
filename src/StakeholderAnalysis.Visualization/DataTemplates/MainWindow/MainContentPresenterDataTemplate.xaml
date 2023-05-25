@@ -73,7 +73,9 @@
                     ZoomFactor=".4"
                     FrameType="Circle">
                     <xctk:Magnifier.Visibility>
-                        <Binding Path="MainContentPresenterViewModel.IsMagnifierActive"
+                        <Binding 
+                            ElementName="MainContentPresenter" 
+                            Path="DataContext.IsMagnifierActive"
                                  Converter="{StaticResource BooleanToVisibilityConverter}"
                                  UpdateSourceTrigger="PropertyChanged" />
                     </xctk:Magnifier.Visibility>
