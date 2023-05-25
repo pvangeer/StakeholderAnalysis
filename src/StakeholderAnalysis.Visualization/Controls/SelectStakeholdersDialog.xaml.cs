@@ -2,7 +2,7 @@
 using System.Linq;
 using System.Windows;
 using StakeholderAnalysis.Data;
-using StakeholderAnalysis.Visualization.ViewModels;
+using StakeholderAnalysis.Visualization.ViewModels.DocumentViews;
 
 namespace StakeholderAnalysis.Visualization.Controls
 {

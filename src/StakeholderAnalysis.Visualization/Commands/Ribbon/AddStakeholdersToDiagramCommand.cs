@@ -9,8 +9,8 @@ using StakeholderAnalysis.Data.ForceFieldDiagrams;
 using StakeholderAnalysis.Data.OnionDiagrams;
 using StakeholderAnalysis.Gui;
 using StakeholderAnalysis.Visualization.Controls;
-using StakeholderAnalysis.Visualization.ViewModels.OnionDiagramView;
-using StakeholderAnalysis.Visualization.ViewModels.TwoAxisDiagrams;
+using StakeholderAnalysis.Visualization.ViewModels.DocumentViews.OnionDiagramView;
+using StakeholderAnalysis.Visualization.ViewModels.DocumentViews.TwoAxisDiagrams;
 
 namespace StakeholderAnalysis.Visualization.Commands.Ribbon
 {

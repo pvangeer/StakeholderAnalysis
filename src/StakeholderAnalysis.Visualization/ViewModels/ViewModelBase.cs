@@ -1,4 +1,5 @@
 ﻿using StakeholderAnalysis.Data;
+using StakeholderAnalysis.Visualization.Commands;
 
 namespace StakeholderAnalysis.Visualization.ViewModels
 {

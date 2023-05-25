@@ -1,6 +1,6 @@
 using System.ComponentModel;
 using StakeholderAnalysis.Data;
-using StakeholderAnalysis.Visualization.ViewModels.OnionDiagramView;
+using StakeholderAnalysis.Visualization.ViewModels.DocumentViews.OnionDiagramView;
 
 namespace StakeholderAnalysis.Visualization.Behaviors
 {

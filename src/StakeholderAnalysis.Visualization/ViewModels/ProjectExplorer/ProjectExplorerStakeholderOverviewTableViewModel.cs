@@ -2,8 +2,8 @@
 using System.Linq;
 using System.Windows.Input;
 using StakeholderAnalysis.Gui;
+using StakeholderAnalysis.Visualization.ViewModels.DocumentViews.StakeholderTableView;
 using StakeholderAnalysis.Visualization.ViewModels.PropertiesTree;
-using StakeholderAnalysis.Visualization.ViewModels.StakeholderTableView;
 
 namespace StakeholderAnalysis.Visualization.ViewModels.ProjectExplorer
 {
@@ -38,7 +38,7 @@ namespace StakeholderAnalysis.Visualization.ViewModels.ProjectExplorer
             var viewInfo = viewManager.Views.FirstOrDefault(v => v.ViewModel is StakeholderTableViewModel);
             if (viewInfo == null)
             {
-                viewInfo = new ViewInfo("Tabel", ViewModelFactory.CreateStakeholderTableViewModel(),
+                viewInfo = new ViewInfo("Stakeholders", ViewModelFactory.CreateStakeholderTableViewModel(),
                     "pack://application:,,,/StakeholderAnalysis.Visualization;component/Resources/table.png");
                 viewManager.OpenView(viewInfo);
             }

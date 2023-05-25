@@ -1,6 +1,6 @@
 ﻿using System;
 using System.Windows.Input;
-using StakeholderAnalysis.Visualization.ViewModels;
+using StakeholderAnalysis.Visualization.ViewModels.DocumentViews;
 
 namespace StakeholderAnalysis.Visualization.Commands
 {

@@ -67,7 +67,7 @@
     <Compile Include="ViewModels\PropertiesTree\IFontFamilyPropertyTreeNodeViewModel.cs" />
     <Compile Include="ViewModels\PropertiesTree\ILineStylePropertyTreeNodeViewModel.cs" />
     <Compile Include="ViewModels\PropertiesTree\PropertyCollectionTreeNodeViewModel.cs" />
-    <Compile Include="ViewModels\TwoAxisDiagramProperties\TwoAxisDiagramPropertiesViewModel.cs" />
+    <Compile Include="ViewModels\Properties\TwoAxisDiagramProperties\TwoAxisDiagramPropertiesViewModel.cs" />
     <Compile Include="ViewModels\ProjectExplorer\IStakeholderTypeIconPropertyTreeNodeViewModel.cs" />
     <Compile Include="ViewModels\ProjectExplorer\StakeholderTypeIconPropertyTreeNodeViewModel.cs" />
     <Compile Include="ViewModels\PropertiesTree\IBooleanPropertyTreeNodeViewModel.cs" />
@@ -84,8 +84,8 @@
     <Compile Include="Commands\ProjectExplorer\RemoveStakeholderTypeCommand.cs" />
     <Compile Include="Converters\IconTypeToIconSourceConverter.cs" />
     <Compile Include="PropertyValueTreeNodeTemplateSelector.cs" />
-    <Compile Include="ViewModels\CommandFactory.cs" />
-    <Compile Include="ViewModels\IRemoveStakeholderViewModel.cs" />
+    <Compile Include="Commands\CommandFactory.cs" />
+    <Compile Include="ViewModels\DocumentViews\IRemoveStakeholderViewModel.cs" />
     <Compile Include="Commands\OnionDiagramProperties\AddConnectionGroupCommand.cs" />
     <Compile Include="Commands\RemoveSelectedStakeholderFromDiagramCommand.cs" />
     <Compile Include="Commands\Ribbon\AddOnionRingCommand.cs" />
@@ -119,12 +119,12 @@
     <Compile Include="Behaviors\IDropHandler.cs" />
     <Compile Include="Behaviors\ISelectionRegister.cs" />
     <Compile Include="Converters\Diagrams\IsSelectedStakeholderToOffsetConverter.cs" />
-    <Compile Include="ViewModels\OnionDiagramProperties\ConnectionGroupPropertiesViewModel.cs" />
-    <Compile Include="ViewModels\OnionDiagramProperties\OnionDiagramPropertiesViewModel.cs" />
-    <Compile Include="ViewModels\OnionDiagramProperties\OnionRingPropertiesViewModel.cs" />
-    <Compile Include="ViewModels\OnionDiagramProperties\ConnectionGroupsPropertiesViewModel.cs" />
-    <Compile Include="ViewModels\OnionDiagramProperties\OnionRingsPropertiesViewModel.cs" />
-    <Compile Include="ViewModels\OnionDiagramView\OnionDiagramDrawConnectionViewModel.cs" />
+    <Compile Include="ViewModels\Properties\OnionDiagramProperties\ConnectionGroupPropertiesViewModel.cs" />
+    <Compile Include="ViewModels\Properties\OnionDiagramProperties\OnionDiagramPropertiesViewModel.cs" />
+    <Compile Include="ViewModels\Properties\OnionDiagramProperties\OnionRingPropertiesViewModel.cs" />
+    <Compile Include="ViewModels\Properties\OnionDiagramProperties\ConnectionGroupsPropertiesViewModel.cs" />
+    <Compile Include="ViewModels\Properties\OnionDiagramProperties\OnionRingsPropertiesViewModel.cs" />
+    <Compile Include="ViewModels\DocumentViews\OnionDiagramView\OnionDiagramDrawConnectionViewModel.cs" />
     <Compile Include="ViewModels\ProjectExplorer\ProjectExplorerAttitudeImpactDiagramsViewModel.cs" />
     <Compile Include="ViewModels\ProjectExplorer\ProjectExplorerForceFieldDiagramsViewModel.cs" />
     <Compile Include="ViewModels\ProjectExplorer\ProjectExplorerAttitudeImpactDiagramViewModel.cs" />
@@ -141,10 +141,10 @@
     <Compile Include="ViewModels\PropertiesTree\PropertyTreeNodeViewModelBase.cs" />
     <Compile Include="ViewModels\StatusBar\MessagesViewModel.cs" />
     <Compile Include="ViewModels\StatusBar\StatusBarViewModel.cs" />
-    <Compile Include="ViewModels\TwoAxisDiagrams\ITwoAxisDiagramViewModel.cs" />
-    <Compile Include="ViewModels\TwoAxisDiagrams\AttitudeImpactDiagramStakeholderViewModel.cs" />
-    <Compile Include="ViewModels\TwoAxisDiagrams\ForceFieldDiagramStakeholderViewModel.cs" />
-    <Compile Include="ViewModels\OnionDiagramView\OnionDiagramStakeholderViewModel.cs" />
+    <Compile Include="ViewModels\DocumentViews\TwoAxisDiagrams\ITwoAxisDiagramViewModel.cs" />
+    <Compile Include="ViewModels\DocumentViews\TwoAxisDiagrams\AttitudeImpactDiagramStakeholderViewModel.cs" />
+    <Compile Include="ViewModels\DocumentViews\TwoAxisDiagrams\ForceFieldDiagramStakeholderViewModel.cs" />
+    <Compile Include="ViewModels\DocumentViews\OnionDiagramView\OnionDiagramStakeholderViewModel.cs" />
     <Compile Include="Properties\AssemblyInfo.cs">
       <SubType>Code</SubType>
     </Compile>
@@ -159,24 +159,24 @@
       <DesignTimeSharedInput>True</DesignTimeSharedInput>
     </Compile>
     <Compile Include="Behaviors\SaveToImageBehavior.cs" />
-    <Compile Include="ViewModels\TwoAxisDiagrams\AttitudeImpactDiagramViewModel.cs" />
+    <Compile Include="ViewModels\DocumentViews\TwoAxisDiagrams\AttitudeImpactDiagramViewModel.cs" />
     <Compile Include="ViewModels\MainContentPresenterViewModel.cs" />
     <Compile Include="ViewModels\ProjectExplorer\ProjectExplorerOnionDiagramsViewModel.cs" />
     <Compile Include="ViewModels\ProjectExplorer\ProjectExplorerOnionDiagramViewModel.cs" />
     <Compile Include="ViewModels\ProjectExplorer\ProjectExplorerViewModel.cs" />
     <Compile Include="ViewModels\MainWindowViewModel.cs" />
-    <Compile Include="ViewModels\OnionDiagramView\OnionDiagramConnectionsPresenterViewModel.cs" />
-    <Compile Include="ViewModels\OnionDiagramView\OnionDiagramStakeholdersViewModel.cs" />
-    <Compile Include="ViewModels\OnionDiagramView\OnionDiagramViewModel.cs" />
-    <Compile Include="ViewModels\OnionDiagramView\OnionDiagramRingsCanvasViewModel.cs" />
-    <Compile Include="ViewModels\OnionDiagramView\OnionRingViewModel.cs" />
-    <Compile Include="ViewModels\OnionDiagramView\StakeholderConnectionViewModel.cs" />
-    <Compile Include="ViewModels\TwoAxisDiagrams\ForceFieldDiagramViewModel.cs" />
+    <Compile Include="ViewModels\DocumentViews\OnionDiagramView\OnionDiagramConnectionsPresenterViewModel.cs" />
+    <Compile Include="ViewModels\DocumentViews\OnionDiagramView\OnionDiagramStakeholdersViewModel.cs" />
+    <Compile Include="ViewModels\DocumentViews\OnionDiagramView\OnionDiagramViewModel.cs" />
+    <Compile Include="ViewModels\DocumentViews\OnionDiagramView\OnionDiagramRingsCanvasViewModel.cs" />
+    <Compile Include="ViewModels\DocumentViews\OnionDiagramView\OnionRingViewModel.cs" />
+    <Compile Include="ViewModels\DocumentViews\OnionDiagramView\StakeholderConnectionViewModel.cs" />
+    <Compile Include="ViewModels\DocumentViews\TwoAxisDiagrams\ForceFieldDiagramViewModel.cs" />
     <Compile Include="ViewModels\Ribbon\RibbonViewModel.cs" />
-    <Compile Include="ViewModels\StakeholderTableView\StakeholderTableViewModel.cs" />
-    <Compile Include="ViewModels\StakeholderViewModel.cs" />
-    <Compile Include="ViewModels\TwoAxisDiagrams\PositionedStakeholderViewModel.cs" />
-    <Compile Include="ViewModels\TwoAxisDiagrams\RankedStakeholderViewModel.cs" />
+    <Compile Include="ViewModels\DocumentViews\StakeholderTableView\StakeholderTableViewModel.cs" />
+    <Compile Include="ViewModels\DocumentViews\StakeholderViewModel.cs" />
+    <Compile Include="ViewModels\DocumentViews\TwoAxisDiagrams\PositionedStakeholderViewModel.cs" />
+    <Compile Include="ViewModels\DocumentViews\TwoAxisDiagrams\RankedStakeholderViewModel.cs" />
     <Compile Include="ViewModels\ViewManagerViewModel.cs" />
     <Compile Include="ViewModels\ViewModelBase.cs" />
     <Compile Include="ViewModels\ViewModelFactory.cs" />
@@ -208,15 +208,15 @@
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
-    <Page Include="DataTemplates\TwoAxisDiagramProperties\TwoAxisDiagramPropertiesDataTemplate.xaml">
+    <Page Include="DataTemplates\Properties\TwoAxisDiagramPropertiesDataTemplate.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </Page>
-    <Page Include="DataTemplates\OnionDiagramProperties\OnionDiagramPropertiesDataTemplate.xaml">
+    <Page Include="DataTemplates\Properties\OnionDiagramPropertiesDataTemplate.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
-    <Page Include="DataTemplates\OnionDiagram\OnionDiagramConnectionDrawingCanvasDataTemplate.xaml">
+    <Page Include="DataTemplates\Diagrams\OnionDiagram\OnionDiagramConnectionDrawingCanvasDataTemplate.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
@@ -232,19 +232,19 @@
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
-    <Page Include="DataTemplates\TwoAxisDiagrams\TwoAxisDiagramDataTemplate.xaml">
+    <Page Include="DataTemplates\Diagrams\TwoAxisDiagrams\TwoAxisDiagramDataTemplate.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
-    <Page Include="DataTemplates\OnionDiagram\ConnectionsPresenterDataTemplate.xaml">
+    <Page Include="DataTemplates\Diagrams\OnionDiagram\ConnectionsPresenterDataTemplate.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
-    <Page Include="DataTemplates\OnionDiagram\OnionDiagramRingsDataTemplate.xaml">
+    <Page Include="DataTemplates\Diagrams\OnionDiagram\OnionDiagramRingsDataTemplate.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
-    <Page Include="DataTemplates\OnionDiagram\OnionDiagramDataTemplate.xaml">
+    <Page Include="DataTemplates\Diagrams\OnionDiagram\OnionDiagramDataTemplate.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
@@ -260,7 +260,7 @@
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
-    <Page Include="DataTemplates\OnionDiagram\OnionDiagramStakeholdersDataTemplate.xaml">
+    <Page Include="DataTemplates\Diagrams\OnionDiagram\OnionDiagramStakeholdersDataTemplate.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
@@ -402,7 +402,5 @@
     <Resource Include="Resources\arrow_up_black.png" />
     <Resource Include="Resources\arrow_up_gray.png" />
   </ItemGroup>
-  <ItemGroup>
-    <Folder Include="DataTemplates\PropertiesTree\" />
-  </ItemGroup>
+  <ItemGroup />
 </Project>

@@ -3,7 +3,7 @@ using System.Windows;
 using System.Windows.Controls;
 using System.Windows.Input;
 using System.Windows.Media;
-using StakeholderAnalysis.Visualization.ViewModels.OnionDiagramView;
+using StakeholderAnalysis.Visualization.ViewModels.DocumentViews.OnionDiagramView;
 
 namespace StakeholderAnalysis.Visualization.Behaviors
 {

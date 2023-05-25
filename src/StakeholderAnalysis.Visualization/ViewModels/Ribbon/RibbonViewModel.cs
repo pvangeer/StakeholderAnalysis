@@ -6,7 +6,7 @@ using System.Windows.Input;
 using StakeholderAnalysis.Data.OnionDiagrams;
 using StakeholderAnalysis.Gui;
 using StakeholderAnalysis.Visualization.Commands;
-using StakeholderAnalysis.Visualization.ViewModels.OnionDiagramView;
+using StakeholderAnalysis.Visualization.ViewModels.DocumentViews.OnionDiagramView;
 
 namespace StakeholderAnalysis.Visualization.ViewModels.Ribbon
 {

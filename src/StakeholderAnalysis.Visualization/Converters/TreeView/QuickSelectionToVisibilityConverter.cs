@@ -2,7 +2,7 @@
 using System.Globalization;
 using System.Windows;
 using System.Windows.Data;
-using StakeholderAnalysis.Visualization.ViewModels.OnionDiagramProperties;
+using StakeholderAnalysis.Visualization.ViewModels.Properties.OnionDiagramProperties;
 
 namespace StakeholderAnalysis.Visualization.Converters.TreeView
 {

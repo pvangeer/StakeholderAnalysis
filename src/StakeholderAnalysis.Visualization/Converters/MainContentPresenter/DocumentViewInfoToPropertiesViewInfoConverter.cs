@@ -1,8 +1,8 @@
 using System;
 using System.Globalization;
 using System.Windows.Data;
-using StakeholderAnalysis.Visualization.ViewModels.OnionDiagramView;
-using StakeholderAnalysis.Visualization.ViewModels.TwoAxisDiagrams;
+using StakeholderAnalysis.Visualization.ViewModels.DocumentViews.OnionDiagramView;
+using StakeholderAnalysis.Visualization.ViewModels.DocumentViews.TwoAxisDiagrams;
 
 namespace StakeholderAnalysis.Visualization.Converters.MainContentPresenter
 {

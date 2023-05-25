@@ -1,6 +1,6 @@
 ﻿<ResourceDictionary xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
                     xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
-                    xmlns:stakeholderTableView="clr-namespace:StakeholderAnalysis.Visualization.ViewModels.StakeholderTableView">
+                    xmlns:stakeholderTableView="clr-namespace:StakeholderAnalysis.Visualization.ViewModels.DocumentViews.StakeholderTableView">
 
     <DataTemplate x:Key="StakeholderTableDataTemplate" DataType="stakeholderTableView:StakeholderTableViewModel">
         <Grid Name="TableGrid" DataContext="{Binding}">

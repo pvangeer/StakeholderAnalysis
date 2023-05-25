@@ -5,8 +5,8 @@ using System.Windows.Input;
 using StakeholderAnalysis.Data;
 using StakeholderAnalysis.Data.ForceFieldDiagrams;
 using StakeholderAnalysis.Gui;
+using StakeholderAnalysis.Visualization.ViewModels.DocumentViews.TwoAxisDiagrams;
 using StakeholderAnalysis.Visualization.ViewModels.PropertiesTree;
-using StakeholderAnalysis.Visualization.ViewModels.TwoAxisDiagrams;
 
 namespace StakeholderAnalysis.Visualization.ViewModels.ProjectExplorer
 {

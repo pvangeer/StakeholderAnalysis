@@ -8,15 +8,17 @@ using StakeholderAnalysis.Data.ForceFieldDiagrams;
 using StakeholderAnalysis.Data.OnionDiagrams;
 using StakeholderAnalysis.Gui;
 using StakeholderAnalysis.Visualization.Behaviors;
-using StakeholderAnalysis.Visualization.ViewModels.OnionDiagramProperties;
-using StakeholderAnalysis.Visualization.ViewModels.OnionDiagramView;
+using StakeholderAnalysis.Visualization.Commands;
+using StakeholderAnalysis.Visualization.ViewModels.DocumentViews;
+using StakeholderAnalysis.Visualization.ViewModels.DocumentViews.OnionDiagramView;
+using StakeholderAnalysis.Visualization.ViewModels.DocumentViews.StakeholderTableView;
+using StakeholderAnalysis.Visualization.ViewModels.DocumentViews.TwoAxisDiagrams;
 using StakeholderAnalysis.Visualization.ViewModels.ProjectExplorer;
+using StakeholderAnalysis.Visualization.ViewModels.Properties.OnionDiagramProperties;
+using StakeholderAnalysis.Visualization.ViewModels.Properties.TwoAxisDiagramProperties;
 using StakeholderAnalysis.Visualization.ViewModels.PropertiesTree;
 using StakeholderAnalysis.Visualization.ViewModels.Ribbon;
-using StakeholderAnalysis.Visualization.ViewModels.StakeholderTableView;
 using StakeholderAnalysis.Visualization.ViewModels.StatusBar;
-using StakeholderAnalysis.Visualization.ViewModels.TwoAxisDiagramProperties;
-using StakeholderAnalysis.Visualization.ViewModels.TwoAxisDiagrams;
 
 namespace StakeholderAnalysis.Visualization.ViewModels
 {
@@ -28,7 +30,7 @@ namespace StakeholderAnalysis.Visualization.ViewModels
         public ViewModelFactory(StakeholderAnalysisGui gui)
         {
             this.gui = gui;
-            commandFactory = new CommandFactory(gui, this);
+            commandFactory = new CommandFactory(gui);
         }
 
         private ViewManager ViewManager => gui?.ViewManager;
@@ -240,7 +242,6 @@ namespace StakeholderAnalysis.Visualization.ViewModels
 
         public ContextMenuItemViewModel CreateDuplicateMenuItemViewModel(ICloneable diagram, ICommand cloneCommand)
         {
-            // TODO: Add icon
             return new ContextMenuItemViewModel
             {
                 Header = "Dupliceren",

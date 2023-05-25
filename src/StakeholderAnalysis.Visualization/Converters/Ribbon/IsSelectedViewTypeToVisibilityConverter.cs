@@ -3,7 +3,7 @@ using System.Globalization;
 using System.Windows;
 using System.Windows.Data;
 using StakeholderAnalysis.Gui;
-using StakeholderAnalysis.Visualization.ViewModels.OnionDiagramView;
+using StakeholderAnalysis.Visualization.ViewModels.DocumentViews.OnionDiagramView;
 
 namespace StakeholderAnalysis.Visualization.Converters.Ribbon
 {

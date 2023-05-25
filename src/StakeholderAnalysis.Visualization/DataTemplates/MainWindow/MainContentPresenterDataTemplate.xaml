@@ -3,35 +3,41 @@
                     xmlns:viewModels="clr-namespace:StakeholderAnalysis.Visualization.ViewModels"
                     xmlns:visualization="clr-namespace:StakeholderAnalysis.Visualization"
                     xmlns:gui="clr-namespace:StakeholderAnalysis.Gui;assembly=StakeholderAnalysis.Gui"
-                    xmlns:converters="clr-namespace:StakeholderAnalysis.Visualization.Converters"
                     xmlns:behaviors="clr-namespace:StakeholderAnalysis.Visualization.Behaviors"
                     xmlns:xctk="http://schemas.xceed.com/wpf/xaml/toolkit"
                     xmlns:mainContentPresenter="clr-namespace:StakeholderAnalysis.Visualization.Converters.MainContentPresenter">
 
     <ResourceDictionary.MergedDictionaries>
-        <ResourceDictionary Source="/StakeholderAnalysis.Visualization;Component/DataTemplates/OnionDiagram/OnionDiagramDataTemplate.xaml" />
-        <ResourceDictionary Source="/StakeholderAnalysis.Visualization;Component/DataTemplates/OnionDiagramProperties/OnionDiagramPropertiesDataTemplate.xaml" />
-        <ResourceDictionary Source="/StakeholderAnalysis.Visualization;Component/DataTemplates/TwoAxisDiagramProperties/TwoAxisDiagramPropertiesDataTemplate.xaml" />
-        <ResourceDictionary Source="/StakeholderAnalysis.Visualization;Component/DataTemplates/TwoAxisDiagrams/TwoAxisDiagramDataTemplate.xaml" />
-        <ResourceDictionary Source="/StakeholderAnalysis.Visualization;Component/DataTemplates/StakeholderTable/StakeholderTableDataTemplate.xaml" />
-        <ResourceDictionary Source="/StakeholderAnalysis.Visualization;Component/DataTemplates/ProjectExplorer/ProjectExplorerDataTemplate.xaml" />
+        <ResourceDictionary
+            Source="/StakeholderAnalysis.Visualization;Component/DataTemplates/Diagrams/OnionDiagram/OnionDiagramDataTemplate.xaml" />
+        <ResourceDictionary
+            Source="/StakeholderAnalysis.Visualization;Component/DataTemplates/Properties/OnionDiagramPropertiesDataTemplate.xaml" />
+        <ResourceDictionary
+            Source="/StakeholderAnalysis.Visualization;Component/DataTemplates/Properties/TwoAxisDiagramPropertiesDataTemplate.xaml" />
+        <ResourceDictionary
+            Source="/StakeholderAnalysis.Visualization;Component/DataTemplates/Diagrams/TwoAxisDiagrams/TwoAxisDiagramDataTemplate.xaml" />
+        <ResourceDictionary
+            Source="/StakeholderAnalysis.Visualization;Component/DataTemplates/StakeholderTable/StakeholderTableDataTemplate.xaml" />
+        <ResourceDictionary
+            Source="/StakeholderAnalysis.Visualization;Component/DataTemplates/ProjectExplorer/ProjectExplorerDataTemplate.xaml" />
         <ResourceDictionary Source="/StakeholderAnalysis.Visualization;Component/Theme/StakeholderAnalysisTheme.xaml" />
     </ResourceDictionary.MergedDictionaries>
 
-        <BooleanToVisibilityConverter x:Key="BoolToVisibilityConverter" />
+    <BooleanToVisibilityConverter x:Key="BoolToVisibilityConverter" />
 
 
-        <mainContentPresenter:IsProneToExportConverter x:Key="IsProneToExportConverter" />
-        <mainContentPresenter:DocumentViewInfoToPropertiesViewInfoConverter x:Key="DocumentViewInfoToPropertiesViewInfoConverter" />
+    <mainContentPresenter:IsProneToExportConverter x:Key="IsProneToExportConverter" />
+    <mainContentPresenter:DocumentViewInfoToPropertiesViewInfoConverter
+        x:Key="DocumentViewInfoToPropertiesViewInfoConverter" />
 
-        <visualization:ViewTemplateSelector x:Key="ViewTemplateSelector"
-                                            StakeholderTableViewTemplate="{StaticResource StakeholderTableDataTemplate}"
-                                            OnionDiagramViewTemplate="{StaticResource OnionDiagramDataTemplate}"
-                                            ProjectExplorerDataTemplate="{StaticResource ProjectExplorerDataTemplate}"
-                                            StakeholderForcesDiagramTemplate="{StaticResource TwoAxisDiagramDataTemplate}"
-                                            AttitudeImpactDiagramTemplate="{StaticResource TwoAxisDiagramDataTemplate}"
-                                            TwoAxisDiagramPropertiesTemplate="{StaticResource TwoAxisDiagramPropertiesDataTemplate}"
-                                            OnionDiagramPropertiesTemplate="{StaticResource OnionDiagramPropertiesDataTemplate}" />
+    <visualization:ViewTemplateSelector x:Key="ViewTemplateSelector"
+                                        StakeholderTableViewTemplate="{StaticResource StakeholderTableDataTemplate}"
+                                        OnionDiagramViewTemplate="{StaticResource OnionDiagramDataTemplate}"
+                                        ProjectExplorerDataTemplate="{StaticResource ProjectExplorerDataTemplate}"
+                                        StakeholderForcesDiagramTemplate="{StaticResource TwoAxisDiagramDataTemplate}"
+                                        AttitudeImpactDiagramTemplate="{StaticResource TwoAxisDiagramDataTemplate}"
+                                        TwoAxisDiagramPropertiesTemplate="{StaticResource TwoAxisDiagramPropertiesDataTemplate}"
+                                        OnionDiagramPropertiesTemplate="{StaticResource OnionDiagramPropertiesDataTemplate}" />
 
     <DataTemplate x:Key="DocumentViewDataTemplate" DataType="gui:ViewInfo">
         <ContentPresenter
