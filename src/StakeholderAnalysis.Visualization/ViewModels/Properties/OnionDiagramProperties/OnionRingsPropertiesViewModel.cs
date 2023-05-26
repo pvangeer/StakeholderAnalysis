@@ -37,7 +37,7 @@ namespace StakeholderAnalysis.Visualization.ViewModels.Properties.OnionDiagramPr
 
         public override ICommand AddItemCommand => CommandFactory.CreateAddOnionRingCommand(diagram);
 
-        public ObservableCollection<ContextMenuItemViewModel> ContextMenuItems { get; }
+        public override ObservableCollection<ContextMenuItemViewModel> ContextMenuItems { get; }
 
         public override bool IsViewModelFor(object o)
         {

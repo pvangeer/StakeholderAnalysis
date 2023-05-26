@@ -61,6 +61,7 @@
     <Compile Include="Converters\MainContentPresenter\DocumentViewInfoToPropertiesViewInfoConverter.cs" />
     <Compile Include="PropertiesViewTemplateSelector.cs" />
     <Compile Include="HidableGridSplitter.cs" />
+    <Compile Include="ViewModels\PropertiesTree\OnionDiagramGeneralPropertiesViewModel.cs" />
     <Compile Include="ViewModels\PropertiesTree\ISliderPropertyTreeNodeViewModel.cs" />
     <Compile Include="ViewModels\PropertiesTree\SliderPropertyValueTreeNodeViewModel.cs" />
     <Compile Include="ViewModels\PropertiesTree\LineStylePropertyValueTreeNodeViewModel.cs" />
@@ -69,6 +70,7 @@
     <Compile Include="ViewModels\PropertiesTree\IFontFamilyPropertyTreeNodeViewModel.cs" />
     <Compile Include="ViewModels\PropertiesTree\ILineStylePropertyTreeNodeViewModel.cs" />
     <Compile Include="ViewModels\PropertiesTree\PropertyCollectionTreeNodeViewModel.cs" />
+    <Compile Include="ViewModels\Properties\PropertiesCollectionViewModelBase.cs" />
     <Compile Include="ViewModels\Properties\TwoAxisDiagramProperties\TwoAxisDiagramPropertiesViewModel.cs" />
     <Compile Include="ViewModels\ProjectExplorer\IStakeholderTypeIconPropertyTreeNodeViewModel.cs" />
     <Compile Include="ViewModels\ProjectExplorer\StakeholderTypeIconPropertyValueTreeNodeViewModel.cs" />

@@ -24,14 +24,7 @@ namespace StakeholderAnalysis.Visualization.ViewModels.ProjectExplorer
             this.viewManager = viewManager;
             this.analysis = analysis;
             diagram = onionDiagram;
-            // TODO: Move these items to the properties viewmodel (and automatically show the correct properties via the selectionmanager)
-            Items = new ObservableCollection<ITreeNodeViewModel>
-            {
-                new StringPropertyValueTreeNodeViewModel<OnionDiagram>(diagram, nameof(OnionDiagram.Name), "Naam"),
-                new DoubleUpDownPropertyValueTreeNodeViewModel<OnionDiagram>(diagram, nameof(OnionDiagram.Asymmetry),
-                    "Asymmetrie", 0, 1, 0.1, "0.#####"),
-                new SliderPropertyValueTreeNodeViewModel<OnionDiagram>(diagram, nameof(OnionDiagram.Orientation), "Orientatie", 0, 360)
-            };
+            Items = new ObservableCollection<ITreeNodeViewModel>();
 
             ContextMenuItems = new ObservableCollection<ContextMenuItemViewModel>
             {
@@ -92,19 +85,11 @@ namespace StakeholderAnalysis.Visualization.ViewModels.ProjectExplorer
         public string IconSourceString =>
             "pack://application:,,,/StakeholderAnalysis.Visualization;component/Resources/onion.png";
 
-        public bool IsExpandable => true;
+        public bool IsExpandable => false;
 
-        public bool IsExpanded
-        {
-            get => isExpanded;
-            set
-            {
-                isExpanded = value;
-                OnPropertyChanged();
-            }
-        }
+        public bool IsExpanded { get; set; }
 
-        public ICommand ToggleIsExpandedCommand => CommandFactory.CreateToggleIsExpandedCommand(this);
+        public ICommand ToggleIsExpandedCommand => null;
 
         public ObservableCollection<ITreeNodeViewModel> Items { get; }
 

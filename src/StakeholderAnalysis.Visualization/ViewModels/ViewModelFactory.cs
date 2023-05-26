@@ -256,5 +256,10 @@ namespace StakeholderAnalysis.Visualization.ViewModels
         {
             return new SelectionManagerViewModel(this, gui.SelectionManager);
         }
+
+        public ITreeNodeViewModel CreateOnionDiagramGeneralPropertiesViewModel(OnionDiagram diagram)
+        {
+            return new OnionDiagramGeneralPropertiesViewModel(this, diagram);
+        }
     }
 }
