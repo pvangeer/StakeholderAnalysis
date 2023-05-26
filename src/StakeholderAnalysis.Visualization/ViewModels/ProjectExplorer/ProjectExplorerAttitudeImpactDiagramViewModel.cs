@@ -7,6 +7,7 @@ using StakeholderAnalysis.Data.AttitudeImpactDiagrams;
 using StakeholderAnalysis.Data.ForceFieldDiagrams;
 using StakeholderAnalysis.Gui;
 using StakeholderAnalysis.Visualization.ViewModels.DocumentViews.TwoAxisDiagrams;
+using StakeholderAnalysis.Visualization.ViewModels.Properties.TwoAxisDiagramProperties;
 using StakeholderAnalysis.Visualization.ViewModels.PropertiesTree;
 
 namespace StakeholderAnalysis.Visualization.ViewModels.ProjectExplorer
@@ -16,7 +17,6 @@ namespace StakeholderAnalysis.Visualization.ViewModels.ProjectExplorer
         private readonly Analysis analysis;
         private readonly AttitudeImpactDiagram diagram;
         private readonly ViewManager viewManager;
-        private bool isExpanded;
 
         public ProjectExplorerAttitudeImpactDiagramViewModel(ViewModelFactory factory, Analysis analysis,
             AttitudeImpactDiagram attitudeImpactDiagram, ViewManager viewManager) : base(factory)
@@ -25,12 +25,7 @@ namespace StakeholderAnalysis.Visualization.ViewModels.ProjectExplorer
             this.analysis = analysis;
             diagram = attitudeImpactDiagram;
 
-            // TODO: Move this to the properties control
-            Items = new ObservableCollection<ITreeNodeViewModel>
-            {
-                new StringPropertyValueTreeNodeViewModel<AttitudeImpactDiagram>(diagram, nameof(AttitudeImpactDiagram.Name),
-                    "Naam")
-            };
+            Items = new ObservableCollection<ITreeNodeViewModel>();
 
             ContextMenuItems = new ObservableCollection<ContextMenuItemViewModel>
             {
@@ -93,17 +88,9 @@ namespace StakeholderAnalysis.Visualization.ViewModels.ProjectExplorer
             return otherObject as AttitudeImpactDiagram == diagram;
         }
 
-        public bool IsExpandable => true;
+        public bool IsExpandable => false;
 
-        public bool IsExpanded
-        {
-            get => isExpanded;
-            set
-            {
-                isExpanded = value;
-                OnPropertyChanged();
-            }
-        }
+        public bool IsExpanded { get; set; }
 
         public ICommand ToggleIsExpandedCommand => CommandFactory.CreateToggleIsExpandedCommand(this);
 
@@ -119,6 +106,11 @@ namespace StakeholderAnalysis.Visualization.ViewModels.ProjectExplorer
                     OnPropertyChanged(nameof(DisplayName));
                     break;
             }
+        }
+
+        public TwoAxisDiagramPropertiesViewModel GetPropertiesViewModel()
+        {
+            return ViewModelFactory.CreateTwoAxisDiagramPropertiesViewModel(diagram);
         }
     }
 }
