@@ -80,7 +80,12 @@ namespace StakeholderAnalysis.Visualization.ViewModels.ProjectExplorer
         {
             if (e.Action == NotifyCollectionChangedAction.Add)
                 foreach (var attitudeImpactDiagram in e.NewItems.OfType<AttitudeImpactDiagram>())
-                    Items.Add(ViewModelFactory.CreateProjectExplorerDiagramViewModel(attitudeImpactDiagram));
+                {
+                    var projectExplorerDiagramViewModel = ViewModelFactory.CreateProjectExplorerDiagramViewModel(attitudeImpactDiagram);
+                    Items.Add(projectExplorerDiagramViewModel);
+                    if (IsExpanded)
+                        projectExplorerDiagramViewModel.SelectItem?.Execute(null);
+                }
 
             if (e.Action == NotifyCollectionChangedAction.Remove)
                 foreach (var attitudeImpactDiagram in e.OldItems.OfType<AttitudeImpactDiagram>())

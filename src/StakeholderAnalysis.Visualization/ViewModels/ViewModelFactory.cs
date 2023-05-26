@@ -96,9 +96,9 @@ namespace StakeholderAnalysis.Visualization.ViewModels
             return new OnionDiagramPropertiesViewModel(this, onionDiagram);
         }
 
-        public TwoAxisDiagramPropertiesViewModel CreateTwoAxisDiagramPropertiesViewModel()
+        public TwoAxisDiagramPropertiesViewModel CreateTwoAxisDiagramPropertiesViewModel(ITwoAxisDiagram diagram)
         {
-            return new TwoAxisDiagramPropertiesViewModel(this, ViewManager);
+            return new TwoAxisDiagramPropertiesViewModel(this, ViewManager, diagram);
         }
 
         public ProjectExplorerViewModel CreateProjectExplorerViewModel()

@@ -6,6 +6,7 @@ using StakeholderAnalysis.Data;
 using StakeholderAnalysis.Data.ForceFieldDiagrams;
 using StakeholderAnalysis.Gui;
 using StakeholderAnalysis.Visualization.ViewModels.DocumentViews.TwoAxisDiagrams;
+using StakeholderAnalysis.Visualization.ViewModels.Properties.TwoAxisDiagramProperties;
 using StakeholderAnalysis.Visualization.ViewModels.PropertiesTree;
 
 namespace StakeholderAnalysis.Visualization.ViewModels.ProjectExplorer
@@ -15,7 +16,6 @@ namespace StakeholderAnalysis.Visualization.ViewModels.ProjectExplorer
         private readonly Analysis analysis;
         private readonly ForceFieldDiagram diagram;
         private readonly ViewManager viewManager;
-        private bool isExpanded;
 
         public ProjectExplorerForceFieldDiagramViewModel(ViewModelFactory factory, Analysis analysis,
             ForceFieldDiagram forceFieldDiagram, ViewManager viewManager) : base(factory)
@@ -23,11 +23,8 @@ namespace StakeholderAnalysis.Visualization.ViewModels.ProjectExplorer
             this.viewManager = viewManager;
             this.analysis = analysis;
             diagram = forceFieldDiagram;
-            // TODO: Move this to the properties viewmodel (and take care of selection via SelectionManager)
-            Items = new ObservableCollection<ITreeNodeViewModel>
-            {
-                new StringPropertyValueTreeNodeViewModel<ForceFieldDiagram>(diagram, nameof(ForceFieldDiagram.Name), "Naam")
-            };
+
+            Items = new ObservableCollection<ITreeNodeViewModel>();
 
             ContextMenuItems = new ObservableCollection<ContextMenuItemViewModel>
             {
@@ -90,19 +87,11 @@ namespace StakeholderAnalysis.Visualization.ViewModels.ProjectExplorer
             return otherObject as ForceFieldDiagram == diagram;
         }
 
-        public bool IsExpandable => true;
+        public bool IsExpandable => false;
 
-        public bool IsExpanded
-        {
-            get => isExpanded;
-            set
-            {
-                isExpanded = value;
-                OnPropertyChanged();
-            }
-        }
+        public bool IsExpanded { get; set; }
 
-        public ICommand ToggleIsExpandedCommand => CommandFactory.CreateToggleIsExpandedCommand(this);
+        public ICommand ToggleIsExpandedCommand => null;
 
         public ObservableCollection<ITreeNodeViewModel> Items { get; }
 
@@ -116,6 +105,11 @@ namespace StakeholderAnalysis.Visualization.ViewModels.ProjectExplorer
                     OnPropertyChanged(nameof(DisplayName));
                     break;
             }
+        }
+
+        public TwoAxisDiagramPropertiesViewModel GetPropertiesViewModel()
+        {
+            return ViewModelFactory.CreateTwoAxisDiagramPropertiesViewModel(diagram);
         }
     }
 }

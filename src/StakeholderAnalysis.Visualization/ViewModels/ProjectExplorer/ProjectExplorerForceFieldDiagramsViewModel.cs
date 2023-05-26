@@ -4,6 +4,7 @@ using System.Linq;
 using System.Windows.Input;
 using StakeholderAnalysis.Data;
 using StakeholderAnalysis.Data.ForceFieldDiagrams;
+using StakeholderAnalysis.Data.OnionDiagrams;
 using StakeholderAnalysis.Visualization.ViewModels.PropertiesTree;
 
 namespace StakeholderAnalysis.Visualization.ViewModels.ProjectExplorer
@@ -79,7 +80,12 @@ namespace StakeholderAnalysis.Visualization.ViewModels.ProjectExplorer
         {
             if (e.Action == NotifyCollectionChangedAction.Add)
                 foreach (var forceFieldDiagram in e.NewItems.OfType<ForceFieldDiagram>())
-                    Items.Add(ViewModelFactory.CreateProjectExplorerForceFieldDiagramViewModel(forceFieldDiagram));
+                {
+                    var projectExplorerForceFieldDiagramViewModel = ViewModelFactory.CreateProjectExplorerForceFieldDiagramViewModel(forceFieldDiagram);
+                    Items.Add(projectExplorerForceFieldDiagramViewModel);
+                    if (IsExpanded)
+                        projectExplorerForceFieldDiagramViewModel.SelectItem?.Execute(null);
+                }
 
             if (e.Action == NotifyCollectionChangedAction.Remove)
                 foreach (var forceFieldDiagram in e.OldItems.OfType<ForceFieldDiagram>())

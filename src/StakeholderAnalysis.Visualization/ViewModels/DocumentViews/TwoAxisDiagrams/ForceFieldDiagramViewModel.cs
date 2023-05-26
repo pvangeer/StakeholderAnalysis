@@ -93,7 +93,7 @@ namespace StakeholderAnalysis.Visualization.ViewModels.DocumentViews.TwoAxisDiag
 
         public TwoAxisDiagramPropertiesViewModel GetPropertiesViewModel()
         {
-            return ViewModelFactory.CreateTwoAxisDiagramPropertiesViewModel();
+            return ViewModelFactory.CreateTwoAxisDiagramPropertiesViewModel(diagram);
         }
 
         public string DisplayName

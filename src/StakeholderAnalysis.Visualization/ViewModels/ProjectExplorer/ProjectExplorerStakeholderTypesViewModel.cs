@@ -82,7 +82,12 @@ namespace StakeholderAnalysis.Visualization.ViewModels.ProjectExplorer
             {
                 case NotifyCollectionChangedAction.Add:
                     foreach (var stakeholderType in e.NewItems.OfType<StakeholderType>())
-                        Items.Add(ViewModelFactory.CreateProjectExploreStakeholderTypeViewModel(stakeholderType));
+                    {
+                        var projectExplorerStakeholderTypeViewModel = ViewModelFactory.CreateProjectExploreStakeholderTypeViewModel(stakeholderType);
+                        Items.Add(projectExplorerStakeholderTypeViewModel);
+                        if (IsExpanded)
+                            projectExplorerStakeholderTypeViewModel.SelectItem?.Execute(null);
+                    }
                     break;
                 case NotifyCollectionChangedAction.Remove:
                     foreach (var stakeholderType in e.OldItems.OfType<StakeholderType>())
