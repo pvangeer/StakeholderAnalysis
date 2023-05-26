@@ -254,6 +254,30 @@
         </Border>
     </DataTemplate>
 
+    <DataTemplate x:Key="IPropertyCollectionTreeNodesDataTemplate" 
+                  DataType="{x:Type propertiesTree:IPropertyCollectionTreeNodeViewModel}">
+        <ItemsControl
+            ItemsSource="{Binding Items}"
+            Grid.IsSharedSizeScope="True">
+            <ItemsControl.Style>
+                <Style TargetType="ItemsControl">
+                    <Style.Triggers>
+                        <DataTrigger Binding="{Binding CollectionType}"
+                                     Value="{x:Static propertiesTree:CollectionType.PropertyValue}">
+                            <Setter Property="ItemTemplate"
+                                    Value="{StaticResource PropertyValueItemDataTemplate}" />
+                        </DataTrigger>
+                        <DataTrigger Binding="{Binding CollectionType}"
+                                     Value="{x:Static propertiesTree:CollectionType.PropertyItemsCollection}">
+                            <Setter Property="ItemTemplate"
+                                    Value="{DynamicResource IPropertyCollectionItemDataTemplate}" />
+                        </DataTrigger>
+                    </Style.Triggers>
+                </Style>
+            </ItemsControl.Style>
+        </ItemsControl>
+    </DataTemplate>
+
     <DataTemplate x:Key="IPropertyCollectionItemDataTemplate"
                   DataType="propertiesTree:IPropertyCollectionTreeNodeViewModel">
         <StackPanel Orientation="Vertical">
@@ -263,27 +287,9 @@
                     <ColumnDefinition Width="24" />
                     <ColumnDefinition Width="*" />
                 </Grid.ColumnDefinitions>
-                <ItemsControl
-                    Grid.Column="1"
-                    ItemsSource="{Binding Items}"
-                    Grid.IsSharedSizeScope="True">
-                    <ItemsControl.Style>
-                        <Style TargetType="ItemsControl">
-                            <Style.Triggers>
-                                <DataTrigger Binding="{Binding CollectionType}"
-                                             Value="{x:Static propertiesTree:CollectionType.PropertyValue}">
-                                    <Setter Property="ItemTemplate"
-                                            Value="{StaticResource PropertyValueItemDataTemplate}" />
-                                </DataTrigger>
-                                <DataTrigger Binding="{Binding CollectionType}"
-                                             Value="{x:Static propertiesTree:CollectionType.PropertyItemsCollection}">
-                                    <Setter Property="ItemTemplate"
-                                            Value="{DynamicResource IPropertyCollectionItemDataTemplate}" />
-                                </DataTrigger>
-                            </Style.Triggers>
-                        </Style>
-                    </ItemsControl.Style>
-                </ItemsControl>
+                <ContentPresenter Grid.Column="1"
+                                  Content="{Binding .}"
+                                  ContentTemplate="{StaticResource IPropertyCollectionTreeNodesDataTemplate}"/>
             </Grid>
         </StackPanel>
     </DataTemplate>
