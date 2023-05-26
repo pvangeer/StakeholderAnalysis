@@ -4,6 +4,8 @@ using System.Windows.Input;
 using System.Windows.Media;
 using StakeholderAnalysis.Data;
 using StakeholderAnalysis.Visualization.Converters;
+using StakeholderAnalysis.Visualization.ViewModels.Properties;
+using StakeholderAnalysis.Visualization.ViewModels.Properties.OnionDiagramProperties;
 using StakeholderAnalysis.Visualization.ViewModels.PropertiesTree;
 
 namespace StakeholderAnalysis.Visualization.ViewModels.ProjectExplorer
@@ -129,6 +131,11 @@ namespace StakeholderAnalysis.Visualization.ViewModels.ProjectExplorer
         public bool IsViewModelFor(StakeholderType otherStakeholderType)
         {
             return stakeholderType == otherStakeholderType;
+        }
+
+        public StakeholderTypePropertiesViewModel GetPropertiesViewModel()
+        {
+            return ViewModelFactory.CreateStakeholderTypePropertiesViewModel(stakeholderType);
         }
     }
 }

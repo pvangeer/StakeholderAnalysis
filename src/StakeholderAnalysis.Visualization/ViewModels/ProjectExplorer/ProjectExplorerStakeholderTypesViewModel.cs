@@ -47,7 +47,7 @@ namespace StakeholderAnalysis.Visualization.ViewModels.ProjectExplorer
 
         public bool IsSelected { get; set; }
 
-        public ICommand SelectItem { get; }
+        public ICommand SelectItem => null;
 
         public ObservableCollection<ContextMenuItemViewModel> ContextMenuItems { get; }
 

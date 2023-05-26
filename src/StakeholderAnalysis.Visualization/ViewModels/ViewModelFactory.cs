@@ -14,6 +14,7 @@ using StakeholderAnalysis.Visualization.ViewModels.DocumentViews.OnionDiagramVie
 using StakeholderAnalysis.Visualization.ViewModels.DocumentViews.StakeholderTableView;
 using StakeholderAnalysis.Visualization.ViewModels.DocumentViews.TwoAxisDiagrams;
 using StakeholderAnalysis.Visualization.ViewModels.ProjectExplorer;
+using StakeholderAnalysis.Visualization.ViewModels.Properties;
 using StakeholderAnalysis.Visualization.ViewModels.Properties.OnionDiagramProperties;
 using StakeholderAnalysis.Visualization.ViewModels.Properties.TwoAxisDiagramProperties;
 using StakeholderAnalysis.Visualization.ViewModels.PropertiesTree;
@@ -260,6 +261,11 @@ namespace StakeholderAnalysis.Visualization.ViewModels
         public ITreeNodeViewModel CreateOnionDiagramGeneralPropertiesViewModel(OnionDiagram diagram)
         {
             return new OnionDiagramGeneralPropertiesViewModel(this, diagram);
+        }
+
+        public StakeholderTypePropertiesViewModel CreateStakeholderTypePropertiesViewModel(StakeholderType stakeholderType)
+        {
+            return new StakeholderTypePropertiesViewModel(this, stakeholderType);
         }
     }
 }

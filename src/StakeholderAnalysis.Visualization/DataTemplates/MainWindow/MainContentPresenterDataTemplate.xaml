@@ -40,9 +40,8 @@
                                                 AttitudeImpactDiagramTemplate="{StaticResource TwoAxisDiagramDataTemplate}" />
 
     <visualization:PropertiesViewTemplateSelector x:Key="PropertiesViewTemplateSelector"
-                                                  DefaultDataTemplate="{StaticResource NoDataTemplate}"
-                                                  TwoAxisDiagramPropertiesTemplate="{StaticResource IPropertyCollectionTreeNodesDataTemplate}"
-                                                  OnionDiagramPropertiesTemplate="{StaticResource IPropertyCollectionTreeNodesDataTemplate}" />
+                                                  DefaultEmptyDataTemplate="{StaticResource NoDataTemplate}"
+                                                  HasPropertiesDataTemplate="{StaticResource IPropertyCollectionTreeNodesDataTemplate}"/>
 
     <DataTemplate x:Key="DocumentViewDataTemplate" DataType="gui:ViewInfo">
         <ContentPresenter

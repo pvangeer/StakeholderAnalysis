@@ -19,6 +19,8 @@ namespace StakeholderAnalysis.Visualization.Converters.MainContentPresenter
                     return projectExplorerForceFieldDiagramViewModel.GetPropertiesViewModel();
                 case ProjectExplorerAttitudeImpactDiagramViewModel projectExplorerAttitudeImpactDiagramViewModel:
                     return projectExplorerAttitudeImpactDiagramViewModel.GetPropertiesViewModel();
+                case ProjectExplorerStakeholderTypeViewModel projectExplorerStakeholderTypeViewModel:
+                    return projectExplorerStakeholderTypeViewModel.GetPropertiesViewModel();
                 case OnionDiagramViewModel onionDiagramViewModel:
                     return onionDiagramViewModel.GetPropertiesViewModel();
                 case ITwoAxisDiagramViewModel twoAxisDiagramViewModel:
