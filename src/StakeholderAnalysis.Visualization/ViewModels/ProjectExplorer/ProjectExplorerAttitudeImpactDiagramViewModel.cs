@@ -24,6 +24,8 @@ namespace StakeholderAnalysis.Visualization.ViewModels.ProjectExplorer
             this.viewManager = viewManager;
             this.analysis = analysis;
             diagram = attitudeImpactDiagram;
+
+            // TODO: Move this to the properties control
             Items = new ObservableCollection<ITreeNodeViewModel>
             {
                 new StringPropertyValueTreeNodeViewModel<AttitudeImpactDiagram>(diagram, nameof(AttitudeImpactDiagram.Name),

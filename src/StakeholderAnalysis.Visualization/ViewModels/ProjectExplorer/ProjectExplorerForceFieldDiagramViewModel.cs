@@ -23,6 +23,7 @@ namespace StakeholderAnalysis.Visualization.ViewModels.ProjectExplorer
             this.viewManager = viewManager;
             this.analysis = analysis;
             diagram = forceFieldDiagram;
+            // TODO: Move this to the properties viewmodel (and take care of selection via SelectionManager)
             Items = new ObservableCollection<ITreeNodeViewModel>
             {
                 new StringPropertyValueTreeNodeViewModel<ForceFieldDiagram>(diagram, nameof(ForceFieldDiagram.Name), "Naam")
@@ -30,7 +31,7 @@ namespace StakeholderAnalysis.Visualization.ViewModels.ProjectExplorer
 
             ContextMenuItems = new ObservableCollection<ContextMenuItemViewModel>
             {
-                // TODO: Add Openen, Verwijderen, ?
+                // TODO: Add Openen, Verwijderen.. also for other projectexplorer viewmodels.
                 ViewModelFactory.CreateDuplicateMenuItemViewModel(diagram,
                     CommandFactory.CreateCanAlwaysExecuteActionCommand(
                         p => { analysis.ForceFieldDiagrams.Add(diagram.Clone() as ForceFieldDiagram); }))

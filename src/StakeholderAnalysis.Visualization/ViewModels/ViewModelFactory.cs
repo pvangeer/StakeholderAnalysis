@@ -46,14 +46,14 @@ namespace StakeholderAnalysis.Visualization.ViewModels
             };
         }
 
-        public StakeholderTypesViewModel CreateStakeholderTypesViewModel()
+        public ProjectExplorerStakeholderTypesViewModel CreateProjectExplorerStakeholderTypesViewModel()
         {
-            return new StakeholderTypesViewModel(this, Analysis);
+            return new ProjectExplorerStakeholderTypesViewModel(this, Analysis);
         }
 
-        public StakeholderTypeViewModel CreateStakeholderTypeViewModel(StakeholderType stakeholderType)
+        public ProjectExplorerStakeholderTypeViewModel CreateProjectExploreStakeholderTypeViewModel(StakeholderType stakeholderType)
         {
-            return new StakeholderTypeViewModel(this, stakeholderType);
+            return new ProjectExplorerStakeholderTypeViewModel(this, stakeholderType);
         }
 
         public RibbonViewModel CreateRibbonViewModel()

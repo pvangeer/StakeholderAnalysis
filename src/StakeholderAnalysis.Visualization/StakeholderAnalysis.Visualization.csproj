@@ -131,8 +131,8 @@
     <Compile Include="ViewModels\ProjectExplorer\ProjectExplorerAttitudeImpactDiagramViewModel.cs" />
     <Compile Include="ViewModels\ProjectExplorer\ProjectExplorerForceFieldDiagramViewModel.cs" />
     <Compile Include="ViewModels\ProjectExplorer\ProjectExplorerStakeholderOverviewTableViewModel.cs" />
-    <Compile Include="ViewModels\ProjectExplorer\StakeholderTypesViewModel.cs" />
-    <Compile Include="ViewModels\ProjectExplorer\StakeholderTypeViewModel.cs" />
+    <Compile Include="ViewModels\ProjectExplorer\ProjectExplorerStakeholderTypesViewModel.cs" />
+    <Compile Include="ViewModels\ProjectExplorer\ProjectExplorerStakeholderTypeViewModel.cs" />
     <Compile Include="ViewModels\PropertiesTree\ColorPropertyValueTreeNodeViewModel.cs" />
     <Compile Include="ViewModels\PropertiesTree\DoubleUpDownPropertyValueTreeNodeViewModel.cs" />
     <Compile Include="ViewModels\PropertiesTree\IColorPropertyTreeNodeViewModel.cs" />

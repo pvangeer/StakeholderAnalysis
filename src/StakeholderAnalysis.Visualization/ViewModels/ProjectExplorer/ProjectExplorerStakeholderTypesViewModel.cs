@@ -7,18 +7,18 @@ using StakeholderAnalysis.Visualization.ViewModels.PropertiesTree;
 
 namespace StakeholderAnalysis.Visualization.ViewModels.ProjectExplorer
 {
-    public class StakeholderTypesViewModel : ViewModelBase, IPropertyCollectionTreeNodeViewModel
+    public class ProjectExplorerStakeholderTypesViewModel : ViewModelBase, IPropertyCollectionTreeNodeViewModel
     {
         private readonly Analysis analysis;
         private bool isExpanded = true;
 
-        public StakeholderTypesViewModel(ViewModelFactory factory, Analysis analysis) : base(factory)
+        public ProjectExplorerStakeholderTypesViewModel(ViewModelFactory factory, Analysis analysis) : base(factory)
         {
             this.analysis = analysis;
             if (analysis != null)
             {
                 Items = new ObservableCollection<ITreeNodeViewModel>(
-                    analysis?.StakeholderTypes.Select(st => ViewModelFactory.CreateStakeholderTypeViewModel(st)));
+                    analysis?.StakeholderTypes.Select(st => ViewModelFactory.CreateProjectExploreStakeholderTypeViewModel(st)));
                 analysis.StakeholderTypes.CollectionChanged += StakeholderTypesCollectionChanged;
             }
             else
@@ -82,7 +82,7 @@ namespace StakeholderAnalysis.Visualization.ViewModels.ProjectExplorer
             {
                 case NotifyCollectionChangedAction.Add:
                     foreach (var stakeholderType in e.NewItems.OfType<StakeholderType>())
-                        Items.Add(ViewModelFactory.CreateStakeholderTypeViewModel(stakeholderType));
+                        Items.Add(ViewModelFactory.CreateProjectExploreStakeholderTypeViewModel(stakeholderType));
                     break;
                 case NotifyCollectionChangedAction.Remove:
                     foreach (var stakeholderType in e.OldItems.OfType<StakeholderType>())

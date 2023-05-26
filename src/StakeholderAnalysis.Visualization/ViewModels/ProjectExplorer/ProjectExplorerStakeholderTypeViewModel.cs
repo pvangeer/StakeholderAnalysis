@@ -8,14 +8,16 @@ using StakeholderAnalysis.Visualization.ViewModels.PropertiesTree;
 
 namespace StakeholderAnalysis.Visualization.ViewModels.ProjectExplorer
 {
-    public class StakeholderTypeViewModel : ViewModelBase, IPropertyCollectionTreeNodeViewModel
+    public class ProjectExplorerStakeholderTypeViewModel : ViewModelBase, IPropertyCollectionTreeNodeViewModel
     {
         private readonly StakeholderType stakeholderType;
         private bool isExpanded;
 
-        public StakeholderTypeViewModel(ViewModelFactory factory, StakeholderType stakeholderType) : base(factory)
+        public ProjectExplorerStakeholderTypeViewModel(ViewModelFactory factory, StakeholderType stakeholderType) : base(factory)
         {
             this.stakeholderType = stakeholderType;
+
+            //TODO: Move these items to the properties control
             Items = new ObservableCollection<ITreeNodeViewModel>
             {
                 new StringPropertyValueTreeNodeViewModel<StakeholderType>(stakeholderType, nameof(StakeholderType.Name),
@@ -24,9 +26,11 @@ namespace StakeholderAnalysis.Visualization.ViewModels.ProjectExplorer
                     "Kleur"),
                 new StakeholderTypeIconPropertyValueTreeNodeViewModel(stakeholderType)
             };
+            
             ContextMenuItems = new ObservableCollection<ContextMenuItemViewModel>();
             RemoveItemCommand = CommandFactory.CreateRemoveStakeholderTypeCommand(stakeholderType);
             SelectItem = CommandFactory.CreateSelectItemCommand(this);
+
             stakeholderType.PropertyChanged += StakeholderTypePropertyChanged;
         }
 

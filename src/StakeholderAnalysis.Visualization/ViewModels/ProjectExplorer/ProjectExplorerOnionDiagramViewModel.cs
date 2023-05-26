@@ -23,6 +23,7 @@ namespace StakeholderAnalysis.Visualization.ViewModels.ProjectExplorer
             this.viewManager = viewManager;
             this.analysis = analysis;
             diagram = onionDiagram;
+            // TODO: Move these items to the properties viewmodel (and automatically show the correct properties via the selectionmanager)
             Items = new ObservableCollection<ITreeNodeViewModel>
             {
                 new StringPropertyValueTreeNodeViewModel<OnionDiagram>(diagram, nameof(OnionDiagram.Name), "Naam"),
