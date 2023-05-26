@@ -78,7 +78,7 @@ namespace StakeholderAnalysis.Visualization.ViewModels
 
         public ViewManagerViewModel CreateViewManagerViewModel()
         {
-            return new ViewManagerViewModel(this, ViewManager);
+            return new ViewManagerViewModel(this, ViewManager, gui.SelectionManager);
         }
 
         public MessageListViewModel CreateMessageListViewModel()

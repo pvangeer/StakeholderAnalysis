@@ -10,7 +10,7 @@ namespace StakeholderAnalysis.Visualization.ViewModels.ProjectExplorer
     public class StakeholderTypesViewModel : ViewModelBase, IPropertyCollectionTreeNodeViewModel
     {
         private readonly Analysis analysis;
-        private bool isExpanded;
+        private bool isExpanded = true;
 
         public StakeholderTypesViewModel(ViewModelFactory factory, Analysis analysis) : base(factory)
         {
@@ -42,6 +42,12 @@ namespace StakeholderAnalysis.Visualization.ViewModels.ProjectExplorer
         public bool CanOpen => false;
 
         public ICommand OpenViewCommand => null;
+        
+        public bool CanSelect => false;
+
+        public bool IsSelected { get; set; }
+
+        public ICommand SelectItem { get; }
 
         public ObservableCollection<ContextMenuItemViewModel> ContextMenuItems { get; }
 

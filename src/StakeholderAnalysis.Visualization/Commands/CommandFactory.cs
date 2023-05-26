@@ -12,6 +12,7 @@ using StakeholderAnalysis.Visualization.Commands.ProjectExplorer;
 using StakeholderAnalysis.Visualization.Commands.Ribbon;
 using StakeholderAnalysis.Visualization.Commands.StatusBar;
 using StakeholderAnalysis.Visualization.ViewModels.DocumentViews;
+using StakeholderAnalysis.Visualization.ViewModels.ProjectExplorer;
 using StakeholderAnalysis.Visualization.ViewModels.PropertiesTree;
 
 namespace StakeholderAnalysis.Visualization.Commands
@@ -143,6 +144,11 @@ namespace StakeholderAnalysis.Visualization.Commands
             IRankedStakeholder onionDiagramStakeholder) where TStakeholder : class, IRankedStakeholder
         {
             return new MoveStakeholderToTopCommand<TStakeholder>(diagram, onionDiagramStakeholder);
+        }
+
+        public ICommand CreateSelectItemCommand(ISelectable selectable)
+        {
+            return new SelectItemCommand(gui.SelectionManager, selectable);
         }
     }
 }

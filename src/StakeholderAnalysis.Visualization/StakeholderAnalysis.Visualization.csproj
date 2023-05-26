@@ -50,6 +50,7 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Behaviors\AttachInputBindingsBehavior.cs" />
+    <Compile Include="Commands\SelectItemCommand.cs" />
     <Compile Include="Controls\RotaryControl.xaml.cs">
       <DependentUpon>RotaryControl.xaml</DependentUpon>
     </Compile>
@@ -61,20 +62,20 @@
     <Compile Include="PropertiesViewTemplateSelector.cs" />
     <Compile Include="HidableGridSplitter.cs" />
     <Compile Include="ViewModels\PropertiesTree\ISliderPropertyTreeNodeViewModel.cs" />
-    <Compile Include="ViewModels\PropertiesTree\SliderPropertyTreeNodeViewModel.cs" />
-    <Compile Include="ViewModels\PropertiesTree\LineStylePropertyTreeNodeViewModel.cs" />
+    <Compile Include="ViewModels\PropertiesTree\SliderPropertyValueTreeNodeViewModel.cs" />
+    <Compile Include="ViewModels\PropertiesTree\LineStylePropertyValueTreeNodeViewModel.cs" />
     <Compile Include="ViewModels\PropertiesTree\ContextMenuItemViewModel.cs" />
-    <Compile Include="ViewModels\PropertiesTree\FontFamilyPropertyTreeNodeViewModel.cs" />
+    <Compile Include="ViewModels\PropertiesTree\FontFamilyPropertyValueTreeNodeViewModel.cs" />
     <Compile Include="ViewModels\PropertiesTree\IFontFamilyPropertyTreeNodeViewModel.cs" />
     <Compile Include="ViewModels\PropertiesTree\ILineStylePropertyTreeNodeViewModel.cs" />
     <Compile Include="ViewModels\PropertiesTree\PropertyCollectionTreeNodeViewModel.cs" />
     <Compile Include="ViewModels\Properties\TwoAxisDiagramProperties\TwoAxisDiagramPropertiesViewModel.cs" />
     <Compile Include="ViewModels\ProjectExplorer\IStakeholderTypeIconPropertyTreeNodeViewModel.cs" />
-    <Compile Include="ViewModels\ProjectExplorer\StakeholderTypeIconPropertyTreeNodeViewModel.cs" />
+    <Compile Include="ViewModels\ProjectExplorer\StakeholderTypeIconPropertyValueTreeNodeViewModel.cs" />
     <Compile Include="ViewModels\PropertiesTree\IBooleanPropertyTreeNodeViewModel.cs" />
-    <Compile Include="ViewModels\PropertiesTree\BooleanPropertyTreeNodeViewModel.cs" />
+    <Compile Include="ViewModels\PropertiesTree\BooleanPropertyValueTreeNodeViewModel.cs" />
     <Compile Include="ViewModels\PropertiesTree\IStringPropertyTreeNodeViewModel.cs" />
-    <Compile Include="ViewModels\PropertiesTree\StringPropertyTreeNodeViewModel.cs" />
+    <Compile Include="ViewModels\PropertiesTree\StringPropertyValueTreeNodeViewModel.cs" />
     <Compile Include="ViewModels\PropertiesTree\IExpandable.cs" />
     <Compile Include="Commands\OnionDiagramProperties\MoveStakeholderDownCommand.cs" />
     <Compile Include="Commands\OnionDiagramProperties\MoveStakeholderToBottomCommand.cs" />
@@ -132,13 +133,13 @@
     <Compile Include="ViewModels\ProjectExplorer\ProjectExplorerStakeholderOverviewTableViewModel.cs" />
     <Compile Include="ViewModels\ProjectExplorer\StakeholderTypesViewModel.cs" />
     <Compile Include="ViewModels\ProjectExplorer\StakeholderTypeViewModel.cs" />
-    <Compile Include="ViewModels\PropertiesTree\ColorPropertyTreeNodeViewModel.cs" />
-    <Compile Include="ViewModels\PropertiesTree\DoubleUpDownPropertyTreeNodeViewModel.cs" />
+    <Compile Include="ViewModels\PropertiesTree\ColorPropertyValueTreeNodeViewModel.cs" />
+    <Compile Include="ViewModels\PropertiesTree\DoubleUpDownPropertyValueTreeNodeViewModel.cs" />
     <Compile Include="ViewModels\PropertiesTree\IColorPropertyTreeNodeViewModel.cs" />
     <Compile Include="ViewModels\PropertiesTree\IDoubleUpDownPropertyTreeNodeViewModel.cs" />
     <Compile Include="ViewModels\PropertiesTree\IPropertyCollectionTreeNodeViewModel.cs" />
     <Compile Include="ViewModels\PropertiesTree\ITreeNodeViewModel.cs" />
-    <Compile Include="ViewModels\PropertiesTree\PropertyTreeNodeViewModelBase.cs" />
+    <Compile Include="ViewModels\PropertiesTree\PropertyValueTreeNodeViewModelBase.cs" />
     <Compile Include="ViewModels\StatusBar\MessagesViewModel.cs" />
     <Compile Include="ViewModels\StatusBar\StatusBarViewModel.cs" />
     <Compile Include="ViewModels\DocumentViews\TwoAxisDiagrams\ITwoAxisDiagramViewModel.cs" />

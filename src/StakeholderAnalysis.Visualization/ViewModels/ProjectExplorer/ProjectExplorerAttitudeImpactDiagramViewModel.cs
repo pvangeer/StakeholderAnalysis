@@ -26,7 +26,7 @@ namespace StakeholderAnalysis.Visualization.ViewModels.ProjectExplorer
             diagram = attitudeImpactDiagram;
             Items = new ObservableCollection<ITreeNodeViewModel>
             {
-                new StringPropertyTreeNodeViewModel<AttitudeImpactDiagram>(diagram, nameof(AttitudeImpactDiagram.Name),
+                new StringPropertyValueTreeNodeViewModel<AttitudeImpactDiagram>(diagram, nameof(AttitudeImpactDiagram.Name),
                     "Naam")
             };
 
@@ -37,6 +37,7 @@ namespace StakeholderAnalysis.Visualization.ViewModels.ProjectExplorer
                         p => { analysis.AttitudeImpactDiagrams.Add(diagram.Clone() as AttitudeImpactDiagram); }))
             };
 
+            SelectItem = CommandFactory.CreateSelectItemCommand(this); 
             if (diagram != null) diagram.PropertyChanged += DiagramPropertyChanged;
         }
 
@@ -73,6 +74,12 @@ namespace StakeholderAnalysis.Visualization.ViewModels.ProjectExplorer
 
             viewManager.BringToFront(viewInfo);
         });
+
+        public bool CanSelect => true;
+
+        public bool IsSelected { get; set; }
+
+        public ICommand SelectItem { get; }
 
         public ObservableCollection<ContextMenuItemViewModel> ContextMenuItems { get; }
 

@@ -1,9 +1,10 @@
 ﻿using System.Collections.ObjectModel;
 using System.Windows.Input;
+using StakeholderAnalysis.Gui;
 
 namespace StakeholderAnalysis.Visualization.ViewModels.PropertiesTree
 {
-    public interface ITreeNodeViewModel : IExpandable
+    public interface ITreeNodeViewModel : IExpandable, ISelectable
     {
         string DisplayName { get; }
 

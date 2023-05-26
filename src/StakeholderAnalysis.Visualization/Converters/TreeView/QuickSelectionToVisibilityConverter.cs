@@ -10,16 +10,12 @@ namespace StakeholderAnalysis.Visualization.Converters.TreeView
     {
         public object Convert(object value, Type targetType, object parameter, CultureInfo culture)
         {
-            if (value is ConnectionGroupPropertiesViewModel) return Visibility.Visible;
-
-            return Visibility.Collapsed;
+            return value is ConnectionGroupPropertiesViewModel ? Visibility.Visible : Visibility.Collapsed;
         }
 
         public object ConvertBack(object value, Type targetType, object parameter, CultureInfo culture)
         {
-            if (value is Visibility v) return v == Visibility.Visible;
-
-            return false;
+            return value is Visibility v && v == Visibility.Visible;
         }
     }
 }

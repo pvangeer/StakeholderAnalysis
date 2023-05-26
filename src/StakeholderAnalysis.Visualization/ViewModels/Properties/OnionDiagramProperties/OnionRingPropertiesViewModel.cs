@@ -18,14 +18,14 @@ namespace StakeholderAnalysis.Visualization.ViewModels.Properties.OnionDiagramPr
             this.ring = ring;
             Items = new ObservableCollection<ITreeNodeViewModel>
             {
-                new DoubleUpDownPropertyTreeNodeViewModel<OnionRing>(ring, nameof(OnionRing.Percentage), "Grootte", 0.0,
+                new DoubleUpDownPropertyValueTreeNodeViewModel<OnionRing>(ring, nameof(OnionRing.Percentage), "Grootte", 0.0,
                     1.0, 0.01, "0.###"),
-                new ColorPropertyTreeNodeViewModel<OnionRing>(ring, nameof(OnionRing.BackgroundColor),
+                new ColorPropertyValueTreeNodeViewModel<OnionRing>(ring, nameof(OnionRing.BackgroundColor),
                     "Achtergrondkleur"),
-                new ColorPropertyTreeNodeViewModel<OnionRing>(ring, nameof(OnionRing.StrokeColor), "Lijnkleur"),
-                new DoubleUpDownPropertyTreeNodeViewModel<OnionRing>(ring, nameof(OnionRing.StrokeThickness),
+                new ColorPropertyValueTreeNodeViewModel<OnionRing>(ring, nameof(OnionRing.StrokeColor), "Lijnkleur"),
+                new DoubleUpDownPropertyValueTreeNodeViewModel<OnionRing>(ring, nameof(OnionRing.StrokeThickness),
                     "Lijndikte", 0.0, 40.0, 0.5, "0.##"),
-                new LineStylePropertyTreeNodeViewModel<OnionRing>(ring, nameof(OnionRing.LineStyle), "Lijnstijl")
+                new LineStylePropertyValueTreeNodeViewModel<OnionRing>(ring, nameof(OnionRing.LineStyle), "Lijnstijl")
             };
             ContextMenuItems = new ObservableCollection<ContextMenuItemViewModel>();
         }
@@ -41,6 +41,12 @@ namespace StakeholderAnalysis.Visualization.ViewModels.Properties.OnionDiagramPr
         public bool CanOpen => false;
 
         public ICommand OpenViewCommand => null;
+
+        public bool CanSelect => false;
+
+        public bool IsSelected { get; set; }
+
+        public ICommand SelectItem => null;
 
         public ObservableCollection<ContextMenuItemViewModel> ContextMenuItems { get; }
 

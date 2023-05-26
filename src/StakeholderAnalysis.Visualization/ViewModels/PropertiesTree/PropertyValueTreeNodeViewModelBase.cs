@@ -4,9 +4,9 @@ using StakeholderAnalysis.Data;
 
 namespace StakeholderAnalysis.Visualization.ViewModels.PropertiesTree
 {
-    public abstract class PropertyTreeNodeViewModelBase : NotifyPropertyChangedObservable, ITreeNodeViewModel
+    public abstract class PropertyValueTreeNodeViewModelBase : NotifyPropertyChangedObservable, ITreeNodeViewModel
     {
-        public PropertyTreeNodeViewModelBase(string displayName)
+        public PropertyValueTreeNodeViewModelBase(string displayName)
         {
             DisplayName = displayName;
             ContextMenuItems = new ObservableCollection<ContextMenuItemViewModel>();
@@ -36,6 +36,12 @@ namespace StakeholderAnalysis.Visualization.ViewModels.PropertiesTree
         public bool CanOpen => false;
 
         public ICommand OpenViewCommand => null;
+
+        public bool CanSelect => false;
+
+        public bool IsSelected { get; set; }
+
+        public ICommand SelectItem => null;
 
         public ObservableCollection<ContextMenuItemViewModel> ContextMenuItems { get; }
 

@@ -5,13 +5,13 @@ using StakeholderAnalysis.Data;
 
 namespace StakeholderAnalysis.Visualization.ViewModels.PropertiesTree
 {
-    public class SliderPropertyTreeNodeViewModel<TContent> : PropertyTreeNodeViewModelBase,
+    public class SliderPropertyValueTreeNodeViewModel<TContent> : PropertyValueTreeNodeViewModelBase,
         ISliderPropertyTreeNodeViewModel where TContent : INotifyPropertyChangedImplementation
     {
         private readonly PropertyInfo propertyInfo;
         private TContent content;
 
-        public SliderPropertyTreeNodeViewModel(TContent content, string propertyName, string displayName,
+        public SliderPropertyValueTreeNodeViewModel(TContent content, string propertyName, string displayName,
             double minValue, double maxValue)
             : base(displayName)
         {

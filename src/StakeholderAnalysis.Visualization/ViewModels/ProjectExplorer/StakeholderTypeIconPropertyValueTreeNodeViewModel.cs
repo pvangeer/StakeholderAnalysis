@@ -3,12 +3,12 @@ using StakeholderAnalysis.Visualization.ViewModels.PropertiesTree;
 
 namespace StakeholderAnalysis.Visualization.ViewModels.ProjectExplorer
 {
-    public class StakeholderTypeIconPropertyTreeNodeViewModel : PropertyTreeNodeViewModelBase,
+    public class StakeholderTypeIconPropertyValueTreeNodeViewModel : PropertyValueTreeNodeViewModelBase,
         IStakeholderTypeIconPropertyTreeNodeViewModel
     {
         private readonly StakeholderType content;
 
-        public StakeholderTypeIconPropertyTreeNodeViewModel(StakeholderType content) : base("Beeldmerk")
+        public StakeholderTypeIconPropertyValueTreeNodeViewModel(StakeholderType content) : base("Beeldmerk")
         {
             this.content = content;
         }

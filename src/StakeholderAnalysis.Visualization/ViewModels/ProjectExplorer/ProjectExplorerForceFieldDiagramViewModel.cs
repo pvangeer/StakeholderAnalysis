@@ -25,7 +25,7 @@ namespace StakeholderAnalysis.Visualization.ViewModels.ProjectExplorer
             diagram = forceFieldDiagram;
             Items = new ObservableCollection<ITreeNodeViewModel>
             {
-                new StringPropertyTreeNodeViewModel<ForceFieldDiagram>(diagram, nameof(ForceFieldDiagram.Name), "Naam")
+                new StringPropertyValueTreeNodeViewModel<ForceFieldDiagram>(diagram, nameof(ForceFieldDiagram.Name), "Naam")
             };
 
             ContextMenuItems = new ObservableCollection<ContextMenuItemViewModel>
@@ -35,6 +35,7 @@ namespace StakeholderAnalysis.Visualization.ViewModels.ProjectExplorer
                     CommandFactory.CreateCanAlwaysExecuteActionCommand(
                         p => { analysis.ForceFieldDiagrams.Add(diagram.Clone() as ForceFieldDiagram); }))
             };
+            SelectItem = CommandFactory.CreateSelectItemCommand(this);
 
             if (diagram != null) diagram.PropertyChanged += DiagramPropertyChanged;
         }
@@ -71,6 +72,12 @@ namespace StakeholderAnalysis.Visualization.ViewModels.ProjectExplorer
 
             viewManager.BringToFront(viewInfo);
         });
+
+        public bool CanSelect => true;
+
+        public bool IsSelected { get; set; }
+
+        public ICommand SelectItem { get; }
 
         public ObservableCollection<ContextMenuItemViewModel> ContextMenuItems { get; }
 

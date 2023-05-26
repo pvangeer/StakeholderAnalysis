@@ -5,13 +5,13 @@ using StakeholderAnalysis.Data;
 
 namespace StakeholderAnalysis.Visualization.ViewModels.PropertiesTree
 {
-    public class DoubleUpDownPropertyTreeNodeViewModel<TContent> : PropertyTreeNodeViewModelBase,
+    public class DoubleUpDownPropertyValueTreeNodeViewModel<TContent> : PropertyValueTreeNodeViewModelBase,
         IDoubleUpDownPropertyTreeNodeViewModel where TContent : INotifyPropertyChangedImplementation
     {
         private readonly PropertyInfo propertyInfo;
         private TContent content;
 
-        public DoubleUpDownPropertyTreeNodeViewModel(TContent content, string propertyName, string displayName,
+        public DoubleUpDownPropertyValueTreeNodeViewModel(TContent content, string propertyName, string displayName,
             double minValue, double maxValue, double increment, string stringFormat)
             : base(displayName)
         {

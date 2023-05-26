@@ -43,6 +43,7 @@ namespace StakeholderAnalysis.Gui
             Messages = new MessageList();
             IsMagnifierActive = false;
             ViewManager = new ViewManager();
+            SelectionManager = new SelectionManager();
 
             LogMessageAppender.Instance.MessageCollection = this;
         }
@@ -69,6 +70,8 @@ namespace StakeholderAnalysis.Gui
             }
         }
 
+        public SelectionManager SelectionManager { get; set; }
+
         public ViewManager ViewManager { get; }
 
         public StorageState BusyIndicator { get; set; }
@@ -92,7 +95,7 @@ namespace StakeholderAnalysis.Gui
         public event PropertyChangedEventHandler PropertyChanged;
 
         [NotifyPropertyChangedInvocator]
-        public virtual void OnPropertyChanged([CallerMemberName] string propertyName = null)
+        public void OnPropertyChanged([CallerMemberName] string propertyName = null)
         {
             PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(propertyName));
         }

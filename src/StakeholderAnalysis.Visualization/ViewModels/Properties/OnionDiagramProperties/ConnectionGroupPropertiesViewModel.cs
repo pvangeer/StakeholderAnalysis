@@ -11,6 +11,7 @@ namespace StakeholderAnalysis.Visualization.ViewModels.Properties.OnionDiagramPr
         private readonly StakeholderConnectionGroup connectionGroup;
         private readonly OnionDiagram diagram;
         private bool isExpanded;
+        private bool isVisible;
 
         public ConnectionGroupPropertiesViewModel(ViewModelFactory factory, StakeholderConnectionGroup connectionGroup,
             OnionDiagram selectedOnionDiagram) : base(factory)
@@ -21,32 +22,38 @@ namespace StakeholderAnalysis.Visualization.ViewModels.Properties.OnionDiagramPr
 
             Items = new ObservableCollection<ITreeNodeViewModel>
             {
-                new StringPropertyTreeNodeViewModel<StakeholderConnectionGroup>(connectionGroup,
+                new StringPropertyValueTreeNodeViewModel<StakeholderConnectionGroup>(connectionGroup,
                     nameof(StakeholderConnectionGroup.Name), "Naam"),
-                new BooleanPropertyTreeNodeViewModel<StakeholderConnectionGroup>(connectionGroup,
+                new BooleanPropertyValueTreeNodeViewModel<StakeholderConnectionGroup>(connectionGroup,
                     nameof(StakeholderConnectionGroup.Visible), "Weergeven"),
-                new ColorPropertyTreeNodeViewModel<StakeholderConnectionGroup>(connectionGroup,
+                new ColorPropertyValueTreeNodeViewModel<StakeholderConnectionGroup>(connectionGroup,
                     nameof(StakeholderConnectionGroup.StrokeColor), "Lijnkleur"),
-                new DoubleUpDownPropertyTreeNodeViewModel<StakeholderConnectionGroup>(connectionGroup,
+                new DoubleUpDownPropertyValueTreeNodeViewModel<StakeholderConnectionGroup>(connectionGroup,
                     nameof(StakeholderConnectionGroup.StrokeThickness), "Lijndikte", 0.0, 40.0, 0.5, "0.##"),
-                new LineStylePropertyTreeNodeViewModel<StakeholderConnectionGroup>(connectionGroup,
+                new LineStylePropertyValueTreeNodeViewModel<StakeholderConnectionGroup>(connectionGroup,
                     nameof(StakeholderConnectionGroup.LineStyle), "Lijnstijl")
             };
 
             ContextMenuItems = new ObservableCollection<ContextMenuItemViewModel>();
         }
 
-        public bool IsQuickSelection => true;
-
-        public bool IsSelected
+        public bool IsVisible
         {
             get => connectionGroup.Visible;
             set
             {
+                if (value == connectionGroup.Visible)
+                    return;
                 connectionGroup.Visible = value;
                 connectionGroup.OnPropertyChanged(nameof(StakeholderConnectionGroup.Visible));
             }
         }
+
+        public bool CanSelect => false;
+
+        public bool IsSelected { get; set; }
+
+        public ICommand SelectItem => null;
 
         public string DisplayName => connectionGroup.Name;
 

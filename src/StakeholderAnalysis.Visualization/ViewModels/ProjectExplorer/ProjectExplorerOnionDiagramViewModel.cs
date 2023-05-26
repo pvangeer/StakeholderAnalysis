@@ -25,10 +25,10 @@ namespace StakeholderAnalysis.Visualization.ViewModels.ProjectExplorer
             diagram = onionDiagram;
             Items = new ObservableCollection<ITreeNodeViewModel>
             {
-                new StringPropertyTreeNodeViewModel<OnionDiagram>(diagram, nameof(OnionDiagram.Name), "Naam"),
-                new DoubleUpDownPropertyTreeNodeViewModel<OnionDiagram>(diagram, nameof(OnionDiagram.Asymmetry),
+                new StringPropertyValueTreeNodeViewModel<OnionDiagram>(diagram, nameof(OnionDiagram.Name), "Naam"),
+                new DoubleUpDownPropertyValueTreeNodeViewModel<OnionDiagram>(diagram, nameof(OnionDiagram.Asymmetry),
                     "Asymmetrie", 0, 1, 0.1, "0.#####"),
-                new SliderPropertyTreeNodeViewModel<OnionDiagram>(diagram, nameof(OnionDiagram.Orientation), "Orientatie", 0, 360)
+                new SliderPropertyValueTreeNodeViewModel<OnionDiagram>(diagram, nameof(OnionDiagram.Orientation), "Orientatie", 0, 360)
             };
 
             ContextMenuItems = new ObservableCollection<ContextMenuItemViewModel>
@@ -37,6 +37,7 @@ namespace StakeholderAnalysis.Visualization.ViewModels.ProjectExplorer
                     CommandFactory.CreateCanAlwaysExecuteActionCommand(
                         p => { analysis.OnionDiagrams.Add(diagram.Clone() as OnionDiagram); }))
             };
+            SelectItem = CommandFactory.CreateSelectItemCommand(this);
 
             if (diagram != null) diagram.PropertyChanged += DiagramPropertyChanged;
         }
@@ -72,6 +73,12 @@ namespace StakeholderAnalysis.Visualization.ViewModels.ProjectExplorer
 
             viewManager.BringToFront(viewInfo);
         });
+
+        public bool CanSelect => true;
+
+        public bool IsSelected { get; set; }
+
+        public ICommand SelectItem { get; }
 
         public ObservableCollection<ContextMenuItemViewModel> ContextMenuItems { get; }
 

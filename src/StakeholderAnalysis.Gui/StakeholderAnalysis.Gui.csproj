@@ -35,6 +35,8 @@
     <Compile Include="CloseViewCommand.cs" />
     <Compile Include="GuiProjectServices.cs" />
     <Compile Include="INameableViewModel.cs" />
+    <Compile Include="ISelectable.cs" />
+    <Compile Include="SelectionManager.cs" />
     <Compile Include="StakeholderAnalysisGui.cs" />
     <Compile Include="Properties\Annotations.cs" />
     <Compile Include="Properties\AssemblyInfo.cs">

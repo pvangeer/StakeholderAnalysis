@@ -5,13 +5,13 @@ using StakeholderAnalysis.Data;
 
 namespace StakeholderAnalysis.Visualization.ViewModels.PropertiesTree
 {
-    public class BooleanPropertyTreeNodeViewModel<TContent> : PropertyTreeNodeViewModelBase,
+    public class BooleanPropertyValueTreeNodeViewModel<TContent> : PropertyValueTreeNodeViewModelBase,
         IBooleanPropertyTreeNodeViewModel where TContent : INotifyPropertyChangedImplementation
     {
         private readonly PropertyInfo propertyInfo;
         private TContent content;
 
-        public BooleanPropertyTreeNodeViewModel(TContent content, string propertyName, string displayName) : base(
+        public BooleanPropertyValueTreeNodeViewModel(TContent content, string propertyName, string displayName) : base(
             displayName)
         {
             this.content = content;

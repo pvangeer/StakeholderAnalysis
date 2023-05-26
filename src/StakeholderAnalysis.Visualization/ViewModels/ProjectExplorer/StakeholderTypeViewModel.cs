@@ -18,14 +18,15 @@ namespace StakeholderAnalysis.Visualization.ViewModels.ProjectExplorer
             this.stakeholderType = stakeholderType;
             Items = new ObservableCollection<ITreeNodeViewModel>
             {
-                new StringPropertyTreeNodeViewModel<StakeholderType>(stakeholderType, nameof(StakeholderType.Name),
+                new StringPropertyValueTreeNodeViewModel<StakeholderType>(stakeholderType, nameof(StakeholderType.Name),
                     "Naam"),
-                new ColorPropertyTreeNodeViewModel<StakeholderType>(stakeholderType, nameof(StakeholderType.Color),
+                new ColorPropertyValueTreeNodeViewModel<StakeholderType>(stakeholderType, nameof(StakeholderType.Color),
                     "Kleur"),
-                new StakeholderTypeIconPropertyTreeNodeViewModel(stakeholderType)
+                new StakeholderTypeIconPropertyValueTreeNodeViewModel(stakeholderType)
             };
             ContextMenuItems = new ObservableCollection<ContextMenuItemViewModel>();
             RemoveItemCommand = CommandFactory.CreateRemoveStakeholderTypeCommand(stakeholderType);
+            SelectItem = CommandFactory.CreateSelectItemCommand(this);
             stakeholderType.PropertyChanged += StakeholderTypePropertyChanged;
         }
 
@@ -63,6 +64,12 @@ namespace StakeholderAnalysis.Visualization.ViewModels.ProjectExplorer
         public bool CanOpen => false;
 
         public ICommand OpenViewCommand => null;
+
+        public bool CanSelect => true;
+
+        public bool IsSelected { get; set; }
+
+        public ICommand SelectItem { get; }
 
         public ObservableCollection<ContextMenuItemViewModel> ContextMenuItems { get; }
 
