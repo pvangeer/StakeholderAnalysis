@@ -26,7 +26,7 @@ namespace StakeholderAnalysis.Visualization.ViewModels.ProjectExplorer
                     "Kleur"),
                 new StakeholderTypeIconPropertyValueTreeNodeViewModel(stakeholderType)
             };
-            
+
             ContextMenuItems = new ObservableCollection<ContextMenuItemViewModel>();
             RemoveItemCommand = CommandFactory.CreateRemoveStakeholderTypeCommand(stakeholderType);
             SelectItem = CommandFactory.CreateSelectItemCommand(this);

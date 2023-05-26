@@ -11,8 +11,6 @@
         <ResourceDictionary
             Source="/StakeholderAnalysis.Visualization;Component/DataTemplates/Diagrams/OnionDiagram/OnionDiagramDataTemplate.xaml" />
         <ResourceDictionary
-            Source="/StakeholderAnalysis.Visualization;Component/DataTemplates/Properties/OnionDiagramPropertiesDataTemplate.xaml" />
-        <ResourceDictionary
             Source="/StakeholderAnalysis.Visualization;Component/DataTemplates/Properties/TwoAxisDiagramPropertiesDataTemplate.xaml" />
         <ResourceDictionary
             Source="/StakeholderAnalysis.Visualization;Component/DataTemplates/Diagrams/TwoAxisDiagrams/TwoAxisDiagramDataTemplate.xaml" />
@@ -31,7 +29,7 @@
         x:Key="DocumentViewInfoToPropertiesViewInfoConverter" />
 
     <DataTemplate x:Key="NoDataTemplate">
-        <Grid/>
+        <Grid />
     </DataTemplate>
 
     <visualization:DocumentViewTemplateSelector x:Key="DocumentViewTemplateSelector"
@@ -43,8 +41,8 @@
 
     <visualization:PropertiesViewTemplateSelector x:Key="PropertiesViewTemplateSelector"
                                                   DefaultDataTemplate="{StaticResource NoDataTemplate}"
-                                                TwoAxisDiagramPropertiesTemplate="{StaticResource TwoAxisDiagramPropertiesDataTemplate}"
-                                                OnionDiagramPropertiesTemplate="{StaticResource OnionDiagramPropertiesDataTemplate}" />
+                                                  TwoAxisDiagramPropertiesTemplate="{StaticResource TwoAxisDiagramPropertiesDataTemplate}"
+                                                  OnionDiagramPropertiesTemplate="{StaticResource IPropertyCollectionTreeNodesDataTemplate}" />
 
     <DataTemplate x:Key="DocumentViewDataTemplate" DataType="gui:ViewInfo">
         <ContentPresenter
@@ -89,9 +87,9 @@
         </ContentPresenter>
     </DataTemplate>
 
-    <DataTemplate x:Key="PropertiesWindowDataTemplate" DataType="gui:ViewInfo">
+    <DataTemplate x:Key="PropertiesWindowDataTemplate">
         <ContentPresenter
-            Content="{Binding ViewModel, Converter={StaticResource DocumentViewInfoToPropertiesViewInfoConverter}}"
+            Content="{Binding Converter={StaticResource DocumentViewInfoToPropertiesViewInfoConverter}}"
             ContentTemplateSelector="{StaticResource PropertiesViewTemplateSelector}" />
     </DataTemplate>
 
@@ -232,7 +230,7 @@
                 </Grid>
                 <ScrollViewer Grid.Row="1" VerticalScrollBarVisibility="Auto">
                     <ContentPresenter
-                        Content="{Binding ViewManager.ActiveDocument}"
+                        Content="{Binding SelectionManager.Selection}"
                         ContentTemplate="{StaticResource PropertiesWindowDataTemplate}" />
                 </ScrollViewer>
             </Grid>

@@ -6,12 +6,12 @@ namespace StakeholderAnalysis.Visualization.Commands
 {
     public class SelectItemCommand : ICommand
     {
-        private readonly SelectionManager selectionManager;
         private readonly ISelectable selectable;
+        private readonly SelectionManager selectionManager;
 
         public SelectItemCommand(SelectionManager selectionManager, ISelectable selectable)
         {
-            this.selectionManager  = selectionManager;
+            this.selectionManager = selectionManager;
             this.selectable = selectable;
         }
 

@@ -82,9 +82,7 @@ namespace StakeholderAnalysis.Visualization.ViewModels.ProjectExplorer
                     var projectExplorerOnionDiagramViewModel = ViewModelFactory.CreateProjectExplorerOnionDiagramViewModel(onionDiagram);
                     Items.Add(projectExplorerOnionDiagramViewModel);
                     if (IsExpanded)
-                    {
                         projectExplorerOnionDiagramViewModel.SelectItem?.Execute(null);
-                    }
                 }
 
             if (e.Action == NotifyCollectionChangedAction.Remove)

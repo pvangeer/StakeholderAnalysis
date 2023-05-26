@@ -9,7 +9,7 @@ using log4net.Appender;
 using log4net.Repository.Hierarchy;
 using StakeholderAnalysis.Data;
 using StakeholderAnalysis.Data.OnionDiagrams;
-using StakeholderAnalysis.Gui.Annotations;
+using StakeholderAnalysis.Gui.Properties;
 using StakeholderAnalysis.Messaging;
 using StakeholderAnalysis.Storage;
 

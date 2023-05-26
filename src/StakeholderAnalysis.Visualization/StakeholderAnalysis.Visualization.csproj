@@ -140,6 +140,7 @@
     <Compile Include="ViewModels\PropertiesTree\IPropertyCollectionTreeNodeViewModel.cs" />
     <Compile Include="ViewModels\PropertiesTree\ITreeNodeViewModel.cs" />
     <Compile Include="ViewModels\PropertiesTree\PropertyValueTreeNodeViewModelBase.cs" />
+    <Compile Include="ViewModels\SelectionManagerViewModel.cs" />
     <Compile Include="ViewModels\StatusBar\MessagesViewModel.cs" />
     <Compile Include="ViewModels\StatusBar\StatusBarViewModel.cs" />
     <Compile Include="ViewModels\DocumentViews\TwoAxisDiagrams\ITwoAxisDiagramViewModel.cs" />
@@ -212,10 +213,6 @@
     <Page Include="DataTemplates\Properties\TwoAxisDiagramPropertiesDataTemplate.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
-    </Page>
-    <Page Include="DataTemplates\Properties\OnionDiagramPropertiesDataTemplate.xaml">
-      <SubType>Designer</SubType>
-      <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="DataTemplates\Diagrams\OnionDiagram\OnionDiagramConnectionDrawingCanvasDataTemplate.xaml">
       <SubType>Designer</SubType>

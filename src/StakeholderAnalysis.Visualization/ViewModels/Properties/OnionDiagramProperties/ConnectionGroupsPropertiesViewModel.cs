@@ -1,109 +1,49 @@
 ﻿using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using System.Collections.Specialized;
-using System.ComponentModel;
 using System.Linq;
 using System.Windows.Input;
 using StakeholderAnalysis.Data.OnionDiagrams;
-using StakeholderAnalysis.Gui;
-using StakeholderAnalysis.Visualization.ViewModels.DocumentViews.OnionDiagramView;
 using StakeholderAnalysis.Visualization.ViewModels.PropertiesTree;
 
 namespace StakeholderAnalysis.Visualization.ViewModels.Properties.OnionDiagramProperties
 {
-    public class ConnectionGroupsPropertiesViewModel : ViewModelBase, IPropertyCollectionTreeNodeViewModel
+    public class ConnectionGroupsPropertiesViewModel : PropertiesCollectionViewModelBase, IPropertyCollectionTreeNodeViewModel
     {
-        private readonly ViewManager viewManager;
-        private bool isExpanded = true;
+        private readonly OnionDiagram diagram;
 
-        public ConnectionGroupsPropertiesViewModel(ViewModelFactory factory, ViewManager viewManager) : base(factory)
+        public ConnectionGroupsPropertiesViewModel(ViewModelFactory factory, OnionDiagram diagram) : base(factory)
         {
-            this.viewManager = viewManager;
-            viewManager.PropertyChanged += ViewManagerPropertyChanged;
-            SetActiveOnionDiagram();
-            ContextMenuItems = new ObservableCollection<ContextMenuItemViewModel>();
+            this.diagram = diagram;
+            if (this.diagram != null)
+                this.diagram.ConnectionGroups.CollectionChanged += ConnectionGroupsCollectionChanged;
+
+            Items = new ObservableCollection<ITreeNodeViewModel>(
+                this.diagram?.ConnectionGroups.Select(connectionGroup =>
+                    ViewModelFactory.CreateConnectionGroupPropertiesViewModel(connectionGroup, this.diagram)) ??
+                new List<ConnectionGroupPropertiesViewModel>());
         }
 
-        private OnionDiagram SelectedOnionDiagram { get; set; }
+        public override string DisplayName => "Connectiegroepen";
 
-        public string DisplayName => "Connectiegroepen";
+        public override bool CanRemove => false;
 
-        public string IconSourceString { get; }
+        public override bool CanAdd => true;
 
-        public bool CanRemove => false;
-
-        public ICommand RemoveItemCommand => null;
-
-        public bool CanAdd => true;
-
-        public bool CanOpen => false;
-
-        public ICommand OpenViewCommand => null;
-
-        public bool CanSelect => false;
-
-        public bool IsSelected { get; set; }
-
-        public ICommand SelectItem => null;
-
-        public ObservableCollection<ContextMenuItemViewModel> ContextMenuItems { get; }
-
-        public bool IsViewModelFor(object o)
+        public override bool IsViewModelFor(object o)
         {
             return false;
         }
 
-        public ObservableCollection<ITreeNodeViewModel> Items { get; private set; }
+        public ObservableCollection<ITreeNodeViewModel> Items { get; }
 
-        public ICommand ToggleIsExpandedCommand => CommandFactory.CreateToggleIsExpandedCommand(this);
+        public override ICommand ToggleIsExpandedCommand => CommandFactory.CreateToggleIsExpandedCommand(this);
 
-        public ICommand AddItemCommand => CommandFactory.CreateAddConnectionGroupCommand(SelectedOnionDiagram);
+        public override ICommand AddItemCommand => CommandFactory.CreateAddConnectionGroupCommand(diagram);
 
-        public bool IsExpandable => true;
+        public override bool IsExpandable => true;
 
-        public bool IsExpanded
-        {
-            get => isExpanded;
-            set
-            {
-                isExpanded = value;
-                OnPropertyChanged();
-            }
-        }
-
-        public CollectionType CollectionType => CollectionType.PropertyItemsCollection;
-
-        private void ViewManagerPropertyChanged(object sender, PropertyChangedEventArgs e)
-        {
-            switch (e.PropertyName)
-            {
-                case nameof(ViewManager.ActiveDocument):
-                    SetActiveOnionDiagram();
-                    break;
-            }
-        }
-
-        private void SetActiveOnionDiagram()
-        {
-            var activeOnionDiagram = (viewManager?.ActiveDocument?.ViewModel as OnionDiagramViewModel)?.GetDiagram();
-            if (SelectedOnionDiagram != activeOnionDiagram)
-            {
-                if (SelectedOnionDiagram != null)
-                    SelectedOnionDiagram.ConnectionGroups.CollectionChanged += ConnectionGroupsCollectionChanged;
-
-                SelectedOnionDiagram = activeOnionDiagram;
-                Items = new ObservableCollection<ITreeNodeViewModel>(
-                    SelectedOnionDiagram?.ConnectionGroups.Select(connectionGroup =>
-                        ViewModelFactory.CreateConnectionGroupPropertiesViewModel(connectionGroup,
-                            SelectedOnionDiagram)) ??
-                    new List<ConnectionGroupPropertiesViewModel>());
-
-                if (SelectedOnionDiagram != null)
-                    SelectedOnionDiagram.ConnectionGroups.CollectionChanged += ConnectionGroupsCollectionChanged;
-
-                OnPropertyChanged(nameof(Items));
-            }
-        }
+        public override CollectionType CollectionType => CollectionType.PropertyItemsCollection;
 
         private void ConnectionGroupsCollectionChanged(object sender, NotifyCollectionChangedEventArgs e)
         {
@@ -112,7 +52,7 @@ namespace StakeholderAnalysis.Visualization.ViewModels.Properties.OnionDiagramPr
                 case NotifyCollectionChangedAction.Add:
                     foreach (var connectionGroup in e.NewItems.OfType<StakeholderConnectionGroup>())
                         Items.Add(ViewModelFactory.CreateConnectionGroupPropertiesViewModel(connectionGroup,
-                            SelectedOnionDiagram));
+                            diagram));
                     break;
                 case NotifyCollectionChangedAction.Remove:
                     foreach (var connectionGroup in e.OldItems.OfType<StakeholderConnectionGroup>())

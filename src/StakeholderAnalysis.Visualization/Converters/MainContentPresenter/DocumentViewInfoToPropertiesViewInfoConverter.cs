@@ -3,6 +3,7 @@ using System.Globalization;
 using System.Windows.Data;
 using StakeholderAnalysis.Visualization.ViewModels.DocumentViews.OnionDiagramView;
 using StakeholderAnalysis.Visualization.ViewModels.DocumentViews.TwoAxisDiagrams;
+using StakeholderAnalysis.Visualization.ViewModels.ProjectExplorer;
 
 namespace StakeholderAnalysis.Visualization.Converters.MainContentPresenter
 {
@@ -12,6 +13,8 @@ namespace StakeholderAnalysis.Visualization.Converters.MainContentPresenter
         {
             switch (value)
             {
+                case ProjectExplorerOnionDiagramViewModel projectExplorerOnionDiagramViewModel:
+                    return projectExplorerOnionDiagramViewModel.GetPropertiesViewModel();
                 case OnionDiagramViewModel onionDiagramViewModel:
                     return onionDiagramViewModel.GetPropertiesViewModel();
                 case ITwoAxisDiagramViewModel twoAxisDiagramViewModel:

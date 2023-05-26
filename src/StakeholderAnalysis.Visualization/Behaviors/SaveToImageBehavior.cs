@@ -1,5 +1,4 @@
 ﻿using System.Windows;
-using StakeholderAnalysis.Visualization.Commands;
 
 namespace StakeholderAnalysis.Visualization.Behaviors
 {

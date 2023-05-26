@@ -11,16 +11,6 @@ namespace StakeholderAnalysis.Visualization.ViewModels.ProjectExplorer
             gui.SelectionManager.PropertyChanged += SelectionManagerPropertyChanged;
         }
 
-        private void SelectionManagerPropertyChanged(object sender, PropertyChangedEventArgs e)
-        {
-            switch (e.PropertyName)
-            {
-                case nameof(SelectionManager.Selection):
-                    // TODO: Find corresponding viewmodel in project explorer and select this item.
-                    break;
-            }
-        }
-
         public ProjectExplorerOnionDiagramsViewModel OnionDiagramsViewModel =>
             ViewModelFactory.CreateProjectExplorerOnionDiagramsViewModel();
 
@@ -35,6 +25,16 @@ namespace StakeholderAnalysis.Visualization.ViewModels.ProjectExplorer
 
         public ProjectExplorerStakeholderTypesViewModel StakeholderTypesViewModel =>
             ViewModelFactory.CreateProjectExplorerStakeholderTypesViewModel();
+
+        private void SelectionManagerPropertyChanged(object sender, PropertyChangedEventArgs e)
+        {
+            switch (e.PropertyName)
+            {
+                case nameof(SelectionManager.Selection):
+                    // TODO: Find corresponding viewmodel in project explorer and select this item.
+                    break;
+            }
+        }
 
         private void GuiPropertyChanged(object sender, PropertyChangedEventArgs e)
         {

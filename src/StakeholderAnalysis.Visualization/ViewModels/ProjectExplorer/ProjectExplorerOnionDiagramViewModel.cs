@@ -6,6 +6,7 @@ using StakeholderAnalysis.Data;
 using StakeholderAnalysis.Data.OnionDiagrams;
 using StakeholderAnalysis.Gui;
 using StakeholderAnalysis.Visualization.ViewModels.DocumentViews.OnionDiagramView;
+using StakeholderAnalysis.Visualization.ViewModels.Properties.OnionDiagramProperties;
 using StakeholderAnalysis.Visualization.ViewModels.PropertiesTree;
 
 namespace StakeholderAnalysis.Visualization.ViewModels.ProjectExplorer
@@ -117,6 +118,11 @@ namespace StakeholderAnalysis.Visualization.ViewModels.ProjectExplorer
                     OnPropertyChanged(nameof(DisplayName));
                     break;
             }
+        }
+
+        public OnionDiagramPropertiesViewModel GetPropertiesViewModel()
+        {
+            return ViewModelFactory.CreateOnionDiagramPropertiesViewModel(diagram);
         }
     }
 }

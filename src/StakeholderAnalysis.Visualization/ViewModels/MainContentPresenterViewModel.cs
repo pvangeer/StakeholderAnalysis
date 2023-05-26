@@ -14,10 +14,13 @@ namespace StakeholderAnalysis.Visualization.ViewModels
             this.gui = gui;
             if (gui != null) gui.PropertyChanged += GuiPropertyChanged;
             ViewManager = ViewModelFactory.CreateViewManagerViewModel();
+            SelectionManager = ViewModelFactory.CreateSelectionManagerViewModel();
             ProjectExplorerViewModel = ViewModelFactory.CreateProjectExplorerViewModel();
         }
 
         public ViewManagerViewModel ViewManager { get; }
+
+        public SelectionManagerViewModel SelectionManager { get; }
 
         public ProjectExplorerViewModel ProjectExplorerViewModel { get; }
 

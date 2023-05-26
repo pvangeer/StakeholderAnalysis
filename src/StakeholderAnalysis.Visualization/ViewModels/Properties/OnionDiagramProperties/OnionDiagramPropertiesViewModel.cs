@@ -1,46 +1,85 @@
-﻿using System.ComponentModel;
+﻿using System.Collections.ObjectModel;
+using System.Windows.Input;
 using StakeholderAnalysis.Data.OnionDiagrams;
-using StakeholderAnalysis.Gui;
-using StakeholderAnalysis.Visualization.ViewModels.DocumentViews.OnionDiagramView;
+using StakeholderAnalysis.Visualization.ViewModels.PropertiesTree;
 
 namespace StakeholderAnalysis.Visualization.ViewModels.Properties.OnionDiagramProperties
 {
-    public class OnionDiagramPropertiesViewModel : ViewModelBase
+    public abstract class PropertiesCollectionViewModelBase : ViewModelBase, IPropertyCollectionTreeNodeViewModel
     {
-        private readonly ViewManager viewManager;
+        private bool isExpanded = true;
 
-        public OnionDiagramPropertiesViewModel(ViewModelFactory factory, ViewManager viewManager) : base(factory)
+        protected PropertiesCollectionViewModelBase(ViewModelFactory factory) : base(factory)
         {
-            this.viewManager = viewManager;
-            viewManager.PropertyChanged += ViewManagerPropertyChanged;
         }
 
-        public string Name
+        public virtual bool IsExpandable => false;
+
+        public bool IsExpanded
         {
-            get => SelectedOnionDiagram?.Name ?? "";
+            get => isExpanded;
             set
             {
-                if (SelectedOnionDiagram != null) SelectedOnionDiagram.Name = value;
+                isExpanded = value;
+                OnPropertyChanged();
             }
         }
 
-        public OnionRingsPropertiesViewModel OnionRingsViewModel =>
-            ViewModelFactory.CreateOnionRingsPropertiesViewModel();
+        public virtual ICommand ToggleIsExpandedCommand => null;
 
-        private OnionDiagram SelectedOnionDiagram =>
-            (viewManager?.ActiveDocument?.ViewModel as OnionDiagramViewModel)?.GetDiagram();
+        public bool CanSelect => false;
 
-        public ConnectionGroupsPropertiesViewModel ConnectionGroupsViewModel =>
-            ViewModelFactory.CreateConnectionGroupsPropertiesViewModel();
+        public bool IsSelected { get; set; }
 
-        private void ViewManagerPropertyChanged(object sender, PropertyChangedEventArgs e)
+        public ICommand SelectItem => null;
+
+        public virtual string DisplayName { get; }
+
+        public string IconSourceString { get; }
+
+        public virtual bool CanRemove { get; }
+
+        public virtual ICommand RemoveItemCommand => null;
+
+        public virtual bool CanAdd => false;
+
+        public virtual ICommand AddItemCommand => null;
+
+        public bool CanOpen => false;
+
+        public ICommand OpenViewCommand => null;
+
+        public virtual ObservableCollection<ContextMenuItemViewModel> ContextMenuItems =>
+            new ObservableCollection<ContextMenuItemViewModel>();
+
+        public abstract bool IsViewModelFor(object o);
+
+        public virtual ObservableCollection<ITreeNodeViewModel> Items => new ObservableCollection<ITreeNodeViewModel>();
+
+        public abstract CollectionType CollectionType { get; }
+    }
+
+    public class OnionDiagramPropertiesViewModel : PropertiesCollectionViewModelBase
+    {
+        private readonly OnionDiagram diagram;
+
+        public OnionDiagramPropertiesViewModel(ViewModelFactory factory, OnionDiagram diagram) : base(factory)
         {
-            switch (e.PropertyName)
+            this.diagram = diagram;
+            Items = new ObservableCollection<ITreeNodeViewModel>
             {
-                case nameof(ViewManager.ActiveDocument):
-                    OnPropertyChanged(Name);
-                    break;
-            }
+                ViewModelFactory.CreateOnionRingsPropertiesViewModel(diagram),
+                ViewModelFactory.CreateConnectionGroupsPropertiesViewModel(diagram)
+            };
+        }
+
+        public override ObservableCollection<ITreeNodeViewModel> Items { get; }
+
+        public override CollectionType CollectionType => CollectionType.PropertyItemsCollection;
+
+        public override bool IsViewModelFor(object otherObject)
+        {
+            return otherObject as OnionDiagram == diagram;
         }
     }
 }

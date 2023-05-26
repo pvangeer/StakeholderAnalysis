@@ -39,7 +39,7 @@ namespace StakeholderAnalysis.Visualization.ViewModels.ProjectExplorer
                         p => { analysis.AttitudeImpactDiagrams.Add(diagram.Clone() as AttitudeImpactDiagram); }))
             };
 
-            SelectItem = CommandFactory.CreateSelectItemCommand(this); 
+            SelectItem = CommandFactory.CreateSelectItemCommand(this);
             if (diagram != null) diagram.PropertyChanged += DiagramPropertyChanged;
         }
 

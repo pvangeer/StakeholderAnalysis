@@ -27,7 +27,7 @@ namespace StakeholderAnalysis.Visualization.Commands
 
         public bool CanExecute(object parameter)
         {
-            if (canExecuteEvaluator == null) 
+            if (canExecuteEvaluator == null)
                 return true;
 
             return canExecuteEvaluator.Invoke();

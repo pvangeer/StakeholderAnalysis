@@ -12,7 +12,6 @@ using StakeholderAnalysis.Visualization.Commands.ProjectExplorer;
 using StakeholderAnalysis.Visualization.Commands.Ribbon;
 using StakeholderAnalysis.Visualization.Commands.StatusBar;
 using StakeholderAnalysis.Visualization.ViewModels.DocumentViews;
-using StakeholderAnalysis.Visualization.ViewModels.ProjectExplorer;
 using StakeholderAnalysis.Visualization.ViewModels.PropertiesTree;
 
 namespace StakeholderAnalysis.Visualization.Commands

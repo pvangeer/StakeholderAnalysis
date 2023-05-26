@@ -1,10 +1,9 @@
-﻿using System.ComponentModel;
-using System.Windows.Input;
+﻿using System.Windows.Input;
 using StakeholderAnalysis.Data;
 
 namespace StakeholderAnalysis.Gui
 {
-    public interface ISelectable: INotifyPropertyChangedImplementation
+    public interface ISelectable : INotifyPropertyChangedImplementation
     {
         bool CanSelect { get; }
 

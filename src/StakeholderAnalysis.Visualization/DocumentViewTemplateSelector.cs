@@ -3,8 +3,6 @@ using System.Windows.Controls;
 using StakeholderAnalysis.Visualization.ViewModels.DocumentViews.OnionDiagramView;
 using StakeholderAnalysis.Visualization.ViewModels.DocumentViews.StakeholderTableView;
 using StakeholderAnalysis.Visualization.ViewModels.DocumentViews.TwoAxisDiagrams;
-using StakeholderAnalysis.Visualization.ViewModels.Properties.OnionDiagramProperties;
-using StakeholderAnalysis.Visualization.ViewModels.Properties.TwoAxisDiagramProperties;
 
 namespace StakeholderAnalysis.Visualization
 {

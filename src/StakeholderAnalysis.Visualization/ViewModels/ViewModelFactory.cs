@@ -86,14 +86,14 @@ namespace StakeholderAnalysis.Visualization.ViewModels
             return new MessageListViewModel(this, gui?.Messages);
         }
 
-        public ConnectionGroupsPropertiesViewModel CreateConnectionGroupsPropertiesViewModel()
+        public ConnectionGroupsPropertiesViewModel CreateConnectionGroupsPropertiesViewModel(OnionDiagram onionDiagram)
         {
-            return new ConnectionGroupsPropertiesViewModel(this, ViewManager);
+            return new ConnectionGroupsPropertiesViewModel(this, onionDiagram);
         }
 
-        public OnionDiagramPropertiesViewModel CreateOnionDiagramPropertiesViewModel()
+        public OnionDiagramPropertiesViewModel CreateOnionDiagramPropertiesViewModel(OnionDiagram onionDiagram)
         {
-            return new OnionDiagramPropertiesViewModel(this, ViewManager);
+            return new OnionDiagramPropertiesViewModel(this, onionDiagram);
         }
 
         public TwoAxisDiagramPropertiesViewModel CreateTwoAxisDiagramPropertiesViewModel()
@@ -112,9 +112,9 @@ namespace StakeholderAnalysis.Visualization.ViewModels
             return new OnionRingPropertiesViewModel(this, onionRing, selectedOnionDiagram);
         }
 
-        public OnionRingsPropertiesViewModel CreateOnionRingsPropertiesViewModel()
+        public OnionRingsPropertiesViewModel CreateOnionRingsPropertiesViewModel(OnionDiagram onionDiagram)
         {
-            return new OnionRingsPropertiesViewModel(this, ViewManager);
+            return new OnionRingsPropertiesViewModel(this, onionDiagram);
         }
 
         public ConnectionGroupPropertiesViewModel CreateConnectionGroupPropertiesViewModel(
@@ -250,6 +250,11 @@ namespace StakeholderAnalysis.Visualization.ViewModels
                 IconReference =
                     "pack://application:,,,/StakeholderAnalysis.Visualization;component/Resources/duplicate.png"
             };
+        }
+
+        public SelectionManagerViewModel CreateSelectionManagerViewModel()
+        {
+            return new SelectionManagerViewModel(this, gui.SelectionManager);
         }
     }
 }

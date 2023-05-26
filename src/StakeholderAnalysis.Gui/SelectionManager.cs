@@ -6,6 +6,10 @@ namespace StakeholderAnalysis.Gui
 {
     public class SelectionManager : INotifyPropertyChanged
     {
+        public ISelectable Selection { get; private set; }
+
+        public event PropertyChangedEventHandler PropertyChanged;
+
         public void Select(ISelectable objectToSelect)
         {
             if (Selection != null)
@@ -21,12 +25,9 @@ namespace StakeholderAnalysis.Gui
                 Selection.IsSelected = true;
                 Selection.OnPropertyChanged(nameof(ISelectable.IsSelected));
             }
+
             OnPropertyChanged(nameof(Selection));
         }
-
-        public ISelectable Selection { get; private set; }
-
-        public event PropertyChangedEventHandler PropertyChanged;
 
         protected virtual void OnPropertyChanged([CallerMemberName] string propertyName = null)
         {

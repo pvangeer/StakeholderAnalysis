@@ -14,8 +14,7 @@
       <Component Id="Log4Net" Guid="*">
         <File Id="Log4Net.File" 
               KeyPath="yes" 
-              Source="$(var.SolutionDir)\bin\$(var.Configuration)\log4net.dll" 
-              Icon="StakeholderAnalysis.icon"/>
+              Source="$(var.SolutionDir)\bin\$(var.Configuration)\log4net.dll"/>
       </Component>
       <Component Id="Microsoft.Xaml.Behaviors" Guid="*">
         <File Id="Microsoft.Xaml.Behaviors.File" 

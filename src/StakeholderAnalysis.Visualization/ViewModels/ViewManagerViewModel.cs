@@ -7,8 +7,8 @@ namespace StakeholderAnalysis.Visualization.ViewModels
 {
     public class ViewManagerViewModel : ViewModelBase
     {
-        private readonly ViewManager viewManager;
         private readonly SelectionManager selectionManager;
+        private readonly ViewManager viewManager;
 
         public ViewManagerViewModel(ViewModelFactory factory, ViewManager viewManager, SelectionManager selectionManager) : base(factory)
         {
@@ -29,9 +29,7 @@ namespace StakeholderAnalysis.Visualization.ViewModels
                 {
                     viewManager?.BringToFront(viewInfo);
                     if (viewInfo.ViewModel is ISelectable iSelectable)
-                    {
                         selectionManager.Select(iSelectable);
-                    }
                 }
                 else
                 {

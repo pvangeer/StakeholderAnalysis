@@ -76,7 +76,7 @@ namespace StakeholderAnalysis.Visualization.ViewModels.DocumentViews.OnionDiagra
 
         public OnionDiagramPropertiesViewModel GetPropertiesViewModel()
         {
-            return ViewModelFactory.CreateOnionDiagramPropertiesViewModel();
+            return ViewModelFactory.CreateOnionDiagramPropertiesViewModel(diagram);
         }
 
         private void DiagramPropertyChanged(object sender, PropertyChangedEventArgs e)

@@ -42,7 +42,7 @@ namespace StakeholderAnalysis.Visualization.ViewModels.ProjectExplorer
         public bool CanOpen => false;
 
         public ICommand OpenViewCommand => null;
-        
+
         public bool CanSelect => false;
 
         public bool IsSelected { get; set; }

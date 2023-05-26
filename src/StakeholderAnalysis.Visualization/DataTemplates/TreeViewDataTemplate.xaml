@@ -33,7 +33,7 @@
         <Setter Property="IsEnabled" Value="{Binding IsEnabled}" />
     </Style>
 
-    <ObjectDataProvider x:Key="StakeholderTypeIconStyles" 
+    <ObjectDataProvider x:Key="StakeholderTypeIconStyles"
                         MethodName="GetValues"
                         ObjectType="{x:Type System:Enum}">
         <ObjectDataProvider.MethodParameters>
@@ -254,7 +254,7 @@
         </Border>
     </DataTemplate>
 
-    <DataTemplate x:Key="IPropertyCollectionTreeNodesDataTemplate" 
+    <DataTemplate x:Key="IPropertyCollectionTreeNodesDataTemplate"
                   DataType="{x:Type propertiesTree:IPropertyCollectionTreeNodeViewModel}">
         <ItemsControl
             ItemsSource="{Binding Items}"
@@ -289,7 +289,7 @@
                 </Grid.ColumnDefinitions>
                 <ContentPresenter Grid.Column="1"
                                   Content="{Binding .}"
-                                  ContentTemplate="{StaticResource IPropertyCollectionTreeNodesDataTemplate}"/>
+                                  ContentTemplate="{StaticResource IPropertyCollectionTreeNodesDataTemplate}" />
             </Grid>
         </StackPanel>
     </DataTemplate>
