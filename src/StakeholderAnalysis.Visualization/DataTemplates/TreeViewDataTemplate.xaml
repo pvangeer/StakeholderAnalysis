@@ -6,9 +6,9 @@
                     xmlns:converters="clr-namespace:StakeholderAnalysis.Visualization.Converters"
                     xmlns:projectExplorer="clr-namespace:StakeholderAnalysis.Visualization.ViewModels.ProjectExplorer"
                     xmlns:data="clr-namespace:StakeholderAnalysis.Data;assembly=StakeholderAnalysis.Data"
-                    xmlns:System="clr-namespace:System;assembly=mscorlib"
+                    xmlns:system="clr-namespace:System;assembly=mscorlib"
                     xmlns:onionDiagrams="clr-namespace:StakeholderAnalysis.Data.OnionDiagrams;assembly=StakeholderAnalysis.Data"
-                    xmlns:treeView="clr-namespace:StakeholderAnalysis.Visualization.Converters.TreeView"
+                    xmlns:treeviewconverters="clr-namespace:StakeholderAnalysis.Visualization.Converters.TreeView"
                     xmlns:treeView1="clr-namespace:StakeholderAnalysis.Visualization.ViewModels.TreeView">
 
     <ResourceDictionary.MergedDictionaries>
@@ -16,40 +16,12 @@
         <ResourceDictionary Source="/StakeholderAnalysis.Visualization;Component/Theme/DeltaresColorTheme.xaml" />
     </ResourceDictionary.MergedDictionaries>
 
-    <Image x:Key="MenuItemIcon" Width="18" Height="18" Source="{Binding IconReference}" x:Shared="False" />
-
-    <Style x:Key="MenuItemStyle" TargetType="MenuItem">
-        <Style.Triggers>
-            <Trigger Property="IsMouseOver" Value="True">
-                <Setter Property="Background" Value="{StaticResource Deltares.Brushes.MouseOverHighlight}" />
-            </Trigger>
-        </Style.Triggers>
-        <Setter Property="Foreground" Value="Black" />
-        <Setter Property="MinHeight" Value="30" />
-        <Setter Property="Margin" Value="0" />
-        <Setter Property="Command" Value="{Binding Command}" />
-        <Setter Property="Icon" Value="{StaticResource MenuItemIcon}" />
-        <Setter Property="Header" Value="{Binding Header}" />
-        <Setter Property="IsEnabled" Value="{Binding IsEnabled}" />
-    </Style>
-
-    <ObjectDataProvider x:Key="StakeholderTypeIconStyles"
-                        MethodName="GetValues"
-                        ObjectType="{x:Type System:Enum}">
-        <ObjectDataProvider.MethodParameters>
-            <x:Type TypeName="data:StakeholderIconType" />
-        </ObjectDataProvider.MethodParameters>
-    </ObjectDataProvider>
-
-    <ObjectDataProvider x:Key="LineStyles" MethodName="GetValues"
-                        ObjectType="{x:Type System:Enum}">
-        <ObjectDataProvider.MethodParameters>
-            <x:Type TypeName="onionDiagrams:LineStyle" />
-        </ObjectDataProvider.MethodParameters>
-    </ObjectDataProvider>
-
     <converters:IconTypeToIconSourceConverter x:Key="IconTypeToIconSourceConverter" />
     <converters:LineStyleToDashArrayConverter x:Key="LineStyleToStrokeArrayConverter" />
+    <BooleanToVisibilityConverter x:Key="BooleanToVisibilityConverter" />
+    <treeviewconverters:QuickSelectionToVisibilityConverter x:Key="QuickSelectionToVisibilityConverter" />
+    <treeviewconverters:SourceStringToVisibilityConverter x:Key="SourceStringToVisibilityConverter" />
+    <treeviewconverters:HasItemsToVisibilityConverter x:Key="HasItemsToVisibilityConverter" />
 
     <DataTemplate x:Key="ColorPropertyDataTemplate" DataType="treeView1:IColorPropertyTreeNodeViewModel">
         <xctk:ColorPicker
@@ -58,6 +30,14 @@
     </DataTemplate>
 
     <DataTemplate x:Key="LineStyleDataTemplate" DataType="{x:Type treeView1:ILineStylePropertyTreeNodeViewModel}">
+        <DataTemplate.Resources>
+            <ObjectDataProvider x:Key="LineStyles" MethodName="GetValues"
+                                ObjectType="{x:Type system:Enum}">
+                <ObjectDataProvider.MethodParameters>
+                    <x:Type TypeName="onionDiagrams:LineStyle" />
+                </ObjectDataProvider.MethodParameters>
+            </ObjectDataProvider>
+        </DataTemplate.Resources>
         <ComboBox
             ItemsSource="{Binding Source={StaticResource LineStyles}}"
             SelectedItem="{Binding LineStyleValue}">
@@ -102,6 +82,15 @@
 
     <DataTemplate x:Key="StakeholderTypeIconDataTemplate"
                   DataType="projectExplorer:IStakeholderTypeIconPropertyTreeNodeViewModel">
+        <DataTemplate.Resources>
+            <ObjectDataProvider x:Key="StakeholderTypeIconStyles"
+                                MethodName="GetValues"
+                                ObjectType="{x:Type system:Enum}">
+                <ObjectDataProvider.MethodParameters>
+                    <x:Type TypeName="data:StakeholderIconType" />
+                </ObjectDataProvider.MethodParameters>
+            </ObjectDataProvider>
+        </DataTemplate.Resources>
         <ComboBox
             ItemsSource="{Binding Source={StaticResource StakeholderTypeIconStyles}}"
             SelectedItem="{Binding IconTypeValue}">
@@ -142,26 +131,76 @@
                                                          DoubleUpDownTemplate="{StaticResource DoubleUpDownPropertyDataTemplate}"
                                                          SliderTemplate="{StaticResource SliderPropertyDataTemplate}" />
 
-    <BooleanToVisibilityConverter x:Key="BooleanToVisibilityConverter" />
-    <treeView:QuickSelectionToVisibilityConverter x:Key="QuickSelectionToVisibilityConverter" />
-    <treeView:SourceStringToVisibilityConverter x:Key="SourceStringToVisibilityConverter" />
-    <treeView:HasItemsToVisibilityConverter x:Key="HasItemsToVisibilityConverter" />
 
     <DataTemplate x:Key="ITreeNodeItemDataTemplate" DataType="treeView1:ITreeNodeViewModel">
         <Border BorderThickness="0">
             <Border.Style>
                 <Style TargetType="Border" BasedOn="{StaticResource TreeNodeBorderStyle}">
                     <Style.Triggers>
-                        <DataTrigger Binding="{Binding CanOpen}" Value="True">
+                        <MultiDataTrigger>
+                            <MultiDataTrigger.Conditions>
+                                <Condition Binding="{Binding CanOpen}" Value="True" />
+                                <Condition Binding="{Binding CanSelect}" Value="True" />
+                            </MultiDataTrigger.Conditions>
+                            <MultiDataTrigger.Setters>
+                                <Setter Property="behaviors:AttachInputBindingsBehavior.InputBindings">
+                                    <Setter.Value>
+                                        <InputBindingCollection>
+                                            <MouseBinding MouseAction="LeftDoubleClick" Command="{Binding OpenViewCommand}" />
+                                            <MouseBinding MouseAction="LeftClick" Command="{Binding SelectItemCommand}" />
+                                        </InputBindingCollection>
+                                    </Setter.Value>
+                                </Setter>
+                            </MultiDataTrigger.Setters>
+                        </MultiDataTrigger>
+                        <MultiDataTrigger>
+                            <MultiDataTrigger.Conditions>
+                                <Condition Binding="{Binding CanOpen}" Value="True" />
+                                <Condition Binding="{Binding CanSelect}" Value="False" />
+                            </MultiDataTrigger.Conditions>
+                            <MultiDataTrigger.Setters>
+                                <Setter Property="behaviors:AttachInputBindingsBehavior.InputBindings">
+                                    <Setter.Value>
+                                        <InputBindingCollection>
+                                            <MouseBinding MouseAction="LeftDoubleClick" Command="{Binding OpenViewCommand}" />
+                                        </InputBindingCollection>
+                                    </Setter.Value>
+                                </Setter>
+                            </MultiDataTrigger.Setters>
+                        </MultiDataTrigger>
+                        <MultiDataTrigger>
+                            <MultiDataTrigger.Conditions>
+                                <Condition Binding="{Binding CanOpen}" Value="False" />
+                                <Condition Binding="{Binding CanSelect}" Value="True" />
+                            </MultiDataTrigger.Conditions>
+                            <MultiDataTrigger.Setters>
+                                <Setter Property="behaviors:AttachInputBindingsBehavior.InputBindings">
+                                    <Setter.Value>
+                                        <InputBindingCollection>
+                                            <MouseBinding MouseAction="LeftClick" Command="{Binding SelectItemCommand}" />
+                                        </InputBindingCollection>
+                                    </Setter.Value>
+                                </Setter>
+                            </MultiDataTrigger.Setters>
+                        </MultiDataTrigger>
+                        <!--<DataTrigger Binding="{Binding CanOpen}" Value="True">
                             <Setter Property="behaviors:AttachInputBindingsBehavior.InputBindings">
                                 <Setter.Value>
                                     <InputBindingCollection>
                                         <MouseBinding MouseAction="LeftDoubleClick" Command="{Binding OpenViewCommand}" />
-                                        <MouseBinding MouseAction="LeftClick" Command="{Binding SelectItem}" />
                                     </InputBindingCollection>
                                 </Setter.Value>
                             </Setter>
                         </DataTrigger>
+                        <DataTrigger Binding="{Binding CanSelect}" Value="True">
+                            <Setter Property="behaviors:AttachInputBindingsBehavior.InputBindings">
+                                <Setter.Value>
+                                    <InputBindingCollection>
+                                        <MouseBinding MouseAction="LeftClick" Command="{Binding SelectItemCommand}" />
+                                    </InputBindingCollection>
+                                </Setter.Value>
+                            </Setter>
+                        </DataTrigger>-->
                         <DataTrigger Value="True">
                             <DataTrigger.Binding>
                                 <Binding Path="IsSelected" />

@@ -69,4 +69,21 @@
             </Setter.Value>
         </Setter>
     </Style>
+
+    <Image x:Key="MenuItemIcon" Width="18" Height="18" Source="{Binding IconReference}" x:Shared="False" />
+
+    <Style x:Key="MenuItemStyle" TargetType="MenuItem">
+        <Style.Triggers>
+            <Trigger Property="IsMouseOver" Value="True">
+                <Setter Property="Background" Value="{StaticResource Deltares.Brushes.MouseOverHighlight}" />
+            </Trigger>
+        </Style.Triggers>
+        <Setter Property="Foreground" Value="Black" />
+        <Setter Property="MinHeight" Value="30" />
+        <Setter Property="Margin" Value="0" />
+        <Setter Property="Command" Value="{Binding Command}" />
+        <Setter Property="Icon" Value="{StaticResource MenuItemIcon}" />
+        <Setter Property="Header" Value="{Binding Header}" />
+        <Setter Property="IsEnabled" Value="{Binding IsEnabled}" />
+    </Style>
 </ResourceDictionary>

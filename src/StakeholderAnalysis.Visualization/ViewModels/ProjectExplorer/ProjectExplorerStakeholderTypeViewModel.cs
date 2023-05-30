@@ -21,7 +21,7 @@ namespace StakeholderAnalysis.Visualization.ViewModels.ProjectExplorer
 
             ContextMenuItems = new ObservableCollection<ContextMenuItemViewModel>();
             RemoveItemCommand = CommandFactory.CreateRemoveStakeholderTypeCommand(stakeholderType);
-            SelectItem = CommandFactory.CreateSelectItemCommand(this);
+            SelectItemCommand = CommandFactory.CreateSelectItemCommand(this);
 
             stakeholderType.PropertyChanged += StakeholderTypePropertyChanged;
         }
@@ -52,7 +52,7 @@ namespace StakeholderAnalysis.Visualization.ViewModels.ProjectExplorer
 
         public bool IsSelected { get; set; }
 
-        public ICommand SelectItem { get; }
+        public ICommand SelectItemCommand { get; }
 
         public ObservableCollection<ContextMenuItemViewModel> ContextMenuItems { get; }
 

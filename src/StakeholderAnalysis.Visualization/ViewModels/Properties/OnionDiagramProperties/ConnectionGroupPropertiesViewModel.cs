@@ -53,7 +53,7 @@ namespace StakeholderAnalysis.Visualization.ViewModels.Properties.OnionDiagramPr
 
         public bool IsSelected { get; set; }
 
-        public ICommand SelectItem => null;
+        public ICommand SelectItemCommand => null;
 
         public string DisplayName => connectionGroup.Name;
 

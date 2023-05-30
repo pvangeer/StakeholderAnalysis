@@ -17,7 +17,7 @@ namespace StakeholderAnalysis.Visualization.Commands
 
         public bool CanExecute(object parameter)
         {
-            return true;
+            return selectable.CanSelect;
         }
 
         public void Execute(object o)

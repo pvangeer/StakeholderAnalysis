@@ -30,7 +30,6 @@ namespace StakeholderAnalysis.Visualization.ViewModels.ProjectExplorer
                     CommandFactory.CreateCanAlwaysExecuteActionCommand(
                         p => { analysis.OnionDiagrams.Add(diagram.Clone() as OnionDiagram); }))
             };
-            
 
             if (diagram != null) diagram.PropertyChanged += DiagramPropertyChanged;
         }

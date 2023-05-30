@@ -16,7 +16,7 @@ namespace StakeholderAnalysis.Visualization.ViewModels.ProjectExplorer
         {
             this.viewManager = viewManager;
             ContextMenuItems = new ObservableCollection<ContextMenuItemViewModel>();
-            SelectItem = CommandFactory.CreateSelectItemCommand(this);
+            SelectItemCommand = CommandFactory.CreateSelectItemCommand(this);
         }
 
         public string DisplayName => "Stakeholders";
@@ -51,7 +51,7 @@ namespace StakeholderAnalysis.Visualization.ViewModels.ProjectExplorer
 
         public bool IsSelected { get; set; }
 
-        public ICommand SelectItem { get; }
+        public ICommand SelectItemCommand { get; }
 
         public ObservableCollection<ContextMenuItemViewModel> ContextMenuItems { get; }
 

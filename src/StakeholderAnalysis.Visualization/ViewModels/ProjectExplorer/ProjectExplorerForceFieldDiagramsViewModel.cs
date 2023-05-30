@@ -59,7 +59,7 @@ namespace StakeholderAnalysis.Visualization.ViewModels.ProjectExplorer
 
         public bool IsSelected { get; set; }
 
-        public ICommand SelectItem { get; }
+        public ICommand SelectItemCommand { get; }
 
         public ObservableCollection<ContextMenuItemViewModel> ContextMenuItems { get; }
 
@@ -84,7 +84,7 @@ namespace StakeholderAnalysis.Visualization.ViewModels.ProjectExplorer
                     var projectExplorerForceFieldDiagramViewModel = ViewModelFactory.CreateProjectExplorerForceFieldDiagramViewModel(forceFieldDiagram);
                     Items.Add(projectExplorerForceFieldDiagramViewModel);
                     if (IsExpanded)
-                        projectExplorerForceFieldDiagramViewModel.SelectItem?.Execute(null);
+                        projectExplorerForceFieldDiagramViewModel.SelectItemCommand?.Execute(null);
                 }
 
             if (e.Action == NotifyCollectionChangedAction.Remove)

@@ -33,7 +33,7 @@ namespace StakeholderAnalysis.Visualization.ViewModels.ProjectExplorer
                     CommandFactory.CreateCanAlwaysExecuteActionCommand(
                         p => { analysis.ForceFieldDiagrams.Add(diagram.Clone() as ForceFieldDiagram); }))
             };
-            SelectItem = CommandFactory.CreateSelectItemCommand(this);
+            SelectItemCommand = CommandFactory.CreateSelectItemCommand(this);
 
             if (diagram != null) diagram.PropertyChanged += DiagramPropertyChanged;
         }
@@ -75,7 +75,7 @@ namespace StakeholderAnalysis.Visualization.ViewModels.ProjectExplorer
 
         public bool IsSelected { get; set; }
 
-        public ICommand SelectItem { get; }
+        public ICommand SelectItemCommand { get; }
 
         public ObservableCollection<ContextMenuItemViewModel> ContextMenuItems { get; }
 

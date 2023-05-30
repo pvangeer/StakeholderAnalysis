@@ -30,7 +30,7 @@ namespace StakeholderAnalysis.Visualization.ViewModels.Properties
 
         public bool IsSelected { get; set; }
 
-        public ICommand SelectItem => null;
+        public ICommand SelectItemCommand => null;
 
         public virtual string DisplayName => "";
 

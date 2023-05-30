@@ -34,7 +34,7 @@ namespace StakeholderAnalysis.Visualization.ViewModels.ProjectExplorer
                         p => { analysis.AttitudeImpactDiagrams.Add(diagram.Clone() as AttitudeImpactDiagram); }))
             };
 
-            SelectItem = CommandFactory.CreateSelectItemCommand(this);
+            SelectItemCommand = CommandFactory.CreateSelectItemCommand(this);
             if (diagram != null) diagram.PropertyChanged += DiagramPropertyChanged;
         }
 
@@ -76,7 +76,7 @@ namespace StakeholderAnalysis.Visualization.ViewModels.ProjectExplorer
 
         public bool IsSelected { get; set; }
 
-        public ICommand SelectItem { get; }
+        public ICommand SelectItemCommand { get; }
 
         public ObservableCollection<ContextMenuItemViewModel> ContextMenuItems { get; }
 

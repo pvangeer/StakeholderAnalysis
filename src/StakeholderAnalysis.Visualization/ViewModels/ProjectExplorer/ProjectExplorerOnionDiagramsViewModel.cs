@@ -53,7 +53,7 @@ namespace StakeholderAnalysis.Visualization.ViewModels.ProjectExplorer
 
         public bool IsSelected { get; set; }
 
-        public ICommand SelectItem => null;
+        public ICommand SelectItemCommand => null;
 
         public bool IsExpandable => true;
 
@@ -87,7 +87,7 @@ namespace StakeholderAnalysis.Visualization.ViewModels.ProjectExplorer
                             ViewModelFactory.CreateProjectExplorerOnionDiagramViewModel(onionDiagram);
                         Items.Add(projectExplorerOnionDiagramViewModel);
                         if (IsExpanded)
-                            projectExplorerOnionDiagramViewModel.SelectItem?.Execute(null);
+                            projectExplorerOnionDiagramViewModel.SelectItemCommand?.Execute(null);
                     }
                     break;
                 case NotifyCollectionChangedAction.Remove:

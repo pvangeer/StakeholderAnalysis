@@ -9,7 +9,7 @@ namespace StakeholderAnalysis.Visualization.ViewModels.ProjectExplorer
         protected ProjectExplorerItemViewModelBase(ViewModelFactory factory) : base(factory)
         {
             Items = new ObservableCollection<ITreeNodeViewModel>();
-            SelectItem = CommandFactory.CreateSelectItemCommand(this);
+            SelectItemCommand = CommandFactory.CreateSelectItemCommand(this);
         }
 
         public abstract string DisplayName { get; }
@@ -30,7 +30,7 @@ namespace StakeholderAnalysis.Visualization.ViewModels.ProjectExplorer
         
         public bool IsSelected { get; set; }
         
-        public ICommand SelectItem { get; }
+        public ICommand SelectItemCommand { get; }
         
         public ObservableCollection<ContextMenuItemViewModel> ContextMenuItems { get; protected set; }
         
