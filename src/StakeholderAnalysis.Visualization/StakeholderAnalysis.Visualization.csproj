@@ -61,6 +61,7 @@
     <Compile Include="Converters\MainContentPresenter\DocumentViewInfoToPropertiesViewInfoConverter.cs" />
     <Compile Include="PropertiesViewTemplateSelector.cs" />
     <Compile Include="HidableGridSplitter.cs" />
+    <Compile Include="Converters\ObjectToPropertiesViewModelConverter.cs" />
     <Compile Include="ViewModels\ProjectExplorer\ProjectExplorerItemViewModelBase.cs" />
     <Compile Include="ViewModels\TreeView\CollectionType.cs" />
     <Compile Include="ViewModels\TreeView\OnionDiagramGeneralPropertiesViewModel.cs" />

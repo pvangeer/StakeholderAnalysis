@@ -55,6 +55,8 @@ namespace StakeholderAnalysis.Visualization.ViewModels.Properties.OnionDiagramPr
 
         public ICommand SelectItemCommand => null;
 
+        public object GetSelectableObject() => null;
+
         public string DisplayName => connectionGroup.Name;
 
         public string IconSourceString { get; }

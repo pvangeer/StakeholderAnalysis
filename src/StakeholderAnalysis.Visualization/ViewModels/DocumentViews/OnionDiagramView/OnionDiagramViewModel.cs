@@ -9,7 +9,7 @@ using StakeholderAnalysis.Visualization.ViewModels.Properties.OnionDiagramProper
 
 namespace StakeholderAnalysis.Visualization.ViewModels.DocumentViews.OnionDiagramView
 {
-    public class OnionDiagramViewModel : ViewModelBase, ISelectionRegister, INameableViewModel
+    public class OnionDiagramViewModel : ViewModelBase, ISelectionRegister, INameableViewModel, ISelectable
     {
         private readonly OnionDiagram diagram;
         private object selectedObject;
@@ -50,20 +50,6 @@ namespace StakeholderAnalysis.Visualization.ViewModels.DocumentViews.OnionDiagra
             }
         }
 
-        public bool IsSelected(object o)
-        {
-            return selectedObject == o;
-        }
-
-        public void Select(object o)
-        {
-            var oldSelectedObject = selectedObject;
-            selectedObject = o;
-
-            RaiseIsSelectedPropertyChanged(oldSelectedObject);
-            RaiseIsSelectedPropertyChanged(selectedObject);
-        }
-
         public bool IsViewModelFor(OnionDiagram otherDiagram)
         {
             return diagram == otherDiagram;
@@ -98,5 +84,31 @@ namespace StakeholderAnalysis.Visualization.ViewModels.DocumentViews.OnionDiagra
                 viewModel?.OnPropertyChanged(nameof(OnionDiagramStakeholderViewModel.IsSelectedStakeholder));
             }
         }
+
+        public bool CanSelect => true;
+
+        public bool IsSelected { get; set; }
+
+        public ICommand SelectItemCommand => null;
+
+        public object GetSelectableObject()
+        {
+            return diagram;
+        }
+
+        public bool IsSelectedObject(object o)
+        {
+            return selectedObject == o;
+        }
+
+        public void SelectObject(object o)
+        {
+            var oldSelectedObject = selectedObject;
+            selectedObject = o;
+
+            RaiseIsSelectedPropertyChanged(oldSelectedObject);
+            RaiseIsSelectedPropertyChanged(selectedObject);
+        }
+
     }
 }

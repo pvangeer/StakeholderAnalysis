@@ -2,8 +2,8 @@
 {
     public interface ISelectionRegister
     {
-        bool IsSelected(object o);
+        bool IsSelectedObject(object o);
 
-        void Select(object o);
+        void SelectObject(object o);
     }
 }

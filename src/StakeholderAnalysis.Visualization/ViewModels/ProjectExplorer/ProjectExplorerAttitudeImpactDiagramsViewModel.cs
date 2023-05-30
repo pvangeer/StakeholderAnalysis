@@ -59,7 +59,8 @@ namespace StakeholderAnalysis.Visualization.ViewModels.ProjectExplorer
 
         public bool IsSelected { get; set; }
 
-        public ICommand SelectItemCommand { get; }
+        public ICommand SelectItemCommand => null;
+        public object GetSelectableObject() { return null; }
 
         public ObservableCollection<ContextMenuItemViewModel> ContextMenuItems { get; }
 
@@ -70,7 +71,7 @@ namespace StakeholderAnalysis.Visualization.ViewModels.ProjectExplorer
 
         public string DisplayName => "Houding - impact";
 
-        public string IconSourceString { get; }
+        public string IconSourceString => null;
 
         public bool CanRemove => false;
 

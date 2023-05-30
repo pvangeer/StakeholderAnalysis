@@ -54,6 +54,8 @@ namespace StakeholderAnalysis.Visualization.ViewModels.ProjectExplorer
 
         public ICommand SelectItemCommand { get; }
 
+        public object GetSelectableObject() => stakeholderType;
+
         public ObservableCollection<ContextMenuItemViewModel> ContextMenuItems { get; }
 
         public bool IsViewModelFor(object o)

@@ -78,6 +78,11 @@ namespace StakeholderAnalysis.Visualization.ViewModels.ProjectExplorer
 
         public ICommand SelectItemCommand { get; }
 
+        public object GetSelectableObject()
+        {
+            return diagram;
+        }
+
         public ObservableCollection<ContextMenuItemViewModel> ContextMenuItems { get; }
 
         public string IconSourceString =>

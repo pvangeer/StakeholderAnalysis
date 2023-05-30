@@ -48,6 +48,8 @@ namespace StakeholderAnalysis.Visualization.ViewModels.Properties.OnionDiagramPr
 
         public ICommand SelectItemCommand => null;
 
+        public object GetSelectableObject() => null;
+
         public ObservableCollection<ContextMenuItemViewModel> ContextMenuItems { get; }
 
         public bool IsViewModelFor(object o)

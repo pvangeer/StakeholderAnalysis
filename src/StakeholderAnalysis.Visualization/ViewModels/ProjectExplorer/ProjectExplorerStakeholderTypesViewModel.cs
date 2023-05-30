@@ -3,7 +3,6 @@ using System.Collections.Specialized;
 using System.Linq;
 using System.Windows.Input;
 using StakeholderAnalysis.Data;
-using StakeholderAnalysis.Data.OnionDiagrams;
 using StakeholderAnalysis.Visualization.ViewModels.TreeView;
 
 namespace StakeholderAnalysis.Visualization.ViewModels.ProjectExplorer
@@ -54,6 +53,8 @@ namespace StakeholderAnalysis.Visualization.ViewModels.ProjectExplorer
         public bool IsSelected { get; set; }
 
         public ICommand SelectItemCommand => null;
+
+        public object GetSelectableObject() => null;
 
         public bool IsExpandable => true;
 

@@ -5,7 +5,8 @@
                     xmlns:gui="clr-namespace:StakeholderAnalysis.Gui;assembly=StakeholderAnalysis.Gui"
                     xmlns:behaviors="clr-namespace:StakeholderAnalysis.Visualization.Behaviors"
                     xmlns:xctk="http://schemas.xceed.com/wpf/xaml/toolkit"
-                    xmlns:mainContentPresenter="clr-namespace:StakeholderAnalysis.Visualization.Converters.MainContentPresenter">
+                    xmlns:mainContentPresenter="clr-namespace:StakeholderAnalysis.Visualization.Converters.MainContentPresenter"
+                    xmlns:converters="clr-namespace:StakeholderAnalysis.Visualization.Converters">
 
     <ResourceDictionary.MergedDictionaries>
         <ResourceDictionary
@@ -27,6 +28,7 @@
     <mainContentPresenter:IsProneToExportConverter x:Key="IsProneToExportConverter" />
     <mainContentPresenter:DocumentViewInfoToPropertiesViewInfoConverter
         x:Key="DocumentViewInfoToPropertiesViewInfoConverter" />
+    <converters:ObjectToPropertiesViewModelConverter x:Key="ObjectToPropertiesViewModelConverter" />
 
     <DataTemplate x:Key="NoDataTemplate">
         <Grid />
@@ -228,9 +230,14 @@
                                Text="Eigenschappen" />
                 </Grid>
                 <ScrollViewer Grid.Row="1" VerticalScrollBarVisibility="Auto">
-                    <ContentPresenter
-                        Content="{Binding SelectionManager.Selection}"
-                        ContentTemplate="{StaticResource PropertiesWindowDataTemplate}" />
+                    <ContentPresenter ContentTemplate="{StaticResource PropertiesWindowDataTemplate}">
+                        <ContentPresenter.Content>
+                            <MultiBinding Converter="{StaticResource ObjectToPropertiesViewModelConverter}">
+                                <Binding Path="SelectionManager.Selection"/>
+                                <Binding Path="PropertiesViewModelFactory"/>
+                            </MultiBinding>
+                        </ContentPresenter.Content>
+                    </ContentPresenter>
                 </ScrollViewer>
             </Grid>
         </Grid>

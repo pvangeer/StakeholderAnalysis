@@ -7,12 +7,13 @@ using System.Windows.Input;
 using System.Windows.Media;
 using StakeholderAnalysis.Data;
 using StakeholderAnalysis.Data.ForceFieldDiagrams;
+using StakeholderAnalysis.Gui;
 using StakeholderAnalysis.Visualization.ViewModels.Properties.TwoAxisDiagramProperties;
 
 namespace StakeholderAnalysis.Visualization.ViewModels.DocumentViews.TwoAxisDiagrams
 {
     // TODO: Possibly merge with AttitudeImpactDiagramViewModel
-    public class ForceFieldDiagramViewModel : ViewModelBase, ITwoAxisDiagramViewModel
+    public class ForceFieldDiagramViewModel : ViewModelBase, ITwoAxisDiagramViewModel, ISelectable
     {
         private readonly ForceFieldDiagram diagram;
         private object selectedObject;
@@ -74,12 +75,12 @@ namespace StakeholderAnalysis.Visualization.ViewModels.DocumentViews.TwoAxisDiag
 
         public ICommand GridClickedCommand => CommandFactory.CreateClearSelectionCommand(this);
 
-        public bool IsSelected(object o)
+        public bool IsSelectedObject(object o)
         {
             return selectedObject == o;
         }
 
-        public void Select(object o)
+        public void SelectObject(object o)
         {
             selectedObject = o;
             foreach (var stakeholderViewModel in PositionedStakeholders.OfType<StakeholderViewModel>())
@@ -193,6 +194,17 @@ namespace StakeholderAnalysis.Visualization.ViewModels.DocumentViews.TwoAxisDiag
                     OnPropertyChanged(nameof(DisplayName));
                     break;
             }
+        }
+
+        public bool CanSelect => true;
+
+        public bool IsSelected { get; set; }
+
+        public ICommand SelectItemCommand => null;
+
+        public object GetSelectableObject()
+        {
+            return diagram;
         }
     }
 }

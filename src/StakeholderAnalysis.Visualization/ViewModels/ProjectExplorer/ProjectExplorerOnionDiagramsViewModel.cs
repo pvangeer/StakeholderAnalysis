@@ -54,7 +54,9 @@ namespace StakeholderAnalysis.Visualization.ViewModels.ProjectExplorer
         public bool IsSelected { get; set; }
 
         public ICommand SelectItemCommand => null;
-
+        
+        public object GetSelectableObject() => null;
+        
         public bool IsExpandable => true;
 
         public bool IsExpanded

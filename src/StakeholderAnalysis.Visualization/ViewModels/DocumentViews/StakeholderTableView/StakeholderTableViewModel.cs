@@ -1,11 +1,13 @@
 ﻿using System.Collections.ObjectModel;
 using System.Collections.Specialized;
 using System.Linq;
+using System.Windows.Input;
 using StakeholderAnalysis.Data;
+using StakeholderAnalysis.Gui;
 
 namespace StakeholderAnalysis.Visualization.ViewModels.DocumentViews.StakeholderTableView
 {
-    public class StakeholderTableViewModel : ViewModelBase
+    public class StakeholderTableViewModel : ViewModelBase, ISelectable
     {
         private readonly Analysis analysis;
 
@@ -76,5 +78,13 @@ namespace StakeholderAnalysis.Visualization.ViewModels.DocumentViews.Stakeholder
                     Stakeholders.Remove(Stakeholders.FirstOrDefault(viewModel =>
                         viewModel.IsViewModelFor(stakeholder)));
         }
+
+        public bool CanSelect => true;
+
+        public bool IsSelected { get; set; }
+
+        public ICommand SelectItemCommand => null;
+
+        public object GetSelectableObject() => "StakeholderTable";
     }
 }

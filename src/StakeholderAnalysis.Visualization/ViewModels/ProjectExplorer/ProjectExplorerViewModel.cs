@@ -1,15 +1,20 @@
-﻿using System.Collections.ObjectModel;
+﻿using System;
+using System.Collections.ObjectModel;
 using System.ComponentModel;
 using StakeholderAnalysis.Gui;
 using StakeholderAnalysis.Visualization.ViewModels.Properties;
 using StakeholderAnalysis.Visualization.ViewModels.TreeView;
+using Xceed.Wpf.Toolkit.PropertyGrid.Attributes;
 
 namespace StakeholderAnalysis.Visualization.ViewModels.ProjectExplorer
 {
     public class ProjectExplorerViewModel : PropertiesCollectionViewModelBase
     {
+        private readonly StakeholderAnalysisGui gui;
+
         public ProjectExplorerViewModel(ViewModelFactory factory, StakeholderAnalysisGui gui) : base(factory)
         {
+            this.gui = gui;
             Items = new ObservableCollection<ITreeNodeViewModel>
             {
                 ViewModelFactory.CreateProjectExplorerOnionDiagramsViewModel(),
@@ -28,8 +33,33 @@ namespace StakeholderAnalysis.Visualization.ViewModels.ProjectExplorer
             switch (e.PropertyName)
             {
                 case nameof(SelectionManager.Selection):
-                    // TODO: Find corresponding viewmodel in project explorer and select this item.
+                    FindAndSelectObjects();
                     break;
+            }
+        }
+
+        private void FindAndSelectObjects()
+        {
+            foreach (var item in Items)
+            {
+                IsSelectObjectRecursively(item);
+            }
+        }
+
+        private void IsSelectObjectRecursively(ITreeNodeViewModel viewModel)
+        {
+            if (viewModel.IsSelected != viewModel.IsViewModelFor(gui.SelectionManager.Selection))
+            {
+                viewModel.IsSelected = !viewModel.IsSelected;
+                viewModel.OnPropertyChanged(nameof(viewModel.IsSelected));
+            }
+
+            if (viewModel is ITreeNodeCollectionViewModel collection)
+            {
+                foreach (var collectionItem in collection.Items)
+                {
+                    IsSelectObjectRecursively(collectionItem);
+                }
             }
         }
 

@@ -54,14 +54,14 @@ namespace StakeholderAnalysis.Visualization.ViewModels.DocumentViews
 
         public ICommand StakeholderClickedCommand => CommandFactory.CreateCanAlwaysExecuteActionCommand(p =>
         {
-            selectionRegister?.Select(Stakeholder);
+            selectionRegister?.SelectObject(Stakeholder);
         });
 
         public virtual void Moved(double xRelativeNew, double yRelativeNew)
         {
         }
 
-        public bool IsSelectedStakeholder => selectionRegister != null && selectionRegister.IsSelected(Stakeholder);
+        public bool IsSelectedStakeholder => selectionRegister != null && selectionRegister.IsSelectedObject(Stakeholder);
 
         public virtual void RemoveFromDiagram()
         {
@@ -90,7 +90,7 @@ namespace StakeholderAnalysis.Visualization.ViewModels.DocumentViews
 
         public void SelectStakeholder()
         {
-            selectionRegister?.Select(Stakeholder);
+            selectionRegister?.SelectObject(Stakeholder);
         }
     }
 }

@@ -25,6 +25,8 @@ namespace StakeholderAnalysis.Visualization.ViewModels
 
         public SelectionManager SelectionManager { get; }
 
+        public ViewModelFactory PropertiesViewModelFactory => ViewModelFactory;
+
         public ProjectExplorerViewModel ProjectExplorerViewModel { get; private set; }
 
         public bool IsProjectExplorerVisible

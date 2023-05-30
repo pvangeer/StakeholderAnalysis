@@ -32,6 +32,8 @@ namespace StakeholderAnalysis.Visualization.ViewModels.Properties
 
         public ICommand SelectItemCommand => null;
 
+        public object GetSelectableObject() => null;
+
         public virtual string DisplayName => "";
 
         // TODO: Remove from properties control and viewmodels?

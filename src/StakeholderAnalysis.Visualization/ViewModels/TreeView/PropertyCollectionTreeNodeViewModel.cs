@@ -63,6 +63,8 @@ namespace StakeholderAnalysis.Visualization.ViewModels.TreeView
 
         public ICommand SelectItemCommand => null;
 
+        public object GetSelectableObject() => null;
+
         public ObservableCollection<ContextMenuItemViewModel> ContextMenuItems { get; }
 
         public bool IsViewModelFor(object o)

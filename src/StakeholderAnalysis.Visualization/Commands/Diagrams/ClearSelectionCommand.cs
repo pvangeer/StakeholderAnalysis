@@ -20,7 +20,7 @@ namespace StakeholderAnalysis.Visualization.Commands.Diagrams
 
         public void Execute(object parameter)
         {
-            selectionRegister.Select(null);
+            selectionRegister.SelectObject(null);
         }
 
         public event EventHandler CanExecuteChanged;

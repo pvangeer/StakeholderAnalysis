@@ -10,5 +10,7 @@ namespace StakeholderAnalysis.Gui
         bool IsSelected { get; set; }
 
         ICommand SelectItemCommand { get; }
+
+        object GetSelectableObject();
     }
 }

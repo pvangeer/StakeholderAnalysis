@@ -5,24 +5,26 @@ namespace StakeholderAnalysis.Gui
 {
     public class SelectionManager : INotifyPropertyChanged
     {
-        public ISelectable Selection { get; private set; }
+        private ISelectable CurrentSelectedSelectable { get; set; }
+
+        public object Selection => CurrentSelectedSelectable?.GetSelectableObject();
 
         public event PropertyChangedEventHandler PropertyChanged;
 
-        public void Select(ISelectable objectToSelect)
+        public void Select(ISelectable selectable)
         {
-            if (Selection != null)
+            if (CurrentSelectedSelectable != null)
             {
-                Selection.IsSelected = false;
-                Selection.OnPropertyChanged(nameof(ISelectable.IsSelected));
+                CurrentSelectedSelectable.IsSelected = false;
+                CurrentSelectedSelectable.OnPropertyChanged(nameof(ISelectable.IsSelected));
             }
 
-            Selection = objectToSelect;
+            CurrentSelectedSelectable = selectable;
 
-            if (Selection != null)
+            if (CurrentSelectedSelectable != null)
             {
-                Selection.IsSelected = true;
-                Selection.OnPropertyChanged(nameof(ISelectable.IsSelected));
+                CurrentSelectedSelectable.IsSelected = true;
+                CurrentSelectedSelectable.OnPropertyChanged(nameof(ISelectable.IsSelected));
             }
 
             OnPropertyChanged(nameof(Selection));
