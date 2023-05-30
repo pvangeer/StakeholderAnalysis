@@ -105,11 +105,6 @@ namespace StakeholderAnalysis.Visualization.Commands
             return new ToggleIsExpandedCommand(expandableContentViewModel);
         }
 
-        public ICommand CreateAddNewStakeholderTypeCommand(Analysis analysis)
-        {
-            return new AddNewStakeholderTypeCommand(analysis);
-        }
-
         public ICommand CreateClearSelectionCommand(ISelectionRegister selectionRegister)
         {
             return new ClearSelectionCommand(selectionRegister);

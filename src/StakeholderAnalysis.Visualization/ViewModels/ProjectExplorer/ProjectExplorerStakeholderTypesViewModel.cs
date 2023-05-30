@@ -3,6 +3,7 @@ using System.Collections.Specialized;
 using System.Linq;
 using System.Windows.Input;
 using StakeholderAnalysis.Data;
+using StakeholderAnalysis.Data.OnionDiagrams;
 using StakeholderAnalysis.Visualization.ViewModels.PropertiesTree;
 
 namespace StakeholderAnalysis.Visualization.ViewModels.ProjectExplorer
@@ -15,19 +16,19 @@ namespace StakeholderAnalysis.Visualization.ViewModels.ProjectExplorer
         public ProjectExplorerStakeholderTypesViewModel(ViewModelFactory factory, Analysis analysis) : base(factory)
         {
             this.analysis = analysis;
-            if (analysis != null)
-            {
-                Items = new ObservableCollection<ITreeNodeViewModel>(
-                    analysis?.StakeholderTypes.Select(st => ViewModelFactory.CreateProjectExploreStakeholderTypeViewModel(st)));
-                analysis.StakeholderTypes.CollectionChanged += StakeholderTypesCollectionChanged;
-            }
-            else
-            {
-                Items = new ObservableCollection<ITreeNodeViewModel>();
-            }
+
+            analysis.StakeholderTypes.CollectionChanged += StakeholderTypesCollectionChanged;
+
+            Items = new ObservableCollection<ITreeNodeViewModel>();
+            foreach (var stakeholderType in analysis.StakeholderTypes)
+                Items.Add(ViewModelFactory.CreateProjectExploreStakeholderTypeViewModel(stakeholderType));
 
             ContextMenuItems = new ObservableCollection<ContextMenuItemViewModel>();
         }
+
+        public ObservableCollection<ITreeNodeViewModel> Items { get; }
+
+        public CollectionType CollectionType => CollectionType.PropertyItemsCollection;
 
         public string DisplayName => "Stakeholder types";
 
@@ -70,11 +71,10 @@ namespace StakeholderAnalysis.Visualization.ViewModels.ProjectExplorer
 
         public ICommand ToggleIsExpandedCommand => CommandFactory.CreateToggleIsExpandedCommand(this);
 
-        public ICommand AddItemCommand => CommandFactory.CreateAddNewStakeholderTypeCommand(analysis);
-
-        public ObservableCollection<ITreeNodeViewModel> Items { get; }
-
-        public CollectionType CollectionType => CollectionType.PropertyItemsCollection;
+        public ICommand AddItemCommand => CommandFactory.CreateCanAlwaysExecuteActionCommand(p =>
+        {
+            analysis.StakeholderTypes.Add(new StakeholderType());
+        });
 
         private void StakeholderTypesCollectionChanged(object sender, NotifyCollectionChangedEventArgs e)
         {
@@ -92,8 +92,7 @@ namespace StakeholderAnalysis.Visualization.ViewModels.ProjectExplorer
                 case NotifyCollectionChangedAction.Remove:
                     foreach (var stakeholderType in e.OldItems.OfType<StakeholderType>())
                     {
-                        var viewModelToRemove =
-                            Items.FirstOrDefault(viewModel => viewModel.IsViewModelFor(stakeholderType));
+                        var viewModelToRemove = Items.FirstOrDefault(viewModel => viewModel.IsViewModelFor(stakeholderType));
                         if (viewModelToRemove != null) Items.Remove(viewModelToRemove);
                     }
 
