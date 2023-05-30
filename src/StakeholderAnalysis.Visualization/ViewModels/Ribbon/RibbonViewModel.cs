@@ -222,5 +222,10 @@ namespace StakeholderAnalysis.Visualization.ViewModels.Ribbon
 
             return messageBoxResult == MessageBoxResult.Yes;
         }
+
+        public override bool IsViewModelFor(object o)
+        {
+            return false;
+        }
     }
 }

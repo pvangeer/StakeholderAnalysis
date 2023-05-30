@@ -28,6 +28,17 @@ namespace StakeholderAnalysis.Visualization.ViewModels.DocumentViews.Stakeholder
 
         public ObservableCollection<StakeholderType> StakeholderTypes => analysis.StakeholderTypes;
 
+        public bool CanSelect => true;
+
+        public bool IsSelected { get; set; }
+
+        public ICommand SelectItemCommand => null;
+
+        public object GetSelectableObject()
+        {
+            return "StakeholderTable";
+        }
+
         private void StakeholderViewModelsCollectionChanged(object sender, NotifyCollectionChangedEventArgs e)
         {
             if (analysis == null) return;
@@ -79,12 +90,9 @@ namespace StakeholderAnalysis.Visualization.ViewModels.DocumentViews.Stakeholder
                         viewModel.IsViewModelFor(stakeholder)));
         }
 
-        public bool CanSelect => true;
-
-        public bool IsSelected { get; set; }
-
-        public ICommand SelectItemCommand => null;
-
-        public object GetSelectableObject() => "StakeholderTable";
+        public override bool IsViewModelFor(object o)
+        {
+            return o is string s && s == "StakeholderTable";
+        }
     }
 }

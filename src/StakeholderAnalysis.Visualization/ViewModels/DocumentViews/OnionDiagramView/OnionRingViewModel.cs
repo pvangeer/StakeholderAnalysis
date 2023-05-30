@@ -49,5 +49,10 @@ namespace StakeholderAnalysis.Visualization.ViewModels.DocumentViews.OnionDiagra
                     break;
             }
         }
+
+        public override bool IsViewModelFor(object o)
+        {
+            return false;
+        }
     }
 }

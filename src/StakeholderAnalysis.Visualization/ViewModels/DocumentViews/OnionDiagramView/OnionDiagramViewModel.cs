@@ -50,6 +50,31 @@ namespace StakeholderAnalysis.Visualization.ViewModels.DocumentViews.OnionDiagra
             }
         }
 
+        public bool CanSelect => true;
+
+        public bool IsSelected { get; set; }
+
+        public ICommand SelectItemCommand => null;
+
+        public object GetSelectableObject()
+        {
+            return diagram;
+        }
+
+        public bool IsSelectedObject(object o)
+        {
+            return selectedObject == o;
+        }
+
+        public void SelectObject(object o)
+        {
+            var oldSelectedObject = selectedObject;
+            selectedObject = o;
+
+            RaiseIsSelectedPropertyChanged(oldSelectedObject);
+            RaiseIsSelectedPropertyChanged(selectedObject);
+        }
+
         public bool IsViewModelFor(OnionDiagram otherDiagram)
         {
             return diagram == otherDiagram;
@@ -85,30 +110,9 @@ namespace StakeholderAnalysis.Visualization.ViewModels.DocumentViews.OnionDiagra
             }
         }
 
-        public bool CanSelect => true;
-
-        public bool IsSelected { get; set; }
-
-        public ICommand SelectItemCommand => null;
-
-        public object GetSelectableObject()
+        public override bool IsViewModelFor(object o)
         {
-            return diagram;
+            return o == diagram;
         }
-
-        public bool IsSelectedObject(object o)
-        {
-            return selectedObject == o;
-        }
-
-        public void SelectObject(object o)
-        {
-            var oldSelectedObject = selectedObject;
-            selectedObject = o;
-
-            RaiseIsSelectedPropertyChanged(oldSelectedObject);
-            RaiseIsSelectedPropertyChanged(selectedObject);
-        }
-
     }
 }

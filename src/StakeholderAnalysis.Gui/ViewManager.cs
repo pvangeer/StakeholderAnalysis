@@ -8,10 +8,15 @@ namespace StakeholderAnalysis.Gui
 {
     public class ViewManager : INotifyPropertyChanged
     {
-        public ViewManager()
+        private readonly SelectionManager selectionManager;
+
+        public ViewManager(SelectionManager selectionManager)
         {
             Views = new ObservableCollection<ViewInfo>();
             ActiveDocument = null;
+
+            this.selectionManager = selectionManager;
+            selectionManager.PropertyChanged += SelectionManagerPropertyChanged;
         }
 
         public ObservableCollection<ViewInfo> Views { get; }
@@ -19,6 +24,20 @@ namespace StakeholderAnalysis.Gui
         public ViewInfo ActiveDocument { get; set; }
 
         public event PropertyChangedEventHandler PropertyChanged;
+
+        private void SelectionManagerPropertyChanged(object sender, PropertyChangedEventArgs e)
+        {
+            switch (e.PropertyName)
+            {
+                case nameof(SelectionManager.Selection):
+                    if (selectionManager.Selection != null)
+                        foreach (var viewInfo in Views)
+                            if (viewInfo.ViewModel is ISelectable selectable)
+                                if (viewInfo.ViewModel.IsViewModelFor(selectionManager.Selection))
+                                    BringToFront(viewInfo);
+                    break;
+            }
+        }
 
         public void OpenView(ViewInfo viewInfo)
         {

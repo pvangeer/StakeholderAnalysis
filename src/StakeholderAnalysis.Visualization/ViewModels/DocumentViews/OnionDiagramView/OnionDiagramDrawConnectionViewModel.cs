@@ -123,5 +123,10 @@ namespace StakeholderAnalysis.Visualization.ViewModels.DocumentViews.OnionDiagra
         {
             OnPropertyChanged(nameof(IsActive));
         }
+
+        public override bool IsViewModelFor(object o)
+        {
+            return false;
+        }
     }
 }

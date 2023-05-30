@@ -54,7 +54,10 @@ namespace StakeholderAnalysis.Visualization.ViewModels.ProjectExplorer
 
         public ICommand SelectItemCommand => null;
 
-        public object GetSelectableObject() => null;
+        public object GetSelectableObject()
+        {
+            return null;
+        }
 
         public bool IsExpandable => true;
 
@@ -73,7 +76,7 @@ namespace StakeholderAnalysis.Visualization.ViewModels.ProjectExplorer
         public ObservableCollection<ContextMenuItemViewModel> ContextMenuItems { get; }
 
 
-        public bool IsViewModelFor(object o)
+        public override bool IsViewModelFor(object o)
         {
             return false;
         }
@@ -85,11 +88,13 @@ namespace StakeholderAnalysis.Visualization.ViewModels.ProjectExplorer
                 case NotifyCollectionChangedAction.Add:
                     foreach (var stakeholderType in e.NewItems.OfType<StakeholderType>())
                     {
-                        var projectExplorerStakeholderTypeViewModel = ViewModelFactory.CreateProjectExploreStakeholderTypeViewModel(stakeholderType);
+                        var projectExplorerStakeholderTypeViewModel =
+                            ViewModelFactory.CreateProjectExploreStakeholderTypeViewModel(stakeholderType);
                         Items.Add(projectExplorerStakeholderTypeViewModel);
                         if (IsExpanded)
                             projectExplorerStakeholderTypeViewModel.SelectItemCommand?.Execute(null);
                     }
+
                     break;
                 case NotifyCollectionChangedAction.Remove:
                     foreach (var stakeholderType in e.OldItems.OfType<StakeholderType>())
@@ -97,6 +102,7 @@ namespace StakeholderAnalysis.Visualization.ViewModels.ProjectExplorer
                         var viewModelToRemove = Items.FirstOrDefault(viewModel => viewModel.IsViewModelFor(stakeholderType));
                         if (viewModelToRemove != null) Items.Remove(viewModelToRemove);
                     }
+
                     break;
             }
         }

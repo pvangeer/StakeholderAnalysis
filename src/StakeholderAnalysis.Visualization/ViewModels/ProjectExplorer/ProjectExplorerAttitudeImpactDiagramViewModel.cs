@@ -88,7 +88,7 @@ namespace StakeholderAnalysis.Visualization.ViewModels.ProjectExplorer
         public string IconSourceString =>
             "pack://application:,,,/StakeholderAnalysis.Visualization;component/Resources/involvement.png";
 
-        public bool IsViewModelFor(object otherObject)
+        public override bool IsViewModelFor(object otherObject)
         {
             return otherObject as AttitudeImpactDiagram == diagram;
         }

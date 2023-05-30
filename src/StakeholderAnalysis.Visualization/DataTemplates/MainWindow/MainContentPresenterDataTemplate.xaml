@@ -43,7 +43,7 @@
 
     <visualization:PropertiesViewTemplateSelector x:Key="PropertiesViewTemplateSelector"
                                                   DefaultEmptyDataTemplate="{StaticResource NoDataTemplate}"
-                                                  HasPropertiesDataTemplate="{StaticResource IPropertyCollectionTreeNodesDataTemplate}"/>
+                                                  HasPropertiesDataTemplate="{StaticResource IPropertyCollectionTreeNodesDataTemplate}" />
 
     <DataTemplate x:Key="DocumentViewDataTemplate" DataType="gui:ViewInfo">
         <ContentPresenter
@@ -233,8 +233,8 @@
                     <ContentPresenter ContentTemplate="{StaticResource PropertiesWindowDataTemplate}">
                         <ContentPresenter.Content>
                             <MultiBinding Converter="{StaticResource ObjectToPropertiesViewModelConverter}">
-                                <Binding Path="SelectionManager.Selection"/>
-                                <Binding Path="PropertiesViewModelFactory"/>
+                                <Binding Path="SelectionManager.Selection" />
+                                <Binding Path="PropertiesViewModelFactory" />
                             </MultiBinding>
                         </ContentPresenter.Content>
                     </ContentPresenter>

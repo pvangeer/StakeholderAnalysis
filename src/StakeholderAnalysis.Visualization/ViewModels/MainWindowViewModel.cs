@@ -48,5 +48,10 @@ namespace StakeholderAnalysis.Visualization.ViewModels
         {
             gui.GuiProjectServices.HandleUnsavedChanges(() => { });
         }
+
+        public override bool IsViewModelFor(object o)
+        {
+            return false;
+        }
     }
 }

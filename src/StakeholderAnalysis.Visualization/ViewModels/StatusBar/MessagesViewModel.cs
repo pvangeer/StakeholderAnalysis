@@ -21,5 +21,10 @@ namespace StakeholderAnalysis.Visualization.ViewModels.StatusBar
             OnPropertyChanged(nameof(RemoveAllMessagesCommand));
             OnPropertyChanged(nameof(MessageList));
         }
+
+        public override bool IsViewModelFor(object o)
+        {
+            return false;
+        }
     }
 }

@@ -14,16 +14,12 @@ namespace StakeholderAnalysis.Visualization.Converters
         public object Convert(object[] values, Type targetType, object parameter, CultureInfo culture)
         {
             if (values.Length != 2)
-            {
                 throw new ArgumentOutOfRangeException();
-            }
 
             var viewModelFactory = values[1] as ViewModelFactory;
             var value = values[0];
             if (viewModelFactory == null)
-            {
                 throw new ArgumentNullException();
-            }
 
             switch (value)
             {

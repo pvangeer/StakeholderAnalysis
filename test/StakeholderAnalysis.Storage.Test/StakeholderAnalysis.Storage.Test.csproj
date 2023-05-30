@@ -41,15 +41,7 @@
     </Reference>
     <Reference Include="PresentationCore" />
     <Reference Include="System" />
-    <Reference Include="System.ComponentModel.DataAnnotations" />
     <Reference Include="System.Core" />
-    <Reference Include="System.Drawing" />
-    <Reference Include="System.Runtime.Serialization" />
-    <Reference Include="System.Xml.Linq" />
-    <Reference Include="System.Data.DataSetExtensions" />
-    <Reference Include="Microsoft.CSharp" />
-    <Reference Include="System.Data" />
-    <Reference Include="System.Net.Http" />
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
@@ -64,10 +56,6 @@
     <None Include="packages.config" />
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\..\src\StakeholderAnalysis.App\StakeholderAnalysis.App.csproj">
-      <Project>{B2DD8757-E9B5-42BF-9602-C9CABE7CB549}</Project>
-      <Name>StakeholderAnalysis.App</Name>
-    </ProjectReference>
     <ProjectReference Include="..\..\src\StakeholderAnalysis.Data\StakeholderAnalysis.Data.csproj">
       <Project>{96BE72A1-F5B6-4DA7-A7F7-CB0D3FA69DEC}</Project>
       <Name>StakeholderAnalysis.Data</Name>

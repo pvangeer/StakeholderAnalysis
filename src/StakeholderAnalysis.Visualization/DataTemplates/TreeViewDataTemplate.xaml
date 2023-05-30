@@ -146,7 +146,8 @@
                                 <Setter Property="behaviors:AttachInputBindingsBehavior.InputBindings">
                                     <Setter.Value>
                                         <InputBindingCollection>
-                                            <MouseBinding MouseAction="LeftDoubleClick" Command="{Binding OpenViewCommand}" />
+                                            <MouseBinding MouseAction="LeftDoubleClick"
+                                                          Command="{Binding OpenViewCommand}" />
                                             <MouseBinding MouseAction="LeftClick" Command="{Binding SelectItemCommand}" />
                                         </InputBindingCollection>
                                     </Setter.Value>
@@ -162,7 +163,8 @@
                                 <Setter Property="behaviors:AttachInputBindingsBehavior.InputBindings">
                                     <Setter.Value>
                                         <InputBindingCollection>
-                                            <MouseBinding MouseAction="LeftDoubleClick" Command="{Binding OpenViewCommand}" />
+                                            <MouseBinding MouseAction="LeftDoubleClick"
+                                                          Command="{Binding OpenViewCommand}" />
                                         </InputBindingCollection>
                                     </Setter.Value>
                                 </Setter>

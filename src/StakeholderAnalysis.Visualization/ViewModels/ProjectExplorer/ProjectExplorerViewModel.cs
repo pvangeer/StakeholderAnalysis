@@ -1,10 +1,8 @@
-﻿using System;
-using System.Collections.ObjectModel;
+﻿using System.Collections.ObjectModel;
 using System.ComponentModel;
 using StakeholderAnalysis.Gui;
 using StakeholderAnalysis.Visualization.ViewModels.Properties;
 using StakeholderAnalysis.Visualization.ViewModels.TreeView;
-using Xceed.Wpf.Toolkit.PropertyGrid.Attributes;
 
 namespace StakeholderAnalysis.Visualization.ViewModels.ProjectExplorer
 {
@@ -28,6 +26,8 @@ namespace StakeholderAnalysis.Visualization.ViewModels.ProjectExplorer
 
         public override ObservableCollection<ITreeNodeViewModel> Items { get; }
 
+        public override CollectionType CollectionType => CollectionType.PropertyItemsCollection;
+
         private void SelectionManagerPropertyChanged(object sender, PropertyChangedEventArgs e)
         {
             switch (e.PropertyName)
@@ -41,9 +41,7 @@ namespace StakeholderAnalysis.Visualization.ViewModels.ProjectExplorer
         private void FindAndSelectObjects()
         {
             foreach (var item in Items)
-            {
                 IsSelectObjectRecursively(item);
-            }
         }
 
         private void IsSelectObjectRecursively(ITreeNodeViewModel viewModel)
@@ -55,19 +53,13 @@ namespace StakeholderAnalysis.Visualization.ViewModels.ProjectExplorer
             }
 
             if (viewModel is ITreeNodeCollectionViewModel collection)
-            {
                 foreach (var collectionItem in collection.Items)
-                {
                     IsSelectObjectRecursively(collectionItem);
-                }
-            }
         }
 
         public override bool IsViewModelFor(object o)
         {
             return false;
         }
-
-        public override CollectionType CollectionType => CollectionType.PropertyItemsCollection;
     }
 }

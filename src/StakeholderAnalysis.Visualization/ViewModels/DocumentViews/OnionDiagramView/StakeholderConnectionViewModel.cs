@@ -96,5 +96,10 @@ namespace StakeholderAnalysis.Visualization.ViewModels.DocumentViews.OnionDiagra
         {
             return connection == StakeholderConnection;
         }
+
+        public override bool IsViewModelFor(object o)
+        {
+            return IsViewModelFor(o as StakeholderConnection);
+        }
     }
 }

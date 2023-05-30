@@ -42,8 +42,8 @@ namespace StakeholderAnalysis.Gui
             ConfigureMessaging();
             Messages = new MessageList();
             IsMagnifierActive = false;
-            ViewManager = new ViewManager();
             SelectionManager = new SelectionManager();
+            ViewManager = new ViewManager(SelectionManager);
 
             LogMessageAppender.Instance.MessageCollection = this;
         }

@@ -32,6 +32,17 @@ namespace StakeholderAnalysis.Visualization.ViewModels.DocumentViews.TwoAxisDiag
             }
         }
 
+        public bool CanSelect => true;
+
+        public bool IsSelected { get; set; }
+
+        public ICommand SelectItemCommand => null;
+
+        public object GetSelectableObject()
+        {
+            return diagram;
+        }
+
         public ObservableCollection<IPositionedStakeholderViewModel> PositionedStakeholders { get; }
 
         public Brush BackgroundBrush => new LinearGradientBrush(diagram.BrushStartColor, diagram.BrushEndColor,
@@ -196,15 +207,9 @@ namespace StakeholderAnalysis.Visualization.ViewModels.DocumentViews.TwoAxisDiag
             }
         }
 
-        public bool CanSelect => true;
-
-        public bool IsSelected { get; set; }
-
-        public ICommand SelectItemCommand => null;
-
-        public object GetSelectableObject()
+        public override bool IsViewModelFor(object o)
         {
-            return diagram;
+            return o == diagram;
         }
     }
 }

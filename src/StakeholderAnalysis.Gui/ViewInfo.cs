@@ -9,7 +9,7 @@ namespace StakeholderAnalysis.Gui
         private readonly string bufferedTitle;
         private readonly INameableViewModel nameableViewModel;
 
-        public ViewInfo(string title, object viewModel, string iconReference)
+        public ViewInfo(string title, IViewModel viewModel, string iconReference)
         {
             IconReference = iconReference;
             bufferedTitle = title;
@@ -33,7 +33,7 @@ namespace StakeholderAnalysis.Gui
 
         public string IconReference { get; }
 
-        public object ViewModel { get; }
+        public IViewModel ViewModel { get; }
 
         public ICommand CloseViewCommand { get; set; }
 

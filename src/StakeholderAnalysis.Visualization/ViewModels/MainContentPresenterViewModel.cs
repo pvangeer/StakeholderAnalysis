@@ -13,9 +13,7 @@ namespace StakeholderAnalysis.Visualization.ViewModels
         {
             this.gui = gui;
             if (gui != null)
-            {
                 gui.PropertyChanged += GuiPropertyChanged;
-            }
             ViewManager = ViewModelFactory.CreateViewManagerViewModel();
             SelectionManager = gui?.SelectionManager;
             ProjectExplorerViewModel = ViewModelFactory.CreateProjectExplorerViewModel();
@@ -88,13 +86,16 @@ namespace StakeholderAnalysis.Visualization.ViewModels
                 case nameof(StakeholderAnalysisGui.Analysis):
                     gui.SelectionManager.Select(null);
                     foreach (var viewInfo in gui.ViewManager.Views.ToList())
-                    {
                         gui.ViewManager.CloseView(viewInfo);
-                    }
                     ProjectExplorerViewModel = ViewModelFactory.CreateProjectExplorerViewModel();
                     OnPropertyChanged(nameof(ProjectExplorerViewModel));
                     break;
             }
+        }
+
+        public override bool IsViewModelFor(object o)
+        {
+            return false;
         }
     }
 }

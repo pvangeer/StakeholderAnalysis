@@ -91,5 +91,10 @@ namespace StakeholderAnalysis.Visualization.ViewModels.StatusBar
                     break;
             }
         }
+
+        public override bool IsViewModelFor(object o)
+        {
+            return false;
+        }
     }
 }

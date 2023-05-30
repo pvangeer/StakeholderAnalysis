@@ -92,5 +92,10 @@ namespace StakeholderAnalysis.Visualization.ViewModels.DocumentViews
         {
             selectionRegister?.SelectObject(Stakeholder);
         }
+
+        public override bool IsViewModelFor(object o)
+        {
+            return false;
+        }
     }
 }

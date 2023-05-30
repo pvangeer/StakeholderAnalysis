@@ -38,5 +38,10 @@ namespace StakeholderAnalysis.Visualization.ViewModels.DocumentViews.OnionDiagra
                     StakeholderConnections.Remove(
                         StakeholderConnections.FirstOrDefault(vm => vm.StakeholderConnection == stakeholder));
         }
+
+        public override bool IsViewModelFor(object o)
+        {
+            return o == diagram;
+        }
     }
 }

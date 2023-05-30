@@ -55,7 +55,10 @@ namespace StakeholderAnalysis.Visualization.ViewModels.Properties.OnionDiagramPr
 
         public ICommand SelectItemCommand => null;
 
-        public object GetSelectableObject() => null;
+        public object GetSelectableObject()
+        {
+            return null;
+        }
 
         public string DisplayName => connectionGroup.Name;
 
@@ -92,7 +95,7 @@ namespace StakeholderAnalysis.Visualization.ViewModels.Properties.OnionDiagramPr
 
         public ObservableCollection<ContextMenuItemViewModel> ContextMenuItems { get; }
 
-        public bool IsViewModelFor(object o)
+        public override bool IsViewModelFor(object o)
         {
             return o as StakeholderConnectionGroup == connectionGroup;
         }

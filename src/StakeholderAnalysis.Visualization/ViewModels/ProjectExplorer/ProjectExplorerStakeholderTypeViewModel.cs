@@ -26,6 +26,16 @@ namespace StakeholderAnalysis.Visualization.ViewModels.ProjectExplorer
             stakeholderType.PropertyChanged += StakeholderTypePropertyChanged;
         }
 
+        public Color Color
+        {
+            get => stakeholderType.Color;
+            set
+            {
+                stakeholderType.Color = value;
+                stakeholderType.OnPropertyChanged();
+            }
+        }
+
         public string DisplayName
         {
             get => stakeholderType?.Name;
@@ -54,11 +64,14 @@ namespace StakeholderAnalysis.Visualization.ViewModels.ProjectExplorer
 
         public ICommand SelectItemCommand { get; }
 
-        public object GetSelectableObject() => stakeholderType;
+        public object GetSelectableObject()
+        {
+            return stakeholderType;
+        }
 
         public ObservableCollection<ContextMenuItemViewModel> ContextMenuItems { get; }
 
-        public bool IsViewModelFor(object o)
+        public override bool IsViewModelFor(object o)
         {
             return ReferenceEquals(o, stakeholderType);
         }
@@ -75,16 +88,6 @@ namespace StakeholderAnalysis.Visualization.ViewModels.ProjectExplorer
         public ObservableCollection<ITreeNodeViewModel> Items { get; }
 
         public CollectionType CollectionType => CollectionType.PropertyValue;
-
-        public Color Color
-        {
-            get => stakeholderType.Color;
-            set
-            {
-                stakeholderType.Color = value;
-                stakeholderType.OnPropertyChanged();
-            }
-        }
 
         private void StakeholderTypePropertyChanged(object sender, PropertyChangedEventArgs e)
         {

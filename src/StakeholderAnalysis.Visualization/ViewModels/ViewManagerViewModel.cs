@@ -51,5 +51,10 @@ namespace StakeholderAnalysis.Visualization.ViewModels
                     break;
             }
         }
+
+        public override bool IsViewModelFor(object o)
+        {
+            return false;
+        }
     }
 }

@@ -9,7 +9,8 @@ namespace StakeholderAnalysis.Visualization.ViewModels.Properties.TwoAxisDiagram
     {
         private readonly ITwoAxisDiagram twoAxisDiagram;
 
-        public TwoAxisDiagramPropertiesViewModel(ViewModelFactory factory, ViewManager viewManager, ITwoAxisDiagram twoAxisDiagram) : base(factory)
+        public TwoAxisDiagramPropertiesViewModel(ViewModelFactory factory, ViewManager viewManager, ITwoAxisDiagram twoAxisDiagram) :
+            base(factory)
         {
             this.twoAxisDiagram = twoAxisDiagram;
             Items = GetItems();
@@ -17,12 +18,12 @@ namespace StakeholderAnalysis.Visualization.ViewModels.Properties.TwoAxisDiagram
 
         public override ObservableCollection<ITreeNodeViewModel> Items { get; }
 
+        public override CollectionType CollectionType => CollectionType.PropertyItemsCollection;
+
         public override bool IsViewModelFor(object o)
         {
-            return o as ITwoAxisDiagram == this.twoAxisDiagram;
+            return o as ITwoAxisDiagram == twoAxisDiagram;
         }
-
-        public override CollectionType CollectionType => CollectionType.PropertyItemsCollection;
 
         private ObservableCollection<ITreeNodeViewModel> GetItems()
         {

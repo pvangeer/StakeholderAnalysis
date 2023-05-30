@@ -61,5 +61,10 @@ namespace StakeholderAnalysis.Visualization.ViewModels.DocumentViews.OnionDiagra
                 foreach (var onionRing in e.OldItems.OfType<OnionRing>())
                     OnionRings.Remove(OnionRings.FirstOrDefault(r => r.Ring == onionRing));
         }
+
+        public override bool IsViewModelFor(object o)
+        {
+            return false;
+        }
     }
 }

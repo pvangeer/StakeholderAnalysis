@@ -4,7 +4,7 @@ using StakeholderAnalysis.Gui;
 
 namespace StakeholderAnalysis.Visualization.ViewModels.TreeView
 {
-    public interface ITreeNodeViewModel : IExpandable, ISelectable
+    public interface ITreeNodeViewModel : IExpandable, ISelectable, IViewModel
     {
         string DisplayName { get; }
 
@@ -23,7 +23,5 @@ namespace StakeholderAnalysis.Visualization.ViewModels.TreeView
         ICommand OpenViewCommand { get; }
 
         ObservableCollection<ContextMenuItemViewModel> ContextMenuItems { get; }
-
-        bool IsViewModelFor(object o);
     }
 }

@@ -32,7 +32,10 @@ namespace StakeholderAnalysis.Visualization.ViewModels.Properties
 
         public ICommand SelectItemCommand => null;
 
-        public object GetSelectableObject() => null;
+        public object GetSelectableObject()
+        {
+            return null;
+        }
 
         public virtual string DisplayName => "";
 
@@ -54,7 +57,7 @@ namespace StakeholderAnalysis.Visualization.ViewModels.Properties
         public virtual ObservableCollection<ContextMenuItemViewModel> ContextMenuItems =>
             new ObservableCollection<ContextMenuItemViewModel>();
 
-        public abstract bool IsViewModelFor(object o);
+        public abstract override bool IsViewModelFor(object o);
 
         public virtual ObservableCollection<ITreeNodeViewModel> Items => new ObservableCollection<ITreeNodeViewModel>();
 

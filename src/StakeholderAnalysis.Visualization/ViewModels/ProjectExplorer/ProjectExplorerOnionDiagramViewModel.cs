@@ -60,7 +60,10 @@ namespace StakeholderAnalysis.Visualization.ViewModels.ProjectExplorer
             analysis.OnionDiagrams.Remove(diagram);
         });
 
-        public override object GetSelectableObject() => diagram;
+        public override object GetSelectableObject()
+        {
+            return diagram;
+        }
 
         public override bool IsViewModelFor(object otherObject)
         {
