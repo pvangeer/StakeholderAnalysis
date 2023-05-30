@@ -12,17 +12,20 @@ namespace StakeholderAnalysis.Visualization.ViewModels
         public MainContentPresenterViewModel(ViewModelFactory factory, StakeholderAnalysisGui gui) : base(factory)
         {
             this.gui = gui;
-            if (gui != null) gui.PropertyChanged += GuiPropertyChanged;
+            if (gui != null)
+            {
+                gui.PropertyChanged += GuiPropertyChanged;
+            }
             ViewManager = ViewModelFactory.CreateViewManagerViewModel();
-            SelectionManager = ViewModelFactory.CreateSelectionManagerViewModel();
+            SelectionManager = gui?.SelectionManager;
             ProjectExplorerViewModel = ViewModelFactory.CreateProjectExplorerViewModel();
         }
 
         public ViewManagerViewModel ViewManager { get; }
 
-        public SelectionManagerViewModel SelectionManager { get; }
+        public SelectionManager SelectionManager { get; }
 
-        public ProjectExplorerViewModel ProjectExplorerViewModel { get; }
+        public ProjectExplorerViewModel ProjectExplorerViewModel { get; private set; }
 
         public bool IsProjectExplorerVisible
         {
@@ -81,7 +84,13 @@ namespace StakeholderAnalysis.Visualization.ViewModels
                     OnPropertyChanged(nameof(IsPropertiesVisible));
                     break;
                 case nameof(StakeholderAnalysisGui.Analysis):
-                    foreach (var viewInfo in gui.ViewManager.Views.ToList()) gui.ViewManager.CloseView(viewInfo);
+                    gui.SelectionManager.Select(null);
+                    foreach (var viewInfo in gui.ViewManager.Views.ToList())
+                    {
+                        gui.ViewManager.CloseView(viewInfo);
+                    }
+                    ProjectExplorerViewModel = ViewModelFactory.CreateProjectExplorerViewModel();
+                    OnPropertyChanged(nameof(ProjectExplorerViewModel));
                     break;
             }
         }

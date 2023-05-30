@@ -145,7 +145,6 @@
     <Compile Include="ViewModels\TreeView\ITreeNodeCollectionViewModel.cs" />
     <Compile Include="ViewModels\TreeView\ITreeNodeViewModel.cs" />
     <Compile Include="ViewModels\TreeView\PropertyValueTreeNodeViewModelBase.cs" />
-    <Compile Include="ViewModels\SelectionManagerViewModel.cs" />
     <Compile Include="ViewModels\StatusBar\MessagesViewModel.cs" />
     <Compile Include="ViewModels\StatusBar\StatusBarViewModel.cs" />
     <Compile Include="ViewModels\DocumentViews\TwoAxisDiagrams\ITwoAxisDiagramViewModel.cs" />

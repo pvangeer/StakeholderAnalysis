@@ -253,11 +253,6 @@ namespace StakeholderAnalysis.Visualization.ViewModels
             };
         }
 
-        public SelectionManagerViewModel CreateSelectionManagerViewModel()
-        {
-            return new SelectionManagerViewModel(this, gui.SelectionManager);
-        }
-
         public ITreeNodeViewModel CreateOnionDiagramGeneralPropertiesViewModel(OnionDiagram diagram)
         {
             return new OnionDiagramGeneralPropertiesViewModel(this, diagram);

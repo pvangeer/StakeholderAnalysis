@@ -126,7 +126,7 @@
                 <ScrollViewer Grid.Row="1" VerticalScrollBarVisibility="Auto">
                     <ContentPresenter
                         Content="{Binding ProjectExplorerViewModel}"
-                        ContentTemplate="{StaticResource ProjectExplorerDataTemplate}" />
+                        ContentTemplate="{StaticResource IPropertyCollectionTreeNodesDataTemplate}" />
                 </ScrollViewer>
             </Grid>
             <visualization:HidableGridSplitter
