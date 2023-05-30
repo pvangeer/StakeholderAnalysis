@@ -5,7 +5,7 @@ using System.Windows.Media;
 using StakeholderAnalysis.Data;
 using StakeholderAnalysis.Visualization.Converters;
 using StakeholderAnalysis.Visualization.ViewModels.Properties;
-using StakeholderAnalysis.Visualization.ViewModels.PropertiesTree;
+using StakeholderAnalysis.Visualization.ViewModels.TreeView;
 
 namespace StakeholderAnalysis.Visualization.ViewModels.ProjectExplorer
 {

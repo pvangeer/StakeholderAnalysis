@@ -1,24 +1,24 @@
 ﻿using System;
 using System.ComponentModel;
 using System.Reflection;
-using System.Windows.Media;
 using StakeholderAnalysis.Data;
+using StakeholderAnalysis.Data.OnionDiagrams;
 
-namespace StakeholderAnalysis.Visualization.ViewModels.PropertiesTree
+namespace StakeholderAnalysis.Visualization.ViewModels.TreeView
 {
-    public class FontFamilyPropertyValueTreeNodeViewModel<TContent> : PropertyValueTreeNodeViewModelBase,
-        IFontFamilyPropertyTreeNodeViewModel where TContent : INotifyPropertyChangedImplementation
+    public class LineStylePropertyValueTreeNodeViewModel<TContent> : PropertyValueTreeNodeViewModelBase,
+        ILineStylePropertyTreeNodeViewModel where TContent : INotifyPropertyChangedImplementation
     {
         private readonly PropertyInfo propertyInfo;
         private TContent content;
 
-        public FontFamilyPropertyValueTreeNodeViewModel(TContent content, string propertyName, string displayName) : base(
+        public LineStylePropertyValueTreeNodeViewModel(TContent content, string propertyName, string displayName) : base(
             displayName)
         {
             Content = content;
 
             propertyInfo = typeof(TContent).GetProperty(propertyName, BindingFlags.Public | BindingFlags.Instance);
-            if (propertyInfo == null || propertyInfo.PropertyType != typeof(FontFamily)) throw new ArgumentException();
+            if (propertyInfo == null || propertyInfo.PropertyType != typeof(LineStyle)) throw new ArgumentException();
 
             if (Content != null) Content.PropertyChanged += ContentPropertyChanged;
         }
@@ -31,13 +31,13 @@ namespace StakeholderAnalysis.Visualization.ViewModels.PropertiesTree
                 if (content != null) content.PropertyChanged -= ContentPropertyChanged;
                 content = value;
                 if (content != null) content.PropertyChanged += ContentPropertyChanged;
-                OnPropertyChanged(nameof(SelectedValue));
+                OnPropertyChanged(nameof(LineStyleValue));
             }
         }
 
-        public FontFamily SelectedValue
+        public LineStyle LineStyleValue
         {
-            get => Content != null ? (FontFamily)propertyInfo.GetValue(Content) : default;
+            get => Content != null ? (LineStyle)propertyInfo.GetValue(Content) : LineStyle.Solid;
             set
             {
                 if (propertyInfo.CanWrite && Content != null)
@@ -55,7 +55,7 @@ namespace StakeholderAnalysis.Visualization.ViewModels.PropertiesTree
 
         private void ContentPropertyChanged(object sender, PropertyChangedEventArgs e)
         {
-            if (e.PropertyName == propertyInfo.Name) OnPropertyChanged(nameof(SelectedValue));
+            if (e.PropertyName == propertyInfo.Name) OnPropertyChanged(nameof(LineStyleValue));
         }
     }
 }

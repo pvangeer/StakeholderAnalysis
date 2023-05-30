@@ -1,5 +1,5 @@
 ﻿using StakeholderAnalysis.Data;
-using StakeholderAnalysis.Visualization.ViewModels.PropertiesTree;
+using StakeholderAnalysis.Visualization.ViewModels.TreeView;
 
 namespace StakeholderAnalysis.Visualization.ViewModels.ProjectExplorer
 {

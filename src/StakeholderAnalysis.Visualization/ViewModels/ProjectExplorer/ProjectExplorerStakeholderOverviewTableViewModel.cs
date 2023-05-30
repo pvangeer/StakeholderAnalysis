@@ -3,7 +3,7 @@ using System.Linq;
 using System.Windows.Input;
 using StakeholderAnalysis.Gui;
 using StakeholderAnalysis.Visualization.ViewModels.DocumentViews.StakeholderTableView;
-using StakeholderAnalysis.Visualization.ViewModels.PropertiesTree;
+using StakeholderAnalysis.Visualization.ViewModels.TreeView;
 
 namespace StakeholderAnalysis.Visualization.ViewModels.ProjectExplorer
 {

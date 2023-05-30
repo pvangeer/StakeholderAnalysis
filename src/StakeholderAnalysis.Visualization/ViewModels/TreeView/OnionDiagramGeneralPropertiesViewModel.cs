@@ -1,9 +1,8 @@
 ﻿using System.Collections.ObjectModel;
 using StakeholderAnalysis.Data.OnionDiagrams;
 using StakeholderAnalysis.Visualization.ViewModels.Properties;
-using StakeholderAnalysis.Visualization.ViewModels.Properties.OnionDiagramProperties;
 
-namespace StakeholderAnalysis.Visualization.ViewModels.PropertiesTree
+namespace StakeholderAnalysis.Visualization.ViewModels.TreeView
 {
     public class OnionDiagramGeneralPropertiesViewModel : PropertiesCollectionViewModelBase
     {

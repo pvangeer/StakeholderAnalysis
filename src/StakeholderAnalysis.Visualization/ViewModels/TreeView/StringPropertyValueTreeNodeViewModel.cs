@@ -3,7 +3,7 @@ using System.ComponentModel;
 using System.Reflection;
 using StakeholderAnalysis.Data;
 
-namespace StakeholderAnalysis.Visualization.ViewModels.PropertiesTree
+namespace StakeholderAnalysis.Visualization.ViewModels.TreeView
 {
     public class StringPropertyValueTreeNodeViewModel<TContent> : PropertyValueTreeNodeViewModelBase,
         IStringPropertyTreeNodeViewModel where TContent : INotifyPropertyChangedImplementation

@@ -1,6 +1,5 @@
 ﻿<ResourceDictionary xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
                     xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
-                    xmlns:propertiesTree="clr-namespace:StakeholderAnalysis.Visualization.ViewModels.PropertiesTree"
                     xmlns:visualization="clr-namespace:StakeholderAnalysis.Visualization"
                     xmlns:xctk="http://schemas.xceed.com/wpf/xaml/toolkit"
                     xmlns:behaviors="clr-namespace:StakeholderAnalysis.Visualization.Behaviors"
@@ -9,7 +8,8 @@
                     xmlns:data="clr-namespace:StakeholderAnalysis.Data;assembly=StakeholderAnalysis.Data"
                     xmlns:System="clr-namespace:System;assembly=mscorlib"
                     xmlns:onionDiagrams="clr-namespace:StakeholderAnalysis.Data.OnionDiagrams;assembly=StakeholderAnalysis.Data"
-                    xmlns:treeView="clr-namespace:StakeholderAnalysis.Visualization.Converters.TreeView">
+                    xmlns:treeView="clr-namespace:StakeholderAnalysis.Visualization.Converters.TreeView"
+                    xmlns:treeView1="clr-namespace:StakeholderAnalysis.Visualization.ViewModels.TreeView">
 
     <ResourceDictionary.MergedDictionaries>
         <ResourceDictionary Source="TreeViewStyles.xaml" />
@@ -51,13 +51,13 @@
     <converters:IconTypeToIconSourceConverter x:Key="IconTypeToIconSourceConverter" />
     <converters:LineStyleToDashArrayConverter x:Key="LineStyleToStrokeArrayConverter" />
 
-    <DataTemplate x:Key="ColorPropertyDataTemplate" DataType="propertiesTree:IColorPropertyTreeNodeViewModel">
+    <DataTemplate x:Key="ColorPropertyDataTemplate" DataType="treeView1:IColorPropertyTreeNodeViewModel">
         <xctk:ColorPicker
             Height="20"
             SelectedColor="{Binding ColorValue}" />
     </DataTemplate>
 
-    <DataTemplate x:Key="LineStyleDataTemplate" DataType="{x:Type propertiesTree:ILineStylePropertyTreeNodeViewModel}">
+    <DataTemplate x:Key="LineStyleDataTemplate" DataType="{x:Type treeView1:ILineStylePropertyTreeNodeViewModel}">
         <ComboBox
             ItemsSource="{Binding Source={StaticResource LineStyles}}"
             SelectedItem="{Binding LineStyleValue}">
@@ -78,7 +78,7 @@
     </DataTemplate>
 
     <DataTemplate x:Key="DoubleUpDownPropertyDataTemplate"
-                  DataType="propertiesTree:IDoubleUpDownPropertyTreeNodeViewModel">
+                  DataType="treeView1:IDoubleUpDownPropertyTreeNodeViewModel">
         <xctk:DoubleUpDown
             Value="{Binding DoubleValue}"
             Minimum="{Binding MinValue}"
@@ -87,7 +87,7 @@
             FormatString="{Binding StringFormat}" />
     </DataTemplate>
 
-    <DataTemplate x:Key="CheckBoxTemplate" DataType="propertiesTree:IBooleanPropertyTreeNodeViewModel">
+    <DataTemplate x:Key="CheckBoxTemplate" DataType="treeView1:IBooleanPropertyTreeNodeViewModel">
         <CheckBox
             Height="20"
             HorizontalAlignment="Center"
@@ -95,7 +95,7 @@
             IsChecked="{Binding BooleanValue}" />
     </DataTemplate>
 
-    <DataTemplate x:Key="StringTemplate" DataType="propertiesTree:IStringPropertyTreeNodeViewModel">
+    <DataTemplate x:Key="StringTemplate" DataType="treeView1:IStringPropertyTreeNodeViewModel">
         <TextBox
             Text="{Binding StringValue, UpdateSourceTrigger=PropertyChanged}" />
     </DataTemplate>
@@ -116,14 +116,14 @@
         </ComboBox>
     </DataTemplate>
 
-    <DataTemplate x:Key="FontFamilySelectorTemplate" DataType="propertiesTree:IFontFamilyPropertyTreeNodeViewModel">
+    <DataTemplate x:Key="FontFamilySelectorTemplate" DataType="treeView1:IFontFamilyPropertyTreeNodeViewModel">
         <ComboBox
             ItemsSource="{Binding Source={x:Static Fonts.SystemFontFamilies}}"
             SelectedItem="{Binding SelectedValue}" />
     </DataTemplate>
 
     <DataTemplate x:Key="SliderPropertyDataTemplate"
-                  DataType="{x:Type propertiesTree:ISliderPropertyTreeNodeViewModel}">
+                  DataType="{x:Type treeView1:ISliderPropertyTreeNodeViewModel}">
         <Slider
             Value="{Binding Value}"
             BorderBrush="{StaticResource Deltares.Brushes.DarkGreen}"
@@ -147,7 +147,7 @@
     <treeView:SourceStringToVisibilityConverter x:Key="SourceStringToVisibilityConverter" />
     <treeView:HasItemsToVisibilityConverter x:Key="HasItemsToVisibilityConverter" />
 
-    <DataTemplate x:Key="ITreeNodeItemDataTemplate" DataType="propertiesTree:ITreeNodeViewModel">
+    <DataTemplate x:Key="ITreeNodeItemDataTemplate" DataType="treeView1:ITreeNodeViewModel">
         <Border BorderThickness="0">
             <Border.Style>
                 <Style TargetType="Border" BasedOn="{StaticResource TreeNodeBorderStyle}">
@@ -227,7 +227,7 @@
         </Border>
     </DataTemplate>
 
-    <DataTemplate x:Key="PropertyValueItemDataTemplate" DataType="propertiesTree:ITreeNodeViewModel">
+    <DataTemplate x:Key="PropertyValueItemDataTemplate" DataType="treeView1:ITreeNodeViewModel">
         <Border Style="{StaticResource TreeNodeBorderStyle}">
             <Grid>
                 <Grid.ColumnDefinitions>
@@ -255,7 +255,7 @@
     </DataTemplate>
 
     <DataTemplate x:Key="IPropertyCollectionTreeNodesDataTemplate"
-                  DataType="{x:Type propertiesTree:ITreeNodeCollectionViewModel}">
+                  DataType="{x:Type treeView1:ITreeNodeCollectionViewModel}">
         <ItemsControl
             ItemsSource="{Binding Items}"
             Grid.IsSharedSizeScope="True">
@@ -263,12 +263,12 @@
                 <Style TargetType="ItemsControl">
                     <Style.Triggers>
                         <DataTrigger Binding="{Binding CollectionType}"
-                                     Value="{x:Static propertiesTree:CollectionType.PropertyValue}">
+                                     Value="{x:Static treeView1:CollectionType.PropertyValue}">
                             <Setter Property="ItemTemplate"
                                     Value="{StaticResource PropertyValueItemDataTemplate}" />
                         </DataTrigger>
                         <DataTrigger Binding="{Binding CollectionType}"
-                                     Value="{x:Static propertiesTree:CollectionType.PropertyItemsCollection}">
+                                     Value="{x:Static treeView1:CollectionType.PropertyItemsCollection}">
                             <Setter Property="ItemTemplate"
                                     Value="{DynamicResource IPropertyCollectionItemDataTemplate}" />
                         </DataTrigger>
@@ -279,7 +279,7 @@
     </DataTemplate>
 
     <DataTemplate x:Key="IPropertyCollectionItemDataTemplate"
-                  DataType="propertiesTree:ITreeNodeCollectionViewModel">
+                  DataType="treeView1:ITreeNodeCollectionViewModel">
         <StackPanel Orientation="Vertical">
             <ContentPresenter Content="{Binding }" ContentTemplate="{StaticResource ITreeNodeItemDataTemplate}" />
             <Grid Visibility="{Binding IsExpanded, Converter={StaticResource BooleanToVisibilityConverter}}">

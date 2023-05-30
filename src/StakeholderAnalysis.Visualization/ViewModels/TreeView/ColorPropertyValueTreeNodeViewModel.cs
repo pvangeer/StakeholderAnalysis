@@ -1,24 +1,24 @@
 ﻿using System;
 using System.ComponentModel;
 using System.Reflection;
+using System.Windows.Media;
 using StakeholderAnalysis.Data;
-using StakeholderAnalysis.Data.OnionDiagrams;
 
-namespace StakeholderAnalysis.Visualization.ViewModels.PropertiesTree
+namespace StakeholderAnalysis.Visualization.ViewModels.TreeView
 {
-    public class LineStylePropertyValueTreeNodeViewModel<TContent> : PropertyValueTreeNodeViewModelBase,
-        ILineStylePropertyTreeNodeViewModel where TContent : INotifyPropertyChangedImplementation
+    public class ColorPropertyValueTreeNodeViewModel<TContent> : PropertyValueTreeNodeViewModelBase,
+        IColorPropertyTreeNodeViewModel where TContent : INotifyPropertyChangedImplementation
     {
         private readonly PropertyInfo propertyInfo;
         private TContent content;
 
-        public LineStylePropertyValueTreeNodeViewModel(TContent content, string propertyName, string displayName) : base(
+        public ColorPropertyValueTreeNodeViewModel(TContent content, string propertyName, string displayName) : base(
             displayName)
         {
             Content = content;
 
             propertyInfo = typeof(TContent).GetProperty(propertyName, BindingFlags.Public | BindingFlags.Instance);
-            if (propertyInfo == null || propertyInfo.PropertyType != typeof(LineStyle)) throw new ArgumentException();
+            if (propertyInfo == null || propertyInfo.PropertyType != typeof(Color)) throw new ArgumentException();
 
             if (Content != null) Content.PropertyChanged += ContentPropertyChanged;
         }
@@ -31,13 +31,13 @@ namespace StakeholderAnalysis.Visualization.ViewModels.PropertiesTree
                 if (content != null) content.PropertyChanged -= ContentPropertyChanged;
                 content = value;
                 if (content != null) content.PropertyChanged += ContentPropertyChanged;
-                OnPropertyChanged(nameof(LineStyleValue));
+                OnPropertyChanged(nameof(ColorValue));
             }
         }
 
-        public LineStyle LineStyleValue
+        public Color ColorValue
         {
-            get => Content != null ? (LineStyle)propertyInfo.GetValue(Content) : LineStyle.Solid;
+            get => Content != null ? (Color)propertyInfo.GetValue(Content) : Colors.Black;
             set
             {
                 if (propertyInfo.CanWrite && Content != null)
@@ -55,7 +55,7 @@ namespace StakeholderAnalysis.Visualization.ViewModels.PropertiesTree
 
         private void ContentPropertyChanged(object sender, PropertyChangedEventArgs e)
         {
-            if (e.PropertyName == propertyInfo.Name) OnPropertyChanged(nameof(LineStyleValue));
+            if (e.PropertyName == propertyInfo.Name) OnPropertyChanged(nameof(ColorValue));
         }
     }
 }

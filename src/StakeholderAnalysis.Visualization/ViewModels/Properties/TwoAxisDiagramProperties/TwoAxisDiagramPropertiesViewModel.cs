@@ -1,7 +1,7 @@
 ﻿using System.Collections.ObjectModel;
 using StakeholderAnalysis.Data;
 using StakeholderAnalysis.Gui;
-using StakeholderAnalysis.Visualization.ViewModels.PropertiesTree;
+using StakeholderAnalysis.Visualization.ViewModels.TreeView;
 
 namespace StakeholderAnalysis.Visualization.ViewModels.Properties.TwoAxisDiagramProperties
 {

@@ -1,7 +1,7 @@
 using System.Windows;
 using System.Windows.Controls;
 using StakeholderAnalysis.Visualization.ViewModels.ProjectExplorer;
-using StakeholderAnalysis.Visualization.ViewModels.PropertiesTree;
+using StakeholderAnalysis.Visualization.ViewModels.TreeView;
 
 namespace StakeholderAnalysis.Visualization
 {

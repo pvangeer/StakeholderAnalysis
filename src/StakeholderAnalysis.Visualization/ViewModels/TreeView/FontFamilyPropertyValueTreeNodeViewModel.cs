@@ -4,21 +4,21 @@ using System.Reflection;
 using System.Windows.Media;
 using StakeholderAnalysis.Data;
 
-namespace StakeholderAnalysis.Visualization.ViewModels.PropertiesTree
+namespace StakeholderAnalysis.Visualization.ViewModels.TreeView
 {
-    public class ColorPropertyValueTreeNodeViewModel<TContent> : PropertyValueTreeNodeViewModelBase,
-        IColorPropertyTreeNodeViewModel where TContent : INotifyPropertyChangedImplementation
+    public class FontFamilyPropertyValueTreeNodeViewModel<TContent> : PropertyValueTreeNodeViewModelBase,
+        IFontFamilyPropertyTreeNodeViewModel where TContent : INotifyPropertyChangedImplementation
     {
         private readonly PropertyInfo propertyInfo;
         private TContent content;
 
-        public ColorPropertyValueTreeNodeViewModel(TContent content, string propertyName, string displayName) : base(
+        public FontFamilyPropertyValueTreeNodeViewModel(TContent content, string propertyName, string displayName) : base(
             displayName)
         {
             Content = content;
 
             propertyInfo = typeof(TContent).GetProperty(propertyName, BindingFlags.Public | BindingFlags.Instance);
-            if (propertyInfo == null || propertyInfo.PropertyType != typeof(Color)) throw new ArgumentException();
+            if (propertyInfo == null || propertyInfo.PropertyType != typeof(FontFamily)) throw new ArgumentException();
 
             if (Content != null) Content.PropertyChanged += ContentPropertyChanged;
         }
@@ -31,13 +31,13 @@ namespace StakeholderAnalysis.Visualization.ViewModels.PropertiesTree
                 if (content != null) content.PropertyChanged -= ContentPropertyChanged;
                 content = value;
                 if (content != null) content.PropertyChanged += ContentPropertyChanged;
-                OnPropertyChanged(nameof(ColorValue));
+                OnPropertyChanged(nameof(SelectedValue));
             }
         }
 
-        public Color ColorValue
+        public FontFamily SelectedValue
         {
-            get => Content != null ? (Color)propertyInfo.GetValue(Content) : Colors.Black;
+            get => Content != null ? (FontFamily)propertyInfo.GetValue(Content) : default;
             set
             {
                 if (propertyInfo.CanWrite && Content != null)
@@ -55,7 +55,7 @@ namespace StakeholderAnalysis.Visualization.ViewModels.PropertiesTree
 
         private void ContentPropertyChanged(object sender, PropertyChangedEventArgs e)
         {
-            if (e.PropertyName == propertyInfo.Name) OnPropertyChanged(nameof(ColorValue));
+            if (e.PropertyName == propertyInfo.Name) OnPropertyChanged(nameof(SelectedValue));
         }
     }
 }

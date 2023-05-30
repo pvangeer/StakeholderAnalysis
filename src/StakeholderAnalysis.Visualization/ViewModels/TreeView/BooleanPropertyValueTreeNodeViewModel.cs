@@ -3,7 +3,7 @@ using System.ComponentModel;
 using System.Reflection;
 using StakeholderAnalysis.Data;
 
-namespace StakeholderAnalysis.Visualization.ViewModels.PropertiesTree
+namespace StakeholderAnalysis.Visualization.ViewModels.TreeView
 {
     public class BooleanPropertyValueTreeNodeViewModel<TContent> : PropertyValueTreeNodeViewModelBase,
         IBooleanPropertyTreeNodeViewModel where TContent : INotifyPropertyChangedImplementation

@@ -1,4 +1,4 @@
-﻿namespace StakeholderAnalysis.Visualization.ViewModels.PropertiesTree
+﻿namespace StakeholderAnalysis.Visualization.ViewModels.TreeView
 {
     public interface IDoubleUpDownPropertyTreeNodeViewModel : ITreeNodeViewModel
     {

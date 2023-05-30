@@ -2,7 +2,7 @@
 using System.Windows.Input;
 using StakeholderAnalysis.Gui;
 
-namespace StakeholderAnalysis.Visualization.ViewModels.PropertiesTree
+namespace StakeholderAnalysis.Visualization.ViewModels.TreeView
 {
     public interface ITreeNodeViewModel : IExpandable, ISelectable
     {

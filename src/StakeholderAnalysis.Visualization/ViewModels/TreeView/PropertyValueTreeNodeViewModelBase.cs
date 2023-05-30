@@ -2,7 +2,7 @@
 using System.Windows.Input;
 using StakeholderAnalysis.Data;
 
-namespace StakeholderAnalysis.Visualization.ViewModels.PropertiesTree
+namespace StakeholderAnalysis.Visualization.ViewModels.TreeView
 {
     public abstract class PropertyValueTreeNodeViewModelBase : NotifyPropertyChangedObservable, ITreeNodeViewModel
     {
