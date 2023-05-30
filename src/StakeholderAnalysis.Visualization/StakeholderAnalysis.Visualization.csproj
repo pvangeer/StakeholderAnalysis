@@ -61,6 +61,7 @@
     <Compile Include="Converters\MainContentPresenter\DocumentViewInfoToPropertiesViewInfoConverter.cs" />
     <Compile Include="PropertiesViewTemplateSelector.cs" />
     <Compile Include="HidableGridSplitter.cs" />
+    <Compile Include="ViewModels\ProjectExplorer\ProjectExplorerItemViewModelBase.cs" />
     <Compile Include="ViewModels\PropertiesTree\OnionDiagramGeneralPropertiesViewModel.cs" />
     <Compile Include="ViewModels\PropertiesTree\ISliderPropertyTreeNodeViewModel.cs" />
     <Compile Include="ViewModels\PropertiesTree\SliderPropertyValueTreeNodeViewModel.cs" />
@@ -140,7 +141,7 @@
     <Compile Include="ViewModels\PropertiesTree\DoubleUpDownPropertyValueTreeNodeViewModel.cs" />
     <Compile Include="ViewModels\PropertiesTree\IColorPropertyTreeNodeViewModel.cs" />
     <Compile Include="ViewModels\PropertiesTree\IDoubleUpDownPropertyTreeNodeViewModel.cs" />
-    <Compile Include="ViewModels\PropertiesTree\IPropertyCollectionTreeNodeViewModel.cs" />
+    <Compile Include="ViewModels\PropertiesTree\ITreeNodeCollectionViewModel.cs" />
     <Compile Include="ViewModels\PropertiesTree\ITreeNodeViewModel.cs" />
     <Compile Include="ViewModels\PropertiesTree\PropertyValueTreeNodeViewModelBase.cs" />
     <Compile Include="ViewModels\SelectionManagerViewModel.cs" />

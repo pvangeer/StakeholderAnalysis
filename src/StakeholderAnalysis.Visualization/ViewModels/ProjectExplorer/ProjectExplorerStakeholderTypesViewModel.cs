@@ -8,7 +8,7 @@ using StakeholderAnalysis.Visualization.ViewModels.PropertiesTree;
 
 namespace StakeholderAnalysis.Visualization.ViewModels.ProjectExplorer
 {
-    public class ProjectExplorerStakeholderTypesViewModel : ViewModelBase, IPropertyCollectionTreeNodeViewModel
+    public class ProjectExplorerStakeholderTypesViewModel : ViewModelBase, ITreeNodeCollectionViewModel
     {
         private readonly Analysis analysis;
         private bool isExpanded = true;

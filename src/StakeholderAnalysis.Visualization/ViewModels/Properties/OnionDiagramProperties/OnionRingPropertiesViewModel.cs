@@ -5,7 +5,7 @@ using StakeholderAnalysis.Visualization.ViewModels.PropertiesTree;
 
 namespace StakeholderAnalysis.Visualization.ViewModels.Properties.OnionDiagramProperties
 {
-    public class OnionRingPropertiesViewModel : ViewModelBase, IPropertyCollectionTreeNodeViewModel
+    public class OnionRingPropertiesViewModel : ViewModelBase, ITreeNodeCollectionViewModel
     {
         private readonly OnionDiagram diagram;
         private readonly OnionRing ring;

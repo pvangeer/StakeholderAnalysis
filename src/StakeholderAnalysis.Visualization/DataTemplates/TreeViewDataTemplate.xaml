@@ -255,7 +255,7 @@
     </DataTemplate>
 
     <DataTemplate x:Key="IPropertyCollectionTreeNodesDataTemplate"
-                  DataType="{x:Type propertiesTree:IPropertyCollectionTreeNodeViewModel}">
+                  DataType="{x:Type propertiesTree:ITreeNodeCollectionViewModel}">
         <ItemsControl
             ItemsSource="{Binding Items}"
             Grid.IsSharedSizeScope="True">
@@ -279,7 +279,7 @@
     </DataTemplate>
 
     <DataTemplate x:Key="IPropertyCollectionItemDataTemplate"
-                  DataType="propertiesTree:IPropertyCollectionTreeNodeViewModel">
+                  DataType="propertiesTree:ITreeNodeCollectionViewModel">
         <StackPanel Orientation="Vertical">
             <ContentPresenter Content="{Binding }" ContentTemplate="{StaticResource ITreeNodeItemDataTemplate}" />
             <Grid Visibility="{Binding IsExpanded, Converter={StaticResource BooleanToVisibilityConverter}}">

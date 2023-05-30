@@ -8,7 +8,7 @@ using StakeholderAnalysis.Visualization.ViewModels.PropertiesTree;
 
 namespace StakeholderAnalysis.Visualization.ViewModels.Properties.OnionDiagramProperties
 {
-    public class OnionRingsPropertiesViewModel : PropertiesCollectionViewModelBase, IPropertyCollectionTreeNodeViewModel
+    public class OnionRingsPropertiesViewModel : PropertiesCollectionViewModelBase, ITreeNodeCollectionViewModel
     {
         private readonly OnionDiagram diagram;
 

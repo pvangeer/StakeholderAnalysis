@@ -2,7 +2,7 @@
 
 namespace StakeholderAnalysis.Visualization.ViewModels.PropertiesTree
 {
-    public interface IPropertyCollectionTreeNodeViewModel : ITreeNodeViewModel
+    public interface ITreeNodeCollectionViewModel : ITreeNodeViewModel
     {
         ObservableCollection<ITreeNodeViewModel> Items { get; }
         CollectionType CollectionType { get; }

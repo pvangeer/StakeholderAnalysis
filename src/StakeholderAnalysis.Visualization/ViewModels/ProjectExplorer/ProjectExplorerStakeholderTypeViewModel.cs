@@ -9,7 +9,7 @@ using StakeholderAnalysis.Visualization.ViewModels.PropertiesTree;
 
 namespace StakeholderAnalysis.Visualization.ViewModels.ProjectExplorer
 {
-    public class ProjectExplorerStakeholderTypeViewModel : ViewModelBase, IPropertyCollectionTreeNodeViewModel
+    public class ProjectExplorerStakeholderTypeViewModel : ViewModelBase, ITreeNodeCollectionViewModel
     {
         private readonly StakeholderType stakeholderType;
 

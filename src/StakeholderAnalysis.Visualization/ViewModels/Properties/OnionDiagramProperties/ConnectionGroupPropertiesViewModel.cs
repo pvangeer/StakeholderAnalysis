@@ -6,7 +6,7 @@ using StakeholderAnalysis.Visualization.ViewModels.PropertiesTree;
 
 namespace StakeholderAnalysis.Visualization.ViewModels.Properties.OnionDiagramProperties
 {
-    public class ConnectionGroupPropertiesViewModel : ViewModelBase, IPropertyCollectionTreeNodeViewModel
+    public class ConnectionGroupPropertiesViewModel : ViewModelBase, ITreeNodeCollectionViewModel
     {
         private readonly StakeholderConnectionGroup connectionGroup;
         private readonly OnionDiagram diagram;

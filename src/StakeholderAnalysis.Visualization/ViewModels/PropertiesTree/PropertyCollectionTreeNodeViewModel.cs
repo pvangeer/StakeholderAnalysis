@@ -3,7 +3,7 @@ using System.Windows.Input;
 
 namespace StakeholderAnalysis.Visualization.ViewModels.PropertiesTree
 {
-    public class PropertyCollectionTreeNodeViewModel : ViewModelBase, IPropertyCollectionTreeNodeViewModel
+    public class PropertyCollectionTreeNodeViewModel : ViewModelBase, ITreeNodeCollectionViewModel
     {
         private string iconSourceString;
         private bool isExpanded;

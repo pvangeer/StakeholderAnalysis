@@ -4,7 +4,7 @@ using StakeholderAnalysis.Visualization.ViewModels.PropertiesTree;
 
 namespace StakeholderAnalysis.Visualization.ViewModels.Properties
 {
-    public abstract class PropertiesCollectionViewModelBase : ViewModelBase, IPropertyCollectionTreeNodeViewModel
+    public abstract class PropertiesCollectionViewModelBase : ViewModelBase, ITreeNodeCollectionViewModel
     {
         private bool isExpanded = true;
 

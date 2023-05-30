@@ -11,7 +11,7 @@ using StakeholderAnalysis.Visualization.ViewModels.PropertiesTree;
 
 namespace StakeholderAnalysis.Visualization.ViewModels.ProjectExplorer
 {
-    public class ProjectExplorerForceFieldDiagramViewModel : ViewModelBase, IPropertyCollectionTreeNodeViewModel
+    public class ProjectExplorerForceFieldDiagramViewModel : ViewModelBase, ITreeNodeCollectionViewModel
     {
         private readonly Analysis analysis;
         private readonly ForceFieldDiagram diagram;
