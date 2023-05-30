@@ -5,7 +5,6 @@ using System.Windows.Media;
 using StakeholderAnalysis.Data;
 using StakeholderAnalysis.Visualization.Converters;
 using StakeholderAnalysis.Visualization.ViewModels.Properties;
-using StakeholderAnalysis.Visualization.ViewModels.Properties.OnionDiagramProperties;
 using StakeholderAnalysis.Visualization.ViewModels.PropertiesTree;
 
 namespace StakeholderAnalysis.Visualization.ViewModels.ProjectExplorer
@@ -13,21 +12,12 @@ namespace StakeholderAnalysis.Visualization.ViewModels.ProjectExplorer
     public class ProjectExplorerStakeholderTypeViewModel : ViewModelBase, IPropertyCollectionTreeNodeViewModel
     {
         private readonly StakeholderType stakeholderType;
-        private bool isExpanded;
 
         public ProjectExplorerStakeholderTypeViewModel(ViewModelFactory factory, StakeholderType stakeholderType) : base(factory)
         {
             this.stakeholderType = stakeholderType;
 
-            //TODO: Move these items to the properties control
-            Items = new ObservableCollection<ITreeNodeViewModel>
-            {
-                new StringPropertyValueTreeNodeViewModel<StakeholderType>(stakeholderType, nameof(StakeholderType.Name),
-                    "Naam"),
-                new ColorPropertyValueTreeNodeViewModel<StakeholderType>(stakeholderType, nameof(StakeholderType.Color),
-                    "Kleur"),
-                new StakeholderTypeIconPropertyValueTreeNodeViewModel(stakeholderType)
-            };
+            Items = new ObservableCollection<ITreeNodeViewModel>();
 
             ContextMenuItems = new ObservableCollection<ContextMenuItemViewModel>();
             RemoveItemCommand = CommandFactory.CreateRemoveStakeholderTypeCommand(stakeholderType);
@@ -36,28 +26,15 @@ namespace StakeholderAnalysis.Visualization.ViewModels.ProjectExplorer
             stakeholderType.PropertyChanged += StakeholderTypePropertyChanged;
         }
 
-        public StakeholderIconType IconType
+        public string DisplayName
         {
-            get => stakeholderType.IconType;
+            get => stakeholderType?.Name;
             set
             {
-                stakeholderType.IconType = value;
-                stakeholderType.OnPropertyChanged();
+                stakeholderType.Name = value;
+                stakeholderType.OnPropertyChanged(nameof(StakeholderType.Name));
             }
         }
-
-        public Color Color
-        {
-            get => stakeholderType.Color;
-            set
-            {
-                stakeholderType.Color = value;
-                stakeholderType.OnPropertyChanged();
-            }
-        }
-
-        public string IconSourceString =>
-            (string)new IconTypeToIconSourceConverter().Convert(stakeholderType.IconType, typeof(string), null, null);
 
         public bool CanRemove => true;
 
@@ -84,33 +61,28 @@ namespace StakeholderAnalysis.Visualization.ViewModels.ProjectExplorer
             return ReferenceEquals(o, stakeholderType);
         }
 
-        public string DisplayName
-        {
-            get => stakeholderType?.Name;
-            set
-            {
-                stakeholderType.Name = value;
-                stakeholderType.OnPropertyChanged(nameof(StakeholderType.Name));
-            }
-        }
+        public string IconSourceString =>
+            (string)new IconTypeToIconSourceConverter().Convert(stakeholderType.IconType, typeof(string), null, null);
 
-        public bool IsExpandable => true;
+        public bool IsExpandable => false;
 
-        public bool IsExpanded
-        {
-            get => isExpanded;
-            set
-            {
-                isExpanded = value;
-                OnPropertyChanged();
-            }
-        }
+        public bool IsExpanded { get; set; }
 
-        public ICommand ToggleIsExpandedCommand => CommandFactory.CreateToggleIsExpandedCommand(this);
+        public ICommand ToggleIsExpandedCommand => null;
 
         public ObservableCollection<ITreeNodeViewModel> Items { get; }
 
         public CollectionType CollectionType => CollectionType.PropertyValue;
+
+        public Color Color
+        {
+            get => stakeholderType.Color;
+            set
+            {
+                stakeholderType.Color = value;
+                stakeholderType.OnPropertyChanged();
+            }
+        }
 
         private void StakeholderTypePropertyChanged(object sender, PropertyChangedEventArgs e)
         {
@@ -126,11 +98,6 @@ namespace StakeholderAnalysis.Visualization.ViewModels.ProjectExplorer
                     OnPropertyChanged(nameof(Color));
                     break;
             }
-        }
-
-        public bool IsViewModelFor(StakeholderType otherStakeholderType)
-        {
-            return stakeholderType == otherStakeholderType;
         }
 
         public StakeholderTypePropertiesViewModel GetPropertiesViewModel()

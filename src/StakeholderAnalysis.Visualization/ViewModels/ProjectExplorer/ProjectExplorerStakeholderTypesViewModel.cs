@@ -40,6 +40,11 @@ namespace StakeholderAnalysis.Visualization.ViewModels.ProjectExplorer
 
         public bool CanAdd => true;
 
+        public ICommand AddItemCommand => CommandFactory.CreateCanAlwaysExecuteActionCommand(p =>
+        {
+            analysis.StakeholderTypes.Add(new StakeholderType());
+        });
+
         public bool CanOpen => false;
 
         public ICommand OpenViewCommand => null;
@@ -49,13 +54,6 @@ namespace StakeholderAnalysis.Visualization.ViewModels.ProjectExplorer
         public bool IsSelected { get; set; }
 
         public ICommand SelectItem => null;
-
-        public ObservableCollection<ContextMenuItemViewModel> ContextMenuItems { get; }
-
-        public bool IsViewModelFor(object o)
-        {
-            return false;
-        }
 
         public bool IsExpandable => true;
 
@@ -71,10 +69,13 @@ namespace StakeholderAnalysis.Visualization.ViewModels.ProjectExplorer
 
         public ICommand ToggleIsExpandedCommand => CommandFactory.CreateToggleIsExpandedCommand(this);
 
-        public ICommand AddItemCommand => CommandFactory.CreateCanAlwaysExecuteActionCommand(p =>
+        public ObservableCollection<ContextMenuItemViewModel> ContextMenuItems { get; }
+
+
+        public bool IsViewModelFor(object o)
         {
-            analysis.StakeholderTypes.Add(new StakeholderType());
-        });
+            return false;
+        }
 
         private void StakeholderTypesCollectionChanged(object sender, NotifyCollectionChangedEventArgs e)
         {
@@ -95,7 +96,6 @@ namespace StakeholderAnalysis.Visualization.ViewModels.ProjectExplorer
                         var viewModelToRemove = Items.FirstOrDefault(viewModel => viewModel.IsViewModelFor(stakeholderType));
                         if (viewModelToRemove != null) Items.Remove(viewModelToRemove);
                     }
-
                     break;
             }
         }

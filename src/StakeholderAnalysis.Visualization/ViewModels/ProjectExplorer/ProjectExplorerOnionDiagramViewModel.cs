@@ -11,12 +11,11 @@ using StakeholderAnalysis.Visualization.ViewModels.PropertiesTree;
 
 namespace StakeholderAnalysis.Visualization.ViewModels.ProjectExplorer
 {
-    public class ProjectExplorerOnionDiagramViewModel : ViewModelBase, IPropertyCollectionTreeNodeViewModel
+    public class ProjectExplorerOnionDiagramViewModel : ProjectExplorerItemViewModelBase
     {
         private readonly Analysis analysis;
         private readonly OnionDiagram diagram;
         private readonly ViewManager viewManager;
-        private bool isExpanded;
 
         public ProjectExplorerOnionDiagramViewModel(ViewModelFactory factory, Analysis analysis,
             OnionDiagram onionDiagram, ViewManager viewManager) : base(factory)
@@ -24,7 +23,6 @@ namespace StakeholderAnalysis.Visualization.ViewModels.ProjectExplorer
             this.viewManager = viewManager;
             this.analysis = analysis;
             diagram = onionDiagram;
-            Items = new ObservableCollection<ITreeNodeViewModel>();
 
             ContextMenuItems = new ObservableCollection<ContextMenuItemViewModel>
             {
@@ -32,30 +30,16 @@ namespace StakeholderAnalysis.Visualization.ViewModels.ProjectExplorer
                     CommandFactory.CreateCanAlwaysExecuteActionCommand(
                         p => { analysis.OnionDiagrams.Add(diagram.Clone() as OnionDiagram); }))
             };
-            SelectItem = CommandFactory.CreateSelectItemCommand(this);
+            
 
             if (diagram != null) diagram.PropertyChanged += DiagramPropertyChanged;
         }
 
-        public string DisplayName => diagram.Name;
+        public override string DisplayName => diagram.Name;
 
-        public bool CanRemove => true;
+        public override string IconSourceString => "pack://application:,,,/StakeholderAnalysis.Visualization;component/Resources/onion.png";
 
-        public ICommand RemoveItemCommand => CommandFactory.CreateCanAlwaysExecuteActionCommand(p =>
-        {
-            var viewInfo = viewManager?.Views.FirstOrDefault(vi =>
-                vi.ViewModel is OnionDiagramViewModel diagramViewModel1 && diagramViewModel1.IsViewModelFor(diagram));
-            if (viewInfo != null) viewManager.CloseView(viewInfo);
-            analysis.OnionDiagrams.Remove(diagram);
-        });
-
-        public bool CanAdd => false;
-
-        public ICommand AddItemCommand => null;
-
-        public bool CanOpen => true;
-
-        public ICommand OpenViewCommand => CommandFactory.CreateCanAlwaysExecuteActionCommand(p =>
+        public override ICommand OpenViewCommand => CommandFactory.CreateCanAlwaysExecuteActionCommand(p =>
         {
             var viewInfo = viewManager.Views.FirstOrDefault(v =>
                 v.ViewModel is OnionDiagramViewModel diagramViewModel && diagramViewModel.IsViewModelFor(diagram));
@@ -69,31 +53,18 @@ namespace StakeholderAnalysis.Visualization.ViewModels.ProjectExplorer
             viewManager.BringToFront(viewInfo);
         });
 
-        public bool CanSelect => true;
+        public override ICommand RemoveItemCommand => CommandFactory.CreateCanAlwaysExecuteActionCommand(p =>
+        {
+            var viewInfo = viewManager.Views.FirstOrDefault(vi =>
+                vi.ViewModel is OnionDiagramViewModel diagramViewModel1 && diagramViewModel1.IsViewModelFor(diagram));
+            if (viewInfo != null) viewManager.CloseView(viewInfo);
+            analysis.OnionDiagrams.Remove(diagram);
+        });
 
-        public bool IsSelected { get; set; }
-
-        public ICommand SelectItem { get; }
-
-        public ObservableCollection<ContextMenuItemViewModel> ContextMenuItems { get; }
-
-        public bool IsViewModelFor(object otherObject)
+        public override bool IsViewModelFor(object otherObject)
         {
             return otherObject as OnionDiagram == diagram;
         }
-
-        public string IconSourceString =>
-            "pack://application:,,,/StakeholderAnalysis.Visualization;component/Resources/onion.png";
-
-        public bool IsExpandable => false;
-
-        public bool IsExpanded { get; set; }
-
-        public ICommand ToggleIsExpandedCommand => null;
-
-        public ObservableCollection<ITreeNodeViewModel> Items { get; }
-
-        public CollectionType CollectionType => CollectionType.PropertyValue;
 
         private void DiagramPropertyChanged(object sender, PropertyChangedEventArgs e)
         {

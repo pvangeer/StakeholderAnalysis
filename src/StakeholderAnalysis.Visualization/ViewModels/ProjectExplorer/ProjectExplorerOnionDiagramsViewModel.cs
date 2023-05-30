@@ -16,11 +16,13 @@ namespace StakeholderAnalysis.Visualization.ViewModels.ProjectExplorer
         public ProjectExplorerOnionDiagramsViewModel(ViewModelFactory factory, Analysis analysis) : base(factory)
         {
             this.analysis = analysis;
+
             analysis.OnionDiagrams.CollectionChanged += OnionDiagramsCollectionChanged;
 
             Items = new ObservableCollection<ITreeNodeViewModel>();
             foreach (var analysisOnionDiagram in analysis.OnionDiagrams)
                 Items.Add(ViewModelFactory.CreateProjectExplorerOnionDiagramViewModel(analysisOnionDiagram));
+            
             ContextMenuItems = new ObservableCollection<ContextMenuItemViewModel>();
         }
 
@@ -28,19 +30,13 @@ namespace StakeholderAnalysis.Visualization.ViewModels.ProjectExplorer
 
         public CollectionType CollectionType => CollectionType.PropertyItemsCollection;
 
-        public bool IsExpandable => true;
+        public string DisplayName => "Ui-diagrammen";
 
-        public bool IsExpanded
-        {
-            get => isExpanded;
-            set
-            {
-                isExpanded = value;
-                OnPropertyChanged();
-            }
-        }
+        public string IconSourceString => null;
 
-        public ICommand ToggleIsExpandedCommand => CommandFactory.CreateToggleIsExpandedCommand(this);
+        public bool CanRemove => false;
+
+        public ICommand RemoveItemCommand => null;
 
         public bool CanAdd => true;
 
@@ -59,6 +55,20 @@ namespace StakeholderAnalysis.Visualization.ViewModels.ProjectExplorer
 
         public ICommand SelectItem => null;
 
+        public bool IsExpandable => true;
+
+        public bool IsExpanded
+        {
+            get => isExpanded;
+            set
+            {
+                isExpanded = value;
+                OnPropertyChanged();
+            }
+        }
+
+        public ICommand ToggleIsExpandedCommand => CommandFactory.CreateToggleIsExpandedCommand(this);
+
         public ObservableCollection<ContextMenuItemViewModel> ContextMenuItems { get; }
 
         public bool IsViewModelFor(object o)
@@ -66,31 +76,28 @@ namespace StakeholderAnalysis.Visualization.ViewModels.ProjectExplorer
             return false;
         }
 
-        public string DisplayName => "Ui-diagrammen";
-
-        public string IconSourceString => null;
-
-        public bool CanRemove => false;
-
-        public ICommand RemoveItemCommand => null;
-
         private void OnionDiagramsCollectionChanged(object sender, NotifyCollectionChangedEventArgs e)
         {
-            if (e.Action == NotifyCollectionChangedAction.Add)
-                foreach (var onionDiagram in e.NewItems.OfType<OnionDiagram>())
-                {
-                    var projectExplorerOnionDiagramViewModel = ViewModelFactory.CreateProjectExplorerOnionDiagramViewModel(onionDiagram);
-                    Items.Add(projectExplorerOnionDiagramViewModel);
-                    if (IsExpanded)
-                        projectExplorerOnionDiagramViewModel.SelectItem?.Execute(null);
-                }
-
-            if (e.Action == NotifyCollectionChangedAction.Remove)
-                foreach (var onionDiagram in e.OldItems.OfType<OnionDiagram>())
-                {
-                    var diagramToRemove = Items.FirstOrDefault(d => d.IsViewModelFor(onionDiagram));
-                    if (diagramToRemove != null) Items.Remove(diagramToRemove);
-                }
+            switch (e.Action)
+            {
+                case NotifyCollectionChangedAction.Add:
+                    foreach (var onionDiagram in e.NewItems.OfType<OnionDiagram>())
+                    {
+                        var projectExplorerOnionDiagramViewModel =
+                            ViewModelFactory.CreateProjectExplorerOnionDiagramViewModel(onionDiagram);
+                        Items.Add(projectExplorerOnionDiagramViewModel);
+                        if (IsExpanded)
+                            projectExplorerOnionDiagramViewModel.SelectItem?.Execute(null);
+                    }
+                    break;
+                case NotifyCollectionChangedAction.Remove:
+                    foreach (var onionDiagram in e.OldItems.OfType<OnionDiagram>())
+                    {
+                        var diagramToRemove = Items.FirstOrDefault(d => d.IsViewModelFor(onionDiagram));
+                        if (diagramToRemove != null) Items.Remove(diagramToRemove);
+                    }
+                    break;
+            }
         }
     }
 }
