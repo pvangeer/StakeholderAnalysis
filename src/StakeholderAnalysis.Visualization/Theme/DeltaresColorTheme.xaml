@@ -49,7 +49,9 @@
     <SolidColorBrush x:Key="Deltares.Brushes.Yellow" Color="{StaticResource Deltares.Colors.Yellow}" />
     <SolidColorBrush x:Key="Deltares.Brushes.Academy" Color="{StaticResource Deltares.Colors.Academy}" />
 
-    <SolidColorBrush x:Key="Deltares.Brushes.MouseOverHighlight" Color="{StaticResource Deltares.Colors.MouseOverHighlight}" />
-    <SolidColorBrush x:Key="Deltares.Brushes.MousePressedHighlight" Color="{StaticResource Deltares.Colors.MousePressedHighlight}" />
+    <SolidColorBrush x:Key="Deltares.Brushes.MouseOverHighlight"
+                     Color="{StaticResource Deltares.Colors.MouseOverHighlight}" />
+    <SolidColorBrush x:Key="Deltares.Brushes.MousePressedHighlight"
+                     Color="{StaticResource Deltares.Colors.MousePressedHighlight}" />
     <SolidColorBrush x:Key="Deltares.Brushes.Header" Color="{StaticResource Deltares.Colors.Header}" />
 </ResourceDictionary>

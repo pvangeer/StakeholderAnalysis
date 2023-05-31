@@ -18,27 +18,27 @@
                 ColumnHeaderHeight="35"
                 SelectionUnit="Cell">
                 <DataGrid.Columns>
-                    <DataGridTextColumn 
-                        Header="Naam" 
+                    <DataGridTextColumn
+                        Header="Naam"
                         MinWidth="200"
                         Binding="{Binding Name, Mode=TwoWay}">
                         <DataGridTextColumn.ElementStyle>
                             <Style TargetType="TextBlock">
-                                <Setter Property="Margin" Value="5,1"/>
-                                <Setter Property="Foreground" Value="Black"/>
-                                <Setter Property="TextAlignment" Value="Center"/>
-                                <Setter Property="HorizontalAlignment" Value="Left"/>
-                                <Setter Property="VerticalAlignment" Value="Center"/>
+                                <Setter Property="Margin" Value="5,1" />
+                                <Setter Property="Foreground" Value="Black" />
+                                <Setter Property="TextAlignment" Value="Center" />
+                                <Setter Property="HorizontalAlignment" Value="Left" />
+                                <Setter Property="VerticalAlignment" Value="Center" />
                             </Style>
                         </DataGridTextColumn.ElementStyle>
                         <DataGridTextColumn.EditingElementStyle>
                             <Style TargetType="TextBox">
-                                <Setter Property="Height" Value="25"/>
-                                <Setter Property="Margin" Value="5,1"/>
-                                <Setter Property="VerticalContentAlignment" Value="Center"/>
-                                <Setter Property="HorizontalContentAlignment" Value="Left"/>
-                                <Setter Property="HorizontalAlignment" Value="Left"/>
-                                <Setter Property="VerticalAlignment" Value="Center"/>
+                                <Setter Property="Height" Value="25" />
+                                <Setter Property="Margin" Value="5,1" />
+                                <Setter Property="VerticalContentAlignment" Value="Center" />
+                                <Setter Property="HorizontalContentAlignment" Value="Left" />
+                                <Setter Property="HorizontalAlignment" Value="Left" />
+                                <Setter Property="VerticalAlignment" Value="Center" />
                             </Style>
                         </DataGridTextColumn.EditingElementStyle>
                     </DataGridTextColumn>
@@ -50,20 +50,20 @@
                             <Style TargetType="ComboBox">
                                 <Setter Property="ItemsSource"
                                         Value="{Binding ElementName=TableGrid, Path=DataContext.StakeholderTypes}" />
-                                <Setter Property="Foreground" Value="Black"/>
-                                <Setter Property="Margin" Value="5,1"/>
-                                <Setter Property="HorizontalAlignment" Value="Left"/>
-                                <Setter Property="VerticalAlignment" Value="Center"/>
+                                <Setter Property="Foreground" Value="Black" />
+                                <Setter Property="Margin" Value="5,1" />
+                                <Setter Property="HorizontalAlignment" Value="Left" />
+                                <Setter Property="VerticalAlignment" Value="Center" />
                             </Style>
                         </DataGridComboBoxColumn.ElementStyle>
                         <DataGridComboBoxColumn.EditingElementStyle>
                             <Style TargetType="ComboBox">
                                 <Setter Property="ItemsSource"
                                         Value="{Binding ElementName=TableGrid, Path=DataContext.StakeholderTypes}" />
-                                <Setter Property="Height" Value="25"/>
-                                <Setter Property="Margin" Value="5,1"/>
-                                <Setter Property="HorizontalAlignment" Value="Left"/>
-                                <Setter Property="VerticalAlignment" Value="Center"/>
+                                <Setter Property="Height" Value="25" />
+                                <Setter Property="Margin" Value="5,1" />
+                                <Setter Property="HorizontalAlignment" Value="Left" />
+                                <Setter Property="VerticalAlignment" Value="Center" />
                             </Style>
                         </DataGridComboBoxColumn.EditingElementStyle>
                     </DataGridComboBoxColumn>
