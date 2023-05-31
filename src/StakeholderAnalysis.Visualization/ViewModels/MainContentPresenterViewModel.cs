@@ -1,7 +1,10 @@
-﻿using System.ComponentModel;
+﻿using System.Collections.ObjectModel;
+using System.ComponentModel;
 using System.Linq;
+using System.Windows.Media;
 using StakeholderAnalysis.Gui;
 using StakeholderAnalysis.Visualization.ViewModels.ProjectExplorer;
+using Xceed.Wpf.Toolkit;
 
 namespace StakeholderAnalysis.Visualization.ViewModels
 {
@@ -17,6 +20,25 @@ namespace StakeholderAnalysis.Visualization.ViewModels
             ViewManager = ViewModelFactory.CreateViewManagerViewModel();
             SelectionManager = gui?.SelectionManager;
             ProjectExplorerViewModel = ViewModelFactory.CreateProjectExplorerViewModel();
+            StandardColorPallet = new ObservableCollection<ColorItem>
+            {
+                new ColorItem((Color)ColorConverter.ConvertFromString("#000000"), "Zwart"),
+                new ColorItem((Color)ColorConverter.ConvertFromString("#FFFFFF"), "Wit"),
+
+                new ColorItem((Color)ColorConverter.ConvertFromString("#080C80"), "Deltares - Donkerblauw"),
+                new ColorItem((Color)ColorConverter.ConvertFromString("#0D38E0"), "Deltares - Blauw"),
+                new ColorItem((Color)ColorConverter.ConvertFromString("#0EBBF0"), "Deltares - Lichtblauw"),
+
+                new ColorItem((Color)ColorConverter.ConvertFromString("#00B389"), "Deltares - Donkergroen"),
+                new ColorItem((Color)ColorConverter.ConvertFromString("#00CC96"), "Deltares - Groen"),
+                new ColorItem((Color)ColorConverter.ConvertFromString("#00E6A1"), "Deltares - Lichtgroen"),
+
+                new ColorItem((Color)ColorConverter.ConvertFromString("#F2F2F2"), "Deltares - Lichtgrijs"),
+                new ColorItem((Color)ColorConverter.ConvertFromString("#E6E6E6"), "Deltares - Middengrijs"),
+
+                new ColorItem((Color)ColorConverter.ConvertFromString("#FFD814"), "Deltares - Geel"),
+                new ColorItem((Color)ColorConverter.ConvertFromString("#FF960D"), "Deltares - Academy"),
+            };
         }
 
         public ViewManagerViewModel ViewManager { get; }
@@ -26,6 +48,8 @@ namespace StakeholderAnalysis.Visualization.ViewModels
         public ViewModelFactory PropertiesViewModelFactory => ViewModelFactory;
 
         public ProjectExplorerViewModel ProjectExplorerViewModel { get; private set; }
+
+        public ObservableCollection<ColorItem> StandardColorPallet { get; }
 
         public bool IsProjectExplorerVisible
         {

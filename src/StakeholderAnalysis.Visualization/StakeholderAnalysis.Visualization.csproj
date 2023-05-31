@@ -59,6 +59,7 @@
     <Compile Include="Converters\TreeView\HasItemsToVisibilityConverter.cs" />
     <Compile Include="Converters\LineStyleToDashArrayConverter.cs" />
     <Compile Include="Converters\MainContentPresenter\DocumentViewInfoToPropertiesViewInfoConverter.cs" />
+    <Compile Include="ObservableCollectionWrapper.cs" />
     <Compile Include="PropertiesViewTemplateSelector.cs" />
     <Compile Include="HidableGridSplitter.cs" />
     <Compile Include="Converters\ObjectToPropertiesViewModelConverter.cs" />

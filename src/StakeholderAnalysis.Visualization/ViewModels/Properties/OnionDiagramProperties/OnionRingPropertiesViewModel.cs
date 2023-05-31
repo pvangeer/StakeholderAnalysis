@@ -1,4 +1,5 @@
 ﻿using System.Collections.ObjectModel;
+using System.ComponentModel;
 using System.Windows.Input;
 using StakeholderAnalysis.Data.OnionDiagrams;
 using StakeholderAnalysis.Visualization.ViewModels.TreeView;
@@ -28,6 +29,18 @@ namespace StakeholderAnalysis.Visualization.ViewModels.Properties.OnionDiagramPr
                 new LineStylePropertyValueTreeNodeViewModel<OnionRing>(ring, nameof(OnionRing.LineStyle), "Lijnstijl")
             };
             ContextMenuItems = new ObservableCollection<ContextMenuItemViewModel>();
+
+            ring.PropertyChanged += RingPropertyChanged;
+        }
+
+        private void RingPropertyChanged(object sender, PropertyChangedEventArgs e)
+        {
+            switch (e.PropertyName)
+            {
+                case nameof(OnionRing.Percentage):
+                    OnPropertyChanged(DisplayName);
+                    break;
+            }
         }
 
         public ICommand ToggleIsExpandedCommand => CommandFactory.CreateToggleIsExpandedCommand(this);

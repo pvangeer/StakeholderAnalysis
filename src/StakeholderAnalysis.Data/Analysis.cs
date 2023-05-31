@@ -19,8 +19,16 @@ namespace StakeholderAnalysis.Data
                     ConnectionGroups = { new StakeholderConnectionGroup("Nieuwe groep", Colors.Black) },
                     OnionRings =
                     {
-                        new OnionRing(0.45) { BackgroundColor = (Color)ColorConverter.ConvertFromString("#080C80") },
-                        new OnionRing(0.75) { BackgroundColor = (Color)ColorConverter.ConvertFromString("#0D38E0") },
+                        new OnionRing(0.45)
+                        {
+                            StrokeThickness = 0,
+                            BackgroundColor = (Color)ColorConverter.ConvertFromString("#080C80")
+                        },
+                        new OnionRing(0.75)
+                        {
+                            StrokeThickness = 0,
+                            BackgroundColor = (Color)ColorConverter.ConvertFromString("#0D38E0")
+                        },
                         new OnionRing(1) { BackgroundColor = (Color)ColorConverter.ConvertFromString("#0EBBF0") }
                     }
                 }

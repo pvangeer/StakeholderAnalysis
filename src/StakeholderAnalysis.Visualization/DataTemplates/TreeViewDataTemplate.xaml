@@ -25,6 +25,7 @@
 
     <DataTemplate x:Key="ColorPropertyDataTemplate" DataType="treeView1:IColorPropertyTreeNodeViewModel">
         <xctk:ColorPicker
+            StandardColors="{Binding ElementName=MainContentPresenter, Path=DataContext.StandardColorPallet}"
             Height="20"
             SelectedColor="{Binding ColorValue}" />
     </DataTemplate>
