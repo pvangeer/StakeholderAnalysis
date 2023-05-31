@@ -380,18 +380,24 @@
                      Color="{StaticResource Fluent.Ribbon.Colors.Gray8}" options:Freeze="True" />
 
     <!-- WindowCommands -->
-    <SolidColorBrush x:Key="Fluent.Ribbon.Brushes.WindowCommands.CaptionButton.Foreground" Color="Black"
+    <SolidColorBrush x:Key="Fluent.Ribbon.Brushes.WindowCommands.CaptionButton.Foreground" 
+                     Color="Black"
                      options:Freeze="True" />
-    <SolidColorBrush x:Key="Fluent.Ribbon.Brushes.WindowCommands.CaptionButton.Background"
-                     Color="{StaticResource Fluent.Ribbon.Colors.TransparentWhite}" options:Freeze="True" />
-    <SolidColorBrush x:Key="Fluent.Ribbon.Brushes.WindowCommands.CaptionButton.MouseOver.Background" Color="Black"
+    <SolidColorBrush x:Key="Fluent.Ribbon.Brushes.WindowCommands.CaptionButton.Background" 
+                     Color="{StaticResource Fluent.Ribbon.Colors.TransparentWhite}" 
                      options:Freeze="True" />
-    <SolidColorBrush x:Key="Fluent.Ribbon.Brushes.WindowCommands.CaptionButton.Pressed.Background" Color="Black"
+    <SolidColorBrush x:Key="Fluent.Ribbon.Brushes.WindowCommands.CaptionButton.MouseOver.Background" 
+                     Color="{StaticResource Deltares.Colors.Green}"
+                     options:Freeze="True" />
+    <SolidColorBrush x:Key="Fluent.Ribbon.Brushes.WindowCommands.CaptionButton.Pressed.Background" 
+                     Color="{StaticResource Deltares.Colors.DarkGreen}"
                      options:Freeze="True" />
 
-    <SolidColorBrush x:Key="Fluent.Ribbon.Brushes.WindowCommands.CloseButton.MouseOver.Background" Color="#E81123"
+    <SolidColorBrush x:Key="Fluent.Ribbon.Brushes.WindowCommands.CloseButton.MouseOver.Background" 
+                     Color="#E81123"
                      options:Freeze="True" />
-    <SolidColorBrush x:Key="Fluent.Ribbon.Brushes.WindowCommands.CloseButton.Pressed.Background" Color="#A92831"
+    <SolidColorBrush x:Key="Fluent.Ribbon.Brushes.WindowCommands.CloseButton.Pressed.Background" 
+                     Color="#A92831"
                      options:Freeze="True" />
 
     <!-- END BRUSHES -->

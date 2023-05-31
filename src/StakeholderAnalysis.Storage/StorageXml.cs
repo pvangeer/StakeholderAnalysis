@@ -18,9 +18,7 @@ namespace StakeholderAnalysis.Storage
 
         public StorageXml()
         {
-            var emptyAnalysis = new Analysis();
-            var emptyStagedAnalysisXmlEntity = emptyAnalysis.Create(new PersistenceRegistry());
-            emptyAnalysisHash = FingerprintHelper.Get(emptyStagedAnalysisXmlEntity);
+            emptyAnalysisHash = FingerprintHelper.Get(new Analysis().Create(new PersistenceRegistry()));
         }
 
         public bool HasStagedAnalysis => stagedAnalysisXmlEntity != null;

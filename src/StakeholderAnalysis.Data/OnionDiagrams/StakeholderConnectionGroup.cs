@@ -1,4 +1,5 @@
 ﻿using System.Windows.Media;
+using log4net.Appender;
 
 namespace StakeholderAnalysis.Data.OnionDiagrams
 {
@@ -8,7 +9,7 @@ namespace StakeholderAnalysis.Data.OnionDiagrams
         {
         }
 
-        public StakeholderConnectionGroup(string name, Color strokeColor, double strokeThickness = 1.0,
+        public StakeholderConnectionGroup(string name, Color strokeColor = default, double strokeThickness = 1.0,
             LineStyle lineStyle = LineStyle.Solid, bool visible = true)
         {
             Name = name;
