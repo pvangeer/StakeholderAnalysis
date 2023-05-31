@@ -16,6 +16,25 @@
     <Color x:Key="Deltares.Colors.Yellow">#FFD814</Color>
     <Color x:Key="Deltares.Colors.Academy">#FF960D</Color>
 
+    <Color x:Key="Deltares.Colors.Header">#0EBBF0</Color>
+    <Color x:Key="Deltares.Colors.MousePressedHighlight">#00CC96</Color>
+    <Color x:Key="Deltares.Colors.MouseOverHighlight">#00E6A1</Color>
+    <Color x:Key="Deltares.Colors.Selected">#00B389</Color>
+
+    <!--Control colors.-->
+    <Color x:Key="Deltares.Colors.ContentArea.Light">#FFF2F2F2</Color>
+    <Color x:Key="Deltares.Colors.ContentArea.Dark">#FFE6E6E6</Color>
+
+    <Color x:Key="Deltares.Colors.ControlLight">White</Color>
+    <Color x:Key="Deltares.Colors.Glyph">#FF444444</Color>
+
+    <!--Border colors-->
+    <Color x:Key="Deltares.Colors.Border.Light">#FFCCCCCC</Color>
+    <Color x:Key="Deltares.Colors.Border.Dark">#FF444444</Color>
+
+    <!--Control-specific resources.-->
+    <Color x:Key="Deltares.Colors.CurrentCell.Border">#FFE6E6E6</Color>
+
     <SolidColorBrush x:Key="Deltares.Brushes.DarkBlue" Color="{StaticResource Deltares.Colors.DarkBlue}" />
     <SolidColorBrush x:Key="Deltares.Brushes.Blue" Color="{StaticResource Deltares.Colors.Blue}" />
     <SolidColorBrush x:Key="Deltares.Brushes.LightBlue" Color="{StaticResource Deltares.Colors.LightBlue}" />
@@ -30,5 +49,7 @@
     <SolidColorBrush x:Key="Deltares.Brushes.Yellow" Color="{StaticResource Deltares.Colors.Yellow}" />
     <SolidColorBrush x:Key="Deltares.Brushes.Academy" Color="{StaticResource Deltares.Colors.Academy}" />
 
-    <SolidColorBrush x:Key="Deltares.Brushes.MouseOverHighlight" Color="{StaticResource Deltares.Colors.LightGreen}" />
+    <SolidColorBrush x:Key="Deltares.Brushes.MouseOverHighlight" Color="{StaticResource Deltares.Colors.MouseOverHighlight}" />
+    <SolidColorBrush x:Key="Deltares.Brushes.MousePressedHighlight" Color="{StaticResource Deltares.Colors.MousePressedHighlight}" />
+    <SolidColorBrush x:Key="Deltares.Brushes.Header" Color="{StaticResource Deltares.Colors.Header}" />
 </ResourceDictionary>

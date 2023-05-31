@@ -185,24 +185,6 @@
                                 </Setter>
                             </MultiDataTrigger.Setters>
                         </MultiDataTrigger>
-                        <!--<DataTrigger Binding="{Binding CanOpen}" Value="True">
-                            <Setter Property="behaviors:AttachInputBindingsBehavior.InputBindings">
-                                <Setter.Value>
-                                    <InputBindingCollection>
-                                        <MouseBinding MouseAction="LeftDoubleClick" Command="{Binding OpenViewCommand}" />
-                                    </InputBindingCollection>
-                                </Setter.Value>
-                            </Setter>
-                        </DataTrigger>
-                        <DataTrigger Binding="{Binding CanSelect}" Value="True">
-                            <Setter Property="behaviors:AttachInputBindingsBehavior.InputBindings">
-                                <Setter.Value>
-                                    <InputBindingCollection>
-                                        <MouseBinding MouseAction="LeftClick" Command="{Binding SelectItemCommand}" />
-                                    </InputBindingCollection>
-                                </Setter.Value>
-                            </Setter>
-                        </DataTrigger>-->
                         <DataTrigger Value="True">
                             <DataTrigger.Binding>
                                 <Binding Path="IsSelected" />
