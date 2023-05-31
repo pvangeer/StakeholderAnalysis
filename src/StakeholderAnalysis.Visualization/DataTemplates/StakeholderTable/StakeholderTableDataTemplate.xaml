@@ -12,11 +12,11 @@
             <DataGrid
                 ItemsSource="{Binding Stakeholders}"
                 AutoGenerateColumns="False"
-                SelectionMode="Single"
+                SelectionMode="Extended"
                 CanUserAddRows="True"
                 CanUserDeleteRows="True"
                 ColumnHeaderHeight="35"
-                SelectionUnit="Cell">
+                SelectionUnit="CellOrRowHeader">
                 <DataGrid.Columns>
                     <DataGridTextColumn
                         Header="Naam"
