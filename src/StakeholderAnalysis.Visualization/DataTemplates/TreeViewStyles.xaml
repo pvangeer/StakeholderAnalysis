@@ -11,7 +11,7 @@
                 <Setter Property="Background" Value="{StaticResource Deltares.Brushes.MouseOverHighlight}" />
             </Trigger>
             <Trigger Property="IsMouseOver" Value="False">
-                <Setter Property="Background" Value="GhostWhite" />
+                <Setter Property="Background" Value="{StaticResource Deltares.Brushes.LightGray}" />
             </Trigger>
         </Style.Triggers>
     </Style>

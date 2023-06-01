@@ -5,6 +5,8 @@
                     xmlns:statusBar1="clr-namespace:StakeholderAnalysis.Visualization.Converters.StatusBar">
 
     <ResourceDictionary.MergedDictionaries>
+        <ResourceDictionary
+            Source="/StakeholderAnalysis.Visualization;Component/Theme/GeneralStyles.xaml" />
         <ResourceDictionary Source="MessageDataTemplates.xaml" />
         <ResourceDictionary Source="/StakeholderAnalysis.Visualization;Component/Theme/DeltaresColorTheme.xaml" />
     </ResourceDictionary.MergedDictionaries>
@@ -14,7 +16,7 @@
 
     <DataTemplate x:Key="StatusBarDataTemplate" DataType="statusBar:StatusBarViewModel">
         <fluent:StatusBar Background="{StaticResource Deltares.Brushes.LightBlue}"
-                          Height="35">
+                          Height="{StaticResource DefaultItemHeight}">
             <fluent:StatusBarItem
                 HorizontalAlignment="Right">
                 <StackPanel>

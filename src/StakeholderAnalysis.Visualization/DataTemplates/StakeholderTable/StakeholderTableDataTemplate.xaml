@@ -8,6 +8,8 @@
 
     <ResourceDictionary.MergedDictionaries>
         <ResourceDictionary
+            Source="/StakeholderAnalysis.Visualization;Component/Theme/GeneralStyles.xaml" />
+        <ResourceDictionary
             Source="/StakeholderAnalysis.Visualization;Component/Theme/DataGridStyles.xaml" />
     </ResourceDictionary.MergedDictionaries>
 
@@ -22,11 +24,11 @@
                 SelectionMode="Extended"
                 CanUserAddRows="True"
                 CanUserDeleteRows="True"
-                ColumnHeaderHeight="35"
+                ColumnHeaderHeight="{StaticResource DefaultItemHeight}"
                 ItemsSource="{Binding StakeholderViewSource.View}"
                 SelectionUnit="CellOrRowHeader">
                 <DataGrid.Resources>
-                    <DataTemplate x:Key="stakeholderTypePresentation" DataType="{x:Type data:StakeholderType}">
+                    <DataTemplate x:Key="stakeholderTypeItemDataTemplate" DataType="{x:Type data:StakeholderType}">
                         <DataTemplate.Resources>
                             <ObjectDataProvider x:Key="StakeholderTypeIconStyles"
                                                 MethodName="GetValues"
@@ -68,7 +70,7 @@
                                                         </Style>
                                                     </Expander.Resources>
                                                     <Expander.Header>
-                                                        <DockPanel Height="35" VerticalAlignment="Center">
+                                                        <DockPanel Height="{StaticResource DefaultItemHeight}" VerticalAlignment="Center">
                                                             <TextBlock FontWeight="Bold" Margin="5,0,0,0" MinWidth="100" VerticalAlignment="Center">
                                                                 <TextBlock.Text>
                                                                     <MultiBinding Converter="{StaticResource StakeholderTypeToNameConverter}">
@@ -97,7 +99,7 @@
                     <GroupStyle>
                         <GroupStyle.HeaderTemplate>
                             <DataTemplate>
-                                <DockPanel Height="35" VerticalAlignment="Center">
+                                <DockPanel Height="{StaticResource DefaultItemHeight}" VerticalAlignment="Center">
                                     <TextBlock FontWeight="Bold" Margin="30,0,0,0" MinWidth="100" VerticalAlignment="Center">
                                         <TextBlock.Text>
                                             <MultiBinding Converter="{StaticResource StakeholderTypeToNameConverter}">
@@ -151,7 +153,7 @@
                                 <Setter Property="Margin" Value="5,1" />
                                 <Setter Property="HorizontalAlignment" Value="Left" />
                                 <Setter Property="VerticalAlignment" Value="Center" />
-                                <Setter Property="ItemTemplate" Value="{StaticResource stakeholderTypePresentation}"/>
+                                <Setter Property="ItemTemplate" Value="{StaticResource stakeholderTypeItemDataTemplate}"/>
                             </Style>
                         </DataGridComboBoxColumn.ElementStyle>
                         <DataGridComboBoxColumn.EditingElementStyle>
@@ -162,7 +164,7 @@
                                 <Setter Property="Margin" Value="5,1" />
                                 <Setter Property="HorizontalAlignment" Value="Left" />
                                 <Setter Property="VerticalAlignment" Value="Center" />
-                                <Setter Property="ItemTemplate" Value="{StaticResource stakeholderTypePresentation}"/>
+                                <Setter Property="ItemTemplate" Value="{StaticResource stakeholderTypeItemDataTemplate}"/>
                             </Style>
                         </DataGridComboBoxColumn.EditingElementStyle>
                     </DataGridComboBoxColumn>

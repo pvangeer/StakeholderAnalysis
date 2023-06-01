@@ -12,6 +12,8 @@
                     xmlns:treeView1="clr-namespace:StakeholderAnalysis.Visualization.ViewModels.TreeView">
 
     <ResourceDictionary.MergedDictionaries>
+        <ResourceDictionary
+            Source="/StakeholderAnalysis.Visualization;Component/Theme/GeneralStyles.xaml" />
         <ResourceDictionary Source="TreeViewStyles.xaml" />
         <ResourceDictionary Source="/StakeholderAnalysis.Visualization;Component/Theme/DeltaresColorTheme.xaml" />
     </ResourceDictionary.MergedDictionaries>
@@ -201,7 +203,9 @@
                     ItemsSource="{Binding ContextMenuItems}"
                     ItemContainerStyle="{StaticResource MenuItemStyle}" />
             </Border.ContextMenu>
-            <Grid Margin="10">
+            <Grid 
+                Height="{StaticResource DefaultItemHeight}"
+                VerticalAlignment="Center">
                 <Grid.ColumnDefinitions>
                     <ColumnDefinition Width="Auto" />
                     <ColumnDefinition Width="Auto" />

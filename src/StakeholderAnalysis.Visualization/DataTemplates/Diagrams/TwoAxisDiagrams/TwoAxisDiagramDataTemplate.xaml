@@ -149,7 +149,7 @@
 
     <DataTemplate x:Key="TwoAxisDiagramDataTemplate" DataType="twoAxisDiagrams:ITwoAxisDiagramViewModel">
         <!--Main grid-->
-        <Grid>
+        <Grid Margin="10">
             <Grid.InputBindings>
                 <MouseBinding MouseAction="LeftDoubleClick" Command="{Binding GridClickedCommand}" />
             </Grid.InputBindings>

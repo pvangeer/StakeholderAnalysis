@@ -14,7 +14,6 @@
                      Icon="pack://application:,,,/StakeholderAnalysis.App;component/Logo.png"
                      IsIconVisible="False"
                      WindowStartupLocation="CenterScreen"
-                     TitleBarHeight="35"
                      Height="900"
                      Width="1500">
 
@@ -25,6 +24,8 @@
     <Window.Resources>
         <ResourceDictionary>
             <ResourceDictionary.MergedDictionaries>
+                <ResourceDictionary
+                    Source="/StakeholderAnalysis.Visualization;Component/Theme/GeneralStyles.xaml" />
                 <ResourceDictionary Source="/Fluent;Component/Themes/generic.xaml" />
                 <ResourceDictionary
                     Source="/StakeholderAnalysis.Visualization;Component/Theme/StakeholderAnalysisTheme.xaml" />
@@ -37,6 +38,10 @@
             </ResourceDictionary.MergedDictionaries>
         </ResourceDictionary>
     </Window.Resources>
+
+    <fluent:RibbonWindow.TitleBarHeight>
+        <Binding Source="{StaticResource DefaultItemHeight}"/>
+    </fluent:RibbonWindow.TitleBarHeight>
 
     <Grid>
         <Grid.RowDefinitions>
