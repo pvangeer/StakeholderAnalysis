@@ -1,6 +1,11 @@
-﻿using System.Collections.ObjectModel;
+﻿using System.Collections;
+using System.Collections.Generic;
+using System.Collections.ObjectModel;
 using System.Collections.Specialized;
+using System.ComponentModel;
 using System.Linq;
+using System.Windows.Controls;
+using System.Windows.Data;
 using System.Windows.Input;
 using StakeholderAnalysis.Data;
 using StakeholderAnalysis.Gui;
@@ -21,8 +26,54 @@ namespace StakeholderAnalysis.Visualization.ViewModels.DocumentViews.Stakeholder
                     analysis.Stakeholders.Select(stakeholder =>
                         ViewModelFactory.CreateStakeholderViewModel(stakeholder, null, null)));
                 Stakeholders.CollectionChanged += StakeholderViewModelsCollectionChanged;
+
+                foreach (var analysisStakeholderType in analysis.StakeholderTypes)
+                {
+                    analysisStakeholderType.PropertyChanged += StakeholderTypePropertyChanged;
+                }
+
+                analysis.StakeholderTypes.CollectionChanged += StakeholderTypesCollectionChanged;
+
+                StakeholderViewSource = new CollectionViewSource
+                {
+                    Source = Stakeholders,
+                    GroupDescriptions = { new PropertyGroupDescription(nameof(StakeholderViewModel.Type))}
+                };
             }
         }
+
+        public bool StakeholderTypesChangedProperty { get; set; }
+
+        private void StakeholderTypePropertyChanged(object sender, PropertyChangedEventArgs e)
+        {
+            switch (e.PropertyName)
+            {
+                case nameof(StakeholderType.Name):
+                    OnPropertyChanged(nameof(StakeholderTypesChangedProperty));
+                    break;
+            }
+        }
+
+        private void StakeholderTypesCollectionChanged(object sender, NotifyCollectionChangedEventArgs e)
+        {
+            switch (e.Action)
+            {
+                case NotifyCollectionChangedAction.Add:
+                    foreach (var stakeholderType in e.NewItems.OfType<StakeholderType>())
+                    {
+                        stakeholderType.PropertyChanged += StakeholderTypePropertyChanged;
+                    }   
+                    break;
+                case NotifyCollectionChangedAction.Remove:
+                    foreach (var stakeholderType in e.NewItems.OfType<StakeholderType>())
+                    {
+                        stakeholderType.PropertyChanged -= StakeholderTypePropertyChanged;
+                    }
+                    break;
+            }
+        }
+
+        public CollectionViewSource StakeholderViewSource { get; }
 
         public ObservableCollection<StakeholderViewModel> Stakeholders { get; }
 

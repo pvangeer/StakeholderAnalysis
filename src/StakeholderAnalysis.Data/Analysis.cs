@@ -35,8 +35,9 @@ namespace StakeholderAnalysis.Data
             };
             ForceFieldDiagrams = new ObservableCollection<ForceFieldDiagram> { new ForceFieldDiagram("Nieuw krachtenvelddiagram") };
             AttitudeImpactDiagrams = new ObservableCollection<AttitudeImpactDiagram>{ new AttitudeImpactDiagram("Nieuw houding-impact diagram")};
-            Stakeholders = new ObservableCollection<Stakeholder>();
-            StakeholderTypes = new ObservableCollection<StakeholderType> { new StakeholderType() };
+            var stakeholderType = new StakeholderType();
+            StakeholderTypes = new ObservableCollection<StakeholderType> { stakeholderType }; 
+            Stakeholders = new ObservableCollection<Stakeholder>(){new Stakeholder("Test",stakeholderType)};
         }
 
         public ObservableCollection<OnionDiagram> OnionDiagrams { get; }
