@@ -37,7 +37,7 @@ namespace StakeholderAnalysis.Gui
 
             gui.ProjectFilePath = "";
             gui.VersionInfo = null;
-            gui.Analysis = new Analysis();
+            gui.Analysis = AnalysisFactory.CreateStandardNewAnalysis();
 
             gui.OnPropertyChanged(nameof(StakeholderAnalysisGui.Analysis));
             gui.OnPropertyChanged(nameof(StakeholderAnalysisGui.ProjectFilePath));

@@ -20,7 +20,7 @@ namespace StakeholderAnalysis.Gui
         public readonly ObservableCollection<StakeholderConnectionGroupSelection> SelectedStakeholderConnectionGroups;
         private Analysis analysis;
 
-        public StakeholderAnalysisGui() : this(new Analysis())
+        public StakeholderAnalysisGui() : this(AnalysisFactory.CreateStandardNewAnalysis())
         {
         }
 

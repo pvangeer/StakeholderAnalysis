@@ -21,7 +21,8 @@ namespace StakeholderAnalysis.Storage.Read
             var attitudeImpactDiagrams = entity.AttitudeImpactDiagramXmlEntities.OrderBy(e => e.Order)
                 .Select(e => e.Read(collector));
 
-            var analysis = new Analysis();
+            var analysis = AnalysisFactory.CreateEmptyAnalysis();
+
             foreach (var stakeholderType in stakeholderTypes) analysis.StakeholderTypes.Add(stakeholderType);
 
             foreach (var stakeholder in stakeholders) analysis.Stakeholders.Add(stakeholder);

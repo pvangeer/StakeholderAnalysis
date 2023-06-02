@@ -10,6 +10,7 @@ namespace StakeholderAnalysis.Data.OnionDiagrams
             BackgroundColor = (Color)ColorConverter.ConvertFromString("#0EBBF0");
             StrokeColor = Colors.Gray;
             StrokeThickness = 1.0;
+            LineStyle = LineStyle.Solid;
         }
 
         public double Percentage { get; set; }

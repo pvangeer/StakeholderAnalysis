@@ -12,13 +12,13 @@ namespace StakeholderAnalysis.Storage
     public class StorageXml
     {
         private readonly int emptyAnalysisHash;
-        private int lastOpenedOrSavedProjectHash;
+        private int lastOpenedOrSavedAnalysisHash;
         private AnalysisXmlEntity stagedAnalysisXmlEntity;
         private VersionInfo versionInfo;
 
         public StorageXml()
         {
-            emptyAnalysisHash = FingerprintHelper.Get(new Analysis().Create(new PersistenceRegistry()));
+            emptyAnalysisHash = FingerprintHelper.Get(AnalysisFactory.CreateStandardNewAnalysis().Create(new PersistenceRegistry()));
         }
 
         public bool HasStagedAnalysis => stagedAnalysisXmlEntity != null;
@@ -28,11 +28,11 @@ namespace StakeholderAnalysis.Storage
             versionInfo = newVersionInfo;
         }
 
-        public void StageAnalysis(Analysis project)
+        public void StageAnalysis(Analysis analysis)
         {
-            if (project == null) throw new ArgumentNullException(nameof(project));
+            if (analysis == null) throw new ArgumentNullException(nameof(analysis));
 
-            stagedAnalysisXmlEntity = project.Create(new PersistenceRegistry());
+            stagedAnalysisXmlEntity = analysis.Create(new PersistenceRegistry());
         }
 
         public void UnStageAnalysis()
@@ -89,7 +89,7 @@ namespace StakeholderAnalysis.Storage
                     }
                 }
 
-                lastOpenedOrSavedProjectHash = FingerprintHelper.Get(projectXmlEntity.Analysis);
+                lastOpenedOrSavedAnalysisHash = FingerprintHelper.Get(projectXmlEntity.Analysis);
                 return new ProjectData
                 {
                     Analysis = projectXmlEntity.Analysis.Read(new ReadConversionCollector()),
@@ -110,7 +110,7 @@ namespace StakeholderAnalysis.Storage
 
             var hash = FingerprintHelper.Get(stagedAnalysisXmlEntity);
             return hash != emptyAnalysisHash &&
-                   lastOpenedOrSavedProjectHash != hash;
+                   lastOpenedOrSavedAnalysisHash != hash;
         }
 
         private void SaveProjectInDatabase(string filePath)
@@ -132,7 +132,7 @@ namespace StakeholderAnalysis.Storage
                     serializer.Serialize(writer, projectXmlEntity);
                 }
 
-                lastOpenedOrSavedProjectHash = FingerprintHelper.Get(stagedAnalysisXmlEntity);
+                lastOpenedOrSavedAnalysisHash = FingerprintHelper.Get(stagedAnalysisXmlEntity);
             }
             // TODO: Change catch to catch proper exceptions
             catch (DataException exception)

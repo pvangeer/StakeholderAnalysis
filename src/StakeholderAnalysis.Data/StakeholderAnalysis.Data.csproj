@@ -21,6 +21,7 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Analysis.cs" />
+    <Compile Include="AnalysisFactory.cs" />
     <Compile Include="AnalysisServices.cs" />
     <Compile Include="AttitudeImpactDiagrams\AttitudeImpactDiagram.cs" />
     <Compile Include="AttitudeImpactDiagrams\AttitudeImpactDiagramStakeholder.cs" />
