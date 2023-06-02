@@ -1,5 +1,4 @@
-﻿using System.Collections.ObjectModel;
-using System.Windows.Media;
+﻿using System.Windows.Media;
 using StakeholderAnalysis.Data.AttitudeImpactDiagrams;
 using StakeholderAnalysis.Data.ForceFieldDiagrams;
 using StakeholderAnalysis.Data.OnionDiagrams;
@@ -8,7 +7,10 @@ namespace StakeholderAnalysis.Data
 {
     public static class AnalysisFactory
     {
-        public static Analysis CreateEmptyAnalysis() => new Analysis();
+        public static Analysis CreateEmptyAnalysis()
+        {
+            return new Analysis();
+        }
 
 
         public static Analysis CreateStandardNewAnalysis()
