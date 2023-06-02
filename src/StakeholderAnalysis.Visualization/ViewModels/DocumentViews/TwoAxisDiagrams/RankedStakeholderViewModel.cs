@@ -7,7 +7,7 @@ using StakeholderAnalysis.Visualization.Behaviors;
 
 namespace StakeholderAnalysis.Visualization.ViewModels.DocumentViews.TwoAxisDiagrams
 {
-    public abstract class RankedStakeholderViewModel<TStakeholder> : StakeholderViewModel, IRankedStakeholderViewModel
+    public abstract class RankedStakeholderViewModel<TStakeholder> : DiagramStakeholderViewModelBase, IRankedStakeholderViewModel
         where TStakeholder : class, IRankedStakeholder
     {
         protected readonly IRankedStakeholderDiagram<TStakeholder> Diagram;

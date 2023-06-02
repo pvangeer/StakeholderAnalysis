@@ -161,10 +161,10 @@ namespace StakeholderAnalysis.Visualization.ViewModels
             return new AttitudeImpactDiagramStakeholderViewModel(this, diagram, stakeholder, selectionRegister);
         }
 
-        public StakeholderViewModel CreateStakeholderViewModel(Stakeholder stakeholder,
+        public DiagramStakeholderViewModelBase CreateStakeholderViewModel(Stakeholder stakeholder,
             ISelectionRegister selectionRegister, IDrawConnectionHandler drawConnectionHandler)
         {
-            return new StakeholderViewModel(this, stakeholder, selectionRegister, drawConnectionHandler);
+            return new DiagramStakeholderViewModelBase(this, stakeholder, selectionRegister, drawConnectionHandler);
         }
 
         public ForceFieldDiagramStakeholderViewModel CreateForceFieldDiagramStakeholderViewModel(
@@ -261,6 +261,11 @@ namespace StakeholderAnalysis.Visualization.ViewModels
         public StakeholderTypePropertiesViewModel CreateStakeholderTypePropertiesViewModel(StakeholderType stakeholderType)
         {
             return new StakeholderTypePropertiesViewModel(this, stakeholderType);
+        }
+
+        public TableStakeholderViewModel CreateTableStakeholderViewModel(Stakeholder stakeholder)
+        {
+            return new TableStakeholderViewModel(this, stakeholder);
         }
     }
 }

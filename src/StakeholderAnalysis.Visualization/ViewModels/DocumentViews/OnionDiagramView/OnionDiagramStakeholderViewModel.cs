@@ -9,7 +9,7 @@ using static System.Double;
 
 namespace StakeholderAnalysis.Visualization.ViewModels.DocumentViews.OnionDiagramView
 {
-    public class OnionDiagramStakeholderViewModel : StakeholderViewModel
+    public class OnionDiagramStakeholderViewModel : DiagramStakeholderViewModelBase
     {
         private readonly OnionDiagram diagram;
         private readonly OnionDiagramStakeholder onionDiagramStakeholder;

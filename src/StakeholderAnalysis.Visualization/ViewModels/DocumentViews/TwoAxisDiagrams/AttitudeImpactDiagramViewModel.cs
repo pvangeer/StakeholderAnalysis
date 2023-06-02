@@ -93,8 +93,8 @@ namespace StakeholderAnalysis.Visualization.ViewModels.DocumentViews.TwoAxisDiag
         public void SelectObject(object o)
         {
             selectedObject = o;
-            foreach (var stakeholder in PositionedStakeholders.OfType<StakeholderViewModel>())
-                stakeholder.OnPropertyChanged(nameof(StakeholderViewModel.IsSelectedStakeholder));
+            foreach (var stakeholder in PositionedStakeholders.OfType<DiagramStakeholderViewModelBase>())
+                stakeholder.OnPropertyChanged(nameof(DiagramStakeholderViewModelBase.IsSelectedStakeholder));
         }
 
         public ITwoAxisDiagram GetDiagram()

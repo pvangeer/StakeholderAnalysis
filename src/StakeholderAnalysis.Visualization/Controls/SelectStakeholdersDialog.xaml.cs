@@ -14,7 +14,7 @@ namespace StakeholderAnalysis.Visualization.Controls
         public SelectStakeholdersDialog(Analysis analysis)
         {
             InitializeComponent();
-            ListBox.ItemsSource = analysis.Stakeholders.Select(st => new StakeholderViewModel(null, st, null, null))
+            ListBox.ItemsSource = analysis.Stakeholders.Select(st => new DiagramStakeholderViewModelBase(null, st, null, null))
                 .ToList();
         }
 
@@ -28,7 +28,7 @@ namespace StakeholderAnalysis.Visualization.Controls
         private void ButtonOkClicked(object sender, RoutedEventArgs e)
         {
             var selectedStakeholders = new List<Stakeholder>();
-            foreach (var item in ListBox.SelectedItems.OfType<StakeholderViewModel>())
+            foreach (var item in ListBox.SelectedItems.OfType<DiagramStakeholderViewModelBase>())
                 selectedStakeholders.Add(item.Stakeholder);
 
             SelectedStakeholders = selectedStakeholders;

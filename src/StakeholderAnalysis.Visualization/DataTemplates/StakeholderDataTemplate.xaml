@@ -9,7 +9,7 @@
             Source="/StakeholderAnalysis.Visualization;Component/Theme/DeltaresColorTheme.xaml" />
     </ResourceDictionary.MergedDictionaries>
 
-    <DataTemplate x:Key="StakeholderPopupDataTemplate" DataType="documentViews:StakeholderViewModel">
+    <DataTemplate x:Key="StakeholderPopupDataTemplate" DataType="documentViews:DiagramStakeholderViewModelBase">
         <Border Background="AntiqueWhite" BorderBrush="Gray" BorderThickness="1">
             <Grid Width="300" Height="400">
                 <TextBlock Text="{Binding Name}" HorizontalAlignment="Center" />
@@ -19,7 +19,7 @@
 
     <converters:IconTypeToIconSourceConverter x:Key="IconTypeToIconSourceConverter" />
 
-    <DataTemplate x:Key="StakeholderDataTemplate" DataType="documentViews:StakeholderViewModel">
+    <DataTemplate x:Key="StakeholderDataTemplate" DataType="documentViews:DiagramStakeholderViewModelBase">
         <Border CornerRadius="1" behaviors:DragOnCanvasBehavior.DropHandler="{Binding }" IsHitTestVisible="True">
             <Border.InputBindings>
                 <MouseBinding MouseAction="LeftDoubleClick" Command="{Binding StakeholderClickedCommand}" />

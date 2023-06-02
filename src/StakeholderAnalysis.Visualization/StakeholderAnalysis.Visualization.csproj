@@ -59,11 +59,11 @@
     <Compile Include="Converters\TreeView\HasItemsToVisibilityConverter.cs" />
     <Compile Include="Converters\LineStyleToDashArrayConverter.cs" />
     <Compile Include="Converters\MainContentPresenter\DocumentViewInfoToPropertiesViewInfoConverter.cs" />
-    <Compile Include="ObservableCollectionWrapper.cs" />
     <Compile Include="PropertiesViewTemplateSelector.cs" />
     <Compile Include="HidableGridSplitter.cs" />
     <Compile Include="Converters\ObjectToPropertiesViewModelConverter.cs" />
     <Compile Include="StakeholderTypeToNameConverter.cs" />
+    <Compile Include="ViewModels\DocumentViews\StakeholderTableView\TableStakeholderViewModel.cs" />
     <Compile Include="ViewModels\ProjectExplorer\ProjectExplorerItemViewModelBase.cs" />
     <Compile Include="ViewModels\TreeView\CollectionType.cs" />
     <Compile Include="ViewModels\TreeView\OnionDiagramGeneralPropertiesViewModel.cs" />
@@ -183,7 +183,7 @@
     <Compile Include="ViewModels\DocumentViews\TwoAxisDiagrams\ForceFieldDiagramViewModel.cs" />
     <Compile Include="ViewModels\Ribbon\RibbonViewModel.cs" />
     <Compile Include="ViewModels\DocumentViews\StakeholderTableView\StakeholderTableViewModel.cs" />
-    <Compile Include="ViewModels\DocumentViews\StakeholderViewModel.cs" />
+    <Compile Include="ViewModels\DocumentViews\DiagramStakeholderViewModelBase.cs" />
     <Compile Include="ViewModels\DocumentViews\TwoAxisDiagrams\PositionedStakeholderViewModel.cs" />
     <Compile Include="ViewModels\DocumentViews\TwoAxisDiagrams\RankedStakeholderViewModel.cs" />
     <Compile Include="ViewModels\ViewManagerViewModel.cs" />
