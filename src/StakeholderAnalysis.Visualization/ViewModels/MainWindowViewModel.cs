@@ -1,6 +1,10 @@
 using System.ComponentModel;
+using System.Diagnostics;
 using System.IO;
+using System.Windows.Input;
 using StakeholderAnalysis.Gui;
+using StakeholderAnalysis.Storage;
+using StakeholderAnalysis.Visualization.Commands;
 using StakeholderAnalysis.Visualization.ViewModels.Ribbon;
 using StakeholderAnalysis.Visualization.ViewModels.StatusBar;
 
@@ -23,6 +27,13 @@ namespace StakeholderAnalysis.Visualization.ViewModels
             MainContentPresenterViewModel = ViewModelFactory.CreateMainContentPresenterViewModel();
         }
 
+        public string Version => $"{VersionInfo.Year}.{VersionInfo.MajorVersion}.{VersionInfo.MinorVersion}";
+
+        public ICommand SendEmailCommand => new CanAlwaysExecuteActionCommand
+        {
+            ExecuteAction = OnSendEmail
+        };
+
         public MainContentPresenterViewModel MainContentPresenterViewModel { get; }
 
         public RibbonViewModel RibbonViewModel { get; }
@@ -33,6 +44,11 @@ namespace StakeholderAnalysis.Visualization.ViewModels
             gui?.ProjectFilePath == null || string.IsNullOrWhiteSpace(gui?.ProjectFilePath)
                 ? "Stakeholderanalyse (*)"
                 : $"Stakeholderanalyse ({Path.GetFileNameWithoutExtension(gui.ProjectFilePath)})";
+
+        private void OnSendEmail(object obj)
+        {
+            Process.Start((string)obj);
+        }
 
         private void GuiPropertyChanged(object sender, PropertyChangedEventArgs e)
         {

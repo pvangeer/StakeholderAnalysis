@@ -209,6 +209,10 @@
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
+    <Page Include="DataTemplates\AboutInfoDataTemplate.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
     <Page Include="DataTemplates\MainWindow\MainContentPresenterDataTemplate.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
@@ -302,6 +306,10 @@
     <ProjectReference Include="..\StakeholderAnalysis.Messaging\StakeholderAnalysis.Messaging.csproj">
       <Project>{1D562DF9-DF35-46FA-B33A-B8AEF5FC7CF0}</Project>
       <Name>StakeholderAnalysis.Messaging</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\StakeholderAnalysis.Storage\StakeholderAnalysis.Storage.csproj">
+      <Project>{89C312EB-73EC-4254-A6B2-336BA0448B04}</Project>
+      <Name>StakeholderAnalysis.Storage</Name>
     </ProjectReference>
   </ItemGroup>
   <ItemGroup>
