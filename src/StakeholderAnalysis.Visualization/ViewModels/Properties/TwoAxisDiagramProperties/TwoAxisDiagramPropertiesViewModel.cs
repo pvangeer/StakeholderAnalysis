@@ -14,6 +14,7 @@ namespace StakeholderAnalysis.Visualization.ViewModels.Properties.TwoAxisDiagram
         {
             this.twoAxisDiagram = twoAxisDiagram;
             Items = GetItems();
+            IsExpanded = true;
         }
 
         public override ObservableCollection<ITreeNodeViewModel> Items { get; }

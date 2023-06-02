@@ -40,7 +40,7 @@
     </Window.Resources>
 
     <fluent:RibbonWindow.TitleBarHeight>
-        <Binding Source="{StaticResource DefaultItemHeight}"/>
+        <Binding Source="{StaticResource DefaultItemHeight}" />
     </fluent:RibbonWindow.TitleBarHeight>
 
     <Grid>

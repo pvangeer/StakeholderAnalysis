@@ -35,6 +35,9 @@
     <!--Control-specific resources.-->
     <Color x:Key="Deltares.Colors.CurrentCell.Border">#FFE6E6E6</Color>
 
+    <Color x:Key="Deltares.Colors.Foreground">Black</Color>
+    <Color x:Key="Deltares.Colors.DefaultBackground">White</Color>
+
     <SolidColorBrush x:Key="Deltares.Brushes.DarkBlue" Color="{StaticResource Deltares.Colors.DarkBlue}" />
     <SolidColorBrush x:Key="Deltares.Brushes.Blue" Color="{StaticResource Deltares.Colors.Blue}" />
     <SolidColorBrush x:Key="Deltares.Brushes.LightBlue" Color="{StaticResource Deltares.Colors.LightBlue}" />
@@ -54,4 +57,8 @@
     <SolidColorBrush x:Key="Deltares.Brushes.MousePressedHighlight"
                      Color="{StaticResource Deltares.Colors.MousePressedHighlight}" />
     <SolidColorBrush x:Key="Deltares.Brushes.Header" Color="{StaticResource Deltares.Colors.Header}" />
+
+    <SolidColorBrush x:Key="Deltares.Brushes.DefaultBackground"
+                     Color="{StaticResource Deltares.Colors.DefaultBackground}" />
+
 </ResourceDictionary>

@@ -33,16 +33,6 @@ namespace StakeholderAnalysis.Visualization.ViewModels.Properties.OnionDiagramPr
             ring.PropertyChanged += RingPropertyChanged;
         }
 
-        private void RingPropertyChanged(object sender, PropertyChangedEventArgs e)
-        {
-            switch (e.PropertyName)
-            {
-                case nameof(OnionRing.Percentage):
-                    OnPropertyChanged(DisplayName);
-                    break;
-            }
-        }
-
         public ICommand ToggleIsExpandedCommand => CommandFactory.CreateToggleIsExpandedCommand(this);
 
         public string IconSourceString { get; }
@@ -94,5 +84,15 @@ namespace StakeholderAnalysis.Visualization.ViewModels.Properties.OnionDiagramPr
         public bool CanAdd => false;
 
         public ICommand AddItemCommand => null;
+
+        private void RingPropertyChanged(object sender, PropertyChangedEventArgs e)
+        {
+            switch (e.PropertyName)
+            {
+                case nameof(OnionRing.Percentage):
+                    OnPropertyChanged(DisplayName);
+                    break;
+            }
+        }
     }
 }

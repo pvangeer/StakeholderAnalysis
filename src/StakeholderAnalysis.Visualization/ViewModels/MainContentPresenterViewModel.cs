@@ -37,7 +37,7 @@ namespace StakeholderAnalysis.Visualization.ViewModels
                 new ColorItem((Color)ColorConverter.ConvertFromString("#E6E6E6"), "Deltares - Middengrijs"),
 
                 new ColorItem((Color)ColorConverter.ConvertFromString("#FFD814"), "Deltares - Geel"),
-                new ColorItem((Color)ColorConverter.ConvertFromString("#FF960D"), "Deltares - Academy"),
+                new ColorItem((Color)ColorConverter.ConvertFromString("#FF960D"), "Deltares - Academy")
             };
         }
 

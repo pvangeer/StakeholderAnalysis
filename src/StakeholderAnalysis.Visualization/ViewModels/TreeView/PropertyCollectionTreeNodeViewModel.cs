@@ -15,6 +15,7 @@ namespace StakeholderAnalysis.Visualization.ViewModels.TreeView
             Items = items;
             ContextMenuItems = new ObservableCollection<ContextMenuItemViewModel>();
             CollectionType = collectionType;
+            IsExpanded = true;
         }
 
         public bool IsExpandable => true;

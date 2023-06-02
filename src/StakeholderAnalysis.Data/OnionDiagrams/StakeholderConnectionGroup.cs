@@ -1,5 +1,4 @@
 ﻿using System.Windows.Media;
-using log4net.Appender;
 
 namespace StakeholderAnalysis.Data.OnionDiagrams
 {

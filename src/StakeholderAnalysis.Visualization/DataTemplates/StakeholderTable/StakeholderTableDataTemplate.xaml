@@ -43,8 +43,8 @@
                                 Width="16"
                                 Height="16"
                                 Source="{Binding IconType, Converter={StaticResource IconTypeToIconSourceConverter}}"
-                                Margin="0,0,5,0"/>
-                            <TextBlock Text="{Binding Name}"/>
+                                Margin="0,0,5,0" />
+                            <TextBlock Text="{Binding Name}" />
                         </StackPanel>
                     </DataTemplate>
                 </DataGrid.Resources>
@@ -53,35 +53,40 @@
                     <GroupStyle>
                         <GroupStyle.ContainerStyle>
                             <Style TargetType="{x:Type GroupItem}">
-                                <Setter Property="Margin" Value="0,1,0,5"/>
+                                <Setter Property="Margin" Value="0,1,0,5" />
                                 <Setter Property="Template">
                                     <Setter.Value>
                                         <ControlTemplate TargetType="{x:Type GroupItem}">
                                             <StackPanel>
-                                                <Expander 
-                                                    IsExpanded="True" 
-                                                    Background="{StaticResource Deltares.Brushes.LightGray}" 
-                                                    BorderBrush="{StaticResource Deltares.Brushes.LightBlue}" 
-                                                    Foreground="Black" 
+                                                <Expander
+                                                    IsExpanded="True"
+                                                    Background="{StaticResource Deltares.Brushes.LightGray}"
+                                                    BorderBrush="{StaticResource Deltares.Brushes.LightBlue}"
+                                                    Foreground="Black"
                                                     BorderThickness="0">
                                                     <Expander.Resources>
                                                         <Style TargetType="Border">
-                                                            <Setter Property="CornerRadius" Value="0"/>
+                                                            <Setter Property="CornerRadius" Value="0" />
                                                         </Style>
                                                     </Expander.Resources>
                                                     <Expander.Header>
-                                                        <DockPanel Height="{StaticResource DefaultItemHeight}" VerticalAlignment="Center">
-                                                            <TextBlock FontWeight="Bold" Margin="5,0,0,0" MinWidth="100" VerticalAlignment="Center">
+                                                        <DockPanel Height="{StaticResource DefaultItemHeight}"
+                                                                   VerticalAlignment="Center">
+                                                            <TextBlock FontWeight="Bold" Margin="5,0,0,0"
+                                                                       MinWidth="100" VerticalAlignment="Center">
                                                                 <TextBlock.Text>
-                                                                    <MultiBinding Converter="{StaticResource StakeholderTypeToNameConverter}">
-                                                                        <Binding Path="Name"/>
-                                                                        <Binding ElementName="TableGrid" Path="DataContext.StakeholderTypesChangedProperty"/>
+                                                                    <MultiBinding
+                                                                        Converter="{StaticResource StakeholderTypeToNameConverter}">
+                                                                        <Binding Path="Name" />
+                                                                        <Binding ElementName="TableGrid"
+                                                                            Path="DataContext.StakeholderTypesChangedProperty" />
                                                                     </MultiBinding>
                                                                 </TextBlock.Text>
                                                             </TextBlock>
-                                                            <TextBlock VerticalAlignment="Center" Text="("/>
-                                                            <TextBlock VerticalAlignment="Center" Text="{Binding Path=ItemCount}" />
-                                                            <TextBlock VerticalAlignment="Center" Text=")"/>
+                                                            <TextBlock VerticalAlignment="Center" Text="(" />
+                                                            <TextBlock VerticalAlignment="Center"
+                                                                       Text="{Binding Path=ItemCount}" />
+                                                            <TextBlock VerticalAlignment="Center" Text=")" />
                                                         </DockPanel>
                                                     </Expander.Header>
                                                     <Expander.Content>
@@ -100,17 +105,20 @@
                         <GroupStyle.HeaderTemplate>
                             <DataTemplate>
                                 <DockPanel Height="{StaticResource DefaultItemHeight}" VerticalAlignment="Center">
-                                    <TextBlock FontWeight="Bold" Margin="30,0,0,0" MinWidth="100" VerticalAlignment="Center">
+                                    <TextBlock FontWeight="Bold" Margin="30,0,0,0" MinWidth="100"
+                                               VerticalAlignment="Center">
                                         <TextBlock.Text>
                                             <MultiBinding Converter="{StaticResource StakeholderTypeToNameConverter}">
-                                                <Binding Path="Name"/>
-                                                <Binding ElementName="TableGrid" Path="DataContext.StakeholderTypesChangedProperty"/>
+                                                <Binding Path="Name" />
+                                                <Binding ElementName="TableGrid"
+                                                         Path="DataContext.StakeholderTypesChangedProperty" />
                                             </MultiBinding>
                                         </TextBlock.Text>
                                     </TextBlock>
-                                    <TextBlock FontWeight="Bold" VerticalAlignment="Center" Text="("/>
-                                    <TextBlock FontWeight="Bold" Text="{Binding Path=ItemCount}" VerticalAlignment="Center"/>
-                                    <TextBlock FontWeight="Bold" VerticalAlignment="Center" Text=")"/>
+                                    <TextBlock FontWeight="Bold" VerticalAlignment="Center" Text="(" />
+                                    <TextBlock FontWeight="Bold" Text="{Binding Path=ItemCount}"
+                                               VerticalAlignment="Center" />
+                                    <TextBlock FontWeight="Bold" VerticalAlignment="Center" Text=")" />
                                 </DockPanel>
                             </DataTemplate>
                         </GroupStyle.HeaderTemplate>
@@ -153,7 +161,8 @@
                                 <Setter Property="Margin" Value="5,1" />
                                 <Setter Property="HorizontalAlignment" Value="Left" />
                                 <Setter Property="VerticalAlignment" Value="Center" />
-                                <Setter Property="ItemTemplate" Value="{StaticResource stakeholderTypeItemDataTemplate}"/>
+                                <Setter Property="ItemTemplate"
+                                        Value="{StaticResource stakeholderTypeItemDataTemplate}" />
                             </Style>
                         </DataGridComboBoxColumn.ElementStyle>
                         <DataGridComboBoxColumn.EditingElementStyle>
@@ -164,7 +173,8 @@
                                 <Setter Property="Margin" Value="5,1" />
                                 <Setter Property="HorizontalAlignment" Value="Left" />
                                 <Setter Property="VerticalAlignment" Value="Center" />
-                                <Setter Property="ItemTemplate" Value="{StaticResource stakeholderTypeItemDataTemplate}"/>
+                                <Setter Property="ItemTemplate"
+                                        Value="{StaticResource stakeholderTypeItemDataTemplate}" />
                             </Style>
                         </DataGridComboBoxColumn.EditingElementStyle>
                     </DataGridComboBoxColumn>

@@ -1,10 +1,7 @@
-﻿using System.Collections;
-using System.Collections.Generic;
-using System.Collections.ObjectModel;
+﻿using System.Collections.ObjectModel;
 using System.Collections.Specialized;
 using System.ComponentModel;
 using System.Linq;
-using System.Windows.Controls;
 using System.Windows.Data;
 using System.Windows.Input;
 using StakeholderAnalysis.Data;
@@ -28,21 +25,36 @@ namespace StakeholderAnalysis.Visualization.ViewModels.DocumentViews.Stakeholder
                 Stakeholders.CollectionChanged += StakeholderViewModelsCollectionChanged;
 
                 foreach (var analysisStakeholderType in analysis.StakeholderTypes)
-                {
                     analysisStakeholderType.PropertyChanged += StakeholderTypePropertyChanged;
-                }
 
                 analysis.StakeholderTypes.CollectionChanged += StakeholderTypesCollectionChanged;
 
                 StakeholderViewSource = new CollectionViewSource
                 {
                     Source = Stakeholders,
-                    GroupDescriptions = { new PropertyGroupDescription(nameof(StakeholderViewModel.Type))}
+                    GroupDescriptions = { new PropertyGroupDescription(nameof(StakeholderViewModel.Type)) }
                 };
             }
         }
 
         public bool StakeholderTypesChangedProperty { get; set; }
+
+        public CollectionViewSource StakeholderViewSource { get; }
+
+        public ObservableCollection<StakeholderViewModel> Stakeholders { get; }
+
+        public ObservableCollection<StakeholderType> StakeholderTypes => analysis.StakeholderTypes;
+
+        public bool CanSelect => true;
+
+        public bool IsSelected { get; set; }
+
+        public ICommand SelectItemCommand => null;
+
+        public object GetSelectableObject()
+        {
+            return "StakeholderTable";
+        }
 
         private void StakeholderTypePropertyChanged(object sender, PropertyChangedEventArgs e)
         {
@@ -60,34 +72,13 @@ namespace StakeholderAnalysis.Visualization.ViewModels.DocumentViews.Stakeholder
             {
                 case NotifyCollectionChangedAction.Add:
                     foreach (var stakeholderType in e.NewItems.OfType<StakeholderType>())
-                    {
                         stakeholderType.PropertyChanged += StakeholderTypePropertyChanged;
-                    }   
                     break;
                 case NotifyCollectionChangedAction.Remove:
                     foreach (var stakeholderType in e.NewItems.OfType<StakeholderType>())
-                    {
                         stakeholderType.PropertyChanged -= StakeholderTypePropertyChanged;
-                    }
                     break;
             }
-        }
-
-        public CollectionViewSource StakeholderViewSource { get; }
-
-        public ObservableCollection<StakeholderViewModel> Stakeholders { get; }
-
-        public ObservableCollection<StakeholderType> StakeholderTypes => analysis.StakeholderTypes;
-
-        public bool CanSelect => true;
-
-        public bool IsSelected { get; set; }
-
-        public ICommand SelectItemCommand => null;
-
-        public object GetSelectableObject()
-        {
-            return "StakeholderTable";
         }
 
         private void StakeholderViewModelsCollectionChanged(object sender, NotifyCollectionChangedEventArgs e)

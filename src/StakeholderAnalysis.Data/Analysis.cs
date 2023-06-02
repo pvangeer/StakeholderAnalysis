@@ -29,15 +29,14 @@ namespace StakeholderAnalysis.Data
                             StrokeThickness = 0,
                             BackgroundColor = (Color)ColorConverter.ConvertFromString("#0D38E0")
                         },
-                        new OnionRing(1) { BackgroundColor = (Color)ColorConverter.ConvertFromString("#0EBBF0") }
+                        new OnionRing() { BackgroundColor = (Color)ColorConverter.ConvertFromString("#0EBBF0") }
                     }
                 }
             };
             ForceFieldDiagrams = new ObservableCollection<ForceFieldDiagram> { new ForceFieldDiagram("Nieuw krachtenvelddiagram") };
-            AttitudeImpactDiagrams = new ObservableCollection<AttitudeImpactDiagram>{ new AttitudeImpactDiagram("Nieuw houding-impact diagram")};
-            var stakeholderType = new StakeholderType();
-            StakeholderTypes = new ObservableCollection<StakeholderType> { stakeholderType }; 
-            Stakeholders = new ObservableCollection<Stakeholder>(){new Stakeholder("Test",stakeholderType)};
+            AttitudeImpactDiagrams = new ObservableCollection<AttitudeImpactDiagram> { new AttitudeImpactDiagram("Nieuw houding-impact diagram") };
+            StakeholderTypes = new ObservableCollection<StakeholderType> { new StakeholderType() };
+            Stakeholders = new ObservableCollection<Stakeholder>();
         }
 
         public ObservableCollection<OnionDiagram> OnionDiagrams { get; }
