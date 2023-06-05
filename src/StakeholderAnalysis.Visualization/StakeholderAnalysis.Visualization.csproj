@@ -417,11 +417,11 @@
     <Resource Include="Resources\StakeholderTypeIcons\other.png" />
     <Resource Include="Resources\StakeholderTypeIcons\Pak.png" />
   </ItemGroup>
-  <ItemGroup />
   <ItemGroup>
-    <Resource Include="Resources\Diagrams\forces.png" />
-    <Resource Include="Resources\Diagrams\involvement.png" />
+    <Resource Include="Resources\Diagrams\forces.ico" />
+    <Resource Include="Resources\Diagrams\involvement.ico" />
+  </ItemGroup>
+  <ItemGroup>
     <Resource Include="Resources\Diagrams\onion.ico" />
-    <Resource Include="Resources\Diagrams\onion.png" />
   </ItemGroup>
 </Project>
