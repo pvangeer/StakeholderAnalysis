@@ -27,11 +27,11 @@
                                 <Style.Triggers>
                                     <DataTrigger Binding="{Binding IsExpanded}" Value="True">
                                         <Setter Property="Source"
-                                                Value="pack://application:,,,/StakeholderAnalysis.Visualization;component/Resources/expanded.png" />
+                                                Value="pack://application:,,,/StakeholderAnalysis.Visualization;component/Resources/Operations/expanded.png" />
                                     </DataTrigger>
                                     <DataTrigger Binding="{Binding IsExpanded}" Value="False">
                                         <Setter Property="Source"
-                                                Value="pack://application:,,,/StakeholderAnalysis.Visualization;component/Resources/collapsed.png" />
+                                                Value="pack://application:,,,/StakeholderAnalysis.Visualization;component/Resources/Operations/collapsed.png" />
                                     </DataTrigger>
                                 </Style.Triggers>
                             </Style>
@@ -50,7 +50,7 @@
                            Height="16"
                            VerticalAlignment="Center"
                            HorizontalAlignment="Center"
-                           Source="pack://application:,,,/StakeholderAnalysis.Visualization;component/Resources/plus.png" />
+                           Source="pack://application:,,,/StakeholderAnalysis.Visualization;component/Resources/Operations/plus.png" />
                 </ControlTemplate>
             </Setter.Value>
         </Setter>
@@ -64,7 +64,7 @@
                            Height="16"
                            VerticalAlignment="Center"
                            HorizontalAlignment="Center"
-                           Source="pack://application:,,,/StakeholderAnalysis.Visualization;component/Resources/remove.png" />
+                           Source="pack://application:,,,/StakeholderAnalysis.Visualization;component/Resources/Operations/remove.png" />
                 </ControlTemplate>
             </Setter.Value>
         </Setter>

@@ -9,6 +9,8 @@
     <ProjectTypeGuids>{60dc8134-eba5-43b8-bcc9-bb4bc16c2548};{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}</ProjectTypeGuids>
     <TargetFrameworkVersion>v4.8</TargetFrameworkVersion>
     <TargetFrameworkProfile />
+    <NuGetPackageImportStamp>
+    </NuGetPackageImportStamp>
   </PropertyGroup>
   <ItemGroup>
     <Reference Include="ControlzEx, Version=4.0.0.0, Culture=neutral, PublicKeyToken=69f1c32f803d307e, processorArchitecture=MSIL">
@@ -313,115 +315,113 @@
     </ProjectReference>
   </ItemGroup>
   <ItemGroup>
-    <Resource Include="Resources\Group.png" />
-    <Resource Include="Resources\Knowledge.png" />
-    <Resource Include="Resources\Pak.png" />
-    <Resource Include="Resources\Waterschap.png" />
+    <Resource Include="Resources\Operations\collapsed.png" />
+    <Resource Include="Resources\Operations\expanded.png" />
   </ItemGroup>
   <ItemGroup>
-    <Resource Include="Resources\DocumentHS.png" />
-    <Resource Include="Resources\openfolderHS.png" />
-    <Resource Include="Resources\SaveAsHH.png" />
-    <Resource Include="Resources\saveHS.png" />
+    <Resource Include="Resources\Operations\plus.png" />
   </ItemGroup>
   <ItemGroup>
-    <Resource Include="Resources\ClosePreviewHH.png" />
+    <Resource Include="Resources\Operations\remove.png" />
   </ItemGroup>
   <ItemGroup>
-    <Resource Include="Resources\forces.png" />
-    <Resource Include="Resources\involvement.png" />
-    <Resource Include="Resources\onion.png" />
-    <Resource Include="Resources\table.png" />
+    <Resource Include="Resources\Messages\alert-icon 32x32.png" />
+    <Resource Include="Resources\Messages\close-icon 32x32.png" />
+    <Resource Include="Resources\Messages\information-icon 32x32.png" />
   </ItemGroup>
   <ItemGroup>
-    <Resource Include="Resources\euro.png" />
+    <Resource Include="Resources\Operations\delete.png" />
   </ItemGroup>
   <ItemGroup>
-    <Resource Include="Resources\other.png" />
+    <Resource Include="Resources\Operations\arrow-16.png" />
   </ItemGroup>
   <ItemGroup>
-    <Resource Include="Resources\Magnifier.png" />
+    <Resource Include="Resources\Operations\arrow-16-gray.png" />
   </ItemGroup>
   <ItemGroup>
-    <Resource Include="Resources\SaveImage.png" />
+    <Resource Include="Resources\Operations\arrow_bottom_black.png" />
+    <Resource Include="Resources\Operations\arrow_bottom_gray.png" />
+    <Resource Include="Resources\Operations\arrow_down_black.png" />
+    <Resource Include="Resources\Operations\arrow_down_gray.png" />
+    <Resource Include="Resources\Operations\arrow_top_black.png" />
+    <Resource Include="Resources\Operations\arrow_top_gray.png" />
+    <Resource Include="Resources\Operations\arrow_up_black.png" />
+    <Resource Include="Resources\Operations\arrow_up_gray.png" />
   </ItemGroup>
   <ItemGroup>
-    <Resource Include="Resources\collapsed.png" />
-    <Resource Include="Resources\expanded.png" />
+    <Resource Include="Resources\Fluent\image.ico" />
   </ItemGroup>
   <ItemGroup>
-    <Resource Include="Resources\plus.png" />
+    <Resource Include="Resources\Fluent\document.ico" />
   </ItemGroup>
   <ItemGroup>
-    <Resource Include="Resources\remove.png" />
+    <Resource Include="Resources\Fluent\text_bullet_list_tree.ico" />
   </ItemGroup>
   <ItemGroup>
-    <Resource Include="Resources\document.png" />
-    <Resource Include="Resources\duplicate.png" />
+    <Resource Include="Resources\Fluent\dismiss.ico" />
+    <Resource Include="Resources\Fluent\document_copy_regular.ico" />
+    <Resource Include="Resources\Fluent\folder_open_regular.ico" />
+    <Resource Include="Resources\Fluent\info_regular.ico" />
+    <Resource Include="Resources\Fluent\save_edit_regular.ico" />
+    <Resource Include="Resources\Fluent\save_regular.ico" />
+    <Resource Include="Resources\Fluent\zoom_in_regular.ico" />
   </ItemGroup>
   <ItemGroup>
-    <Resource Include="Resources\alert-icon 32x32.png" />
-    <Resource Include="Resources\close-icon 32x32.png" />
-    <Resource Include="Resources\information-icon 32x32.png" />
+    <Resource Include="Resources\Fluent\table_24_regular.ico" />
   </ItemGroup>
   <ItemGroup>
-    <Resource Include="Resources\delete.png" />
+    <Resource Include="Resources\Fluent\document_text_regular.ico" />
   </ItemGroup>
   <ItemGroup>
-    <Resource Include="Resources\arrow-16.png" />
-    <Resource Include="Resources\arrow.png" />
+    <Resource Include="Resources\StakeholderTypeIcons\Waterschap.png" />
   </ItemGroup>
   <ItemGroup>
-    <Resource Include="Resources\arrow-16-gray.png" />
-  </ItemGroup>
-  <ItemGroup>
-    <Resource Include="Resources\iconfinder_angel.png" />
-    <Resource Include="Resources\iconfinder_baby.png" />
-    <Resource Include="Resources\iconfinder_cloud.png" />
-    <Resource Include="Resources\iconfinder_coffee.png" />
-    <Resource Include="Resources\iconfinder_dance.png" />
-    <Resource Include="Resources\iconfinder_disabled.png" />
-    <Resource Include="Resources\iconfinder_family.png" />
-    <Resource Include="Resources\iconfinder_fountain.png" />
-    <Resource Include="Resources\iconfinder_full_mug.png" />
-    <Resource Include="Resources\iconfinder_good_listen.png" />
-    <Resource Include="Resources\iconfinder_group.png" />
-    <Resource Include="Resources\iconfinder_group2.png" />
-    <Resource Include="Resources\iconfinder_group3.png" />
-    <Resource Include="Resources\iconfinder_group4.png" />
-    <Resource Include="Resources\iconfinder_group_add.png" />
-    <Resource Include="Resources\iconfinder_headphones.png" />
-    <Resource Include="Resources\iconfinder_icon-person-add.png" />
-    <Resource Include="Resources\iconfinder_icon-person-stalker.png" />
-    <Resource Include="Resources\iconfinder_link.png" />
-    <Resource Include="Resources\iconfinder_link2.png" />
-    <Resource Include="Resources\iconfinder_morning-coffee.png" />
-    <Resource Include="Resources\iconfinder_person 2.png" />
-    <Resource Include="Resources\iconfinder_person.png" />
-    <Resource Include="Resources\iconfinder_running.png" />
-    <Resource Include="Resources\iconfinder_settings.png" />
-    <Resource Include="Resources\iconfinder_walking.png" />
-    <Resource Include="Resources\iconfinder_wifi.png" />
-  </ItemGroup>
-  <ItemGroup>
-    <Resource Include="Resources\iconfinder_ad.png" />
-    <Resource Include="Resources\iconfinder_dollar_bundle.png" />
-    <Resource Include="Resources\iconfinder_euro.png" />
-    <Resource Include="Resources\iconfinder_mail.png" />
-    <Resource Include="Resources\iconfinder_mailbox.png" />
-    <Resource Include="Resources\iconfinder_mail_open.png" />
-    <Resource Include="Resources\iconfinder_money.png" />
-    <Resource Include="Resources\iconfinder_yen.png" />
-  </ItemGroup>
-  <ItemGroup>
-    <Resource Include="Resources\arrow_bottom_black.png" />
-    <Resource Include="Resources\arrow_bottom_gray.png" />
-    <Resource Include="Resources\arrow_down_black.png" />
-    <Resource Include="Resources\arrow_down_gray.png" />
-    <Resource Include="Resources\arrow_top_black.png" />
-    <Resource Include="Resources\arrow_top_gray.png" />
-    <Resource Include="Resources\arrow_up_black.png" />
-    <Resource Include="Resources\arrow_up_gray.png" />
+    <Resource Include="Resources\StakeholderTypeIcons\euro.png" />
+    <Resource Include="Resources\StakeholderTypeIcons\Group.png" />
+    <Resource Include="Resources\StakeholderTypeIcons\iconfinder_ad.png" />
+    <Resource Include="Resources\StakeholderTypeIcons\iconfinder_angel.png" />
+    <Resource Include="Resources\StakeholderTypeIcons\iconfinder_baby.png" />
+    <Resource Include="Resources\StakeholderTypeIcons\iconfinder_cloud.png" />
+    <Resource Include="Resources\StakeholderTypeIcons\iconfinder_coffee.png" />
+    <Resource Include="Resources\StakeholderTypeIcons\iconfinder_dance.png" />
+    <Resource Include="Resources\StakeholderTypeIcons\iconfinder_disabled.png" />
+    <Resource Include="Resources\StakeholderTypeIcons\iconfinder_dollar_bundle.png" />
+    <Resource Include="Resources\StakeholderTypeIcons\iconfinder_euro.png" />
+    <Resource Include="Resources\StakeholderTypeIcons\iconfinder_family.png" />
+    <Resource Include="Resources\StakeholderTypeIcons\iconfinder_fountain.png" />
+    <Resource Include="Resources\StakeholderTypeIcons\iconfinder_full_mug.png" />
+    <Resource Include="Resources\StakeholderTypeIcons\iconfinder_good_listen.png" />
+    <Resource Include="Resources\StakeholderTypeIcons\iconfinder_group.png" />
+    <Resource Include="Resources\StakeholderTypeIcons\iconfinder_group2.png" />
+    <Resource Include="Resources\StakeholderTypeIcons\iconfinder_group3.png" />
+    <Resource Include="Resources\StakeholderTypeIcons\iconfinder_group4.png" />
+    <Resource Include="Resources\StakeholderTypeIcons\iconfinder_group_add.png" />
+    <Resource Include="Resources\StakeholderTypeIcons\iconfinder_headphones.png" />
+    <Resource Include="Resources\StakeholderTypeIcons\iconfinder_icon-person-add.png" />
+    <Resource Include="Resources\StakeholderTypeIcons\iconfinder_icon-person-stalker.png" />
+    <Resource Include="Resources\StakeholderTypeIcons\iconfinder_link.png" />
+    <Resource Include="Resources\StakeholderTypeIcons\iconfinder_link2.png" />
+    <Resource Include="Resources\StakeholderTypeIcons\iconfinder_mail.png" />
+    <Resource Include="Resources\StakeholderTypeIcons\iconfinder_mailbox.png" />
+    <Resource Include="Resources\StakeholderTypeIcons\iconfinder_mail_open.png" />
+    <Resource Include="Resources\StakeholderTypeIcons\iconfinder_money.png" />
+    <Resource Include="Resources\StakeholderTypeIcons\iconfinder_morning-coffee.png" />
+    <Resource Include="Resources\StakeholderTypeIcons\iconfinder_person 2.png" />
+    <Resource Include="Resources\StakeholderTypeIcons\iconfinder_person.png" />
+    <Resource Include="Resources\StakeholderTypeIcons\iconfinder_running.png" />
+    <Resource Include="Resources\StakeholderTypeIcons\iconfinder_settings.png" />
+    <Resource Include="Resources\StakeholderTypeIcons\iconfinder_walking.png" />
+    <Resource Include="Resources\StakeholderTypeIcons\iconfinder_wifi.png" />
+    <Resource Include="Resources\StakeholderTypeIcons\iconfinder_yen.png" />
+    <Resource Include="Resources\StakeholderTypeIcons\Knowledge.png" />
+    <Resource Include="Resources\StakeholderTypeIcons\other.png" />
+    <Resource Include="Resources\StakeholderTypeIcons\Pak.png" />
   </ItemGroup>
   <ItemGroup />
+  <ItemGroup>
+    <Resource Include="Resources\Diagrams\forces.png" />
+    <Resource Include="Resources\Diagrams\involvement.png" />
+    <Resource Include="Resources\Diagrams\onion.ico" />
+    <Resource Include="Resources\Diagrams\onion.png" />
+  </ItemGroup>
 </Project>

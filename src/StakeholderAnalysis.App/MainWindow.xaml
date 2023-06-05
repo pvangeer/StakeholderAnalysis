@@ -57,28 +57,30 @@
                 <fluent:Backstage>
                     <fluent:BackstageTabControl>
                         <fluent:Button Header="Nieuw"
-                                       Icon="pack://application:,,,/StakeholderAnalysis.Visualization;component/Resources/DocumentHS.png"
+                                       Icon="pack://application:,,,/StakeholderAnalysis.Visualization;component/Resources/Fluent/document.ico"
                                        fluent:KeyTip.Keys="N"
                                        Command="{Binding RibbonViewModel.NewCommand}" />
 
                         <fluent:Button Header="Opslaan"
-                                       Icon="pack://application:,,,/StakeholderAnalysis.Visualization;component/Resources/saveHS.png"
+                                       Icon="pack://application:,,,/StakeholderAnalysis.Visualization;component/Resources/Fluent/save_regular.ico"
                                        fluent:KeyTip.Keys="S"
                                        Command="{Binding RibbonViewModel.SaveCommand}" />
 
                         <fluent:Button Header="Opslaan als"
-                                       Icon="pack://application:,,,/StakeholderAnalysis.Visualization;component/Resources/SaveAsHH.png"
+                                       Icon="pack://application:,,,/StakeholderAnalysis.Visualization;component/Resources/Fluent/save_edit_regular.ico"
                                        fluent:KeyTip.Keys="A"
                                        Command="{Binding RibbonViewModel.SaveAsCommand}" />
 
                         <fluent:Button Header="Openen"
-                                       Icon="pack://application:,,,/StakeholderAnalysis.Visualization;component/Resources/openfolderHS.png"
+                                       Icon="pack://application:,,,/StakeholderAnalysis.Visualization;component/Resources/Fluent/folder_open_regular.ico"
                                        fluent:KeyTip.Keys="O"
                                        Command="{Binding RibbonViewModel.OpenCommand}" />
 
                         <fluent:SeparatorTabItem />
 
-                        <fluent:BackstageTabItem Header="Over">
+                        <fluent:BackstageTabItem 
+                            Header="Over"
+                            Icon="pack://application:,,,/StakeholderAnalysis.Visualization;component/Resources/Fluent/info_regular.ico">
                             <ContentPresenter Content="{Binding}"
                                               ContentTemplate="{StaticResource AboutBoxDataTemplate}" />
                         </fluent:BackstageTabItem>
@@ -86,7 +88,7 @@
                         <fluent:SeparatorTabItem />
 
                         <fluent:Button Header="Afsluiten"
-                                       Icon="pack://application:,,,/StakeholderAnalysis.Visualization;component/Resources/ClosePreviewHH.png"
+                                       Icon="pack://application:,,,/StakeholderAnalysis.Visualization;component/Resources/Fluent/dismiss.ico"
                                        fluent:KeyTip.Keys="X"
                                        Command="{Binding RibbonViewModel.CloseApplication}" />
                     </fluent:BackstageTabControl>
@@ -113,22 +115,22 @@
                     <fluent:ToggleButton
                         Header="Projectgegevens"
                         Size="Large"
-                        LargeIcon="pack://application:,,,/StakeholderAnalysis.Visualization;component/Resources/document.png"
+                        LargeIcon="pack://application:,,,/StakeholderAnalysis.Visualization;component/Resources/Fluent/text_bullet_list_tree.ico"
                         IsChecked="{Binding RibbonViewModel.IsProjectExplorerVisible}" />
                     <fluent:ToggleButton
                         Header="Eigenschappen"
                         Size="Large"
-                        LargeIcon="pack://application:,,,/StakeholderAnalysis.Visualization;component/Resources/document.png"
+                        LargeIcon="pack://application:,,,/StakeholderAnalysis.Visualization;component/Resources/Fluent/document_text_regular.ico"
                         IsChecked="{Binding RibbonViewModel.IsPropertiesVisible}" />
                     <fluent:ToggleButton
                         Header="Vergrootglas"
                         Size="Large"
-                        LargeIcon="pack://application:,,,/StakeholderAnalysis.Visualization;component/Resources/Magnifier.png"
+                        LargeIcon="pack://application:,,,/StakeholderAnalysis.Visualization;component/Resources/Fluent/zoom_in_regular.ico"
                         IsChecked="{Binding RibbonViewModel.IsMagnifierActive}" />
                     <fluent:Button
                         Header="Afbeelding opslaan"
                         Size="Large"
-                        LargeIcon="pack://application:,,,/StakeholderAnalysis.Visualization;component/Resources/SaveImage.png"
+                        LargeIcon="pack://application:,,,/StakeholderAnalysis.Visualization;component/Resources/Fluent/image.ico"
                         Command="{Binding RibbonViewModel.SaveImageCommand}" />
                 </fluent:RibbonGroupBox>
 
@@ -137,7 +139,7 @@
                         Header="Stakeholder(s) toevoegen"
                         Command="{Binding RibbonViewModel.AddStakeholdersCommand}"
                         Size="Large"
-                        LargeIcon="pack://application:,,,/StakeholderAnalysis.Visualization;component/Resources/plus.png" />
+                        LargeIcon="pack://application:,,,/StakeholderAnalysis.Visualization;component/Resources/Operations/plus.png" />
                 </fluent:RibbonGroupBox>
 
             </fluent:RibbonTabItem>
@@ -148,7 +150,7 @@
                         Header="Ring toevoegen"
                         Command="{Binding RibbonViewModel.AddOnionRingCommand}"
                         Size="Middle"
-                        Icon="pack://application:,,,/StakeholderAnalysis.Visualization;component/Resources/plus.png" />
+                        Icon="pack://application:,,,/StakeholderAnalysis.Visualization;component/Resources/Operations/plus.png" />
                     <fluent:Spinner
                         Value="{Binding RibbonViewModel.Asymmetry}"
                         Header="Asymmetrie"

@@ -85,7 +85,7 @@ namespace StakeholderAnalysis.Visualization.ViewModels.ProjectExplorer
         public ObservableCollection<ContextMenuItemViewModel> ContextMenuItems { get; }
 
         public string IconSourceString =>
-            "pack://application:,,,/StakeholderAnalysis.Visualization;component/Resources/forces.png";
+            "pack://application:,,,/StakeholderAnalysis.Visualization;component/Resources/Diagrams/forces.png";
 
         public override bool IsViewModelFor(object otherObject)
         {

@@ -22,7 +22,7 @@ namespace StakeholderAnalysis.Visualization.ViewModels.ProjectExplorer
         public string DisplayName => "Stakeholders";
 
         public string IconSourceString =>
-            "pack://application:,,,/StakeholderAnalysis.Visualization;component/Resources/table.png";
+            "pack://application:,,,/StakeholderAnalysis.Visualization;component/Resources/Fluent/table_24_regular.ico";
 
         public bool CanRemove => false;
 
@@ -40,7 +40,7 @@ namespace StakeholderAnalysis.Visualization.ViewModels.ProjectExplorer
             if (viewInfo == null)
             {
                 viewInfo = new ViewInfo("Stakeholders", ViewModelFactory.CreateStakeholderTableViewModel(),
-                    "pack://application:,,,/StakeholderAnalysis.Visualization;component/Resources/table.png");
+                    "pack://application:,,,/StakeholderAnalysis.Visualization;component/Resources/Fluent/table_24_regular.ico");
                 viewManager.OpenView(viewInfo);
             }
 

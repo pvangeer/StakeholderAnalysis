@@ -40,11 +40,11 @@
                                         <Style.Triggers>
                                             <DataTrigger Binding="{Binding CanMoveToTop}" Value="True">
                                                 <Setter Property="Source"
-                                                        Value="pack://application:,,,/StakeholderAnalysis.Visualization;component/Resources/arrow_top_black.png" />
+                                                        Value="pack://application:,,,/StakeholderAnalysis.Visualization;component/Resources/Operations/arrow_top_black.png" />
                                             </DataTrigger>
                                             <DataTrigger Binding="{Binding CanMoveToTop}" Value="False">
                                                 <Setter Property="Source"
-                                                        Value="pack://application:,,,/StakeholderAnalysis.Visualization;component/Resources/arrow_top_gray.png" />
+                                                        Value="pack://application:,,,/StakeholderAnalysis.Visualization;component/Resources/Operations/arrow_top_gray.png" />
                                             </DataTrigger>
                                         </Style.Triggers>
                                     </Style>
@@ -64,11 +64,11 @@
                                         <Style.Triggers>
                                             <DataTrigger Binding="{Binding CanMoveUp}" Value="True">
                                                 <Setter Property="Source"
-                                                        Value="pack://application:,,,/StakeholderAnalysis.Visualization;component/Resources/arrow_up_black.png" />
+                                                        Value="pack://application:,,,/StakeholderAnalysis.Visualization;component/Resources/Operations/arrow_up_black.png" />
                                             </DataTrigger>
                                             <DataTrigger Binding="{Binding CanMoveUp}" Value="False">
                                                 <Setter Property="Source"
-                                                        Value="pack://application:,,,/StakeholderAnalysis.Visualization;component/Resources/arrow_up_gray.png" />
+                                                        Value="pack://application:,,,/StakeholderAnalysis.Visualization;component/Resources/Operations/arrow_up_gray.png" />
                                             </DataTrigger>
                                         </Style.Triggers>
                                     </Style>
@@ -88,11 +88,11 @@
                                         <Style.Triggers>
                                             <DataTrigger Binding="{Binding CanMoveDown}" Value="True">
                                                 <Setter Property="Source"
-                                                        Value="pack://application:,,,/StakeholderAnalysis.Visualization;component/Resources/arrow_down_black.png" />
+                                                        Value="pack://application:,,,/StakeholderAnalysis.Visualization;component/Resources/Operations/arrow_down_black.png" />
                                             </DataTrigger>
                                             <DataTrigger Binding="{Binding CanMoveDown}" Value="False">
                                                 <Setter Property="Source"
-                                                        Value="pack://application:,,,/StakeholderAnalysis.Visualization;component/Resources/arrow_down_gray.png" />
+                                                        Value="pack://application:,,,/StakeholderAnalysis.Visualization;component/Resources/Operations/arrow_down_gray.png" />
                                             </DataTrigger>
                                         </Style.Triggers>
                                     </Style>
@@ -112,11 +112,11 @@
                                         <Style.Triggers>
                                             <DataTrigger Binding="{Binding CanMoveToBottom}" Value="True">
                                                 <Setter Property="Source"
-                                                        Value="pack://application:,,,/StakeholderAnalysis.Visualization;component/Resources/arrow_bottom_black.png" />
+                                                        Value="pack://application:,,,/StakeholderAnalysis.Visualization;component/Resources/Operations/arrow_bottom_black.png" />
                                             </DataTrigger>
                                             <DataTrigger Binding="{Binding CanMoveToBottom}" Value="False">
                                                 <Setter Property="Source"
-                                                        Value="pack://application:,,,/StakeholderAnalysis.Visualization;component/Resources/arrow_bottom_gray.png" />
+                                                        Value="pack://application:,,,/StakeholderAnalysis.Visualization;component/Resources/Operations/arrow_bottom_gray.png" />
                                             </DataTrigger>
                                         </Style.Triggers>
                                     </Style>
@@ -139,7 +139,7 @@
                         <ControlTemplate TargetType="Button">
                             <Image Width="16"
                                    Height="16"
-                                   Source="pack://application:,,,/StakeholderAnalysis.Visualization;component/Resources/delete.png" />
+                                   Source="pack://application:,,,/StakeholderAnalysis.Visualization;component/Resources/Operations/delete.png" />
                         </ControlTemplate>
                     </Button.Template>
                 </Button>
