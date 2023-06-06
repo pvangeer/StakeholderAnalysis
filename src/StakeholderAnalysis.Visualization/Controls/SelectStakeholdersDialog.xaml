@@ -24,7 +24,7 @@
                     Source="/StakeholderAnalysis.Visualization;Component/Theme/StakeholderAnalysisTheme.xaml" />
                 <ResourceDictionary Source="/StakeholderAnalysis.Visualization;Component/Theme/DeltaresColorTheme.xaml" />
             </ResourceDictionary.MergedDictionaries>
-            
+
             <converters:IconTypeToIconSourceConverter x:Key="IconTypeToIconSourceConverter" />
 
             <!--Close button-->
@@ -32,39 +32,40 @@
                 <Setter Property="Template">
                     <Setter.Value>
                         <ControlTemplate TargetType="Button">
-                            <Grid x:Name="LayoutRoot" Background="Transparent" Width="44" Height="{StaticResource DefaultItemHeight}">
-                                <TextBlock x:Name="txt" 
-                                           Text="{TemplateBinding Content}" 
-                                           FontFamily="Segoe MDL2 Assets" 
-                                           FontSize="10" 
-                                           Foreground="{StaticResource Deltares.Brushes.Foreground}" 
-                                           HorizontalAlignment="Center" 
+                            <Grid x:Name="LayoutRoot" Background="Transparent" Width="44"
+                                  Height="{StaticResource DefaultItemHeight}">
+                                <TextBlock x:Name="txt"
+                                           Text="{TemplateBinding Content}"
+                                           FontFamily="Segoe MDL2 Assets"
+                                           FontSize="10"
+                                           Foreground="{StaticResource Deltares.Brushes.Foreground}"
+                                           HorizontalAlignment="Center"
                                            VerticalAlignment="Center"
-                                           RenderOptions.ClearTypeHint="Auto" 
-                                           TextOptions.TextRenderingMode="Aliased"  
-                                           TextOptions.TextFormattingMode="Display"/>
+                                           RenderOptions.ClearTypeHint="Auto"
+                                           TextOptions.TextRenderingMode="Aliased"
+                                           TextOptions.TextFormattingMode="Display" />
                             </Grid>
                             <ControlTemplate.Triggers>
                                 <Trigger Property="IsMouseOver" Value="True">
-                                    <Setter TargetName="LayoutRoot" 
-                                            Property="Background" 
-                                            Value="{StaticResource Fluent.Ribbon.Brushes.WindowCommands.CloseButton.MouseOver.Background}"/>
+                                    <Setter TargetName="LayoutRoot"
+                                            Property="Background"
+                                            Value="{StaticResource Fluent.Ribbon.Brushes.WindowCommands.CloseButton.MouseOver.Background}" />
                                 </Trigger>
                                 <Trigger Property="IsMouseOver" Value="False">
-                                    <Setter TargetName="LayoutRoot" 
-                                            Property="Background" 
-                                            Value="{StaticResource Deltares.Brushes.LightBlue}"/>
+                                    <Setter TargetName="LayoutRoot"
+                                            Property="Background"
+                                            Value="{StaticResource Deltares.Brushes.LightBlue}" />
                                 </Trigger>
                                 <Trigger Property="IsPressed" Value="True">
-                                    <Setter TargetName="LayoutRoot" 
-                                            Property="Background" 
+                                    <Setter TargetName="LayoutRoot"
+                                            Property="Background"
                                             Value="{StaticResource Fluent.Ribbon.Brushes.WindowCommands.CloseButton.Pressed.Background}" />
                                 </Trigger>
                             </ControlTemplate.Triggers>
                         </ControlTemplate>
                     </Setter.Value>
                 </Setter>
-                <Setter Property="Content" Value="&#xE106;"/>
+                <Setter Property="Content" Value="&#xE106;" />
             </Style>
 
             <Style TargetType="{x:Type Button}">
@@ -96,31 +97,34 @@
     </WindowChrome.WindowChrome>
 
     <Window.CommandBindings>
-        <CommandBinding Command="{x:Static SystemCommands.CloseWindowCommand}" CanExecute="CanExecute" Executed="CloseDialog" />
+        <CommandBinding Command="{x:Static SystemCommands.CloseWindowCommand}" CanExecute="CanExecute"
+                        Executed="CloseDialog" />
     </Window.CommandBindings>
 
     <Grid>
         <Grid.RowDefinitions>
-            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="Auto" />
             <RowDefinition Height="*" />
             <RowDefinition Height="Auto" />
         </Grid.RowDefinitions>
 
-        <Grid 
+        <Grid
             Grid.Row="0"
             Height="{StaticResource DefaultItemHeight}"
             Background="{StaticResource Deltares.Brushes.LightBlue}">
             <StackPanel HorizontalAlignment="Left" VerticalAlignment="Center">
-                <TextBlock 
+                <TextBlock
                     Foreground="White"
-                    Margin="10,0,0,0">Selecteer stakeholder(s)</TextBlock>
+                    Margin="10,0,0,0"
+                    Text="Selecteer stakeholder(s)" />
             </StackPanel>
             <StackPanel Orientation="Horizontal" HorizontalAlignment="Right">
-                <Button Style="{StaticResource CloseButtonStyle}" WindowChrome.IsHitTestVisibleInChrome="True" ToolTip="Close"
-                        Command="{x:Static SystemCommands.CloseWindowCommand}"/>
+                <Button Style="{StaticResource CloseButtonStyle}" WindowChrome.IsHitTestVisibleInChrome="True"
+                        ToolTip="Close"
+                        Command="{x:Static SystemCommands.CloseWindowCommand}" />
             </StackPanel>
         </Grid>
-        
+
         <ListBox
             Grid.Row="1"
             Name="ListBox"
