@@ -56,6 +56,7 @@
     <Compile Include="Controls\RotaryControl.xaml.cs">
       <DependentUpon>RotaryControl.xaml</DependentUpon>
     </Compile>
+    <Compile Include="Commands\Diagrams\ChangeStakeholderTypeCommand.cs" />
     <Compile Include="Converters\TreeView\QuickSelectionToVisibilityConverter.cs" />
     <Compile Include="Converters\TreeView\SourceStringToVisibilityConverter.cs" />
     <Compile Include="Converters\TreeView\HasItemsToVisibilityConverter.cs" />
@@ -64,6 +65,7 @@
     <Compile Include="PropertiesViewTemplateSelector.cs" />
     <Compile Include="HidableGridSplitter.cs" />
     <Compile Include="Converters\ObjectToPropertiesViewModelConverter.cs" />
+    <Compile Include="Converters\Diagrams\StakeholderTable\StakeholderTypesToMenuItemsConverter.cs" />
     <Compile Include="StakeholderTypeToNameConverter.cs" />
     <Compile Include="ViewModels\DocumentViews\StakeholderTableView\TableStakeholderViewModel.cs" />
     <Compile Include="ViewModels\ProjectExplorer\ProjectExplorerItemViewModelBase.cs" />
@@ -424,4 +426,5 @@
   <ItemGroup>
     <Resource Include="Resources\Diagrams\onion.ico" />
   </ItemGroup>
+  <ItemGroup />
 </Project>

@@ -4,7 +4,8 @@
                     xmlns:visualization="clr-namespace:StakeholderAnalysis.Visualization"
                     xmlns:data="clr-namespace:StakeholderAnalysis.Data;assembly=StakeholderAnalysis.Data"
                     xmlns:system="clr-namespace:System;assembly=mscorlib"
-                    xmlns:converters="clr-namespace:StakeholderAnalysis.Visualization.Converters">
+                    xmlns:converters="clr-namespace:StakeholderAnalysis.Visualization.Converters"
+                    xmlns:stakeholderTable="clr-namespace:StakeholderAnalysis.Visualization.Converters.Diagrams.StakeholderTable">
 
     <ResourceDictionary.MergedDictionaries>
         <ResourceDictionary
@@ -28,7 +29,7 @@
                 ItemsSource="{Binding StakeholderViewSource.View}"
                 SelectionUnit="CellOrRowHeader">
                 <DataGrid.Resources>
-                    <DataTemplate x:Key="stakeholderTypeItemDataTemplate" DataType="{x:Type data:StakeholderType}">
+                    <DataTemplate x:Key="StakeholderTypeItemDataTemplate" DataType="{x:Type data:StakeholderType}">
                         <DataTemplate.Resources>
                             <ObjectDataProvider x:Key="StakeholderTypeIconStyles"
                                                 MethodName="GetValues"
@@ -47,6 +48,18 @@
                             <TextBlock Text="{Binding Name}" />
                         </StackPanel>
                     </DataTemplate>
+                    <stakeholderTable:StakeholderTypesToMenuItemsConverter x:Key="StakeholderTypesToMenuItemsConverter" />
+
+                    <ContextMenu x:Key="RowContextMenu">
+                        <ContextMenu.Resources>
+                            <Style TargetType="MenuItem" BasedOn="{StaticResource MenuItemStyle}"/>
+                        </ContextMenu.Resources>
+                        <MenuItem Header="Type Toewijzen..." 
+                                  ItemsSource="{Binding RelativeSource={RelativeSource AncestorType={x:Type ContextMenu}},
+                                                Path=PlacementTarget.Tag,
+                                                Converter={StaticResource StakeholderTypesToMenuItemsConverter}}">
+                        </MenuItem>
+                    </ContextMenu>
                 </DataGrid.Resources>
                 <DataGrid.GroupStyle>
                     <!-- Style for groups at top level. -->
@@ -62,7 +75,7 @@
                                                     IsExpanded="True"
                                                     Background="{StaticResource Deltares.Brushes.LightGray}"
                                                     BorderBrush="{StaticResource Deltares.Brushes.LightBlue}"
-                                                    Foreground="Black"
+                                                    Foreground="{StaticResource Deltares.Brushes.Foreground}"
                                                     BorderThickness="0">
                                                     <Expander.Resources>
                                                         <Style TargetType="Border">
@@ -124,6 +137,14 @@
                         </GroupStyle.HeaderTemplate>
                     </GroupStyle>
                 </DataGrid.GroupStyle>
+                <DataGrid.RowStyle>
+                    <Style TargetType="DataGridRow" BasedOn="{StaticResource DataGridRowStyleBase}">
+                        <Setter Property="IsSelected" Value="{Binding IsSelected}" />
+                        <Setter Property="ContextMenu" Value="{StaticResource RowContextMenu}" />
+                        <Setter Property="Tag"
+                                Value="{Binding DataContext, RelativeSource={RelativeSource AncestorType=DataGrid}}" />
+                    </Style>
+                </DataGrid.RowStyle>
                 <DataGrid.Columns>
                     <DataGridTextColumn
                         Header="Naam"
@@ -162,7 +183,7 @@
                                 <Setter Property="HorizontalAlignment" Value="Left" />
                                 <Setter Property="VerticalAlignment" Value="Center" />
                                 <Setter Property="ItemTemplate"
-                                        Value="{StaticResource stakeholderTypeItemDataTemplate}" />
+                                        Value="{StaticResource StakeholderTypeItemDataTemplate}" />
                             </Style>
                         </DataGridComboBoxColumn.ElementStyle>
                         <DataGridComboBoxColumn.EditingElementStyle>
@@ -174,7 +195,7 @@
                                 <Setter Property="HorizontalAlignment" Value="Left" />
                                 <Setter Property="VerticalAlignment" Value="Center" />
                                 <Setter Property="ItemTemplate"
-                                        Value="{StaticResource stakeholderTypeItemDataTemplate}" />
+                                        Value="{StaticResource StakeholderTypeItemDataTemplate}" />
                             </Style>
                         </DataGridComboBoxColumn.EditingElementStyle>
                     </DataGridComboBoxColumn>
