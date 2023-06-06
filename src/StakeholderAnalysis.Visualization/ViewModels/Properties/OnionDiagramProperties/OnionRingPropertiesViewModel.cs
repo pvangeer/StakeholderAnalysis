@@ -90,7 +90,7 @@ namespace StakeholderAnalysis.Visualization.ViewModels.Properties.OnionDiagramPr
             switch (e.PropertyName)
             {
                 case nameof(OnionRing.Percentage):
-                    OnPropertyChanged(DisplayName);
+                    OnPropertyChanged(nameof(DisplayName));
                     break;
             }
         }
