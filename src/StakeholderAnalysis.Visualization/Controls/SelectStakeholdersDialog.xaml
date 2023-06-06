@@ -7,11 +7,11 @@
         xmlns:documentViews="clr-namespace:StakeholderAnalysis.Visualization.ViewModels.DocumentViews"
         mc:Ignorable="d"
         ContentRendered="OnContentRendered"
-        Title="Selecteer stakeholder(s)"
-        Icon="pack://application:,,,/StakeholderAnalysis.App;component/Resources/Logo.png"
         WindowStartupLocation="CenterOwner"
-        WindowStyle="ToolWindow"
         ShowInTaskbar="False"
+        WindowStyle="None"
+        Height="450"
+        Width="310"
         MinHeight="450"
         MinWidth="310">
 
@@ -26,6 +26,46 @@
             </ResourceDictionary.MergedDictionaries>
             
             <converters:IconTypeToIconSourceConverter x:Key="IconTypeToIconSourceConverter" />
+
+            <!--Close button-->
+            <Style x:Key="CloseButtonStyle" TargetType="Button">
+                <Setter Property="Template">
+                    <Setter.Value>
+                        <ControlTemplate TargetType="Button">
+                            <Grid x:Name="LayoutRoot" Background="Transparent" Width="44" Height="{StaticResource DefaultItemHeight}">
+                                <TextBlock x:Name="txt" 
+                                           Text="{TemplateBinding Content}" 
+                                           FontFamily="Segoe MDL2 Assets" 
+                                           FontSize="10" 
+                                           Foreground="{StaticResource Deltares.Brushes.Foreground}" 
+                                           HorizontalAlignment="Center" 
+                                           VerticalAlignment="Center"
+                                           RenderOptions.ClearTypeHint="Auto" 
+                                           TextOptions.TextRenderingMode="Aliased"  
+                                           TextOptions.TextFormattingMode="Display"/>
+                            </Grid>
+                            <ControlTemplate.Triggers>
+                                <Trigger Property="IsMouseOver" Value="True">
+                                    <Setter TargetName="LayoutRoot" 
+                                            Property="Background" 
+                                            Value="{StaticResource Fluent.Ribbon.Brushes.WindowCommands.CloseButton.MouseOver.Background}"/>
+                                </Trigger>
+                                <Trigger Property="IsMouseOver" Value="False">
+                                    <Setter TargetName="LayoutRoot" 
+                                            Property="Background" 
+                                            Value="{StaticResource Deltares.Brushes.LightBlue}"/>
+                                </Trigger>
+                                <Trigger Property="IsPressed" Value="True">
+                                    <Setter TargetName="LayoutRoot" 
+                                            Property="Background" 
+                                            Value="{StaticResource Fluent.Ribbon.Brushes.WindowCommands.CloseButton.Pressed.Background}" />
+                                </Trigger>
+                            </ControlTemplate.Triggers>
+                        </ControlTemplate>
+                    </Setter.Value>
+                </Setter>
+                <Setter Property="Content" Value="&#xE106;"/>
+            </Style>
 
             <Style TargetType="{x:Type Button}">
                 <Setter Property="Background" Value="{StaticResource Deltares.Brushes.LightBlue}" />
@@ -47,17 +87,42 @@
                     </Trigger>
                 </Style.Triggers>
             </Style>
+
         </ResourceDictionary>
     </Window.Resources>
 
+    <WindowChrome.WindowChrome>
+        <WindowChrome CaptionHeight="{StaticResource DefaultItemHeight}" />
+    </WindowChrome.WindowChrome>
+
+    <Window.CommandBindings>
+        <CommandBinding Command="{x:Static SystemCommands.CloseWindowCommand}" CanExecute="CanExecute" Executed="CloseDialog" />
+    </Window.CommandBindings>
+
     <Grid>
         <Grid.RowDefinitions>
+            <RowDefinition Height="Auto"/>
             <RowDefinition Height="*" />
             <RowDefinition Height="Auto" />
         </Grid.RowDefinitions>
 
-        <ListBox
+        <Grid 
             Grid.Row="0"
+            Height="{StaticResource DefaultItemHeight}"
+            Background="{StaticResource Deltares.Brushes.LightBlue}">
+            <StackPanel HorizontalAlignment="Left" VerticalAlignment="Center">
+                <TextBlock 
+                    Foreground="White"
+                    Margin="10,0,0,0">Selecteer stakeholder(s)</TextBlock>
+            </StackPanel>
+            <StackPanel Orientation="Horizontal" HorizontalAlignment="Right">
+                <Button Style="{StaticResource CloseButtonStyle}" WindowChrome.IsHitTestVisibleInChrome="True" ToolTip="Close"
+                        Command="{x:Static SystemCommands.CloseWindowCommand}"/>
+            </StackPanel>
+        </Grid>
+        
+        <ListBox
+            Grid.Row="1"
             Name="ListBox"
             Margin="20,10,20,10"
             HorizontalContentAlignment="Stretch"
@@ -87,7 +152,7 @@
             </ListBox.ItemTemplate>
         </ListBox>
 
-        <Border Grid.Row="1"
+        <Border Grid.Row="2"
                 Background="{StaticResource Deltares.Brushes.LightBlue}"
                 Height="{StaticResource DefaultItemHeight}">
             <StackPanel

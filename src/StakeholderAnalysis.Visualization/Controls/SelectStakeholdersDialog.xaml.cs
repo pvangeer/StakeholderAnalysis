@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Windows;
+using System.Windows.Input;
 using StakeholderAnalysis.Data;
 using StakeholderAnalysis.Visualization.ViewModels.DocumentViews;
 
@@ -40,6 +41,18 @@ namespace StakeholderAnalysis.Visualization.Controls
         private void OnContentRendered(object sender, EventArgs e)
         {
             ListBox.Focus();
+        }
+
+        // Can execute
+        private void CanExecute(object sender, CanExecuteRoutedEventArgs e)
+        {
+            e.CanExecute = true;
+        }
+
+        // Close
+        private void CloseDialog(object sender, ExecutedRoutedEventArgs e)
+        {
+            SystemCommands.CloseWindow(this);
         }
     }
 }
