@@ -15,7 +15,6 @@ namespace StakeholderAnalysis.Visualization.ViewModels.DocumentViews
         {
             this.drawConnectionHandler = drawConnectionHandler;
             this.selectionRegister = selectionRegister;
-
         }
 
         public bool IsConnectionToTarget =>
@@ -26,11 +25,15 @@ namespace StakeholderAnalysis.Visualization.ViewModels.DocumentViews
             selectionRegister?.SelectObject(Stakeholder);
         });
 
-        public virtual void Moved(double xRelativeNew, double yRelativeNew) { }
+        public virtual void Moved(double xRelativeNew, double yRelativeNew)
+        {
+        }
 
         public bool IsSelectedStakeholder => selectionRegister != null && selectionRegister.IsSelectedObject(Stakeholder);
 
-        public virtual void RemoveFromDiagram() { }
+        public virtual void RemoveFromDiagram()
+        {
+        }
 
         public ICommand RemoveStakeholderCommand =>
             CommandFactory.CreateRemoveSelectedStakeholderFromDiagramCommand(this);

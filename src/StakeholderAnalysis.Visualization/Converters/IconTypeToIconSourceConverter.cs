@@ -7,7 +7,8 @@ namespace StakeholderAnalysis.Visualization.Converters
 {
     public class IconTypeToIconSourceConverter : IValueConverter
     {
-        private readonly string stakeholderTypeIconPrefix = "pack://application:,,,/StakeholderAnalysis.Visualization;component/Resources/StakeholderTypeIcons/";
+        private readonly string stakeholderTypeIconPrefix =
+            "pack://application:,,,/StakeholderAnalysis.Visualization;component/Resources/StakeholderTypeIcons/";
 
         public object Convert(object value, Type targetType, object parameter, CultureInfo culture)
         {

@@ -6,7 +6,7 @@ namespace StakeholderAnalysis.Visualization.ViewModels.DocumentViews.Stakeholder
     public class TableStakeholderViewModel : ViewModelBase
     {
         /// <summary>
-        /// Parameterless constructor needed for DataGrid to allow adding new stakeholders.
+        ///     Parameterless constructor needed for DataGrid to allow adding new stakeholders.
         /// </summary>
         public TableStakeholderViewModel() : this(null, new Stakeholder())
         {
@@ -17,7 +17,6 @@ namespace StakeholderAnalysis.Visualization.ViewModels.DocumentViews.Stakeholder
             Stakeholder = stakeholder;
 
             if (Stakeholder != null) Stakeholder.PropertyChanged += StakeholderPropertyChanged;
-
         }
 
         public Stakeholder Stakeholder { get; }

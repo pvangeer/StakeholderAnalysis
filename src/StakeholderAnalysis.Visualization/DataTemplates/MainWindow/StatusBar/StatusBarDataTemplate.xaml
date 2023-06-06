@@ -23,7 +23,7 @@
                     <Label Name="MessagesLabel" VerticalAlignment="Center">
                         <Hyperlink
                             Command="{Binding ShowMessageListCommand}"
-                            Foreground="AliceBlue">
+                            Foreground="{StaticResource Deltares.Brushes.Foreground}">
                             <TextBlock
                                 Text="{Binding MessagesViewModel, Converter={StaticResource MessageListToLabelConverter}}" />
                         </Hyperlink>

@@ -78,7 +78,7 @@
 
                         <fluent:SeparatorTabItem />
 
-                        <fluent:BackstageTabItem 
+                        <fluent:BackstageTabItem
                             Header="Over"
                             Icon="pack://application:,,,/StakeholderAnalysis.Visualization;component/Resources/Fluent/info_regular.ico">
                             <ContentPresenter Content="{Binding}"

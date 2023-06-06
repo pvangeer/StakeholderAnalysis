@@ -26,7 +26,7 @@
     <!-- COLORS -->
 
     <!-- Accent colors -->
-    <DynamicResource x:Key="Fluent.Ribbon.Colors.AccentBase" ResourceKey="Deltares.Colors.LightGreen" />
+    <Color x:Key="Fluent.Ribbon.Colors.AccentBase">#00B389</Color>
     <!-- 80% -->
     <Color x:Key="Fluent.Ribbon.Colors.Accent80">#CC00B389</Color>
     <!-- 60% -->
@@ -62,8 +62,8 @@
     <Color x:Key="Fluent.Ribbon.Colors.DarkIdealForegroundDisabled">#80000000</Color>
 
     <!-- Misc colors -->
-    <DynamicResource x:Key="Fluent.Ribbon.Colors.ExtremeHighlight" ResourceKey="Deltares.Colors.Yellow" />
-    <DynamicResource x:Key="Fluent.Ribbon.Colors.DarkExtremeHighlight" ResourceKey="Deltares.Colors.Yellow" />
+    <Color x:Key="Fluent.Ribbon.Colors.ExtremeHighlight">#FFD814</Color>
+    <Color x:Key="Fluent.Ribbon.Colors.DarkExtremeHighlight">#FFD814</Color>
 
     <!-- END COLORS -->
 

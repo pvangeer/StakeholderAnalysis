@@ -6,11 +6,50 @@
         xmlns:converters="clr-namespace:StakeholderAnalysis.Visualization.Converters"
         xmlns:documentViews="clr-namespace:StakeholderAnalysis.Visualization.ViewModels.DocumentViews"
         mc:Ignorable="d"
-        Title="Selecteer stakeholder(s)" Height="450" Width="400">
+        ContentRendered="OnContentRendered"
+        Title="Selecteer stakeholder(s)"
+        Icon="pack://application:,,,/StakeholderAnalysis.App;component/Resources/Logo.png"
+        WindowStartupLocation="CenterOwner"
+        WindowStyle="ToolWindow"
+        ShowInTaskbar="False"
+        MinHeight="450"
+        MinWidth="310">
 
     <Window.Resources>
-        <converters:IconTypeToIconSourceConverter x:Key="IconTypeToIconSourceConverter" />
+        <ResourceDictionary>
+            <ResourceDictionary.MergedDictionaries>
+                <ResourceDictionary
+                    Source="/StakeholderAnalysis.Visualization;Component/Theme/GeneralStyles.xaml" />
+                <ResourceDictionary
+                    Source="/StakeholderAnalysis.Visualization;Component/Theme/StakeholderAnalysisTheme.xaml" />
+                <ResourceDictionary Source="/StakeholderAnalysis.Visualization;Component/Theme/DeltaresColorTheme.xaml" />
+            </ResourceDictionary.MergedDictionaries>
+            
+            <converters:IconTypeToIconSourceConverter x:Key="IconTypeToIconSourceConverter" />
+
+            <Style TargetType="{x:Type Button}">
+                <Setter Property="Background" Value="{StaticResource Deltares.Brushes.LightBlue}" />
+                <Setter Property="Template">
+                    <Setter.Value>
+                        <ControlTemplate TargetType="{x:Type Button}">
+                            <Border Background="{TemplateBinding Background}" BorderThickness="0">
+                                <ContentPresenter HorizontalAlignment="Center" VerticalAlignment="Center" />
+                            </Border>
+                        </ControlTemplate>
+                    </Setter.Value>
+                </Setter>
+                <Style.Triggers>
+                    <Trigger Property="IsMouseOver" Value="True">
+                        <Setter Property="Background" Value="{StaticResource Deltares.Brushes.MouseOverHighlight}" />
+                    </Trigger>
+                    <Trigger Property="Button.IsPressed" Value="True">
+                        <Setter Property="Background" Value="{StaticResource Deltares.Brushes.MousePressedHighlight}" />
+                    </Trigger>
+                </Style.Triggers>
+            </Style>
+        </ResourceDictionary>
     </Window.Resources>
+
     <Grid>
         <Grid.RowDefinitions>
             <RowDefinition Height="*" />
@@ -18,13 +57,18 @@
         </Grid.RowDefinitions>
 
         <ListBox
+            Grid.Row="0"
             Name="ListBox"
             Margin="20,10,20,10"
             HorizontalContentAlignment="Stretch"
+            BorderBrush="{StaticResource Deltares.Brushes.Border.Light}"
             SelectionMode="Extended">
             <ListBox.ItemTemplate>
                 <DataTemplate DataType="documentViews:DiagramStakeholderViewModelBase">
-                    <Border BorderThickness="1" BorderBrush="Gray" HorizontalAlignment="Stretch">
+                    <Border
+                        BorderThickness="1"
+                        BorderBrush="{StaticResource Deltares.Brushes.Border.Light}"
+                        HorizontalAlignment="Stretch">
                         <StackPanel Orientation="Horizontal" HorizontalAlignment="Stretch">
                             <Image
                                 Margin="2,0,2,0"
@@ -43,20 +87,27 @@
             </ListBox.ItemTemplate>
         </ListBox>
 
-        <Border Grid.Row="1" Background="AliceBlue">
-            <StackPanel Orientation="Horizontal" HorizontalAlignment="Right">
+        <Border Grid.Row="1"
+                Background="{StaticResource Deltares.Brushes.LightBlue}"
+                Height="{StaticResource DefaultItemHeight}">
+            <StackPanel
+                Orientation="Horizontal"
+                HorizontalAlignment="Right"
+                VerticalAlignment="Center">
                 <Button
                     Width="90"
-                    Style="{StaticResource {x:Static ToolBar.ButtonStyleKey}}"
+                    Height="{StaticResource DefaultItemHeight}"
                     Content="OK"
-                    Margin="5,5,20,5"
+                    BorderThickness="0"
                     HorizontalAlignment="Right"
+                    IsDefault="True"
                     Click="ButtonOkClicked" />
                 <Button
                     Width="90"
-                    Style="{StaticResource {x:Static ToolBar.ButtonStyleKey}}"
+                    Height="{StaticResource DefaultItemHeight}"
                     Content="Annuleren"
-                    Margin="5,5,5,5"
+                    BorderThickness="0"
+                    IsCancel="True"
                     HorizontalAlignment="Right"
                     Click="ButtonCancelClicked" />
             </StackPanel>

@@ -1,4 +1,5 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 using System.Linq;
 using System.Windows;
 using StakeholderAnalysis.Data;
@@ -9,7 +10,7 @@ namespace StakeholderAnalysis.Visualization.Controls
     /// <summary>
     ///     Interaction logic for SelectStakeholdersDialog.xaml
     /// </summary>
-    public partial class SelectStakeholdersDialog : Window
+    public partial class SelectStakeholdersDialog
     {
         public SelectStakeholdersDialog(Analysis analysis)
         {
@@ -34,6 +35,11 @@ namespace StakeholderAnalysis.Visualization.Controls
             SelectedStakeholders = selectedStakeholders;
             DialogResult = true;
             Close();
+        }
+
+        private void OnContentRendered(object sender, EventArgs e)
+        {
+            ListBox.Focus();
         }
     }
 }

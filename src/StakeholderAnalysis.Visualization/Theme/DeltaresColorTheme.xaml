@@ -58,6 +58,11 @@
                      Color="{StaticResource Deltares.Colors.MousePressedHighlight}" />
     <SolidColorBrush x:Key="Deltares.Brushes.Header" Color="{StaticResource Deltares.Colors.Header}" />
 
+    <SolidColorBrush x:Key="Deltares.Brushes.Border.Light" Color="{StaticResource Deltares.Colors.Border.Light}" />
+    <SolidColorBrush x:Key="Deltares.Brushes.Border.Dark" Color="{StaticResource Deltares.Colors.Border.Dark}" />
+
+    <SolidColorBrush x:Key="Deltares.Brushes.Foreground"
+                     Color="{StaticResource Deltares.Colors.Foreground}" />
     <SolidColorBrush x:Key="Deltares.Brushes.DefaultBackground"
                      Color="{StaticResource Deltares.Colors.DefaultBackground}" />
 

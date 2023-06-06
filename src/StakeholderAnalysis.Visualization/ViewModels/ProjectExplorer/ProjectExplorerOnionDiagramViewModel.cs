@@ -36,7 +36,8 @@ namespace StakeholderAnalysis.Visualization.ViewModels.ProjectExplorer
 
         public override string DisplayName => diagram.Name;
 
-        public override string IconSourceString => "pack://application:,,,/StakeholderAnalysis.Visualization;component/Resources/Diagrams/onion.ico";
+        public override string IconSourceString =>
+            "pack://application:,,,/StakeholderAnalysis.Visualization;component/Resources/Diagrams/onion.ico";
 
         public override ICommand OpenViewCommand => CommandFactory.CreateCanAlwaysExecuteActionCommand(p =>
         {
