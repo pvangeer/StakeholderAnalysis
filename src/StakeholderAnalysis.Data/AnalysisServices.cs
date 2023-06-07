@@ -56,30 +56,30 @@ namespace StakeholderAnalysis.Data
         }
 
         #region AddStakeholdersToDiagrams
+
         // TODO: Introduce interface to avoid multiple implementations of the same thing.
 
         private static void AddStakeholderToDiagram(OnionDiagram diagram, Stakeholder stakeholder)
         {
-                if (diagram.Stakeholders.All(s => s.Stakeholder != stakeholder))
-                {
-                    var onionDiagramStakeholder = new OnionDiagramStakeholder(stakeholder, 0.5, 0.5) { Rank = diagram.Stakeholders.Count };
-                    FindPositionForNewOnionDiagramStakeholder(diagram, onionDiagramStakeholder);
-                    
-                    diagram.Stakeholders.Add(onionDiagramStakeholder);
-                }
+            if (diagram.Stakeholders.All(s => s.Stakeholder != stakeholder))
+            {
+                var onionDiagramStakeholder = new OnionDiagramStakeholder(stakeholder, 0.5, 0.5) { Rank = diagram.Stakeholders.Count };
+                FindPositionForNewOnionDiagramStakeholder(diagram, onionDiagramStakeholder);
+
+                diagram.Stakeholders.Add(onionDiagramStakeholder);
+            }
         }
 
-        private static void FindPositionForNewOnionDiagramStakeholder(OnionDiagram diagram, OnionDiagramStakeholder stakeholder, int count = 1)
+        private static void FindPositionForNewOnionDiagramStakeholder(OnionDiagram diagram, OnionDiagramStakeholder stakeholder,
+            int count = 1)
         {
             if (count > 200)
-            {
                 return;
-            }
 
             count += 1;
 
             if (diagram.Stakeholders.Any(s =>
-                    Math.Abs(s.Left - stakeholder.Left) < 1E-3 & Math.Abs(s.Top - stakeholder.Top) < 1E-3))
+                    (Math.Abs(s.Left - stakeholder.Left) < 1E-3) & (Math.Abs(s.Top - stakeholder.Top) < 1E-3)))
             {
                 var newLeft = stakeholder.Left + 0.01;
                 stakeholder.Left = newLeft > 1.0 ? newLeft - 1.0 : newLeft;
@@ -99,17 +99,16 @@ namespace StakeholderAnalysis.Data
             }
         }
 
-        private static void FindPositionForNewStakeholder(ForceFieldDiagram diagram, ForceFieldDiagramStakeholder stakeholder, int count = 1)
+        private static void FindPositionForNewStakeholder(ForceFieldDiagram diagram, ForceFieldDiagramStakeholder stakeholder,
+            int count = 1)
         {
             if (count > 200)
-            {
                 return;
-            }
 
             count += 1;
 
             if (diagram.Stakeholders.Any(s =>
-                    Math.Abs(s.Influence - stakeholder.Influence) < 1E-3 & Math.Abs(s.Interest - stakeholder.Interest) < 1E-3))
+                    (Math.Abs(s.Influence - stakeholder.Influence) < 1E-3) & (Math.Abs(s.Interest - stakeholder.Interest) < 1E-3)))
             {
                 var newInfluence = stakeholder.Influence + 0.01;
                 stakeholder.Influence = newInfluence > 1.0 ? newInfluence - 1.0 : newInfluence;
@@ -123,23 +122,23 @@ namespace StakeholderAnalysis.Data
         {
             if (diagram.Stakeholders.All(s => s.Stakeholder != stakeholder))
             {
-                var attitudeImpactDiagramStakeholder = new AttitudeImpactDiagramStakeholder(stakeholder, 0.5, 0.5) { Rank = diagram.Stakeholders.Count };
+                var attitudeImpactDiagramStakeholder = new AttitudeImpactDiagramStakeholder(stakeholder, 0.5, 0.5)
+                    { Rank = diagram.Stakeholders.Count };
                 FindPositionForNewStakeholder(diagram, attitudeImpactDiagramStakeholder);
                 diagram.Stakeholders.Add(attitudeImpactDiagramStakeholder);
             }
         }
 
-        private static void FindPositionForNewStakeholder(AttitudeImpactDiagram diagram, AttitudeImpactDiagramStakeholder stakeholder, int count = 1)
+        private static void FindPositionForNewStakeholder(AttitudeImpactDiagram diagram, AttitudeImpactDiagramStakeholder stakeholder,
+            int count = 1)
         {
             if (count > 200)
-            {
                 return;
-            }
 
             count += 1;
 
             if (diagram.Stakeholders.Any(s =>
-                    Math.Abs(s.Attitude - stakeholder.Attitude) < 1E-3 & Math.Abs(s.Impact - stakeholder.Impact) < 1E-3))
+                    (Math.Abs(s.Attitude - stakeholder.Attitude) < 1E-3) & (Math.Abs(s.Impact - stakeholder.Impact) < 1E-3)))
             {
                 var newAttitude = stakeholder.Attitude + 0.01;
                 stakeholder.Attitude = newAttitude > 1.0 ? newAttitude - 1.0 : newAttitude;

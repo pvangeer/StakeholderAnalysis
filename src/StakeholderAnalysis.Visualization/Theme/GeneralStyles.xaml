@@ -10,7 +10,7 @@
                Right="{StaticResource DefaultItemHeight}"
                Bottom="{StaticResource DefaultItemHeight}" />
 
-    <Style x:Key="MenuItemStyle"  TargetType="MenuItem">
+    <Style x:Key="MenuItemStyle" TargetType="MenuItem">
         <Setter Property="Foreground" Value="Black" />
         <Setter Property="MinHeight" Value="{StaticResource DefaultItemHeight}" />
         <Setter Property="Margin" Value="0" />

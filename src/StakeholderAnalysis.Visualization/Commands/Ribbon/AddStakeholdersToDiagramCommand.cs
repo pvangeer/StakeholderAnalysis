@@ -7,7 +7,6 @@ using StakeholderAnalysis.Data;
 using StakeholderAnalysis.Gui;
 using StakeholderAnalysis.Visualization.Controls;
 using StakeholderAnalysis.Visualization.ViewModels.DocumentViews;
-using StakeholderAnalysis.Visualization.ViewModels.DocumentViews.OnionDiagramView;
 
 namespace StakeholderAnalysis.Visualization.Commands.Ribbon
 {
@@ -15,7 +14,7 @@ namespace StakeholderAnalysis.Visualization.Commands.Ribbon
     {
         private readonly Analysis analysis;
         private readonly ViewManager viewManager;
-        
+
         private IStakeholderDiagram selectedDiagram;
 
         public AddStakeholdersToDiagramCommand(ViewManager viewManager, Analysis analysis)
@@ -41,9 +40,7 @@ namespace StakeholderAnalysis.Visualization.Commands.Ribbon
             if (dialog.ShowDialog() != true) return;
 
             foreach (var selectedStakeholder in dialog.SelectedStakeholders.ToArray())
-            {
                 AnalysisServices.AddStakeholderToDiagram(selectedDiagram, selectedStakeholder);
-            }
         }
 
         public event EventHandler CanExecuteChanged;
@@ -53,10 +50,10 @@ namespace StakeholderAnalysis.Visualization.Commands.Ribbon
             switch (e.PropertyName)
             {
                 case nameof(ViewManager.ActiveDocument):
-                    selectedDiagram = viewManager?.ActiveDocument?.ViewModel is IDiagramViewModel diagramViewModel 
+                    selectedDiagram = viewManager?.ActiveDocument?.ViewModel is IDiagramViewModel diagramViewModel
                         ? diagramViewModel.GetDiagram()
                         : null;
-                    
+
                     CanExecuteChanged?.Invoke(this, null);
                     break;
             }

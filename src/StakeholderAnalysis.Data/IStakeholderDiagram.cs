@@ -7,7 +7,7 @@ namespace StakeholderAnalysis.Data
         ObservableCollection<TStakeholder> Stakeholders { get; }
     }
 
-    public interface IStakeholderDiagram: INotifyPropertyChangedImplementation
+    public interface IStakeholderDiagram : INotifyPropertyChangedImplementation
     {
         string Name { get; set; }
 

@@ -54,21 +54,20 @@
 
                     <ContextMenu x:Key="RowContextMenu">
                         <ContextMenu.Resources>
-                            <Style TargetType="MenuItem" BasedOn="{StaticResource MenuItemStyle}"/>
+                            <Style TargetType="MenuItem" BasedOn="{StaticResource MenuItemStyle}" />
                         </ContextMenu.Resources>
-                        <MenuItem Header="Type Toewijzen" 
+                        <MenuItem Header="Type Toewijzen"
                                   ItemsSource="{Binding RelativeSource={RelativeSource AncestorType={x:Type ContextMenu}},
                                                 Path=PlacementTarget.Tag,
-                                                Converter={StaticResource StakeholderTypesToMenuItemsConverter}}"/>
-                            <MenuItem Header="Diagram Toewijzen" 
-                                      ItemsSource="{Binding RelativeSource={RelativeSource AncestorType={x:Type ContextMenu}},
+                                                Converter={StaticResource StakeholderTypesToMenuItemsConverter}}" />
+                        <MenuItem Header="Diagram Toewijzen"
+                                  ItemsSource="{Binding RelativeSource={RelativeSource AncestorType={x:Type ContextMenu}},
                                                 Path=PlacementTarget.Tag,
-                                                Converter={StaticResource AppointToDiagramMenuItemsConverter}}"/>
-                        <Separator/>
-                        <MenuItem Header="Verwijderen" 
-                                  Command="{Binding DeleteStakeholderCommand}"
-                                  CommandParameter="{Binding RelativeSource={RelativeSource AncestorType={x:Type ContextMenu}},
-                                                Path=PlacementTarget.Tag}"/>
+                                                Converter={StaticResource AppointToDiagramMenuItemsConverter}}" />
+                        <Separator />
+                        <MenuItem Header="Verwijderen"
+                                  Command="{Binding  RelativeSource={RelativeSource AncestorType={x:Type ContextMenu}},
+                                                Path=PlacementTarget.Tag.DeleteStakeholderCommand}" />
                     </ContextMenu>
                 </DataGrid.Resources>
                 <DataGrid.GroupStyle>

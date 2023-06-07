@@ -8,7 +8,6 @@ using System.Windows.Media;
 using StakeholderAnalysis.Data;
 using StakeholderAnalysis.Data.AttitudeImpactDiagrams;
 using StakeholderAnalysis.Gui;
-using StakeholderAnalysis.Visualization.ViewModels.DocumentViews.OnionDiagramView;
 using StakeholderAnalysis.Visualization.ViewModels.Properties.TwoAxisDiagramProperties;
 
 namespace StakeholderAnalysis.Visualization.ViewModels.DocumentViews.TwoAxisDiagrams
@@ -30,6 +29,11 @@ namespace StakeholderAnalysis.Visualization.ViewModels.DocumentViews.TwoAxisDiag
                     attitudeImpactDiagram.Stakeholders.Select(stakeholder =>
                         ViewModelFactory.CreateAttitudeImpactDiagramStakeholderViewModel(diagram, stakeholder, this)));
             }
+        }
+
+        public IStakeholderDiagram GetDiagram()
+        {
+            return diagram;
         }
 
         public bool CanSelect => true;
@@ -96,11 +100,6 @@ namespace StakeholderAnalysis.Visualization.ViewModels.DocumentViews.TwoAxisDiag
             selectedObject = o;
             foreach (var stakeholder in PositionedStakeholders.OfType<DiagramStakeholderViewModelBase>())
                 stakeholder.OnPropertyChanged(nameof(DiagramStakeholderViewModelBase.IsSelectedStakeholder));
-        }
-
-        public IStakeholderDiagram GetDiagram()
-        {
-            return diagram;
         }
 
         public TwoAxisDiagramPropertiesViewModel GetPropertiesViewModel()

@@ -70,6 +70,7 @@
     <Compile Include="Converters\Diagrams\StakeholderTable\StakeholderTypesToMenuItemsConverter.cs" />
     <Compile Include="StakeholderTypeToNameConverter.cs" />
     <Compile Include="ViewModels\DocumentViews\IDiagramViewModel.cs" />
+    <Compile Include="Commands\Diagrams\RemoveSelectedStakeholderCommand.cs" />
     <Compile Include="ViewModels\DocumentViews\StakeholderTableView\TableStakeholderViewModel.cs" />
     <Compile Include="ViewModels\ProjectExplorer\ProjectExplorerItemViewModelBase.cs" />
     <Compile Include="ViewModels\TreeView\CollectionType.cs" />
