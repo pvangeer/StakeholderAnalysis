@@ -20,7 +20,10 @@ namespace StakeholderAnalysis.Visualization.ViewModels.DocumentViews.Stakeholder
             {
                 analysis.Stakeholders.CollectionChanged += StakeholdersCollectionChanged;
 
-                CreateAndRegisterStakeholderViewModels();
+                Stakeholders = new ObservableCollection<TableStakeholderViewModel>(
+                    this.analysis.Stakeholders.Select(stakeholder =>
+                        ViewModelFactory.CreateTableStakeholderViewModel(stakeholder)));
+                Stakeholders.CollectionChanged += StakeholderViewModelsCollectionChanged;
 
                 foreach (var analysisStakeholderType in analysis.StakeholderTypes)
                     analysisStakeholderType.PropertyChanged += StakeholderTypePropertyChanged;
@@ -32,8 +35,6 @@ namespace StakeholderAnalysis.Visualization.ViewModels.DocumentViews.Stakeholder
                     Source = Stakeholders,
                     GroupDescriptions = { new PropertyGroupDescription(nameof(TableStakeholderViewModel.Type)) }
                 };
-
-                SelectedStakeholders = new ObservableCollection<TableStakeholderViewModel>();
             }
         }
 
@@ -41,9 +42,7 @@ namespace StakeholderAnalysis.Visualization.ViewModels.DocumentViews.Stakeholder
 
         public CollectionViewSource StakeholderViewSource { get; }
 
-        public ObservableCollection<TableStakeholderViewModel> Stakeholders { get; private set; }
-
-        public ObservableCollection<TableStakeholderViewModel> SelectedStakeholders { get; }
+        public ObservableCollection<TableStakeholderViewModel> Stakeholders { get; }
 
         public ObservableCollection<StakeholderType> StakeholderTypes => analysis.StakeholderTypes;
 
@@ -56,16 +55,6 @@ namespace StakeholderAnalysis.Visualization.ViewModels.DocumentViews.Stakeholder
         public object GetSelectableObject()
         {
             return "StakeholderTable";
-        }
-
-        private void CreateAndRegisterStakeholderViewModels()
-        {
-            Stakeholders = new ObservableCollection<TableStakeholderViewModel>(
-                analysis.Stakeholders.Select(stakeholder =>
-                    ViewModelFactory.CreateTableStakeholderViewModel(stakeholder)));
-            Stakeholders.CollectionChanged += StakeholderViewModelsCollectionChanged;
-            foreach (var tableStakeholderViewModel in Stakeholders)
-                tableStakeholderViewModel.PropertyChanged += StakeholderViewModelPropertyChanged;
         }
 
         private void StakeholderTypePropertyChanged(object sender, PropertyChangedEventArgs e)
@@ -109,7 +98,6 @@ namespace StakeholderAnalysis.Visualization.ViewModels.DocumentViews.Stakeholder
                         stakeholder.Type = stakeholderType;
                         stakeholder.OnPropertyChanged(nameof(Stakeholder.Type));
                         analysis.Stakeholders.Add(stakeholder);
-                        stakeholderViewModel.PropertyChanged += StakeholderViewModelPropertyChanged;
                     }
 
                     break;
@@ -117,27 +105,12 @@ namespace StakeholderAnalysis.Visualization.ViewModels.DocumentViews.Stakeholder
                     foreach (var stakeholderViewModel in e.OldItems.OfType<TableStakeholderViewModel>())
                     {
                         AnalysisServices.RemoveStakeholderFromAnalysis(analysis, stakeholderViewModel.Stakeholder);
-                        stakeholderViewModel.PropertyChanged -= StakeholderViewModelPropertyChanged;
                     }
 
                     break;
             }
 
             analysis.Stakeholders.CollectionChanged += StakeholdersCollectionChanged;
-        }
-
-        private void StakeholderViewModelPropertyChanged(object sender, PropertyChangedEventArgs e)
-        {
-            switch (e.PropertyName)
-            {
-                case nameof(TableStakeholderViewModel.IsSelected):
-                    var viewModel = sender as TableStakeholderViewModel;
-                    if (viewModel != null && viewModel.IsSelected)
-                        SelectedStakeholders.Add(viewModel);
-                    else
-                        SelectedStakeholders.Remove(viewModel);
-                    break;
-            }
         }
 
         private StakeholderType GetDefaultStakeholderType()
