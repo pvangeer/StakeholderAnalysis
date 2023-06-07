@@ -6,7 +6,7 @@ using System.Windows.Media;
 namespace StakeholderAnalysis.Data.ForceFieldDiagrams
 {
     public class ForceFieldDiagram : NotifyPropertyChangedObservable,
-        IRankedStakeholderDiagram<ForceFieldDiagramStakeholder>, ITwoAxisDiagram, ICloneable
+        IStakeholderDiagram<ForceFieldDiagramStakeholder>, ITwoAxisDiagram, ICloneable
     {
         private double axisFontSize;
         private double backgroundFontSize;

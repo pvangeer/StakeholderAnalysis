@@ -2,7 +2,6 @@
 using System.Windows;
 using System.Windows.Input;
 using System.Windows.Media;
-using StakeholderAnalysis.Data;
 using StakeholderAnalysis.Gui;
 using StakeholderAnalysis.Visualization.Behaviors;
 using StakeholderAnalysis.Visualization.ViewModels.Properties.TwoAxisDiagramProperties;
@@ -52,8 +51,6 @@ namespace StakeholderAnalysis.Visualization.ViewModels.DocumentViews.TwoAxisDiag
         FontStyle AxisFontStyle { get; }
 
         double AxisFontSize { get; }
-
-        ITwoAxisDiagram GetDiagram();
 
         TwoAxisDiagramPropertiesViewModel GetPropertiesViewModel();
     }

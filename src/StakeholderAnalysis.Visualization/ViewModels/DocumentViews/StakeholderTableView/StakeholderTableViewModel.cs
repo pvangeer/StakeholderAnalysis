@@ -1,10 +1,14 @@
-﻿using System.Collections.ObjectModel;
+﻿using System.Collections.Generic;
+using System.Collections.ObjectModel;
 using System.Collections.Specialized;
 using System.ComponentModel;
 using System.Linq;
 using System.Windows.Data;
 using System.Windows.Input;
 using StakeholderAnalysis.Data;
+using StakeholderAnalysis.Data.AttitudeImpactDiagrams;
+using StakeholderAnalysis.Data.ForceFieldDiagrams;
+using StakeholderAnalysis.Data.OnionDiagrams;
 using StakeholderAnalysis.Gui;
 
 namespace StakeholderAnalysis.Visualization.ViewModels.DocumentViews.StakeholderTableView
@@ -56,6 +60,11 @@ namespace StakeholderAnalysis.Visualization.ViewModels.DocumentViews.Stakeholder
         {
             return "StakeholderTable";
         }
+
+        public IEnumerable<IStakeholderDiagram> AllDiagrams => analysis.OnionDiagrams.OfType<IStakeholderDiagram>()
+            .Concat(analysis.ForceFieldDiagrams)
+            .Concat(analysis.AttitudeImpactDiagrams)
+            .ToList();
 
         private void StakeholderTypePropertyChanged(object sender, PropertyChangedEventArgs e)
         {

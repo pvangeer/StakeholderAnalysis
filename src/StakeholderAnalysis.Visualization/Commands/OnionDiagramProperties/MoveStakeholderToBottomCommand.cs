@@ -7,10 +7,10 @@ namespace StakeholderAnalysis.Visualization.Commands.OnionDiagramProperties
 {
     public class MoveStakeholderToBottomCommand<TStakeholder> : ICommand where TStakeholder : class, IRankedStakeholder
     {
-        private readonly IRankedStakeholderDiagram<TStakeholder> diagram;
+        private readonly IStakeholderDiagram<TStakeholder> diagram;
         private readonly IRankedStakeholder stakeholder;
 
-        public MoveStakeholderToBottomCommand(IRankedStakeholderDiagram<TStakeholder> diagram,
+        public MoveStakeholderToBottomCommand(IStakeholderDiagram<TStakeholder> diagram,
             IRankedStakeholder stakeholder)
         {
             this.diagram = diagram;

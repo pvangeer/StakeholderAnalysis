@@ -8,12 +8,13 @@ using System.Windows.Media;
 using StakeholderAnalysis.Data;
 using StakeholderAnalysis.Data.ForceFieldDiagrams;
 using StakeholderAnalysis.Gui;
+using StakeholderAnalysis.Visualization.ViewModels.DocumentViews.OnionDiagramView;
 using StakeholderAnalysis.Visualization.ViewModels.Properties.TwoAxisDiagramProperties;
 
 namespace StakeholderAnalysis.Visualization.ViewModels.DocumentViews.TwoAxisDiagrams
 {
     // TODO: Possibly merge with AttitudeImpactDiagramViewModel
-    public class ForceFieldDiagramViewModel : ViewModelBase, ITwoAxisDiagramViewModel, ISelectable
+    public class ForceFieldDiagramViewModel : ViewModelBase, ITwoAxisDiagramViewModel, ISelectable, IDiagramViewModel
     {
         private readonly ForceFieldDiagram diagram;
         private object selectedObject;
@@ -98,7 +99,7 @@ namespace StakeholderAnalysis.Visualization.ViewModels.DocumentViews.TwoAxisDiag
                 stakeholderViewModel.OnPropertyChanged(nameof(DiagramStakeholderViewModelBase.IsSelectedStakeholder));
         }
 
-        public ITwoAxisDiagram GetDiagram()
+        public IStakeholderDiagram GetDiagram()
         {
             return diagram;
         }

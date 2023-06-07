@@ -2,10 +2,8 @@
 
 namespace StakeholderAnalysis.Data
 {
-    public interface ITwoAxisDiagram : INotifyPropertyChangedImplementation
+    public interface ITwoAxisDiagram : IStakeholderDiagram
     {
-        string Name { get; set; }
-
         Color BrushStartColor { get; set; }
 
         Color BrushEndColor { get; set; }

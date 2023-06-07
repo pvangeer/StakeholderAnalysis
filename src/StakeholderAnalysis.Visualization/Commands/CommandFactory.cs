@@ -116,25 +116,25 @@ namespace StakeholderAnalysis.Visualization.Commands
             return new RemoveSelectedStakeholderFromDiagramCommand(removeStakeholderViewModel);
         }
 
-        public ICommand CreateMoveToBottomCommand<TStakeholder>(IRankedStakeholderDiagram<TStakeholder> diagram,
+        public ICommand CreateMoveToBottomCommand<TStakeholder>(IStakeholderDiagram<TStakeholder> diagram,
             IRankedStakeholder stakeholder) where TStakeholder : class, IRankedStakeholder
         {
             return new MoveStakeholderToBottomCommand<TStakeholder>(diagram, stakeholder);
         }
 
-        public ICommand CreateMoveUpCommand<TStakeholder>(IRankedStakeholderDiagram<TStakeholder> diagram,
+        public ICommand CreateMoveUpCommand<TStakeholder>(IStakeholderDiagram<TStakeholder> diagram,
             IRankedStakeholder stakeholder) where TStakeholder : class, IRankedStakeholder
         {
             return new MoveStakeholderUpCommand<TStakeholder>(diagram, stakeholder);
         }
 
-        public ICommand CreateMoveDownCommand<TStakeholder>(IRankedStakeholderDiagram<TStakeholder> diagram,
+        public ICommand CreateMoveDownCommand<TStakeholder>(IStakeholderDiagram<TStakeholder> diagram,
             IRankedStakeholder stakeholder) where TStakeholder : class, IRankedStakeholder
         {
             return new MoveStakeholderDownCommand<TStakeholder>(diagram, stakeholder);
         }
 
-        public ICommand CreateMoveToTopCommand<TStakeholder>(IRankedStakeholderDiagram<TStakeholder> diagram,
+        public ICommand CreateMoveToTopCommand<TStakeholder>(IStakeholderDiagram<TStakeholder> diagram,
             IRankedStakeholder onionDiagramStakeholder) where TStakeholder : class, IRankedStakeholder
         {
             return new MoveStakeholderToTopCommand<TStakeholder>(diagram, onionDiagramStakeholder);

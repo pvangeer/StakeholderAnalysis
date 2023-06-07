@@ -9,7 +9,7 @@ using StakeholderAnalysis.Visualization.ViewModels.Properties.OnionDiagramProper
 
 namespace StakeholderAnalysis.Visualization.ViewModels.DocumentViews.OnionDiagramView
 {
-    public class OnionDiagramViewModel : ViewModelBase, ISelectionRegister, INameableViewModel, ISelectable
+    public class OnionDiagramViewModel : ViewModelBase, ISelectionRegister, INameableViewModel, ISelectable, IDiagramViewModel
     {
         private readonly OnionDiagram diagram;
         private object selectedObject;
@@ -80,7 +80,7 @@ namespace StakeholderAnalysis.Visualization.ViewModels.DocumentViews.OnionDiagra
             return diagram == otherDiagram;
         }
 
-        public OnionDiagram GetDiagram()
+        public IStakeholderDiagram GetDiagram()
         {
             return diagram;
         }

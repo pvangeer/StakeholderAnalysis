@@ -51,6 +51,8 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Commands\Diagrams\AppointToDiagramCommand.cs" />
+    <Compile Include="Converters\Diagrams\StakeholderTable\AppointToDiagramMenuItemsConverter.cs" />
     <Compile Include="Behaviors\AttachInputBindingsBehavior.cs" />
     <Compile Include="Commands\SelectItemCommand.cs" />
     <Compile Include="Controls\RotaryControl.xaml.cs">
@@ -67,6 +69,7 @@
     <Compile Include="Converters\ObjectToPropertiesViewModelConverter.cs" />
     <Compile Include="Converters\Diagrams\StakeholderTable\StakeholderTypesToMenuItemsConverter.cs" />
     <Compile Include="StakeholderTypeToNameConverter.cs" />
+    <Compile Include="ViewModels\DocumentViews\IDiagramViewModel.cs" />
     <Compile Include="ViewModels\DocumentViews\StakeholderTableView\TableStakeholderViewModel.cs" />
     <Compile Include="ViewModels\ProjectExplorer\ProjectExplorerItemViewModelBase.cs" />
     <Compile Include="ViewModels\TreeView\CollectionType.cs" />

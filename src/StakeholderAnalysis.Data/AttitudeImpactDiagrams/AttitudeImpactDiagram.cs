@@ -1,12 +1,14 @@
-﻿using System;
+﻿using StakeholderAnalysis.Data.ForceFieldDiagrams;
+using System;
 using System.Collections.ObjectModel;
+using System.Linq;
 using System.Windows;
 using System.Windows.Media;
 
 namespace StakeholderAnalysis.Data.AttitudeImpactDiagrams
 {
     public class AttitudeImpactDiagram : NotifyPropertyChangedObservable,
-        IRankedStakeholderDiagram<AttitudeImpactDiagramStakeholder>, ITwoAxisDiagram, ICloneable
+        IStakeholderDiagram<AttitudeImpactDiagramStakeholder>, ITwoAxisDiagram, ICloneable
     {
         public AttitudeImpactDiagram(string name)
         {

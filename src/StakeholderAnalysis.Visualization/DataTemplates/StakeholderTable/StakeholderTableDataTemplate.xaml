@@ -25,6 +25,7 @@
                 SelectionMode="Extended"
                 CanUserAddRows="True"
                 CanUserDeleteRows="True"
+                CanUserResizeRows="False"
                 ColumnHeaderHeight="{StaticResource DefaultItemHeight}"
                 ItemsSource="{Binding StakeholderViewSource.View}"
                 SelectionUnit="CellOrRowHeader">
@@ -49,16 +50,25 @@
                         </StackPanel>
                     </DataTemplate>
                     <stakeholderTable:StakeholderTypesToMenuItemsConverter x:Key="StakeholderTypesToMenuItemsConverter" />
+                    <stakeholderTable:AppointToDiagramMenuItemsConverter x:Key="AppointToDiagramMenuItemsConverter" />
 
                     <ContextMenu x:Key="RowContextMenu">
                         <ContextMenu.Resources>
                             <Style TargetType="MenuItem" BasedOn="{StaticResource MenuItemStyle}"/>
                         </ContextMenu.Resources>
-                        <MenuItem Header="Type Toewijzen..." 
+                        <MenuItem Header="Type Toewijzen" 
                                   ItemsSource="{Binding RelativeSource={RelativeSource AncestorType={x:Type ContextMenu}},
                                                 Path=PlacementTarget.Tag,
-                                                Converter={StaticResource StakeholderTypesToMenuItemsConverter}}">
-                        </MenuItem>
+                                                Converter={StaticResource StakeholderTypesToMenuItemsConverter}}"/>
+                            <MenuItem Header="Diagram Toewijzen" 
+                                      ItemsSource="{Binding RelativeSource={RelativeSource AncestorType={x:Type ContextMenu}},
+                                                Path=PlacementTarget.Tag,
+                                                Converter={StaticResource AppointToDiagramMenuItemsConverter}}"/>
+                        <Separator/>
+                        <MenuItem Header="Verwijderen" 
+                                  Command="{Binding DeleteStakeholderCommand}"
+                                  CommandParameter="{Binding RelativeSource={RelativeSource AncestorType={x:Type ContextMenu}},
+                                                Path=PlacementTarget.Tag}"/>
                     </ContextMenu>
                 </DataGrid.Resources>
                 <DataGrid.GroupStyle>

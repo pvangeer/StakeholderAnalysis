@@ -84,7 +84,7 @@ namespace StakeholderAnalysis.Visualization.ViewModels.Properties.TwoAxisDiagram
 
             var generalItems = new ObservableCollection<ITreeNodeViewModel>
             {
-                new StringPropertyValueTreeNodeViewModel<ITwoAxisDiagram>(twoAxisDiagram, nameof(ITwoAxisDiagram.Name),
+                new StringPropertyValueTreeNodeViewModel<IStakeholderDiagram>(twoAxisDiagram, nameof(IStakeholderDiagram.Name),
                     "Naam")
             };
             var generalViewModel =

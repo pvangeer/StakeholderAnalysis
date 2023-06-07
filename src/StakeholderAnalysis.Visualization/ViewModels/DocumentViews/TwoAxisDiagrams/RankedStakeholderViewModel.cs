@@ -10,10 +10,10 @@ namespace StakeholderAnalysis.Visualization.ViewModels.DocumentViews.TwoAxisDiag
     public abstract class RankedStakeholderViewModel<TStakeholder> : DiagramStakeholderViewModelBase, IRankedStakeholderViewModel
         where TStakeholder : class, IRankedStakeholder
     {
-        protected readonly IRankedStakeholderDiagram<TStakeholder> Diagram;
+        protected readonly IStakeholderDiagram<TStakeholder> Diagram;
 
         protected RankedStakeholderViewModel(ViewModelFactory factory, TStakeholder stakeholder,
-            IRankedStakeholderDiagram<TStakeholder> diagram, ISelectionRegister selectionRegister1,
+            IStakeholderDiagram<TStakeholder> diagram, ISelectionRegister selectionRegister1,
             IDrawConnectionHandler drawConnectionHandler)
             : base(factory, stakeholder?.Stakeholder, selectionRegister1, drawConnectionHandler)
         {

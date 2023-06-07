@@ -4,7 +4,7 @@ using System.Linq;
 
 namespace StakeholderAnalysis.Data.OnionDiagrams
 {
-    public class OnionDiagram : NotifyPropertyChangedObservable, IRankedStakeholderDiagram<OnionDiagramStakeholder>,
+    public class OnionDiagram : NotifyPropertyChangedObservable, IStakeholderDiagram<OnionDiagramStakeholder>,
         ICloneable
     {
         public OnionDiagram(string name, ObservableCollection<OnionRing> onionRings = null,
