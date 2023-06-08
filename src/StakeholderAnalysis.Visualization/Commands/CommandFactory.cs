@@ -118,27 +118,27 @@ namespace StakeholderAnalysis.Visualization.Commands
         }
 
         public ICommand CreateMoveToBottomCommand(IStakeholderDiagram diagram,
-            IRankedStakeholder stakeholder)
+            PositionedStakeholder stakeholder)
         {
             return new MoveStakeholderToBottomCommand(diagram, stakeholder);
         }
 
         public ICommand CreateMoveUpCommand(IStakeholderDiagram diagram,
-            IRankedStakeholder stakeholder)
+            PositionedStakeholder stakeholder)
         {
             return new MoveStakeholderUpCommand(diagram, stakeholder);
         }
 
         public ICommand CreateMoveDownCommand(IStakeholderDiagram diagram,
-            IRankedStakeholder stakeholder)
+            PositionedStakeholder stakeholder)
         {
             return new MoveStakeholderDownCommand(diagram, stakeholder);
         }
 
         public ICommand CreateMoveToTopCommand(IStakeholderDiagram diagram,
-            IRankedStakeholder onionDiagramStakeholder)
+            PositionedStakeholder stakeholder)
         {
-            return new MoveStakeholderToTopCommand(diagram, onionDiagramStakeholder);
+            return new MoveStakeholderToTopCommand(diagram, stakeholder);
         }
 
         public ICommand CreateSelectItemCommand(ISelectable selectable)

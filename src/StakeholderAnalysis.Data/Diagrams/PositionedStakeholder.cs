@@ -2,7 +2,7 @@
 
 namespace StakeholderAnalysis.Data.Diagrams
 {
-    public class PositionedStakeholder : NotifyPropertyChangedObservable, IRankedStakeholder
+    public class PositionedStakeholder : NotifyPropertyChangedObservable
     {
         private double left;
         private double top;

@@ -9,10 +9,10 @@ namespace StakeholderAnalysis.Visualization.Commands.OnionDiagramProperties
     public class MoveStakeholderDownCommand : ICommand
     {
         private readonly IStakeholderDiagram diagram;
-        private readonly IRankedStakeholder stakeholder;
+        private readonly PositionedStakeholder stakeholder;
 
         public MoveStakeholderDownCommand(IStakeholderDiagram diagram,
-            IRankedStakeholder stakeholder)
+            PositionedStakeholder stakeholder)
         {
             this.diagram = diagram;
             this.stakeholder = stakeholder;
@@ -21,7 +21,7 @@ namespace StakeholderAnalysis.Visualization.Commands.OnionDiagramProperties
 
             stakeholder.PropertyChanged += (o, e) =>
             {
-                if (e.PropertyName == nameof(IRankedStakeholder.Rank)) CanExecuteChanged?.Invoke(this, null);
+                if (e.PropertyName == nameof(PositionedStakeholder.Rank)) CanExecuteChanged?.Invoke(this, null);
             };
         }
 
@@ -37,8 +37,8 @@ namespace StakeholderAnalysis.Visualization.Commands.OnionDiagramProperties
             {
                 rankLower.Rank = rankLower.Rank + 1;
                 stakeholder.Rank = stakeholder.Rank - 1;
-                stakeholder.OnPropertyChanged(nameof(IRankedStakeholder.Rank));
-                rankLower.OnPropertyChanged(nameof(IRankedStakeholder.Rank));
+                stakeholder.OnPropertyChanged(nameof(PositionedStakeholder.Rank));
+                rankLower.OnPropertyChanged(nameof(PositionedStakeholder.Rank));
             }
         }
 

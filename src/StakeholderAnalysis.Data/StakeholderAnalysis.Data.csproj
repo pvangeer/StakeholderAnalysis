@@ -31,7 +31,6 @@
     <Compile Include="Diagrams\PositionedStakeholder.cs" />
     <Compile Include="Diagrams\ITwoAxisDiagram.cs" />
     <Compile Include="INotifyPropertyChangedImplementation.cs" />
-    <Compile Include="Diagrams\IRankedStakeholder.cs" />
     <Compile Include="Diagrams\IStakeholderDiagram.cs" />
     <Compile Include="Diagrams\OnionDiagrams\OnionDiagram.cs" />
     <Compile Include="Diagrams\OnionDiagrams\StakeholderConnectionGroup.cs" />
