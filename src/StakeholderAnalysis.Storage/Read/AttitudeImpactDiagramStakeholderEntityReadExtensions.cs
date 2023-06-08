@@ -16,7 +16,7 @@ namespace StakeholderAnalysis.Storage.Read
 
             var attitudeImpactDiagram = new AttitudeImpactDiagramStakeholder(
                 collector.GetReferencedStakeholder(entity.StakeholderReferenceId),
-                entity.Attitude, entity.Impact)
+                1.0 - entity.Attitude, entity.Impact)
             {
                 Rank = (int)entity.Rank
             };

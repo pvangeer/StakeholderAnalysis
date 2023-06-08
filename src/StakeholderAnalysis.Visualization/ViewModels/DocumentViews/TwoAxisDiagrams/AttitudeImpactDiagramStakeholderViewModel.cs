@@ -23,21 +23,21 @@ namespace StakeholderAnalysis.Visualization.ViewModels.DocumentViews.TwoAxisDiag
 
         public double RelativePositionLeft
         {
-            get => attitudeImpactDiagramStakeholder.Impact;
+            get => attitudeImpactDiagramStakeholder.Left;
             set
             {
-                attitudeImpactDiagramStakeholder.Impact = value;
-                attitudeImpactDiagramStakeholder.OnPropertyChanged(nameof(attitudeImpactDiagramStakeholder.Impact));
+                attitudeImpactDiagramStakeholder.Left = value;
+                attitudeImpactDiagramStakeholder.OnPropertyChanged(nameof(attitudeImpactDiagramStakeholder.Left));
             }
         }
 
         public double RelativePositionTop
         {
-            get => 1 - attitudeImpactDiagramStakeholder.Attitude;
+            get => attitudeImpactDiagramStakeholder.Top;
             set
             {
-                attitudeImpactDiagramStakeholder.Attitude = 1 - value;
-                attitudeImpactDiagramStakeholder.OnPropertyChanged(nameof(attitudeImpactDiagramStakeholder.Attitude));
+                attitudeImpactDiagramStakeholder.Top = value;
+                attitudeImpactDiagramStakeholder.OnPropertyChanged(nameof(attitudeImpactDiagramStakeholder.Top));
             }
         }
 
@@ -56,10 +56,10 @@ namespace StakeholderAnalysis.Visualization.ViewModels.DocumentViews.TwoAxisDiag
         {
             switch (e.PropertyName)
             {
-                case nameof(attitudeImpactDiagramStakeholder.Impact):
+                case nameof(attitudeImpactDiagramStakeholder.Left):
                     OnPropertyChanged(nameof(RelativePositionLeft));
                     break;
-                case nameof(attitudeImpactDiagramStakeholder.Attitude):
+                case nameof(attitudeImpactDiagramStakeholder.Top):
                     OnPropertyChanged(nameof(RelativePositionTop));
                     break;
             }

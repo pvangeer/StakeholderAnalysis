@@ -4,38 +4,26 @@ namespace StakeholderAnalysis.Data.AttitudeImpactDiagrams
 {
     public class AttitudeImpactDiagramStakeholder : NotifyPropertyChangedObservable, IRankedStakeholder
     {
-        private double attitude;
-        private double impact;
+        private double left;
+        private double top;
 
-        public AttitudeImpactDiagramStakeholder(Stakeholder stakeholder, double attitude, double impact)
+        public AttitudeImpactDiagramStakeholder(Stakeholder stakeholder, double top, double left)
         {
             Stakeholder = stakeholder;
-            Impact = impact;
-            Attitude = attitude;
-        }
-
-        public double Attitude
-        {
-            get => attitude;
-            set => attitude = ValidateRelativeValue(value);
-        }
-
-        public double Impact
-        {
-            get => impact;
-            set => impact = ValidateRelativeValue(value);
+            Left = left;
+            Top = top;
         }
 
         public double Left
         {
-            get => Attitude;
-            set => Attitude = value;
+            get => left;
+            set => left = value;
         }
         
         public double Top
         {
-            get => 1.0 - Impact;
-            set => Impact = 1.0 - ValidateRelativeValue(value);
+            get => top;
+            set => top = ValidateRelativeValue(value);
         }
 
         public Stakeholder Stakeholder { get; }

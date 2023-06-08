@@ -16,8 +16,8 @@ namespace StakeholderAnalysis.Storage.Create
             var entity = new AttitudeImpactDiagramStakeholderXmlEntity
             {
                 StakeholderReferenceId = stakeholder.Stakeholder.Create(registry).Id,
-                Attitude = stakeholder.Attitude,
-                Impact = stakeholder.Impact,
+                Attitude = 1.0 - stakeholder.Top,
+                Impact = stakeholder.Left,
                 Rank = stakeholder.Rank
             };
 

@@ -141,12 +141,12 @@ namespace StakeholderAnalysis.Data
             count += 1;
 
             if (diagram.Stakeholders.Any(s =>
-                    Math.Abs(s.Attitude - stakeholder.Attitude) < 1E-3 & Math.Abs(s.Impact - stakeholder.Impact) < 1E-3))
+                    Math.Abs(s.Top - stakeholder.Top) < 1E-3 & Math.Abs(s.Left - stakeholder.Left) < 1E-3))
             {
-                var newAttitude = stakeholder.Attitude + 0.01;
-                stakeholder.Attitude = newAttitude > 1.0 ? newAttitude - 1.0 : newAttitude;
-                var newImpact = stakeholder.Impact - 0.02;
-                stakeholder.Impact = newImpact < 0.0 ? newImpact + 1.0 : newImpact;
+                var newTop = stakeholder.Top - 0.02;
+                stakeholder.Top = newTop < 0.0 ? newTop + 1.0 : newTop;
+                var newLeft = stakeholder.Left + 0.01;
+                stakeholder.Left = newLeft > 1.0 ? newLeft - 1.0 : newLeft;
                 FindPositionForNewStakeholder(diagram, stakeholder, count);
             }
         }

@@ -74,8 +74,8 @@ namespace StakeholderAnalysis.Data.AttitudeImpactDiagrams
             };
             foreach (var stakeholder in Stakeholders)
                 diagram.Stakeholders.Add(
-                    new AttitudeImpactDiagramStakeholder(stakeholder.Stakeholder, stakeholder.Attitude,
-                            stakeholder.Impact)
+                    new AttitudeImpactDiagramStakeholder(stakeholder.Stakeholder, stakeholder.Top,
+                            stakeholder.Left)
                         { Rank = stakeholder.Rank });
 
             return diagram;

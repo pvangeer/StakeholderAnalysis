@@ -231,8 +231,8 @@ namespace StakeholderAnalysis.Storage.Test.Create
                 var xmlDiagramStakeholder = firstXmlEntity.AttitudeImpactDiagramStakeholderXmlEntities[index];
                 var diagramStakeholder = firstDiagram.Stakeholders[index];
 
-                Assert.AreEqual(diagramStakeholder.Attitude, xmlDiagramStakeholder.Attitude);
-                Assert.AreEqual(diagramStakeholder.Impact, xmlDiagramStakeholder.Impact);
+                Assert.AreEqual(1.0 - diagramStakeholder.Top, xmlDiagramStakeholder.Attitude);
+                Assert.AreEqual(diagramStakeholder.Left, xmlDiagramStakeholder.Impact);
                 Assert.AreEqual(diagramStakeholder.Rank, xmlDiagramStakeholder.Rank);
                 Assert.AreEqual(index, xmlDiagramStakeholder.Order);
 
