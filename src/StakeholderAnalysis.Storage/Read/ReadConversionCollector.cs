@@ -21,9 +21,9 @@ namespace StakeholderAnalysis.Storage.Read
         private readonly Dictionary<ForceFieldDiagramXmlEntity, ForceFieldDiagram> forceFieldDiagrams =
             CreateDictionary<ForceFieldDiagramXmlEntity, ForceFieldDiagram>();
 
-        private readonly Dictionary<ForceFieldDiagramStakeholderXmlEntity, ForceFieldDiagramStakeholder>
+        private readonly Dictionary<ForceFieldDiagramStakeholderXmlEntity, PositionedStakeholder>
             forceFieldDiagramStakeholders =
-                CreateDictionary<ForceFieldDiagramStakeholderXmlEntity, ForceFieldDiagramStakeholder>();
+                CreateDictionary<ForceFieldDiagramStakeholderXmlEntity, PositionedStakeholder>();
 
         private readonly Dictionary<OnionDiagramXmlEntity, OnionDiagram> onionDiagrams =
             CreateDictionary<OnionDiagramXmlEntity, OnionDiagram>();
@@ -88,7 +88,7 @@ namespace StakeholderAnalysis.Storage.Read
             Collect(forceFieldDiagrams, entity, model);
         }
 
-        internal void Collect(ForceFieldDiagramStakeholderXmlEntity entity, ForceFieldDiagramStakeholder model)
+        internal void Collect(ForceFieldDiagramStakeholderXmlEntity entity, PositionedStakeholder model)
         {
             Collect(forceFieldDiagramStakeholders, entity, model);
         }
@@ -198,7 +198,7 @@ namespace StakeholderAnalysis.Storage.Read
             return Get(forceFieldDiagrams, entity);
         }
 
-        internal ForceFieldDiagramStakeholder Get(ForceFieldDiagramStakeholderXmlEntity entity)
+        internal PositionedStakeholder Get(ForceFieldDiagramStakeholderXmlEntity entity)
         {
             return Get(forceFieldDiagramStakeholders, entity);
         }

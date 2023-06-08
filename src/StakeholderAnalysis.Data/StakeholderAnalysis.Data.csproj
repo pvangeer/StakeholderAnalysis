@@ -29,7 +29,7 @@
     <Compile Include="Exceptions\NaNValueException.cs" />
     <Compile Include="Exceptions\ValueOutOfBoundsException.cs" />
     <Compile Include="ForceFieldDiagrams\ForceFieldDiagram.cs" />
-    <Compile Include="ForceFieldDiagrams\ForceFieldDiagramStakeholder.cs" />
+    <Compile Include="ForceFieldDiagrams\PositionedStakeholder.cs" />
     <Compile Include="ITwoAxisDiagram.cs" />
     <Compile Include="INotifyPropertyChangedImplementation.cs" />
     <Compile Include="IRankedStakeholder.cs" />

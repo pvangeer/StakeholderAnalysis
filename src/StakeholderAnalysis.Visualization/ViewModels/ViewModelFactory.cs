@@ -168,7 +168,7 @@ namespace StakeholderAnalysis.Visualization.ViewModels
         }
 
         public ForceFieldDiagramStakeholderViewModel CreateForceFieldDiagramStakeholderViewModel(
-            ForceFieldDiagram diagram, ForceFieldDiagramStakeholder stakeholder, ISelectionRegister selectionRegister)
+            ForceFieldDiagram diagram, PositionedStakeholder stakeholder, ISelectionRegister selectionRegister)
         {
             return new ForceFieldDiagramStakeholderViewModel(this, diagram, stakeholder, selectionRegister);
         }

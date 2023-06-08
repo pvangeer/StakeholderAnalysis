@@ -26,6 +26,18 @@ namespace StakeholderAnalysis.Data.AttitudeImpactDiagrams
             set => impact = ValidateRelativeValue(value);
         }
 
+        public double Left
+        {
+            get => Attitude;
+            set => Attitude = value;
+        }
+        
+        public double Top
+        {
+            get => 1.0 - Impact;
+            set => Impact = 1.0 - ValidateRelativeValue(value);
+        }
+
         public Stakeholder Stakeholder { get; }
 
         public int Rank { get; set; }

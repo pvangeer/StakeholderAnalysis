@@ -37,11 +37,6 @@ namespace StakeholderAnalysis.Visualization.ViewModels.DocumentViews.OnionDiagra
 
         public OnionDiagramDrawConnectionViewModel OnionDiagramDrawConnectionViewModel { get; }
 
-        public IStakeholderDiagram GetDiagram()
-        {
-            return diagram;
-        }
-
         public string DisplayName
         {
             get => diagram.Name;
@@ -83,6 +78,11 @@ namespace StakeholderAnalysis.Visualization.ViewModels.DocumentViews.OnionDiagra
         public bool IsViewModelFor(OnionDiagram otherDiagram)
         {
             return diagram == otherDiagram;
+        }
+
+        public IStakeholderDiagram GetDiagram()
+        {
+            return diagram;
         }
 
         public OnionDiagramPropertiesViewModel GetPropertiesViewModel()

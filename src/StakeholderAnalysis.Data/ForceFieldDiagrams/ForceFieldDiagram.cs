@@ -1,12 +1,14 @@
-﻿using System;
+﻿using StakeholderAnalysis.Data.OnionDiagrams;
+using System;
 using System.Collections.ObjectModel;
+using System.Linq;
 using System.Windows;
 using System.Windows.Media;
 
 namespace StakeholderAnalysis.Data.ForceFieldDiagrams
 {
     public class ForceFieldDiagram : NotifyPropertyChangedObservable,
-        IStakeholderDiagram<ForceFieldDiagramStakeholder>, ITwoAxisDiagram, ICloneable
+        IStakeholderDiagram<PositionedStakeholder>, ITwoAxisDiagram, ICloneable
     {
         private double axisFontSize;
         private double backgroundFontSize;
@@ -15,7 +17,7 @@ namespace StakeholderAnalysis.Data.ForceFieldDiagrams
         public ForceFieldDiagram(string name)
         {
             Name = name;
-            Stakeholders = new ObservableCollection<ForceFieldDiagramStakeholder>();
+            Stakeholders = new ObservableCollection<PositionedStakeholder>();
             BrushStartColor = Colors.PowderBlue;
             BrushEndColor = Colors.LightGreen;
             BackgroundTextLeftTop = "Consulteren";
@@ -76,13 +78,13 @@ namespace StakeholderAnalysis.Data.ForceFieldDiagrams
             };
             foreach (var stakeholder in Stakeholders)
                 diagram.Stakeholders.Add(
-                    new ForceFieldDiagramStakeholder(stakeholder.Stakeholder, stakeholder.Interest,
-                        stakeholder.Influence) { Rank = stakeholder.Rank });
+                    new PositionedStakeholder(stakeholder.Stakeholder, stakeholder.Left,
+                        stakeholder.Top) { Rank = stakeholder.Rank });
 
             return diagram;
         }
 
-        public ObservableCollection<ForceFieldDiagramStakeholder> Stakeholders { get; }
+        public ObservableCollection<PositionedStakeholder> Stakeholders { get; }
 
         public string Name { get; set; }
 

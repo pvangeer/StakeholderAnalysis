@@ -21,9 +21,9 @@ namespace StakeholderAnalysis.Storage.Create
         private readonly Dictionary<ForceFieldDiagram, ForceFieldDiagramXmlEntity> forceFieldDiagrams =
             CreateDictionary<ForceFieldDiagram, ForceFieldDiagramXmlEntity>();
 
-        private readonly Dictionary<ForceFieldDiagramStakeholder, ForceFieldDiagramStakeholderXmlEntity>
+        private readonly Dictionary<PositionedStakeholder, ForceFieldDiagramStakeholderXmlEntity>
             forceFieldDiagramStakeholders =
-                CreateDictionary<ForceFieldDiagramStakeholder, ForceFieldDiagramStakeholderXmlEntity>();
+                CreateDictionary<PositionedStakeholder, ForceFieldDiagramStakeholderXmlEntity>();
 
         private readonly Dictionary<OnionDiagram, OnionDiagramXmlEntity> onionDiagrams =
             CreateDictionary<OnionDiagram, OnionDiagramXmlEntity>();
@@ -90,7 +90,7 @@ namespace StakeholderAnalysis.Storage.Create
             Register(forceFieldDiagrams, model, entity);
         }
 
-        internal void Register(ForceFieldDiagramStakeholder model, ForceFieldDiagramStakeholderXmlEntity entity)
+        internal void Register(PositionedStakeholder model, ForceFieldDiagramStakeholderXmlEntity entity)
         {
             Register(forceFieldDiagramStakeholders, model, entity);
         }
@@ -149,7 +149,7 @@ namespace StakeholderAnalysis.Storage.Create
             return ContainsValue(forceFieldDiagrams, model);
         }
 
-        internal bool Contains(ForceFieldDiagramStakeholder model)
+        internal bool Contains(PositionedStakeholder model)
         {
             return ContainsValue(forceFieldDiagramStakeholders, model);
         }
@@ -208,7 +208,7 @@ namespace StakeholderAnalysis.Storage.Create
             return Get(forceFieldDiagrams, model);
         }
 
-        public ForceFieldDiagramStakeholderXmlEntity Get(ForceFieldDiagramStakeholder model)
+        public ForceFieldDiagramStakeholderXmlEntity Get(PositionedStakeholder model)
         {
             return Get(forceFieldDiagramStakeholders, model);
         }

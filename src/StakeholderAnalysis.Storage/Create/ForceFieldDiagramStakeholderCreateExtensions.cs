@@ -6,7 +6,7 @@ namespace StakeholderAnalysis.Storage.Create
 {
     internal static class ForceFieldDiagramStakeholderCreateExtensions
     {
-        internal static ForceFieldDiagramStakeholderXmlEntity Create(this ForceFieldDiagramStakeholder stakeholder,
+        internal static ForceFieldDiagramStakeholderXmlEntity Create(this PositionedStakeholder stakeholder,
             PersistenceRegistry registry)
         {
             if (registry == null) throw new ArgumentNullException(nameof(registry));
@@ -16,8 +16,8 @@ namespace StakeholderAnalysis.Storage.Create
             var entity = new ForceFieldDiagramStakeholderXmlEntity
             {
                 StakeholderId = stakeholder.Stakeholder.Create(registry).Id,
-                Influence = stakeholder.Influence,
-                Interest = stakeholder.Interest,
+                Influence = 1.0 - stakeholder.Top,
+                Interest = stakeholder.Left,
                 Rank = stakeholder.Rank
             };
 

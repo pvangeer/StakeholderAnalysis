@@ -25,7 +25,9 @@ namespace StakeholderAnalysis.Visualization.Commands.Diagrams
         public void Execute(object parameter)
         {
             foreach (var tableStakeholderViewModel in viewModel.Stakeholders.Where(s => s.IsSelected))
-                AnalysisServices.AddStakeholderToDiagram(diagram, tableStakeholderViewModel.Stakeholder);
+            {
+                AnalysisServices.AddStakeholderToDiagram(diagram,tableStakeholderViewModel.Stakeholder);
+            }
         }
 
         public event EventHandler CanExecuteChanged;

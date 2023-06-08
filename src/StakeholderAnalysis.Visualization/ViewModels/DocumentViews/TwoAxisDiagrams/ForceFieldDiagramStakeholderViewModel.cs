@@ -5,45 +5,45 @@ using StakeholderAnalysis.Visualization.Behaviors;
 
 namespace StakeholderAnalysis.Visualization.ViewModels.DocumentViews.TwoAxisDiagrams
 {
-    public class ForceFieldDiagramStakeholderViewModel : RankedStakeholderViewModel<ForceFieldDiagramStakeholder>,
+    public class ForceFieldDiagramStakeholderViewModel : RankedStakeholderViewModel<PositionedStakeholder>,
         IPositionedStakeholderViewModel
     {
         private readonly ForceFieldDiagram diagram;
-        private readonly ForceFieldDiagramStakeholder forceFieldDiagramStakeholder;
+        private readonly PositionedStakeholder positionedStakeholder;
 
         public ForceFieldDiagramStakeholderViewModel(ViewModelFactory factory, ForceFieldDiagram diagram,
-            ForceFieldDiagramStakeholder stakeholder, ISelectionRegister selectionRegister) :
+            PositionedStakeholder stakeholder, ISelectionRegister selectionRegister) :
             base(factory, stakeholder, diagram, selectionRegister, null)
         {
             this.diagram = diagram;
-            forceFieldDiagramStakeholder = stakeholder;
-            if (forceFieldDiagramStakeholder != null)
-                forceFieldDiagramStakeholder.PropertyChanged += StakeholderPropertyChanged;
+            positionedStakeholder = stakeholder;
+            if (positionedStakeholder != null)
+                positionedStakeholder.PropertyChanged += StakeholderPropertyChanged;
         }
 
         public double RelativePositionLeft
         {
-            get => forceFieldDiagramStakeholder.Interest;
+            get => positionedStakeholder.Left;
             set
             {
-                forceFieldDiagramStakeholder.Interest = value;
-                forceFieldDiagramStakeholder.OnPropertyChanged(nameof(forceFieldDiagramStakeholder.Interest));
+                positionedStakeholder.Left = value;
+                positionedStakeholder.OnPropertyChanged(nameof(positionedStakeholder.Left));
             }
         }
 
         public double RelativePositionTop
         {
-            get => 1 - forceFieldDiagramStakeholder.Influence;
+            get => positionedStakeholder.Top;
             set
             {
-                forceFieldDiagramStakeholder.Influence = 1 - value;
-                forceFieldDiagramStakeholder.OnPropertyChanged(nameof(forceFieldDiagramStakeholder.Influence));
+                positionedStakeholder.Top = value;
+                positionedStakeholder.OnPropertyChanged(nameof(positionedStakeholder.Top));
             }
         }
 
         public override void RemoveFromDiagram()
         {
-            if (IsSelectedStakeholder) diagram.Stakeholders.Remove(forceFieldDiagramStakeholder);
+            if (IsSelectedStakeholder) diagram.Stakeholders.Remove(positionedStakeholder);
         }
 
         public override void Moved(double xRelativeNew, double yRelativeNew)
@@ -56,10 +56,10 @@ namespace StakeholderAnalysis.Visualization.ViewModels.DocumentViews.TwoAxisDiag
         {
             switch (e.PropertyName)
             {
-                case nameof(forceFieldDiagramStakeholder.Interest):
+                case nameof(positionedStakeholder.Left):
                     OnPropertyChanged(nameof(RelativePositionLeft));
                     break;
-                case nameof(forceFieldDiagramStakeholder.Influence):
+                case nameof(positionedStakeholder.Top):
                     OnPropertyChanged(nameof(RelativePositionTop));
                     break;
             }

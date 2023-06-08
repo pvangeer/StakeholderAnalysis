@@ -6,7 +6,7 @@ namespace StakeholderAnalysis.Storage.Read
 {
     internal static class ForceFieldDiagramStakeholderEntityReadExtensions
     {
-        internal static ForceFieldDiagramStakeholder Read(this ForceFieldDiagramStakeholderXmlEntity entity,
+        internal static PositionedStakeholder Read(this ForceFieldDiagramStakeholderXmlEntity entity,
             ReadConversionCollector collector)
         {
             if (entity == null) throw new ArgumentNullException(nameof(entity));
@@ -14,9 +14,9 @@ namespace StakeholderAnalysis.Storage.Read
 
             if (collector.Contains(entity)) return collector.Get(entity);
 
-            var forceFieldDiagramStakeholder = new ForceFieldDiagramStakeholder(
+            var forceFieldDiagramStakeholder = new PositionedStakeholder(
                 collector.GetReferencedStakeholder(entity.StakeholderId),
-                entity.Interest, entity.Influence)
+                entity.Interest, 1.0 - entity.Influence)
             {
                 Rank = (int)entity.Rank
             };

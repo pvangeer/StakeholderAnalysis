@@ -274,8 +274,8 @@ namespace StakeholderAnalysis.Storage.Test.Create
                     {
                         Stakeholders =
                         {
-                            new ForceFieldDiagramStakeholder(stakeholder1, 0.15, 0.5),
-                            new ForceFieldDiagramStakeholder(stakeholder3, 0.25, 0.6)
+                            new PositionedStakeholder(stakeholder1, 0.15, 0.5),
+                            new PositionedStakeholder(stakeholder3, 0.25, 0.6)
                         }
                     }
                 }
@@ -297,8 +297,8 @@ namespace StakeholderAnalysis.Storage.Test.Create
                 var xmlDiagramStakeholder = firstXmlEntity.ForceFieldDiagramStakeholderXmlEntities[index];
                 var diagramStakeholder = firstDiagram.Stakeholders[index];
 
-                Assert.AreEqual(diagramStakeholder.Interest, xmlDiagramStakeholder.Interest);
-                Assert.AreEqual(diagramStakeholder.Influence, xmlDiagramStakeholder.Influence);
+                Assert.AreEqual(diagramStakeholder.Left, xmlDiagramStakeholder.Interest);
+                Assert.AreEqual(diagramStakeholder.Top, 1 - xmlDiagramStakeholder.Influence);
                 Assert.AreEqual(diagramStakeholder.Rank, xmlDiagramStakeholder.Rank);
                 Assert.AreEqual(index, xmlDiagramStakeholder.Order);
 
