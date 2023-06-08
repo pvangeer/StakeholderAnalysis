@@ -116,28 +116,28 @@ namespace StakeholderAnalysis.Visualization.Commands
             return new RemoveSelectedStakeholderFromDiagramCommand(removeStakeholderViewModel);
         }
 
-        public ICommand CreateMoveToBottomCommand<TStakeholder>(IStakeholderDiagram<TStakeholder> diagram,
-            IRankedStakeholder stakeholder) where TStakeholder : class, IRankedStakeholder
+        public ICommand CreateMoveToBottomCommand(IStakeholderDiagram diagram,
+            IRankedStakeholder stakeholder)
         {
-            return new MoveStakeholderToBottomCommand<TStakeholder>(diagram, stakeholder);
+            return new MoveStakeholderToBottomCommand(diagram, stakeholder);
         }
 
-        public ICommand CreateMoveUpCommand<TStakeholder>(IStakeholderDiagram<TStakeholder> diagram,
-            IRankedStakeholder stakeholder) where TStakeholder : class, IRankedStakeholder
+        public ICommand CreateMoveUpCommand(IStakeholderDiagram diagram,
+            IRankedStakeholder stakeholder)
         {
-            return new MoveStakeholderUpCommand<TStakeholder>(diagram, stakeholder);
+            return new MoveStakeholderUpCommand(diagram, stakeholder);
         }
 
-        public ICommand CreateMoveDownCommand<TStakeholder>(IStakeholderDiagram<TStakeholder> diagram,
-            IRankedStakeholder stakeholder) where TStakeholder : class, IRankedStakeholder
+        public ICommand CreateMoveDownCommand(IStakeholderDiagram diagram,
+            IRankedStakeholder stakeholder)
         {
-            return new MoveStakeholderDownCommand<TStakeholder>(diagram, stakeholder);
+            return new MoveStakeholderDownCommand(diagram, stakeholder);
         }
 
-        public ICommand CreateMoveToTopCommand<TStakeholder>(IStakeholderDiagram<TStakeholder> diagram,
-            IRankedStakeholder onionDiagramStakeholder) where TStakeholder : class, IRankedStakeholder
+        public ICommand CreateMoveToTopCommand(IStakeholderDiagram diagram,
+            IRankedStakeholder onionDiagramStakeholder)
         {
-            return new MoveStakeholderToTopCommand<TStakeholder>(diagram, onionDiagramStakeholder);
+            return new MoveStakeholderToTopCommand(diagram, onionDiagramStakeholder);
         }
 
         public ICommand CreateSelectItemCommand(ISelectable selectable)

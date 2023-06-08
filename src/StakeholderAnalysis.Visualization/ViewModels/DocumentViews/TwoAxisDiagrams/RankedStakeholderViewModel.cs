@@ -6,13 +6,12 @@ using StakeholderAnalysis.Visualization.Behaviors;
 
 namespace StakeholderAnalysis.Visualization.ViewModels.DocumentViews.TwoAxisDiagrams
 {
-    public abstract class RankedStakeholderViewModel<TStakeholder> : DiagramStakeholderViewModelBase, IRankedStakeholderViewModel
-        where TStakeholder : class, IRankedStakeholder
+    public abstract class RankedStakeholderViewModel : DiagramStakeholderViewModelBase, IRankedStakeholderViewModel
     {
-        protected readonly IStakeholderDiagram<TStakeholder> Diagram;
+        protected readonly IStakeholderDiagram Diagram;
 
-        protected RankedStakeholderViewModel(ViewModelFactory factory, TStakeholder stakeholder,
-            IStakeholderDiagram<TStakeholder> diagram, ISelectionRegister selectionRegister1,
+        protected RankedStakeholderViewModel(ViewModelFactory factory, PositionedStakeholder stakeholder,
+            IStakeholderDiagram diagram, ISelectionRegister selectionRegister1,
             IDrawConnectionHandler drawConnectionHandler)
             : base(factory, stakeholder?.Stakeholder, selectionRegister1, drawConnectionHandler)
         {
@@ -28,7 +27,8 @@ namespace StakeholderAnalysis.Visualization.ViewModels.DocumentViews.TwoAxisDiag
             MoveStakeholderDownCommand = CommandFactory.CreateMoveDownCommand(Diagram, RankedStakeholder);
         }
 
-        public TStakeholder RankedStakeholder { get; set; }
+        // TODO: Remove RankedStakeholder (and interface) as all PositionedStakeholders are ranked
+        public PositionedStakeholder RankedStakeholder { get; set; }
 
         public int Rank
         {

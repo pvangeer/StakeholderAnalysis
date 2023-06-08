@@ -7,7 +7,7 @@ using StakeholderAnalysis.Visualization.Behaviors;
 namespace StakeholderAnalysis.Visualization.ViewModels.DocumentViews.TwoAxisDiagrams
 {
     public class AttitudeImpactDiagramStakeholderViewModel :
-        RankedStakeholderViewModel<PositionedStakeholder>, IPositionedStakeholderViewModel
+        RankedStakeholderViewModel, IPositionedStakeholderViewModel
     {
         private readonly PositionedStakeholder positionedStakeholder;
         private readonly AttitudeImpactDiagram diagram;

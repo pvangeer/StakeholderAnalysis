@@ -2,13 +2,10 @@
 
 namespace StakeholderAnalysis.Data
 {
-    public interface IStakeholderDiagram<TStakeholder> : IStakeholderDiagram where TStakeholder : class, IRankedStakeholder
+    public interface IStakeholderDiagram : INotifyPropertyChangedImplementation
     {
-        ObservableCollection<TStakeholder> Stakeholders { get; }
-    }
-
-    public interface IStakeholderDiagram: INotifyPropertyChangedImplementation
-    {
+        ObservableCollection<PositionedStakeholder> Stakeholders { get; }
+    
         string Name { get; set; }
 
         object Clone();

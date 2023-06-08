@@ -8,7 +8,7 @@ using System.Windows.Media;
 namespace StakeholderAnalysis.Data.ForceFieldDiagrams
 {
     public class ForceFieldDiagram : NotifyPropertyChangedObservable,
-        IStakeholderDiagram<PositionedStakeholder>, ITwoAxisDiagram, ICloneable
+        IStakeholderDiagram, ITwoAxisDiagram, ICloneable
     {
         private double axisFontSize;
         private double backgroundFontSize;

@@ -5,12 +5,12 @@ using StakeholderAnalysis.Data;
 
 namespace StakeholderAnalysis.Visualization.Commands.OnionDiagramProperties
 {
-    public class MoveStakeholderDownCommand<TStakeholder> : ICommand where TStakeholder : class, IRankedStakeholder
+    public class MoveStakeholderDownCommand : ICommand
     {
-        private readonly IStakeholderDiagram<TStakeholder> diagram;
+        private readonly IStakeholderDiagram diagram;
         private readonly IRankedStakeholder stakeholder;
 
-        public MoveStakeholderDownCommand(IStakeholderDiagram<TStakeholder> diagram,
+        public MoveStakeholderDownCommand(IStakeholderDiagram diagram,
             IRankedStakeholder stakeholder)
         {
             this.diagram = diagram;

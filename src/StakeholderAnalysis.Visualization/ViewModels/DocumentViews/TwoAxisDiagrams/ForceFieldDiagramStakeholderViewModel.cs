@@ -6,8 +6,7 @@ using StakeholderAnalysis.Visualization.Behaviors;
 
 namespace StakeholderAnalysis.Visualization.ViewModels.DocumentViews.TwoAxisDiagrams
 {
-    public class ForceFieldDiagramStakeholderViewModel : RankedStakeholderViewModel<PositionedStakeholder>,
-        IPositionedStakeholderViewModel
+    public class ForceFieldDiagramStakeholderViewModel : RankedStakeholderViewModel, IPositionedStakeholderViewModel
     {
         private readonly ForceFieldDiagram diagram;
         private readonly PositionedStakeholder positionedStakeholder;

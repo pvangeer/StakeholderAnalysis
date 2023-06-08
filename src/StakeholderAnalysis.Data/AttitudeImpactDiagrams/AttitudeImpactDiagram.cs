@@ -8,7 +8,7 @@ using System.Windows.Media;
 namespace StakeholderAnalysis.Data.AttitudeImpactDiagrams
 {
     public class AttitudeImpactDiagram : NotifyPropertyChangedObservable,
-        IStakeholderDiagram<PositionedStakeholder>, ITwoAxisDiagram, ICloneable
+        IStakeholderDiagram, ITwoAxisDiagram, ICloneable
     {
         public AttitudeImpactDiagram(string name)
         {
