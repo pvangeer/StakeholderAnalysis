@@ -1,11 +1,9 @@
-﻿using StakeholderAnalysis.Data.OnionDiagrams;
-using System;
+﻿using System;
 using System.Collections.ObjectModel;
-using System.Linq;
 using System.Windows;
 using System.Windows.Media;
 
-namespace StakeholderAnalysis.Data.ForceFieldDiagrams
+namespace StakeholderAnalysis.Data.Diagrams.ForceFieldDiagrams
 {
     public class ForceFieldDiagram : NotifyPropertyChangedObservable,
         IStakeholderDiagram, ITwoAxisDiagram, ICloneable

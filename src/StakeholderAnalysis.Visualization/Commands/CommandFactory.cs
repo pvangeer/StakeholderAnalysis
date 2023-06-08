@@ -1,7 +1,8 @@
 ﻿using System;
 using System.Windows.Input;
 using StakeholderAnalysis.Data;
-using StakeholderAnalysis.Data.OnionDiagrams;
+using StakeholderAnalysis.Data.Diagrams;
+using StakeholderAnalysis.Data.Diagrams.OnionDiagrams;
 using StakeholderAnalysis.Gui;
 using StakeholderAnalysis.Messaging;
 using StakeholderAnalysis.Visualization.Behaviors;

@@ -1,5 +1,5 @@
 ﻿using System.Collections.ObjectModel;
-using StakeholderAnalysis.Data.OnionDiagrams;
+using StakeholderAnalysis.Data.Diagrams.OnionDiagrams;
 using StakeholderAnalysis.Visualization.ViewModels.Properties;
 
 namespace StakeholderAnalysis.Visualization.ViewModels.TreeView

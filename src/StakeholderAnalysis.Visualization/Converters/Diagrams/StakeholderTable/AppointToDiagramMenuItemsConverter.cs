@@ -6,8 +6,9 @@ using System.Windows.Controls;
 using System.Windows.Data;
 using System.Windows.Media.Imaging;
 using StakeholderAnalysis.Data;
-using StakeholderAnalysis.Data.AttitudeImpactDiagrams;
-using StakeholderAnalysis.Data.ForceFieldDiagrams;
+using StakeholderAnalysis.Data.Diagrams;
+using StakeholderAnalysis.Data.Diagrams.AttitudeImpactDiagrams;
+using StakeholderAnalysis.Data.Diagrams.ForceFieldDiagrams;
 using StakeholderAnalysis.Visualization.Commands.Diagrams;
 using StakeholderAnalysis.Visualization.ViewModels.DocumentViews.StakeholderTableView;
 
@@ -40,7 +41,7 @@ namespace StakeholderAnalysis.Visualization.Converters.Diagrams.StakeholderTable
         {
             switch (diagram)
             {
-                case Data.OnionDiagrams.OnionDiagram onionDiagram:
+                case Data.Diagrams.OnionDiagrams.OnionDiagram onionDiagram:
                     return "pack://application:,,,/StakeholderAnalysis.Visualization;component/Resources/Diagrams/onion.ico";
                 case AttitudeImpactDiagram attitudeImpactDiagram:
                     return "pack://application:,,,/StakeholderAnalysis.Visualization;component/Resources/Diagrams/forces.ico";

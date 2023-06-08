@@ -1,6 +1,6 @@
 ﻿using System.ComponentModel;
 using System.Runtime.CompilerServices;
-using StakeholderAnalysis.Data.OnionDiagrams;
+using StakeholderAnalysis.Data.Diagrams.OnionDiagrams;
 using StakeholderAnalysis.Gui.Properties;
 
 namespace StakeholderAnalysis.Gui

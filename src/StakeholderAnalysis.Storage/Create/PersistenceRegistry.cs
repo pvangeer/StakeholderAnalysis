@@ -2,9 +2,10 @@
 using System.Collections.Generic;
 using System.Linq;
 using StakeholderAnalysis.Data;
-using StakeholderAnalysis.Data.AttitudeImpactDiagrams;
-using StakeholderAnalysis.Data.ForceFieldDiagrams;
-using StakeholderAnalysis.Data.OnionDiagrams;
+using StakeholderAnalysis.Data.Diagrams;
+using StakeholderAnalysis.Data.Diagrams.AttitudeImpactDiagrams;
+using StakeholderAnalysis.Data.Diagrams.ForceFieldDiagrams;
+using StakeholderAnalysis.Data.Diagrams.OnionDiagrams;
 using StakeholderAnalysis.Storage.XmlEntities;
 
 namespace StakeholderAnalysis.Storage.Create
@@ -16,10 +17,6 @@ namespace StakeholderAnalysis.Storage.Create
 
         private readonly Dictionary<ForceFieldDiagram, ForceFieldDiagramXmlEntity> forceFieldDiagrams =
             CreateDictionary<ForceFieldDiagram, ForceFieldDiagramXmlEntity>();
-
-        private readonly Dictionary<PositionedStakeholder, IPositionedStakeholderXmlEntity>
-            positionedStakeholders =
-                CreateDictionary<PositionedStakeholder, IPositionedStakeholderXmlEntity>();
 
         private readonly Dictionary<OnionDiagram, OnionDiagramXmlEntity> onionDiagrams =
             CreateDictionary<OnionDiagram, OnionDiagramXmlEntity>();
@@ -34,6 +31,10 @@ namespace StakeholderAnalysis.Storage.Create
 
         private readonly Dictionary<OnionRing, OnionRingXmlEntity> onionRings =
             CreateDictionary<OnionRing, OnionRingXmlEntity>();
+
+        private readonly Dictionary<PositionedStakeholder, IPositionedStakeholderXmlEntity>
+            positionedStakeholders =
+                CreateDictionary<PositionedStakeholder, IPositionedStakeholderXmlEntity>();
 
         private readonly Dictionary<Stakeholder, StakeholderXmlEntity> stakeholders =
             CreateDictionary<Stakeholder, StakeholderXmlEntity>();
@@ -196,12 +197,12 @@ namespace StakeholderAnalysis.Storage.Create
             return Get(positionedStakeholders, model) as OnionDiagramStakeholderXmlEntity;
         }
 
-        public ForceFieldDiagramStakeholderXmlEntity GetAsForceFieldDiagramStakeholderXmlEntity(Data.PositionedStakeholder model)
+        public ForceFieldDiagramStakeholderXmlEntity GetAsForceFieldDiagramStakeholderXmlEntity(PositionedStakeholder model)
         {
             return Get(positionedStakeholders, model) as ForceFieldDiagramStakeholderXmlEntity;
         }
 
-        public AttitudeImpactDiagramStakeholderXmlEntity GetAsAttitudeImpactDiagramStakeholderXmlEntity(Data.PositionedStakeholder model)
+        public AttitudeImpactDiagramStakeholderXmlEntity GetAsAttitudeImpactDiagramStakeholderXmlEntity(PositionedStakeholder model)
         {
             return Get(positionedStakeholders, model) as AttitudeImpactDiagramStakeholderXmlEntity;
         }

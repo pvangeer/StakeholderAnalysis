@@ -1,7 +1,7 @@
 ﻿using System;
 using System.Linq;
 using System.Windows.Media;
-using StakeholderAnalysis.Data.ForceFieldDiagrams;
+using StakeholderAnalysis.Data.Diagrams.ForceFieldDiagrams;
 using StakeholderAnalysis.Storage.XmlEntities;
 
 namespace StakeholderAnalysis.Storage.Read

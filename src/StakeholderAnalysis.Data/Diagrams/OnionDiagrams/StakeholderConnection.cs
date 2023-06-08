@@ -1,4 +1,4 @@
-﻿namespace StakeholderAnalysis.Data.OnionDiagrams
+﻿namespace StakeholderAnalysis.Data.Diagrams.OnionDiagrams
 {
     public class StakeholderConnection : NotifyPropertyChangedObservable
     {

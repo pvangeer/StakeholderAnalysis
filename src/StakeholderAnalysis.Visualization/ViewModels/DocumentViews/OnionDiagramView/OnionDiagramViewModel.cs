@@ -2,7 +2,8 @@
 using System.Linq;
 using System.Windows.Input;
 using StakeholderAnalysis.Data;
-using StakeholderAnalysis.Data.OnionDiagrams;
+using StakeholderAnalysis.Data.Diagrams;
+using StakeholderAnalysis.Data.Diagrams.OnionDiagrams;
 using StakeholderAnalysis.Gui;
 using StakeholderAnalysis.Visualization.Behaviors;
 using StakeholderAnalysis.Visualization.ViewModels.Properties.OnionDiagramProperties;
@@ -36,6 +37,11 @@ namespace StakeholderAnalysis.Visualization.ViewModels.DocumentViews.OnionDiagra
         public ICommand GridClickedCommand => CommandFactory.CreateClearSelectionCommand(this);
 
         public OnionDiagramDrawConnectionViewModel OnionDiagramDrawConnectionViewModel { get; }
+
+        public IStakeholderDiagram GetDiagram()
+        {
+            return diagram;
+        }
 
         public string DisplayName
         {
@@ -78,11 +84,6 @@ namespace StakeholderAnalysis.Visualization.ViewModels.DocumentViews.OnionDiagra
         public bool IsViewModelFor(OnionDiagram otherDiagram)
         {
             return diagram == otherDiagram;
-        }
-
-        public IStakeholderDiagram GetDiagram()
-        {
-            return diagram;
         }
 
         public OnionDiagramPropertiesViewModel GetPropertiesViewModel()

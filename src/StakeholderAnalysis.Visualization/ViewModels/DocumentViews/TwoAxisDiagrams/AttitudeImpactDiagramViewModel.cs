@@ -6,7 +6,8 @@ using System.Windows;
 using System.Windows.Input;
 using System.Windows.Media;
 using StakeholderAnalysis.Data;
-using StakeholderAnalysis.Data.AttitudeImpactDiagrams;
+using StakeholderAnalysis.Data.Diagrams;
+using StakeholderAnalysis.Data.Diagrams.AttitudeImpactDiagrams;
 using StakeholderAnalysis.Gui;
 using StakeholderAnalysis.Visualization.ViewModels.Properties.TwoAxisDiagramProperties;
 

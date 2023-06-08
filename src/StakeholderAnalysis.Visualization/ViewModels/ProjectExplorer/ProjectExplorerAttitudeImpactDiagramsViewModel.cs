@@ -3,7 +3,7 @@ using System.Collections.Specialized;
 using System.Linq;
 using System.Windows.Input;
 using StakeholderAnalysis.Data;
-using StakeholderAnalysis.Data.AttitudeImpactDiagrams;
+using StakeholderAnalysis.Data.Diagrams.AttitudeImpactDiagrams;
 using StakeholderAnalysis.Visualization.ViewModels.TreeView;
 
 namespace StakeholderAnalysis.Visualization.ViewModels.ProjectExplorer

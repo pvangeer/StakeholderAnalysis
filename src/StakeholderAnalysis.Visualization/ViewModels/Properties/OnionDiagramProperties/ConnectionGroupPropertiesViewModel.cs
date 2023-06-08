@@ -1,7 +1,7 @@
 ﻿using System.Collections.ObjectModel;
 using System.ComponentModel;
 using System.Windows.Input;
-using StakeholderAnalysis.Data.OnionDiagrams;
+using StakeholderAnalysis.Data.Diagrams.OnionDiagrams;
 using StakeholderAnalysis.Visualization.ViewModels.TreeView;
 
 namespace StakeholderAnalysis.Visualization.ViewModels.Properties.OnionDiagramProperties

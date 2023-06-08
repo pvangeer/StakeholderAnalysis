@@ -1,6 +1,6 @@
 ﻿using System.ComponentModel;
 
-namespace StakeholderAnalysis.Data
+namespace StakeholderAnalysis.Data.Diagrams
 {
     public interface IRankedStakeholder : INotifyPropertyChanged
     {

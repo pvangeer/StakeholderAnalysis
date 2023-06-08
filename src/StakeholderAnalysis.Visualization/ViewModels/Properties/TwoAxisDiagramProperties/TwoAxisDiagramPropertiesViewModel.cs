@@ -1,5 +1,6 @@
 ﻿using System.Collections.ObjectModel;
 using StakeholderAnalysis.Data;
+using StakeholderAnalysis.Data.Diagrams;
 using StakeholderAnalysis.Gui;
 using StakeholderAnalysis.Visualization.ViewModels.TreeView;
 

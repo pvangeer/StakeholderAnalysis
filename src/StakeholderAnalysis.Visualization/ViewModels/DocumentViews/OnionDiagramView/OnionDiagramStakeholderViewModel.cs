@@ -4,7 +4,8 @@ using System.ComponentModel;
 using System.Linq;
 using System.Windows.Input;
 using StakeholderAnalysis.Data;
-using StakeholderAnalysis.Data.OnionDiagrams;
+using StakeholderAnalysis.Data.Diagrams;
+using StakeholderAnalysis.Data.Diagrams.OnionDiagrams;
 using StakeholderAnalysis.Visualization.Behaviors;
 using static System.Double;
 

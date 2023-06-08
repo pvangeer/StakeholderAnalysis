@@ -2,7 +2,7 @@
 using System.ComponentModel;
 using System.Reflection;
 using StakeholderAnalysis.Data;
-using StakeholderAnalysis.Data.OnionDiagrams;
+using StakeholderAnalysis.Data.Diagrams.OnionDiagrams;
 
 namespace StakeholderAnalysis.Visualization.ViewModels.TreeView
 {

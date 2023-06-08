@@ -23,29 +23,30 @@
     <Compile Include="Analysis.cs" />
     <Compile Include="AnalysisFactory.cs" />
     <Compile Include="AnalysisServices.cs" />
-    <Compile Include="AttitudeImpactDiagrams\AttitudeImpactDiagram.cs" />
+    <Compile Include="Diagrams\AttitudeImpactDiagrams\AttitudeImpactDiagram.cs" />
     <Compile Include="ColorExtensions.cs" />
     <Compile Include="Exceptions\NaNValueException.cs" />
     <Compile Include="Exceptions\ValueOutOfBoundsException.cs" />
-    <Compile Include="ForceFieldDiagrams\ForceFieldDiagram.cs" />
-    <Compile Include="PositionedStakeholder.cs" />
-    <Compile Include="ITwoAxisDiagram.cs" />
+    <Compile Include="Diagrams\ForceFieldDiagrams\ForceFieldDiagram.cs" />
+    <Compile Include="Diagrams\PositionedStakeholder.cs" />
+    <Compile Include="Diagrams\ITwoAxisDiagram.cs" />
     <Compile Include="INotifyPropertyChangedImplementation.cs" />
-    <Compile Include="IRankedStakeholder.cs" />
-    <Compile Include="IStakeholderDiagram.cs" />
-    <Compile Include="OnionDiagrams\OnionDiagram.cs" />
-    <Compile Include="OnionDiagrams\StakeholderConnectionGroup.cs" />
-    <Compile Include="OnionDiagrams\OnionRing.cs" />
-    <Compile Include="OnionDiagrams\LineStyle.cs" />
+    <Compile Include="Diagrams\IRankedStakeholder.cs" />
+    <Compile Include="Diagrams\IStakeholderDiagram.cs" />
+    <Compile Include="Diagrams\OnionDiagrams\OnionDiagram.cs" />
+    <Compile Include="Diagrams\OnionDiagrams\StakeholderConnectionGroup.cs" />
+    <Compile Include="Diagrams\OnionDiagrams\OnionRing.cs" />
+    <Compile Include="Diagrams\OnionDiagrams\LineStyle.cs" />
     <Compile Include="Properties\Annotations.cs" />
     <Compile Include="NotifyPropertyChangedObservable.cs" />
     <Compile Include="Stakeholder.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="OnionDiagrams\StakeholderConnection.cs" />
+    <Compile Include="Diagrams\OnionDiagrams\StakeholderConnection.cs" />
     <Compile Include="StakeholderIconType.cs" />
     <Compile Include="StakeholderType.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="packages.config" />
   </ItemGroup>
+  <ItemGroup />
 </Project>

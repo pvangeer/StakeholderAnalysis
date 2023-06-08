@@ -1,6 +1,6 @@
 ﻿using System.Windows.Media;
 
-namespace StakeholderAnalysis.Data.OnionDiagrams
+namespace StakeholderAnalysis.Data.Diagrams.OnionDiagrams
 {
     public class OnionRing : NotifyPropertyChangedObservable
     {

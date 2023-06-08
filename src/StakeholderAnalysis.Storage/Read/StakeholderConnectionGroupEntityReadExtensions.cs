@@ -1,5 +1,5 @@
 ﻿using System;
-using StakeholderAnalysis.Data.OnionDiagrams;
+using StakeholderAnalysis.Data.Diagrams.OnionDiagrams;
 using StakeholderAnalysis.Storage.XmlEntities;
 
 namespace StakeholderAnalysis.Storage.Read

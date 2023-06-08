@@ -3,7 +3,8 @@ using System.ComponentModel;
 using System.Windows.Input;
 using System.Windows.Media;
 using StakeholderAnalysis.Data;
-using StakeholderAnalysis.Data.OnionDiagrams;
+using StakeholderAnalysis.Data.Diagrams;
+using StakeholderAnalysis.Data.Diagrams.OnionDiagrams;
 using StakeholderAnalysis.Messaging;
 
 namespace StakeholderAnalysis.Visualization.ViewModels.DocumentViews.OnionDiagramView

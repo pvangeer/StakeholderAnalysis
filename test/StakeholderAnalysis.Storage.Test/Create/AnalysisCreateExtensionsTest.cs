@@ -4,9 +4,10 @@ using System.Linq;
 using System.Windows.Media;
 using NUnit.Framework;
 using StakeholderAnalysis.Data;
-using StakeholderAnalysis.Data.AttitudeImpactDiagrams;
-using StakeholderAnalysis.Data.ForceFieldDiagrams;
-using StakeholderAnalysis.Data.OnionDiagrams;
+using StakeholderAnalysis.Data.Diagrams;
+using StakeholderAnalysis.Data.Diagrams.AttitudeImpactDiagrams;
+using StakeholderAnalysis.Data.Diagrams.ForceFieldDiagrams;
+using StakeholderAnalysis.Data.Diagrams.OnionDiagrams;
 using StakeholderAnalysis.Storage.Create;
 
 namespace StakeholderAnalysis.Storage.Test.Create
@@ -208,8 +209,8 @@ namespace StakeholderAnalysis.Storage.Test.Create
                     {
                         Stakeholders =
                         {
-                            new Data.PositionedStakeholder(stakeholder1, 0.15, 0.5),
-                            new Data.PositionedStakeholder(stakeholder3, 0.25, 0.6)
+                            new PositionedStakeholder(stakeholder1, 0.15, 0.5),
+                            new PositionedStakeholder(stakeholder3, 0.25, 0.6)
                         }
                     }
                 }
@@ -274,8 +275,8 @@ namespace StakeholderAnalysis.Storage.Test.Create
                     {
                         Stakeholders =
                         {
-                            new Data.PositionedStakeholder(stakeholder1, 0.15, 0.5),
-                            new Data.PositionedStakeholder(stakeholder3, 0.25, 0.6)
+                            new PositionedStakeholder(stakeholder1, 0.15, 0.5),
+                            new PositionedStakeholder(stakeholder3, 0.25, 0.6)
                         }
                     }
                 }
@@ -429,10 +430,12 @@ namespace StakeholderAnalysis.Storage.Test.Create
                     connectionXmlEntity.StakeholderConnectionGroupId);
 
                 Assert.IsTrue(registry.Contains(diagramConnection.ConnectFrom));
-                Assert.AreEqual(registry.GetAsOnionDiagramStakeholderXmlEntity(diagramConnection.ConnectFrom).Id, connectionXmlEntity.StakeholderFromId);
+                Assert.AreEqual(registry.GetAsOnionDiagramStakeholderXmlEntity(diagramConnection.ConnectFrom).Id,
+                    connectionXmlEntity.StakeholderFromId);
 
                 Assert.IsTrue(registry.Contains(diagramConnection.ConnectTo));
-                Assert.AreEqual(registry.GetAsOnionDiagramStakeholderXmlEntity(diagramConnection.ConnectTo).Id, connectionXmlEntity.StakeholderToId);
+                Assert.AreEqual(registry.GetAsOnionDiagramStakeholderXmlEntity(diagramConnection.ConnectTo).Id,
+                    connectionXmlEntity.StakeholderToId);
 
                 Assert.IsTrue(registry.Contains(diagramConnection));
             }

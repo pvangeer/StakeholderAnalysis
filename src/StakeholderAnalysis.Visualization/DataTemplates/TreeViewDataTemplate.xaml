@@ -7,9 +7,9 @@
                     xmlns:projectExplorer="clr-namespace:StakeholderAnalysis.Visualization.ViewModels.ProjectExplorer"
                     xmlns:data="clr-namespace:StakeholderAnalysis.Data;assembly=StakeholderAnalysis.Data"
                     xmlns:system="clr-namespace:System;assembly=mscorlib"
-                    xmlns:onionDiagrams="clr-namespace:StakeholderAnalysis.Data.OnionDiagrams;assembly=StakeholderAnalysis.Data"
                     xmlns:treeviewconverters="clr-namespace:StakeholderAnalysis.Visualization.Converters.TreeView"
-                    xmlns:treeView1="clr-namespace:StakeholderAnalysis.Visualization.ViewModels.TreeView">
+                    xmlns:treeView1="clr-namespace:StakeholderAnalysis.Visualization.ViewModels.TreeView"
+                    xmlns:onionDiagrams="clr-namespace:StakeholderAnalysis.Data.Diagrams.OnionDiagrams;assembly=StakeholderAnalysis.Data">
 
     <ResourceDictionary.MergedDictionaries>
         <ResourceDictionary

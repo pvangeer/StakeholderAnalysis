@@ -1,7 +1,7 @@
 ﻿using System.Collections.ObjectModel;
-using StakeholderAnalysis.Data.AttitudeImpactDiagrams;
-using StakeholderAnalysis.Data.ForceFieldDiagrams;
-using StakeholderAnalysis.Data.OnionDiagrams;
+using StakeholderAnalysis.Data.Diagrams.AttitudeImpactDiagrams;
+using StakeholderAnalysis.Data.Diagrams.ForceFieldDiagrams;
+using StakeholderAnalysis.Data.Diagrams.OnionDiagrams;
 
 namespace StakeholderAnalysis.Data
 {

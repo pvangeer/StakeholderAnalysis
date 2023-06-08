@@ -1,7 +1,7 @@
 ﻿using System;
 using System.Linq;
 using System.Windows.Input;
-using StakeholderAnalysis.Data.OnionDiagrams;
+using StakeholderAnalysis.Data.Diagrams.OnionDiagrams;
 
 namespace StakeholderAnalysis.Visualization.Commands.Ribbon
 {

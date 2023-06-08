@@ -3,7 +3,7 @@ using System.Collections.Specialized;
 using System.Linq;
 using System.Windows.Input;
 using StakeholderAnalysis.Data;
-using StakeholderAnalysis.Data.OnionDiagrams;
+using StakeholderAnalysis.Data.Diagrams.OnionDiagrams;
 using StakeholderAnalysis.Visualization.ViewModels.TreeView;
 
 namespace StakeholderAnalysis.Visualization.ViewModels.ProjectExplorer

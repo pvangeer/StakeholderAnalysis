@@ -1,7 +1,8 @@
 ﻿using System;
 using System.ComponentModel;
 using StakeholderAnalysis.Data;
-using StakeholderAnalysis.Data.ForceFieldDiagrams;
+using StakeholderAnalysis.Data.Diagrams;
+using StakeholderAnalysis.Data.Diagrams.ForceFieldDiagrams;
 using StakeholderAnalysis.Visualization.Behaviors;
 
 namespace StakeholderAnalysis.Visualization.ViewModels.DocumentViews.TwoAxisDiagrams

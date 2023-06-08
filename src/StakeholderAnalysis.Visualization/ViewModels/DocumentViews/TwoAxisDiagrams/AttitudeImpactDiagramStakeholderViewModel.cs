@@ -1,7 +1,8 @@
 ﻿using System;
 using System.ComponentModel;
 using StakeholderAnalysis.Data;
-using StakeholderAnalysis.Data.AttitudeImpactDiagrams;
+using StakeholderAnalysis.Data.Diagrams;
+using StakeholderAnalysis.Data.Diagrams.AttitudeImpactDiagrams;
 using StakeholderAnalysis.Visualization.Behaviors;
 
 namespace StakeholderAnalysis.Visualization.ViewModels.DocumentViews.TwoAxisDiagrams
@@ -9,8 +10,8 @@ namespace StakeholderAnalysis.Visualization.ViewModels.DocumentViews.TwoAxisDiag
     public class AttitudeImpactDiagramStakeholderViewModel :
         RankedStakeholderViewModel, IPositionedStakeholderViewModel
     {
-        private readonly PositionedStakeholder positionedStakeholder;
         private readonly AttitudeImpactDiagram diagram;
+        private readonly PositionedStakeholder positionedStakeholder;
 
         public AttitudeImpactDiagramStakeholderViewModel(ViewModelFactory factory, AttitudeImpactDiagram diagram,
             PositionedStakeholder stakeholder, ISelectionRegister selectionRegister)

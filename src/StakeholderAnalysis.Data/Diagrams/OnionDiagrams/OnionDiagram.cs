@@ -2,7 +2,7 @@
 using System.Collections.ObjectModel;
 using System.Linq;
 
-namespace StakeholderAnalysis.Data.OnionDiagrams
+namespace StakeholderAnalysis.Data.Diagrams.OnionDiagrams
 {
     public class OnionDiagram : NotifyPropertyChangedObservable, IStakeholderDiagram, ICloneable
     {
@@ -23,8 +23,6 @@ namespace StakeholderAnalysis.Data.OnionDiagrams
         {
         }
 
-        public string Name { get; set; }
-
         public double Asymmetry { get; set; }
 
         public double Orientation { get; set; }
@@ -34,6 +32,8 @@ namespace StakeholderAnalysis.Data.OnionDiagrams
         public ObservableCollection<StakeholderConnection> Connections { get; }
 
         public ObservableCollection<StakeholderConnectionGroup> ConnectionGroups { get; }
+
+        public string Name { get; set; }
 
         public object Clone()
         {

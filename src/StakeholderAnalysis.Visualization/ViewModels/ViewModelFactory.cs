@@ -3,9 +3,10 @@ using System.Collections.ObjectModel;
 using System.Linq;
 using System.Windows.Input;
 using StakeholderAnalysis.Data;
-using StakeholderAnalysis.Data.AttitudeImpactDiagrams;
-using StakeholderAnalysis.Data.ForceFieldDiagrams;
-using StakeholderAnalysis.Data.OnionDiagrams;
+using StakeholderAnalysis.Data.Diagrams;
+using StakeholderAnalysis.Data.Diagrams.AttitudeImpactDiagrams;
+using StakeholderAnalysis.Data.Diagrams.ForceFieldDiagrams;
+using StakeholderAnalysis.Data.Diagrams.OnionDiagrams;
 using StakeholderAnalysis.Gui;
 using StakeholderAnalysis.Visualization.Behaviors;
 using StakeholderAnalysis.Visualization.Commands;
@@ -155,7 +156,7 @@ namespace StakeholderAnalysis.Visualization.ViewModels
         }
 
         public AttitudeImpactDiagramStakeholderViewModel CreateAttitudeImpactDiagramStakeholderViewModel(
-            AttitudeImpactDiagram diagram, Data.PositionedStakeholder stakeholder,
+            AttitudeImpactDiagram diagram, PositionedStakeholder stakeholder,
             ISelectionRegister selectionRegister)
         {
             return new AttitudeImpactDiagramStakeholderViewModel(this, diagram, stakeholder, selectionRegister);
@@ -168,7 +169,7 @@ namespace StakeholderAnalysis.Visualization.ViewModels
         }
 
         public ForceFieldDiagramStakeholderViewModel CreateForceFieldDiagramStakeholderViewModel(
-            ForceFieldDiagram diagram, Data.PositionedStakeholder stakeholder, ISelectionRegister selectionRegister)
+            ForceFieldDiagram diagram, PositionedStakeholder stakeholder, ISelectionRegister selectionRegister)
         {
             return new ForceFieldDiagramStakeholderViewModel(this, diagram, stakeholder, selectionRegister);
         }

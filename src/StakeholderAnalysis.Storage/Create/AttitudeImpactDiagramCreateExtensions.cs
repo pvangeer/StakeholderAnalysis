@@ -1,6 +1,6 @@
 ﻿using System;
 using System.Windows.Media;
-using StakeholderAnalysis.Data.AttitudeImpactDiagrams;
+using StakeholderAnalysis.Data.Diagrams.AttitudeImpactDiagrams;
 using StakeholderAnalysis.Storage.XmlEntities;
 
 namespace StakeholderAnalysis.Storage.Create

@@ -1,11 +1,11 @@
 ﻿using StakeholderAnalysis.Data.Exceptions;
 
-namespace StakeholderAnalysis.Data
+namespace StakeholderAnalysis.Data.Diagrams
 {
     public class PositionedStakeholder : NotifyPropertyChangedObservable, IRankedStakeholder
     {
-        private double top;
         private double left;
+        private double top;
 
         public PositionedStakeholder(Stakeholder stakeholder, double left, double top)
         {

@@ -2,6 +2,7 @@
 using System.ComponentModel;
 using System.Windows.Input;
 using StakeholderAnalysis.Data;
+using StakeholderAnalysis.Data.Diagrams;
 using StakeholderAnalysis.Visualization.Behaviors;
 
 namespace StakeholderAnalysis.Visualization.ViewModels.DocumentViews.TwoAxisDiagrams
@@ -36,7 +37,7 @@ namespace StakeholderAnalysis.Visualization.ViewModels.DocumentViews.TwoAxisDiag
             set
             {
                 RankedStakeholder.Rank = value;
-                RankedStakeholder.OnPropertyChanged(nameof(IRankedStakeholder.Rank));
+                RankedStakeholder.OnPropertyChanged();
             }
         }
 

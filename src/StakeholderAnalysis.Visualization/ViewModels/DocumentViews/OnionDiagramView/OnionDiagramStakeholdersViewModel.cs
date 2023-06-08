@@ -2,7 +2,8 @@
 using System.Collections.Specialized;
 using System.Linq;
 using StakeholderAnalysis.Data;
-using StakeholderAnalysis.Data.OnionDiagrams;
+using StakeholderAnalysis.Data.Diagrams;
+using StakeholderAnalysis.Data.Diagrams.OnionDiagrams;
 using StakeholderAnalysis.Visualization.Behaviors;
 
 namespace StakeholderAnalysis.Visualization.ViewModels.DocumentViews.OnionDiagramView
