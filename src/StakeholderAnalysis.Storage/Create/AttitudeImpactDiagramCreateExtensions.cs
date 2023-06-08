@@ -61,7 +61,7 @@ namespace StakeholderAnalysis.Storage.Create
         {
             for (var index = 0; index < diagram.Stakeholders.Count; index++)
             {
-                var eventTreeEntity = diagram.Stakeholders[index].Create(registry);
+                var eventTreeEntity = AttitudeImpactDiagramStakeholderCreateExtensions.Create(diagram.Stakeholders[index], registry);
                 eventTreeEntity.Order = index;
                 entity.AttitudeImpactDiagramStakeholderXmlEntities.Add(eventTreeEntity);
             }

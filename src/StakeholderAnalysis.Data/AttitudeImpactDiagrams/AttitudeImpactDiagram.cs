@@ -8,12 +8,12 @@ using System.Windows.Media;
 namespace StakeholderAnalysis.Data.AttitudeImpactDiagrams
 {
     public class AttitudeImpactDiagram : NotifyPropertyChangedObservable,
-        IStakeholderDiagram<AttitudeImpactDiagramStakeholder>, ITwoAxisDiagram, ICloneable
+        IStakeholderDiagram<PositionedStakeholder>, ITwoAxisDiagram, ICloneable
     {
         public AttitudeImpactDiagram(string name)
         {
             Name = name;
-            Stakeholders = new ObservableCollection<AttitudeImpactDiagramStakeholder>();
+            Stakeholders = new ObservableCollection<PositionedStakeholder>();
             BrushStartColor = Colors.LightYellow;
             BrushEndColor = Colors.PaleVioletRed;
             BackgroundTextLeftTop = "Informeren";
@@ -74,14 +74,14 @@ namespace StakeholderAnalysis.Data.AttitudeImpactDiagrams
             };
             foreach (var stakeholder in Stakeholders)
                 diagram.Stakeholders.Add(
-                    new AttitudeImpactDiagramStakeholder(stakeholder.Stakeholder, stakeholder.Top,
+                    new PositionedStakeholder(stakeholder.Stakeholder, stakeholder.Top,
                             stakeholder.Left)
                         { Rank = stakeholder.Rank });
 
             return diagram;
         }
 
-        public ObservableCollection<AttitudeImpactDiagramStakeholder> Stakeholders { get; }
+        public ObservableCollection<PositionedStakeholder> Stakeholders { get; }
 
         public string Name { get; set; }
 

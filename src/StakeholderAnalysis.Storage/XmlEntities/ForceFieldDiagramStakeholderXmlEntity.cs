@@ -4,7 +4,7 @@ using System.Xml.Serialization;
 namespace StakeholderAnalysis.Storage.XmlEntities
 {
     [Serializable]
-    public class ForceFieldDiagramStakeholderXmlEntity : IXmlEntity
+    public class ForceFieldDiagramStakeholderXmlEntity : IPositionedStakeholderXmlEntity
     {
         [XmlAttribute(AttributeName = "interest")]
         public double Interest { get; set; }
@@ -19,7 +19,7 @@ namespace StakeholderAnalysis.Storage.XmlEntities
         public long Order { get; set; }
 
         [XmlAttribute(AttributeName = "stakeholderid")]
-        public long StakeholderId { get; set; }
+        public long StakeholderReferenceId { get; set; }
 
         [XmlAttribute(AttributeName = "id")]
         public long Id { get; set; }

@@ -208,8 +208,8 @@ namespace StakeholderAnalysis.Storage.Test.Create
                     {
                         Stakeholders =
                         {
-                            new AttitudeImpactDiagramStakeholder(stakeholder1, 0.15, 0.5),
-                            new AttitudeImpactDiagramStakeholder(stakeholder3, 0.25, 0.6)
+                            new PositionedStakeholder(stakeholder1, 0.15, 0.5),
+                            new PositionedStakeholder(stakeholder3, 0.25, 0.6)
                         }
                     }
                 }
@@ -274,8 +274,8 @@ namespace StakeholderAnalysis.Storage.Test.Create
                     {
                         Stakeholders =
                         {
-                            new PositionedStakeholder(stakeholder1, 0.15, 0.5),
-                            new PositionedStakeholder(stakeholder3, 0.25, 0.6)
+                            new Data.PositionedStakeholder(stakeholder1, 0.15, 0.5),
+                            new Data.PositionedStakeholder(stakeholder3, 0.25, 0.6)
                         }
                     }
                 }
@@ -304,7 +304,7 @@ namespace StakeholderAnalysis.Storage.Test.Create
 
                 Assert.IsTrue(registry.Contains(diagramStakeholder.Stakeholder));
                 var xmlStakeholder = registry.Get(diagramStakeholder.Stakeholder);
-                Assert.AreEqual(xmlStakeholder.Id, xmlDiagramStakeholder.StakeholderId);
+                Assert.AreEqual(xmlStakeholder.Id, xmlDiagramStakeholder.StakeholderReferenceId);
             }
         }
 

@@ -155,7 +155,7 @@ namespace StakeholderAnalysis.Visualization.ViewModels
         }
 
         public AttitudeImpactDiagramStakeholderViewModel CreateAttitudeImpactDiagramStakeholderViewModel(
-            AttitudeImpactDiagram diagram, AttitudeImpactDiagramStakeholder stakeholder,
+            AttitudeImpactDiagram diagram, PositionedStakeholder stakeholder,
             ISelectionRegister selectionRegister)
         {
             return new AttitudeImpactDiagramStakeholderViewModel(this, diagram, stakeholder, selectionRegister);
@@ -168,7 +168,7 @@ namespace StakeholderAnalysis.Visualization.ViewModels
         }
 
         public ForceFieldDiagramStakeholderViewModel CreateForceFieldDiagramStakeholderViewModel(
-            ForceFieldDiagram diagram, PositionedStakeholder stakeholder, ISelectionRegister selectionRegister)
+            ForceFieldDiagram diagram, Data.PositionedStakeholder stakeholder, ISelectionRegister selectionRegister)
         {
             return new ForceFieldDiagramStakeholderViewModel(this, diagram, stakeholder, selectionRegister);
         }

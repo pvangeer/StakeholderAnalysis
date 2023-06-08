@@ -1,5 +1,6 @@
 ﻿using System;
 using System.ComponentModel;
+using StakeholderAnalysis.Data;
 using StakeholderAnalysis.Data.ForceFieldDiagrams;
 using StakeholderAnalysis.Visualization.Behaviors;
 

@@ -1,49 +1,50 @@
 ﻿using System;
 using System.ComponentModel;
+using StakeholderAnalysis.Data;
 using StakeholderAnalysis.Data.AttitudeImpactDiagrams;
 using StakeholderAnalysis.Visualization.Behaviors;
 
 namespace StakeholderAnalysis.Visualization.ViewModels.DocumentViews.TwoAxisDiagrams
 {
     public class AttitudeImpactDiagramStakeholderViewModel :
-        RankedStakeholderViewModel<AttitudeImpactDiagramStakeholder>, IPositionedStakeholderViewModel
+        RankedStakeholderViewModel<PositionedStakeholder>, IPositionedStakeholderViewModel
     {
-        private readonly AttitudeImpactDiagramStakeholder attitudeImpactDiagramStakeholder;
+        private readonly PositionedStakeholder positionedStakeholder;
         private readonly AttitudeImpactDiagram diagram;
 
         public AttitudeImpactDiagramStakeholderViewModel(ViewModelFactory factory, AttitudeImpactDiagram diagram,
-            AttitudeImpactDiagramStakeholder stakeholder, ISelectionRegister selectionRegister)
+            PositionedStakeholder stakeholder, ISelectionRegister selectionRegister)
             : base(factory, stakeholder, diagram, selectionRegister, null)
         {
             this.diagram = diagram;
-            attitudeImpactDiagramStakeholder = stakeholder;
-            if (attitudeImpactDiagramStakeholder != null)
-                attitudeImpactDiagramStakeholder.PropertyChanged += StakeholderPropertyChanged;
+            positionedStakeholder = stakeholder;
+            if (positionedStakeholder != null)
+                positionedStakeholder.PropertyChanged += StakeholderPropertyChanged;
         }
 
         public double RelativePositionLeft
         {
-            get => attitudeImpactDiagramStakeholder.Left;
+            get => positionedStakeholder.Left;
             set
             {
-                attitudeImpactDiagramStakeholder.Left = value;
-                attitudeImpactDiagramStakeholder.OnPropertyChanged(nameof(attitudeImpactDiagramStakeholder.Left));
+                positionedStakeholder.Left = value;
+                positionedStakeholder.OnPropertyChanged(nameof(positionedStakeholder.Left));
             }
         }
 
         public double RelativePositionTop
         {
-            get => attitudeImpactDiagramStakeholder.Top;
+            get => positionedStakeholder.Top;
             set
             {
-                attitudeImpactDiagramStakeholder.Top = value;
-                attitudeImpactDiagramStakeholder.OnPropertyChanged(nameof(attitudeImpactDiagramStakeholder.Top));
+                positionedStakeholder.Top = value;
+                positionedStakeholder.OnPropertyChanged(nameof(positionedStakeholder.Top));
             }
         }
 
         public override void RemoveFromDiagram()
         {
-            if (IsSelectedStakeholder) diagram.Stakeholders.Remove(attitudeImpactDiagramStakeholder);
+            if (IsSelectedStakeholder) diagram.Stakeholders.Remove(positionedStakeholder);
         }
 
         public override void Moved(double xRelativeNew, double yRelativeNew)
@@ -56,10 +57,10 @@ namespace StakeholderAnalysis.Visualization.ViewModels.DocumentViews.TwoAxisDiag
         {
             switch (e.PropertyName)
             {
-                case nameof(attitudeImpactDiagramStakeholder.Left):
+                case nameof(positionedStakeholder.Left):
                     OnPropertyChanged(nameof(RelativePositionLeft));
                     break;
-                case nameof(attitudeImpactDiagramStakeholder.Top):
+                case nameof(positionedStakeholder.Top):
                     OnPropertyChanged(nameof(RelativePositionTop));
                     break;
             }

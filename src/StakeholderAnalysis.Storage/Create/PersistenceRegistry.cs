@@ -14,16 +14,12 @@ namespace StakeholderAnalysis.Storage.Create
         private readonly Dictionary<AttitudeImpactDiagram, AttitudeImpactDiagramXmlEntity> attitudeImpactDiagrams =
             CreateDictionary<AttitudeImpactDiagram, AttitudeImpactDiagramXmlEntity>();
 
-        private readonly Dictionary<AttitudeImpactDiagramStakeholder, AttitudeImpactDiagramStakeholderXmlEntity>
-            attitudeImpactDiagramStakeholders =
-                CreateDictionary<AttitudeImpactDiagramStakeholder, AttitudeImpactDiagramStakeholderXmlEntity>();
-
         private readonly Dictionary<ForceFieldDiagram, ForceFieldDiagramXmlEntity> forceFieldDiagrams =
             CreateDictionary<ForceFieldDiagram, ForceFieldDiagramXmlEntity>();
 
-        private readonly Dictionary<PositionedStakeholder, ForceFieldDiagramStakeholderXmlEntity>
-            forceFieldDiagramStakeholders =
-                CreateDictionary<PositionedStakeholder, ForceFieldDiagramStakeholderXmlEntity>();
+        private readonly Dictionary<PositionedStakeholder, IPositionedStakeholderXmlEntity>
+            positionedStakeholders =
+                CreateDictionary<PositionedStakeholder, IPositionedStakeholderXmlEntity>();
 
         private readonly Dictionary<OnionDiagram, OnionDiagramXmlEntity> onionDiagrams =
             CreateDictionary<OnionDiagram, OnionDiagramXmlEntity>();
@@ -92,7 +88,7 @@ namespace StakeholderAnalysis.Storage.Create
 
         internal void Register(PositionedStakeholder model, ForceFieldDiagramStakeholderXmlEntity entity)
         {
-            Register(forceFieldDiagramStakeholders, model, entity);
+            Register(positionedStakeholders, model, entity);
         }
 
         internal void Register(AttitudeImpactDiagram model, AttitudeImpactDiagramXmlEntity entity)
@@ -100,9 +96,9 @@ namespace StakeholderAnalysis.Storage.Create
             Register(attitudeImpactDiagrams, model, entity);
         }
 
-        internal void Register(AttitudeImpactDiagramStakeholder model, AttitudeImpactDiagramStakeholderXmlEntity entity)
+        internal void Register(PositionedStakeholder model, AttitudeImpactDiagramStakeholderXmlEntity entity)
         {
-            Register(attitudeImpactDiagramStakeholders, model, entity);
+            Register(positionedStakeholders, model, entity);
         }
 
         #endregion
@@ -151,17 +147,12 @@ namespace StakeholderAnalysis.Storage.Create
 
         internal bool Contains(PositionedStakeholder model)
         {
-            return ContainsValue(forceFieldDiagramStakeholders, model);
+            return ContainsValue(positionedStakeholders, model);
         }
 
         internal bool Contains(AttitudeImpactDiagram model)
         {
             return ContainsValue(attitudeImpactDiagrams, model);
-        }
-
-        internal bool Contains(AttitudeImpactDiagramStakeholder model)
-        {
-            return ContainsValue(attitudeImpactDiagramStakeholders, model);
         }
 
         #endregion
@@ -208,19 +199,19 @@ namespace StakeholderAnalysis.Storage.Create
             return Get(forceFieldDiagrams, model);
         }
 
-        public ForceFieldDiagramStakeholderXmlEntity Get(PositionedStakeholder model)
-        {
-            return Get(forceFieldDiagramStakeholders, model);
-        }
-
         public AttitudeImpactDiagramXmlEntity Get(AttitudeImpactDiagram model)
         {
             return Get(attitudeImpactDiagrams, model);
         }
 
-        public AttitudeImpactDiagramStakeholderXmlEntity Get(AttitudeImpactDiagramStakeholder model)
+        public ForceFieldDiagramStakeholderXmlEntity GetAsForceFieldDiagramStakeholderXmlEntity(PositionedStakeholder model)
         {
-            return Get(attitudeImpactDiagramStakeholders, model);
+            return Get(positionedStakeholders, model) as ForceFieldDiagramStakeholderXmlEntity;
+        }
+
+        public AttitudeImpactDiagramStakeholderXmlEntity GetAsAttitudeImpactDiagramStakeholderXmlEntity(PositionedStakeholder model)
+        {
+            return Get(positionedStakeholders, model) as AttitudeImpactDiagramStakeholderXmlEntity;
         }
 
         #endregion

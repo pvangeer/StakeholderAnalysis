@@ -24,12 +24,11 @@
     <Compile Include="AnalysisFactory.cs" />
     <Compile Include="AnalysisServices.cs" />
     <Compile Include="AttitudeImpactDiagrams\AttitudeImpactDiagram.cs" />
-    <Compile Include="AttitudeImpactDiagrams\AttitudeImpactDiagramStakeholder.cs" />
     <Compile Include="ColorExtensions.cs" />
     <Compile Include="Exceptions\NaNValueException.cs" />
     <Compile Include="Exceptions\ValueOutOfBoundsException.cs" />
     <Compile Include="ForceFieldDiagrams\ForceFieldDiagram.cs" />
-    <Compile Include="ForceFieldDiagrams\PositionedStakeholder.cs" />
+    <Compile Include="PositionedStakeholder.cs" />
     <Compile Include="ITwoAxisDiagram.cs" />
     <Compile Include="INotifyPropertyChangedImplementation.cs" />
     <Compile Include="IRankedStakeholder.cs" />

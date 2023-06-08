@@ -14,16 +14,16 @@ namespace StakeholderAnalysis.Storage.Read
         private readonly Dictionary<AttitudeImpactDiagramXmlEntity, AttitudeImpactDiagram> attitudeImpactDiagrams =
             CreateDictionary<AttitudeImpactDiagramXmlEntity, AttitudeImpactDiagram>();
 
-        private readonly Dictionary<AttitudeImpactDiagramStakeholderXmlEntity, AttitudeImpactDiagramStakeholder>
+        private readonly Dictionary<AttitudeImpactDiagramStakeholderXmlEntity, PositionedStakeholder>
             attitudeImpactDiagramStakeholders =
-                CreateDictionary<AttitudeImpactDiagramStakeholderXmlEntity, AttitudeImpactDiagramStakeholder>();
+                CreateDictionary<AttitudeImpactDiagramStakeholderXmlEntity, PositionedStakeholder>();
 
         private readonly Dictionary<ForceFieldDiagramXmlEntity, ForceFieldDiagram> forceFieldDiagrams =
             CreateDictionary<ForceFieldDiagramXmlEntity, ForceFieldDiagram>();
 
-        private readonly Dictionary<ForceFieldDiagramStakeholderXmlEntity, PositionedStakeholder>
+        private readonly Dictionary<ForceFieldDiagramStakeholderXmlEntity, Data.PositionedStakeholder>
             forceFieldDiagramStakeholders =
-                CreateDictionary<ForceFieldDiagramStakeholderXmlEntity, PositionedStakeholder>();
+                CreateDictionary<ForceFieldDiagramStakeholderXmlEntity, Data.PositionedStakeholder>();
 
         private readonly Dictionary<OnionDiagramXmlEntity, OnionDiagram> onionDiagrams =
             CreateDictionary<OnionDiagramXmlEntity, OnionDiagram>();
@@ -88,7 +88,7 @@ namespace StakeholderAnalysis.Storage.Read
             Collect(forceFieldDiagrams, entity, model);
         }
 
-        internal void Collect(ForceFieldDiagramStakeholderXmlEntity entity, PositionedStakeholder model)
+        internal void Collect(ForceFieldDiagramStakeholderXmlEntity entity, Data.PositionedStakeholder model)
         {
             Collect(forceFieldDiagramStakeholders, entity, model);
         }
@@ -98,7 +98,7 @@ namespace StakeholderAnalysis.Storage.Read
             Collect(attitudeImpactDiagrams, entity, model);
         }
 
-        internal void Collect(AttitudeImpactDiagramStakeholderXmlEntity entity, AttitudeImpactDiagramStakeholder model)
+        internal void Collect(AttitudeImpactDiagramStakeholderXmlEntity entity, PositionedStakeholder model)
         {
             Collect(attitudeImpactDiagramStakeholders, entity, model);
         }
@@ -198,7 +198,7 @@ namespace StakeholderAnalysis.Storage.Read
             return Get(forceFieldDiagrams, entity);
         }
 
-        internal PositionedStakeholder Get(ForceFieldDiagramStakeholderXmlEntity entity)
+        internal Data.PositionedStakeholder Get(ForceFieldDiagramStakeholderXmlEntity entity)
         {
             return Get(forceFieldDiagramStakeholders, entity);
         }
@@ -208,7 +208,7 @@ namespace StakeholderAnalysis.Storage.Read
             return Get(attitudeImpactDiagrams, entity);
         }
 
-        internal AttitudeImpactDiagramStakeholder Get(AttitudeImpactDiagramStakeholderXmlEntity entity)
+        internal PositionedStakeholder Get(AttitudeImpactDiagramStakeholderXmlEntity entity)
         {
             return Get(attitudeImpactDiagramStakeholders, entity);
         }

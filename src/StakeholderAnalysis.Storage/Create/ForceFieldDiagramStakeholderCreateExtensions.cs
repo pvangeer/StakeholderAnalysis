@@ -1,5 +1,5 @@
 ﻿using System;
-using StakeholderAnalysis.Data.ForceFieldDiagrams;
+using StakeholderAnalysis.Data;
 using StakeholderAnalysis.Storage.XmlEntities;
 
 namespace StakeholderAnalysis.Storage.Create
@@ -11,11 +11,11 @@ namespace StakeholderAnalysis.Storage.Create
         {
             if (registry == null) throw new ArgumentNullException(nameof(registry));
 
-            if (registry.Contains(stakeholder)) return registry.Get(stakeholder);
+            if (registry.Contains(stakeholder)) return registry.GetAsForceFieldDiagramStakeholderXmlEntity(stakeholder);
 
             var entity = new ForceFieldDiagramStakeholderXmlEntity
             {
-                StakeholderId = stakeholder.Stakeholder.Create(registry).Id,
+                StakeholderReferenceId = stakeholder.Stakeholder.Create(registry).Id,
                 Influence = 1.0 - stakeholder.Top,
                 Interest = stakeholder.Left,
                 Rank = stakeholder.Rank

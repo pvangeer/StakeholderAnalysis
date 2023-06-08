@@ -1,6 +1,6 @@
 ﻿using StakeholderAnalysis.Data.Exceptions;
 
-namespace StakeholderAnalysis.Data.ForceFieldDiagrams
+namespace StakeholderAnalysis.Data
 {
     public class PositionedStakeholder : NotifyPropertyChangedObservable, IRankedStakeholder
     {

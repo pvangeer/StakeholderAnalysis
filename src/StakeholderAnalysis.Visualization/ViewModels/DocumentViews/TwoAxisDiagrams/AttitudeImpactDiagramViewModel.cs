@@ -123,12 +123,12 @@ namespace StakeholderAnalysis.Visualization.ViewModels.DocumentViews.TwoAxisDiag
         private void StakeholdersCollectionChanged(object sender, NotifyCollectionChangedEventArgs e)
         {
             if (e.Action == NotifyCollectionChangedAction.Add)
-                foreach (var item in e.NewItems.OfType<AttitudeImpactDiagramStakeholder>())
+                foreach (var item in e.NewItems.OfType<PositionedStakeholder>())
                     PositionedStakeholders.Add(
                         ViewModelFactory.CreateAttitudeImpactDiagramStakeholderViewModel(diagram, item, this));
 
             if (e.Action == NotifyCollectionChangedAction.Remove)
-                foreach (var stakeholder in e.OldItems.OfType<AttitudeImpactDiagramStakeholder>())
+                foreach (var stakeholder in e.OldItems.OfType<PositionedStakeholder>())
                     PositionedStakeholders.Remove(PositionedStakeholders.FirstOrDefault(viewModel =>
                         viewModel.IsViewModelFor(stakeholder.Stakeholder)));
         }

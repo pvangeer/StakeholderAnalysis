@@ -60,7 +60,7 @@ namespace StakeholderAnalysis.Storage.Create
         {
             for (var index = 0; index < diagram.Stakeholders.Count; index++)
             {
-                var stakeholder = diagram.Stakeholders[index].Create(registry);
+                var stakeholder = ForceFieldDiagramStakeholderCreateExtensions.Create(diagram.Stakeholders[index], registry);
                 stakeholder.Order = index;
                 entity.ForceFieldDiagramStakeholderXmlEntities.Add(stakeholder);
             }

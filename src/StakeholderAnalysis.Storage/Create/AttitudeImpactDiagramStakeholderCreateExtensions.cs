@@ -1,5 +1,5 @@
 ﻿using System;
-using StakeholderAnalysis.Data.AttitudeImpactDiagrams;
+using StakeholderAnalysis.Data;
 using StakeholderAnalysis.Storage.XmlEntities;
 
 namespace StakeholderAnalysis.Storage.Create
@@ -7,11 +7,11 @@ namespace StakeholderAnalysis.Storage.Create
     internal static class AttitudeImpactDiagramStakeholderCreateExtensions
     {
         internal static AttitudeImpactDiagramStakeholderXmlEntity Create(
-            this AttitudeImpactDiagramStakeholder stakeholder, PersistenceRegistry registry)
+            this PositionedStakeholder stakeholder, PersistenceRegistry registry)
         {
             if (registry == null) throw new ArgumentNullException(nameof(registry));
 
-            if (registry.Contains(stakeholder)) return registry.Get(stakeholder);
+            if (registry.Contains(stakeholder)) return registry.GetAsAttitudeImpactDiagramStakeholderXmlEntity(stakeholder);
 
             var entity = new AttitudeImpactDiagramStakeholderXmlEntity
             {

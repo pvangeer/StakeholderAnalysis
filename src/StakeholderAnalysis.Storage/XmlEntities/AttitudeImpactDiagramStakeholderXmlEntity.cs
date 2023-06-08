@@ -4,7 +4,7 @@ using System.Xml.Serialization;
 namespace StakeholderAnalysis.Storage.XmlEntities
 {
     [Serializable]
-    public class AttitudeImpactDiagramStakeholderXmlEntity : IXmlEntity
+    public class AttitudeImpactDiagramStakeholderXmlEntity : IPositionedStakeholderXmlEntity
     {
         [XmlAttribute(AttributeName = "attitude")]
         public double Attitude { get; set; }

@@ -125,13 +125,13 @@ namespace StakeholderAnalysis.Data
         {
             if (diagram.Stakeholders.All(s => s.Stakeholder != stakeholder))
             {
-                var attitudeImpactDiagramStakeholder = new AttitudeImpactDiagramStakeholder(stakeholder, 0.5, 0.5) { Rank = diagram.Stakeholders.Count };
+                var attitudeImpactDiagramStakeholder = new PositionedStakeholder(stakeholder, 0.5, 0.5) { Rank = diagram.Stakeholders.Count };
                 FindPositionForNewStakeholder(diagram, attitudeImpactDiagramStakeholder);
                 diagram.Stakeholders.Add(attitudeImpactDiagramStakeholder);
             }
         }
 
-        private static void FindPositionForNewStakeholder(AttitudeImpactDiagram diagram, AttitudeImpactDiagramStakeholder stakeholder, int count = 1)
+        private static void FindPositionForNewStakeholder(AttitudeImpactDiagram diagram, PositionedStakeholder stakeholder, int count = 1)
         {
             if (count > 200)
             {
