@@ -155,7 +155,7 @@ namespace StakeholderAnalysis.Visualization.ViewModels
         }
 
         public AttitudeImpactDiagramStakeholderViewModel CreateAttitudeImpactDiagramStakeholderViewModel(
-            AttitudeImpactDiagram diagram, PositionedStakeholder stakeholder,
+            AttitudeImpactDiagram diagram, Data.PositionedStakeholder stakeholder,
             ISelectionRegister selectionRegister)
         {
             return new AttitudeImpactDiagramStakeholderViewModel(this, diagram, stakeholder, selectionRegister);
@@ -174,7 +174,7 @@ namespace StakeholderAnalysis.Visualization.ViewModels
         }
 
         public OnionDiagramStakeholderViewModel CreateOnionDiagramStakeholderViewModel(OnionDiagram diagram,
-            OnionDiagramStakeholder stakeholder, ISelectionRegister selectionRegister,
+            PositionedStakeholder stakeholder, ISelectionRegister selectionRegister,
             IDrawConnectionHandler drawConnectionHandler)
         {
             return new OnionDiagramStakeholderViewModel(this, diagram, stakeholder, selectionRegister,

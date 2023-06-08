@@ -4,7 +4,7 @@ using System.Xml.Serialization;
 namespace StakeholderAnalysis.Storage.XmlEntities
 {
     [Serializable]
-    public class OnionDiagramStakeholderXmlEntity : IXmlEntity
+    public class OnionDiagramStakeholderXmlEntity : IPositionedStakeholderXmlEntity
     {
         [XmlAttribute(AttributeName = "order")]
         public long Order { get; set; }
@@ -19,7 +19,7 @@ namespace StakeholderAnalysis.Storage.XmlEntities
         public double Top { get; set; }
 
         [XmlAttribute(AttributeName = "stakeholderid")]
-        public long StakeholderId { get; set; }
+        public long StakeholderReferenceId { get; set; }
 
         [XmlAttribute(AttributeName = "id")]
         public long Id { get; set; }

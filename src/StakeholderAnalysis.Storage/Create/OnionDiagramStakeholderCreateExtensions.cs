@@ -1,4 +1,5 @@
 ﻿using System;
+using StakeholderAnalysis.Data;
 using StakeholderAnalysis.Data.OnionDiagrams;
 using StakeholderAnalysis.Storage.XmlEntities;
 
@@ -6,16 +7,16 @@ namespace StakeholderAnalysis.Storage.Create
 {
     internal static class OnionDiagramStakeholderCreateExtensions
     {
-        internal static OnionDiagramStakeholderXmlEntity Create(this OnionDiagramStakeholder stakeholder,
+        internal static OnionDiagramStakeholderXmlEntity Create(this PositionedStakeholder stakeholder,
             PersistenceRegistry registry)
         {
             if (registry == null) throw new ArgumentNullException(nameof(registry));
 
-            if (registry.Contains(stakeholder)) return registry.Get(stakeholder);
+            if (registry.Contains(stakeholder)) return registry.GetAsOnionDiagramStakeholderXmlEntity(stakeholder);
 
             var entity = new OnionDiagramStakeholderXmlEntity
             {
-                StakeholderId = stakeholder.Stakeholder.Create(registry).Id,
+                StakeholderReferenceId = stakeholder.Stakeholder.Create(registry).Id,
                 Left = stakeholder.Left,
                 Top = stakeholder.Top,
                 Rank = stakeholder.Rank

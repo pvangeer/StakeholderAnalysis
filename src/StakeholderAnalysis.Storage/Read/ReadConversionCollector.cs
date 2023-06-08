@@ -14,9 +14,9 @@ namespace StakeholderAnalysis.Storage.Read
         private readonly Dictionary<AttitudeImpactDiagramXmlEntity, AttitudeImpactDiagram> attitudeImpactDiagrams =
             CreateDictionary<AttitudeImpactDiagramXmlEntity, AttitudeImpactDiagram>();
 
-        private readonly Dictionary<AttitudeImpactDiagramStakeholderXmlEntity, PositionedStakeholder>
+        private readonly Dictionary<AttitudeImpactDiagramStakeholderXmlEntity, Data.PositionedStakeholder>
             attitudeImpactDiagramStakeholders =
-                CreateDictionary<AttitudeImpactDiagramStakeholderXmlEntity, PositionedStakeholder>();
+                CreateDictionary<AttitudeImpactDiagramStakeholderXmlEntity, Data.PositionedStakeholder>();
 
         private readonly Dictionary<ForceFieldDiagramXmlEntity, ForceFieldDiagram> forceFieldDiagrams =
             CreateDictionary<ForceFieldDiagramXmlEntity, ForceFieldDiagram>();
@@ -28,9 +28,9 @@ namespace StakeholderAnalysis.Storage.Read
         private readonly Dictionary<OnionDiagramXmlEntity, OnionDiagram> onionDiagrams =
             CreateDictionary<OnionDiagramXmlEntity, OnionDiagram>();
 
-        private readonly Dictionary<OnionDiagramStakeholderXmlEntity, OnionDiagramStakeholder>
+        private readonly Dictionary<OnionDiagramStakeholderXmlEntity, PositionedStakeholder>
             onionDiagramStakeholders =
-                CreateDictionary<OnionDiagramStakeholderXmlEntity, OnionDiagramStakeholder>();
+                CreateDictionary<OnionDiagramStakeholderXmlEntity, PositionedStakeholder>();
 
         private readonly Dictionary<OnionRingXmlEntity, OnionRing> onionRings =
             CreateDictionary<OnionRingXmlEntity, OnionRing>();
@@ -68,7 +68,7 @@ namespace StakeholderAnalysis.Storage.Read
             Collect(onionRings, entity, model);
         }
 
-        internal void Collect(OnionDiagramStakeholderXmlEntity entity, OnionDiagramStakeholder model)
+        internal void Collect(OnionDiagramStakeholderXmlEntity entity, PositionedStakeholder model)
         {
             Collect(onionDiagramStakeholders, entity, model);
         }
@@ -98,7 +98,7 @@ namespace StakeholderAnalysis.Storage.Read
             Collect(attitudeImpactDiagrams, entity, model);
         }
 
-        internal void Collect(AttitudeImpactDiagramStakeholderXmlEntity entity, PositionedStakeholder model)
+        internal void Collect(AttitudeImpactDiagramStakeholderXmlEntity entity, Data.PositionedStakeholder model)
         {
             Collect(attitudeImpactDiagramStakeholders, entity, model);
         }
@@ -178,7 +178,7 @@ namespace StakeholderAnalysis.Storage.Read
             return Get(onionRings, entity);
         }
 
-        internal OnionDiagramStakeholder Get(OnionDiagramStakeholderXmlEntity entity)
+        internal PositionedStakeholder Get(OnionDiagramStakeholderXmlEntity entity)
         {
             return Get(onionDiagramStakeholders, entity);
         }
@@ -208,7 +208,7 @@ namespace StakeholderAnalysis.Storage.Read
             return Get(attitudeImpactDiagrams, entity);
         }
 
-        internal PositionedStakeholder Get(AttitudeImpactDiagramStakeholderXmlEntity entity)
+        internal Data.PositionedStakeholder Get(AttitudeImpactDiagramStakeholderXmlEntity entity)
         {
             return Get(attitudeImpactDiagramStakeholders, entity);
         }
@@ -229,11 +229,11 @@ namespace StakeholderAnalysis.Storage.Read
                 : Get(key);
         }
 
-        public OnionDiagramStakeholder GetReferencedOnionDiagramStakeholder(long id)
+        public PositionedStakeholder GetReferencedOnionDiagramStakeholder(long id)
         {
             var key = onionDiagramStakeholders.Keys.FirstOrDefault(k => k.Id == id);
             return key == null
-                ? throw new ReadReferencedObjectsFirstException(nameof(OnionDiagramStakeholder))
+                ? throw new ReadReferencedObjectsFirstException(nameof(PositionedStakeholder))
                 : Get(key);
         }
 

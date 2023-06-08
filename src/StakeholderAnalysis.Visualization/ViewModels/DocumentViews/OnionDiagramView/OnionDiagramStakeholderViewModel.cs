@@ -3,6 +3,7 @@ using System.Collections.Specialized;
 using System.ComponentModel;
 using System.Linq;
 using System.Windows.Input;
+using StakeholderAnalysis.Data;
 using StakeholderAnalysis.Data.OnionDiagrams;
 using StakeholderAnalysis.Visualization.Behaviors;
 using static System.Double;
@@ -12,51 +13,51 @@ namespace StakeholderAnalysis.Visualization.ViewModels.DocumentViews.OnionDiagra
     public class OnionDiagramStakeholderViewModel : DiagramStakeholderViewModelBase
     {
         private readonly OnionDiagram diagram;
-        private readonly OnionDiagramStakeholder onionDiagramStakeholder;
+        private readonly PositionedStakeholder positionedStakeholder;
 
         public OnionDiagramStakeholderViewModel(ViewModelFactory factory, OnionDiagram diagram,
-            OnionDiagramStakeholder stakeholder,
+            PositionedStakeholder stakeholder,
             ISelectionRegister selectionRegister, IDrawConnectionHandler drawConnectionHandler) : base(factory,
             stakeholder?.Stakeholder, selectionRegister, drawConnectionHandler)
         {
             DrawConnectionHandler = drawConnectionHandler;
             this.diagram = diagram;
             if (diagram != null) diagram.Stakeholders.CollectionChanged += DiagramStakeholdersCollectionChanged;
-            onionDiagramStakeholder = stakeholder;
-            if (onionDiagramStakeholder != null) onionDiagramStakeholder.PropertyChanged += StakeholderPropertyChanged;
-            MoveStakeholderToBottomCommand = CommandFactory.CreateMoveToBottomCommand(diagram, onionDiagramStakeholder);
-            MoveStakeholderToTopCommand = CommandFactory.CreateMoveToTopCommand(diagram, onionDiagramStakeholder);
-            MoveStakeholderUpCommand = CommandFactory.CreateMoveUpCommand(diagram, onionDiagramStakeholder);
-            MoveStakeholderDownCommand = CommandFactory.CreateMoveDownCommand(diagram, onionDiagramStakeholder);
+            positionedStakeholder = stakeholder;
+            if (positionedStakeholder != null) positionedStakeholder.PropertyChanged += StakeholderPropertyChanged;
+            MoveStakeholderToBottomCommand = CommandFactory.CreateMoveToBottomCommand(diagram, positionedStakeholder);
+            MoveStakeholderToTopCommand = CommandFactory.CreateMoveToTopCommand(diagram, positionedStakeholder);
+            MoveStakeholderUpCommand = CommandFactory.CreateMoveUpCommand(diagram, positionedStakeholder);
+            MoveStakeholderDownCommand = CommandFactory.CreateMoveDownCommand(diagram, positionedStakeholder);
         }
 
         public int Rank
         {
-            get => onionDiagramStakeholder.Rank;
+            get => positionedStakeholder.Rank;
             set
             {
-                onionDiagramStakeholder.Rank = value;
-                onionDiagramStakeholder.OnPropertyChanged();
+                positionedStakeholder.Rank = value;
+                positionedStakeholder.OnPropertyChanged();
             }
         }
 
         public double LeftPercentage
         {
-            get => onionDiagramStakeholder?.Left ?? NaN;
+            get => positionedStakeholder?.Left ?? NaN;
             set
             {
-                onionDiagramStakeholder.Left = value;
-                onionDiagramStakeholder.OnPropertyChanged(nameof(onionDiagramStakeholder.Left));
+                positionedStakeholder.Left = value;
+                positionedStakeholder.OnPropertyChanged(nameof(positionedStakeholder.Left));
             }
         }
 
         public double TopPercentage
         {
-            get => onionDiagramStakeholder?.Top ?? NaN;
+            get => positionedStakeholder?.Top ?? NaN;
             set
             {
-                onionDiagramStakeholder.Top = value;
-                onionDiagramStakeholder.OnPropertyChanged(nameof(onionDiagramStakeholder.Top));
+                positionedStakeholder.Top = value;
+                positionedStakeholder.OnPropertyChanged(nameof(positionedStakeholder.Top));
             }
         }
 
@@ -96,13 +97,13 @@ namespace StakeholderAnalysis.Visualization.ViewModels.DocumentViews.OnionDiagra
         {
             switch (e.PropertyName)
             {
-                case nameof(OnionDiagramStakeholder.Left):
+                case nameof(PositionedStakeholder.Left):
                     OnPropertyChanged(nameof(LeftPercentage));
                     break;
-                case nameof(OnionDiagramStakeholder.Top):
+                case nameof(PositionedStakeholder.Top):
                     OnPropertyChanged(nameof(TopPercentage));
                     break;
-                case nameof(OnionDiagramStakeholder.Rank):
+                case nameof(PositionedStakeholder.Rank):
                     OnPropertyChanged(nameof(CanMoveToBottom));
                     OnPropertyChanged(nameof(CanMoveDown));
                     OnPropertyChanged(nameof(CanMoveToTop));
@@ -114,7 +115,7 @@ namespace StakeholderAnalysis.Visualization.ViewModels.DocumentViews.OnionDiagra
             base.StakeholderPropertyChanged(sender, e);
         }
 
-        public bool IsViewModelFor(OnionDiagramStakeholder stakeholder)
+        public bool IsViewModelFor(PositionedStakeholder stakeholder)
         {
             return IsViewModelFor(stakeholder.Stakeholder);
         }
@@ -123,16 +124,16 @@ namespace StakeholderAnalysis.Visualization.ViewModels.DocumentViews.OnionDiagra
         {
             if (IsSelectedStakeholder)
             {
-                diagram.Stakeholders.Remove(onionDiagramStakeholder);
+                diagram.Stakeholders.Remove(positionedStakeholder);
                 var connectionsToRemove = diagram.Connections.Where(c =>
-                    c.ConnectFrom == onionDiagramStakeholder || c.ConnectTo == onionDiagramStakeholder).ToList();
+                    c.ConnectFrom == positionedStakeholder || c.ConnectTo == positionedStakeholder).ToList();
                 foreach (var connection in connectionsToRemove) diagram.Connections.Remove(connection);
             }
         }
 
-        public OnionDiagramStakeholder GetOnionDiagramStakeholder()
+        public PositionedStakeholder GetOnionDiagramStakeholder()
         {
-            return onionDiagramStakeholder;
+            return positionedStakeholder;
         }
     }
 }

@@ -1,4 +1,5 @@
 ﻿using System;
+using StakeholderAnalysis.Data;
 using StakeholderAnalysis.Data.OnionDiagrams;
 using StakeholderAnalysis.Storage.XmlEntities;
 
@@ -6,7 +7,7 @@ namespace StakeholderAnalysis.Storage.Read
 {
     internal static class OnionDiagramStakeholderEntityReadExtensions
     {
-        internal static OnionDiagramStakeholder Read(this OnionDiagramStakeholderXmlEntity entity,
+        internal static PositionedStakeholder Read(this OnionDiagramStakeholderXmlEntity entity,
             ReadConversionCollector collector)
         {
             if (entity == null) throw new ArgumentNullException(nameof(entity));
@@ -14,8 +15,8 @@ namespace StakeholderAnalysis.Storage.Read
 
             if (collector.Contains(entity)) return collector.Get(entity);
 
-            var attitudeImpactDiagram = new OnionDiagramStakeholder(
-                collector.GetReferencedStakeholder(entity.StakeholderId),
+            var attitudeImpactDiagram = new PositionedStakeholder(
+                collector.GetReferencedStakeholder(entity.StakeholderReferenceId),
                 entity.Left, entity.Top)
             {
                 Rank = (int)entity.Rank

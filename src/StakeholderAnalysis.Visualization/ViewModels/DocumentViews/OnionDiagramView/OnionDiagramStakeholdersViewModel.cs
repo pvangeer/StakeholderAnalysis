@@ -1,6 +1,7 @@
 ﻿using System.Collections.ObjectModel;
 using System.Collections.Specialized;
 using System.Linq;
+using StakeholderAnalysis.Data;
 using StakeholderAnalysis.Data.OnionDiagrams;
 using StakeholderAnalysis.Visualization.Behaviors;
 
@@ -33,12 +34,12 @@ namespace StakeholderAnalysis.Visualization.ViewModels.DocumentViews.OnionDiagra
         private void OnionDiagramStakeholdersCollectionChanged(object sender, NotifyCollectionChangedEventArgs e)
         {
             if (e.Action == NotifyCollectionChangedAction.Add)
-                foreach (var item in e.NewItems.OfType<OnionDiagramStakeholder>())
+                foreach (var item in e.NewItems.OfType<PositionedStakeholder>())
                     OnionDiagramStakeholders.Add(ViewModelFactory.CreateOnionDiagramStakeholderViewModel(diagram, item,
                         selectionRegister, drawConnectionHandler));
 
             if (e.Action == NotifyCollectionChangedAction.Remove)
-                foreach (var stakeholder in e.OldItems.OfType<OnionDiagramStakeholder>())
+                foreach (var stakeholder in e.OldItems.OfType<PositionedStakeholder>())
                     OnionDiagramStakeholders.Remove(OnionDiagramStakeholders.FirstOrDefault(viewModel =>
                         viewModel.IsViewModelFor(stakeholder)));
         }

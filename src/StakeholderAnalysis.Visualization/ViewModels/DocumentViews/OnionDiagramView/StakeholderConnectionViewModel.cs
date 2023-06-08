@@ -2,6 +2,7 @@
 using System.ComponentModel;
 using System.Windows.Input;
 using System.Windows.Media;
+using StakeholderAnalysis.Data;
 using StakeholderAnalysis.Data.OnionDiagrams;
 using StakeholderAnalysis.Messaging;
 
@@ -51,10 +52,10 @@ namespace StakeholderAnalysis.Visualization.ViewModels.DocumentViews.OnionDiagra
         {
             switch (e.PropertyName)
             {
-                case nameof(OnionDiagramStakeholder.Left):
+                case nameof(PositionedStakeholder.Left):
                     OnPropertyChanged(nameof(ConnectToLeft));
                     break;
-                case nameof(OnionDiagramStakeholder.Top):
+                case nameof(PositionedStakeholder.Top):
                     OnPropertyChanged(nameof(ConnectToTop));
                     break;
             }
@@ -64,10 +65,10 @@ namespace StakeholderAnalysis.Visualization.ViewModels.DocumentViews.OnionDiagra
         {
             switch (e.PropertyName)
             {
-                case nameof(OnionDiagramStakeholder.Left):
+                case nameof(PositionedStakeholder.Left):
                     OnPropertyChanged(nameof(ConnectFromLeft));
                     break;
-                case nameof(OnionDiagramStakeholder.Top):
+                case nameof(PositionedStakeholder.Top):
                     OnPropertyChanged(nameof(ConnectFromTop));
                     break;
             }

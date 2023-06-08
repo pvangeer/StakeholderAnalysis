@@ -4,7 +4,7 @@ using System.Linq;
 
 namespace StakeholderAnalysis.Data.OnionDiagrams
 {
-    public class OnionDiagram : NotifyPropertyChangedObservable, IStakeholderDiagram<OnionDiagramStakeholder>,
+    public class OnionDiagram : NotifyPropertyChangedObservable, IStakeholderDiagram<PositionedStakeholder>,
         ICloneable
     {
         public OnionDiagram(string name, ObservableCollection<OnionRing> onionRings = null,
@@ -13,7 +13,7 @@ namespace StakeholderAnalysis.Data.OnionDiagrams
         {
             Name = name;
             OnionRings = onionRings ?? new ObservableCollection<OnionRing>();
-            Stakeholders = new ObservableCollection<OnionDiagramStakeholder>();
+            Stakeholders = new ObservableCollection<PositionedStakeholder>();
             Connections = connections ?? new ObservableCollection<StakeholderConnection>();
             ConnectionGroups = connectionGroups ?? new ObservableCollection<StakeholderConnectionGroup>();
             Asymmetry = 0.5;
@@ -55,7 +55,7 @@ namespace StakeholderAnalysis.Data.OnionDiagrams
 
             foreach (var stakeholder in Stakeholders)
                 clone.Stakeholders.Add(
-                    new OnionDiagramStakeholder(stakeholder.Stakeholder, stakeholder.Left, stakeholder.Top)
+                    new PositionedStakeholder(stakeholder.Stakeholder, stakeholder.Left, stakeholder.Top)
                         { Rank = stakeholder.Rank });
 
             foreach (var connectionGroup in ConnectionGroups)
@@ -75,6 +75,6 @@ namespace StakeholderAnalysis.Data.OnionDiagrams
             return clone;
         }
 
-        public ObservableCollection<OnionDiagramStakeholder> Stakeholders { get; }
+        public ObservableCollection<PositionedStakeholder> Stakeholders { get; }
     }
 }

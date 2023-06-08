@@ -208,8 +208,8 @@ namespace StakeholderAnalysis.Storage.Test.Create
                     {
                         Stakeholders =
                         {
-                            new PositionedStakeholder(stakeholder1, 0.15, 0.5),
-                            new PositionedStakeholder(stakeholder3, 0.25, 0.6)
+                            new Data.PositionedStakeholder(stakeholder1, 0.15, 0.5),
+                            new Data.PositionedStakeholder(stakeholder3, 0.25, 0.6)
                         }
                     }
                 }
@@ -323,9 +323,9 @@ namespace StakeholderAnalysis.Storage.Test.Create
             var stakeholder1 = new Stakeholder("Stakeholder 1", stakeholderType);
             var stakeholder2 = new Stakeholder("Stakeholder 2", stakeholderType);
             var stakeholder3 = new Stakeholder("Stakeholder 3", stakeholderType);
-            var diagramStakeholder1 = new OnionDiagramStakeholder(stakeholder1, 0.2, 0.4);
-            var diagramStakeholder2 = new OnionDiagramStakeholder(stakeholder2, 0.7, 0.2);
-            var diagramStakeholder3 = new OnionDiagramStakeholder(stakeholder3, 0.3, 0.6);
+            var diagramStakeholder1 = new PositionedStakeholder(stakeholder1, 0.2, 0.4);
+            var diagramStakeholder2 = new PositionedStakeholder(stakeholder2, 0.7, 0.2);
+            var diagramStakeholder3 = new PositionedStakeholder(stakeholder3, 0.3, 0.6);
             var onionDiagram = new OnionDiagram("Beoordelen", new ObservableCollection<OnionRing>
             {
                 new OnionRing { BackgroundColor = Colors.LightBlue },
@@ -381,7 +381,7 @@ namespace StakeholderAnalysis.Storage.Test.Create
 
                 Assert.IsTrue(registry.Contains(diagramStakeholder.Stakeholder));
                 var xmlStakeholder = registry.Get(diagramStakeholder.Stakeholder);
-                Assert.AreEqual(xmlStakeholder.Id, xmlDiagramStakeholder.StakeholderId);
+                Assert.AreEqual(xmlStakeholder.Id, xmlDiagramStakeholder.StakeholderReferenceId);
             }
 
             Assert.AreEqual(firstDiagram.OnionRings.Count, firstXmlEntity.OnionRingXmlEntities.Count);
@@ -429,10 +429,10 @@ namespace StakeholderAnalysis.Storage.Test.Create
                     connectionXmlEntity.StakeholderConnectionGroupId);
 
                 Assert.IsTrue(registry.Contains(diagramConnection.ConnectFrom));
-                Assert.AreEqual(registry.Get(diagramConnection.ConnectFrom).Id, connectionXmlEntity.StakeholderFromId);
+                Assert.AreEqual(registry.GetAsOnionDiagramStakeholderXmlEntity(diagramConnection.ConnectFrom).Id, connectionXmlEntity.StakeholderFromId);
 
                 Assert.IsTrue(registry.Contains(diagramConnection.ConnectTo));
-                Assert.AreEqual(registry.Get(diagramConnection.ConnectTo).Id, connectionXmlEntity.StakeholderToId);
+                Assert.AreEqual(registry.GetAsOnionDiagramStakeholderXmlEntity(diagramConnection.ConnectTo).Id, connectionXmlEntity.StakeholderToId);
 
                 Assert.IsTrue(registry.Contains(diagramConnection));
             }

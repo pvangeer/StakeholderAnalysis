@@ -62,14 +62,14 @@ namespace StakeholderAnalysis.Data
         {
                 if (diagram.Stakeholders.All(s => s.Stakeholder != stakeholder))
                 {
-                    var onionDiagramStakeholder = new OnionDiagramStakeholder(stakeholder, 0.5, 0.5) { Rank = diagram.Stakeholders.Count };
+                    var onionDiagramStakeholder = new PositionedStakeholder(stakeholder, 0.5, 0.5) { Rank = diagram.Stakeholders.Count };
                     FindPositionForNewOnionDiagramStakeholder(diagram, onionDiagramStakeholder);
                     
                     diagram.Stakeholders.Add(onionDiagramStakeholder);
                 }
         }
 
-        private static void FindPositionForNewOnionDiagramStakeholder(OnionDiagram diagram, OnionDiagramStakeholder stakeholder, int count = 1)
+        private static void FindPositionForNewOnionDiagramStakeholder(OnionDiagram diagram, PositionedStakeholder stakeholder, int count = 1)
         {
             if (count > 200)
             {

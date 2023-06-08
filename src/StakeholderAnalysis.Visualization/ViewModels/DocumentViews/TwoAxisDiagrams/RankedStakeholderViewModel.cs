@@ -2,7 +2,6 @@
 using System.ComponentModel;
 using System.Windows.Input;
 using StakeholderAnalysis.Data;
-using StakeholderAnalysis.Data.OnionDiagrams;
 using StakeholderAnalysis.Visualization.Behaviors;
 
 namespace StakeholderAnalysis.Visualization.ViewModels.DocumentViews.TwoAxisDiagrams
@@ -69,7 +68,7 @@ namespace StakeholderAnalysis.Visualization.ViewModels.DocumentViews.TwoAxisDiag
         {
             switch (e.PropertyName)
             {
-                case nameof(OnionDiagramStakeholder.Rank):
+                case nameof(PositionedStakeholder.Rank):
                     OnPropertyChanged(nameof(CanMoveToBottom));
                     OnPropertyChanged(nameof(CanMoveDown));
                     OnPropertyChanged(nameof(CanMoveToTop));

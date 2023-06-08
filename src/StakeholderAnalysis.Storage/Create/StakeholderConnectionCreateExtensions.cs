@@ -15,10 +15,9 @@ namespace StakeholderAnalysis.Storage.Create
 
             var entity = new StakeholderConnectionXmlEntity
             {
-                StakeholderConnectionGroupId =
-                    connection.StakeholderConnectionGroup.Create(registry).Id,
-                StakeholderFromId = connection.ConnectFrom.Create(registry).Id,
-                StakeholderToId = connection.ConnectTo.Create(registry).Id
+                StakeholderConnectionGroupId = connection.StakeholderConnectionGroup.Create(registry).Id,
+                StakeholderFromId = OnionDiagramStakeholderCreateExtensions.Create(connection.ConnectFrom, registry).Id,
+                StakeholderToId = OnionDiagramStakeholderCreateExtensions.Create(connection.ConnectTo, registry).Id
             };
 
             registry.Register(connection, entity);
