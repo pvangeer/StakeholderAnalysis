@@ -51,6 +51,7 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Commands\CloseViewWithMiddleMouseCommand.cs" />
     <Compile Include="Commands\Diagrams\AppointToDiagramCommand.cs" />
     <Compile Include="Converters\Diagrams\StakeholderTable\AppointToDiagramMenuItemsConverter.cs" />
     <Compile Include="Behaviors\AttachInputBindingsBehavior.cs" />
@@ -69,6 +70,7 @@
     <Compile Include="Converters\ObjectToPropertiesViewModelConverter.cs" />
     <Compile Include="Converters\Diagrams\StakeholderTable\StakeholderTypesToMenuItemsConverter.cs" />
     <Compile Include="StakeholderTypeToNameConverter.cs" />
+    <Compile Include="Converters\MainContentPresenter\ToCloseViewCommandInputConverter.cs" />
     <Compile Include="ViewModels\DocumentViews\IDiagramViewModel.cs" />
     <Compile Include="Commands\Diagrams\RemoveSelectedStakeholderCommand.cs" />
     <Compile Include="ViewModels\DocumentViews\StakeholderTableView\StakeholderViewModel.cs" />

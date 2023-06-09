@@ -5,8 +5,9 @@
                     xmlns:gui="clr-namespace:StakeholderAnalysis.Gui;assembly=StakeholderAnalysis.Gui"
                     xmlns:behaviors="clr-namespace:StakeholderAnalysis.Visualization.Behaviors"
                     xmlns:xctk="http://schemas.xceed.com/wpf/xaml/toolkit"
-                    xmlns:mainContentPresenter="clr-namespace:StakeholderAnalysis.Visualization.Converters.MainContentPresenter"
-                    xmlns:converters="clr-namespace:StakeholderAnalysis.Visualization.Converters">
+                    xmlns:mainContentPresenterConverters="clr-namespace:StakeholderAnalysis.Visualization.Converters.MainContentPresenter"
+                    xmlns:converters="clr-namespace:StakeholderAnalysis.Visualization.Converters"
+                    xmlns:commands="clr-namespace:StakeholderAnalysis.Visualization.Commands">
 
     <ResourceDictionary.MergedDictionaries>
         <ResourceDictionary
@@ -25,10 +26,11 @@
     <BooleanToVisibilityConverter x:Key="BoolToVisibilityConverter" />
 
 
-    <mainContentPresenter:IsProneToExportConverter x:Key="IsProneToExportConverter" />
-    <mainContentPresenter:DocumentViewInfoToPropertiesViewInfoConverter
+    <mainContentPresenterConverters:IsProneToExportConverter x:Key="IsProneToExportConverter" />
+    <mainContentPresenterConverters:DocumentViewInfoToPropertiesViewInfoConverter
         x:Key="DocumentViewInfoToPropertiesViewInfoConverter" />
     <converters:ObjectToPropertiesViewModelConverter x:Key="ObjectToPropertiesViewModelConverter" />
+    <mainContentPresenterConverters:ToCloseViewCommandInputConverter x:Key="ToCloseViewCommandInputConverter" />
 
     <DataTemplate x:Key="NoDataTemplate">
         <Grid />
@@ -140,6 +142,7 @@
                 HorizontalAlignment="Stretch"
                 ResizeBehavior="BasedOnAlignment" />
             <TabControl
+                x:Name="DocumentViewsTabControl"
                 Grid.Column="2"
                 ContentTemplate="{StaticResource DocumentViewDataTemplate}"
                 SelectedIndex="{Binding ViewManager.ActiveDocumentIndex, Mode=TwoWay}"
@@ -148,6 +151,7 @@
                     <Style TargetType="TabItem">
                         <Setter Property="Padding" Value="0" />
                     </Style>
+                    <commands:CloseViewWithMiddleMouseCommand x:Key="CloseViewWithMiddleMouseCommand" />
                 </TabControl.Resources>
                 <TabControl.ItemTemplate>
                     <DataTemplate DataType="gui:ViewInfo">
@@ -162,6 +166,18 @@
                                     </Style.Triggers>
                                 </Style>
                             </Border.Style>
+                            <Border.InputBindings>
+                                <MouseBinding Gesture="MiddleClick"
+                                              Command="{StaticResource CloseViewWithMiddleMouseCommand}">
+                                    <MouseBinding.CommandParameter>
+                                        <MultiBinding Converter="{StaticResource ToCloseViewCommandInputConverter}">
+                                            <Binding Path="." />
+                                            <Binding ElementName="DocumentViewsTabControl"
+                                                     Path=".DataContext.ViewManager" />
+                                        </MultiBinding>
+                                    </MouseBinding.CommandParameter>
+                                </MouseBinding>
+                            </Border.InputBindings>
                             <Grid VerticalAlignment="Center" Height="{StaticResource DefaultItemHeight}">
                                 <Grid.ColumnDefinitions>
                                     <ColumnDefinition Width="Auto" />

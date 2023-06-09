@@ -41,6 +41,11 @@ namespace StakeholderAnalysis.Visualization.ViewModels
 
         public ObservableCollection<ViewInfo> Views => viewManager.Views;
 
+        public ViewManager GetViewManager()
+        {
+            return viewManager;
+        }
+
         private void ViewManagerPropertyChanged(object sender, PropertyChangedEventArgs e)
         {
             switch (e.PropertyName)

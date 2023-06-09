@@ -34,6 +34,5 @@ namespace StakeholderAnalysis.Data.Diagrams.AttitudeImpactDiagrams
         public AttitudeImpactDiagram() : this("")
         {
         }
-
     }
 }
