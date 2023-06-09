@@ -38,9 +38,9 @@ namespace StakeholderAnalysis.Visualization.ViewModels.DocumentViews.OnionDiagra
             set
             {
                 newConnectionFromViewModel = value;
-                NewConnectionFromRelativePositionLeft = newConnectionFromViewModel?.LeftPercentage ?? 0.0;
+                NewConnectionFromRelativePositionLeft = newConnectionFromViewModel?.RelativePositionLeft ?? 0.0;
                 OnPropertyChanged(nameof(NewConnectionFromRelativePositionLeft));
-                NewConnectionFromRelativePositionTop = newConnectionFromViewModel?.TopPercentage ?? 0.0;
+                NewConnectionFromRelativePositionTop = newConnectionFromViewModel?.RelativePositionTop ?? 0.0;
                 OnPropertyChanged(nameof(NewConnectionFromRelativePositionTop));
             }
         }
@@ -72,8 +72,8 @@ namespace StakeholderAnalysis.Visualization.ViewModels.DocumentViews.OnionDiagra
         public void InitializeConnection(OnionDiagramStakeholderViewModel stakeholderViewModel)
         {
             NewConnectionFromViewModel = stakeholderViewModel;
-            NewConnectionToRelativePositionLeft = stakeholderViewModel.LeftPercentage;
-            NewConnectionToRelativePositionTop = stakeholderViewModel.TopPercentage;
+            NewConnectionToRelativePositionLeft = stakeholderViewModel.RelativePositionLeft;
+            NewConnectionToRelativePositionTop = stakeholderViewModel.RelativePositionTop;
             IsDrawing = true;
 
             OnPropertyChanged(nameof(NewConnectionFromViewModel));
@@ -93,8 +93,8 @@ namespace StakeholderAnalysis.Visualization.ViewModels.DocumentViews.OnionDiagra
             {
                 var stakeholderConnectionGroup = GetSelectedStakeholderConnectionGroup(onionDiagram);
                 onionDiagram.Connections.Add(new StakeholderConnection(stakeholderConnectionGroup,
-                    NewConnectionFromViewModel.GetOnionDiagramStakeholder(),
-                    NewConnectionPossibleToViewModel.GetOnionDiagramStakeholder()));
+                    NewConnectionFromViewModel.GetDiagramStakeholder(),
+                    NewConnectionPossibleToViewModel.GetDiagramStakeholder()));
             }
 
             IsDrawing = false;

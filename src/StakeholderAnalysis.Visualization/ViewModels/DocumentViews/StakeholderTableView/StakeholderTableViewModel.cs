@@ -23,7 +23,7 @@ namespace StakeholderAnalysis.Visualization.ViewModels.DocumentViews.Stakeholder
             {
                 analysis.Stakeholders.CollectionChanged += StakeholdersCollectionChanged;
 
-                Stakeholders = new ObservableCollection<TableStakeholderViewModel>(
+                Stakeholders = new ObservableCollection<StakeholderViewModel>(
                     this.analysis.Stakeholders.Select(stakeholder =>
                         ViewModelFactory.CreateTableStakeholderViewModel(stakeholder)));
                 Stakeholders.CollectionChanged += StakeholderViewModelsCollectionChanged;
@@ -36,7 +36,7 @@ namespace StakeholderAnalysis.Visualization.ViewModels.DocumentViews.Stakeholder
                 StakeholderViewSource = new CollectionViewSource
                 {
                     Source = Stakeholders,
-                    GroupDescriptions = { new PropertyGroupDescription(nameof(TableStakeholderViewModel.Type)) }
+                    GroupDescriptions = { new PropertyGroupDescription(nameof(StakeholderViewModel.Type)) }
                 };
             }
         }
@@ -45,7 +45,7 @@ namespace StakeholderAnalysis.Visualization.ViewModels.DocumentViews.Stakeholder
 
         public CollectionViewSource StakeholderViewSource { get; }
 
-        public ObservableCollection<TableStakeholderViewModel> Stakeholders { get; }
+        public ObservableCollection<StakeholderViewModel> Stakeholders { get; }
 
         public ObservableCollection<StakeholderType> StakeholderTypes => analysis.StakeholderTypes;
 
@@ -102,7 +102,7 @@ namespace StakeholderAnalysis.Visualization.ViewModels.DocumentViews.Stakeholder
             {
                 case NotifyCollectionChangedAction.Add:
                     var stakeholderType = GetDefaultStakeholderType();
-                    foreach (var stakeholderViewModel in e.NewItems.OfType<TableStakeholderViewModel>())
+                    foreach (var stakeholderViewModel in e.NewItems.OfType<StakeholderViewModel>())
                     {
                         var stakeholder = stakeholderViewModel.Stakeholder;
                         stakeholder.Type = stakeholderType;
@@ -112,7 +112,7 @@ namespace StakeholderAnalysis.Visualization.ViewModels.DocumentViews.Stakeholder
 
                     break;
                 case NotifyCollectionChangedAction.Remove:
-                    foreach (var stakeholderViewModel in e.OldItems.OfType<TableStakeholderViewModel>())
+                    foreach (var stakeholderViewModel in e.OldItems.OfType<StakeholderViewModel>())
                         AnalysisServices.RemoveStakeholderFromAnalysis(analysis, stakeholderViewModel.Stakeholder);
 
                     break;

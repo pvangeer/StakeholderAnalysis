@@ -4,7 +4,7 @@ using System.Linq;
 using System.Windows;
 using System.Windows.Input;
 using StakeholderAnalysis.Data;
-using StakeholderAnalysis.Visualization.ViewModels.DocumentViews;
+using StakeholderAnalysis.Visualization.ViewModels.DocumentViews.StakeholderTableView;
 
 namespace StakeholderAnalysis.Visualization.Controls
 {
@@ -16,7 +16,7 @@ namespace StakeholderAnalysis.Visualization.Controls
         public SelectStakeholdersDialog(Analysis analysis)
         {
             InitializeComponent();
-            ListBox.ItemsSource = analysis.Stakeholders.Select(st => new DiagramStakeholderViewModelBase(null, st, null, null))
+            ListBox.ItemsSource = analysis.Stakeholders.Select(st => new StakeholderViewModel(null, st))
                 .ToList();
         }
 
@@ -30,7 +30,7 @@ namespace StakeholderAnalysis.Visualization.Controls
         private void ButtonOkClicked(object sender, RoutedEventArgs e)
         {
             var selectedStakeholders = new List<Stakeholder>();
-            foreach (var item in ListBox.SelectedItems.OfType<DiagramStakeholderViewModelBase>())
+            foreach (var item in ListBox.SelectedItems.OfType<StakeholderViewModel>())
                 selectedStakeholders.Add(item.Stakeholder);
 
             SelectedStakeholders = selectedStakeholders;

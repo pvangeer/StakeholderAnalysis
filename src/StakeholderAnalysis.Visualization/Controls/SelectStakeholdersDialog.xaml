@@ -133,7 +133,7 @@
             BorderBrush="{StaticResource Deltares.Brushes.Border.Light}"
             SelectionMode="Extended">
             <ListBox.ItemTemplate>
-                <DataTemplate DataType="documentViews:DiagramStakeholderViewModelBase">
+                <DataTemplate DataType="documentViews:DiagramStakeholderViewModel">
                     <Border
                         BorderThickness="1"
                         BorderBrush="{StaticResource Deltares.Brushes.Border.Light}"

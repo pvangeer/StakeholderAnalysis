@@ -5,7 +5,6 @@ using System.Linq;
 using System.Windows;
 using System.Windows.Input;
 using System.Windows.Media;
-using StakeholderAnalysis.Data;
 using StakeholderAnalysis.Data.Diagrams;
 using StakeholderAnalysis.Data.Diagrams.ForceFieldDiagrams;
 using StakeholderAnalysis.Gui;
@@ -100,8 +99,8 @@ namespace StakeholderAnalysis.Visualization.ViewModels.DocumentViews.TwoAxisDiag
         public void SelectObject(object o)
         {
             selectedObject = o;
-            foreach (var stakeholderViewModel in PositionedStakeholders.OfType<DiagramStakeholderViewModelBase>())
-                stakeholderViewModel.OnPropertyChanged(nameof(DiagramStakeholderViewModelBase.IsSelectedStakeholder));
+            foreach (var stakeholderViewModel in PositionedStakeholders.OfType<DiagramStakeholderViewModel>())
+                stakeholderViewModel.OnPropertyChanged(nameof(DiagramStakeholderViewModel.IsSelectedStakeholder));
         }
 
         public TwoAxisDiagramPropertiesViewModel GetPropertiesViewModel()

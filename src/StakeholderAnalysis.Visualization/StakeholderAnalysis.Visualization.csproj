@@ -71,7 +71,7 @@
     <Compile Include="StakeholderTypeToNameConverter.cs" />
     <Compile Include="ViewModels\DocumentViews\IDiagramViewModel.cs" />
     <Compile Include="Commands\Diagrams\RemoveSelectedStakeholderCommand.cs" />
-    <Compile Include="ViewModels\DocumentViews\StakeholderTableView\TableStakeholderViewModel.cs" />
+    <Compile Include="ViewModels\DocumentViews\StakeholderTableView\StakeholderViewModel.cs" />
     <Compile Include="ViewModels\DocumentViews\TwoAxisDiagrams\IRankedStakeholderViewModel.cs" />
     <Compile Include="ViewModels\ProjectExplorer\ProjectExplorerItemViewModelBase.cs" />
     <Compile Include="ViewModels\TreeView\CollectionType.cs" />
@@ -192,9 +192,8 @@
     <Compile Include="ViewModels\DocumentViews\TwoAxisDiagrams\ForceFieldDiagramViewModel.cs" />
     <Compile Include="ViewModels\Ribbon\RibbonViewModel.cs" />
     <Compile Include="ViewModels\DocumentViews\StakeholderTableView\StakeholderTableViewModel.cs" />
-    <Compile Include="ViewModels\DocumentViews\DiagramStakeholderViewModelBase.cs" />
+    <Compile Include="ViewModels\DocumentViews\DiagramStakeholderViewModel.cs" />
     <Compile Include="ViewModels\DocumentViews\TwoAxisDiagrams\PositionedStakeholderViewModel.cs" />
-    <Compile Include="ViewModels\DocumentViews\TwoAxisDiagrams\RankedStakeholderViewModel.cs" />
     <Compile Include="ViewModels\ViewManagerViewModel.cs" />
     <Compile Include="ViewModels\ViewModelBase.cs" />
     <Compile Include="ViewModels\ViewModelFactory.cs" />

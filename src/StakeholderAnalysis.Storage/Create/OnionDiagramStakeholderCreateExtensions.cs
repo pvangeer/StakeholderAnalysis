@@ -1,5 +1,4 @@
 ﻿using System;
-using StakeholderAnalysis.Data;
 using StakeholderAnalysis.Data.Diagrams;
 using StakeholderAnalysis.Storage.XmlEntities;
 

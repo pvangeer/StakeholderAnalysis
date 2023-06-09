@@ -1,5 +1,4 @@
-﻿using StakeholderAnalysis.Data;
-using StakeholderAnalysis.Data.Diagrams;
+﻿using StakeholderAnalysis.Data.Diagrams;
 
 namespace StakeholderAnalysis.Visualization.ViewModels.DocumentViews
 {

@@ -3,18 +3,18 @@ using StakeholderAnalysis.Data;
 
 namespace StakeholderAnalysis.Visualization.ViewModels.DocumentViews.StakeholderTableView
 {
-    public class TableStakeholderViewModel : ViewModelBase
+    public class StakeholderViewModel : ViewModelBase
     {
         private bool isSelected;
 
         /// <summary>
         ///     Parameterless constructor needed for DataGrid to allow adding new stakeholders.
         /// </summary>
-        public TableStakeholderViewModel() : this(null, new Stakeholder())
+        public StakeholderViewModel() : this(null, new Stakeholder())
         {
         }
 
-        public TableStakeholderViewModel(ViewModelFactory factory, Stakeholder stakeholder) : base(factory)
+        public StakeholderViewModel(ViewModelFactory factory, Stakeholder stakeholder) : base(factory)
         {
             Stakeholder = stakeholder;
 
