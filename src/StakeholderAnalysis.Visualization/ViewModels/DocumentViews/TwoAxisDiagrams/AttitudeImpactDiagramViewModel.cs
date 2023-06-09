@@ -27,7 +27,7 @@ namespace StakeholderAnalysis.Visualization.ViewModels.DocumentViews.TwoAxisDiag
                 diagram.Stakeholders.CollectionChanged += StakeholdersCollectionChanged;
                 PositionedStakeholders = new ObservableCollection<IPositionedStakeholderViewModel>(
                     attitudeImpactDiagram.Stakeholders.Select(stakeholder =>
-                        ViewModelFactory.CreateAttitudeImpactDiagramStakeholderViewModel(diagram, stakeholder, this)));
+                        ViewModelFactory.CreateDiagramStakeholderViewModel(diagram, stakeholder, this)));
             }
         }
 
@@ -125,7 +125,7 @@ namespace StakeholderAnalysis.Visualization.ViewModels.DocumentViews.TwoAxisDiag
             if (e.Action == NotifyCollectionChangedAction.Add)
                 foreach (var item in e.NewItems.OfType<PositionedStakeholder>())
                     PositionedStakeholders.Add(
-                        ViewModelFactory.CreateAttitudeImpactDiagramStakeholderViewModel(diagram, item, this));
+                        ViewModelFactory.CreateDiagramStakeholderViewModel(diagram, item, this));
 
             if (e.Action == NotifyCollectionChangedAction.Remove)
                 foreach (var stakeholder in e.OldItems.OfType<PositionedStakeholder>())

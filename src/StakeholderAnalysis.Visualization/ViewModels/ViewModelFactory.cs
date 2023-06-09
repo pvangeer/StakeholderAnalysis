@@ -155,23 +155,11 @@ namespace StakeholderAnalysis.Visualization.ViewModels
             return new ForceFieldDiagramViewModel(this, diagram);
         }
 
-        public AttitudeImpactDiagramStakeholderViewModel CreateAttitudeImpactDiagramStakeholderViewModel(
-            AttitudeImpactDiagram diagram, PositionedStakeholder stakeholder,
+        public DiagramStakeholderViewModel CreateDiagramStakeholderViewModel(
+            IStakeholderDiagram diagram, PositionedStakeholder stakeholder,
             ISelectionRegister selectionRegister)
         {
-            return new AttitudeImpactDiagramStakeholderViewModel(this, diagram, stakeholder, selectionRegister);
-        }
-
-        public DiagramStakeholderViewModel CreateStakeholderViewModel(PositionedStakeholder stakeholder, IStakeholderDiagram diagram,
-            ISelectionRegister selectionRegister, IDrawConnectionHandler drawConnectionHandler)
-        {
             return new DiagramStakeholderViewModel(this, stakeholder, diagram, selectionRegister);
-        }
-
-        public ForceFieldDiagramStakeholderViewModel CreateForceFieldDiagramStakeholderViewModel(
-            ForceFieldDiagram diagram, PositionedStakeholder stakeholder, ISelectionRegister selectionRegister)
-        {
-            return new ForceFieldDiagramStakeholderViewModel(this, diagram, stakeholder, selectionRegister);
         }
 
         public OnionDiagramStakeholderViewModel CreateOnionDiagramStakeholderViewModel(OnionDiagram diagram,

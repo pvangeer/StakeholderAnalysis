@@ -160,8 +160,6 @@
     <Compile Include="ViewModels\StatusBar\MessagesViewModel.cs" />
     <Compile Include="ViewModels\StatusBar\StatusBarViewModel.cs" />
     <Compile Include="ViewModels\DocumentViews\TwoAxisDiagrams\ITwoAxisDiagramViewModel.cs" />
-    <Compile Include="ViewModels\DocumentViews\TwoAxisDiagrams\AttitudeImpactDiagramStakeholderViewModel.cs" />
-    <Compile Include="ViewModels\DocumentViews\TwoAxisDiagrams\ForceFieldDiagramStakeholderViewModel.cs" />
     <Compile Include="ViewModels\DocumentViews\OnionDiagramView\OnionDiagramStakeholderViewModel.cs" />
     <Compile Include="Properties\AssemblyInfo.cs">
       <SubType>Code</SubType>

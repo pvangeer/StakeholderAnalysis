@@ -6,10 +6,11 @@ using StakeholderAnalysis.Data;
 using StakeholderAnalysis.Data.Diagrams;
 using StakeholderAnalysis.Visualization.Behaviors;
 using StakeholderAnalysis.Visualization.ViewModels.DocumentViews.StakeholderTableView;
+using StakeholderAnalysis.Visualization.ViewModels.DocumentViews.TwoAxisDiagrams;
 
 namespace StakeholderAnalysis.Visualization.ViewModels.DocumentViews
 {
-    public class DiagramStakeholderViewModel : StakeholderViewModel, IDropHandler, IRemoveStakeholderViewModel
+    public class DiagramStakeholderViewModel : StakeholderViewModel, IDropHandler, IPositionedStakeholderViewModel
     {
         protected readonly IStakeholderDiagram Diagram;
         protected readonly PositionedStakeholder PositionedStakeholder;
@@ -43,14 +44,14 @@ namespace StakeholderAnalysis.Visualization.ViewModels.DocumentViews
 
         #endregion
 
-        public PositionedStakeholder GetDiagramStakeholder()
-        {
-            return PositionedStakeholder;
-        }
-
         public bool IsViewModelFor(Stakeholder stakeholder)
         {
             return Stakeholder == stakeholder;
+        }
+
+        public PositionedStakeholder GetDiagramStakeholder()
+        {
+            return PositionedStakeholder;
         }
 
         private void DiagramStakeholdersCollectionChanged(object sender, NotifyCollectionChangedEventArgs e)
