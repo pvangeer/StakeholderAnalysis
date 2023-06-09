@@ -7,7 +7,6 @@ namespace StakeholderAnalysis.Gui
 {
     public class StakeholderConnectionGroupSelection : INotifyPropertyChanged
     {
-        // TODO: Merge this with the selectionManager?
         public StakeholderConnectionGroupSelection(OnionDiagram diagram, StakeholderConnectionGroup connectionGroup)
         {
             OnionDiagram = diagram;

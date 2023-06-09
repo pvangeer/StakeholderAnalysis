@@ -45,10 +45,8 @@ namespace StakeholderAnalysis.Storage.Read
             var converter = new FontFamilyConverter();
             if (converter.ConvertFromInvariantString(entity.Background.BackgroundTextFontFamily) is FontFamily
                 backgroundFontFamily)
-                // TODO: Log warning/error in case of null value. Could not interpret stored font family
                 forceFieldDiagram.BackgroundFontFamily = backgroundFontFamily;
             if (converter.ConvertFromInvariantString(entity.Axis.AxisTextFontFamily) is FontFamily axisTextFontFamily)
-                // TODO: Log warning/error in case of null value. Could not interpret stored font family
                 forceFieldDiagram.AxisFontFamily = axisTextFontFamily;
 
             foreach (var stakeholder in stakeholders) forceFieldDiagram.Stakeholders.Add(stakeholder);

@@ -24,7 +24,6 @@ namespace StakeholderAnalysis.Visualization.Commands.Diagrams
 
         public void Execute(object parameter)
         {
-            // TODO: Ask the user for confirmation?
             foreach (var stakeholderViewModel in viewModel.Stakeholders.Where(s => s.IsSelected).ToList())
                 AnalysisServices.RemoveStakeholderFromAnalysis(analysis, stakeholderViewModel.Stakeholder);
         }

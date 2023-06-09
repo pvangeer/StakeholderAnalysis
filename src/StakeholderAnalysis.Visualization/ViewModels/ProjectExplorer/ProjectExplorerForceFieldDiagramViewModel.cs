@@ -28,7 +28,6 @@ namespace StakeholderAnalysis.Visualization.ViewModels.ProjectExplorer
 
             ContextMenuItems = new ObservableCollection<ContextMenuItemViewModel>
             {
-                // TODO: Add Openen, Verwijderen.. also for other projectexplorer viewmodels.
                 ViewModelFactory.CreateDuplicateMenuItemViewModel(diagram,
                     CommandFactory.CreateCanAlwaysExecuteActionCommand(
                         p => { analysis.ForceFieldDiagrams.Add(diagram.Clone() as ForceFieldDiagram); }))

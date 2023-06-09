@@ -134,7 +134,6 @@ namespace StakeholderAnalysis.Storage
 
                 lastOpenedOrSavedAnalysisHash = FingerprintHelper.Get(stagedAnalysisXmlEntity);
             }
-            // TODO: Change catch to catch proper exceptions
             catch (DataException exception)
             {
                 throw CreateStorageWriterException(filePath, "Er is een fout opgetreden bij het opslaan",

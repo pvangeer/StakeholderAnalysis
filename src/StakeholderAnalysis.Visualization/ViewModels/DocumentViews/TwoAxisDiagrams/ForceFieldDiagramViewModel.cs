@@ -12,7 +12,6 @@ using StakeholderAnalysis.Visualization.ViewModels.Properties.TwoAxisDiagramProp
 
 namespace StakeholderAnalysis.Visualization.ViewModels.DocumentViews.TwoAxisDiagrams
 {
-    // TODO: Possibly merge with AttitudeImpactDiagramViewModel
     public class ForceFieldDiagramViewModel : ViewModelBase, ITwoAxisDiagramViewModel, ISelectable, IDiagramViewModel
     {
         private readonly ForceFieldDiagram diagram;

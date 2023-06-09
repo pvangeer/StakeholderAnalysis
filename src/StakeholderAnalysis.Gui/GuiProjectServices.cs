@@ -209,7 +209,6 @@ namespace StakeholderAnalysis.Gui
 
         private bool MigrateProject(string fileName, out string newFileName)
         {
-            // TODO: Add suffix to file name?
             var dialog = new SaveFileDialog
             {
                 CheckPathExists = true,
