@@ -4,7 +4,7 @@ using StakeholderAnalysis.Storage.XmlEntities;
 
 namespace StakeholderAnalysis.Storage.Migration
 {
-    public class XmlStorageMigrationService
+    public static class XmlStorageMigrationService
     {
         public static void MigrateFile(string oldFileName, string newFileName)
         {
@@ -23,7 +23,7 @@ namespace StakeholderAnalysis.Storage.Migration
             xmlDoc.Save(newFileName);
         }
 
-        public bool NeedsMigration(string fileName)
+        public static bool NeedsMigration(string fileName)
         {
             IOUtils.ValidateFilePath(fileName);
 
