@@ -6,6 +6,23 @@ namespace StakeholderAnalysis.Storage.Migration
 {
     public class XmlStorageMigrationService
     {
+        public static void MigrateFile(string oldFileName, string newFileName)
+        {
+            // Same format to correct version number
+            var xmlDoc = new XmlDocument();
+            xmlDoc.Load(oldFileName);
+
+            var versionXmlEntity = new VersionXmlEntity();
+
+            var versionNode = GetVersionNode(xmlDoc);
+            if (versionNode != null) versionNode.InnerText = versionXmlEntity.FileVersion;
+
+            var createdNode = GetLastChangedNode(xmlDoc);
+            if (createdNode != null) createdNode.InnerText = versionXmlEntity.LastChanged;
+
+            xmlDoc.Save(newFileName);
+        }
+
         public bool NeedsMigration(string fileName)
         {
             IOUtils.ValidateFilePath(fileName);
@@ -28,12 +45,12 @@ namespace StakeholderAnalysis.Storage.Migration
             }
         }
 
-        private bool HasCurrentVersion(string versionNodeValue)
+        private static bool HasCurrentVersion(string versionNodeValue)
         {
             return versionNodeValue == VersionXmlEntity.CurrentVersion;
         }
 
-        private string GetVersionInformation(XmlDocument xmlDoc)
+        private static string GetVersionInformation(XmlDocument xmlDoc)
         {
             return GetVersionNode(xmlDoc)?.InnerText;
         }
@@ -56,23 +73,6 @@ namespace StakeholderAnalysis.Storage.Migration
                    xmlDoc.ChildNodes[1].FirstChild.ChildNodes[1].Name == VersionXmlEntity.LastChangedElementName
                 ? xmlDoc.ChildNodes[1].FirstChild.ChildNodes[1]
                 : null;
-        }
-
-        public void MigrateFile(string oldFileName, string newFileName)
-        {
-            // Same format to correct version number
-            var xmlDoc = new XmlDocument();
-            xmlDoc.Load(oldFileName);
-
-            var versionXmlEntity = new VersionXmlEntity();
-
-            var versionNode = GetVersionNode(xmlDoc);
-            if (versionNode != null) versionNode.InnerText = versionXmlEntity.FileVersion;
-
-            var createdNode = GetLastChangedNode(xmlDoc);
-            if (createdNode != null) createdNode.InnerText = versionXmlEntity.LastChanged;
-
-            xmlDoc.Save(newFileName);
         }
     }
 }

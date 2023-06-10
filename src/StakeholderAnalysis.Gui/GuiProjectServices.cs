@@ -14,7 +14,6 @@ namespace StakeholderAnalysis.Gui
     {
         private readonly StakeholderAnalysisGui gui;
         private readonly StakeholderAnalysisLog log = new StakeholderAnalysisLog(typeof(GuiProjectServices));
-        private readonly XmlStorageMigrationService migrationService = new XmlStorageMigrationService();
         private readonly StorageXml storageXml;
 
         public GuiProjectServices(StakeholderAnalysisGui gui)
@@ -66,7 +65,7 @@ namespace StakeholderAnalysis.Gui
                 var needsMigration = false;
                 try
                 {
-                    needsMigration = migrationService.NeedsMigration(fileName);
+                    needsMigration = XmlStorageMigrationService.NeedsMigration(fileName);
                 }
                 catch (XmlStorageException e)
                 {
@@ -212,14 +211,14 @@ namespace StakeholderAnalysis.Gui
             var dialog = new SaveFileDialog
             {
                 CheckPathExists = true,
-                FileName = fileName,
+                FileName = fileName.Replace(".xml",$"-migrated-{VersionInfo.Year}.{VersionInfo.MajorVersion}.{VersionInfo.MinorVersion}.xml" ),
                 OverwritePrompt = true,
                 Filter = "Stakeholderanalyse bestand (*.xml)|*.xml"
             };
 
             if ((bool)dialog.ShowDialog(Application.Current.MainWindow))
             {
-                migrationService.MigrateFile(fileName, dialog.FileName);
+                XmlStorageMigrationService.MigrateFile(fileName, dialog.FileName);
                 newFileName = dialog.FileName;
                 return true;
             }

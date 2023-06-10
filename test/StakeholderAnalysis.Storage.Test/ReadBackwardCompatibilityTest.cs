@@ -16,16 +16,15 @@ namespace StakeholderAnalysis.Storage.Test
         [Test]
         public void Read231Test()
         {
-            string assemblyFolder = Path.GetDirectoryName(Assembly.GetExecutingAssembly().Location);
+            var assemblyFolder = Path.GetDirectoryName(Assembly.GetExecutingAssembly().Location);
             Assert.IsNotNull(assemblyFolder);
             assemblyFolder = assemblyFolder.Replace("bin\\x64\\", "")
                 .Replace("Debug", "")
                 .Replace("Release", "");
 
-            var filename = Path.Combine(assemblyFolder,"Resources", "23.1-testproject.xml");
+            var filename = Path.Combine(assemblyFolder, "Resources", "23.1-testproject.xml");
 
-            var service = new XmlStorageMigrationService();
-            Assert.IsFalse(service.NeedsMigration(filename));
+            Assert.IsFalse(XmlStorageMigrationService.NeedsMigration(filename));
 
             var storageXml = new StorageXml();
             var projectData = storageXml.LoadProject(filename);
@@ -35,9 +34,9 @@ namespace StakeholderAnalysis.Storage.Test
 
         private void AssertCorrectProjectInformation(ProjectData projectData)
         {
-            Assert.AreEqual("Pieter van Geer (geer)",projectData.Author);
+            Assert.AreEqual("Pieter van Geer (geer)", projectData.Author);
             Assert.AreEqual("2023-06-09 : 09:46:53", projectData.Created);
-            
+
             var analysis = projectData.Analysis;
             Assert.IsNotNull(analysis);
             Assert.AreEqual(8, analysis.Stakeholders.Count);
@@ -107,14 +106,16 @@ namespace StakeholderAnalysis.Storage.Test
             AssertEqualPositionedStakeholder(attitudeImpactDiagram.Stakeholders[4], 0.54, 1 - 0.41999999999999993, 4, "Vaag contact");
             AssertEqualPositionedStakeholder(attitudeImpactDiagram.Stakeholders[5], 0.55, 1 - 0.39999999999999991, 5, "Goed contact");
             AssertEqualPositionedStakeholder(attitudeImpactDiagram.Stakeholders[6], 0.56, 1 - 0.37999999999999989, 6, "Leuk contact");
-            AssertEqualPositionedStakeholder(attitudeImpactDiagram.Stakeholders[7], 0.57000000000000006, 1 - 0.35999999999999988, 7, "Minder leuk contact");
-            
+            AssertEqualPositionedStakeholder(attitudeImpactDiagram.Stakeholders[7], 0.57000000000000006, 1 - 0.35999999999999988, 7,
+                "Minder leuk contact");
+
             Assert.AreEqual(1, analysis.ForceFieldDiagrams.Count);
             var forceFieldDiagram = analysis.ForceFieldDiagrams[0];
             AssertEqualTwoAxisDiagramProperties(forceFieldDiagram, "Test krachtenvelddiagram",
                 ColorFromHex("#FFE6E6E6"), ColorFromHex("#FF0EBBF0"),
                 "Consulteren 1", "Monitoren 1", "Betrekken 1", "Informeren 1", "Arial", ColorFromHex("#FFE6E6E6"), false, false, 62,
-                "Weinig invloed 1", "Veel invloed 1", "Klein belang 1", "Groot belang 1", "Arial", ColorFromHex("#FFE6E6E6"), true, true, 22);
+                "Weinig invloed 1", "Veel invloed 1", "Klein belang 1", "Groot belang 1", "Arial", ColorFromHex("#FFE6E6E6"), true, true,
+                22);
             Assert.AreEqual(8, forceFieldDiagram.Stakeholders.Count);
             AssertEqualPositionedStakeholder(forceFieldDiagram.Stakeholders[0], 0.5, 0.5, 0, "linksboven");
             AssertEqualPositionedStakeholder(forceFieldDiagram.Stakeholders[1], 0.51, 1 - 0.48, 1, "Linksonder");
@@ -123,12 +124,18 @@ namespace StakeholderAnalysis.Storage.Test
             AssertEqualPositionedStakeholder(forceFieldDiagram.Stakeholders[4], 0.54, 1 - 0.41999999999999993, 4, "Vaag contact");
             AssertEqualPositionedStakeholder(forceFieldDiagram.Stakeholders[5], 0.55, 1 - 0.39999999999999991, 5, "Goed contact");
             AssertEqualPositionedStakeholder(forceFieldDiagram.Stakeholders[6], 0.56, 1 - 0.37999999999999989, 6, "Leuk contact");
-            AssertEqualPositionedStakeholder(forceFieldDiagram.Stakeholders[7], 0.57000000000000006, 1 - 0.35999999999999988, 7, "Minder leuk contact");
+            AssertEqualPositionedStakeholder(forceFieldDiagram.Stakeholders[7], 0.57000000000000006, 1 - 0.35999999999999988, 7,
+                "Minder leuk contact");
         }
 
-        private void AssertEqualTwoAxisDiagramProperties(TwoAxisDiagram diagram, string expectedName, Color expectedBrushStartColor, Color expectedBrushEndColor, 
-            string expectedBackgroundLeftTop, string expectedBackgroundLeftBottom, string expectedBackgroundRightTop, string expectedBackgroundRightBottom, string expectedBackgroundFontFamily, Color expectedBackgroundFontColor, bool expectedBackgroundFontBold, bool expectedBackgroundFontItalic, int expectedBackgroundFontSize, 
-            string expectedAxisYMin, string expectedAxisYMax, string expectedAxisXMin, string expectedAxisXMax, string expectedAxisFontFamily, Color expectedAxisFontColor, bool expectedAxisFontBold, bool expectedAxisFontItalic, int expectedAxisFontSize)
+        private void AssertEqualTwoAxisDiagramProperties(TwoAxisDiagram diagram, string expectedName, Color expectedBrushStartColor,
+            Color expectedBrushEndColor,
+            string expectedBackgroundLeftTop, string expectedBackgroundLeftBottom, string expectedBackgroundRightTop,
+            string expectedBackgroundRightBottom, string expectedBackgroundFontFamily, Color expectedBackgroundFontColor,
+            bool expectedBackgroundFontBold, bool expectedBackgroundFontItalic, int expectedBackgroundFontSize,
+            string expectedAxisYMin, string expectedAxisYMax, string expectedAxisXMin, string expectedAxisXMax,
+            string expectedAxisFontFamily, Color expectedAxisFontColor, bool expectedAxisFontBold, bool expectedAxisFontItalic,
+            int expectedAxisFontSize)
         {
             Assert.AreEqual(expectedName, diagram.Name);
 
@@ -156,7 +163,8 @@ namespace StakeholderAnalysis.Storage.Test
             Assert.AreEqual(expectedAxisFontSize, diagram.AxisFontSize);
         }
 
-        private void AssertEqualOnionRings(OnionRing onionRing, double expectedPercentage, Color expectedBackgroundColor, Color expectedStrokeColor, double expectedStrokeThickness, LineStyle expectedLineStyle)
+        private void AssertEqualOnionRings(OnionRing onionRing, double expectedPercentage, Color expectedBackgroundColor,
+            Color expectedStrokeColor, double expectedStrokeThickness, LineStyle expectedLineStyle)
         {
             Assert.AreEqual(expectedPercentage, onionRing.Percentage);
             Assert.AreEqual(expectedBackgroundColor, onionRing.BackgroundColor);
@@ -165,14 +173,16 @@ namespace StakeholderAnalysis.Storage.Test
             Assert.AreEqual(expectedLineStyle, onionRing.LineStyle);
         }
 
-        private void AssertEqualConnection(StakeholderConnection connection, string expectedGroupName, string expectedFromName, string expectedToName)
+        private void AssertEqualConnection(StakeholderConnection connection, string expectedGroupName, string expectedFromName,
+            string expectedToName)
         {
             Assert.AreEqual(expectedGroupName, connection.StakeholderConnectionGroup.Name);
             Assert.AreEqual(expectedFromName, connection.ConnectFrom.Stakeholder.Name);
             Assert.AreEqual(expectedToName, connection.ConnectTo.Stakeholder.Name);
         }
 
-        private void AssertEqualConnectionGroup(StakeholderConnectionGroup connectionGroup, string expectedName, Color expectedStrokeColor, bool expectedVisible, double expectedStrokeThickness, LineStyle expectedLineStyle)
+        private void AssertEqualConnectionGroup(StakeholderConnectionGroup connectionGroup, string expectedName, Color expectedStrokeColor,
+            bool expectedVisible, double expectedStrokeThickness, LineStyle expectedLineStyle)
         {
             Assert.AreEqual(expectedName, connectionGroup.Name);
             Assert.AreEqual(expectedStrokeColor, connectionGroup.StrokeColor);
@@ -186,7 +196,8 @@ namespace StakeholderAnalysis.Storage.Test
             return (Color)ColorConverter.ConvertFromString(hexString);
         }
 
-        private void AssertEqualPositionedStakeholder(PositionedStakeholder stakeholder, double expectedLeft, double expectedTop, int expectedRank, string expectedStakeholderName)
+        private void AssertEqualPositionedStakeholder(PositionedStakeholder stakeholder, double expectedLeft, double expectedTop,
+            int expectedRank, string expectedStakeholderName)
         {
             Assert.AreEqual(expectedLeft, stakeholder.Left);
             Assert.AreEqual(expectedTop, stakeholder.Top);
@@ -194,7 +205,8 @@ namespace StakeholderAnalysis.Storage.Test
             Assert.AreEqual(expectedStakeholderName, stakeholder.Stakeholder.Name);
         }
 
-        private void AsserEqualStakeholderType(StakeholderType stakeholderType, string expectedName, StakeholderIconType expectedIcon, Color expectedColor)
+        private void AsserEqualStakeholderType(StakeholderType stakeholderType, string expectedName, StakeholderIconType expectedIcon,
+            Color expectedColor)
         {
             Assert.AreEqual(expectedName, stakeholderType.Name);
             Assert.AreEqual(expectedIcon, stakeholderType.IconType);
