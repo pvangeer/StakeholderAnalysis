@@ -1,14 +1,15 @@
 ﻿using System;
 using System.Linq;
 using System.Windows.Media;
-using StakeholderAnalysis.Data.Diagrams.AttitudeImpactDiagrams;
+using StakeholderAnalysis.Data.Diagrams;
+using StakeholderAnalysis.Data.Diagrams.ForceFieldDiagrams;
 using StakeholderAnalysis.Storage.XmlEntities;
 
 namespace StakeholderAnalysis.Storage.Read
 {
-    internal static class AttitudeImpactDiagramEntityReadExtensions
+    internal static class TwoAxisDiagramEntityReadExtensions
     {
-        internal static AttitudeImpactDiagram Read(this AttitudeImpactDiagramXmlEntity entity,
+        internal static TwoAxisDiagram Read(this TwoAxisDiagramXmlEntity entity,
             ReadConversionCollector collector)
         {
             if (entity == null) throw new ArgumentNullException(nameof(entity));
@@ -16,10 +17,10 @@ namespace StakeholderAnalysis.Storage.Read
 
             if (collector.Contains(entity)) return collector.Get(entity);
 
-            var stakeholders = entity.AttitudeImpactDiagramStakeholderXmlEntities.OrderBy(e => e.Order)
+            var stakeholders = entity.PositionedStakeholderXmlEntities.OrderBy(e => e.Order)
                 .Select(e => e.Read(collector));
 
-            var attitudeImpactDiagram = new AttitudeImpactDiagram
+            var twoAxisDiagram = new TwoAxisDiagram
             {
                 Name = entity.Name,
                 BrushStartColor = entity.Brush.BrushStartColor.ToColor(),
@@ -45,15 +46,15 @@ namespace StakeholderAnalysis.Storage.Read
             var converter = new FontFamilyConverter();
             if (converter.ConvertFromInvariantString(entity.Background.BackgroundTextFontFamily) is FontFamily
                 backgroundFontFamily)
-                attitudeImpactDiagram.BackgroundFontFamily = backgroundFontFamily;
+                twoAxisDiagram.BackgroundFontFamily = backgroundFontFamily;
             if (converter.ConvertFromInvariantString(entity.Axis.AxisTextFontFamily) is FontFamily axisTextFontFamily)
-                attitudeImpactDiagram.AxisFontFamily = axisTextFontFamily;
+                twoAxisDiagram.AxisFontFamily = axisTextFontFamily;
 
-            foreach (var stakeholder in stakeholders) attitudeImpactDiagram.Stakeholders.Add(stakeholder);
+            foreach (var stakeholder in stakeholders) twoAxisDiagram.Stakeholders.Add(stakeholder);
 
-            collector.Collect(entity, attitudeImpactDiagram);
+            collector.Collect(entity, twoAxisDiagram);
 
-            return attitudeImpactDiagram;
+            return twoAxisDiagram;
         }
     }
 }

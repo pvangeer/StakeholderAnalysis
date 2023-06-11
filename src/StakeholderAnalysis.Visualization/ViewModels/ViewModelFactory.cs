@@ -4,7 +4,6 @@ using System.Linq;
 using System.Windows.Input;
 using StakeholderAnalysis.Data;
 using StakeholderAnalysis.Data.Diagrams;
-using StakeholderAnalysis.Data.Diagrams.AttitudeImpactDiagrams;
 using StakeholderAnalysis.Data.Diagrams.ForceFieldDiagrams;
 using StakeholderAnalysis.Data.Diagrams.OnionDiagrams;
 using StakeholderAnalysis.Gui;
@@ -140,14 +139,14 @@ namespace StakeholderAnalysis.Visualization.ViewModels
             return new ProjectExplorerAttitudeImpactDiagramsViewModel(this, Analysis);
         }
 
-        public ITreeNodeViewModel CreateProjectExplorerDiagramViewModel(AttitudeImpactDiagram forceFieldDiagram)
+        public ITreeNodeViewModel CreateProjectExplorerDiagramViewModel(TwoAxisDiagram forceFieldDiagram)
         {
-            return new ProjectExplorerAttitudeImpactDiagramViewModel(this, Analysis, forceFieldDiagram, ViewManager);
+            return new ProjectExplorerTwoAxisDiagramViewModel(this, Analysis, forceFieldDiagram, ViewManager);
         }
 
-        public AttitudeImpactDiagramViewModel CrateAttitudeImpactDiagramViewModel(AttitudeImpactDiagram diagram)
+        public TwoAxisDiagramViewModel CrateAttitudeImpactDiagramViewModel(TwoAxisDiagram diagram)
         {
-            return new AttitudeImpactDiagramViewModel(this, diagram);
+            return new TwoAxisDiagramViewModel(this, diagram);
         }
 
         public ForceFieldDiagramViewModel CreateForceFieldDiagramViewModel(ForceFieldDiagram diagram)

@@ -4,20 +4,20 @@ using StakeholderAnalysis.Storage.XmlEntities;
 
 namespace StakeholderAnalysis.Storage.Create
 {
-    internal static class AttitudeImpactDiagramStakeholderCreateExtensions
+    internal static class PositionedStakeholderCreateExtensions
     {
-        internal static AttitudeImpactDiagramStakeholderXmlEntity Create(
+        internal static PositionedStakeholderXmlEntity Create(
             this PositionedStakeholder stakeholder, PersistenceRegistry registry)
         {
             if (registry == null) throw new ArgumentNullException(nameof(registry));
 
             if (registry.Contains(stakeholder)) return registry.GetAsAttitudeImpactDiagramStakeholderXmlEntity(stakeholder);
 
-            var entity = new AttitudeImpactDiagramStakeholderXmlEntity
+            var entity = new PositionedStakeholderXmlEntity
             {
                 StakeholderReferenceId = stakeholder.Stakeholder.Create(registry).Id,
-                Attitude = 1.0 - stakeholder.Top,
-                Impact = stakeholder.Left,
+                Top = stakeholder.Top,
+                Left = stakeholder.Left,
                 Rank = stakeholder.Rank
             };
 

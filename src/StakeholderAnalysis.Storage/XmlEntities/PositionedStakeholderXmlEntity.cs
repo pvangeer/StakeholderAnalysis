@@ -4,13 +4,13 @@ using System.Xml.Serialization;
 namespace StakeholderAnalysis.Storage.XmlEntities
 {
     [Serializable]
-    public class AttitudeImpactDiagramStakeholderXmlEntity : IPositionedStakeholderXmlEntity
+    public class PositionedStakeholderXmlEntity : IPositionedStakeholderXmlEntity
     {
-        [XmlAttribute(AttributeName = "attitude")]
-        public double Attitude { get; set; }
+        [XmlAttribute(AttributeName = "top")]
+        public double Top { get; set; }
 
-        [XmlAttribute(AttributeName = "impact")]
-        public double Impact { get; set; }
+        [XmlAttribute(AttributeName = "left")]
+        public double Left { get; set; }
 
         [XmlAttribute(AttributeName = "rank")]
         public long Rank { get; set; }
@@ -21,7 +21,6 @@ namespace StakeholderAnalysis.Storage.XmlEntities
         [XmlAttribute(AttributeName = "stakeholderid")]
         public long StakeholderReferenceId { get; set; }
 
-        [XmlIgnore]
         [XmlAttribute(AttributeName = "id")]
         public long Id { get; set; }
     }

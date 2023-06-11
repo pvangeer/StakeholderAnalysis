@@ -130,7 +130,7 @@
     <Compile Include="Converters\Diagrams\OnionDiagram\PercentageToCanvasLeftValueConverter.cs" />
     <Compile Include="Converters\Diagrams\OnionDiagram\PercentageToCanvasTopValueConverter.cs" />
     <Compile Include="Converters\Diagrams\OnionDiagram\PercentageToDimensionConverter.cs" />
-    <Compile Include="Converters\Diagrams\TwoAxisDiagram\CanvasSizeToArrowsPathDataConverter.cs" />
+    <Compile Include="Converters\Diagrams\TwoAxisDiagramConverters\CanvasSizeToArrowsPathDataConverter.cs" />
     <Compile Include="Converters\StatusBar\ShouldShowPriorityMessageToBoolConverter.cs" />
     <Compile Include="Converters\StatusBar\MessageListToLabelConverter.cs" />
     <Compile Include="Behaviors\DrawConnectionBehavior.cs" />
@@ -147,7 +147,7 @@
     <Compile Include="ViewModels\DocumentViews\OnionDiagramView\OnionDiagramDrawConnectionViewModel.cs" />
     <Compile Include="ViewModels\ProjectExplorer\ProjectExplorerAttitudeImpactDiagramsViewModel.cs" />
     <Compile Include="ViewModels\ProjectExplorer\ProjectExplorerForceFieldDiagramsViewModel.cs" />
-    <Compile Include="ViewModels\ProjectExplorer\ProjectExplorerAttitudeImpactDiagramViewModel.cs" />
+    <Compile Include="ViewModels\ProjectExplorer\ProjectExplorerTwoAxisDiagramViewModel.cs" />
     <Compile Include="ViewModels\ProjectExplorer\ProjectExplorerForceFieldDiagramViewModel.cs" />
     <Compile Include="ViewModels\ProjectExplorer\ProjectExplorerStakeholderOverviewTableViewModel.cs" />
     <Compile Include="ViewModels\ProjectExplorer\ProjectExplorerStakeholderTypesViewModel.cs" />
@@ -177,7 +177,7 @@
       <DesignTimeSharedInput>True</DesignTimeSharedInput>
     </Compile>
     <Compile Include="Behaviors\SaveToImageBehavior.cs" />
-    <Compile Include="ViewModels\DocumentViews\TwoAxisDiagrams\AttitudeImpactDiagramViewModel.cs" />
+    <Compile Include="ViewModels\DocumentViews\TwoAxisDiagrams\TwoAxisDiagramViewModel.cs" />
     <Compile Include="ViewModels\MainContentPresenterViewModel.cs" />
     <Compile Include="ViewModels\ProjectExplorer\ProjectExplorerOnionDiagramsViewModel.cs" />
     <Compile Include="ViewModels\ProjectExplorer\ProjectExplorerOnionDiagramViewModel.cs" />

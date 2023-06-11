@@ -11,9 +11,9 @@ namespace StakeholderAnalysis.Storage.XmlEntities
         {
             StakeholderTypeXmlEntities = new Collection<StakeholderTypeXmlEntity>();
             StakeholderXmlEntities = new Collection<StakeholderXmlEntity>();
-            AttitudeImpactDiagramXmlEntities = new Collection<AttitudeImpactDiagramXmlEntity>();
-            ForceFieldDiagramXmlEntities = new Collection<ForceFieldDiagramXmlEntity>();
             OnionDiagramXmlEntities = new Collection<OnionDiagramXmlEntity>();
+            ForceFieldDiagramXmlEntities = new Collection<ForceFieldDiagramXmlEntity>();
+            AttitudeImpactDiagramXmlEntities = new Collection<TwoAxisDiagramXmlEntity>();
         }
 
         [XmlArray(ElementName = "stakeholdertypes")]
@@ -24,16 +24,16 @@ namespace StakeholderAnalysis.Storage.XmlEntities
         [XmlArrayItem(ElementName = "stakeholder")]
         public Collection<StakeholderXmlEntity> StakeholderXmlEntities { get; set; }
 
-        [XmlArray(ElementName = "attitudeimpactdiagrams")]
-        [XmlArrayItem(ElementName = "attitudeimpactdiagram")]
-        public Collection<AttitudeImpactDiagramXmlEntity> AttitudeImpactDiagramXmlEntities { get; set; }
+        [XmlArray(ElementName = "oniondiagrams")]
+        [XmlArrayItem(ElementName = "oniondiagram")]
+        public Collection<OnionDiagramXmlEntity> OnionDiagramXmlEntities { get; set; }
 
         [XmlArray(ElementName = "forcefielddiagrams")]
         [XmlArrayItem(ElementName = "forcefielddiagram")]
         public Collection<ForceFieldDiagramXmlEntity> ForceFieldDiagramXmlEntities { get; set; }
 
-        [XmlArray(ElementName = "oniondiagrams")]
-        [XmlArrayItem(ElementName = "oniondiagram")]
-        public Collection<OnionDiagramXmlEntity> OnionDiagramXmlEntities { get; set; }
+        [XmlArray(ElementName = "attitudeimpactdiagrams")]
+        [XmlArrayItem(ElementName = "twoaxisdiagram")]
+        public Collection<TwoAxisDiagramXmlEntity> AttitudeImpactDiagramXmlEntities { get; set; }
     }
 }

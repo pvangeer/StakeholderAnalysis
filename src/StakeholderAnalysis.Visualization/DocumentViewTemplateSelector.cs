@@ -28,7 +28,7 @@ namespace StakeholderAnalysis.Visualization
                     return StakeholderTableViewTemplate;
                 case ForceFieldDiagramViewModel _:
                     return StakeholderForcesDiagramTemplate;
-                case AttitudeImpactDiagramViewModel _:
+                case TwoAxisDiagramViewModel _:
                     return AttitudeImpactDiagramTemplate;
                 default:
                     return DefaultDataTemplate;

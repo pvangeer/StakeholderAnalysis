@@ -6,18 +6,17 @@ using System.Windows;
 using System.Windows.Input;
 using System.Windows.Media;
 using StakeholderAnalysis.Data.Diagrams;
-using StakeholderAnalysis.Data.Diagrams.AttitudeImpactDiagrams;
 using StakeholderAnalysis.Gui;
 using StakeholderAnalysis.Visualization.ViewModels.Properties.TwoAxisDiagramProperties;
 
 namespace StakeholderAnalysis.Visualization.ViewModels.DocumentViews.TwoAxisDiagrams
 {
-    public class AttitudeImpactDiagramViewModel : ViewModelBase, ITwoAxisDiagramViewModel, ISelectable, IDiagramViewModel
+    public class TwoAxisDiagramViewModel : ViewModelBase, ITwoAxisDiagramViewModel, ISelectable, IDiagramViewModel
     {
-        private readonly AttitudeImpactDiagram diagram;
+        private readonly TwoAxisDiagram diagram;
         private object selectedObject;
 
-        public AttitudeImpactDiagramViewModel(ViewModelFactory factory, AttitudeImpactDiagram attitudeImpactDiagram) :
+        public TwoAxisDiagramViewModel(ViewModelFactory factory, TwoAxisDiagram attitudeImpactDiagram) :
             base(factory)
         {
             diagram = attitudeImpactDiagram;
@@ -133,7 +132,7 @@ namespace StakeholderAnalysis.Visualization.ViewModels.DocumentViews.TwoAxisDiag
                         viewModel.IsViewModelFor(stakeholder.Stakeholder)));
         }
 
-        public bool IsViewModelFor(AttitudeImpactDiagram otherDiagram)
+        public bool IsViewModelFor(TwoAxisDiagram otherDiagram)
         {
             return otherDiagram == diagram;
         }

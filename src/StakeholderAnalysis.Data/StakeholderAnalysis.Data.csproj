@@ -23,9 +23,8 @@
     <Compile Include="Analysis.cs" />
     <Compile Include="AnalysisFactory.cs" />
     <Compile Include="AnalysisServices.cs" />
-    <Compile Include="Diagrams\AttitudeImpactDiagrams\AttitudeImpactDiagram.cs" />
     <Compile Include="ColorExtensions.cs" />
-    <Compile Include="Diagrams\ForceFieldDiagrams\TwoAxisDiagram.cs" />
+    <Compile Include="Diagrams\TwoAxisDiagram.cs" />
     <Compile Include="Exceptions\NaNValueException.cs" />
     <Compile Include="Exceptions\ValueOutOfBoundsException.cs" />
     <Compile Include="Diagrams\ForceFieldDiagrams\ForceFieldDiagram.cs" />

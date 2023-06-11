@@ -40,17 +40,17 @@ namespace StakeholderAnalysis.Storage.Test.XmlEntities
                     new StakeholderXmlEntity
                         { Name = "Stakeholder 1", Order = 1, Id = 1, StakeholderTypeId = stakeholderType2XmlEntity.Id }
                 },
-                AttitudeImpactDiagramXmlEntities = new Collection<AttitudeImpactDiagramXmlEntity>
+                AttitudeImpactDiagramXmlEntities = new Collection<TwoAxisDiagramXmlEntity>
                 {
-                    new AttitudeImpactDiagramXmlEntity
+                    new TwoAxisDiagramXmlEntity
                     {
                         Id = 30
                     },
-                    new AttitudeImpactDiagramXmlEntity
+                    new TwoAxisDiagramXmlEntity
                     {
                         Id = 31
                     },
-                    new AttitudeImpactDiagramXmlEntity
+                    new TwoAxisDiagramXmlEntity
                     {
                         Id = 32
                     }

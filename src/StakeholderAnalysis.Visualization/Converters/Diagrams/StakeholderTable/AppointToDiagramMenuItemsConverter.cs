@@ -6,7 +6,6 @@ using System.Windows.Controls;
 using System.Windows.Data;
 using System.Windows.Media.Imaging;
 using StakeholderAnalysis.Data.Diagrams;
-using StakeholderAnalysis.Data.Diagrams.AttitudeImpactDiagrams;
 using StakeholderAnalysis.Data.Diagrams.ForceFieldDiagrams;
 using StakeholderAnalysis.Visualization.Commands.Diagrams;
 using StakeholderAnalysis.Visualization.ViewModels.DocumentViews.StakeholderTableView;
@@ -38,14 +37,15 @@ namespace StakeholderAnalysis.Visualization.Converters.Diagrams.StakeholderTable
 
         private string DiagramToIconSourceString(IStakeholderDiagram diagram)
         {
+            // TODO: How to distinguish Force field diagram and attitude impact diagrams here?
             switch (diagram)
             {
-                case Data.Diagrams.OnionDiagrams.OnionDiagram onionDiagram:
+                case Data.Diagrams.OnionDiagrams.OnionDiagram _:
                     return "pack://application:,,,/StakeholderAnalysis.Visualization;component/Resources/Diagrams/onion.ico";
-                case AttitudeImpactDiagram attitudeImpactDiagram:
-                    return "pack://application:,,,/StakeholderAnalysis.Visualization;component/Resources/Diagrams/forces.ico";
                 case ForceFieldDiagram forceFieldDiagram:
                     return "pack://application:,,,/StakeholderAnalysis.Visualization;component/Resources/Diagrams/involvement.ico";
+                case TwoAxisDiagram _:
+                    return "pack://application:,,,/StakeholderAnalysis.Visualization;component/Resources/Diagrams/forces.ico";
                 default:
                     return "";
             }

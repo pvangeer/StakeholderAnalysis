@@ -2,16 +2,34 @@
 using System.Collections.ObjectModel;
 using System.Windows.Media;
 
-namespace StakeholderAnalysis.Data.Diagrams.ForceFieldDiagrams
+namespace StakeholderAnalysis.Data.Diagrams
 {
     public class TwoAxisDiagram : NotifyPropertyChangedObservable, ITwoAxisDiagram, ICloneable
     {
         private double axisFontSize;
         private double backgroundFontSize;
 
-        public TwoAxisDiagram()
+        public TwoAxisDiagram() : this("")
         {
+        }
+
+        public TwoAxisDiagram(string name)
+        {
+            Name = name;
             Stakeholders = new ObservableCollection<PositionedStakeholder>();
+
+            AxisFontFamily = new FontFamily("Arial");
+            BackgroundFontFamily = new FontFamily("Arial");
+
+            BackgroundTextLeftBottom = "";
+            BackgroundTextLeftTop = "";
+            BackgroundTextRightBottom = "";
+            BackgroundTextRightTop = "";
+
+            XAxisMaxLabel = "";
+            XAxisMinLabel = "";
+            YAxisMaxLabel = "";
+            YAxisMinLabel = "";
         }
 
         public ObservableCollection<PositionedStakeholder> Stakeholders { get; }
@@ -78,7 +96,7 @@ namespace StakeholderAnalysis.Data.Diagrams.ForceFieldDiagrams
         {
             var converter = new FontFamilyConverter();
 
-            var diagram = new ForceFieldDiagram
+            var diagram = new TwoAxisDiagram
             {
                 AxisFontBold = AxisFontBold,
                 AxisFontColor = AxisFontColor.Clone(),

@@ -3,7 +3,7 @@ using System.ComponentModel;
 using System.Linq;
 using System.Windows.Input;
 using StakeholderAnalysis.Data;
-using StakeholderAnalysis.Data.Diagrams.AttitudeImpactDiagrams;
+using StakeholderAnalysis.Data.Diagrams;
 using StakeholderAnalysis.Data.Diagrams.ForceFieldDiagrams;
 using StakeholderAnalysis.Gui;
 using StakeholderAnalysis.Visualization.ViewModels.DocumentViews.TwoAxisDiagrams;
@@ -12,14 +12,14 @@ using StakeholderAnalysis.Visualization.ViewModels.TreeView;
 
 namespace StakeholderAnalysis.Visualization.ViewModels.ProjectExplorer
 {
-    public class ProjectExplorerAttitudeImpactDiagramViewModel : ViewModelBase, ITreeNodeCollectionViewModel
+    public class ProjectExplorerTwoAxisDiagramViewModel : ViewModelBase, ITreeNodeCollectionViewModel
     {
         private readonly Analysis analysis;
-        private readonly AttitudeImpactDiagram diagram;
+        private readonly TwoAxisDiagram diagram;
         private readonly ViewManager viewManager;
 
-        public ProjectExplorerAttitudeImpactDiagramViewModel(ViewModelFactory factory, Analysis analysis,
-            AttitudeImpactDiagram attitudeImpactDiagram, ViewManager viewManager) : base(factory)
+        public ProjectExplorerTwoAxisDiagramViewModel(ViewModelFactory factory, Analysis analysis,
+            TwoAxisDiagram attitudeImpactDiagram, ViewManager viewManager) : base(factory)
         {
             this.viewManager = viewManager;
             this.analysis = analysis;
@@ -31,7 +31,7 @@ namespace StakeholderAnalysis.Visualization.ViewModels.ProjectExplorer
             {
                 ViewModelFactory.CreateDuplicateMenuItemViewModel(diagram,
                     CommandFactory.CreateCanAlwaysExecuteActionCommand(
-                        p => { analysis.AttitudeImpactDiagrams.Add(diagram.Clone() as AttitudeImpactDiagram); }))
+                        p => { analysis.AttitudeImpactDiagrams.Add(diagram.Clone() as TwoAxisDiagram); }))
             };
 
             SelectItemCommand = CommandFactory.CreateSelectItemCommand(this);
@@ -45,7 +45,7 @@ namespace StakeholderAnalysis.Visualization.ViewModels.ProjectExplorer
         public ICommand RemoveItemCommand => CommandFactory.CreateCanAlwaysExecuteActionCommand(p =>
         {
             var viewInfo = viewManager?.Views.FirstOrDefault(vi =>
-                vi.ViewModel is AttitudeImpactDiagramViewModel diagramViewModel1 &&
+                vi.ViewModel is TwoAxisDiagramViewModel diagramViewModel1 &&
                 diagramViewModel1.IsViewModelFor(diagram));
             if (viewInfo != null) viewManager.CloseView(viewInfo);
             analysis.AttitudeImpactDiagrams.Remove(diagram);
@@ -60,7 +60,7 @@ namespace StakeholderAnalysis.Visualization.ViewModels.ProjectExplorer
         public ICommand OpenViewCommand => CommandFactory.CreateCanAlwaysExecuteActionCommand(p =>
         {
             var viewInfo = viewManager.Views.FirstOrDefault(v =>
-                v.ViewModel is AttitudeImpactDiagramViewModel diagramViewModel &&
+                v.ViewModel is TwoAxisDiagramViewModel diagramViewModel &&
                 diagramViewModel.IsViewModelFor(diagram));
             if (viewInfo == null)
             {
@@ -90,7 +90,7 @@ namespace StakeholderAnalysis.Visualization.ViewModels.ProjectExplorer
 
         public override bool IsViewModelFor(object otherObject)
         {
-            return otherObject as AttitudeImpactDiagram == diagram;
+            return otherObject as TwoAxisDiagram == diagram;
         }
 
         public bool IsExpandable => false;

@@ -3,9 +3,9 @@
                     xmlns:system="clr-namespace:System;assembly=mscorlib"
                     xmlns:componentModel="clr-namespace:System.ComponentModel;assembly=WindowsBase"
                     xmlns:onionDiagram="clr-namespace:StakeholderAnalysis.Visualization.Converters.Diagrams.OnionDiagram"
-                    xmlns:twoAxisDiagram="clr-namespace:StakeholderAnalysis.Visualization.Converters.Diagrams.TwoAxisDiagram"
                     xmlns:diagrams="clr-namespace:StakeholderAnalysis.Visualization.Converters.Diagrams"
-                    xmlns:twoAxisDiagrams="clr-namespace:StakeholderAnalysis.Visualization.ViewModels.DocumentViews.TwoAxisDiagrams">
+                    xmlns:twoAxisDiagrams="clr-namespace:StakeholderAnalysis.Visualization.ViewModels.DocumentViews.TwoAxisDiagrams"
+                    xmlns:twoAxisDiagramConverters="clr-namespace:StakeholderAnalysis.Visualization.Converters.Diagrams.TwoAxisDiagramConverters">
 
     <ResourceDictionary.MergedDictionaries>
         <ResourceDictionary
@@ -13,7 +13,7 @@
     </ResourceDictionary.MergedDictionaries>
 
     <onionDiagram:PercentageToDimensionConverter x:Key="PercentageToDimensionConverter" />
-    <twoAxisDiagram:CanvasSizeToArrowsPathDataConverter x:Key="SizeToArrowsPathDataConverter" />
+    <twoAxisDiagramConverters:CanvasSizeToArrowsPathDataConverter x:Key="SizeToArrowsPathDataConverter" />
     <BooleanToVisibilityConverter x:Key="BoolToVisibilityConverter" />
     <diagrams:IsSelectedStakeholderToOffsetConverter x:Key="IsSelectedStakeholderToOffsetConverter" />
 

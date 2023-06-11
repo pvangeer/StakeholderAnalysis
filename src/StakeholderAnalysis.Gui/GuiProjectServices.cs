@@ -211,7 +211,8 @@ namespace StakeholderAnalysis.Gui
             var dialog = new SaveFileDialog
             {
                 CheckPathExists = true,
-                FileName = fileName.Replace(".xml",$"-migrated-{VersionInfo.Year}.{VersionInfo.MajorVersion}.{VersionInfo.MinorVersion}.xml" ),
+                FileName = fileName.Replace(".xml",
+                    $"-migrated-{VersionInfo.Year}.{VersionInfo.MajorVersion}.{VersionInfo.MinorVersion}.xml"),
                 OverwritePrompt = true,
                 Filter = "Stakeholderanalyse bestand (*.xml)|*.xml"
             };

@@ -4,9 +4,9 @@ using StakeholderAnalysis.Storage.XmlEntities;
 
 namespace StakeholderAnalysis.Storage.Read
 {
-    internal static class AttitudeImpactDiagramStakeholderEntityReadExtensions
+    internal static class PositionedStakeholderEntityReadExtensions
     {
-        internal static PositionedStakeholder Read(this AttitudeImpactDiagramStakeholderXmlEntity entity,
+        internal static PositionedStakeholder Read(this PositionedStakeholderXmlEntity entity,
             ReadConversionCollector collector)
         {
             if (entity == null) throw new ArgumentNullException(nameof(entity));
@@ -16,7 +16,7 @@ namespace StakeholderAnalysis.Storage.Read
 
             var stakeholder = new PositionedStakeholder(
                 collector.GetReferencedStakeholder(entity.StakeholderReferenceId),
-                entity.Impact, 1.0 - entity.Attitude)
+                entity.Left, entity.Top)
             {
                 Rank = (int)entity.Rank
             };

@@ -3,7 +3,6 @@ using System.Collections.Generic;
 using System.Linq;
 using StakeholderAnalysis.Data;
 using StakeholderAnalysis.Data.Diagrams;
-using StakeholderAnalysis.Data.Diagrams.AttitudeImpactDiagrams;
 using StakeholderAnalysis.Data.Diagrams.ForceFieldDiagrams;
 using StakeholderAnalysis.Data.Diagrams.OnionDiagrams;
 using StakeholderAnalysis.Storage.XmlEntities;
@@ -12,9 +11,6 @@ namespace StakeholderAnalysis.Storage.Create
 {
     public class PersistenceRegistry
     {
-        private readonly Dictionary<AttitudeImpactDiagram, AttitudeImpactDiagramXmlEntity> attitudeImpactDiagrams =
-            CreateDictionary<AttitudeImpactDiagram, AttitudeImpactDiagramXmlEntity>();
-
         private readonly Dictionary<ForceFieldDiagram, ForceFieldDiagramXmlEntity> forceFieldDiagrams =
             CreateDictionary<ForceFieldDiagram, ForceFieldDiagramXmlEntity>();
 
@@ -41,6 +37,9 @@ namespace StakeholderAnalysis.Storage.Create
 
         private readonly Dictionary<StakeholderType, StakeholderTypeXmlEntity> stakeholderTypes =
             CreateDictionary<StakeholderType, StakeholderTypeXmlEntity>();
+
+        private readonly Dictionary<TwoAxisDiagram, TwoAxisDiagramXmlEntity> twoAxisDiagrams =
+            CreateDictionary<TwoAxisDiagram, TwoAxisDiagramXmlEntity>();
 
         #region Register Methods
 
@@ -89,12 +88,12 @@ namespace StakeholderAnalysis.Storage.Create
             Register(positionedStakeholders, model, entity);
         }
 
-        internal void Register(AttitudeImpactDiagram model, AttitudeImpactDiagramXmlEntity entity)
+        internal void Register(TwoAxisDiagram model, TwoAxisDiagramXmlEntity entity)
         {
-            Register(attitudeImpactDiagrams, model, entity);
+            Register(twoAxisDiagrams, model, entity);
         }
 
-        internal void Register(PositionedStakeholder model, AttitudeImpactDiagramStakeholderXmlEntity entity)
+        internal void Register(PositionedStakeholder model, PositionedStakeholderXmlEntity entity)
         {
             Register(positionedStakeholders, model, entity);
         }
@@ -143,9 +142,9 @@ namespace StakeholderAnalysis.Storage.Create
             return ContainsValue(positionedStakeholders, model);
         }
 
-        internal bool Contains(AttitudeImpactDiagram model)
+        internal bool Contains(TwoAxisDiagram model)
         {
-            return ContainsValue(attitudeImpactDiagrams, model);
+            return ContainsValue(twoAxisDiagrams, model);
         }
 
         #endregion
@@ -187,9 +186,9 @@ namespace StakeholderAnalysis.Storage.Create
             return Get(forceFieldDiagrams, model);
         }
 
-        public AttitudeImpactDiagramXmlEntity Get(AttitudeImpactDiagram model)
+        public TwoAxisDiagramXmlEntity Get(TwoAxisDiagram model)
         {
-            return Get(attitudeImpactDiagrams, model);
+            return Get(twoAxisDiagrams, model);
         }
 
         public OnionDiagramStakeholderXmlEntity GetAsOnionDiagramStakeholderXmlEntity(PositionedStakeholder model)
@@ -202,9 +201,9 @@ namespace StakeholderAnalysis.Storage.Create
             return Get(positionedStakeholders, model) as ForceFieldDiagramStakeholderXmlEntity;
         }
 
-        public AttitudeImpactDiagramStakeholderXmlEntity GetAsAttitudeImpactDiagramStakeholderXmlEntity(PositionedStakeholder model)
+        public PositionedStakeholderXmlEntity GetAsAttitudeImpactDiagramStakeholderXmlEntity(PositionedStakeholder model)
         {
-            return Get(positionedStakeholders, model) as AttitudeImpactDiagramStakeholderXmlEntity;
+            return Get(positionedStakeholders, model) as PositionedStakeholderXmlEntity;
         }
 
         #endregion

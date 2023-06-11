@@ -3,7 +3,7 @@ using System.Collections.Specialized;
 using System.Linq;
 using System.Windows.Input;
 using StakeholderAnalysis.Data;
-using StakeholderAnalysis.Data.Diagrams.AttitudeImpactDiagrams;
+using StakeholderAnalysis.Data.Diagrams;
 using StakeholderAnalysis.Visualization.ViewModels.TreeView;
 
 namespace StakeholderAnalysis.Visualization.ViewModels.ProjectExplorer
@@ -20,8 +20,8 @@ namespace StakeholderAnalysis.Visualization.ViewModels.ProjectExplorer
             analysis.AttitudeImpactDiagrams.CollectionChanged += AttitudeImpactDiagramsCollectionChanged;
 
             Items = new ObservableCollection<ITreeNodeViewModel>();
-            foreach (var forceFieldDiagram in analysis.AttitudeImpactDiagrams)
-                Items.Add(ViewModelFactory.CreateProjectExplorerDiagramViewModel(forceFieldDiagram));
+            foreach (var attitudeImpactDiagram in analysis.AttitudeImpactDiagrams)
+                Items.Add(ViewModelFactory.CreateProjectExplorerDiagramViewModel(attitudeImpactDiagram));
 
             ContextMenuItems = new ObservableCollection<ContextMenuItemViewModel>();
         }
@@ -48,7 +48,7 @@ namespace StakeholderAnalysis.Visualization.ViewModels.ProjectExplorer
 
         public ICommand AddItemCommand => CommandFactory.CreateCanAlwaysExecuteActionCommand(p =>
         {
-            analysis.AttitudeImpactDiagrams.Add(new AttitudeImpactDiagram("Nieuw diagram"));
+            analysis.AttitudeImpactDiagrams.Add(AnalysisFactory.CreateAttitudeImpactDiagram("Nieuw diagram"));
         });
 
         public bool CanOpen => false;
@@ -84,7 +84,7 @@ namespace StakeholderAnalysis.Visualization.ViewModels.ProjectExplorer
         private void AttitudeImpactDiagramsCollectionChanged(object sender, NotifyCollectionChangedEventArgs e)
         {
             if (e.Action == NotifyCollectionChangedAction.Add)
-                foreach (var attitudeImpactDiagram in e.NewItems.OfType<AttitudeImpactDiagram>())
+                foreach (var attitudeImpactDiagram in e.NewItems.OfType<TwoAxisDiagram>())
                 {
                     var projectExplorerDiagramViewModel = ViewModelFactory.CreateProjectExplorerDiagramViewModel(attitudeImpactDiagram);
                     Items.Add(projectExplorerDiagramViewModel);
@@ -93,7 +93,7 @@ namespace StakeholderAnalysis.Visualization.ViewModels.ProjectExplorer
                 }
 
             if (e.Action == NotifyCollectionChangedAction.Remove)
-                foreach (var attitudeImpactDiagram in e.OldItems.OfType<AttitudeImpactDiagram>())
+                foreach (var attitudeImpactDiagram in e.OldItems.OfType<TwoAxisDiagram>())
                 {
                     var diagramToRemove = Items.FirstOrDefault(d => d.IsViewModelFor(attitudeImpactDiagram));
                     if (diagramToRemove != null) Items.Remove(diagramToRemove);

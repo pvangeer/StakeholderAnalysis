@@ -5,11 +5,11 @@ using System.Xml.Serialization;
 namespace StakeholderAnalysis.Storage.XmlEntities
 {
     [Serializable]
-    public class AttitudeImpactDiagramXmlEntity : IXmlEntity
+    public class TwoAxisDiagramXmlEntity : IXmlEntity
     {
-        public AttitudeImpactDiagramXmlEntity()
+        public TwoAxisDiagramXmlEntity()
         {
-            AttitudeImpactDiagramStakeholderXmlEntities = new Collection<AttitudeImpactDiagramStakeholderXmlEntity>();
+            PositionedStakeholderXmlEntities = new Collection<PositionedStakeholderXmlEntity>();
         }
 
         [XmlAttribute(AttributeName = "name")]
@@ -28,8 +28,8 @@ namespace StakeholderAnalysis.Storage.XmlEntities
         public TwoAxisDiagramAxisXmlEntity Axis { get; set; }
 
         [XmlArray(ElementName = "stakeholders")]
-        [XmlArrayItem(ElementName = "attitudeimpactstakeholder")]
-        public Collection<AttitudeImpactDiagramStakeholderXmlEntity> AttitudeImpactDiagramStakeholderXmlEntities { get; set; }
+        [XmlArrayItem(ElementName = "positionedstakeholder")]
+        public Collection<PositionedStakeholderXmlEntity> PositionedStakeholderXmlEntities { get; set; }
 
         [XmlAttribute(AttributeName = "id")]
         public long Id { get; set; }

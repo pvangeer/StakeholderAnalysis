@@ -3,7 +3,6 @@ using System.Collections.Generic;
 using System.Linq;
 using StakeholderAnalysis.Data;
 using StakeholderAnalysis.Data.Diagrams;
-using StakeholderAnalysis.Data.Diagrams.AttitudeImpactDiagrams;
 using StakeholderAnalysis.Data.Diagrams.ForceFieldDiagrams;
 using StakeholderAnalysis.Data.Diagrams.OnionDiagrams;
 using StakeholderAnalysis.Storage.XmlEntities;
@@ -12,12 +11,9 @@ namespace StakeholderAnalysis.Storage.Read
 {
     internal class ReadConversionCollector
     {
-        private readonly Dictionary<AttitudeImpactDiagramXmlEntity, AttitudeImpactDiagram> attitudeImpactDiagrams =
-            CreateDictionary<AttitudeImpactDiagramXmlEntity, AttitudeImpactDiagram>();
-
-        private readonly Dictionary<AttitudeImpactDiagramStakeholderXmlEntity, PositionedStakeholder>
-            attitudeImpactDiagramStakeholders =
-                CreateDictionary<AttitudeImpactDiagramStakeholderXmlEntity, PositionedStakeholder>();
+        private readonly Dictionary<PositionedStakeholderXmlEntity, PositionedStakeholder>
+            positionedDiagramStakeholders =
+                CreateDictionary<PositionedStakeholderXmlEntity, PositionedStakeholder>();
 
         private readonly Dictionary<ForceFieldDiagramXmlEntity, ForceFieldDiagram> forceFieldDiagrams =
             CreateDictionary<ForceFieldDiagramXmlEntity, ForceFieldDiagram>();
@@ -48,6 +44,9 @@ namespace StakeholderAnalysis.Storage.Read
 
         private readonly Dictionary<StakeholderTypeXmlEntity, StakeholderType> stakeholderTypes =
             CreateDictionary<StakeholderTypeXmlEntity, StakeholderType>();
+
+        private readonly Dictionary<TwoAxisDiagramXmlEntity, TwoAxisDiagram> twoAxisDiagrams =
+            CreateDictionary<TwoAxisDiagramXmlEntity, TwoAxisDiagram>();
 
         internal void Collect(StakeholderXmlEntity entity, Stakeholder model)
         {
@@ -94,14 +93,14 @@ namespace StakeholderAnalysis.Storage.Read
             Collect(forceFieldDiagramStakeholders, entity, model);
         }
 
-        internal void Collect(AttitudeImpactDiagramXmlEntity entity, AttitudeImpactDiagram model)
+        internal void Collect(TwoAxisDiagramXmlEntity entity, TwoAxisDiagram model)
         {
-            Collect(attitudeImpactDiagrams, entity, model);
+            Collect(twoAxisDiagrams, entity, model);
         }
 
-        internal void Collect(AttitudeImpactDiagramStakeholderXmlEntity entity, PositionedStakeholder model)
+        internal void Collect(PositionedStakeholderXmlEntity entity, PositionedStakeholder model)
         {
-            Collect(attitudeImpactDiagramStakeholders, entity, model);
+            Collect(positionedDiagramStakeholders, entity, model);
         }
 
         internal bool Contains(StakeholderXmlEntity entity)
@@ -149,14 +148,14 @@ namespace StakeholderAnalysis.Storage.Read
             return Contains(forceFieldDiagramStakeholders, entity);
         }
 
-        internal bool Contains(AttitudeImpactDiagramXmlEntity entity)
+        internal bool Contains(TwoAxisDiagramXmlEntity entity)
         {
-            return Contains(attitudeImpactDiagrams, entity);
+            return Contains(twoAxisDiagrams, entity);
         }
 
-        internal bool Contains(AttitudeImpactDiagramStakeholderXmlEntity entity)
+        internal bool Contains(PositionedStakeholderXmlEntity entity)
         {
-            return Contains(attitudeImpactDiagramStakeholders, entity);
+            return Contains(positionedDiagramStakeholders, entity);
         }
 
         internal Stakeholder Get(StakeholderXmlEntity entity)
@@ -204,14 +203,14 @@ namespace StakeholderAnalysis.Storage.Read
             return Get(forceFieldDiagramStakeholders, entity);
         }
 
-        internal AttitudeImpactDiagram Get(AttitudeImpactDiagramXmlEntity entity)
+        internal TwoAxisDiagram Get(TwoAxisDiagramXmlEntity entity)
         {
-            return Get(attitudeImpactDiagrams, entity);
+            return Get(twoAxisDiagrams, entity);
         }
 
-        internal PositionedStakeholder Get(AttitudeImpactDiagramStakeholderXmlEntity entity)
+        internal PositionedStakeholder Get(PositionedStakeholderXmlEntity entity)
         {
-            return Get(attitudeImpactDiagramStakeholders, entity);
+            return Get(positionedDiagramStakeholders, entity);
         }
 
         public StakeholderType GetReferencedStakeholderType(long id)

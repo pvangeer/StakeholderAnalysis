@@ -3,7 +3,6 @@ using System.Collections.ObjectModel;
 using System.Windows.Media;
 using StakeholderAnalysis.Data;
 using StakeholderAnalysis.Data.Diagrams;
-using StakeholderAnalysis.Data.Diagrams.AttitudeImpactDiagrams;
 using StakeholderAnalysis.Data.Diagrams.ForceFieldDiagrams;
 using StakeholderAnalysis.Data.Diagrams.OnionDiagrams;
 
@@ -51,7 +50,7 @@ namespace StakeholderAnalysis.Storage.Test
             };
             analysis.ForceFieldDiagrams.Add(forceFieldDiagram);
 
-            var attitudeImpactDiagram = new AttitudeImpactDiagram("BOI-houding/impact")
+            var attitudeImpactDiagram = new TwoAxisDiagram("BOI-houding/impact")
             {
                 BrushEndColor = Colors.Coral,
                 BrushStartColor = Colors.DarkRed,

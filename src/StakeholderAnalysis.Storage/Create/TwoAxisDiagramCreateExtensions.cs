@@ -1,13 +1,14 @@
 ﻿using System;
 using System.Windows.Media;
-using StakeholderAnalysis.Data.Diagrams.AttitudeImpactDiagrams;
+using StakeholderAnalysis.Data.Diagrams;
+using StakeholderAnalysis.Data.Diagrams.ForceFieldDiagrams;
 using StakeholderAnalysis.Storage.XmlEntities;
 
 namespace StakeholderAnalysis.Storage.Create
 {
-    internal static class AttitudeImpactDiagramCreateExtensions
+    internal static class TwoAxisDiagramCreateExtensions
     {
-        internal static AttitudeImpactDiagramXmlEntity Create(this AttitudeImpactDiagram diagram,
+        internal static TwoAxisDiagramXmlEntity Create(this TwoAxisDiagram diagram,
             PersistenceRegistry registry)
         {
             if (registry == null) throw new ArgumentNullException(nameof(registry));
@@ -15,7 +16,7 @@ namespace StakeholderAnalysis.Storage.Create
             if (registry.Contains(diagram)) return registry.Get(diagram);
 
             var converter = new FontFamilyConverter();
-            var entity = new AttitudeImpactDiagramXmlEntity
+            var entity = new TwoAxisDiagramXmlEntity
             {
                 Name = diagram.Name.DeepClone(),
                 Brush = new TwoAxisDiagramBrushXmlEntity
@@ -56,14 +57,14 @@ namespace StakeholderAnalysis.Storage.Create
             return entity;
         }
 
-        private static void AddEntitiesForStakeholders(AttitudeImpactDiagram diagram,
-            AttitudeImpactDiagramXmlEntity entity, PersistenceRegistry registry)
+        private static void AddEntitiesForStakeholders(TwoAxisDiagram diagram,
+            TwoAxisDiagramXmlEntity entity, PersistenceRegistry registry)
         {
             for (var index = 0; index < diagram.Stakeholders.Count; index++)
             {
-                var eventTreeEntity = AttitudeImpactDiagramStakeholderCreateExtensions.Create(diagram.Stakeholders[index], registry);
+                var eventTreeEntity = PositionedStakeholderCreateExtensions.Create(diagram.Stakeholders[index], registry);
                 eventTreeEntity.Order = index;
-                entity.AttitudeImpactDiagramStakeholderXmlEntities.Add(eventTreeEntity);
+                entity.PositionedStakeholderXmlEntities.Add(eventTreeEntity);
             }
         }
     }

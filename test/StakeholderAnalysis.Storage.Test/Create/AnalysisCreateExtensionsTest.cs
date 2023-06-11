@@ -5,7 +5,6 @@ using System.Windows.Media;
 using NUnit.Framework;
 using StakeholderAnalysis.Data;
 using StakeholderAnalysis.Data.Diagrams;
-using StakeholderAnalysis.Data.Diagrams.AttitudeImpactDiagrams;
 using StakeholderAnalysis.Data.Diagrams.ForceFieldDiagrams;
 using StakeholderAnalysis.Data.Diagrams.OnionDiagrams;
 using StakeholderAnalysis.Storage.Create;
@@ -110,8 +109,8 @@ namespace StakeholderAnalysis.Storage.Test.Create
             {
                 AttitudeImpactDiagrams =
                 {
-                    new AttitudeImpactDiagram("Diagram 1"),
-                    new AttitudeImpactDiagram("Diagram 2")
+                    AnalysisFactory.CreateAttitudeImpactDiagram("Diagram 1"),
+                    new TwoAxisDiagram("Diagram 2")
                     {
                         BrushStartColor = testColor,
                         BrushEndColor = testColor,
@@ -205,7 +204,7 @@ namespace StakeholderAnalysis.Storage.Test.Create
                 },
                 AttitudeImpactDiagrams =
                 {
-                    new AttitudeImpactDiagram("Diagram 1")
+                    new TwoAxisDiagram("Diagram 1")
                     {
                         Stakeholders =
                         {
@@ -226,14 +225,14 @@ namespace StakeholderAnalysis.Storage.Test.Create
             Assert.IsNotNull(firstXmlEntity);
 
             Assert.AreEqual(firstDiagram.Stakeholders.Count,
-                firstXmlEntity.AttitudeImpactDiagramStakeholderXmlEntities.Count);
-            for (var index = 0; index < firstXmlEntity.AttitudeImpactDiagramStakeholderXmlEntities.Count; index++)
+                firstXmlEntity.PositionedStakeholderXmlEntities.Count);
+            for (var index = 0; index < firstXmlEntity.PositionedStakeholderXmlEntities.Count; index++)
             {
-                var xmlDiagramStakeholder = firstXmlEntity.AttitudeImpactDiagramStakeholderXmlEntities[index];
+                var xmlDiagramStakeholder = firstXmlEntity.PositionedStakeholderXmlEntities[index];
                 var diagramStakeholder = firstDiagram.Stakeholders[index];
 
-                Assert.AreEqual(1.0 - diagramStakeholder.Top, xmlDiagramStakeholder.Attitude);
-                Assert.AreEqual(diagramStakeholder.Left, xmlDiagramStakeholder.Impact);
+                Assert.AreEqual(diagramStakeholder.Top, xmlDiagramStakeholder.Top);
+                Assert.AreEqual(diagramStakeholder.Left, xmlDiagramStakeholder.Left);
                 Assert.AreEqual(diagramStakeholder.Rank, xmlDiagramStakeholder.Rank);
                 Assert.AreEqual(index, xmlDiagramStakeholder.Order);
 
