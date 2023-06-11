@@ -42,7 +42,7 @@ namespace StakeholderAnalysis.Visualization.ViewModels.ProjectExplorer
 
         public ICommand AddItemCommand => CommandFactory.CreateCanAlwaysExecuteActionCommand(p =>
         {
-            analysis.OnionDiagrams.Add(new OnionDiagram("Nieuw diagram"));
+            analysis.OnionDiagrams.Add(AnalysisFactory.CreateOnionDiagram("Nieuw diagram"));
         });
 
         public bool CanOpen => false;

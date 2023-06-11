@@ -3,7 +3,6 @@ using System.Collections.Generic;
 using System.Linq;
 using StakeholderAnalysis.Data;
 using StakeholderAnalysis.Data.Diagrams;
-using StakeholderAnalysis.Data.Diagrams.ForceFieldDiagrams;
 using StakeholderAnalysis.Data.Diagrams.OnionDiagrams;
 using StakeholderAnalysis.Storage.XmlEntities;
 
@@ -11,17 +10,6 @@ namespace StakeholderAnalysis.Storage.Read
 {
     internal class ReadConversionCollector
     {
-        private readonly Dictionary<PositionedStakeholderXmlEntity, PositionedStakeholder>
-            positionedDiagramStakeholders =
-                CreateDictionary<PositionedStakeholderXmlEntity, PositionedStakeholder>();
-
-        private readonly Dictionary<ForceFieldDiagramXmlEntity, ForceFieldDiagram> forceFieldDiagrams =
-            CreateDictionary<ForceFieldDiagramXmlEntity, ForceFieldDiagram>();
-
-        private readonly Dictionary<ForceFieldDiagramStakeholderXmlEntity, PositionedStakeholder>
-            forceFieldDiagramStakeholders =
-                CreateDictionary<ForceFieldDiagramStakeholderXmlEntity, PositionedStakeholder>();
-
         private readonly Dictionary<OnionDiagramXmlEntity, OnionDiagram> onionDiagrams =
             CreateDictionary<OnionDiagramXmlEntity, OnionDiagram>();
 
@@ -31,6 +19,10 @@ namespace StakeholderAnalysis.Storage.Read
 
         private readonly Dictionary<OnionRingXmlEntity, OnionRing> onionRings =
             CreateDictionary<OnionRingXmlEntity, OnionRing>();
+
+        private readonly Dictionary<PositionedStakeholderXmlEntity, PositionedStakeholder>
+            positionedDiagramStakeholders =
+                CreateDictionary<PositionedStakeholderXmlEntity, PositionedStakeholder>();
 
         private readonly Dictionary<StakeholderConnectionGroupXmlEntity, StakeholderConnectionGroup>
             stakeholderConnectionGroups =
@@ -83,16 +75,6 @@ namespace StakeholderAnalysis.Storage.Read
             Collect(stakeholderConnections, entity, model);
         }
 
-        internal void Collect(ForceFieldDiagramXmlEntity entity, ForceFieldDiagram model)
-        {
-            Collect(forceFieldDiagrams, entity, model);
-        }
-
-        internal void Collect(ForceFieldDiagramStakeholderXmlEntity entity, PositionedStakeholder model)
-        {
-            Collect(forceFieldDiagramStakeholders, entity, model);
-        }
-
         internal void Collect(TwoAxisDiagramXmlEntity entity, TwoAxisDiagram model)
         {
             Collect(twoAxisDiagrams, entity, model);
@@ -138,16 +120,6 @@ namespace StakeholderAnalysis.Storage.Read
             return Contains(stakeholderConnectionGroups, entity);
         }
 
-        internal bool Contains(ForceFieldDiagramXmlEntity entity)
-        {
-            return Contains(forceFieldDiagrams, entity);
-        }
-
-        internal bool Contains(ForceFieldDiagramStakeholderXmlEntity entity)
-        {
-            return Contains(forceFieldDiagramStakeholders, entity);
-        }
-
         internal bool Contains(TwoAxisDiagramXmlEntity entity)
         {
             return Contains(twoAxisDiagrams, entity);
@@ -191,16 +163,6 @@ namespace StakeholderAnalysis.Storage.Read
         internal StakeholderConnectionGroup Get(StakeholderConnectionGroupXmlEntity entity)
         {
             return Get(stakeholderConnectionGroups, entity);
-        }
-
-        internal ForceFieldDiagram Get(ForceFieldDiagramXmlEntity entity)
-        {
-            return Get(forceFieldDiagrams, entity);
-        }
-
-        internal PositionedStakeholder Get(ForceFieldDiagramStakeholderXmlEntity entity)
-        {
-            return Get(forceFieldDiagramStakeholders, entity);
         }
 
         internal TwoAxisDiagram Get(TwoAxisDiagramXmlEntity entity)

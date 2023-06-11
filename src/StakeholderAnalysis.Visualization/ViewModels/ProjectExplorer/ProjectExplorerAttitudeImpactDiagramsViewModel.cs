@@ -21,7 +21,7 @@ namespace StakeholderAnalysis.Visualization.ViewModels.ProjectExplorer
 
             Items = new ObservableCollection<ITreeNodeViewModel>();
             foreach (var attitudeImpactDiagram in analysis.AttitudeImpactDiagrams)
-                Items.Add(ViewModelFactory.CreateProjectExplorerDiagramViewModel(attitudeImpactDiagram));
+                Items.Add(ViewModelFactory.CreateProjectExplorerTwoAxisDiagramViewModel(attitudeImpactDiagram));
 
             ContextMenuItems = new ObservableCollection<ContextMenuItemViewModel>();
         }
@@ -86,7 +86,8 @@ namespace StakeholderAnalysis.Visualization.ViewModels.ProjectExplorer
             if (e.Action == NotifyCollectionChangedAction.Add)
                 foreach (var attitudeImpactDiagram in e.NewItems.OfType<TwoAxisDiagram>())
                 {
-                    var projectExplorerDiagramViewModel = ViewModelFactory.CreateProjectExplorerDiagramViewModel(attitudeImpactDiagram);
+                    var projectExplorerDiagramViewModel =
+                        ViewModelFactory.CreateProjectExplorerTwoAxisDiagramViewModel(attitudeImpactDiagram);
                     Items.Add(projectExplorerDiagramViewModel);
                     if (IsExpanded)
                         projectExplorerDiagramViewModel.SelectItemCommand?.Execute(null);

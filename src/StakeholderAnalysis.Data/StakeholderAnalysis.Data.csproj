@@ -27,7 +27,6 @@
     <Compile Include="Diagrams\TwoAxisDiagram.cs" />
     <Compile Include="Exceptions\NaNValueException.cs" />
     <Compile Include="Exceptions\ValueOutOfBoundsException.cs" />
-    <Compile Include="Diagrams\ForceFieldDiagrams\ForceFieldDiagram.cs" />
     <Compile Include="Diagrams\PositionedStakeholder.cs" />
     <Compile Include="Diagrams\ITwoAxisDiagram.cs" />
     <Compile Include="INotifyPropertyChangedImplementation.cs" />

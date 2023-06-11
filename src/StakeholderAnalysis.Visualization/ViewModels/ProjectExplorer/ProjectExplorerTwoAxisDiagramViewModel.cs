@@ -4,7 +4,6 @@ using System.Linq;
 using System.Windows.Input;
 using StakeholderAnalysis.Data;
 using StakeholderAnalysis.Data.Diagrams;
-using StakeholderAnalysis.Data.Diagrams.ForceFieldDiagrams;
 using StakeholderAnalysis.Gui;
 using StakeholderAnalysis.Visualization.ViewModels.DocumentViews.TwoAxisDiagrams;
 using StakeholderAnalysis.Visualization.ViewModels.Properties.TwoAxisDiagramProperties;
@@ -16,14 +15,16 @@ namespace StakeholderAnalysis.Visualization.ViewModels.ProjectExplorer
     {
         private readonly Analysis analysis;
         private readonly TwoAxisDiagram diagram;
+        private readonly DiagramType diagramType;
         private readonly ViewManager viewManager;
 
         public ProjectExplorerTwoAxisDiagramViewModel(ViewModelFactory factory, Analysis analysis,
-            TwoAxisDiagram attitudeImpactDiagram, ViewManager viewManager) : base(factory)
+            TwoAxisDiagram twoAxisDiagram, ViewManager viewManager) : base(factory)
         {
             this.viewManager = viewManager;
             this.analysis = analysis;
-            diagram = attitudeImpactDiagram;
+            diagram = twoAxisDiagram;
+            diagramType = analysis.ForceFieldDiagrams.Contains(diagram) ? DiagramType.ForceFieldDiagram : DiagramType.AttitudeImpactDiagram;
 
             Items = new ObservableCollection<ITreeNodeViewModel>();
 
@@ -31,7 +32,18 @@ namespace StakeholderAnalysis.Visualization.ViewModels.ProjectExplorer
             {
                 ViewModelFactory.CreateDuplicateMenuItemViewModel(diagram,
                     CommandFactory.CreateCanAlwaysExecuteActionCommand(
-                        p => { analysis.AttitudeImpactDiagrams.Add(diagram.Clone() as TwoAxisDiagram); }))
+                        p =>
+                        {
+                            switch (diagramType)
+                            {
+                                case DiagramType.AttitudeImpactDiagram:
+                                    analysis.AttitudeImpactDiagrams.Add(diagram.Clone() as TwoAxisDiagram);
+                                    break;
+                                case DiagramType.ForceFieldDiagram:
+                                    analysis.ForceFieldDiagrams.Add(diagram.Clone() as TwoAxisDiagram);
+                                    break;
+                            }
+                        }))
             };
 
             SelectItemCommand = CommandFactory.CreateSelectItemCommand(this);
@@ -85,8 +97,9 @@ namespace StakeholderAnalysis.Visualization.ViewModels.ProjectExplorer
 
         public ObservableCollection<ContextMenuItemViewModel> ContextMenuItems { get; }
 
-        public string IconSourceString =>
-            "pack://application:,,,/StakeholderAnalysis.Visualization;component/Resources/Diagrams/involvement.ico";
+        public string IconSourceString => diagramType == DiagramType.AttitudeImpactDiagram
+            ? "pack://application:,,,/StakeholderAnalysis.Visualization;component/Resources/Diagrams/involvement.ico"
+            : "pack://application:,,,/StakeholderAnalysis.Visualization;component/Resources/Diagrams/forces.ico";
 
         public override bool IsViewModelFor(object otherObject)
         {
@@ -107,7 +120,7 @@ namespace StakeholderAnalysis.Visualization.ViewModels.ProjectExplorer
         {
             switch (e.PropertyName)
             {
-                case nameof(ForceFieldDiagram.Name):
+                case nameof(TwoAxisDiagram.Name):
                     OnPropertyChanged(nameof(DisplayName));
                     break;
             }
@@ -117,5 +130,11 @@ namespace StakeholderAnalysis.Visualization.ViewModels.ProjectExplorer
         {
             return ViewModelFactory.CreateTwoAxisDiagramPropertiesViewModel(diagram);
         }
+    }
+
+    public enum DiagramType
+    {
+        ForceFieldDiagram,
+        AttitudeImpactDiagram
     }
 }

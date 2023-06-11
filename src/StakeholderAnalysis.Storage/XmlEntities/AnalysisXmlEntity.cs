@@ -12,7 +12,7 @@ namespace StakeholderAnalysis.Storage.XmlEntities
             StakeholderTypeXmlEntities = new Collection<StakeholderTypeXmlEntity>();
             StakeholderXmlEntities = new Collection<StakeholderXmlEntity>();
             OnionDiagramXmlEntities = new Collection<OnionDiagramXmlEntity>();
-            ForceFieldDiagramXmlEntities = new Collection<ForceFieldDiagramXmlEntity>();
+            ForceFieldDiagramXmlEntities = new Collection<TwoAxisDiagramXmlEntity>();
             AttitudeImpactDiagramXmlEntities = new Collection<TwoAxisDiagramXmlEntity>();
         }
 
@@ -29,8 +29,8 @@ namespace StakeholderAnalysis.Storage.XmlEntities
         public Collection<OnionDiagramXmlEntity> OnionDiagramXmlEntities { get; set; }
 
         [XmlArray(ElementName = "forcefielddiagrams")]
-        [XmlArrayItem(ElementName = "forcefielddiagram")]
-        public Collection<ForceFieldDiagramXmlEntity> ForceFieldDiagramXmlEntities { get; set; }
+        [XmlArrayItem(ElementName = "twoaxisdiagram")]
+        public Collection<TwoAxisDiagramXmlEntity> ForceFieldDiagramXmlEntities { get; set; }
 
         [XmlArray(ElementName = "attitudeimpactdiagrams")]
         [XmlArrayItem(ElementName = "twoaxisdiagram")]

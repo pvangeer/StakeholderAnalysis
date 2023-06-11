@@ -6,7 +6,6 @@ using System.Windows;
 using System.Windows.Input;
 using System.Windows.Media;
 using StakeholderAnalysis.Data.Diagrams;
-using StakeholderAnalysis.Data.Diagrams.ForceFieldDiagrams;
 using StakeholderAnalysis.Gui;
 using StakeholderAnalysis.Visualization.ViewModels.Properties.TwoAxisDiagramProperties;
 
@@ -14,10 +13,10 @@ namespace StakeholderAnalysis.Visualization.ViewModels.DocumentViews.TwoAxisDiag
 {
     public class ForceFieldDiagramViewModel : ViewModelBase, ITwoAxisDiagramViewModel, ISelectable, IDiagramViewModel
     {
-        private readonly ForceFieldDiagram diagram;
+        private readonly TwoAxisDiagram diagram;
         private object selectedObject;
 
-        public ForceFieldDiagramViewModel(ViewModelFactory factory, ForceFieldDiagram diagram) : base(factory)
+        public ForceFieldDiagramViewModel(ViewModelFactory factory, TwoAxisDiagram diagram) : base(factory)
         {
             this.diagram = diagram;
 
@@ -120,7 +119,7 @@ namespace StakeholderAnalysis.Visualization.ViewModels.DocumentViews.TwoAxisDiag
             }
         }
 
-        public bool IsViewModelFor(ForceFieldDiagram otherDiagram)
+        public bool IsViewModelFor(TwoAxisDiagram otherDiagram)
         {
             return otherDiagram == diagram;
         }
@@ -142,23 +141,23 @@ namespace StakeholderAnalysis.Visualization.ViewModels.DocumentViews.TwoAxisDiag
         {
             switch (e.PropertyName)
             {
-                case nameof(ForceFieldDiagram.BrushStartColor):
-                case nameof(ForceFieldDiagram.BrushEndColor):
+                case nameof(TwoAxisDiagram.BrushStartColor):
+                case nameof(TwoAxisDiagram.BrushEndColor):
                     OnPropertyChanged(nameof(BackgroundBrush));
                     break;
-                case nameof(ForceFieldDiagram.BackgroundTextLeftTop):
+                case nameof(TwoAxisDiagram.BackgroundTextLeftTop):
                     OnPropertyChanged(nameof(BackgroundTextLeftTop));
                     break;
-                case nameof(ForceFieldDiagram.BackgroundTextRightTop):
+                case nameof(TwoAxisDiagram.BackgroundTextRightTop):
                     OnPropertyChanged(nameof(BackgroundTextRightTop));
                     break;
-                case nameof(ForceFieldDiagram.BackgroundTextLeftBottom):
+                case nameof(TwoAxisDiagram.BackgroundTextLeftBottom):
                     OnPropertyChanged(nameof(BackgroundTextLeftBottom));
                     break;
-                case nameof(ForceFieldDiagram.BackgroundTextRightBottom):
+                case nameof(TwoAxisDiagram.BackgroundTextRightBottom):
                     OnPropertyChanged(nameof(BackgroundTextRightBottom));
                     break;
-                case nameof(ForceFieldDiagram.BackgroundFontFamily):
+                case nameof(TwoAxisDiagram.BackgroundFontFamily):
                     OnPropertyChanged(nameof(BackgroundFontFamily));
                     break;
                 case nameof(ITwoAxisDiagram.BackgroundFontColor):
@@ -173,19 +172,19 @@ namespace StakeholderAnalysis.Visualization.ViewModels.DocumentViews.TwoAxisDiag
                 case nameof(ITwoAxisDiagram.BackgroundFontSize):
                     OnPropertyChanged(nameof(BackgroundFontSize));
                     break;
-                case nameof(ForceFieldDiagram.YAxisMaxLabel):
+                case nameof(TwoAxisDiagram.YAxisMaxLabel):
                     OnPropertyChanged(nameof(YAxisMaxLabel));
                     break;
-                case nameof(ForceFieldDiagram.YAxisMinLabel):
+                case nameof(TwoAxisDiagram.YAxisMinLabel):
                     OnPropertyChanged(nameof(YAxisMinLabel));
                     break;
-                case nameof(ForceFieldDiagram.XAxisMaxLabel):
+                case nameof(TwoAxisDiagram.XAxisMaxLabel):
                     OnPropertyChanged(nameof(XAxisMaxLabel));
                     break;
-                case nameof(ForceFieldDiagram.XAxisMinLabel):
+                case nameof(TwoAxisDiagram.XAxisMinLabel):
                     OnPropertyChanged(nameof(XAxisMinLabel));
                     break;
-                case nameof(ForceFieldDiagram.AxisFontFamily):
+                case nameof(TwoAxisDiagram.AxisFontFamily):
                     OnPropertyChanged(nameof(AxisFontFamily));
                     break;
                 case nameof(ITwoAxisDiagram.AxisFontColor):

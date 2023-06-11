@@ -22,8 +22,6 @@
     <Compile Include="Create\AnalysisCreateExtensions.cs" />
     <Compile Include="Create\TwoAxisDiagramCreateExtensions.cs" />
     <Compile Include="Create\PositionedStakeholderCreateExtensions.cs" />
-    <Compile Include="Create\ForceFieldDiagramCreateExtensions.cs" />
-    <Compile Include="Create\ForceFieldDiagramStakeholderCreateExtensions.cs" />
     <Compile Include="Read\ReadReferencedObjectsFirstException.cs" />
     <Compile Include="VersionInfo.cs" />
     <Compile Include="XmlEntities\TwoAxisDiagramXmlEntity.cs" />
@@ -49,8 +47,6 @@
     <Compile Include="Read\AnalysisEntityReadExtensions.cs" />
     <Compile Include="Read\TwoAxisDiagramEntityReadExtensions.cs" />
     <Compile Include="Read\PositionedStakeholderEntityReadExtensions.cs" />
-    <Compile Include="Read\ForceFieldDiagramEntityReadExtensions.cs" />
-    <Compile Include="Read\ForceFieldDiagramStakeholderEntityReadExtensions.cs" />
     <Compile Include="Read\OnionDiagramEntityReadExtensions.cs" />
     <Compile Include="Read\OnionDiagramStakeholderEntityReadExtensions.cs" />
     <Compile Include="Read\OnionRingEntityReadExtensions.cs" />
@@ -68,8 +64,6 @@
     <Compile Include="XmlEntities\PositionedStakeholderXmlEntity.cs" />
     <Compile Include="XmlEntities\OnionDiagramStakeholderXmlEntity.cs" />
     <Compile Include="XmlEntities\OnionDiagramXmlEntity.cs" />
-    <Compile Include="XmlEntities\ForceFieldDiagramStakeholderXmlEntity.cs" />
-    <Compile Include="XmlEntities\ForceFieldDiagramXmlEntity.cs" />
     <Compile Include="XmlEntities\OnionRingXmlEntity.cs" />
     <Compile Include="XmlEntities\ProjectXmlEntity.cs" />
     <Compile Include="XmlEntities\StakeholderConnectionGroupXmlEntity.cs" />

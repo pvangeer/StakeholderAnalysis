@@ -7,6 +7,7 @@ using System.Windows.Data;
 using System.Windows.Input;
 using StakeholderAnalysis.Data;
 using StakeholderAnalysis.Data.Diagrams;
+using StakeholderAnalysis.Data.Diagrams.OnionDiagrams;
 using StakeholderAnalysis.Gui;
 using StakeholderAnalysis.Visualization.Commands.Diagrams;
 
@@ -56,6 +57,12 @@ namespace StakeholderAnalysis.Visualization.ViewModels.DocumentViews.Stakeholder
 
         public ICommand DeleteStakeholderCommand => new RemoveSelectedStakeholderCommand(this, analysis);
 
+        public ObservableCollection<OnionDiagram> OnionDiagrams => analysis.OnionDiagrams;
+
+        public ObservableCollection<TwoAxisDiagram> ForceFieldDiagrams => analysis.ForceFieldDiagrams;
+
+        public ObservableCollection<TwoAxisDiagram> AttitudeImpactDiagrams => analysis.AttitudeImpactDiagrams;
+
         public bool CanSelect => true;
 
         public bool IsSelected { get; set; }
@@ -66,6 +73,7 @@ namespace StakeholderAnalysis.Visualization.ViewModels.DocumentViews.Stakeholder
         {
             return "StakeholderTable";
         }
+
 
         private void StakeholderTypePropertyChanged(object sender, PropertyChangedEventArgs e)
         {

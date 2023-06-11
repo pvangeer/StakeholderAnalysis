@@ -1,6 +1,5 @@
 ﻿using System.Collections.ObjectModel;
 using StakeholderAnalysis.Data.Diagrams;
-using StakeholderAnalysis.Data.Diagrams.ForceFieldDiagrams;
 using StakeholderAnalysis.Data.Diagrams.OnionDiagrams;
 
 namespace StakeholderAnalysis.Data
@@ -10,7 +9,7 @@ namespace StakeholderAnalysis.Data
         public Analysis()
         {
             OnionDiagrams = new ObservableCollection<OnionDiagram>();
-            ForceFieldDiagrams = new ObservableCollection<ForceFieldDiagram>();
+            ForceFieldDiagrams = new ObservableCollection<TwoAxisDiagram>();
             AttitudeImpactDiagrams = new ObservableCollection<TwoAxisDiagram>();
             StakeholderTypes = new ObservableCollection<StakeholderType>();
             Stakeholders = new ObservableCollection<Stakeholder>();
@@ -18,7 +17,7 @@ namespace StakeholderAnalysis.Data
 
         public ObservableCollection<OnionDiagram> OnionDiagrams { get; }
 
-        public ObservableCollection<ForceFieldDiagram> ForceFieldDiagrams { get; }
+        public ObservableCollection<TwoAxisDiagram> ForceFieldDiagrams { get; }
 
         public ObservableCollection<TwoAxisDiagram> AttitudeImpactDiagrams { get; }
 

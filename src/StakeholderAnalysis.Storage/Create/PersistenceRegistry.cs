@@ -3,7 +3,6 @@ using System.Collections.Generic;
 using System.Linq;
 using StakeholderAnalysis.Data;
 using StakeholderAnalysis.Data.Diagrams;
-using StakeholderAnalysis.Data.Diagrams.ForceFieldDiagrams;
 using StakeholderAnalysis.Data.Diagrams.OnionDiagrams;
 using StakeholderAnalysis.Storage.XmlEntities;
 
@@ -11,9 +10,6 @@ namespace StakeholderAnalysis.Storage.Create
 {
     public class PersistenceRegistry
     {
-        private readonly Dictionary<ForceFieldDiagram, ForceFieldDiagramXmlEntity> forceFieldDiagrams =
-            CreateDictionary<ForceFieldDiagram, ForceFieldDiagramXmlEntity>();
-
         private readonly Dictionary<OnionDiagram, OnionDiagramXmlEntity> onionDiagrams =
             CreateDictionary<OnionDiagram, OnionDiagramXmlEntity>();
 
@@ -78,16 +74,6 @@ namespace StakeholderAnalysis.Storage.Create
             Register(onionDiagramStakeholderConnectionGroups, model, entity);
         }
 
-        internal void Register(ForceFieldDiagram model, ForceFieldDiagramXmlEntity entity)
-        {
-            Register(forceFieldDiagrams, model, entity);
-        }
-
-        internal void Register(PositionedStakeholder model, ForceFieldDiagramStakeholderXmlEntity entity)
-        {
-            Register(positionedStakeholders, model, entity);
-        }
-
         internal void Register(TwoAxisDiagram model, TwoAxisDiagramXmlEntity entity)
         {
             Register(twoAxisDiagrams, model, entity);
@@ -130,11 +116,6 @@ namespace StakeholderAnalysis.Storage.Create
         internal bool Contains(StakeholderConnectionGroup model)
         {
             return ContainsValue(onionDiagramStakeholderConnectionGroups, model);
-        }
-
-        internal bool Contains(ForceFieldDiagram model)
-        {
-            return ContainsValue(forceFieldDiagrams, model);
         }
 
         internal bool Contains(PositionedStakeholder model)
@@ -181,11 +162,6 @@ namespace StakeholderAnalysis.Storage.Create
             return Get(onionDiagramStakeholderConnectionGroups, model);
         }
 
-        public ForceFieldDiagramXmlEntity Get(ForceFieldDiagram model)
-        {
-            return Get(forceFieldDiagrams, model);
-        }
-
         public TwoAxisDiagramXmlEntity Get(TwoAxisDiagram model)
         {
             return Get(twoAxisDiagrams, model);
@@ -194,11 +170,6 @@ namespace StakeholderAnalysis.Storage.Create
         public OnionDiagramStakeholderXmlEntity GetAsOnionDiagramStakeholderXmlEntity(PositionedStakeholder model)
         {
             return Get(positionedStakeholders, model) as OnionDiagramStakeholderXmlEntity;
-        }
-
-        public ForceFieldDiagramStakeholderXmlEntity GetAsForceFieldDiagramStakeholderXmlEntity(PositionedStakeholder model)
-        {
-            return Get(positionedStakeholders, model) as ForceFieldDiagramStakeholderXmlEntity;
         }
 
         public PositionedStakeholderXmlEntity GetAsAttitudeImpactDiagramStakeholderXmlEntity(PositionedStakeholder model)

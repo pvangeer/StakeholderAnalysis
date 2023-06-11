@@ -5,7 +5,8 @@
                     xmlns:data="clr-namespace:StakeholderAnalysis.Data;assembly=StakeholderAnalysis.Data"
                     xmlns:system="clr-namespace:System;assembly=mscorlib"
                     xmlns:converters="clr-namespace:StakeholderAnalysis.Visualization.Converters"
-                    xmlns:stakeholderTable="clr-namespace:StakeholderAnalysis.Visualization.Converters.Diagrams.StakeholderTable">
+                    xmlns:stakeholderTable="clr-namespace:StakeholderAnalysis.Visualization.Converters.Diagrams.StakeholderTable"
+                    xmlns:fluent="urn:fluent-ribbon">
 
     <ResourceDictionary.MergedDictionaries>
         <ResourceDictionary
@@ -56,6 +57,7 @@
                         <ContextMenu.Resources>
                             <Style TargetType="MenuItem" BasedOn="{StaticResource MenuItemStyle}" />
                         </ContextMenu.Resources>
+                        <fluent:GroupSeparatorMenuItem />
                         <MenuItem Header="Type Toewijzen"
                                   ItemsSource="{Binding RelativeSource={RelativeSource AncestorType={x:Type ContextMenu}},
                                                 Path=PlacementTarget.Tag,
@@ -64,7 +66,7 @@
                                   ItemsSource="{Binding RelativeSource={RelativeSource AncestorType={x:Type ContextMenu}},
                                                 Path=PlacementTarget.Tag,
                                                 Converter={StaticResource AppointToDiagramMenuItemsConverter}}" />
-                        <Separator />
+                        <fluent:GroupSeparatorMenuItem />
                         <MenuItem Header="Verwijderen"
                                   Command="{Binding  RelativeSource={RelativeSource AncestorType={x:Type ContextMenu}},
                                                 Path=PlacementTarget.Tag.DeleteStakeholderCommand}" />

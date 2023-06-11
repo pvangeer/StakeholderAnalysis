@@ -3,7 +3,7 @@ using System.ComponentModel;
 using System.Linq;
 using System.Windows.Input;
 using StakeholderAnalysis.Data;
-using StakeholderAnalysis.Data.Diagrams.ForceFieldDiagrams;
+using StakeholderAnalysis.Data.Diagrams;
 using StakeholderAnalysis.Gui;
 using StakeholderAnalysis.Visualization.ViewModels.DocumentViews.TwoAxisDiagrams;
 using StakeholderAnalysis.Visualization.ViewModels.Properties.TwoAxisDiagramProperties;
@@ -14,11 +14,11 @@ namespace StakeholderAnalysis.Visualization.ViewModels.ProjectExplorer
     public class ProjectExplorerForceFieldDiagramViewModel : ViewModelBase, ITreeNodeCollectionViewModel
     {
         private readonly Analysis analysis;
-        private readonly ForceFieldDiagram diagram;
+        private readonly TwoAxisDiagram diagram;
         private readonly ViewManager viewManager;
 
         public ProjectExplorerForceFieldDiagramViewModel(ViewModelFactory factory, Analysis analysis,
-            ForceFieldDiagram forceFieldDiagram, ViewManager viewManager) : base(factory)
+            TwoAxisDiagram forceFieldDiagram, ViewManager viewManager) : base(factory)
         {
             this.viewManager = viewManager;
             this.analysis = analysis;
@@ -30,7 +30,7 @@ namespace StakeholderAnalysis.Visualization.ViewModels.ProjectExplorer
             {
                 ViewModelFactory.CreateDuplicateMenuItemViewModel(diagram,
                     CommandFactory.CreateCanAlwaysExecuteActionCommand(
-                        p => { analysis.ForceFieldDiagrams.Add(diagram.Clone() as ForceFieldDiagram); }))
+                        p => { analysis.ForceFieldDiagrams.Add(diagram.Clone() as TwoAxisDiagram); }))
             };
             SelectItemCommand = CommandFactory.CreateSelectItemCommand(this);
 
@@ -88,7 +88,7 @@ namespace StakeholderAnalysis.Visualization.ViewModels.ProjectExplorer
 
         public override bool IsViewModelFor(object otherObject)
         {
-            return otherObject as ForceFieldDiagram == diagram;
+            return otherObject as TwoAxisDiagram == diagram;
         }
 
         public bool IsExpandable => false;
@@ -105,7 +105,7 @@ namespace StakeholderAnalysis.Visualization.ViewModels.ProjectExplorer
         {
             switch (e.PropertyName)
             {
-                case nameof(ForceFieldDiagram.Name):
+                case nameof(TwoAxisDiagram.Name):
                     OnPropertyChanged(nameof(DisplayName));
                     break;
             }

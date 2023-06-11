@@ -3,7 +3,6 @@ using System.Collections.ObjectModel;
 using System.Windows.Media;
 using StakeholderAnalysis.Data;
 using StakeholderAnalysis.Data.Diagrams;
-using StakeholderAnalysis.Data.Diagrams.ForceFieldDiagrams;
 using StakeholderAnalysis.Data.Diagrams.OnionDiagrams;
 
 namespace StakeholderAnalysis.Storage.Test
@@ -25,7 +24,7 @@ namespace StakeholderAnalysis.Storage.Test
             };
             analysis.OnionDiagrams.Add(onionDiagram);
 
-            var forceFieldDiagram = new ForceFieldDiagram("BOI-krachtenveld")
+            var forceFieldDiagram = new TwoAxisDiagram("BOI-krachtenveld")
             {
                 BrushEndColor = Colors.Coral,
                 BrushStartColor = Colors.DarkRed,
@@ -491,7 +490,7 @@ namespace StakeholderAnalysis.Storage.Test
 
             #region Add Force field diagram 2
 
-            forceFieldDiagram = new ForceFieldDiagram("BOI-krachtenveld (simpel)");
+            forceFieldDiagram = new TwoAxisDiagram("BOI-krachtenveld (simpel)");
             analysis.ForceFieldDiagrams.Add(forceFieldDiagram);
 
             forceFieldDiagram.Stakeholders.Add(new PositionedStakeholder(wlvStakeholder, 0.9, 1.0));

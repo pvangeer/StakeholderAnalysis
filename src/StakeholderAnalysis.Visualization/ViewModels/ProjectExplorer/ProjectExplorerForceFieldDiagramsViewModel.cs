@@ -3,7 +3,7 @@ using System.Collections.Specialized;
 using System.Linq;
 using System.Windows.Input;
 using StakeholderAnalysis.Data;
-using StakeholderAnalysis.Data.Diagrams.ForceFieldDiagrams;
+using StakeholderAnalysis.Data.Diagrams;
 using StakeholderAnalysis.Visualization.ViewModels.TreeView;
 
 namespace StakeholderAnalysis.Visualization.ViewModels.ProjectExplorer
@@ -20,7 +20,7 @@ namespace StakeholderAnalysis.Visualization.ViewModels.ProjectExplorer
 
             Items = new ObservableCollection<ITreeNodeViewModel>();
             foreach (var forceFieldDiagram in analysis.ForceFieldDiagrams)
-                Items.Add(ViewModelFactory.CreateProjectExplorerForceFieldDiagramViewModel(forceFieldDiagram));
+                Items.Add(ViewModelFactory.CreateProjectExplorerTwoAxisDiagramViewModel(forceFieldDiagram));
 
             ContextMenuItems = new ObservableCollection<ContextMenuItemViewModel>();
         }
@@ -47,7 +47,7 @@ namespace StakeholderAnalysis.Visualization.ViewModels.ProjectExplorer
 
         public ICommand AddItemCommand => CommandFactory.CreateCanAlwaysExecuteActionCommand(p =>
         {
-            analysis.ForceFieldDiagrams.Add(new ForceFieldDiagram("Nieuw diagram"));
+            analysis.ForceFieldDiagrams.Add(AnalysisFactory.CreateForceFieldDiagram("Nieuw diagram"));
         });
 
         public bool CanOpen => false;
@@ -83,17 +83,17 @@ namespace StakeholderAnalysis.Visualization.ViewModels.ProjectExplorer
         private void ForceFieldDiagramsCollectionChanged(object sender, NotifyCollectionChangedEventArgs e)
         {
             if (e.Action == NotifyCollectionChangedAction.Add)
-                foreach (var forceFieldDiagram in e.NewItems.OfType<ForceFieldDiagram>())
+                foreach (var forceFieldDiagram in e.NewItems.OfType<TwoAxisDiagram>())
                 {
                     var projectExplorerForceFieldDiagramViewModel =
-                        ViewModelFactory.CreateProjectExplorerForceFieldDiagramViewModel(forceFieldDiagram);
+                        ViewModelFactory.CreateProjectExplorerTwoAxisDiagramViewModel(forceFieldDiagram);
                     Items.Add(projectExplorerForceFieldDiagramViewModel);
                     if (IsExpanded)
                         projectExplorerForceFieldDiagramViewModel.SelectItemCommand?.Execute(null);
                 }
 
             if (e.Action == NotifyCollectionChangedAction.Remove)
-                foreach (var forceFieldDiagram in e.OldItems.OfType<ForceFieldDiagram>())
+                foreach (var forceFieldDiagram in e.OldItems.OfType<TwoAxisDiagram>())
                 {
                     var diagramToRemove = Items.FirstOrDefault(d => d.IsViewModelFor(forceFieldDiagram));
                     if (diagramToRemove != null) Items.Remove(diagramToRemove);

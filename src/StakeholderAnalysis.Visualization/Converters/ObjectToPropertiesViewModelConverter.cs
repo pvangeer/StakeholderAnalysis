@@ -3,7 +3,6 @@ using System.Globalization;
 using System.Windows.Data;
 using StakeholderAnalysis.Data;
 using StakeholderAnalysis.Data.Diagrams;
-using StakeholderAnalysis.Data.Diagrams.ForceFieldDiagrams;
 using StakeholderAnalysis.Data.Diagrams.OnionDiagrams;
 using StakeholderAnalysis.Visualization.ViewModels;
 
@@ -25,8 +24,6 @@ namespace StakeholderAnalysis.Visualization.Converters
             {
                 case OnionDiagram diagram:
                     return viewModelFactory.CreateOnionDiagramPropertiesViewModel(diagram);
-                case ForceFieldDiagram diagram:
-                    return viewModelFactory.CreateTwoAxisDiagramPropertiesViewModel(diagram);
                 case TwoAxisDiagram diagram:
                     return viewModelFactory.CreateTwoAxisDiagramPropertiesViewModel(diagram);
                 case StakeholderType type:

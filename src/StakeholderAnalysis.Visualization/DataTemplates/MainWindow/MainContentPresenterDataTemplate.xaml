@@ -18,8 +18,6 @@
             Source="/StakeholderAnalysis.Visualization;Component/DataTemplates/Diagrams/TwoAxisDiagrams/TwoAxisDiagramDataTemplate.xaml" />
         <ResourceDictionary
             Source="/StakeholderAnalysis.Visualization;Component/DataTemplates/StakeholderTable/StakeholderTableDataTemplate.xaml" />
-        <ResourceDictionary
-            Source="/StakeholderAnalysis.Visualization;Component/DataTemplates/ProjectExplorer/ProjectExplorerDataTemplate.xaml" />
         <ResourceDictionary Source="/StakeholderAnalysis.Visualization;Component/Theme/StakeholderAnalysisTheme.xaml" />
     </ResourceDictionary.MergedDictionaries>
 

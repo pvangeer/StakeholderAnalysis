@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.ObjectModel;
+using System.Windows;
 using System.Windows.Media;
 
 namespace StakeholderAnalysis.Data.Diagrams
@@ -18,8 +19,8 @@ namespace StakeholderAnalysis.Data.Diagrams
             Name = name;
             Stakeholders = new ObservableCollection<PositionedStakeholder>();
 
-            AxisFontFamily = new FontFamily("Arial");
-            BackgroundFontFamily = new FontFamily("Arial");
+            AxisFontFamily = SystemFonts.CaptionFontFamily;
+            BackgroundFontFamily = SystemFonts.CaptionFontFamily;
 
             BackgroundTextLeftBottom = "";
             BackgroundTextLeftTop = "";

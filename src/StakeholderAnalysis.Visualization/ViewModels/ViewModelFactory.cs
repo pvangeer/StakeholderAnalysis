@@ -4,7 +4,6 @@ using System.Linq;
 using System.Windows.Input;
 using StakeholderAnalysis.Data;
 using StakeholderAnalysis.Data.Diagrams;
-using StakeholderAnalysis.Data.Diagrams.ForceFieldDiagrams;
 using StakeholderAnalysis.Data.Diagrams.OnionDiagrams;
 using StakeholderAnalysis.Gui;
 using StakeholderAnalysis.Visualization.Behaviors;
@@ -129,19 +128,14 @@ namespace StakeholderAnalysis.Visualization.ViewModels
             return new ProjectExplorerForceFieldDiagramsViewModel(this, Analysis);
         }
 
-        public ITreeNodeViewModel CreateProjectExplorerForceFieldDiagramViewModel(ForceFieldDiagram forceFieldDiagram)
-        {
-            return new ProjectExplorerForceFieldDiagramViewModel(this, Analysis, forceFieldDiagram, ViewManager);
-        }
-
         public ProjectExplorerAttitudeImpactDiagramsViewModel CreateProjectExplorerAttitudeImpactDiagramsViewModel()
         {
             return new ProjectExplorerAttitudeImpactDiagramsViewModel(this, Analysis);
         }
 
-        public ITreeNodeViewModel CreateProjectExplorerDiagramViewModel(TwoAxisDiagram forceFieldDiagram)
+        public ITreeNodeViewModel CreateProjectExplorerTwoAxisDiagramViewModel(TwoAxisDiagram twoAxisDiagram)
         {
-            return new ProjectExplorerTwoAxisDiagramViewModel(this, Analysis, forceFieldDiagram, ViewManager);
+            return new ProjectExplorerTwoAxisDiagramViewModel(this, Analysis, twoAxisDiagram, ViewManager);
         }
 
         public TwoAxisDiagramViewModel CrateAttitudeImpactDiagramViewModel(TwoAxisDiagram diagram)
@@ -149,7 +143,7 @@ namespace StakeholderAnalysis.Visualization.ViewModels
             return new TwoAxisDiagramViewModel(this, diagram);
         }
 
-        public ForceFieldDiagramViewModel CreateForceFieldDiagramViewModel(ForceFieldDiagram diagram)
+        public ForceFieldDiagramViewModel CreateForceFieldDiagramViewModel(TwoAxisDiagram diagram)
         {
             return new ForceFieldDiagramViewModel(this, diagram);
         }

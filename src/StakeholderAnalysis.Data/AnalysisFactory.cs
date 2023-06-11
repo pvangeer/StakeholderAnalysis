@@ -1,7 +1,6 @@
 ﻿using System.Windows;
 using System.Windows.Media;
 using StakeholderAnalysis.Data.Diagrams;
-using StakeholderAnalysis.Data.Diagrams.ForceFieldDiagrams;
 using StakeholderAnalysis.Data.Diagrams.OnionDiagrams;
 
 namespace StakeholderAnalysis.Data
@@ -18,33 +17,62 @@ namespace StakeholderAnalysis.Data
         {
             return new Analysis
             {
-                OnionDiagrams =
-                {
-                    new OnionDiagram("Nieuw ui-diagram")
-                    {
-                        OnionRings =
-                        {
-                            new OnionRing(0.45)
-                            {
-                                StrokeThickness = 0,
-                                BackgroundColor = (Color)ColorConverter.ConvertFromString("#080C80")
-                            },
-                            new OnionRing(0.75)
-                            {
-                                StrokeThickness = 0,
-                                BackgroundColor = (Color)ColorConverter.ConvertFromString("#0D38E0")
-                            },
-                            new OnionRing { BackgroundColor = (Color)ColorConverter.ConvertFromString("#0EBBF0") }
-                        },
-                        ConnectionGroups =
-                        {
-                            new StakeholderConnectionGroup("Nieuwe groep", Colors.Black)
-                        }
-                    }
-                },
-                ForceFieldDiagrams = { new ForceFieldDiagram("Nieuw krachtenvelddiagram") },
+                OnionDiagrams = { CreateOnionDiagram("Nieuw ui-diagram") },
+                ForceFieldDiagrams = { CreateForceFieldDiagram("Nieuw krachtenvelddiagram") },
                 AttitudeImpactDiagrams = { CreateAttitudeImpactDiagram("Nieuw houding-impact diagram") },
                 StakeholderTypes = { new StakeholderType() }
+            };
+        }
+
+        public static OnionDiagram CreateOnionDiagram(string name)
+        {
+            return new OnionDiagram(name)
+            {
+                OnionRings =
+                {
+                    new OnionRing(0.45)
+                    {
+                        StrokeThickness = 0,
+                        BackgroundColor = (Color)ColorConverter.ConvertFromString("#080C80")
+                    },
+                    new OnionRing(0.75)
+                    {
+                        StrokeThickness = 0,
+                        BackgroundColor = (Color)ColorConverter.ConvertFromString("#0D38E0")
+                    },
+                    new OnionRing { BackgroundColor = (Color)ColorConverter.ConvertFromString("#0EBBF0") }
+                },
+                ConnectionGroups =
+                {
+                    new StakeholderConnectionGroup("Nieuwe groep", Colors.Black)
+                }
+            };
+        }
+
+        public static TwoAxisDiagram CreateForceFieldDiagram(string name)
+        {
+            return new TwoAxisDiagram(name)
+            {
+                BrushStartColor = Colors.PowderBlue,
+                BrushEndColor = Colors.LightGreen,
+                BackgroundTextLeftTop = "Consulteren",
+                BackgroundTextLeftBottom = "Monitoren",
+                BackgroundTextRightTop = "Betrekken",
+                BackgroundTextRightBottom = "Informeren",
+                BackgroundFontFamily = SystemFonts.CaptionFontFamily,
+                BackgroundFontColor = Colors.DimGray,
+                BackgroundFontSize = 64,
+                BackgroundFontBold = true,
+                BackgroundFontItalic = true,
+                YAxisMaxLabel = "Veel invloed",
+                YAxisMinLabel = "Weinig invloed",
+                XAxisMaxLabel = "Groot belang",
+                XAxisMinLabel = "Klein belang",
+                AxisFontFamily = SystemFonts.CaptionFontFamily,
+                AxisFontColor = Colors.Black,
+                AxisFontSize = 24,
+                AxisFontBold = false,
+                AxisFontItalic = false
             };
         }
 
