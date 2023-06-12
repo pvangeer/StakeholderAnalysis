@@ -5,11 +5,13 @@
                     xmlns:gui="clr-namespace:StakeholderAnalysis.Gui;assembly=StakeholderAnalysis.Gui"
                     xmlns:behaviors="clr-namespace:StakeholderAnalysis.Visualization.Behaviors"
                     xmlns:xctk="http://schemas.xceed.com/wpf/xaml/toolkit"
-                    xmlns:mainContentPresenterConverters="clr-namespace:StakeholderAnalysis.Visualization.Converters.MainContentPresenter"
+                    xmlns:contentConverters="clr-namespace:StakeholderAnalysis.Visualization.Converters.MainContentPresenter"
                     xmlns:converters="clr-namespace:StakeholderAnalysis.Visualization.Converters"
                     xmlns:commands="clr-namespace:StakeholderAnalysis.Visualization.Commands">
 
     <ResourceDictionary.MergedDictionaries>
+        <ResourceDictionary
+            Source="/StakeholderAnalysis.Visualization;Component/Theme/TabControlStyles.xaml" />
         <ResourceDictionary
             Source="/StakeholderAnalysis.Visualization;Component/DataTemplates/Diagrams/OnionDiagram/OnionDiagramDataTemplate.xaml" />
         <ResourceDictionary
@@ -22,13 +24,9 @@
     </ResourceDictionary.MergedDictionaries>
 
     <BooleanToVisibilityConverter x:Key="BoolToVisibilityConverter" />
-
-
-    <mainContentPresenterConverters:IsProneToExportConverter x:Key="IsProneToExportConverter" />
-    <mainContentPresenterConverters:DocumentViewInfoToPropertiesViewInfoConverter
-        x:Key="DocumentViewInfoToPropertiesViewInfoConverter" />
+    <contentConverters:IsProneToExportConverter x:Key="IsProneToExportConverter" />
+    <contentConverters:DocumentViewInfoToPropertiesViewInfoConverter x:Key="DocumentViewInfoToPropertiesViewInfoConverter" />
     <converters:ObjectToPropertiesViewModelConverter x:Key="ObjectToPropertiesViewModelConverter" />
-    <mainContentPresenterConverters:ToCloseViewCommandInputConverter x:Key="ToCloseViewCommandInputConverter" />
 
     <DataTemplate x:Key="NoDataTemplate">
         <Grid />
@@ -111,7 +109,7 @@
                     <RowDefinition Height="*" />
                 </Grid.RowDefinitions>
 
-                <Grid Grid.Row="0" Background="#0EBBF0">
+                <Grid Grid.Row="0" Background="{StaticResource Deltares.Brushes.LightBlue}">
                     <Grid.ColumnDefinitions>
                         <ColumnDefinition Width="Auto" />
                         <ColumnDefinition Width="*" />
@@ -145,37 +143,9 @@
                 ContentTemplate="{StaticResource DocumentViewDataTemplate}"
                 SelectedIndex="{Binding ViewManager.ActiveDocumentIndex, Mode=TwoWay}"
                 ItemsSource="{Binding ViewManager.Views}">
-                <TabControl.Resources>
-                    <Style TargetType="TabItem">
-                        <Setter Property="Padding" Value="0" />
-                    </Style>
-                    <commands:CloseViewWithMiddleMouseCommand x:Key="CloseViewWithMiddleMouseCommand" />
-                </TabControl.Resources>
                 <TabControl.ItemTemplate>
                     <DataTemplate DataType="gui:ViewInfo">
                         <Border x:Name="TabItemBorder">
-                            <Border.Style>
-                                <Style TargetType="Border">
-                                    <Style.Triggers>
-                                        <Trigger Property="IsMouseOver" Value="True">
-                                            <Setter Property="Background"
-                                                    Value="{StaticResource Deltares.Brushes.MouseOverHighlight}" />
-                                        </Trigger>
-                                    </Style.Triggers>
-                                </Style>
-                            </Border.Style>
-                            <Border.InputBindings>
-                                <MouseBinding Gesture="MiddleClick"
-                                              Command="{StaticResource CloseViewWithMiddleMouseCommand}">
-                                    <MouseBinding.CommandParameter>
-                                        <MultiBinding Converter="{StaticResource ToCloseViewCommandInputConverter}">
-                                            <Binding Path="." />
-                                            <Binding ElementName="DocumentViewsTabControl"
-                                                     Path=".DataContext.ViewManager" />
-                                        </MultiBinding>
-                                    </MouseBinding.CommandParameter>
-                                </MouseBinding>
-                            </Border.InputBindings>
                             <Grid VerticalAlignment="Center" Height="{StaticResource DefaultItemHeight}">
                                 <Grid.ColumnDefinitions>
                                     <ColumnDefinition Width="Auto" />
