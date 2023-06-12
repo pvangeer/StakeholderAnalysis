@@ -367,10 +367,10 @@ namespace StakeholderAnalysis.Storage.Test.Create
             var firstXmlEntity = xmlEntity.OnionDiagramXmlEntities.FirstOrDefault();
             Assert.IsNotNull(firstXmlEntity);
 
-            Assert.AreEqual(firstDiagram.Stakeholders.Count, firstXmlEntity.OnionDiagramStakeholderXmlEntities.Count);
-            for (var index = 0; index < firstXmlEntity.OnionDiagramStakeholderXmlEntities.Count; index++)
+            Assert.AreEqual(firstDiagram.Stakeholders.Count, firstXmlEntity.PositionedStakeholderXmlEntities.Count);
+            for (var index = 0; index < firstXmlEntity.PositionedStakeholderXmlEntities.Count; index++)
             {
-                var xmlDiagramStakeholder = firstXmlEntity.OnionDiagramStakeholderXmlEntities[index];
+                var xmlDiagramStakeholder = firstXmlEntity.PositionedStakeholderXmlEntities[index];
                 var diagramStakeholder = firstDiagram.Stakeholders[index];
 
                 Assert.AreEqual(diagramStakeholder.Left, xmlDiagramStakeholder.Left);
@@ -428,11 +428,11 @@ namespace StakeholderAnalysis.Storage.Test.Create
                     connectionXmlEntity.StakeholderConnectionGroupId);
 
                 Assert.IsTrue(registry.Contains(diagramConnection.ConnectFrom));
-                Assert.AreEqual(registry.GetAsOnionDiagramStakeholderXmlEntity(diagramConnection.ConnectFrom).Id,
+                Assert.AreEqual(registry.Get(diagramConnection.ConnectFrom).Id,
                     connectionXmlEntity.StakeholderFromId);
 
                 Assert.IsTrue(registry.Contains(diagramConnection.ConnectTo));
-                Assert.AreEqual(registry.GetAsOnionDiagramStakeholderXmlEntity(diagramConnection.ConnectTo).Id,
+                Assert.AreEqual(registry.Get(diagramConnection.ConnectTo).Id,
                     connectionXmlEntity.StakeholderToId);
 
                 Assert.IsTrue(registry.Contains(diagramConnection));

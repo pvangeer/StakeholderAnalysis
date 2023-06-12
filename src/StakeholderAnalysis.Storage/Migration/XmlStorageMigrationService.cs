@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections.Generic;
 using System.Xml;
 using StakeholderAnalysis.Storage.XmlEntities;
 
@@ -15,6 +16,21 @@ namespace StakeholderAnalysis.Storage.Migration
             var versionXmlEntity = new VersionXmlEntity();
 
             var versionNode = GetVersionNode(xmlDoc);
+            var version = versionNode.InnerText;
+
+            var migrators = new List<FileMigrator>();
+            switch (version)
+            {
+                case "23.1":
+                    migrators.Add(new Migrator231To232());
+                    break;
+            }
+
+            foreach (var fileMigrator in migrators)
+            {
+                fileMigrator.Migrate(xmlDoc);
+            }
+
             if (versionNode != null) versionNode.InnerText = versionXmlEntity.FileVersion;
 
             var createdNode = GetLastChangedNode(xmlDoc);
@@ -67,12 +83,15 @@ namespace StakeholderAnalysis.Storage.Migration
 
         private static XmlNode GetLastChangedNode(XmlDocument xmlDoc)
         {
-            return xmlDoc.ChildNodes.Count == 2 &&
-                   xmlDoc.ChildNodes[1].ChildNodes.Count == 2 &&
-                   xmlDoc.ChildNodes[1].FirstChild.Name == ProjectXmlEntity.VersionInformationElementName &&
-                   xmlDoc.ChildNodes[1].FirstChild.ChildNodes[1].Name == VersionXmlEntity.LastChangedElementName
-                ? xmlDoc.ChildNodes[1].FirstChild.ChildNodes[1]
-                : null;
+            var projectNode = xmlDoc.SelectSingleNode("/project");
+            if (projectNode == null)
+                return null;
+
+            var versionNode = projectNode.SelectSingleNode($"/{ProjectXmlEntity.VersionInformationElementName}");
+            if (versionNode == null) 
+                return null;
+
+            return versionNode.SelectSingleNode($"/{VersionXmlEntity.LastChangedElementName}");
         }
     }
 }

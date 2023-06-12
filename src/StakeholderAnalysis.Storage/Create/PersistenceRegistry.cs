@@ -59,11 +59,6 @@ namespace StakeholderAnalysis.Storage.Create
             Register(onionRings, model, entity);
         }
 
-        internal void Register(PositionedStakeholder model, OnionDiagramStakeholderXmlEntity entity)
-        {
-            Register(positionedStakeholders, model, entity);
-        }
-
         internal void Register(StakeholderConnection model, StakeholderConnectionXmlEntity entity)
         {
             Register(onionDiagramStakeholderConnections, model, entity);
@@ -167,12 +162,7 @@ namespace StakeholderAnalysis.Storage.Create
             return Get(twoAxisDiagrams, model);
         }
 
-        public OnionDiagramStakeholderXmlEntity GetAsOnionDiagramStakeholderXmlEntity(PositionedStakeholder model)
-        {
-            return Get(positionedStakeholders, model) as OnionDiagramStakeholderXmlEntity;
-        }
-
-        public PositionedStakeholderXmlEntity GetAsAttitudeImpactDiagramStakeholderXmlEntity(PositionedStakeholder model)
+        public PositionedStakeholderXmlEntity Get(PositionedStakeholder model)
         {
             return Get(positionedStakeholders, model) as PositionedStakeholderXmlEntity;
         }

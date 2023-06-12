@@ -96,7 +96,7 @@ namespace StakeholderAnalysis.Gui
                     });
                 worker.WorkerSupportsCancellation = false;
 
-                worker.RunWorkerAsync(dialog.FileName);
+                worker.RunWorkerAsync(fileName);
             }
         }
 

@@ -34,9 +34,9 @@ namespace StakeholderAnalysis.Storage.Create
         {
             for (var index = 0; index < diagram.Stakeholders.Count; index++)
             {
-                var stakeholder = OnionDiagramStakeholderCreateExtensions.Create(diagram.Stakeholders[index], registry);
+                var stakeholder = diagram.Stakeholders[index].Create(registry);
                 stakeholder.Order = index;
-                entity.OnionDiagramStakeholderXmlEntities.Add(stakeholder);
+                entity.PositionedStakeholderXmlEntities.Add(stakeholder);
             }
         }
 

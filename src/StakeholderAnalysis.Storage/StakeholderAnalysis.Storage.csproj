@@ -22,13 +22,14 @@
     <Compile Include="Create\AnalysisCreateExtensions.cs" />
     <Compile Include="Create\TwoAxisDiagramCreateExtensions.cs" />
     <Compile Include="Create\PositionedStakeholderCreateExtensions.cs" />
+    <Compile Include="Migration\FileMigrator.cs" />
+    <Compile Include="Migration\Migrator231To232.cs" />
     <Compile Include="Read\ReadReferencedObjectsFirstException.cs" />
     <Compile Include="VersionInfo.cs" />
     <Compile Include="XmlEntities\TwoAxisDiagramXmlEntity.cs" />
     <Compile Include="XmlEntities\IPositionedStakeholderXmlEntity.cs" />
     <Compile Include="XmlEntities\IXmlEntity.cs" />
     <Compile Include="Create\OnionDiagramCreateExtensions.cs" />
-    <Compile Include="Create\OnionDiagramStakeholderCreateExtensions.cs" />
     <Compile Include="Create\OnionRingCreateExtensions.cs" />
     <Compile Include="Create\PersistenceRegistry.cs" />
     <Compile Include="Create\StakeholderConnectionCreateExtensions.cs" />
@@ -48,7 +49,6 @@
     <Compile Include="Read\TwoAxisDiagramEntityReadExtensions.cs" />
     <Compile Include="Read\PositionedStakeholderEntityReadExtensions.cs" />
     <Compile Include="Read\OnionDiagramEntityReadExtensions.cs" />
-    <Compile Include="Read\OnionDiagramStakeholderEntityReadExtensions.cs" />
     <Compile Include="Read\OnionRingEntityReadExtensions.cs" />
     <Compile Include="Read\ReadConversionCollector.cs" />
     <Compile Include="Read\StakeholderConnectionEntityReadExtensions.cs" />
@@ -62,7 +62,6 @@
     <Compile Include="StringExtensions.cs" />
     <Compile Include="XmlEntities\AnalysisXmlEntity.cs" />
     <Compile Include="XmlEntities\PositionedStakeholderXmlEntity.cs" />
-    <Compile Include="XmlEntities\OnionDiagramStakeholderXmlEntity.cs" />
     <Compile Include="XmlEntities\OnionDiagramXmlEntity.cs" />
     <Compile Include="XmlEntities\OnionRingXmlEntity.cs" />
     <Compile Include="XmlEntities\ProjectXmlEntity.cs" />

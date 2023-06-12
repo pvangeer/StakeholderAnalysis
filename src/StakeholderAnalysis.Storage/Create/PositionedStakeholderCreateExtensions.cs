@@ -11,7 +11,7 @@ namespace StakeholderAnalysis.Storage.Create
         {
             if (registry == null) throw new ArgumentNullException(nameof(registry));
 
-            if (registry.Contains(stakeholder)) return registry.GetAsAttitudeImpactDiagramStakeholderXmlEntity(stakeholder);
+            if (registry.Contains(stakeholder)) return registry.Get(stakeholder);
 
             var entity = new PositionedStakeholderXmlEntity
             {

@@ -15,15 +15,19 @@ namespace StakeholderAnalysis.Storage.Test
         [Test]
         public void Read231Test()
         {
-            var assemblyFolder = Path.GetDirectoryName(Assembly.GetExecutingAssembly().Location);
-            Assert.IsNotNull(assemblyFolder);
-            assemblyFolder = assemblyFolder.Replace("bin\\x64\\", "")
+            var binFolder = Path.GetDirectoryName(Assembly.GetExecutingAssembly().Location);
+            Assert.IsNotNull(binFolder);
+            var assemblyFolder = binFolder.Replace("bin\\x64\\", "")
                 .Replace("Debug", "")
                 .Replace("Release", "");
-
+            
             var filename = Path.Combine(assemblyFolder, "Resources", "23.1-testproject.xml");
 
-            Assert.IsFalse(XmlStorageMigrationService.NeedsMigration(filename));
+            Assert.IsTrue(XmlStorageMigrationService.NeedsMigration(filename));
+
+            var oldFilName = filename;
+            filename = Path.Combine(binFolder, Path.GetFileNameWithoutExtension(oldFilName) + "_testmigrated.xml");
+            XmlStorageMigrationService.MigrateFile(oldFilName, filename);
 
             var storageXml = new StorageXml();
             var projectData = storageXml.LoadProject(filename);
@@ -149,7 +153,7 @@ namespace StakeholderAnalysis.Storage.Test
             Assert.AreEqual(expectedBackgroundFontColor, diagram.BackgroundFontColor);
             Assert.AreEqual(expectedBackgroundFontBold, diagram.BackgroundFontBold);
             Assert.AreEqual(expectedBackgroundFontItalic, diagram.BackgroundFontItalic);
-            Assert.AreEqual(expectedBackgroundFontSize, diagram.BackgroundFontSize);
+            Assert.AreEqual(expectedBackgroundFontSize, diagram.BackgroundFontSize, 1E-8);
 
             Assert.AreEqual(expectedAxisXMin, diagram.XAxisMinLabel);
             Assert.AreEqual(expectedAxisXMax, diagram.XAxisMaxLabel);
@@ -159,16 +163,16 @@ namespace StakeholderAnalysis.Storage.Test
             Assert.AreEqual(expectedAxisFontColor, diagram.AxisFontColor);
             Assert.AreEqual(expectedAxisFontBold, diagram.AxisFontBold);
             Assert.AreEqual(expectedAxisFontItalic, diagram.AxisFontItalic);
-            Assert.AreEqual(expectedAxisFontSize, diagram.AxisFontSize);
+            Assert.AreEqual(expectedAxisFontSize, diagram.AxisFontSize, 1E-8);
         }
 
         private void AssertEqualOnionRings(OnionRing onionRing, double expectedPercentage, Color expectedBackgroundColor,
             Color expectedStrokeColor, double expectedStrokeThickness, LineStyle expectedLineStyle)
         {
-            Assert.AreEqual(expectedPercentage, onionRing.Percentage);
+            Assert.AreEqual(expectedPercentage, onionRing.Percentage, 1E-8);
             Assert.AreEqual(expectedBackgroundColor, onionRing.BackgroundColor);
             Assert.AreEqual(expectedStrokeColor, onionRing.StrokeColor);
-            Assert.AreEqual(expectedStrokeThickness, onionRing.StrokeThickness);
+            Assert.AreEqual(expectedStrokeThickness, onionRing.StrokeThickness, 1E-8);
             Assert.AreEqual(expectedLineStyle, onionRing.LineStyle);
         }
 
@@ -186,7 +190,7 @@ namespace StakeholderAnalysis.Storage.Test
             Assert.AreEqual(expectedName, connectionGroup.Name);
             Assert.AreEqual(expectedStrokeColor, connectionGroup.StrokeColor);
             Assert.AreEqual(expectedLineStyle, connectionGroup.LineStyle);
-            Assert.AreEqual(expectedStrokeThickness, connectionGroup.StrokeThickness);
+            Assert.AreEqual(expectedStrokeThickness, connectionGroup.StrokeThickness, 1E-8);
             Assert.AreEqual(expectedVisible, connectionGroup.Visible);
         }
 
@@ -198,8 +202,8 @@ namespace StakeholderAnalysis.Storage.Test
         private void AssertEqualPositionedStakeholder(PositionedStakeholder stakeholder, double expectedLeft, double expectedTop,
             int expectedRank, string expectedStakeholderName)
         {
-            Assert.AreEqual(expectedLeft, stakeholder.Left);
-            Assert.AreEqual(expectedTop, stakeholder.Top);
+            Assert.AreEqual(expectedLeft, stakeholder.Left, 1E-8);
+            Assert.AreEqual(expectedTop, stakeholder.Top,1E-8);
             Assert.AreEqual(expectedRank, stakeholder.Rank);
             Assert.AreEqual(expectedStakeholderName, stakeholder.Stakeholder.Name);
         }

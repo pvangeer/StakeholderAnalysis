@@ -9,7 +9,7 @@ namespace StakeholderAnalysis.Storage.XmlEntities
     {
         public OnionDiagramXmlEntity()
         {
-            OnionDiagramStakeholderXmlEntities = new Collection<OnionDiagramStakeholderXmlEntity>();
+            PositionedStakeholderXmlEntities = new Collection<PositionedStakeholderXmlEntity>();
             OnionRingXmlEntities = new Collection<OnionRingXmlEntity>();
             StakeholderConnectionXmlEntities = new Collection<StakeholderConnectionXmlEntity>();
             StakeholderConnectionGroupXmlEntities = new Collection<StakeholderConnectionGroupXmlEntity>();
@@ -28,8 +28,8 @@ namespace StakeholderAnalysis.Storage.XmlEntities
         public double Orientation { get; set; }
 
         [XmlArray(ElementName = "stakeholders")]
-        [XmlArrayItem(ElementName = "onionstakeholder")]
-        public Collection<OnionDiagramStakeholderXmlEntity> OnionDiagramStakeholderXmlEntities { get; set; }
+        [XmlArrayItem(ElementName = "positionedstakeholder")]
+        public Collection<PositionedStakeholderXmlEntity> PositionedStakeholderXmlEntities { get; set; }
 
         [XmlArray(ElementName = "onionrings")]
         [XmlArrayItem(ElementName = "onionring")]

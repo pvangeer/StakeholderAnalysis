@@ -17,8 +17,8 @@ namespace StakeholderAnalysis.Storage.Read
 
             var attitudeImpactDiagram = new StakeholderConnection(
                 collector.GetReferencedStakeholderConnectionGroup(entity.StakeholderConnectionGroupId),
-                collector.GetReferencedOnionDiagramStakeholder(entity.StakeholderFromId),
-                collector.GetReferencedOnionDiagramStakeholder(entity.StakeholderToId));
+                collector.GetReferencedPositionedStakeholder(entity.StakeholderFromId),
+                collector.GetReferencedPositionedStakeholder(entity.StakeholderToId));
 
             collector.Collect(entity, attitudeImpactDiagram);
 

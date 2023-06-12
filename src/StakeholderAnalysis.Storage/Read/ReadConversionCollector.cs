@@ -13,10 +13,6 @@ namespace StakeholderAnalysis.Storage.Read
         private readonly Dictionary<OnionDiagramXmlEntity, OnionDiagram> onionDiagrams =
             CreateDictionary<OnionDiagramXmlEntity, OnionDiagram>();
 
-        private readonly Dictionary<OnionDiagramStakeholderXmlEntity, PositionedStakeholder>
-            onionDiagramStakeholders =
-                CreateDictionary<OnionDiagramStakeholderXmlEntity, PositionedStakeholder>();
-
         private readonly Dictionary<OnionRingXmlEntity, OnionRing> onionRings =
             CreateDictionary<OnionRingXmlEntity, OnionRing>();
 
@@ -60,11 +56,6 @@ namespace StakeholderAnalysis.Storage.Read
             Collect(onionRings, entity, model);
         }
 
-        internal void Collect(OnionDiagramStakeholderXmlEntity entity, PositionedStakeholder model)
-        {
-            Collect(onionDiagramStakeholders, entity, model);
-        }
-
         internal void Collect(StakeholderConnectionGroupXmlEntity entity, StakeholderConnectionGroup model)
         {
             Collect(stakeholderConnectionGroups, entity, model);
@@ -103,11 +94,6 @@ namespace StakeholderAnalysis.Storage.Read
         internal bool Contains(OnionRingXmlEntity entity)
         {
             return Contains(onionRings, entity);
-        }
-
-        internal bool Contains(OnionDiagramStakeholderXmlEntity entity)
-        {
-            return Contains(onionDiagramStakeholders, entity);
         }
 
         internal bool Contains(StakeholderConnectionXmlEntity entity)
@@ -150,11 +136,6 @@ namespace StakeholderAnalysis.Storage.Read
             return Get(onionRings, entity);
         }
 
-        internal PositionedStakeholder Get(OnionDiagramStakeholderXmlEntity entity)
-        {
-            return Get(onionDiagramStakeholders, entity);
-        }
-
         internal StakeholderConnection Get(StakeholderConnectionXmlEntity entity)
         {
             return Get(stakeholderConnections, entity);
@@ -191,9 +172,9 @@ namespace StakeholderAnalysis.Storage.Read
                 : Get(key);
         }
 
-        public PositionedStakeholder GetReferencedOnionDiagramStakeholder(long id)
+        public PositionedStakeholder GetReferencedPositionedStakeholder(long id)
         {
-            var key = onionDiagramStakeholders.Keys.FirstOrDefault(k => k.Id == id);
+            var key = positionedDiagramStakeholders.Keys.FirstOrDefault(k => k.Id == id);
             return key == null
                 ? throw new ReadReferencedObjectsFirstException(nameof(PositionedStakeholder))
                 : Get(key);

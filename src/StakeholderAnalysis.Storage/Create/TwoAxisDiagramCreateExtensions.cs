@@ -61,7 +61,7 @@ namespace StakeholderAnalysis.Storage.Create
         {
             for (var index = 0; index < diagram.Stakeholders.Count; index++)
             {
-                var eventTreeEntity = PositionedStakeholderCreateExtensions.Create(diagram.Stakeholders[index], registry);
+                var eventTreeEntity = diagram.Stakeholders[index].Create(registry);
                 eventTreeEntity.Order = index;
                 entity.PositionedStakeholderXmlEntities.Add(eventTreeEntity);
             }

@@ -13,7 +13,7 @@ namespace StakeholderAnalysis.Storage
             AuthorCreated = CurrentUser;
         }
 
-        public static string CurrentDateTime => DateTime.Now.ToString("yyyy-MM-dd : hh:mm:ss");
+        public static string CurrentDateTime => DateTime.Now.ToString("yyyy-MM-dd : HH:mm:ss");
 
         public static string CurrentUser
         {
@@ -37,9 +37,9 @@ namespace StakeholderAnalysis.Storage
 
         public static int Year => 23;
 
-        public static int MajorVersion => 1;
+        public static int MajorVersion => 2;
 
-        public static int MinorVersion => 5;
+        public static int MinorVersion => 1;
 
         public string DateCreated { get; set; }
 
