@@ -9,7 +9,6 @@ namespace StakeholderAnalysis.Storage.Migration
     {
         public static void MigrateFile(string oldFileName, string newFileName)
         {
-            // Same format to correct version number
             var xmlDoc = new XmlDocument();
             xmlDoc.Load(oldFileName);
 
@@ -27,14 +26,14 @@ namespace StakeholderAnalysis.Storage.Migration
             }
 
             foreach (var fileMigrator in migrators)
-            {
                 fileMigrator.Migrate(xmlDoc);
-            }
 
-            if (versionNode != null) versionNode.InnerText = versionXmlEntity.FileVersion;
+            if (versionNode != null) 
+                versionNode.InnerText = versionXmlEntity.FileVersion;
 
-            var createdNode = GetLastChangedNode(xmlDoc);
-            if (createdNode != null) createdNode.InnerText = versionXmlEntity.LastChanged;
+            var lastChangedNode = GetLastChangedNode(xmlDoc);
+            if (lastChangedNode != null) 
+                lastChangedNode.InnerText = versionXmlEntity.LastChanged;
 
             xmlDoc.Save(newFileName);
         }
@@ -73,25 +72,12 @@ namespace StakeholderAnalysis.Storage.Migration
 
         private static XmlNode GetVersionNode(XmlDocument xmlDoc)
         {
-            return xmlDoc.ChildNodes.Count == 2 &&
-                   xmlDoc.ChildNodes[1].ChildNodes.Count == 2 &&
-                   xmlDoc.ChildNodes[1].FirstChild.Name == ProjectXmlEntity.VersionInformationElementName &&
-                   xmlDoc.ChildNodes[1].FirstChild.FirstChild.Name == VersionXmlEntity.FileVersionElementName
-                ? xmlDoc.ChildNodes[1].FirstChild.FirstChild
-                : null;
+            return xmlDoc.SelectSingleNode($"/project/{ProjectXmlEntity.VersionInformationElementName}/{VersionXmlEntity.FileVersionElementName}");
         }
 
         private static XmlNode GetLastChangedNode(XmlDocument xmlDoc)
         {
-            var projectNode = xmlDoc.SelectSingleNode("/project");
-            if (projectNode == null)
-                return null;
-
-            var versionNode = projectNode.SelectSingleNode($"/{ProjectXmlEntity.VersionInformationElementName}");
-            if (versionNode == null) 
-                return null;
-
-            return versionNode.SelectSingleNode($"/{VersionXmlEntity.LastChangedElementName}");
+            return xmlDoc.SelectSingleNode($"/project/{ProjectXmlEntity.VersionInformationElementName}/{VersionXmlEntity.LastChangedElementName}");
         }
     }
 }

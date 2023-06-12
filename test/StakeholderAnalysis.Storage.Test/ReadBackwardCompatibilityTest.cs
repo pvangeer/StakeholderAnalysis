@@ -20,7 +20,7 @@ namespace StakeholderAnalysis.Storage.Test
             var assemblyFolder = binFolder.Replace("bin\\x64\\", "")
                 .Replace("Debug", "")
                 .Replace("Release", "");
-            
+
             var filename = Path.Combine(assemblyFolder, "Resources", "23.1-testproject.xml");
 
             Assert.IsTrue(XmlStorageMigrationService.NeedsMigration(filename));
@@ -203,7 +203,7 @@ namespace StakeholderAnalysis.Storage.Test
             int expectedRank, string expectedStakeholderName)
         {
             Assert.AreEqual(expectedLeft, stakeholder.Left, 1E-8);
-            Assert.AreEqual(expectedTop, stakeholder.Top,1E-8);
+            Assert.AreEqual(expectedTop, stakeholder.Top, 1E-8);
             Assert.AreEqual(expectedRank, stakeholder.Rank);
             Assert.AreEqual(expectedStakeholderName, stakeholder.Stakeholder.Name);
         }
