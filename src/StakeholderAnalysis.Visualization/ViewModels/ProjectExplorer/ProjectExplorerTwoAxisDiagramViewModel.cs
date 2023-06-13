@@ -57,10 +57,21 @@ namespace StakeholderAnalysis.Visualization.ViewModels.ProjectExplorer
         public ICommand RemoveItemCommand => CommandFactory.CreateCanAlwaysExecuteActionCommand(p =>
         {
             var viewInfo = viewManager?.Views.FirstOrDefault(vi =>
-                vi.ViewModel is TwoAxisDiagramViewModel diagramViewModel1 &&
-                diagramViewModel1.IsViewModelFor(diagram));
-            if (viewInfo != null) viewManager.CloseView(viewInfo);
-            analysis.AttitudeImpactDiagrams.Remove(diagram);
+                vi.ViewModel is TwoAxisDiagramViewModel diagramViewModel &&
+                diagramViewModel.IsViewModelFor(diagram));
+
+            if (viewInfo != null)
+                viewManager.CloseView(viewInfo);
+
+            switch (diagramType)
+            {
+                case DiagramType.ForceFieldDiagram:
+                    analysis.ForceFieldDiagrams.Remove(diagram);
+                    break;
+                case DiagramType.AttitudeImpactDiagram:
+                    analysis.AttitudeImpactDiagrams.Remove(diagram);
+                    break;
+            }
         });
 
         public bool CanAdd => false;
@@ -76,7 +87,7 @@ namespace StakeholderAnalysis.Visualization.ViewModels.ProjectExplorer
                 diagramViewModel.IsViewModelFor(diagram));
             if (viewInfo == null)
             {
-                viewInfo = new ViewInfo(diagram.Name, ViewModelFactory.CrateAttitudeImpactDiagramViewModel(diagram),
+                viewInfo = new ViewInfo(diagram.Name, ViewModelFactory.CreateTwoAxisDiagramViewModel(diagram),
                     IconSourceString);
                 viewManager.OpenView(viewInfo);
             }

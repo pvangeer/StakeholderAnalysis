@@ -6,8 +6,7 @@
                     xmlns:behaviors="clr-namespace:StakeholderAnalysis.Visualization.Behaviors"
                     xmlns:xctk="http://schemas.xceed.com/wpf/xaml/toolkit"
                     xmlns:contentConverters="clr-namespace:StakeholderAnalysis.Visualization.Converters.MainContentPresenter"
-                    xmlns:converters="clr-namespace:StakeholderAnalysis.Visualization.Converters"
-                    xmlns:commands="clr-namespace:StakeholderAnalysis.Visualization.Commands">
+                    xmlns:converters="clr-namespace:StakeholderAnalysis.Visualization.Converters">
 
     <ResourceDictionary.MergedDictionaries>
         <ResourceDictionary
@@ -25,7 +24,7 @@
 
     <BooleanToVisibilityConverter x:Key="BoolToVisibilityConverter" />
     <contentConverters:IsProneToExportConverter x:Key="IsProneToExportConverter" />
-    <contentConverters:DocumentViewInfoToPropertiesViewInfoConverter x:Key="DocumentViewInfoToPropertiesViewInfoConverter" />
+    <contentConverters:SelectedViewModelToPropertiesViewInfoConverter x:Key="SelectedViewInfoToPropertiesViewInfoConverter" />
     <converters:ObjectToPropertiesViewModelConverter x:Key="ObjectToPropertiesViewModelConverter" />
 
     <DataTemplate x:Key="NoDataTemplate">
@@ -36,8 +35,7 @@
                                                 DefaultDataTemplate="{StaticResource NoDataTemplate}"
                                                 StakeholderTableViewTemplate="{StaticResource StakeholderTableDataTemplate}"
                                                 OnionDiagramViewTemplate="{StaticResource OnionDiagramDataTemplate}"
-                                                StakeholderForcesDiagramTemplate="{StaticResource TwoAxisDiagramDataTemplate}"
-                                                AttitudeImpactDiagramTemplate="{StaticResource TwoAxisDiagramDataTemplate}" />
+                                                TwoAxisDiagramTemplate="{StaticResource TwoAxisDiagramDataTemplate}" />
 
     <visualization:PropertiesViewTemplateSelector x:Key="PropertiesViewTemplateSelector"
                                                   DefaultEmptyDataTemplate="{StaticResource NoDataTemplate}"
@@ -88,7 +86,7 @@
 
     <DataTemplate x:Key="PropertiesWindowDataTemplate">
         <ContentPresenter
-            Content="{Binding Converter={StaticResource DocumentViewInfoToPropertiesViewInfoConverter}}"
+            Content="{Binding Converter={StaticResource SelectedViewInfoToPropertiesViewInfoConverter}}"
             ContentTemplateSelector="{StaticResource PropertiesViewTemplateSelector}" />
     </DataTemplate>
 

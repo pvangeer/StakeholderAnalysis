@@ -14,9 +14,7 @@ namespace StakeholderAnalysis.Visualization
 
         public DataTemplate StakeholderTableViewTemplate { get; set; }
 
-        public DataTemplate StakeholderForcesDiagramTemplate { get; set; }
-
-        public DataTemplate AttitudeImpactDiagramTemplate { get; set; }
+        public DataTemplate TwoAxisDiagramTemplate { get; set; }
 
         public override DataTemplate SelectTemplate(object item, DependencyObject container)
         {
@@ -26,10 +24,8 @@ namespace StakeholderAnalysis.Visualization
                     return OnionDiagramViewTemplate;
                 case StakeholderTableViewModel _:
                     return StakeholderTableViewTemplate;
-                case ForceFieldDiagramViewModel _:
-                    return StakeholderForcesDiagramTemplate;
                 case TwoAxisDiagramViewModel _:
-                    return AttitudeImpactDiagramTemplate;
+                    return TwoAxisDiagramTemplate;
                 default:
                     return DefaultDataTemplate;
             }

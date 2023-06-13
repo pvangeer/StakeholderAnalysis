@@ -64,7 +64,7 @@
     <Compile Include="Converters\TreeView\SourceStringToVisibilityConverter.cs" />
     <Compile Include="Converters\TreeView\HasItemsToVisibilityConverter.cs" />
     <Compile Include="Converters\LineStyleToDashArrayConverter.cs" />
-    <Compile Include="Converters\MainContentPresenter\DocumentViewInfoToPropertiesViewInfoConverter.cs" />
+    <Compile Include="Converters\MainContentPresenter\SelectedViewModelToPropertiesViewInfoConverter.cs" />
     <Compile Include="PropertiesViewTemplateSelector.cs" />
     <Compile Include="HidableGridSplitter.cs" />
     <Compile Include="Converters\ObjectToPropertiesViewModelConverter.cs" />
@@ -75,6 +75,7 @@
     <Compile Include="Commands\Diagrams\RemoveSelectedStakeholderCommand.cs" />
     <Compile Include="ViewModels\DocumentViews\StakeholderTableView\StakeholderViewModel.cs" />
     <Compile Include="ViewModels\DocumentViews\TwoAxisDiagrams\IRankedStakeholderViewModel.cs" />
+    <Compile Include="ViewModels\ProjectExplorer\ProjectExplorerDiagramsViewModelBase.cs" />
     <Compile Include="ViewModels\ProjectExplorer\ProjectExplorerItemViewModelBase.cs" />
     <Compile Include="ViewModels\TreeView\CollectionType.cs" />
     <Compile Include="ViewModels\TreeView\OnionDiagramGeneralPropertiesViewModel.cs" />
@@ -148,7 +149,6 @@
     <Compile Include="ViewModels\ProjectExplorer\ProjectExplorerAttitudeImpactDiagramsViewModel.cs" />
     <Compile Include="ViewModels\ProjectExplorer\ProjectExplorerForceFieldDiagramsViewModel.cs" />
     <Compile Include="ViewModels\ProjectExplorer\ProjectExplorerTwoAxisDiagramViewModel.cs" />
-    <Compile Include="ViewModels\ProjectExplorer\ProjectExplorerForceFieldDiagramViewModel.cs" />
     <Compile Include="ViewModels\ProjectExplorer\ProjectExplorerStakeholderOverviewTableViewModel.cs" />
     <Compile Include="ViewModels\ProjectExplorer\ProjectExplorerStakeholderTypesViewModel.cs" />
     <Compile Include="ViewModels\ProjectExplorer\ProjectExplorerStakeholderTypeViewModel.cs" />
@@ -189,7 +189,6 @@
     <Compile Include="ViewModels\DocumentViews\OnionDiagramView\OnionDiagramRingsCanvasViewModel.cs" />
     <Compile Include="ViewModels\DocumentViews\OnionDiagramView\OnionRingViewModel.cs" />
     <Compile Include="ViewModels\DocumentViews\OnionDiagramView\StakeholderConnectionViewModel.cs" />
-    <Compile Include="ViewModels\DocumentViews\TwoAxisDiagrams\ForceFieldDiagramViewModel.cs" />
     <Compile Include="ViewModels\Ribbon\RibbonViewModel.cs" />
     <Compile Include="ViewModels\DocumentViews\StakeholderTableView\StakeholderTableViewModel.cs" />
     <Compile Include="ViewModels\DocumentViews\DiagramStakeholderViewModel.cs" />

@@ -7,7 +7,7 @@ using StakeholderAnalysis.Visualization.ViewModels.ProjectExplorer;
 
 namespace StakeholderAnalysis.Visualization.Converters.MainContentPresenter
 {
-    public class DocumentViewInfoToPropertiesViewInfoConverter : IValueConverter
+    public class SelectedViewModelToPropertiesViewInfoConverter : IValueConverter
     {
         public object Convert(object value, Type targetType, object parameter, CultureInfo culture)
         {
@@ -15,10 +15,8 @@ namespace StakeholderAnalysis.Visualization.Converters.MainContentPresenter
             {
                 case ProjectExplorerOnionDiagramViewModel projectExplorerOnionDiagramViewModel:
                     return projectExplorerOnionDiagramViewModel.GetPropertiesViewModel();
-                case ProjectExplorerForceFieldDiagramViewModel projectExplorerForceFieldDiagramViewModel:
-                    return projectExplorerForceFieldDiagramViewModel.GetPropertiesViewModel();
-                case ProjectExplorerTwoAxisDiagramViewModel projectExplorerAttitudeImpactDiagramViewModel:
-                    return projectExplorerAttitudeImpactDiagramViewModel.GetPropertiesViewModel();
+                case ProjectExplorerTwoAxisDiagramViewModel projectExplorerTwoAxisDiagramViewModel:
+                    return projectExplorerTwoAxisDiagramViewModel.GetPropertiesViewModel();
                 case ProjectExplorerStakeholderTypeViewModel projectExplorerStakeholderTypeViewModel:
                     return projectExplorerStakeholderTypeViewModel.GetPropertiesViewModel();
                 case OnionDiagramViewModel onionDiagramViewModel:

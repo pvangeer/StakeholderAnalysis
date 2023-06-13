@@ -16,17 +16,17 @@ namespace StakeholderAnalysis.Visualization.ViewModels.DocumentViews.TwoAxisDiag
         private readonly TwoAxisDiagram diagram;
         private object selectedObject;
 
-        public TwoAxisDiagramViewModel(ViewModelFactory factory, TwoAxisDiagram attitudeImpactDiagram) :
+        public TwoAxisDiagramViewModel(ViewModelFactory factory, TwoAxisDiagram diagram) :
             base(factory)
         {
-            diagram = attitudeImpactDiagram;
-            if (attitudeImpactDiagram != null)
+            this.diagram = diagram;
+            if (diagram != null)
             {
-                diagram.PropertyChanged += DiagramPropertyChanged;
-                diagram.Stakeholders.CollectionChanged += StakeholdersCollectionChanged;
+                this.diagram.PropertyChanged += DiagramPropertyChanged;
+                this.diagram.Stakeholders.CollectionChanged += StakeholdersCollectionChanged;
                 PositionedStakeholders = new ObservableCollection<IPositionedStakeholderViewModel>(
-                    attitudeImpactDiagram.Stakeholders.Select(stakeholder =>
-                        ViewModelFactory.CreateDiagramStakeholderViewModel(diagram, stakeholder, this)));
+                    diagram.Stakeholders.Select(stakeholder =>
+                        ViewModelFactory.CreateDiagramStakeholderViewModel(this.diagram, stakeholder, this)));
             }
         }
 

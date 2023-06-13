@@ -181,7 +181,6 @@
             </Grid.Resources>
             <!--Diagram drawing grid (including twe canvasses-->
             <Grid Grid.Row="0" Grid.Column="1" Background="{Binding BackgroundBrush}">
-
                 <!--Canvas that draws the arrows of the diagram-->
                 <Canvas Name="LinesCanvas" Background="Transparent">
                     <Canvas.Resources>

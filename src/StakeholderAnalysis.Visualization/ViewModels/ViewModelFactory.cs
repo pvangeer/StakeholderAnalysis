@@ -133,19 +133,27 @@ namespace StakeholderAnalysis.Visualization.ViewModels
             return new ProjectExplorerAttitudeImpactDiagramsViewModel(this, Analysis);
         }
 
+        public ITreeNodeViewModel CreateProjectExplorerDiagramViewModel(IStakeholderDiagram diagram)
+        {
+            switch (diagram)
+            {
+                case OnionDiagram onionDiagram:
+                    return CreateProjectExplorerOnionDiagramViewModel(onionDiagram);
+                case TwoAxisDiagram twoAxisDiagram:
+                    return CreateProjectExplorerTwoAxisDiagramViewModel(twoAxisDiagram);
+                default:
+                    return null;
+            }
+        }
+
         public ITreeNodeViewModel CreateProjectExplorerTwoAxisDiagramViewModel(TwoAxisDiagram twoAxisDiagram)
         {
             return new ProjectExplorerTwoAxisDiagramViewModel(this, Analysis, twoAxisDiagram, ViewManager);
         }
 
-        public TwoAxisDiagramViewModel CrateAttitudeImpactDiagramViewModel(TwoAxisDiagram diagram)
+        public TwoAxisDiagramViewModel CreateTwoAxisDiagramViewModel(TwoAxisDiagram diagram)
         {
             return new TwoAxisDiagramViewModel(this, diagram);
-        }
-
-        public ForceFieldDiagramViewModel CreateForceFieldDiagramViewModel(TwoAxisDiagram diagram)
-        {
-            return new ForceFieldDiagramViewModel(this, diagram);
         }
 
         public DiagramStakeholderViewModel CreateDiagramStakeholderViewModel(
