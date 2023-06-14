@@ -53,6 +53,7 @@
   <ItemGroup>
     <Compile Include="Commands\CloseViewWithMiddleMouseCommand.cs" />
     <Compile Include="Commands\Diagrams\AppointToDiagramCommand.cs" />
+    <Compile Include="Controls\RichTextBoxHelper.cs" />
     <Compile Include="Converters\Diagrams\StakeholderTable\AppointToDiagramMenuItemsConverter.cs" />
     <Compile Include="Behaviors\AttachInputBindingsBehavior.cs" />
     <Compile Include="Commands\SelectItemCommand.cs" />
@@ -65,6 +66,7 @@
     <Compile Include="Converters\TreeView\HasItemsToVisibilityConverter.cs" />
     <Compile Include="Converters\LineStyleToDashArrayConverter.cs" />
     <Compile Include="Converters\MainContentPresenter\SelectedViewModelToPropertiesViewInfoConverter.cs" />
+    <Compile Include="NullValueToBoolConverter.cs" />
     <Compile Include="PropertiesViewTemplateSelector.cs" />
     <Compile Include="HidableGridSplitter.cs" />
     <Compile Include="Converters\ObjectToPropertiesViewModelConverter.cs" />
@@ -73,6 +75,7 @@
     <Compile Include="Converters\MainContentPresenter\ToCloseViewCommandInputConverter.cs" />
     <Compile Include="ViewModels\DocumentViews\IDiagramViewModel.cs" />
     <Compile Include="Commands\Diagrams\RemoveSelectedStakeholderCommand.cs" />
+    <Compile Include="ViewModels\DocumentViews\StakeholderTableView\StakeholderDetailsViewModel.cs" />
     <Compile Include="ViewModels\DocumentViews\StakeholderTableView\StakeholderViewModel.cs" />
     <Compile Include="ViewModels\DocumentViews\TwoAxisDiagrams\IRankedStakeholderViewModel.cs" />
     <Compile Include="ViewModels\ProjectExplorer\ProjectExplorerDiagramsViewModelBase.cs" />
@@ -429,5 +432,10 @@
   <ItemGroup>
     <Resource Include="Resources\Diagrams\onion.ico" />
   </ItemGroup>
-  <ItemGroup />
+  <ItemGroup>
+    <Resource Include="Resources\Fluent\call_24_regular.ico" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Resources\Fluent\mail_24_regular.ico" />
+  </ItemGroup>
 </Project>

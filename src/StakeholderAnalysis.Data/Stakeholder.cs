@@ -15,5 +15,11 @@
         public string Name { get; set; }
 
         public StakeholderType Type { get; set; }
+
+        public string Notes { get; set; }
+
+        public string TelephoneNumber { get; set; }
+
+        public string Email { get; set; }
     }
 }

@@ -28,11 +28,11 @@ namespace StakeholderAnalysis.Storage.Migration
             foreach (var fileMigrator in migrators)
                 fileMigrator.Migrate(xmlDoc);
 
-            if (versionNode != null) 
+            if (versionNode != null)
                 versionNode.InnerText = versionXmlEntity.FileVersion;
 
             var lastChangedNode = GetLastChangedNode(xmlDoc);
-            if (lastChangedNode != null) 
+            if (lastChangedNode != null)
                 lastChangedNode.InnerText = versionXmlEntity.LastChanged;
 
             xmlDoc.Save(newFileName);
@@ -72,12 +72,14 @@ namespace StakeholderAnalysis.Storage.Migration
 
         private static XmlNode GetVersionNode(XmlDocument xmlDoc)
         {
-            return xmlDoc.SelectSingleNode($"/project/{ProjectXmlEntity.VersionInformationElementName}/{VersionXmlEntity.FileVersionElementName}");
+            return xmlDoc.SelectSingleNode(
+                $"/project/{ProjectXmlEntity.VersionInformationElementName}/{VersionXmlEntity.FileVersionElementName}");
         }
 
         private static XmlNode GetLastChangedNode(XmlDocument xmlDoc)
         {
-            return xmlDoc.SelectSingleNode($"/project/{ProjectXmlEntity.VersionInformationElementName}/{VersionXmlEntity.LastChangedElementName}");
+            return xmlDoc.SelectSingleNode(
+                $"/project/{ProjectXmlEntity.VersionInformationElementName}/{VersionXmlEntity.LastChangedElementName}");
         }
     }
 }

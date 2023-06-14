@@ -29,9 +29,9 @@ namespace StakeholderAnalysis.Visualization.ViewModels
 
         public string Version => $"{VersionInfo.Year}.{VersionInfo.MajorVersion}.{VersionInfo.MinorVersion}";
 
-        public ICommand SendEmailCommand => new CanAlwaysExecuteActionCommand
+        public ICommand ExecuteHyperlinkCommand => new CanAlwaysExecuteActionCommand
         {
-            ExecuteAction = OnSendEmail
+            ExecuteAction = OnExecuteHyperlink
         };
 
         public MainContentPresenterViewModel MainContentPresenterViewModel { get; }
@@ -45,7 +45,7 @@ namespace StakeholderAnalysis.Visualization.ViewModels
                 ? "Stakeholderanalyse (*)"
                 : $"Stakeholderanalyse ({Path.GetFileNameWithoutExtension(gui.ProjectFilePath)})";
 
-        private void OnSendEmail(object obj)
+        private void OnExecuteHyperlink(object obj)
         {
             Process.Start((string)obj);
         }

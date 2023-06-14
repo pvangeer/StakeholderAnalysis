@@ -6,21 +6,176 @@
                     xmlns:system="clr-namespace:System;assembly=mscorlib"
                     xmlns:converters="clr-namespace:StakeholderAnalysis.Visualization.Converters"
                     xmlns:stakeholderTable="clr-namespace:StakeholderAnalysis.Visualization.Converters.Diagrams.StakeholderTable"
-                    xmlns:fluent="urn:fluent-ribbon">
+                    xmlns:fluent="urn:fluent-ribbon"
+                    xmlns:xctk="http://schemas.xceed.com/wpf/xaml/toolkit">
 
     <ResourceDictionary.MergedDictionaries>
         <ResourceDictionary
             Source="/StakeholderAnalysis.Visualization;Component/Theme/GeneralStyles.xaml" />
         <ResourceDictionary
             Source="/StakeholderAnalysis.Visualization;Component/Theme/DataGridStyles.xaml" />
+        <ResourceDictionary
+                Source="/StakeholderAnalysis.Visualization;Component/Theme/DeltaresColorTheme.xaml" />
+        <ResourceDictionary Source="/StakeholderAnalysis.Visualization;Component/Theme/StakeholderAnalysisTheme.xaml" />
     </ResourceDictionary.MergedDictionaries>
 
     <visualization:StakeholderTypeToNameConverter x:Key="StakeholderTypeToNameConverter" />
     <converters:IconTypeToIconSourceConverter x:Key="IconTypeToIconSourceConverter" />
 
+    <visualization:NullValueToBoolConverter x:Key="NullValueToBoolConverter" />
+
+    <DataTemplate x:Key="StakeholderTypeItemDataTemplate" DataType="{x:Type data:StakeholderType}">
+        <DataTemplate.Resources>
+            <ObjectDataProvider x:Key="StakeholderTypeIconStyles"
+                                MethodName="GetValues"
+                                ObjectType="{x:Type system:Enum}">
+                <ObjectDataProvider.MethodParameters>
+                    <x:Type TypeName="data:StakeholderIconType" />
+                </ObjectDataProvider.MethodParameters>
+            </ObjectDataProvider>
+        </DataTemplate.Resources>
+        <StackPanel Orientation="Horizontal" VerticalAlignment="Center">
+            <Image
+                Width="16"
+                Height="16"
+                Source="{Binding IconType, Converter={StaticResource IconTypeToIconSourceConverter}}"
+                Margin="0,0,5,0" />
+            <TextBlock Text="{Binding Name}" />
+        </StackPanel>
+    </DataTemplate>
+
+    <DataTemplate x:Key="SelectedStakeholderDetailsPanelDataTemplate" DataType="{x:Type stakeholderTableView:StakeholderDetailsViewModel}">
+        <Border>
+            <Grid
+            Margin="10,5,5,0">
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="Auto"/>
+                    <RowDefinition Height="Auto"/>
+                    <RowDefinition Height="Auto" MinHeight="{StaticResource DefaultItemHeight}"/>
+                    <RowDefinition Height="Auto" MinHeight="{StaticResource DefaultItemHeight}"/>
+                    <RowDefinition Height="Auto" MinHeight="{StaticResource DefaultItemHeight}"/>
+                    <RowDefinition Height="Auto" MinHeight="{StaticResource DefaultItemHeight}"/>
+                    <RowDefinition Height="*"/>
+                </Grid.RowDefinitions>
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="Auto" />
+                    <ColumnDefinition Width="Auto" />
+                    <ColumnDefinition Width="*" />
+                </Grid.ColumnDefinitions>
+                <TextBlock 
+                    Grid.Row="0"
+                    Grid.Column="0"
+                    Grid.ColumnSpan="3"
+                    Foreground="{StaticResource Deltares.Brushes.LightBlue}"
+                    FontWeight="Bold"
+                    FontFamily="Franka"
+                    FontSize="36"
+                    Text="{Binding Name}" />
+                <Rectangle 
+                    Grid.Row="1"
+                    Grid.Column="0"
+                    Grid.ColumnSpan="3"
+                    HorizontalAlignment="Stretch"
+                    Fill="{StaticResource Deltares.Brushes.DarkGreen}" 
+                    Height="2"
+                    StrokeThickness="0" />
+                <TextBlock 
+                    Grid.Row="2"
+                    Grid.Column="0"
+                    Text="Type stakeholder"
+                    TextAlignment="Right"
+                    VerticalAlignment="Center"
+                    Foreground="{StaticResource Deltares.Brushes.Foreground}" />
+                <ComboBox 
+                    Grid.Row="2"
+                    Grid.Column="2"
+                    Margin="5,0"
+                    ItemsSource="{Binding ElementName=TableGrid, Path=DataContext.StakeholderTypes}" 
+                    SelectedItem="{Binding Type}"
+                    ItemTemplate="{StaticResource StakeholderTypeItemDataTemplate}"
+                    BorderBrush="{StaticResource Deltares.Brushes.DarkGreen}"
+                    IsEnabled="{Binding Converter={StaticResource NullValueToBoolConverter}}"
+                    VerticalAlignment="Center"
+                    Foreground="{StaticResource Deltares.Brushes.Foreground}" />
+                <TextBlock 
+                    Grid.Row="3"
+                    Grid.Column="0"
+                    Foreground="{StaticResource Deltares.Brushes.Foreground}"
+                    FontSize="14"
+                    Text="e-mail adres"
+                    TextAlignment="Right"
+                    VerticalAlignment="Center" />
+                <fluent:Button 
+                    Grid.Row="3" 
+                    Grid.Column="1"
+                    Size="Small"
+                    IsEnabled="{Binding Converter={StaticResource NullValueToBoolConverter}}"
+                    Icon="pack://application:,,,/StakeholderAnalysis.Visualization;component/Resources/Fluent/mail_24_regular.ico" 
+                    Command="{Binding EmailStakeholderCommand}" />
+                <TextBox
+                    Grid.Row="3"
+                    Grid.Column="2"
+                    Margin="5,0"
+                    Text="{Binding Email}"
+                    VerticalAlignment="Center"
+                    BorderBrush="{StaticResource Deltares.Brushes.DarkGreen}"
+                    TextAlignment="Left"
+                    IsEnabled="{Binding Converter={StaticResource NullValueToBoolConverter}}"
+                    Foreground="{StaticResource Deltares.Brushes.Foreground}" />
+                <TextBlock 
+                    Grid.Row="4"
+                    Grid.Column="0"
+                    Text="Telefoonnummer"
+                    VerticalAlignment="Center"
+                    TextAlignment="Right"
+                    Foreground="{StaticResource Deltares.Brushes.Foreground}" />
+                <fluent:Button 
+                    Grid.Row="4" 
+                    Grid.Column="1"
+                    Size="Small"
+                    IsEnabled="{Binding Converter={StaticResource NullValueToBoolConverter}}"
+                    Icon="pack://application:,,,/StakeholderAnalysis.Visualization;component/Resources/Fluent/call_24_regular.ico" 
+                    Command="{Binding CallStakeholderCommand}" />
+                <TextBox 
+                    Grid.Row="4" 
+                    Grid.Column="2"
+                    Margin="5,0"
+                    Text="{Binding TelephoneNumber}"
+                    BorderBrush="{StaticResource Deltares.Brushes.DarkGreen}"
+                    IsEnabled="{Binding Converter={StaticResource NullValueToBoolConverter}}"
+                    VerticalAlignment="Center"
+                    TextAlignment="Left">
+                </TextBox>
+                <TextBlock 
+                    Grid.Row="5"
+                    Grid.Column="0"
+                    Text="Notities"
+                    VerticalAlignment="Center"
+                    TextAlignment="Left"
+                    Foreground="{StaticResource Deltares.Brushes.Foreground}" />
+                <xctk:RichTextBox 
+                    Grid.Row="6"
+                    Grid.Column="0"
+                    Text="{Binding Notes}"
+                    BorderBrush="{StaticResource Deltares.Brushes.DarkGreen}"
+                    IsEnabled="{Binding Converter={StaticResource NullValueToBoolConverter}}"
+                    VerticalScrollBarVisibility="Auto"
+                    HorizontalScrollBarVisibility="Auto"
+                    Grid.ColumnSpan="3">
+                </xctk:RichTextBox>
+            </Grid>
+        </Border>
+    </DataTemplate>
+
     <DataTemplate x:Key="StakeholderTableDataTemplate" DataType="stakeholderTableView:StakeholderTableViewModel">
         <Grid Name="TableGrid" DataContext="{Binding}">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="Auto"/>
+                <ColumnDefinition Width="Auto"/>
+                <ColumnDefinition Width="*"/>
+            </Grid.ColumnDefinitions>
             <DataGrid
+                Grid.Column="0"
                 Name="TableDataGrid"
                 AutoGenerateColumns="False"
                 SelectionMode="Extended"
@@ -31,25 +186,6 @@
                 ItemsSource="{Binding StakeholderViewSource.View}"
                 SelectionUnit="CellOrRowHeader">
                 <DataGrid.Resources>
-                    <DataTemplate x:Key="StakeholderTypeItemDataTemplate" DataType="{x:Type data:StakeholderType}">
-                        <DataTemplate.Resources>
-                            <ObjectDataProvider x:Key="StakeholderTypeIconStyles"
-                                                MethodName="GetValues"
-                                                ObjectType="{x:Type system:Enum}">
-                                <ObjectDataProvider.MethodParameters>
-                                    <x:Type TypeName="data:StakeholderIconType" />
-                                </ObjectDataProvider.MethodParameters>
-                            </ObjectDataProvider>
-                        </DataTemplate.Resources>
-                        <StackPanel Orientation="Horizontal" VerticalAlignment="Center">
-                            <Image
-                                Width="16"
-                                Height="16"
-                                Source="{Binding IconType, Converter={StaticResource IconTypeToIconSourceConverter}}"
-                                Margin="0,0,5,0" />
-                            <TextBlock Text="{Binding Name}" />
-                        </StackPanel>
-                    </DataTemplate>
                     <stakeholderTable:StakeholderTypesToMenuItemsConverter x:Key="StakeholderTypesToMenuItemsConverter" />
                     <stakeholderTable:AppointToDiagramMenuItemsConverter x:Key="AppointToDiagramMenuItemsConverter" />
 
@@ -212,6 +348,16 @@
                     </DataGridComboBoxColumn>
                 </DataGrid.Columns>
             </DataGrid>
+            <GridSplitter
+                Grid.Column="1"
+                Width="5"
+                Background="{StaticResource Fluent.Ribbon.Brushes.Separator.Background}"
+                HorizontalAlignment="Stretch"
+                ResizeBehavior="BasedOnAlignment" />
+            <ContentPresenter 
+                Grid.Column="2"
+                Content="{Binding LastSelectedStakeholderViewModel}"
+                ContentTemplate="{StaticResource SelectedStakeholderDetailsPanelDataTemplate}" />
         </Grid>
     </DataTemplate>
 </ResourceDictionary>

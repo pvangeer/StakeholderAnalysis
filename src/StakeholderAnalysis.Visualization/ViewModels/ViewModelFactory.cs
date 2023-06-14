@@ -257,5 +257,10 @@ namespace StakeholderAnalysis.Visualization.ViewModels
         {
             return new StakeholderViewModel(this, stakeholder);
         }
+
+        public StakeholderDetailsViewModel CreateStakeholderDetailsViewModel(Stakeholder stakeholder)
+        {
+            return new StakeholderDetailsViewModel(this, stakeholder);
+        }
     }
 }
