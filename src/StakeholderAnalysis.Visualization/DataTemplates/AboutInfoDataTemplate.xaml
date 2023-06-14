@@ -68,7 +68,7 @@
                 <TextBlock Grid.Column="1" Grid.Row="4"
                            Style="{StaticResource AboutTextBlockStyle}">
                     <Hyperlink
-                        CommandParameter="tel:+31883358339" 
+                        CommandParameter="tel:+31883358339"
                         Command="{Binding ExecuteHyperlinkCommand}">
                         +31 (0)88 335 8339
                     </Hyperlink>

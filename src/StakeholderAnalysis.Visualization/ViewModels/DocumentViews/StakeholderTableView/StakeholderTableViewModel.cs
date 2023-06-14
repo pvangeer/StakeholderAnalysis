@@ -143,7 +143,7 @@ namespace StakeholderAnalysis.Visualization.ViewModels.DocumentViews.Stakeholder
 
         private void StakeholderViewModelPropertyChanged(object sender, PropertyChangedEventArgs e)
         {
-            if (!(sender is StakeholderViewModel stakeholder)) 
+            if (!(sender is StakeholderViewModel stakeholder))
                 return;
 
             switch (e.PropertyName)
@@ -165,6 +165,7 @@ namespace StakeholderAnalysis.Visualization.ViewModels.DocumentViews.Stakeholder
                             OnPropertyChanged(nameof(LastSelectedStakeholderViewModel));
                         }
                     }
+
                     break;
             }
         }

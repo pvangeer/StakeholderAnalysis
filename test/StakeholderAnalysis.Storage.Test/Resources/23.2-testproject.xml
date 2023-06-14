@@ -1,0 +1,94 @@
+<?xml version="1.0" encoding="utf-8"?>
+<project xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+  <versioninformation>
+    <fileversion>23.2</fileversion>
+    <creator>Pieter van Geer (geer)</creator>
+    <created>2023-06-09 : 09:46:53</created>
+    <lastauthor>(geer)</lastauthor>
+    <lastchanged>2023-06-14 : 12:01:44</lastchanged>
+  </versioninformation>
+  <analysis>
+    <stakeholdertypes>
+      <stakeholdertype name="Eerste type" icontype="31" color="#FFFFF8DC" order="0" id="0" />
+      <stakeholdertype name="Tweede type" icontype="35" color="#FF00B389" order="1" id="1" />
+    </stakeholdertypes>
+    <stakeholders>
+      <stakeholder name="linksboven" order="0" stakeholdertypeid="0" id="0" email="email.adres@test.com" telephone="0123456789">
+        <notes>{\rtf1\ansi\ansicpg1252\uc1\htmautsp\deff2{\fonttbl{\f0\fcharset0 Times New Roman;}{\f2\fcharset0 Segoe UI;}}{\colortbl\red0\green0\blue0;\red255\green255\blue255;}\loch\hich\dbch\pard\plain\ltrpar\itap0{\lang1033\fs18\f2\cf0 \cf0\ql{\f2 {\ltrch Dit is een }{\b\ltrch notitie}\li0\ri0\sa0\sb0\fi0\ql\par}}}</notes>
+      </stakeholder>
+      <stakeholder name="Linksonder" order="1" stakeholdertypeid="0" id="1" />
+      <stakeholder name="Rechtsboven" order="2" stakeholdertypeid="0" id="2" />
+      <stakeholder name="Rechtsonder" order="3" stakeholdertypeid="0" id="3" />
+      <stakeholder name="Vaag contact" order="4" stakeholdertypeid="1" id="4" />
+      <stakeholder name="Goed contact" order="5" stakeholdertypeid="1" id="5" />
+      <stakeholder name="Leuk contact" order="6" stakeholdertypeid="1" id="6" />
+      <stakeholder name="Minder leuk contact" order="7" stakeholdertypeid="1" id="7" />
+    </stakeholders>
+    <oniondiagrams>
+      <oniondiagram name="Test ui-diagram" order="0" asymmetry="0.7" orientation="116.4" id="0">
+        <stakeholders>
+          <positionedstakeholder top="0.15434985968194578" left="0.14847620882296284" rank="0" order="0" stakeholderid="0" id="0" />
+          <positionedstakeholder top="0.81" left="0.11" rank="1" order="1" stakeholderid="1" id="1" />
+          <positionedstakeholder top="0.14" left="0.85" rank="2" order="2" stakeholderid="2" id="2" />
+          <positionedstakeholder top="0.82" left="0.87" rank="3" order="3" stakeholderid="3" id="3" />
+          <positionedstakeholder top="0.39" left="0.14" rank="4" order="4" stakeholderid="4" id="4" />
+          <positionedstakeholder top="0.66" left="0.64" rank="5" order="5" stakeholderid="5" id="5" />
+          <positionedstakeholder top="0.52" left="0.57" rank="6" order="6" stakeholderid="6" id="6" />
+          <positionedstakeholder top="0.43" left="0.63" rank="7" order="7" stakeholderid="7" id="7" />
+        </stakeholders>
+        <onionrings>
+          <onionring order="0" percentage="0.44" backgroundcolor="#FFF2F2F2" strokecolor="#FF080C80" strokethickness="2" linestyle="2" />
+          <onionring order="1" percentage="0.75" backgroundcolor="#FF0D38E0" strokecolor="#FF808080" strokethickness="0" linestyle="0" />
+          <onionring order="2" percentage="1" backgroundcolor="#FF0EBBF0" strokecolor="#FF808080" strokethickness="1" linestyle="0" />
+        </onionrings>
+        <connections>
+          <connection order="0" connectiongroupid="0" onionstakeholderfromid="5" onionstakeholdertoid="6" />
+          <connection order="1" connectiongroupid="0" onionstakeholderfromid="5" onionstakeholdertoid="7" />
+          <connection order="2" connectiongroupid="0" onionstakeholderfromid="7" onionstakeholdertoid="2" />
+          <connection order="3" connectiongroupid="1" onionstakeholderfromid="7" onionstakeholdertoid="0" />
+          <connection order="4" connectiongroupid="1" onionstakeholderfromid="4" onionstakeholdertoid="1" />
+          <connection order="5" connectiongroupid="1" onionstakeholderfromid="1" onionstakeholdertoid="6" />
+          <connection order="6" connectiongroupid="1" onionstakeholderfromid="3" onionstakeholdertoid="5" />
+        </connections>
+        <connectiongroups>
+          <connectiongroup order="0" name="Test groep 1" color="#FF00B389" visible="1" strokethickness="3" linestyle="3" id="0" />
+          <connectiongroup order="1" name="Test groep 2" color="#FFFFD814" visible="1" strokethickness="2" linestyle="5" id="1" />
+        </connectiongroups>
+      </oniondiagram>
+    </oniondiagrams>
+    <forcefielddiagrams>
+      <twoaxisdiagram name="Test krachtenvelddiagram" order="0" id="0">
+        <brush startcolor="#FFE6E6E6" endcolor="#FF0EBBF0" />
+        <background textlefttop="Consulteren 1" textleftbottom="Monitoren 1" textrighttop="Betrekken 1" textrightbottom="Informeren 1" textfontfamily="Arial" textfontcolor="#FFE6E6E6" textfontbold="0" textfontitalic="0" textfontsize="62" />
+        <axis yaxisminlabel="Weinig invloed 1" yaxismaxlabel="Veel invloed 1" xaxisminlabel="Klein belang 1" xaxismaxlabel="Groot belang 1" textfontfamily="Arial" textfontcolor="#FFE6E6E6" textfontbold="1" textfontitalic="1" textfontsize="22" />
+        <stakeholders>
+          <positionedstakeholder top="0.5" left="0.5" rank="0" order="0" stakeholderid="0" id="8" />
+          <positionedstakeholder top="0.52" left="0.51" rank="1" order="1" stakeholderid="1" id="9" />
+          <positionedstakeholder top="0.54" left="0.52" rank="2" order="2" stakeholderid="2" id="10" />
+          <positionedstakeholder top="0.56" left="0.53" rank="3" order="3" stakeholderid="3" id="11" />
+          <positionedstakeholder top="0.58" left="0.54" rank="4" order="4" stakeholderid="4" id="12" />
+          <positionedstakeholder top="0.6" left="0.55" rank="5" order="5" stakeholderid="5" id="13" />
+          <positionedstakeholder top="0.62" left="0.56" rank="6" order="6" stakeholderid="6" id="14" />
+          <positionedstakeholder top="0.64" left="0.57000000000000006" rank="7" order="7" stakeholderid="7" id="15" />
+        </stakeholders>
+      </twoaxisdiagram>
+    </forcefielddiagrams>
+    <attitudeimpactdiagrams>
+      <twoaxisdiagram name="Test houding-impact diagram" order="0" id="1">
+        <brush startcolor="#FF0EBBF0" endcolor="#FF00CC96" />
+        <background textlefttop="Informeren 1" textleftbottom="Monitoren 1" textrighttop="Betrekken 1" textrightbottom="Overtuigen 1" textfontfamily="Calibri" textfontcolor="#FFE6E6E6" textfontbold="0" textfontitalic="0" textfontsize="66" />
+        <axis yaxisminlabel="Negatief 1" yaxismaxlabel="Positief 1" xaxisminlabel="Lage impact 1" xaxismaxlabel="Hoge impact 1" textfontfamily="Arial" textfontcolor="#FFE6E6E6" textfontbold="1" textfontitalic="1" textfontsize="22" />
+        <stakeholders>
+          <positionedstakeholder top="0.5" left="0.5" rank="0" order="0" stakeholderid="0" id="16" />
+          <positionedstakeholder top="0.52" left="0.51" rank="1" order="1" stakeholderid="1" id="17" />
+          <positionedstakeholder top="0.54" left="0.52" rank="2" order="2" stakeholderid="2" id="18" />
+          <positionedstakeholder top="0.56" left="0.53" rank="3" order="3" stakeholderid="3" id="19" />
+          <positionedstakeholder top="0.58" left="0.54" rank="4" order="4" stakeholderid="4" id="20" />
+          <positionedstakeholder top="0.6" left="0.55" rank="5" order="5" stakeholderid="5" id="21" />
+          <positionedstakeholder top="0.62" left="0.56" rank="6" order="6" stakeholderid="6" id="22" />
+          <positionedstakeholder top="0.64" left="0.57000000000000006" rank="7" order="7" stakeholderid="7" id="23" />
+        </stakeholders>
+      </twoaxisdiagram>
+    </attitudeimpactdiagrams>
+  </analysis>
+</project>

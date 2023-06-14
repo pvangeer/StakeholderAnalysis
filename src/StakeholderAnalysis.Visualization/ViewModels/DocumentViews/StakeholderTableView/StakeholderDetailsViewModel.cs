@@ -52,18 +52,12 @@ namespace StakeholderAnalysis.Visualization.ViewModels.DocumentViews.Stakeholder
 
         public ICommand CallStakeholderCommand => new CanAlwaysExecuteActionCommand
         {
-            ExecuteAction = o =>
-            {
-                Process.Start($"tel:{stakeholder.TelephoneNumber}");
-            }
+            ExecuteAction = o => { Process.Start($"tel:{stakeholder.TelephoneNumber}"); }
         };
 
         public ICommand EmailStakeholderCommand => new CanAlwaysExecuteActionCommand
         {
-            ExecuteAction = o =>
-            {
-                Process.Start($"mailto:{stakeholder.Email}");
-            }
+            ExecuteAction = o => { Process.Start($"mailto:{stakeholder.Email}"); }
         };
 
         public StakeholderType Type

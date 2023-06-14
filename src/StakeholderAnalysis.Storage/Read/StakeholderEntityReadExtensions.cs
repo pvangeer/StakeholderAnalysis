@@ -19,7 +19,10 @@ namespace StakeholderAnalysis.Storage.Read
             var stakeholder = new Stakeholder
             {
                 Name = entity.Name,
-                Type = referencedStakeholderType
+                Type = referencedStakeholderType,
+                Email = entity.Email,
+                TelephoneNumber = entity.TelephoneNumber,
+                Notes = entity.Notes
             };
 
             collector.Collect(entity, stakeholder);

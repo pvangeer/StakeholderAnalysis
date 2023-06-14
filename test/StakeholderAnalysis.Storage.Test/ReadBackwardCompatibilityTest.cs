@@ -12,15 +12,21 @@ namespace StakeholderAnalysis.Storage.Test
     [TestFixture]
     public class ReadBackwardCompatibilityTest
     {
+        [SetUp]
+        public void TestSetup()
+        {
+            binFolder = Path.GetDirectoryName(Assembly.GetExecutingAssembly().Location);
+            assemblyFolder = binFolder.Replace("bin\\x64\\", "")
+                .Replace("Debug", "")
+                .Replace("Release", "");
+        }
+
+        private string binFolder;
+        private string assemblyFolder;
+
         [Test]
         public void Read231Test()
         {
-            var binFolder = Path.GetDirectoryName(Assembly.GetExecutingAssembly().Location);
-            Assert.IsNotNull(binFolder);
-            var assemblyFolder = binFolder.Replace("bin\\x64\\", "")
-                .Replace("Debug", "")
-                .Replace("Release", "");
-
             var filename = Path.Combine(assemblyFolder, "Resources", "23.1-testproject.xml");
 
             Assert.IsTrue(XmlStorageMigrationService.NeedsMigration(filename));
@@ -32,18 +38,53 @@ namespace StakeholderAnalysis.Storage.Test
             var storageXml = new StorageXml();
             var projectData = storageXml.LoadProject(filename);
 
-            AssertCorrectProjectInformation(projectData);
-        }
-
-        private void AssertCorrectProjectInformation(ProjectData projectData)
-        {
             Assert.AreEqual("Pieter van Geer (geer)", projectData.Author);
             Assert.AreEqual("2023-06-09 : 09:46:53", projectData.Created);
 
             var analysis = projectData.Analysis;
             Assert.IsNotNull(analysis);
+
+            AssertStakeholders(analysis);
+            AssertStakeholderTypes(analysis);
+            AssertOnionDiagram(analysis);
+            AssertAttitudeImpactDiagram(analysis);
+            AssertForceFieldDiagram(analysis);
+        }
+
+        [Test]
+        public void Read232Test()
+        {
+            var filename = Path.Combine(assemblyFolder, "Resources", "23.2-testproject.xml");
+
+            Assert.IsFalse(XmlStorageMigrationService.NeedsMigration(filename));
+            var storageXml = new StorageXml();
+            var projectData = storageXml.LoadProject(filename);
+
+            Assert.AreEqual("Pieter van Geer (geer)", projectData.Author);
+            Assert.AreEqual("2023-06-09 : 09:46:53", projectData.Created);
+
+            var analysis = projectData.Analysis;
+            Assert.IsNotNull(analysis);
+
+            AssertStakeholders(analysis);
+            AssertStakeholderTypesWithDetails(analysis);
+            AssertOnionDiagram(analysis);
+            AssertAttitudeImpactDiagram(analysis);
+            AssertForceFieldDiagram(analysis);
+        }
+
+        private void AssertStakeholderTypesWithDetails(Analysis analysis)
+        {
             Assert.AreEqual(8, analysis.Stakeholders.Count);
-            AssertEqualStakeholder(analysis.Stakeholders[0], "linksboven", "Eerste type");
+            var firstStakeholder = analysis.Stakeholders[0];
+            AssertEqualStakeholder(firstStakeholder, "linksboven", "Eerste type");
+            Assert.AreEqual("0123456789", firstStakeholder.TelephoneNumber);
+            Assert.AreEqual(@"email.adres@test.com", firstStakeholder.Email);
+            var expectedNotes = @"{\rtf1\ansi\ansicpg1252\uc1\htmautsp\deff2{\fonttbl{\f0\fcharset0 Times New Roman;}" +
+                                @"{\f2\fcharset0 Segoe UI;}}{\colortbl\red0\green0\blue0;\red255\green255\blue255;}" +
+                                @"\loch\hich\dbch\pard\plain\ltrpar\itap0{\lang1033\fs18\f2\cf0 \cf0\ql{\f2 {\ltrch Dit is een }" +
+                                @"{\b\ltrch notitie}\li0\ri0\sa0\sb0\fi0\ql\par}}}";
+            Assert.AreEqual(expectedNotes, firstStakeholder.Notes);
             AssertEqualStakeholder(analysis.Stakeholders[1], "Linksonder", "Eerste type");
             AssertEqualStakeholder(analysis.Stakeholders[2], "Rechtsboven", "Eerste type");
             AssertEqualStakeholder(analysis.Stakeholders[3], "Rechtsonder", "Eerste type");
@@ -51,11 +92,51 @@ namespace StakeholderAnalysis.Storage.Test
             AssertEqualStakeholder(analysis.Stakeholders[5], "Goed contact", "Tweede type");
             AssertEqualStakeholder(analysis.Stakeholders[6], "Leuk contact", "Tweede type");
             AssertEqualStakeholder(analysis.Stakeholders[7], "Minder leuk contact", "Tweede type");
+        }
 
-            Assert.AreEqual(2, analysis.StakeholderTypes.Count);
-            AsserEqualStakeholderType(analysis.StakeholderTypes[0], "Eerste type", StakeholderIconType.Wifi, ColorFromHex("#FFFFF8DC"));
-            AsserEqualStakeholderType(analysis.StakeholderTypes[1], "Tweede type", StakeholderIconType.Mail, ColorFromHex("#FF00B389"));
+        private void AssertForceFieldDiagram(Analysis analysis)
+        {
+            Assert.AreEqual(1, analysis.ForceFieldDiagrams.Count);
+            var forceFieldDiagram = analysis.ForceFieldDiagrams[0];
+            AssertEqualTwoAxisDiagramProperties(forceFieldDiagram, "Test krachtenvelddiagram",
+                ColorFromHex("#FFE6E6E6"), ColorFromHex("#FF0EBBF0"),
+                "Consulteren 1", "Monitoren 1", "Betrekken 1", "Informeren 1", "Arial", ColorFromHex("#FFE6E6E6"), false, false, 62,
+                "Weinig invloed 1", "Veel invloed 1", "Klein belang 1", "Groot belang 1", "Arial", ColorFromHex("#FFE6E6E6"), true, true,
+                22);
+            Assert.AreEqual(8, forceFieldDiagram.Stakeholders.Count);
+            AssertEqualPositionedStakeholder(forceFieldDiagram.Stakeholders[0], 0.5, 0.5, 0, "linksboven");
+            AssertEqualPositionedStakeholder(forceFieldDiagram.Stakeholders[1], 0.51, 1 - 0.48, 1, "Linksonder");
+            AssertEqualPositionedStakeholder(forceFieldDiagram.Stakeholders[2], 0.52, 1 - 0.45999999999999996, 2, "Rechtsboven");
+            AssertEqualPositionedStakeholder(forceFieldDiagram.Stakeholders[3], 0.53, 1 - 0.43999999999999995, 3, "Rechtsonder");
+            AssertEqualPositionedStakeholder(forceFieldDiagram.Stakeholders[4], 0.54, 1 - 0.41999999999999993, 4, "Vaag contact");
+            AssertEqualPositionedStakeholder(forceFieldDiagram.Stakeholders[5], 0.55, 1 - 0.39999999999999991, 5, "Goed contact");
+            AssertEqualPositionedStakeholder(forceFieldDiagram.Stakeholders[6], 0.56, 1 - 0.37999999999999989, 6, "Leuk contact");
+            AssertEqualPositionedStakeholder(forceFieldDiagram.Stakeholders[7], 0.57000000000000006, 1 - 0.35999999999999988, 7,
+                "Minder leuk contact");
+        }
 
+        private void AssertAttitudeImpactDiagram(Analysis analysis)
+        {
+            Assert.AreEqual(1, analysis.AttitudeImpactDiagrams.Count);
+            var attitudeImpactDiagram = analysis.AttitudeImpactDiagrams[0];
+            AssertEqualTwoAxisDiagramProperties(attitudeImpactDiagram, "Test houding-impact diagram",
+                ColorFromHex("#FF0EBBF0"), ColorFromHex("#FF00CC96"),
+                "Informeren 1", "Monitoren 1", "Betrekken 1", "Overtuigen 1", "Calibri", ColorFromHex("#FFE6E6E6"), false, false, 66,
+                "Negatief 1", "Positief 1", "Lage impact 1", "Hoge impact 1", "Arial", ColorFromHex("#FFE6E6E6"), true, true, 22);
+            Assert.AreEqual(8, attitudeImpactDiagram.Stakeholders.Count);
+            AssertEqualPositionedStakeholder(attitudeImpactDiagram.Stakeholders[0], 0.5, 0.5, 0, "linksboven");
+            AssertEqualPositionedStakeholder(attitudeImpactDiagram.Stakeholders[1], 0.51, 1 - 0.48, 1, "Linksonder");
+            AssertEqualPositionedStakeholder(attitudeImpactDiagram.Stakeholders[2], 0.52, 1 - 0.45999999999999996, 2, "Rechtsboven");
+            AssertEqualPositionedStakeholder(attitudeImpactDiagram.Stakeholders[3], 0.53, 1 - 0.43999999999999995, 3, "Rechtsonder");
+            AssertEqualPositionedStakeholder(attitudeImpactDiagram.Stakeholders[4], 0.54, 1 - 0.41999999999999993, 4, "Vaag contact");
+            AssertEqualPositionedStakeholder(attitudeImpactDiagram.Stakeholders[5], 0.55, 1 - 0.39999999999999991, 5, "Goed contact");
+            AssertEqualPositionedStakeholder(attitudeImpactDiagram.Stakeholders[6], 0.56, 1 - 0.37999999999999989, 6, "Leuk contact");
+            AssertEqualPositionedStakeholder(attitudeImpactDiagram.Stakeholders[7], 0.57000000000000006, 1 - 0.35999999999999988, 7,
+                "Minder leuk contact");
+        }
+
+        private void AssertOnionDiagram(Analysis analysis)
+        {
             Assert.AreEqual(1, analysis.OnionDiagrams.Count);
             var onionDiagram = analysis.OnionDiagrams[0];
             Assert.AreEqual("Test ui-diagram", onionDiagram.Name);
@@ -94,41 +175,26 @@ namespace StakeholderAnalysis.Storage.Test
                 LineStyle.Solid);
             AssertEqualOnionRings(onionDiagram.OnionRings[2], 1.0, ColorFromHex("#FF0EBBF0"), ColorFromHex("#FF808080"), 1.0,
                 LineStyle.Solid);
+        }
 
-            Assert.AreEqual(1, analysis.AttitudeImpactDiagrams.Count);
-            var attitudeImpactDiagram = analysis.AttitudeImpactDiagrams[0];
-            AssertEqualTwoAxisDiagramProperties(attitudeImpactDiagram, "Test houding-impact diagram",
-                ColorFromHex("#FF0EBBF0"), ColorFromHex("#FF00CC96"),
-                "Informeren 1", "Monitoren 1", "Betrekken 1", "Overtuigen 1", "Calibri", ColorFromHex("#FFE6E6E6"), false, false, 66,
-                "Negatief 1", "Positief 1", "Lage impact 1", "Hoge impact 1", "Arial", ColorFromHex("#FFE6E6E6"), true, true, 22);
-            Assert.AreEqual(8, attitudeImpactDiagram.Stakeholders.Count);
-            AssertEqualPositionedStakeholder(attitudeImpactDiagram.Stakeholders[0], 0.5, 0.5, 0, "linksboven");
-            AssertEqualPositionedStakeholder(attitudeImpactDiagram.Stakeholders[1], 0.51, 1 - 0.48, 1, "Linksonder");
-            AssertEqualPositionedStakeholder(attitudeImpactDiagram.Stakeholders[2], 0.52, 1 - 0.45999999999999996, 2, "Rechtsboven");
-            AssertEqualPositionedStakeholder(attitudeImpactDiagram.Stakeholders[3], 0.53, 1 - 0.43999999999999995, 3, "Rechtsonder");
-            AssertEqualPositionedStakeholder(attitudeImpactDiagram.Stakeholders[4], 0.54, 1 - 0.41999999999999993, 4, "Vaag contact");
-            AssertEqualPositionedStakeholder(attitudeImpactDiagram.Stakeholders[5], 0.55, 1 - 0.39999999999999991, 5, "Goed contact");
-            AssertEqualPositionedStakeholder(attitudeImpactDiagram.Stakeholders[6], 0.56, 1 - 0.37999999999999989, 6, "Leuk contact");
-            AssertEqualPositionedStakeholder(attitudeImpactDiagram.Stakeholders[7], 0.57000000000000006, 1 - 0.35999999999999988, 7,
-                "Minder leuk contact");
+        private void AssertStakeholderTypes(Analysis analysis)
+        {
+            Assert.AreEqual(2, analysis.StakeholderTypes.Count);
+            AsserEqualStakeholderType(analysis.StakeholderTypes[0], "Eerste type", StakeholderIconType.Wifi, ColorFromHex("#FFFFF8DC"));
+            AsserEqualStakeholderType(analysis.StakeholderTypes[1], "Tweede type", StakeholderIconType.Mail, ColorFromHex("#FF00B389"));
+        }
 
-            Assert.AreEqual(1, analysis.ForceFieldDiagrams.Count);
-            var forceFieldDiagram = analysis.ForceFieldDiagrams[0];
-            AssertEqualTwoAxisDiagramProperties(forceFieldDiagram, "Test krachtenvelddiagram",
-                ColorFromHex("#FFE6E6E6"), ColorFromHex("#FF0EBBF0"),
-                "Consulteren 1", "Monitoren 1", "Betrekken 1", "Informeren 1", "Arial", ColorFromHex("#FFE6E6E6"), false, false, 62,
-                "Weinig invloed 1", "Veel invloed 1", "Klein belang 1", "Groot belang 1", "Arial", ColorFromHex("#FFE6E6E6"), true, true,
-                22);
-            Assert.AreEqual(8, forceFieldDiagram.Stakeholders.Count);
-            AssertEqualPositionedStakeholder(forceFieldDiagram.Stakeholders[0], 0.5, 0.5, 0, "linksboven");
-            AssertEqualPositionedStakeholder(forceFieldDiagram.Stakeholders[1], 0.51, 1 - 0.48, 1, "Linksonder");
-            AssertEqualPositionedStakeholder(forceFieldDiagram.Stakeholders[2], 0.52, 1 - 0.45999999999999996, 2, "Rechtsboven");
-            AssertEqualPositionedStakeholder(forceFieldDiagram.Stakeholders[3], 0.53, 1 - 0.43999999999999995, 3, "Rechtsonder");
-            AssertEqualPositionedStakeholder(forceFieldDiagram.Stakeholders[4], 0.54, 1 - 0.41999999999999993, 4, "Vaag contact");
-            AssertEqualPositionedStakeholder(forceFieldDiagram.Stakeholders[5], 0.55, 1 - 0.39999999999999991, 5, "Goed contact");
-            AssertEqualPositionedStakeholder(forceFieldDiagram.Stakeholders[6], 0.56, 1 - 0.37999999999999989, 6, "Leuk contact");
-            AssertEqualPositionedStakeholder(forceFieldDiagram.Stakeholders[7], 0.57000000000000006, 1 - 0.35999999999999988, 7,
-                "Minder leuk contact");
+        private void AssertStakeholders(Analysis analysis)
+        {
+            Assert.AreEqual(8, analysis.Stakeholders.Count);
+            AssertEqualStakeholder(analysis.Stakeholders[0], "linksboven", "Eerste type");
+            AssertEqualStakeholder(analysis.Stakeholders[1], "Linksonder", "Eerste type");
+            AssertEqualStakeholder(analysis.Stakeholders[2], "Rechtsboven", "Eerste type");
+            AssertEqualStakeholder(analysis.Stakeholders[3], "Rechtsonder", "Eerste type");
+            AssertEqualStakeholder(analysis.Stakeholders[4], "Vaag contact", "Tweede type");
+            AssertEqualStakeholder(analysis.Stakeholders[5], "Goed contact", "Tweede type");
+            AssertEqualStakeholder(analysis.Stakeholders[6], "Leuk contact", "Tweede type");
+            AssertEqualStakeholder(analysis.Stakeholders[7], "Minder leuk contact", "Tweede type");
         }
 
         private void AssertEqualTwoAxisDiagramProperties(TwoAxisDiagram diagram, string expectedName, Color expectedBrushStartColor,

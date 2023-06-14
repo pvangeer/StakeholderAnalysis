@@ -24,7 +24,8 @@
 
     <BooleanToVisibilityConverter x:Key="BoolToVisibilityConverter" />
     <contentConverters:IsProneToExportConverter x:Key="IsProneToExportConverter" />
-    <contentConverters:SelectedViewModelToPropertiesViewInfoConverter x:Key="SelectedViewInfoToPropertiesViewInfoConverter" />
+    <contentConverters:SelectedViewModelToPropertiesViewInfoConverter
+        x:Key="SelectedViewInfoToPropertiesViewInfoConverter" />
     <converters:ObjectToPropertiesViewModelConverter x:Key="ObjectToPropertiesViewModelConverter" />
 
     <DataTemplate x:Key="NoDataTemplate">

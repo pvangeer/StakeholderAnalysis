@@ -15,7 +15,10 @@ namespace StakeholderAnalysis.Storage.Create
             var entity = new StakeholderXmlEntity
             {
                 Name = stakeholder.Name.DeepClone(),
-                StakeholderTypeId = stakeholder.Type.Create(registry).Id
+                StakeholderTypeId = stakeholder.Type.Create(registry).Id,
+                Email = stakeholder.Email.DeepClone(),
+                TelephoneNumber = stakeholder.TelephoneNumber.DeepClone(),
+                Notes = stakeholder.Notes.DeepClone()
             };
 
             registry.Register(stakeholder, entity);
