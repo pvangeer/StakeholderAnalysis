@@ -8,22 +8,22 @@ namespace StakeholderAnalysis.Visualization.Commands.Diagrams
 {
     public class RemoveSelectedStakeholderFromDiagramCommand : ICommand
     {
-        private readonly IRemoveStakeholderViewModel diagramViewModel;
+        private readonly IRemoveStakeholderViewModel stakeholderViewModel;
 
-        public RemoveSelectedStakeholderFromDiagramCommand(IRemoveStakeholderViewModel diagramViewModel)
+        public RemoveSelectedStakeholderFromDiagramCommand(IRemoveStakeholderViewModel stakeholderViewModel)
         {
-            this.diagramViewModel = diagramViewModel;
-            diagramViewModel.PropertyChanged += ViewModelPropertyChanged;
+            this.stakeholderViewModel = stakeholderViewModel;
+            stakeholderViewModel.PropertyChanged += ViewModelPropertyChanged;
         }
 
         public bool CanExecute(object parameter)
         {
-            return diagramViewModel.IsSelectedStakeholder;
+            return stakeholderViewModel.IsSelectedStakeholder;
         }
 
         public void Execute(object parameter)
         {
-            diagramViewModel.RemoveFromDiagram();
+            stakeholderViewModel.RemoveFromDiagram();
         }
 
         public event EventHandler CanExecuteChanged;

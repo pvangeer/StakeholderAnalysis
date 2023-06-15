@@ -7,6 +7,8 @@
     UpgradeCode="81d0955d-b5a5-417b-a115-05e931d45854"
     Compressed="yes">
 
+    <MediaTemplate EmbedCab="yes" />
+
     <MajorUpgrade DowngradeErrorMessage="Er is reeds een nieuwere versie van Stakeholderanalyse geinstalleerd. Het installatieproces wordt nu gestopt."/>
 
     <Icon Id="StakeholderAnalysis.ico" SourceFile="Logo.ico" />

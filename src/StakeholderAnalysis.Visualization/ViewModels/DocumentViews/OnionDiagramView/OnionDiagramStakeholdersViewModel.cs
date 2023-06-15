@@ -41,7 +41,7 @@ namespace StakeholderAnalysis.Visualization.ViewModels.DocumentViews.OnionDiagra
             if (e.Action == NotifyCollectionChangedAction.Remove)
                 foreach (var stakeholder in e.OldItems.OfType<PositionedStakeholder>())
                     OnionDiagramStakeholders.Remove(OnionDiagramStakeholders.FirstOrDefault(viewModel =>
-                        viewModel.IsViewModelFor(stakeholder)));
+                        viewModel.IsViewModelFor(stakeholder.Stakeholder)));
         }
 
         public override bool IsViewModelFor(object o)

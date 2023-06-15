@@ -57,11 +57,6 @@ namespace StakeholderAnalysis.Visualization.ViewModels.DocumentViews.Stakeholder
 
         public ObservableCollection<StakeholderType> StakeholderTypes => analysis.StakeholderTypes;
 
-        public IEnumerable<IStakeholderDiagram> AllDiagrams => analysis.OnionDiagrams.OfType<IStakeholderDiagram>()
-            .Concat(analysis.ForceFieldDiagrams)
-            .Concat(analysis.AttitudeImpactDiagrams)
-            .ToList();
-
         public ICommand DeleteStakeholderCommand => new RemoveSelectedStakeholderCommand(this, analysis);
 
         public ObservableCollection<OnionDiagram> OnionDiagrams => analysis.OnionDiagrams;
