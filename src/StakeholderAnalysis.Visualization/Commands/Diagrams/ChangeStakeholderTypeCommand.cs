@@ -28,8 +28,6 @@ namespace StakeholderAnalysis.Visualization.Commands.Diagrams
                 selectedStakeholder.Type = type;
                 selectedStakeholder.OnPropertyChanged(nameof(selectedStakeholder.Type));
             }
-
-            tableViewModel.StakeholderViewSource.View.Refresh();
         }
 
         public event EventHandler CanExecuteChanged;

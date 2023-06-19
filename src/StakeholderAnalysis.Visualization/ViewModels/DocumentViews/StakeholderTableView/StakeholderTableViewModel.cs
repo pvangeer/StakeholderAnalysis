@@ -41,6 +41,7 @@ namespace StakeholderAnalysis.Visualization.ViewModels.DocumentViews.Stakeholder
 
                 StakeholderViewSource = new CollectionViewSource
                 {
+                    IsLiveGroupingRequested = true,
                     Source = Stakeholders,
                     GroupDescriptions = { new PropertyGroupDescription(nameof(StakeholderViewModel.Type)) }
                 };

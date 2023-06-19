@@ -6,7 +6,6 @@ namespace StakeholderAnalysis.Visualization.ViewModels.DocumentViews.Stakeholder
     public class StakeholderViewModel : ViewModelBase
     {
         private bool isSelected;
-        private string notes;
 
         /// <summary>
         ///     Parameterless constructor needed for DataGrid to allow adding new stakeholders.
