@@ -24,9 +24,9 @@ namespace StakeholderAnalysis.Storage.Create
         private readonly Dictionary<OnionRing, OnionRingXmlEntity> onionRings =
             CreateDictionary<OnionRing, OnionRingXmlEntity>();
 
-        private readonly Dictionary<PositionedStakeholder, IPositionedStakeholderXmlEntity>
+        private readonly Dictionary<PositionedStakeholder, PositionedStakeholderXmlEntity>
             positionedStakeholders =
-                CreateDictionary<PositionedStakeholder, IPositionedStakeholderXmlEntity>();
+                CreateDictionary<PositionedStakeholder, PositionedStakeholderXmlEntity>();
 
         private readonly Dictionary<Stakeholder, StakeholderXmlEntity> stakeholders =
             CreateDictionary<Stakeholder, StakeholderXmlEntity>();
@@ -164,7 +164,7 @@ namespace StakeholderAnalysis.Storage.Create
 
         public PositionedStakeholderXmlEntity Get(PositionedStakeholder model)
         {
-            return Get(positionedStakeholders, model) as PositionedStakeholderXmlEntity;
+            return Get(positionedStakeholders, model);
         }
 
         #endregion

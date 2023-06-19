@@ -1,4 +1,5 @@
-﻿using System.Globalization;
+﻿using System;
+using System.Globalization;
 using System.Xml;
 
 namespace StakeholderAnalysis.Storage.Migration
@@ -22,7 +23,21 @@ namespace StakeholderAnalysis.Storage.Migration
             var oniondiagramNodes = onionDiagrams.SelectNodes("oniondiagram");
             if (oniondiagramNodes != null)
                 foreach (XmlElement oldDiagram in oniondiagramNodes)
+                {
                     MigrateDiagramStakeholders(xmlDocument, oldDiagram, "onionstakeholder", "", "", false);
+                    var connectionsElement = oldDiagram.SelectSingleNode("connections");
+                    foreach (XmlElement connectionElement in connectionsElement.SelectNodes("connection"))
+                    {
+                        RenameAttribute(connectionElement, "onionstakeholderfromid", "positionedstakeholderfromid");
+                        RenameAttribute(connectionElement, "onionstakeholdertoid", "positionedstakeholdertoid");
+                    }
+                }
+        }
+
+        private static void RenameAttribute(XmlElement connectionElement, string oldName, string newName)
+        {
+            connectionElement.SetAttribute(newName, connectionElement.GetAttribute(oldName));
+            connectionElement.RemoveAttribute(oldName);
         }
 
         private static void MigrateForceFieldDiagrams(XmlDocument xmlDocument)

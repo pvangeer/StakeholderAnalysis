@@ -14,15 +14,14 @@ namespace StakeholderAnalysis.Storage.Read
 
             if (collector.Contains(entity)) return collector.Get(entity);
 
-
-            var attitudeImpactDiagram = new StakeholderConnection(
+            var stakeholderConnection = new StakeholderConnection(
                 collector.GetReferencedStakeholderConnectionGroup(entity.StakeholderConnectionGroupId),
                 collector.GetReferencedPositionedStakeholder(entity.StakeholderFromId),
                 collector.GetReferencedPositionedStakeholder(entity.StakeholderToId));
 
-            collector.Collect(entity, attitudeImpactDiagram);
+            collector.Collect(entity, stakeholderConnection);
 
-            return attitudeImpactDiagram;
+            return stakeholderConnection;
         }
     }
 }

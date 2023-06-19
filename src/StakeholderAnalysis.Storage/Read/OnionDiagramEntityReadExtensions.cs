@@ -14,13 +14,22 @@ namespace StakeholderAnalysis.Storage.Read
 
             if (collector.Contains(entity)) return collector.Get(entity);
 
-            var rings = entity.OnionRingXmlEntities.OrderBy(e => e.Order).Select(e => e.Read(collector)).ToList();
-            var stakeholders = entity.PositionedStakeholderXmlEntities.OrderBy(e => e.Order)
-                .Select(e => e.Read(collector)).ToList();
-            var connectionGroups = entity.StakeholderConnectionGroupXmlEntities.OrderBy(e => e.Order)
-                .Select(e => e.Read(collector)).ToList();
-            var connections = entity.StakeholderConnectionXmlEntities.OrderBy(e => e.Order)
-                .Select(e => e.Read(collector)).ToList();
+            var rings = entity.OnionRingXmlEntities
+                .OrderBy(e => e.Order)
+                .Select(e => e.Read(collector))
+                .ToList();
+            var stakeholders = entity.PositionedStakeholderXmlEntities
+                .OrderBy(e => e.Order)
+                .Select(e => e.Read(collector))
+                .ToList();
+            var connectionGroups = entity.StakeholderConnectionGroupXmlEntities
+                .OrderBy(e => e.Order)
+                .Select(e => e.Read(collector))
+                .ToList();
+            var connections = entity.StakeholderConnectionXmlEntities
+                .OrderBy(e => e.Order)
+                .Select(e => e.Read(collector))
+                .ToList();
 
             var onionDiagram = new OnionDiagram
             {

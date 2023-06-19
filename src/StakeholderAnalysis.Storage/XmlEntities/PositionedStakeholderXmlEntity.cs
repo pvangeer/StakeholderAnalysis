@@ -4,7 +4,7 @@ using System.Xml.Serialization;
 namespace StakeholderAnalysis.Storage.XmlEntities
 {
     [Serializable]
-    public class PositionedStakeholderXmlEntity : IPositionedStakeholderXmlEntity
+    public class PositionedStakeholderXmlEntity : IXmlEntity
     {
         [XmlAttribute(AttributeName = "top")]
         public double Top { get; set; }

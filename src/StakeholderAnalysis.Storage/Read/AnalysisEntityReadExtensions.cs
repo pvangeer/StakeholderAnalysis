@@ -12,14 +12,27 @@ namespace StakeholderAnalysis.Storage.Read
             if (entity == null) throw new ArgumentNullException(nameof(entity));
             if (collector == null) throw new ArgumentNullException(nameof(collector));
 
-            var stakeholderTypes =
-                entity.StakeholderTypeXmlEntities.OrderBy(e => e.Order).Select(e => e.Read(collector));
-            var stakeholders = entity.StakeholderXmlEntities.OrderBy(e => e.Order).Select(e => e.Read(collector));
-            var onionDiagrams = entity.OnionDiagramXmlEntities.OrderBy(e => e.Order).Select(e => e.Read(collector));
+            var stakeholderTypes = entity.StakeholderTypeXmlEntities
+                .OrderBy(e => e.Order)
+                .Select(e => e.Read(collector))
+                .ToList();
+            var stakeholders = entity.StakeholderXmlEntities
+                .OrderBy(e => e.Order)
+                .Select(e => e.Read(collector))
+                .ToList();
+            var onionDiagrams = entity.OnionDiagramXmlEntities
+                .OrderBy(e => e.Order)
+                .Select(e => e.Read(collector))
+                .ToList();
             var forceFieldDiagrams =
-                entity.ForceFieldDiagramXmlEntities.OrderBy(e => e.Order).Select(e => e.Read(collector));
-            var attitudeImpactDiagrams = entity.AttitudeImpactDiagramXmlEntities.OrderBy(e => e.Order)
-                .Select(e => e.Read(collector));
+                entity.ForceFieldDiagramXmlEntities
+                    .OrderBy(e => e.Order)
+                    .Select(e => e.Read(collector))
+                    .ToList();
+            var attitudeImpactDiagrams = entity.AttitudeImpactDiagramXmlEntities
+                .OrderBy(e => e.Order)
+                .Select(e => e.Read(collector))
+                .ToList();
 
             var analysis = AnalysisFactory.CreateEmptyAnalysis();
 

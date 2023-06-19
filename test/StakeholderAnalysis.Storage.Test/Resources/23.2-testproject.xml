@@ -42,13 +42,13 @@
           <onionring order="2" percentage="1" backgroundcolor="#FF0EBBF0" strokecolor="#FF808080" strokethickness="1" linestyle="0" />
         </onionrings>
         <connections>
-          <connection order="0" connectiongroupid="0" onionstakeholderfromid="5" onionstakeholdertoid="6" />
-          <connection order="1" connectiongroupid="0" onionstakeholderfromid="5" onionstakeholdertoid="7" />
-          <connection order="2" connectiongroupid="0" onionstakeholderfromid="7" onionstakeholdertoid="2" />
-          <connection order="3" connectiongroupid="1" onionstakeholderfromid="7" onionstakeholdertoid="0" />
-          <connection order="4" connectiongroupid="1" onionstakeholderfromid="4" onionstakeholdertoid="1" />
-          <connection order="5" connectiongroupid="1" onionstakeholderfromid="1" onionstakeholdertoid="6" />
-          <connection order="6" connectiongroupid="1" onionstakeholderfromid="3" onionstakeholdertoid="5" />
+          <connection order="0" connectiongroupid="0" positionedstakeholderfromid="5" positionedstakeholdertoid="6" />
+          <connection order="1" connectiongroupid="0" positionedstakeholderfromid="5" positionedstakeholdertoid="7" />
+          <connection order="2" connectiongroupid="0" positionedstakeholderfromid="7" positionedstakeholdertoid="2" />
+          <connection order="3" connectiongroupid="1" positionedstakeholderfromid="7" positionedstakeholdertoid="0" />
+          <connection order="4" connectiongroupid="1" positionedstakeholderfromid="4" positionedstakeholdertoid="1" />
+          <connection order="5" connectiongroupid="1" positionedstakeholderfromid="1" positionedstakeholdertoid="6" />
+          <connection order="6" connectiongroupid="1" positionedstakeholderfromid="3" positionedstakeholdertoid="5" />
         </connections>
         <connectiongroups>
           <connectiongroup order="0" name="Test groep 1" color="#FF00B389" visible="1" strokethickness="3" linestyle="3" id="0" />

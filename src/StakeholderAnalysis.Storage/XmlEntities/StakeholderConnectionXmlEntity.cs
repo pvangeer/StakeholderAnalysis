@@ -12,10 +12,10 @@ namespace StakeholderAnalysis.Storage.XmlEntities
         [XmlAttribute(AttributeName = "connectiongroupid")]
         public long StakeholderConnectionGroupId { get; set; }
 
-        [XmlAttribute(AttributeName = "onionstakeholderfromid")]
+        [XmlAttribute(AttributeName = "positionedstakeholderfromid")]
         public long StakeholderFromId { get; set; }
 
-        [XmlAttribute(AttributeName = "onionstakeholdertoid")]
+        [XmlAttribute(AttributeName = "positionedstakeholdertoid")]
         public long StakeholderToId { get; set; }
 
         [XmlIgnore]

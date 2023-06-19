@@ -27,7 +27,6 @@
     <Compile Include="Read\ReadReferencedObjectsFirstException.cs" />
     <Compile Include="VersionInfo.cs" />
     <Compile Include="XmlEntities\TwoAxisDiagramXmlEntity.cs" />
-    <Compile Include="XmlEntities\IPositionedStakeholderXmlEntity.cs" />
     <Compile Include="XmlEntities\IXmlEntity.cs" />
     <Compile Include="Create\OnionDiagramCreateExtensions.cs" />
     <Compile Include="Create\OnionRingCreateExtensions.cs" />
