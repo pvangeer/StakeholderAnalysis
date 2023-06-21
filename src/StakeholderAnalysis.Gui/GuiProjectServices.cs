@@ -71,9 +71,7 @@ namespace StakeholderAnalysis.Gui
                 {
                     var message = e.Message;
                     if (e.InnerException != null)
-                    {
                         message = $"Er is een fout opgetreden bij het lezen van dit bestand: {e.InnerException}";
-                    }
                     log.Error(message);
                     return;
                 }
@@ -238,6 +236,7 @@ namespace StakeholderAnalysis.Gui
                     log.Error($"Er is een fout opgetreden bij het migreren van dit bestand: {e.Message}");
                     return false;
                 }
+
                 newFileName = dialog.FileName;
                 log.Info($"Migratie van bestand '{fileName}' is voltooid. Het resultaat is opgeslagen in het bestand '{newFileName}'");
                 return true;

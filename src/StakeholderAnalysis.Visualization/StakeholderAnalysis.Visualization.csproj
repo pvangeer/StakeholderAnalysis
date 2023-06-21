@@ -61,6 +61,7 @@
       <DependentUpon>RotaryControl.xaml</DependentUpon>
     </Compile>
     <Compile Include="Commands\Diagrams\ChangeStakeholderTypeCommand.cs" />
+    <Compile Include="Converters\IsBusyToVisibilityConverter.cs" />
     <Compile Include="Converters\TreeView\QuickSelectionToVisibilityConverter.cs" />
     <Compile Include="Converters\TreeView\SourceStringToVisibilityConverter.cs" />
     <Compile Include="Converters\TreeView\HasItemsToVisibilityConverter.cs" />

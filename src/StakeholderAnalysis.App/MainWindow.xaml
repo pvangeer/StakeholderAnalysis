@@ -7,6 +7,7 @@
                      xmlns:fluent="urn:fluent-ribbon"
                      xmlns:controls="clr-namespace:StakeholderAnalysis.Visualization.Controls;assembly=StakeholderAnalysis.Visualization"
                      xmlns:onionDiagrams="clr-namespace:StakeholderAnalysis.Data.Diagrams.OnionDiagrams;assembly=StakeholderAnalysis.Data"
+                     xmlns:app="clr-namespace:StakeholderAnalysis.App"
                      mc:Ignorable="d"
                      Closing="MainWindowClosing"
                      Loaded="MainWindow_OnLoaded"
@@ -52,7 +53,10 @@
             <RowDefinition Height="*" />
             <RowDefinition Height="Auto" />
         </Grid.RowDefinitions>
-        <fluent:Ribbon Focusable="True" x:Name="Ribbon" AutomaticStateManagement="False">
+        <fluent:Ribbon
+            Focusable="True"
+            x:Name="Ribbon"
+            AutomaticStateManagement="False">
             <fluent:Ribbon.Menu>
                 <fluent:Backstage>
                     <fluent:BackstageTabControl>
@@ -221,5 +225,55 @@
             Grid.Row="2"
             Content="{Binding StatusBarViewModel}"
             ContentTemplate="{StaticResource StatusBarDataTemplate}" />
+
+        <Grid
+            Grid.Row="0"
+            Grid.RowSpan="3"
+            Background="{StaticResource Fluent.Ribbon.Brushes.Accent40}"
+            Visibility="{Binding IsBusy, Converter={StaticResource BoolToVisibilityConverter}}">
+            <Border
+                HorizontalAlignment="Center"
+                VerticalAlignment="Center">
+                <Image
+                    Width="450"
+                    Height="450"
+                    Source="pack://application:,,,/StakeholderAnalysis.App;component/Resources/wait.png">
+                    <Image.RenderTransform>
+                        <RotateTransform CenterX="225" CenterY="225" />
+                    </Image.RenderTransform>
+                    <Image.Style>
+                        <Style>
+                            <Style.Triggers>
+                                <DataTrigger Binding="{Binding IsBusy}" Value="True">
+                                    <DataTrigger.EnterActions>
+                                        <BeginStoryboard>
+                                            <Storyboard
+                                                BeginTime="00:00:00"
+                                                RepeatBehavior="Forever"
+                                                Storyboard.TargetProperty="RenderTransform.Angle">
+                                                <DoubleAnimationUsingKeyFrames Duration="0:0:2.000">
+                                                    <DoubleKeyFrameCollection>
+                                                        <DiscreteDoubleKeyFrame KeyTime="0:0:0.000" Value="0" />
+                                                        <DiscreteDoubleKeyFrame KeyTime="0:0:0.250" Value="45" />
+                                                        <DiscreteDoubleKeyFrame KeyTime="0:0:0.500" Value="90" />
+                                                        <DiscreteDoubleKeyFrame KeyTime="0:0:0.750" Value="135" />
+                                                        <DiscreteDoubleKeyFrame KeyTime="0:0:1.000" Value="180" />
+                                                        <DiscreteDoubleKeyFrame KeyTime="0:0:1.250" Value="225" />
+                                                        <DiscreteDoubleKeyFrame KeyTime="0:0:1.500" Value="270" />
+                                                        <DiscreteDoubleKeyFrame KeyTime="0:0:1.750" Value="315" />
+                                                        <DiscreteDoubleKeyFrame KeyTime="0:0:2.000" Value="360" />
+                                                        <!-- ... -->
+                                                    </DoubleKeyFrameCollection>
+                                                </DoubleAnimationUsingKeyFrames>
+                                            </Storyboard>
+                                        </BeginStoryboard>
+                                    </DataTrigger.EnterActions>
+                                </DataTrigger>
+                            </Style.Triggers>
+                        </Style>
+                    </Image.Style>
+                </Image>
+            </Border>
+        </Grid>
     </Grid>
 </fluent:RibbonWindow>

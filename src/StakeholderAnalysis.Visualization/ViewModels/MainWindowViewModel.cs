@@ -45,6 +45,8 @@ namespace StakeholderAnalysis.Visualization.ViewModels
                 ? "Stakeholderanalyse (*)"
                 : $"Stakeholderanalyse ({Path.GetFileNameWithoutExtension(gui.ProjectFilePath)})";
 
+        public bool IsBusy => gui.BusyIndicator == StorageState.Busy;
+
         private void OnExecuteHyperlink(object obj)
         {
             Process.Start((string)obj);
@@ -56,6 +58,9 @@ namespace StakeholderAnalysis.Visualization.ViewModels
             {
                 case nameof(StakeholderAnalysisGui.ProjectFilePath):
                     OnPropertyChanged(nameof(WindowTitle));
+                    break;
+                case nameof(StakeholderAnalysisGui.BusyIndicator):
+                    OnPropertyChanged(nameof(IsBusy));
                     break;
             }
         }

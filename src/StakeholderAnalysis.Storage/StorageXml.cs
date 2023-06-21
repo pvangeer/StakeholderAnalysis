@@ -30,7 +30,7 @@ namespace StakeholderAnalysis.Storage
 
         public void StageAnalysis(Analysis analysis)
         {
-            if (analysis == null) 
+            if (analysis == null)
                 throw new ArgumentNullException(nameof(analysis));
 
             stagedAnalysisXmlEntity = analysis.Create(new PersistenceRegistry());

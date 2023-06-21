@@ -21,9 +21,7 @@ namespace StakeholderAnalysis.Storage.Migration
 
             var versionNode = GetVersionNode(xmlDoc);
             if (versionNode == null)
-            {
                 throw new XmlMigrationException("Er kon geen versie-informatie worden gevonden.");
-            }
 
             var migrators = GatherMigrators(versionNode);
 
@@ -34,9 +32,10 @@ namespace StakeholderAnalysis.Storage.Migration
             }
             catch (Exception e)
             {
-                throw new XmlMigrationException($"Er is een onverwachte fout opgetreden bij het migreren van dit bestand: '{e.Message}'. \n De migratie van het bestand is niet gelukt.");
+                throw new XmlMigrationException(
+                    $"Er is een onverwachte fout opgetreden bij het migreren van dit bestand: '{e.Message}'. \n De migratie van het bestand is niet gelukt.");
             }
-            
+
             UpdateVersionInformation(versionNode, xmlDoc);
 
             try
