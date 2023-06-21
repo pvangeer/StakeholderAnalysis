@@ -22,8 +22,10 @@
     <Compile Include="Create\AnalysisCreateExtensions.cs" />
     <Compile Include="Create\TwoAxisDiagramCreateExtensions.cs" />
     <Compile Include="Create\PositionedStakeholderCreateExtensions.cs" />
+    <Compile Include="FileReaderException.cs" />
     <Compile Include="Migration\FileMigrator.cs" />
     <Compile Include="Migration\Migrator231To232.cs" />
+    <Compile Include="Migration\XmlMigrationException.cs" />
     <Compile Include="Read\ReadReferencedObjectsFirstException.cs" />
     <Compile Include="VersionInfo.cs" />
     <Compile Include="XmlEntities\TwoAxisDiagramXmlEntity.cs" />

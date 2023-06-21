@@ -10,14 +10,59 @@ namespace StakeholderAnalysis.Storage.Migration
         public static void MigrateFile(string oldFileName, string newFileName)
         {
             var xmlDoc = new XmlDocument();
-            xmlDoc.Load(oldFileName);
-
-            var versionXmlEntity = new VersionXmlEntity();
+            try
+            {
+                xmlDoc.Load(oldFileName);
+            }
+            catch (Exception e)
+            {
+                throw new XmlMigrationException("De inhoud van dit bestand kon niet worden geladen", e);
+            }
 
             var versionNode = GetVersionNode(xmlDoc);
-            var version = versionNode.InnerText;
+            if (versionNode == null)
+            {
+                throw new XmlMigrationException("Er kon geen versie-informatie worden gevonden.");
+            }
 
+            var migrators = GatherMigrators(versionNode);
+
+            try
+            {
+                foreach (var fileMigrator in migrators)
+                    fileMigrator.Migrate(xmlDoc);
+            }
+            catch (Exception e)
+            {
+                throw new XmlMigrationException($"Er is een onverwachte fout opgetreden bij het migreren van dit bestand: '{e.Message}'. \n De migratie van het bestand is niet gelukt.");
+            }
+            
+            UpdateVersionInformation(versionNode, xmlDoc);
+
+            try
+            {
+                xmlDoc.Save(newFileName);
+            }
+            catch (Exception e)
+            {
+                throw new XmlMigrationException($"Het gemigreerde bestand kon niet worden opgeslagen: {e.Message}");
+            }
+        }
+
+        private static void UpdateVersionInformation(XmlNode versionNode, XmlDocument xmlDoc)
+        {
+            var versionXmlEntity = new VersionXmlEntity();
+            versionNode.InnerText = versionXmlEntity.FileVersion;
+
+            var lastChangedNode = GetLastChangedNode(xmlDoc);
+            if (lastChangedNode != null)
+                lastChangedNode.InnerText = versionXmlEntity.LastChanged;
+        }
+
+        private static List<FileMigrator> GatherMigrators(XmlNode versionNode)
+        {
             var migrators = new List<FileMigrator>();
+            var version = versionNode.InnerText;
             switch (version)
             {
                 case "23.1":
@@ -25,17 +70,7 @@ namespace StakeholderAnalysis.Storage.Migration
                     break;
             }
 
-            foreach (var fileMigrator in migrators)
-                fileMigrator.Migrate(xmlDoc);
-
-            if (versionNode != null)
-                versionNode.InnerText = versionXmlEntity.FileVersion;
-
-            var lastChangedNode = GetLastChangedNode(xmlDoc);
-            if (lastChangedNode != null)
-                lastChangedNode.InnerText = versionXmlEntity.LastChanged;
-
-            xmlDoc.Save(newFileName);
+            return migrators;
         }
 
         public static bool NeedsMigration(string fileName)
@@ -50,7 +85,7 @@ namespace StakeholderAnalysis.Storage.Migration
                 var versionInformation = GetVersionInformation(xmlDoc);
                 if (versionInformation == null)
                     throw new XmlStorageException(
-                        "Het gespecificeerde bestand heeft geen versieinformatie en kan niet worden gelezen.", null);
+                        "Het gespecificeerde bestand heeft geen versie-informatie en kan niet worden gelezen.", null);
 
                 return !HasCurrentVersion(versionInformation);
             }

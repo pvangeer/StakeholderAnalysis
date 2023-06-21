@@ -30,7 +30,8 @@ namespace StakeholderAnalysis.Storage
 
         public void StageAnalysis(Analysis analysis)
         {
-            if (analysis == null) throw new ArgumentNullException(nameof(analysis));
+            if (analysis == null) 
+                throw new ArgumentNullException(nameof(analysis));
 
             stagedAnalysisXmlEntity = analysis.Create(new PersistenceRegistry());
         }
@@ -48,7 +49,7 @@ namespace StakeholderAnalysis.Storage
         public void SaveProjectAs(string databaseFilePath)
         {
             if (!HasStagedAnalysis)
-                throw new InvalidOperationException("Call 'StageAnalysis(IProject)' first before calling this method.");
+                throw new InvalidOperationException("Call 'StageAnalysis(Analysis)' first before calling this method.");
 
             try
             {
@@ -82,10 +83,9 @@ namespace StakeholderAnalysis.Storage
                     {
                         projectXmlEntity = (ProjectXmlEntity)serializer.Deserialize(reader);
                     }
-                    catch (Exception exception)
+                    catch (InvalidOperationException exception)
                     {
-                        throw CreateStorageReaderException(filePath, "Bestand kon niet worden gelezen",
-                            exception);
+                        throw CreateStorageReaderException(filePath, "Bestand kon niet worden gelezen", exception.InnerException);
                     }
                 }
 

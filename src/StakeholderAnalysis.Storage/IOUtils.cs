@@ -82,7 +82,7 @@ namespace StakeholderAnalysis.Storage
             catch (ArgumentException exception)
             {
                 var message = string.Format("Kon bestand \"{0}\" niet wegschrijven: {1}", path, exception.Message);
-                throw new ArgumentException(message, exception.InnerException);
+                throw new FileReaderException(message, exception.InnerException);
             }
         }
 
@@ -106,7 +106,7 @@ namespace StakeholderAnalysis.Storage
             if (string.IsNullOrWhiteSpace(path))
             {
                 var message = new FileReaderErrorMessageBuilder(path).Build("Bestandslocatie moet zijn gespecificeerd");
-                throw new ArgumentException(message);
+                throw new FileReaderException(message);
             }
 
             string name;
@@ -118,13 +118,13 @@ namespace StakeholderAnalysis.Storage
             {
                 var message = new FileReaderErrorMessageBuilder(path)
                     .Build("Bestandslocatie bevat invalide karakters");
-                throw new ArgumentException(message, exception);
+                throw new FileReaderException(message, exception);
             }
 
             if (string.IsNullOrEmpty(name))
             {
                 var message = new FileReaderErrorMessageBuilder(path).Build("Bestandslocatie mag niet leeg zijn");
-                throw new ArgumentException(message);
+                throw new FileReaderException(message);
             }
         }
 

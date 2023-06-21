@@ -69,7 +69,12 @@ namespace StakeholderAnalysis.Gui
                 }
                 catch (XmlStorageException e)
                 {
-                    log.Error("Bestand kon niet worden geopend.");
+                    var message = e.Message;
+                    if (e.InnerException != null)
+                    {
+                        message = $"Er is een fout opgetreden bij het lezen van dit bestand: {e.InnerException}";
+                    }
+                    log.Error(message);
                     return;
                 }
 
@@ -216,16 +221,29 @@ namespace StakeholderAnalysis.Gui
                 OverwritePrompt = true,
                 Filter = "Stakeholderanalyse bestand (*.xml)|*.xml"
             };
+            newFileName = null;
 
             if ((bool)dialog.ShowDialog(Application.Current.MainWindow))
             {
-                XmlStorageMigrationService.MigrateFile(fileName, dialog.FileName);
+                try
+                {
+                    XmlStorageMigrationService.MigrateFile(fileName, dialog.FileName);
+                }
+                catch (XmlMigrationException e)
+                {
+                    log.Error(e.Message);
+                }
+                catch (Exception e)
+                {
+                    log.Error($"Er is een fout opgetreden bij het migreren van dit bestand: {e.Message}");
+                    return false;
+                }
                 newFileName = dialog.FileName;
+                log.Info($"Migratie van bestand '{fileName}' is voltooid. Het resultaat is opgeslagen in het bestand '{newFileName}'");
                 return true;
             }
 
             log.Info("Migratie gestopt door de gebruiker. Bestand wordt niet geopend.");
-            newFileName = null;
             return false;
         }
 

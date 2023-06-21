@@ -26,25 +26,19 @@ namespace StakeholderAnalysis.Gui
 
         private StakeholderAnalysisGui(Analysis analysis)
         {
-            SelectedStakeholderConnectionGroups = analysis == null
-                ? new ObservableCollection<StakeholderConnectionGroupSelection>()
-                : new ObservableCollection<StakeholderConnectionGroupSelection>(analysis.OnionDiagrams.Select(d =>
-                    new StakeholderConnectionGroupSelection(d, d.ConnectionGroups.FirstOrDefault())));
-
-            this.analysis = analysis;
-            if (analysis != null) analysis.OnionDiagrams.CollectionChanged += OnionDiagramsCollectionChanged;
-
-            GuiProjectServices = new GuiProjectServices(this);
-
+            IsMagnifierActive = false;
             IsProjectExplorerVisible = true;
             IsPropertiesVisible = true;
 
-            ConfigureMessaging();
-            Messages = new MessageList();
-            IsMagnifierActive = false;
+            GuiProjectServices = new GuiProjectServices(this);
             SelectionManager = new SelectionManager();
             ViewManager = new ViewManager(SelectionManager);
+            SelectedStakeholderConnectionGroups = new ObservableCollection<StakeholderConnectionGroupSelection>();
 
+            Analysis = analysis;
+
+            ConfigureMessaging();
+            Messages = new MessageList();
             LogMessageAppender.Instance.MessageCollection = this;
         }
 
@@ -57,15 +51,19 @@ namespace StakeholderAnalysis.Gui
             get => analysis;
             set
             {
-                if (analysis != null) analysis.OnionDiagrams.CollectionChanged -= OnionDiagramsCollectionChanged;
+                if (analysis != null)
+                    analysis.OnionDiagrams.CollectionChanged -= OnionDiagramsCollectionChanged;
+
                 analysis = value;
+
                 SelectedStakeholderConnectionGroups.Clear();
+
                 if (analysis != null)
                 {
                     analysis.OnionDiagrams.CollectionChanged += OnionDiagramsCollectionChanged;
                     foreach (var onionDiagram in analysis.OnionDiagrams)
-                        SelectedStakeholderConnectionGroups.Add(new StakeholderConnectionGroupSelection(onionDiagram,
-                            onionDiagram.ConnectionGroups.FirstOrDefault()));
+                        SelectedStakeholderConnectionGroups.Add(
+                            new StakeholderConnectionGroupSelection(onionDiagram, onionDiagram.ConnectionGroups.FirstOrDefault()));
                 }
             }
         }
