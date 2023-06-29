@@ -39,6 +39,24 @@
         </ResourceDictionary>
     </Window.Resources>
 
+    <Window.InputBindings>
+        <KeyBinding
+            Command="{Binding RibbonViewModel.NewCommand}"
+            Key="N"
+            Modifiers="Control" />
+        <KeyBinding
+            Command="{Binding RibbonViewModel.OpenCommand}"
+            Key="O"
+            Modifiers="Control" />
+        <KeyBinding
+            Command="{Binding RibbonViewModel.SaveCommand}"
+            Key="S"
+            Modifiers="Control" />
+        <KeyBinding
+            Command="{Binding RibbonViewModel.SaveAsCommand}"
+            Key="F12" />
+    </Window.InputBindings>
+
     <fluent:RibbonWindow.TitleBarHeight>
         <Binding Source="{StaticResource DefaultItemHeight}" />
     </fluent:RibbonWindow.TitleBarHeight>
