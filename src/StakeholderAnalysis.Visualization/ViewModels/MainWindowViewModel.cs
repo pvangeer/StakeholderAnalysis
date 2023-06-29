@@ -65,9 +65,9 @@ namespace StakeholderAnalysis.Visualization.ViewModels
             }
         }
 
-        public void ForcedClosingMainWindow()
+        public bool ForcedClosingMainWindow()
         {
-            gui.GuiProjectServices.HandleUnsavedChanges(() => { });
+            return gui.GuiProjectServices.HandleUnsavedChanges(() => { });
         }
 
         public override bool IsViewModelFor(object o)

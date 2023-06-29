@@ -82,7 +82,7 @@ namespace StakeholderAnalysis.Gui
 
         public bool IsSaveToImage { get; set; }
 
-        public Func<bool> ShouldSaveOpenChanges { get; set; }
+        public Func<ShouldProceedState> ShouldSaveOpenChanges { get; set; }
 
         public Func<bool> ShouldMigrateProject { get; set; }
 

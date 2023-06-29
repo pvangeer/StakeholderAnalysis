@@ -7,13 +7,14 @@
                      xmlns:fluent="urn:fluent-ribbon"
                      xmlns:controls="clr-namespace:StakeholderAnalysis.Visualization.Controls;assembly=StakeholderAnalysis.Visualization"
                      xmlns:onionDiagrams="clr-namespace:StakeholderAnalysis.Data.Diagrams.OnionDiagrams;assembly=StakeholderAnalysis.Data"
-                     xmlns:app="clr-namespace:StakeholderAnalysis.App"
                      mc:Ignorable="d"
                      Closing="MainWindowClosing"
                      Loaded="MainWindow_OnLoaded"
                      Title="{Binding WindowTitle}"
                      Icon="pack://application:,,,/StakeholderAnalysis.App;component/Resources/Logo.png"
                      IsIconVisible="False"
+                     AllowDrop="True"
+                     Drop="DropHandler"
                      WindowStartupLocation="CenterScreen"
                      Height="900"
                      Width="1500">
@@ -25,11 +26,6 @@
     <Window.Resources>
         <ResourceDictionary>
             <ResourceDictionary.MergedDictionaries>
-                <ResourceDictionary
-                    Source="/StakeholderAnalysis.Visualization;Component/Theme/GeneralStyles.xaml" />
-                <ResourceDictionary Source="/Fluent;Component/Themes/generic.xaml" />
-                <ResourceDictionary
-                    Source="/StakeholderAnalysis.Visualization;Component/Theme/StakeholderAnalysisTheme.xaml" />
                 <ResourceDictionary
                     Source="/StakeholderAnalysis.Visualization;Component/DataTemplates/AboutInfoDataTemplate.xaml" />
                 <ResourceDictionary

@@ -23,7 +23,21 @@ namespace StakeholderAnalysis.App
 
         private void MainWindowClosing(object sender, CancelEventArgs e)
         {
-            if (DataContext is MainWindowViewModel viewModel) viewModel.ForcedClosingMainWindow();
+            if (DataContext is MainWindowViewModel viewModel)
+                e.Cancel = !viewModel.ForcedClosingMainWindow();
+        }
+
+        private void DropHandler(object sender, DragEventArgs e)
+        {
+            if (e.Data.GetDataPresent(DataFormats.FileDrop))
+            {
+                var files = (string[])e.Data.GetData(DataFormats.FileDrop);
+
+                if (files != null && files.Length > 0)
+                {
+                    (DataContext as MainWindowViewModel)?.RibbonViewModel.OpenFile(files[0]);
+                }
+            }
         }
     }
 }

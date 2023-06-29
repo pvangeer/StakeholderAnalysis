@@ -50,6 +50,14 @@ namespace StakeholderAnalysis.Gui
             HandleUnsavedChanges(OpenNewProjectCore);
         }
 
+        public void OpenProject(string fileName)
+        {
+            storageXml.UnStageAnalysis();
+            storageXml.UnStageVersionInformation();
+
+            HandleUnsavedChanges(() => OpenProjectCore(fileName));
+        }
+
         private void OpenNewProjectCore()
         {
             var dialog = new OpenFileDialog
@@ -60,47 +68,49 @@ namespace StakeholderAnalysis.Gui
             };
 
             if ((bool)dialog.ShowDialog(Application.Current.MainWindow))
+                OpenProjectCore(dialog.FileName);
+        }
+
+        private void OpenProjectCore(string fileName)
+        {
+            var needsMigration = false;
+            try
             {
-                var fileName = dialog.FileName;
-                var needsMigration = false;
-                try
-                {
-                    needsMigration = XmlStorageMigrationService.NeedsMigration(fileName);
-                }
-                catch (XmlStorageException e)
-                {
-                    var message = e.Message;
-                    if (e.InnerException != null)
-                        message = $"Er is een fout opgetreden bij het lezen van dit bestand: {e.InnerException}";
-                    log.Error(message);
-                    return;
-                }
-
-                if (needsMigration && gui.ShouldMigrateProject != null &&
-                    gui.ShouldMigrateProject())
-                {
-                    if (!MigrateProject(fileName, out var newFileName))
-                        return;
-
-                    fileName = newFileName;
-                }
-
-                foreach (var viewInfo in gui.ViewManager.Views.ToArray()) gui.ViewManager.CloseView(viewInfo);
-
-                ChangeState(StorageState.Busy);
-
-                var worker = new BackgroundWorker();
-                worker.DoWork += OpenProjectAsync;
-                worker.RunWorkerCompleted += (o, e) => BackgroundWorkerAsyncFinished(o, e,
-                    () =>
-                    {
-                        gui.ProjectFilePath = fileName;
-                        log.Info($"Klaar met openen van project uit bestand '{gui.ProjectFilePath}'.");
-                    });
-                worker.WorkerSupportsCancellation = false;
-
-                worker.RunWorkerAsync(fileName);
+                needsMigration = XmlStorageMigrationService.NeedsMigration(fileName);
             }
+            catch (XmlStorageException e)
+            {
+                var message = e.Message;
+                if (e.InnerException != null)
+                    message = $"Er is een fout opgetreden bij het lezen van dit bestand: {e.InnerException}";
+                log.Error(message);
+                return;
+            }
+
+            if (needsMigration && gui.ShouldMigrateProject != null &&
+                gui.ShouldMigrateProject())
+            {
+                if (!MigrateProject(fileName, out var newFileName))
+                    return;
+
+                fileName = newFileName;
+            }
+
+            foreach (var viewInfo in gui.ViewManager.Views.ToArray()) gui.ViewManager.CloseView(viewInfo);
+
+            ChangeState(StorageState.Busy);
+
+            var worker = new BackgroundWorker();
+            worker.DoWork += OpenProjectAsync;
+            worker.RunWorkerCompleted += (o, e) => BackgroundWorkerAsyncFinished(o, e,
+                () =>
+                {
+                    gui.ProjectFilePath = fileName;
+                    log.Info($"Klaar met openen van project uit bestand '{gui.ProjectFilePath}'.");
+                });
+            worker.WorkerSupportsCancellation = false;
+
+            worker.RunWorkerAsync(fileName);
         }
 
         public void SaveProject()
@@ -246,14 +256,24 @@ namespace StakeholderAnalysis.Gui
             return false;
         }
 
-        public void HandleUnsavedChanges(Action followingAction)
+        public bool HandleUnsavedChanges(Action followingAction)
         {
             storageXml.StageAnalysis(gui.Analysis);
             storageXml.StageVersionInformation(gui.VersionInfo);
             if (storageXml.HasStagedProjectChanges())
             {
-                if (gui.ShouldSaveOpenChanges != null && gui.ShouldSaveOpenChanges())
-                    SaveProject(followingAction);
+                if (gui.ShouldSaveOpenChanges != null)
+                    switch (gui.ShouldSaveOpenChanges())
+                    {
+                        case ShouldProceedState.Yes:
+                            SaveProject(followingAction);
+                            break;
+                        case ShouldProceedState.No:
+                            followingAction();
+                            break;
+                        case ShouldProceedState.Cancel:
+                            return false;
+                    }
                 else
                     followingAction();
             }
@@ -261,6 +281,8 @@ namespace StakeholderAnalysis.Gui
             {
                 followingAction();
             }
+
+            return true;
         }
 
         private void StageAndStoreProjectCore()

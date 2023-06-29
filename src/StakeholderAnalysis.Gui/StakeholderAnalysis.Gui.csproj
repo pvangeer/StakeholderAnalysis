@@ -30,6 +30,7 @@
     <Compile Include="ISelectable.cs" />
     <Compile Include="IViewModel.cs" />
     <Compile Include="SelectionManager.cs" />
+    <Compile Include="ShouldProceedState.cs" />
     <Compile Include="StakeholderAnalysisGui.cs" />
     <Compile Include="Properties\Annotations.cs" />
     <Compile Include="Properties\AssemblyInfo.cs">

@@ -53,7 +53,6 @@
   <ItemGroup>
     <Compile Include="Commands\CloseViewWithMiddleMouseCommand.cs" />
     <Compile Include="Commands\Diagrams\AppointToDiagramCommand.cs" />
-    <Compile Include="Controls\RichTextBoxHelper.cs" />
     <Compile Include="Converters\Diagrams\StakeholderTable\AppointToDiagramMenuItemsConverter.cs" />
     <Compile Include="Behaviors\AttachInputBindingsBehavior.cs" />
     <Compile Include="Commands\SelectItemCommand.cs" />

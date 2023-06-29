@@ -202,14 +202,16 @@ namespace StakeholderAnalysis.Visualization.ViewModels.Ribbon
             }
         }
 
-        private bool ShouldSaveOpenChanges()
+        private ShouldProceedState ShouldSaveOpenChanges()
         {
             var messageBoxText = "U heeft aanpassingen aan uw project nog niet opgeslagen. Wilt u dat alsnog doen?";
             var caption = "Aanpassingen opslaan";
             var messageBoxResult =
-                MessageBox.Show(messageBoxText, caption, MessageBoxButton.YesNo, MessageBoxImage.Question);
+                MessageBox.Show(messageBoxText, caption, MessageBoxButton.YesNoCancel, MessageBoxImage.Question);
 
-            return messageBoxResult == MessageBoxResult.Yes;
+            return messageBoxResult == MessageBoxResult.Yes ? ShouldProceedState.Yes :
+                messageBoxResult == MessageBoxResult.No ? ShouldProceedState.No :
+                ShouldProceedState.Cancel;
         }
 
         private bool ShouldMigrateProject()
@@ -226,6 +228,12 @@ namespace StakeholderAnalysis.Visualization.ViewModels.Ribbon
         public override bool IsViewModelFor(object o)
         {
             return false;
+        }
+
+        public void OpenFile(string file)
+        {
+            if (!string.IsNullOrWhiteSpace(file))
+                gui?.GuiProjectServices.OpenProject(file);
         }
     }
 }
