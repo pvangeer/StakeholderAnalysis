@@ -88,6 +88,8 @@ namespace StakeholderAnalysis.Visualization.ViewModels.Ribbon
         public ICommand SaveImageCommand =>
             saveCanvasCommand ?? (saveCanvasCommand = CommandFactory.CreateSaveImageCommand());
 
+        public ICommand EscapeCommand => CommandFactory.CreateEscapeCommand();
+
         public ICommand AddOnionRingCommand =>
             CommandFactory.CreateAddOnionRingCommand(stakeholderConnectionGroupSelection?.OnionDiagram);
 

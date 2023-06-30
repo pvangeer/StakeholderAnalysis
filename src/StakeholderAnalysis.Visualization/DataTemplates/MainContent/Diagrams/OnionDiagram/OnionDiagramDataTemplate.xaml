@@ -3,13 +3,13 @@
                     xmlns:onionDiagramView="clr-namespace:StakeholderAnalysis.Visualization.ViewModels.DocumentViews.OnionDiagramView">
     <ResourceDictionary.MergedDictionaries>
         <ResourceDictionary
-            Source="/StakeholderAnalysis.Visualization;Component/DataTemplates/Diagrams/OnionDiagram/OnionDiagramRingsDataTemplate.xaml" />
+            Source="/StakeholderAnalysis.Visualization;Component/DataTemplates/MainContent/Diagrams/OnionDiagram/OnionDiagramRingsDataTemplate.xaml" />
         <ResourceDictionary
-            Source="/StakeholderAnalysis.Visualization;Component/DataTemplates/Diagrams/OnionDiagram/OnionDiagramStakeholdersDataTemplate.xaml" />
+            Source="/StakeholderAnalysis.Visualization;Component/DataTemplates/MainContent/Diagrams/OnionDiagram/OnionDiagramStakeholdersDataTemplate.xaml" />
         <ResourceDictionary
-            Source="/StakeholderAnalysis.Visualization;Component/DataTemplates/Diagrams/OnionDiagram/OnionDiagramConnectionDrawingCanvasDataTemplate.xaml" />
+            Source="/StakeholderAnalysis.Visualization;Component/DataTemplates/MainContent/Diagrams/OnionDiagram/OnionDiagramConnectionDrawingCanvasDataTemplate.xaml" />
         <ResourceDictionary
-            Source="/StakeholderAnalysis.Visualization;Component/DataTemplates/Diagrams/OnionDiagram/ConnectionsPresenterDataTemplate.xaml" />
+            Source="/StakeholderAnalysis.Visualization;Component/DataTemplates/MainContent/Diagrams/OnionDiagram/ConnectionsPresenterDataTemplate.xaml" />
     </ResourceDictionary.MergedDictionaries>
 
     <DataTemplate x:Key="OnionDiagramDataTemplate" DataType="onionDiagramView:OnionDiagramViewModel">

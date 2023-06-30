@@ -1,0 +1,27 @@
+﻿<ResourceDictionary xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+                    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+                    xmlns:visualization="clr-namespace:StakeholderAnalysis.Visualization"
+                    xmlns:mainContentPresenter="clr-namespace:StakeholderAnalysis.Visualization.Converters.MainContentPresenter">
+
+    <ResourceDictionary.MergedDictionaries>
+        <ResourceDictionary
+            Source="/StakeholderAnalysis.Visualization;Component/DataTemplates/TreeView/TreeViewDataTemplate.xaml" />
+        <ResourceDictionary
+            Source="/StakeholderAnalysis.Visualization;Component/DataTemplates/MainContent/NoDataDataTemplate.xaml" />
+    </ResourceDictionary.MergedDictionaries>
+
+    <mainContentPresenter:SelectedViewModelToPropertiesViewInfoConverter
+        x:Key="SelectedViewInfoToPropertiesViewInfoConverter" />
+
+
+    <visualization:PropertiesViewTemplateSelector x:Key="PropertiesViewTemplateSelector"
+                                                  DefaultEmptyDataTemplate="{StaticResource NoDataTemplate}"
+                                                  HasPropertiesDataTemplate="{StaticResource IPropertyCollectionTreeNodesDataTemplate}" />
+
+    <DataTemplate x:Key="PropertiesWindowDataTemplate">
+        <ContentPresenter
+            Content="{Binding Converter={StaticResource SelectedViewInfoToPropertiesViewInfoConverter}}"
+            ContentTemplateSelector="{StaticResource PropertiesViewTemplateSelector}" />
+    </DataTemplate>
+
+</ResourceDictionary>

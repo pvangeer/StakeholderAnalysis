@@ -7,8 +7,11 @@
             <ResourceDictionary.MergedDictionaries>
                 <ResourceDictionary Source="/Fluent;Component/Themes/generic.xaml" />
                 <ResourceDictionary Source="/StakeholderAnalysis.Visualization;Component/Theme/GeneralStyles.xaml" />
+                <ResourceDictionary Source="/StakeholderAnalysis.Visualization;Component/Theme/DataGridStyles.xaml" />
                 <ResourceDictionary
                     Source="/StakeholderAnalysis.Visualization;Component/Theme/StakeholderAnalysisTheme.xaml" />
+                <ResourceDictionary Source="/StakeholderAnalysis.Visualization;Component/Theme/TabControlStyles.xaml" />
+                <ResourceDictionary Source="/StakeholderAnalysis.Visualization;Component/Theme/TreeViewStyles.xaml" />
             </ResourceDictionary.MergedDictionaries>
         </ResourceDictionary>
     </Application.Resources>

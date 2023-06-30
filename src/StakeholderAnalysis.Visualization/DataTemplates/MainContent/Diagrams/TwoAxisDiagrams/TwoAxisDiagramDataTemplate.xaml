@@ -9,7 +9,7 @@
 
     <ResourceDictionary.MergedDictionaries>
         <ResourceDictionary
-            Source="/StakeholderAnalysis.Visualization;Component/DataTemplates/StakeholderDataTemplate.xaml" />
+            Source="/StakeholderAnalysis.Visualization;Component/DataTemplates/MainContent/Diagrams/StakeholderDataTemplate.xaml" />
     </ResourceDictionary.MergedDictionaries>
 
     <onionDiagram:PercentageToDimensionConverter x:Key="PercentageToDimensionConverter" />
@@ -129,7 +129,7 @@
             <ContentPresenter
                 Grid.Column="1"
                 Content="{Binding}"
-                ContentTemplate="{StaticResource StakeholderDataTemplate}"
+                ContentTemplate="{StaticResource StakeholderCanvasItemDataTemplate}"
                 IsHitTestVisible="True" />
             <StackPanel Grid.Column="2" Width="20"
                         Visibility="{Binding IsSelectedStakeholder, Converter={StaticResource BoolToVisibilityConverter}}">

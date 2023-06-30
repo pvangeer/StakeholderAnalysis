@@ -2,25 +2,26 @@
                     xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
                     xmlns:statusBar="clr-namespace:StakeholderAnalysis.Visualization.ViewModels.StatusBar"
                     xmlns:fluent="urn:fluent-ribbon"
-                    xmlns:statusBar1="clr-namespace:StakeholderAnalysis.Visualization.Converters.StatusBar">
+                    xmlns:sBar="clr-namespace:StakeholderAnalysis.Visualization.Converters.StatusBar">
 
     <ResourceDictionary.MergedDictionaries>
         <ResourceDictionary
-            Source="/StakeholderAnalysis.Visualization;Component/Theme/GeneralStyles.xaml" />
-        <ResourceDictionary Source="MessageDataTemplates.xaml" />
-        <ResourceDictionary Source="/StakeholderAnalysis.Visualization;Component/Theme/DeltaresColorTheme.xaml" />
+            Source="/StakeholderAnalysis.Visualization;Component/DataTemplates/StatusBar/MessageDataTemplates.xaml" />
     </ResourceDictionary.MergedDictionaries>
 
-    <statusBar1:MessageListToLabelConverter x:Key="MessageListToLabelConverter" />
-    <statusBar1:ShouldShowPriorityMessageToBoolConverter x:Key="ShouldShowPriorityMessageToBoolConverter" />
+    <sBar:MessageListToLabelConverter x:Key="MessageListToLabelConverter" />
+    <sBar:ShouldShowPriorityMessageToBoolConverter x:Key="ShouldShowPriorityMessageToBoolConverter" />
 
     <DataTemplate x:Key="StatusBarDataTemplate" DataType="statusBar:StatusBarViewModel">
-        <fluent:StatusBar Background="{StaticResource Deltares.Brushes.LightBlue}"
-                          Height="{StaticResource DefaultItemHeight}">
+        <fluent:StatusBar
+            Background="{StaticResource Deltares.Brushes.LightBlue}"
+            Height="{StaticResource DefaultItemHeight}">
             <fluent:StatusBarItem
                 HorizontalAlignment="Right">
                 <StackPanel>
-                    <Label Name="MessagesLabel" VerticalAlignment="Center">
+                    <Label
+                        Name="MessagesLabel"
+                        VerticalAlignment="Center">
                         <Hyperlink
                             Command="{Binding ShowMessageListCommand}"
                             Foreground="{StaticResource Deltares.Brushes.Foreground}">
@@ -28,15 +29,17 @@
                                 Text="{Binding MessagesViewModel, Converter={StaticResource MessageListToLabelConverter}}" />
                         </Hyperlink>
                     </Label>
-                    <Popup IsOpen="{Binding ShowMessages}"
-                           PlacementTarget="{Binding ElementName=MessagesLabel}"
-                           AllowsTransparency="True"
-                           HorizontalOffset="-250"
-                           Placement="Top"
-                           StaysOpen="False"
-                           PopupAnimation="Slide">
-                        <ContentPresenter Content="{Binding MessagesViewModel}"
-                                          ContentTemplate="{StaticResource MessageListTemplate}" />
+                    <Popup
+                        IsOpen="{Binding ShowMessages}"
+                        PlacementTarget="{Binding ElementName=MessagesLabel}"
+                        AllowsTransparency="True"
+                        HorizontalOffset="-250"
+                        Placement="Top"
+                        StaysOpen="False"
+                        PopupAnimation="Slide">
+                        <ContentPresenter
+                            Content="{Binding MessagesViewModel}"
+                            ContentTemplate="{StaticResource MessageListTemplate}" />
                     </Popup>
                 </StackPanel>
             </fluent:StatusBarItem>
@@ -50,7 +53,9 @@
                 AllowsTransparency="True"
                 Placement="Top"
                 PopupAnimation="Slide">
-                <ContentPresenter Content="{Binding}" ContentTemplate="{StaticResource PopupErrorMessageTemplate}" />
+                <ContentPresenter
+                    Content="{Binding}"
+                    ContentTemplate="{StaticResource PopupErrorMessageTemplate}" />
             </Popup>
         </fluent:StatusBar>
     </DataTemplate>

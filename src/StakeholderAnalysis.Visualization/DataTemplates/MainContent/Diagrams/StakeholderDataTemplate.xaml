@@ -4,11 +4,6 @@
                     xmlns:behaviors="clr-namespace:StakeholderAnalysis.Visualization.Behaviors"
                     xmlns:documentViews="clr-namespace:StakeholderAnalysis.Visualization.ViewModels.DocumentViews">
 
-    <ResourceDictionary.MergedDictionaries>
-        <ResourceDictionary
-            Source="/StakeholderAnalysis.Visualization;Component/Theme/DeltaresColorTheme.xaml" />
-    </ResourceDictionary.MergedDictionaries>
-
     <DataTemplate x:Key="StakeholderPopupDataTemplate" DataType="documentViews:DiagramStakeholderViewModel">
         <Border Background="AntiqueWhite" BorderBrush="Gray" BorderThickness="1">
             <Grid Width="300" Height="400">
@@ -19,8 +14,11 @@
 
     <converters:IconTypeToIconSourceConverter x:Key="IconTypeToIconSourceConverter" />
 
-    <DataTemplate x:Key="StakeholderDataTemplate" DataType="documentViews:DiagramStakeholderViewModel">
-        <Border CornerRadius="1" behaviors:DragOnCanvasBehavior.DropHandler="{Binding }" IsHitTestVisible="True">
+    <DataTemplate x:Key="StakeholderCanvasItemDataTemplate" DataType="documentViews:DiagramStakeholderViewModel">
+        <Border
+            CornerRadius="1"
+            behaviors:DragOnCanvasBehavior.DropHandler="{Binding }"
+            IsHitTestVisible="True">
             <Border.InputBindings>
                 <MouseBinding MouseAction="LeftDoubleClick" Command="{Binding StakeholderClickedCommand}" />
             </Border.InputBindings>

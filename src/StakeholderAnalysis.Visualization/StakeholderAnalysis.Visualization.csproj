@@ -53,6 +53,7 @@
   <ItemGroup>
     <Compile Include="Commands\CloseViewWithMiddleMouseCommand.cs" />
     <Compile Include="Commands\Diagrams\AppointToDiagramCommand.cs" />
+    <Compile Include="Commands\EscapeCurrentActionCommand.cs" />
     <Compile Include="Controls\RibbonControl.xaml.cs">
       <DependentUpon>RibbonControl.xaml</DependentUpon>
     </Compile>
@@ -230,63 +231,75 @@
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
-    <Page Include="DataTemplates\MainWindow\MainContentPresenterDataTemplate.xaml">
+    <Page Include="DataTemplates\MainContentPresenterDataTemplate.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
-    <Page Include="DataTemplates\MainWindow\MainContentPresenterRibbonResources.xaml">
+    <Page Include="DataTemplates\MainContent\Diagrams\OnionDiagram\OnionDiagramConnectionDrawingCanvasDataTemplate.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
-    <Page Include="DataTemplates\Properties\TwoAxisDiagramPropertiesDataTemplate.xaml">
-      <Generator>MSBuild:Compile</Generator>
-      <SubType>Designer</SubType>
-    </Page>
-    <Page Include="DataTemplates\Diagrams\OnionDiagram\OnionDiagramConnectionDrawingCanvasDataTemplate.xaml">
+    <Page Include="DataTemplates\MainContent\DocumentViewsDataTemplate.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
-    <Page Include="DataTemplates\TreeViewDataTemplate.xaml">
+    <Page Include="DataTemplates\MainContent\NoDataDataTemplate.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
-    <Page Include="DataTemplates\MainWindow\StatusBar\MessageDataTemplates.xaml">
+    <Page Include="DataTemplates\MainContent\PropertiesExplorerDataTemplate.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
-    <Page Include="DataTemplates\MainWindow\StatusBar\StatusBarDataTemplate.xaml">
+    <Page Include="DataTemplates\MainContent\StakeholderTable\StakeholderDetailsPaneDataTemplate.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
-    <Page Include="DataTemplates\Diagrams\TwoAxisDiagrams\TwoAxisDiagramDataTemplate.xaml">
+    <Page Include="DataTemplates\MainContent\StakeholderTable\StakeholderTypeItemDataTemplate.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
-    <Page Include="DataTemplates\Diagrams\OnionDiagram\ConnectionsPresenterDataTemplate.xaml">
+    <Page Include="DataTemplates\TreeView\TreeViewDataTemplate.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
-    <Page Include="DataTemplates\Diagrams\OnionDiagram\OnionDiagramRingsDataTemplate.xaml">
+    <Page Include="DataTemplates\StatusBar\MessageDataTemplates.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
-    <Page Include="DataTemplates\Diagrams\OnionDiagram\OnionDiagramDataTemplate.xaml">
+    <Page Include="DataTemplates\StatusBarDataTemplate.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
-    <Page Include="DataTemplates\TreeViewStyles.xaml">
+    <Page Include="DataTemplates\MainContent\Diagrams\TwoAxisDiagrams\TwoAxisDiagramDataTemplate.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
-    <Page Include="DataTemplates\StakeholderDataTemplate.xaml">
+    <Page Include="DataTemplates\MainContent\Diagrams\OnionDiagram\ConnectionsPresenterDataTemplate.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
-    <Page Include="DataTemplates\Diagrams\OnionDiagram\OnionDiagramStakeholdersDataTemplate.xaml">
+    <Page Include="DataTemplates\MainContent\Diagrams\OnionDiagram\OnionDiagramRingsDataTemplate.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
-    <Page Include="DataTemplates\StakeholderTable\StakeholderTableDataTemplate.xaml">
+    <Page Include="DataTemplates\MainContent\Diagrams\OnionDiagram\OnionDiagramDataTemplate.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Theme\TreeViewStyles.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="DataTemplates\MainContent\Diagrams\StakeholderDataTemplate.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="DataTemplates\MainContent\Diagrams\OnionDiagram\OnionDiagramStakeholdersDataTemplate.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="DataTemplates\MainContent\StakeholderTable\StakeholderTableDataTemplate.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
@@ -445,4 +458,5 @@
   <ItemGroup>
     <Resource Include="Resources\Fluent\mail_24_regular.ico" />
   </ItemGroup>
+  <ItemGroup />
 </Project>

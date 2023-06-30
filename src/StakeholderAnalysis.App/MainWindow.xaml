@@ -26,15 +26,10 @@
         <ResourceDictionary>
             <ResourceDictionary.MergedDictionaries>
                 <ResourceDictionary
-                    Source="/StakeholderAnalysis.Visualization;Component/DataTemplates/AboutInfoDataTemplate.xaml" />
+                    Source="/StakeholderAnalysis.Visualization;Component/DataTemplates/MainContentPresenterDataTemplate.xaml" />
                 <ResourceDictionary
-                    Source="/StakeholderAnalysis.Visualization;Component/DataTemplates/MainWindow/MainContentPresenterDataTemplate.xaml" />
-                <ResourceDictionary
-                    Source="/StakeholderAnalysis.Visualization;Component/DataTemplates/MainWindow/MainContentPresenterRibbonResources.xaml" />
-                <ResourceDictionary
-                    Source="/StakeholderAnalysis.Visualization;Component/DataTemplates/MainWindow/StatusBar/StatusBarDataTemplate.xaml" />
+                    Source="/StakeholderAnalysis.Visualization;Component/DataTemplates/StatusBarDataTemplate.xaml" />
             </ResourceDictionary.MergedDictionaries>
-
         </ResourceDictionary>
     </Window.Resources>
 
@@ -54,6 +49,9 @@
         <KeyBinding
             Command="{Binding RibbonViewModel.SaveAsCommand}"
             Key="F12" />
+        <KeyBinding
+            Command="{Binding RibbonViewModel.EscapeCommand}"
+            Key="Escape" />
     </Window.InputBindings>
 
     <fluent:RibbonWindow.TitleBarHeight>

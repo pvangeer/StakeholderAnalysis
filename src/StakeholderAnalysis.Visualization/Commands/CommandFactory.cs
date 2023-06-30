@@ -145,5 +145,10 @@ namespace StakeholderAnalysis.Visualization.Commands
         {
             return new SelectItemCommand(gui.SelectionManager, selectable);
         }
+
+        public ICommand CreateEscapeCommand()
+        {
+            return new EscapeCurrentActionCommand(gui);
+        }
     }
 }

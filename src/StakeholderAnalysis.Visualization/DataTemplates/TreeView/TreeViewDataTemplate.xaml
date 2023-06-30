@@ -11,13 +11,6 @@
                     xmlns:treeView1="clr-namespace:StakeholderAnalysis.Visualization.ViewModels.TreeView"
                     xmlns:onionDiagrams="clr-namespace:StakeholderAnalysis.Data.Diagrams.OnionDiagrams;assembly=StakeholderAnalysis.Data">
 
-    <ResourceDictionary.MergedDictionaries>
-        <ResourceDictionary
-            Source="/StakeholderAnalysis.Visualization;Component/Theme/GeneralStyles.xaml" />
-        <ResourceDictionary Source="TreeViewStyles.xaml" />
-        <ResourceDictionary Source="/StakeholderAnalysis.Visualization;Component/Theme/DeltaresColorTheme.xaml" />
-    </ResourceDictionary.MergedDictionaries>
-
     <converters:IconTypeToIconSourceConverter x:Key="IconTypeToIconSourceConverter" />
     <converters:LineStyleToDashArrayConverter x:Key="LineStyleToStrokeArrayConverter" />
     <BooleanToVisibilityConverter x:Key="BooleanToVisibilityConverter" />
