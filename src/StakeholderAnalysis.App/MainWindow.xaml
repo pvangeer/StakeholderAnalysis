@@ -6,7 +6,6 @@
                      xmlns:viewmodels="clr-namespace:StakeholderAnalysis.Visualization.ViewModels;assembly=StakeholderAnalysis.Visualization"
                      xmlns:fluent="urn:fluent-ribbon"
                      xmlns:controls="clr-namespace:StakeholderAnalysis.Visualization.Controls;assembly=StakeholderAnalysis.Visualization"
-                     xmlns:onionDiagrams="clr-namespace:StakeholderAnalysis.Data.Diagrams.OnionDiagrams;assembly=StakeholderAnalysis.Data"
                      mc:Ignorable="d"
                      Closing="MainWindowClosing"
                      Loaded="MainWindow_OnLoaded"
@@ -67,168 +66,10 @@
             <RowDefinition Height="*" />
             <RowDefinition Height="Auto" />
         </Grid.RowDefinitions>
-        <fluent:Ribbon
-            Focusable="True"
-            x:Name="Ribbon"
-            AutomaticStateManagement="False">
-            <fluent:Ribbon.Menu>
-                <fluent:Backstage>
-                    <fluent:BackstageTabControl>
-                        <fluent:Button Header="Nieuw"
-                                       Icon="pack://application:,,,/StakeholderAnalysis.Visualization;component/Resources/Fluent/document.ico"
-                                       fluent:KeyTip.Keys="N"
-                                       Command="{Binding RibbonViewModel.NewCommand}" />
 
-                        <fluent:Button Header="Opslaan"
-                                       Icon="pack://application:,,,/StakeholderAnalysis.Visualization;component/Resources/Fluent/save_regular.ico"
-                                       fluent:KeyTip.Keys="S"
-                                       Command="{Binding RibbonViewModel.SaveCommand}" />
-
-                        <fluent:Button Header="Opslaan als"
-                                       Icon="pack://application:,,,/StakeholderAnalysis.Visualization;component/Resources/Fluent/save_edit_regular.ico"
-                                       fluent:KeyTip.Keys="A"
-                                       Command="{Binding RibbonViewModel.SaveAsCommand}" />
-
-                        <fluent:Button Header="Openen"
-                                       Icon="pack://application:,,,/StakeholderAnalysis.Visualization;component/Resources/Fluent/folder_open_regular.ico"
-                                       fluent:KeyTip.Keys="O"
-                                       Command="{Binding RibbonViewModel.OpenCommand}" />
-
-                        <fluent:SeparatorTabItem />
-
-                        <fluent:BackstageTabItem
-                            Header="Over"
-                            Icon="pack://application:,,,/StakeholderAnalysis.Visualization;component/Resources/Fluent/info_regular.ico">
-                            <ContentPresenter Content="{Binding}"
-                                              ContentTemplate="{StaticResource AboutBoxDataTemplate}" />
-                        </fluent:BackstageTabItem>
-
-                        <fluent:SeparatorTabItem />
-
-                        <fluent:Button Header="Afsluiten"
-                                       Icon="pack://application:,,,/StakeholderAnalysis.Visualization;component/Resources/Fluent/dismiss.ico"
-                                       fluent:KeyTip.Keys="X"
-                                       Command="{Binding RibbonViewModel.CloseApplication}" />
-                    </fluent:BackstageTabControl>
-                </fluent:Backstage>
-            </fluent:Ribbon.Menu>
-
-            <fluent:Ribbon.ContextualGroups>
-                <fluent:RibbonContextualTabGroup
-                    x:Name="onionGroup"
-                    Header="Ui-diagram"
-                    Background="{StaticResource Deltares.Brushes.DarkGreen}"
-                    Foreground="White">
-                    <fluent:RibbonContextualTabGroup.Visibility>
-                        <Binding
-                            Path="RibbonViewModel.ViewManagerViewModel.ActiveDocument"
-                            Converter="{StaticResource IsSelectedViewInfoToVisibilityConverter}"
-                            UpdateSourceTrigger="PropertyChanged" />
-                    </fluent:RibbonContextualTabGroup.Visibility>
-                </fluent:RibbonContextualTabGroup>
-            </fluent:Ribbon.ContextualGroups>
-
-            <fluent:RibbonTabItem Header="Start" Height="30">
-                <fluent:RibbonGroupBox Header="Beeld">
-                    <fluent:ToggleButton
-                        Header="Projectgegevens"
-                        Size="Large"
-                        LargeIcon="pack://application:,,,/StakeholderAnalysis.Visualization;component/Resources/Fluent/text_bullet_list_tree.ico"
-                        IsChecked="{Binding RibbonViewModel.IsProjectExplorerVisible}" />
-                    <fluent:ToggleButton
-                        Header="Eigenschappen"
-                        Size="Large"
-                        LargeIcon="pack://application:,,,/StakeholderAnalysis.Visualization;component/Resources/Fluent/document_text_regular.ico"
-                        IsChecked="{Binding RibbonViewModel.IsPropertiesVisible}" />
-                    <fluent:ToggleButton
-                        Header="Vergrootglas"
-                        Size="Large"
-                        LargeIcon="pack://application:,,,/StakeholderAnalysis.Visualization;component/Resources/Fluent/zoom_in_regular.ico"
-                        IsChecked="{Binding RibbonViewModel.IsMagnifierActive}" />
-                    <fluent:Button
-                        Header="Afbeelding opslaan"
-                        Size="Large"
-                        LargeIcon="pack://application:,,,/StakeholderAnalysis.Visualization;component/Resources/Fluent/image.ico"
-                        Command="{Binding RibbonViewModel.SaveImageCommand}" />
-                </fluent:RibbonGroupBox>
-
-                <fluent:RibbonGroupBox Header="Diagram">
-                    <fluent:Button
-                        Header="Stakeholder(s) toevoegen"
-                        Command="{Binding RibbonViewModel.AddStakeholdersCommand}"
-                        Size="Large"
-                        LargeIcon="pack://application:,,,/StakeholderAnalysis.Visualization;component/Resources/Operations/plus.png" />
-                </fluent:RibbonGroupBox>
-
-            </fluent:RibbonTabItem>
-
-            <fluent:RibbonTabItem Header="Ui-diagram" Group="{Binding Source={x:Reference onionGroup}}">
-                <fluent:RibbonGroupBox Header="Ringen">
-                    <fluent:Button
-                        Header="Ring toevoegen"
-                        Command="{Binding RibbonViewModel.AddOnionRingCommand}"
-                        Size="Middle"
-                        Icon="pack://application:,,,/StakeholderAnalysis.Visualization;component/Resources/Operations/plus.png" />
-                    <fluent:Spinner
-                        Value="{Binding RibbonViewModel.Asymmetry}"
-                        Header="Asymmetrie"
-                        Format="0.#####"
-                        Minimum="0.0"
-                        Maximum="1.0"
-                        Increment="0.1" />
-                    <StackPanel Orientation="Vertical" Margin="5,5,5,1">
-                        <controls:RotaryControl
-                            Value="{Binding RibbonViewModel.Orientation, Mode=TwoWay}"
-                            FontBrush="Black" FontSize="28"
-                            Foreground="Black"
-                            Background="Transparent">
-                            <controls:RotaryControl.MinimumValue>0</controls:RotaryControl.MinimumValue>
-                            <controls:RotaryControl.NumberOfMajorTicks>9</controls:RotaryControl.NumberOfMajorTicks>
-                            <controls:RotaryControl.MajorTickIncrement>45</controls:RotaryControl.MajorTickIncrement>
-                            <controls:RotaryControl.MajorTickBrush>White</controls:RotaryControl.MajorTickBrush>
-                            <controls:RotaryControl.NumberOfMinorTicks>6</controls:RotaryControl.NumberOfMinorTicks>
-                            <controls:RotaryControl.MinorTickBrush>White</controls:RotaryControl.MinorTickBrush>
-                            <controls:RotaryControl.OuterDialFill>SteelBlue</controls:RotaryControl.OuterDialFill>
-                            <controls:RotaryControl.OuterDialBorder>Transparent</controls:RotaryControl.OuterDialBorder>
-                            <controls:RotaryControl.OuterDialBorderThickness>1</controls:RotaryControl.OuterDialBorderThickness>
-                            <controls:RotaryControl.InnerDialRadius>60</controls:RotaryControl.InnerDialRadius>
-                            <controls:RotaryControl.StartAngleInDegrees>0</controls:RotaryControl.StartAngleInDegrees>
-                            <controls:RotaryControl.EndAngleInDegrees>360</controls:RotaryControl.EndAngleInDegrees>
-                            <controls:RotaryControl.PointerFill>
-                                <LinearGradientBrush EndPoint="0.5,0" StartPoint="0.5,1">
-                                    <GradientStop Color="DimGray" Offset="0" />
-                                    <GradientStop Color="#BBBBBB" Offset="1.0" />
-                                </LinearGradientBrush>
-                            </controls:RotaryControl.PointerFill>
-                            <controls:RotaryControl.LayoutTransform>
-                                <ScaleTransform ScaleX="0.26" ScaleY="0.26" />
-                            </controls:RotaryControl.LayoutTransform>
-                        </controls:RotaryControl>
-                        <TextBlock
-                            Text="Orientatie"
-                            Margin="5,1,5,1" />
-                    </StackPanel>
-                </fluent:RibbonGroupBox>
-
-                <fluent:RibbonGroupBox Header="Verbindingsgroepen">
-                    <fluent:ComboBox
-                        IsEditable="False"
-                        ItemsSource="{Binding RibbonViewModel.StakeholderConnectionGroups}"
-                        SelectedItem="{Binding RibbonViewModel.SelectedStakeholderConnectionGroup}">
-                        <ComboBox.ItemTemplate>
-                            <DataTemplate DataType="onionDiagrams:StakeholderConnectionGroup">
-                                <Border BorderThickness="0 0 0 3">
-                                    <Border.BorderBrush>
-                                        <SolidColorBrush Color="{Binding StrokeColor}" />
-                                    </Border.BorderBrush>
-                                    <TextBlock Text="{Binding Name}" />
-                                </Border>
-                            </DataTemplate>
-                        </ComboBox.ItemTemplate>
-                    </fluent:ComboBox>
-                </fluent:RibbonGroupBox>
-            </fluent:RibbonTabItem>
-        </fluent:Ribbon>
+        <controls:RibbonControl
+            Grid.Row="0"
+            DataContext="{Binding Path=.}" />
 
         <ContentPresenter
             Grid.Row="1"
@@ -276,7 +117,6 @@
                                                         <DiscreteDoubleKeyFrame KeyTime="0:0:1.500" Value="270" />
                                                         <DiscreteDoubleKeyFrame KeyTime="0:0:1.750" Value="315" />
                                                         <DiscreteDoubleKeyFrame KeyTime="0:0:2.000" Value="360" />
-                                                        <!-- ... -->
                                                     </DoubleKeyFrameCollection>
                                                 </DoubleAnimationUsingKeyFrames>
                                             </Storyboard>

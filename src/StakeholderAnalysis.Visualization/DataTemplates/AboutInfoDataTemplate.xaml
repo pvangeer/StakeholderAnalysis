@@ -1,13 +1,13 @@
 ﻿<ResourceDictionary xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
                     xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
-                    xmlns:viewModels="clr-namespace:StakeholderAnalysis.Visualization.ViewModels">
+                    xmlns:ribbon="clr-namespace:StakeholderAnalysis.Visualization.ViewModels.Ribbon">
 
     <ResourceDictionary.MergedDictionaries>
         <ResourceDictionary Source="/StakeholderAnalysis.Visualization;Component/Theme/GeneralStyles.xaml" />
         <ResourceDictionary Source="/StakeholderAnalysis.Visualization;Component/Theme/DeltaresColorTheme.xaml" />
     </ResourceDictionary.MergedDictionaries>
 
-    <DataTemplate x:Key="AboutBoxDataTemplate" DataType="{x:Type viewModels:MainWindowViewModel}">
+    <DataTemplate x:Key="AboutBoxDataTemplate" DataType="{x:Type ribbon:RibbonViewModel}">
         <StackPanel Orientation="Vertical">
             <StackPanel Orientation="Horizontal" HorizontalAlignment="Left"
                         VerticalAlignment="Center">

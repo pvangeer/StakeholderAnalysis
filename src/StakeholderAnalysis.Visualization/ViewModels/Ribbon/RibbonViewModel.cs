@@ -1,10 +1,12 @@
 ﻿using System.Collections.ObjectModel;
 using System.ComponentModel;
+using System.Diagnostics;
 using System.Linq;
 using System.Windows;
 using System.Windows.Input;
 using StakeholderAnalysis.Data.Diagrams.OnionDiagrams;
 using StakeholderAnalysis.Gui;
+using StakeholderAnalysis.Storage;
 using StakeholderAnalysis.Visualization.Commands;
 using StakeholderAnalysis.Visualization.ViewModels.DocumentViews.OnionDiagramView;
 
@@ -45,6 +47,13 @@ namespace StakeholderAnalysis.Visualization.ViewModels.Ribbon
         public ICommand CloseApplication => CommandFactory.CreateCloseApplicationCommand();
 
         public ICommand AddStakeholdersCommand => CommandFactory.CreateAddStakeholdersCommand();
+
+        public string Version => $"{VersionInfo.Year}.{VersionInfo.MajorVersion}.{VersionInfo.MinorVersion}";
+
+        public ICommand ExecuteHyperlinkCommand => new CanAlwaysExecuteActionCommand
+        {
+            ExecuteAction = OnExecuteHyperlink
+        };
 
         public bool IsProjectExplorerVisible
         {
@@ -122,6 +131,11 @@ namespace StakeholderAnalysis.Visualization.ViewModels.Ribbon
                 stakeholderConnectionGroupSelection.OnPropertyChanged(nameof(StakeholderConnectionGroupSelection
                     .StakeholderConnectionGroup));
             }
+        }
+
+        private void OnExecuteHyperlink(object obj)
+        {
+            Process.Start((string)obj);
         }
 
         private void SetCurrentSelectedDiagramAndGroups()

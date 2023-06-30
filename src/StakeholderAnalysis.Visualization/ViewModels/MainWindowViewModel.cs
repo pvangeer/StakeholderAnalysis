@@ -1,10 +1,6 @@
 using System.ComponentModel;
-using System.Diagnostics;
 using System.IO;
-using System.Windows.Input;
 using StakeholderAnalysis.Gui;
-using StakeholderAnalysis.Storage;
-using StakeholderAnalysis.Visualization.Commands;
 using StakeholderAnalysis.Visualization.ViewModels.Ribbon;
 using StakeholderAnalysis.Visualization.ViewModels.StatusBar;
 
@@ -27,13 +23,6 @@ namespace StakeholderAnalysis.Visualization.ViewModels
             MainContentPresenterViewModel = ViewModelFactory.CreateMainContentPresenterViewModel();
         }
 
-        public string Version => $"{VersionInfo.Year}.{VersionInfo.MajorVersion}.{VersionInfo.MinorVersion}";
-
-        public ICommand ExecuteHyperlinkCommand => new CanAlwaysExecuteActionCommand
-        {
-            ExecuteAction = OnExecuteHyperlink
-        };
-
         public MainContentPresenterViewModel MainContentPresenterViewModel { get; }
 
         public RibbonViewModel RibbonViewModel { get; }
@@ -46,11 +35,6 @@ namespace StakeholderAnalysis.Visualization.ViewModels
                 : $"Stakeholderanalyse ({Path.GetFileNameWithoutExtension(gui.ProjectFilePath)})";
 
         public bool IsBusy => gui.BusyIndicator == StorageState.Busy;
-
-        private void OnExecuteHyperlink(object obj)
-        {
-            Process.Start((string)obj);
-        }
 
         private void GuiPropertyChanged(object sender, PropertyChangedEventArgs e)
         {

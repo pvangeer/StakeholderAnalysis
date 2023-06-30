@@ -34,9 +34,7 @@ namespace StakeholderAnalysis.App
                 var files = (string[])e.Data.GetData(DataFormats.FileDrop);
 
                 if (files != null && files.Length > 0)
-                {
                     (DataContext as MainWindowViewModel)?.RibbonViewModel.OpenFile(files[0]);
-                }
             }
         }
     }

@@ -53,6 +53,9 @@
   <ItemGroup>
     <Compile Include="Commands\CloseViewWithMiddleMouseCommand.cs" />
     <Compile Include="Commands\Diagrams\AppointToDiagramCommand.cs" />
+    <Compile Include="Controls\RibbonControl.xaml.cs">
+      <DependentUpon>RibbonControl.xaml</DependentUpon>
+    </Compile>
     <Compile Include="Converters\Diagrams\StakeholderTable\AppointToDiagramMenuItemsConverter.cs" />
     <Compile Include="Behaviors\AttachInputBindingsBehavior.cs" />
     <Compile Include="Commands\SelectItemCommand.cs" />
@@ -211,6 +214,10 @@
     </None>
   </ItemGroup>
   <ItemGroup>
+    <Page Include="Controls\RibbonControl.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
     <Page Include="Controls\RotaryControl.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
