@@ -12,10 +12,7 @@
             Source="/StakeholderAnalysis.Visualization;Component/DataTemplates/MainContent/Diagrams/StakeholderDataTemplate.xaml" />
     </ResourceDictionary.MergedDictionaries>
 
-    <onionDiagram:PercentageToDimensionConverter x:Key="PercentageToDimensionConverter" />
     <twoAxisDiagramConverters:CanvasSizeToArrowsPathDataConverter x:Key="SizeToArrowsPathDataConverter" />
-    <BooleanToVisibilityConverter x:Key="BoolToVisibilityConverter" />
-    <diagrams:IsSelectedStakeholderToOffsetConverter x:Key="IsSelectedStakeholderToOffsetConverter" />
 
     <DataTemplate x:Key="TwoAxisDiagramStakeholderDataTemplate" DataType="twoAxisDiagrams:IRankedStakeholderViewModel">
         <Grid>
@@ -28,7 +25,7 @@
                         Orientation="Vertical"
                         Width="20"
                         Visibility="{Binding IsSelectedStakeholder, 
-                Converter={StaticResource BoolToVisibilityConverter}}">
+                Converter={StaticResource BooleanToVisibilityConverter}}">
                 <Button
                     Command="{Binding MoveStakeholderToTopCommand}">
                     <Button.Template>
@@ -132,7 +129,7 @@
                 ContentTemplate="{StaticResource StakeholderCanvasItemDataTemplate}"
                 IsHitTestVisible="True" />
             <StackPanel Grid.Column="2" Width="20"
-                        Visibility="{Binding IsSelectedStakeholder, Converter={StaticResource BoolToVisibilityConverter}}">
+                        Visibility="{Binding IsSelectedStakeholder, Converter={StaticResource BooleanToVisibilityConverter}}">
                 <Button
                     Command="{Binding RemoveStakeholderCommand}">
                     <Button.Template>

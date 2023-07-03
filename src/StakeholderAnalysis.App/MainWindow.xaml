@@ -83,7 +83,7 @@
             Grid.Row="0"
             Grid.RowSpan="3"
             Background="{StaticResource Fluent.Ribbon.Brushes.Accent40}"
-            Visibility="{Binding IsBusy, Converter={StaticResource BoolToVisibilityConverter}}">
+            Visibility="{Binding IsBusy, Converter={StaticResource BooleanToVisibilityConverter}}">
             <Border
                 HorizontalAlignment="Center"
                 VerticalAlignment="Center">

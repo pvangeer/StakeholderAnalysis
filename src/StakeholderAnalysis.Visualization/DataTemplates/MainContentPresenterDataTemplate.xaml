@@ -11,7 +11,6 @@
             Source="/StakeholderAnalysis.Visualization;Component/DataTemplates/MainContent/PropertiesExplorerDataTemplate.xaml" />
     </ResourceDictionary.MergedDictionaries>
 
-    <BooleanToVisibilityConverter x:Key="BoolToVisibilityConverter" />
     <converters:ObjectToPropertiesViewModelConverter x:Key="ObjectToPropertiesViewModelConverter" />
 
     <DataTemplate x:Key="MainContentPresenterDataTemplate" DataType="{x:Type viewModels:MainContentPresenterViewModel}">
@@ -25,7 +24,7 @@
             </Grid.ColumnDefinitions>
 
             <Grid Grid.Column="0"
-                  Visibility="{Binding IsProjectExplorerVisible, Converter={StaticResource BoolToVisibilityConverter} }">
+                  Visibility="{Binding IsProjectExplorerVisible, Converter={StaticResource BooleanToVisibilityConverter} }">
                 <Grid.RowDefinitions>
                     <RowDefinition Height="Auto" />
                     <RowDefinition Height="*" />
@@ -55,7 +54,7 @@
             <visualization:HidableGridSplitter
                 Grid.Column="1"
                 HideDirection="Left"
-                Visibility="{Binding IsProjectExplorerVisible, Converter={StaticResource BoolToVisibilityConverter} }"
+                Visibility="{Binding IsProjectExplorerVisible, Converter={StaticResource BooleanToVisibilityConverter} }"
                 Width="5"
                 Background="{StaticResource Fluent.Ribbon.Brushes.Separator.Background}"
                 HorizontalAlignment="Stretch"
@@ -70,7 +69,7 @@
                 ItemsSource="{Binding ViewManager.Views}" />
 
             <visualization:HidableGridSplitter Grid.Column="3"
-                                               Visibility="{Binding IsPropertiesVisible, Converter={StaticResource BoolToVisibilityConverter} }"
+                                               Visibility="{Binding IsPropertiesVisible, Converter={StaticResource BooleanToVisibilityConverter} }"
                                                Width="5"
                                                HideDirection="Right"
                                                Background="{StaticResource Fluent.Ribbon.Brushes.Separator.Background}"

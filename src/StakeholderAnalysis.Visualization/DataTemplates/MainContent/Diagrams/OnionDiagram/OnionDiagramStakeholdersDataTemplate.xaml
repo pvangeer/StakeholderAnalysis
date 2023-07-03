@@ -11,9 +11,6 @@
             Source="/StakeholderAnalysis.Visualization;Component/DataTemplates/MainContent/Diagrams/StakeholderDataTemplate.xaml" />
     </ResourceDictionary.MergedDictionaries>
 
-    <onionDiagram:PercentageToDimensionConverter x:Key="PercentageToDimensionConverter" />
-    <BooleanToVisibilityConverter x:Key="BoolToVisibilityConverter" />
-
     <DataTemplate x:Key="OnionDiagramStakeholderDataTemplate"
                   DataType="onionDiagramView:OnionDiagramStakeholderViewModel">
         <Grid>
@@ -26,7 +23,7 @@
                         Orientation="Vertical"
                         Width="20"
                         Visibility="{Binding IsSelectedStakeholder, 
-                Converter={StaticResource BoolToVisibilityConverter}}">
+                Converter={StaticResource BooleanToVisibilityConverter}}">
                 <Button
                     Command="{Binding MoveStakeholderToTopCommand}">
                     <Button.Template>
@@ -130,7 +127,7 @@
                 ContentTemplate="{StaticResource StakeholderCanvasItemDataTemplate}"
                 IsHitTestVisible="True" />
             <StackPanel Grid.Column="2" Width="20"
-                        Visibility="{Binding IsSelectedStakeholder, Converter={StaticResource BoolToVisibilityConverter}}">
+                        Visibility="{Binding IsSelectedStakeholder, Converter={StaticResource BooleanToVisibilityConverter}}">
                 <Border behaviors:DrawConnectionBehavior.DrawConnectionHandler="{Binding DrawConnectionHandler}">
                     <Image Width="16"
                            Height="16">
@@ -164,7 +161,6 @@
         </Grid>
     </DataTemplate>
 
-    <diagrams:IsSelectedStakeholderToOffsetConverter x:Key="IsSelectedStakeholderToOffsetConverter" />
     <DataTemplate x:Key="OnionDiagramStakeholdersDataTemplate"
                   DataType="onionDiagramView:OnionDiagramStakeholdersViewModel">
         <Grid>

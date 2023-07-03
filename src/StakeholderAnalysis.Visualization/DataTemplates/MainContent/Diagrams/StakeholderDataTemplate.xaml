@@ -12,8 +12,6 @@
         </Border>
     </DataTemplate>
 
-    <converters:IconTypeToIconSourceConverter x:Key="IconTypeToIconSourceConverter" />
-
     <DataTemplate x:Key="StakeholderCanvasItemDataTemplate" DataType="documentViews:DiagramStakeholderViewModel">
         <Border
             CornerRadius="1"

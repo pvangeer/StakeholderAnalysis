@@ -11,9 +11,6 @@
                     xmlns:treeView1="clr-namespace:StakeholderAnalysis.Visualization.ViewModels.TreeView"
                     xmlns:onionDiagrams="clr-namespace:StakeholderAnalysis.Data.Diagrams.OnionDiagrams;assembly=StakeholderAnalysis.Data">
 
-    <converters:IconTypeToIconSourceConverter x:Key="IconTypeToIconSourceConverter" />
-    <converters:LineStyleToDashArrayConverter x:Key="LineStyleToStrokeArrayConverter" />
-    <BooleanToVisibilityConverter x:Key="BooleanToVisibilityConverter" />
     <treeviewconverters:QuickSelectionToVisibilityConverter x:Key="QuickSelectionToVisibilityConverter" />
     <treeviewconverters:SourceStringToVisibilityConverter x:Key="SourceStringToVisibilityConverter" />
     <treeviewconverters:HasItemsToVisibilityConverter x:Key="HasItemsToVisibilityConverter" />
@@ -45,7 +42,7 @@
                                 StrokeThickness="3"
                                 Stroke="Black"
                                 X1="5" X2="50" Y1="10" Y2="10"
-                                StrokeDashArray="{Binding Converter={StaticResource LineStyleToStrokeArrayConverter}}" />
+                                StrokeDashArray="{Binding Converter={StaticResource LineStyleToDashArrayConverter}}" />
                         </Canvas>
                     </StackPanel>
                 </DataTemplate>

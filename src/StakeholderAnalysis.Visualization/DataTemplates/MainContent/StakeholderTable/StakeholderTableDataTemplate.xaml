@@ -14,7 +14,6 @@
     </ResourceDictionary.MergedDictionaries>
 
     <visualization:StakeholderTypeToNameConverter x:Key="StakeholderTypeToNameConverter" />
-    <converters:IconTypeToIconSourceConverter x:Key="IconTypeToIconSourceConverter" />
 
     <DataTemplate x:Key="StakeholderTableDataTemplate" DataType="stakeholderTableView:StakeholderTableViewModel">
         <Grid Name="TableGrid" DataContext="{Binding}">

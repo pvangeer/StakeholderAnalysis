@@ -1,12 +1,6 @@
 ﻿<ResourceDictionary xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
                     xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
-                    xmlns:converters="clr-namespace:StakeholderAnalysis.Visualization.Converters"
-                    xmlns:onionDiagram="clr-namespace:StakeholderAnalysis.Visualization.Converters.Diagrams.OnionDiagram"
                     xmlns:onionDiagramView="clr-namespace:StakeholderAnalysis.Visualization.ViewModels.DocumentViews.OnionDiagramView">
-
-    <onionDiagram:PercentageToDimensionConverter x:Key="PercentageToDimensionConverter" />
-    <converters:LineStyleToDashArrayConverter x:Key="LineStyleToDashArrayConverter" />
-    <BooleanToVisibilityConverter x:Key="BooleanToVisibilityConverter" />
 
     <DataTemplate x:Key="ConnectionDataTemplate" DataType="onionDiagramView:StakeholderConnectionViewModel">
         <Canvas>

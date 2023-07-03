@@ -1,6 +1,9 @@
 ﻿<Application x:Class="StakeholderAnalysis.App.App"
              xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
              xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:converters="clr-namespace:StakeholderAnalysis.Visualization.Converters;assembly=StakeholderAnalysis.Visualization"
+             xmlns:onionDiagram="clr-namespace:StakeholderAnalysis.Visualization.Converters.Diagrams.OnionDiagram;assembly=StakeholderAnalysis.Visualization"
+             xmlns:diagrams="clr-namespace:StakeholderAnalysis.Visualization.Converters.Diagrams;assembly=StakeholderAnalysis.Visualization"
              StartupUri="MainWindow.xaml">
     <Application.Resources>
         <ResourceDictionary>
@@ -13,6 +16,12 @@
                 <ResourceDictionary Source="/StakeholderAnalysis.Visualization;Component/Theme/TabControlStyles.xaml" />
                 <ResourceDictionary Source="/StakeholderAnalysis.Visualization;Component/Theme/TreeViewStyles.xaml" />
             </ResourceDictionary.MergedDictionaries>
+
+            <BooleanToVisibilityConverter x:Key="BooleanToVisibilityConverter" />
+            <converters:LineStyleToDashArrayConverter x:Key="LineStyleToDashArrayConverter" />
+            <converters:IconTypeToIconSourceConverter x:Key="IconTypeToIconSourceConverter" />
+            <diagrams:PercentageToDimensionConverter x:Key="PercentageToDimensionConverter" />
+
         </ResourceDictionary>
     </Application.Resources>
 </Application>

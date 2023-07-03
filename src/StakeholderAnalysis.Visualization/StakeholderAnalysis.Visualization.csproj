@@ -64,7 +64,6 @@
       <DependentUpon>RotaryControl.xaml</DependentUpon>
     </Compile>
     <Compile Include="Commands\Diagrams\ChangeStakeholderTypeCommand.cs" />
-    <Compile Include="Converters\IsBusyToVisibilityConverter.cs" />
     <Compile Include="Converters\TreeView\QuickSelectionToVisibilityConverter.cs" />
     <Compile Include="Converters\TreeView\SourceStringToVisibilityConverter.cs" />
     <Compile Include="Converters\TreeView\HasItemsToVisibilityConverter.cs" />
@@ -137,7 +136,7 @@
     <Compile Include="Converters\Ribbon\IsSelectedViewTypeToVisibilityConverter.cs" />
     <Compile Include="Converters\Diagrams\OnionDiagram\PercentageToCanvasLeftValueConverter.cs" />
     <Compile Include="Converters\Diagrams\OnionDiagram\PercentageToCanvasTopValueConverter.cs" />
-    <Compile Include="Converters\Diagrams\OnionDiagram\PercentageToDimensionConverter.cs" />
+    <Compile Include="Converters\Diagrams\PercentageToDimensionConverter.cs" />
     <Compile Include="Converters\Diagrams\TwoAxisDiagramConverters\CanvasSizeToArrowsPathDataConverter.cs" />
     <Compile Include="Converters\StatusBar\ShouldShowPriorityMessageToBoolConverter.cs" />
     <Compile Include="Converters\StatusBar\MessageListToLabelConverter.cs" />
@@ -146,7 +145,6 @@
     <Compile Include="Behaviors\IDrawConnectionHandler.cs" />
     <Compile Include="Behaviors\IDropHandler.cs" />
     <Compile Include="Behaviors\ISelectionRegister.cs" />
-    <Compile Include="Converters\Diagrams\IsSelectedStakeholderToOffsetConverter.cs" />
     <Compile Include="ViewModels\Properties\OnionDiagramProperties\ConnectionGroupPropertiesViewModel.cs" />
     <Compile Include="ViewModels\Properties\OnionDiagramProperties\OnionDiagramPropertiesViewModel.cs" />
     <Compile Include="ViewModels\Properties\OnionDiagramProperties\OnionRingPropertiesViewModel.cs" />

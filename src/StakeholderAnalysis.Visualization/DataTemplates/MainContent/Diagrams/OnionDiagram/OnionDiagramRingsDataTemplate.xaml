@@ -7,8 +7,6 @@
 
     <onionDiagram:PercentageToCanvasTopValueConverter x:Key="PercentageToCanvasTopValueConverter" />
     <onionDiagram:PercentageToCanvasLeftValueConverter x:Key="PercentageToCanvasLeftValueConverter" />
-    <onionDiagram:PercentageToDimensionConverter x:Key="PercentageToDimensionConverter" />
-    <converters:LineStyleToDashArrayConverter x:Key="StrokeTypeToDashArrayConverter" />
 
     <DataTemplate x:Key="OnionDiagramRingsDataTemplate" DataType="onionDiagramView:OnionDiagramRingsCanvasViewModel">
         <Grid>
@@ -26,7 +24,7 @@
                         <Grid>
                             <Ellipse Fill="{Binding BackgroundColor}"
                                      Stroke="{Binding StrokeColor}"
-                                     StrokeDashArray="{Binding LineStyle, Converter={StaticResource StrokeTypeToDashArrayConverter}}"
+                                     StrokeDashArray="{Binding LineStyle, Converter={StaticResource LineStyleToDashArrayConverter}}"
                                      StrokeThickness="{Binding StrokeThickness}">
                                 <Ellipse.Width>
                                     <MultiBinding Converter="{StaticResource PercentageToDimensionConverter}">
