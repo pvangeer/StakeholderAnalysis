@@ -38,8 +38,6 @@ namespace StakeholderAnalysis.Gui
             LogMessageAppender.Instance.MessageCollection = this;
         }
 
-        public SelectedStakeholderGroupRegister SelectedStakeholderGroupRegister { get; }
-
         public string ProjectFilePath { get; set; }
 
         public VersionInfo VersionInfo { get; set; }
@@ -54,7 +52,9 @@ namespace StakeholderAnalysis.Gui
             }
         }
 
-        public SelectionManager SelectionManager { get; set; }
+        public SelectionManager SelectionManager { get; }
+
+        public SelectedStakeholderGroupRegister SelectedStakeholderGroupRegister { get; }
 
         public ViewManager ViewManager { get; }
 
@@ -83,7 +83,6 @@ namespace StakeholderAnalysis.Gui
         {
             PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(propertyName));
         }
-
 
         private void ConfigureMessaging()
         {
