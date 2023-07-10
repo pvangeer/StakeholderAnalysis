@@ -41,7 +41,7 @@ namespace StakeholderAnalysis.Visualization.ViewModels
             return new OnionDiagramDrawConnectionViewModel(this, onionDiagram)
             {
                 GetSelectedStakeholderConnectionGroup = d =>
-                    gui?.SelectedStakeholderConnectionGroups?.FirstOrDefault(s => s.OnionDiagram == d)
+                    gui?.SelectedStakeholderGroupRegister?.SelectedStakeholderConnectionGroups?.FirstOrDefault(s => s.OnionDiagram == d)
                         ?.StakeholderConnectionGroup ?? d.ConnectionGroups.FirstOrDefault()
             };
         }

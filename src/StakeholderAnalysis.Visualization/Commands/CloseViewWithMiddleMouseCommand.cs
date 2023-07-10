@@ -17,8 +17,8 @@ namespace StakeholderAnalysis.Visualization.Commands
 
         public void Execute(object parameter)
         {
-            var parameters = parameter as CloseViewWithMiddleMouseCommandParameters;
-            parameters.ViewManager.GetViewManager().CloseView(parameters.ClickedViewInfo);
+            if (parameter is CloseViewWithMiddleMouseCommandParameters parameters)
+                parameters.ViewManager.GetViewManager().CloseView(parameters.ClickedViewInfo);
         }
 
         public event EventHandler CanExecuteChanged;

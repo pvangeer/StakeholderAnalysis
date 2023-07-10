@@ -3,7 +3,6 @@
                     xmlns:visualization="clr-namespace:StakeholderAnalysis.Visualization"
                     xmlns:xctk="http://schemas.xceed.com/wpf/xaml/toolkit"
                     xmlns:behaviors="clr-namespace:StakeholderAnalysis.Visualization.Behaviors"
-                    xmlns:converters="clr-namespace:StakeholderAnalysis.Visualization.Converters"
                     xmlns:projectExplorer="clr-namespace:StakeholderAnalysis.Visualization.ViewModels.ProjectExplorer"
                     xmlns:data="clr-namespace:StakeholderAnalysis.Data;assembly=StakeholderAnalysis.Data"
                     xmlns:system="clr-namespace:System;assembly=mscorlib"

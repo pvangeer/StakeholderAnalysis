@@ -158,7 +158,8 @@ namespace StakeholderAnalysis.Visualization.ViewModels.Ribbon
             OnPropertyChanged(nameof(SelectedStakeholderConnectionGroup));
 
             stakeholderConnectionGroupSelection =
-                gui?.SelectedStakeholderConnectionGroups.FirstOrDefault(g => g.OnionDiagram == selectedOnionDiagram);
+                gui?.SelectedStakeholderGroupRegister?.SelectedStakeholderConnectionGroups?.FirstOrDefault(g =>
+                    g.OnionDiagram == selectedOnionDiagram);
 
             if (stakeholderConnectionGroupSelection != null)
             {

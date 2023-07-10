@@ -29,6 +29,7 @@
     <Compile Include="INameableViewModel.cs" />
     <Compile Include="ISelectable.cs" />
     <Compile Include="IViewModel.cs" />
+    <Compile Include="SelectedStakeholderGroupRegister.cs" />
     <Compile Include="SelectionManager.cs" />
     <Compile Include="ShouldProceedState.cs" />
     <Compile Include="StakeholderAnalysisGui.cs" />

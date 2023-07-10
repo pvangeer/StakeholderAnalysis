@@ -2,7 +2,6 @@
              xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
              xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
              xmlns:converters="clr-namespace:StakeholderAnalysis.Visualization.Converters;assembly=StakeholderAnalysis.Visualization"
-             xmlns:onionDiagram="clr-namespace:StakeholderAnalysis.Visualization.Converters.Diagrams.OnionDiagram;assembly=StakeholderAnalysis.Visualization"
              xmlns:diagrams="clr-namespace:StakeholderAnalysis.Visualization.Converters.Diagrams;assembly=StakeholderAnalysis.Visualization"
              StartupUri="MainWindow.xaml">
     <Application.Resources>
