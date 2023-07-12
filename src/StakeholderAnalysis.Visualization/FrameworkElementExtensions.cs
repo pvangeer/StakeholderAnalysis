@@ -9,7 +9,9 @@ namespace StakeholderAnalysis.Visualization
 {
     public static class FrameworkElementExtensions
     {
-        public static void SaveToFile(this FrameworkElement frameworkElement, double scalingFactor = 3.0)
+        const double ScreenDpi = 96.0;
+
+        public static void SaveToFile(this FrameworkElement frameworkElement, double scalingFactor = 10.0)
         {
             if (frameworkElement == null) return;
 
@@ -32,14 +34,14 @@ namespace StakeholderAnalysis.Visualization
             var dpiY = double.NaN;
             if (source?.CompositionTarget != null)
             {
-                dpiX = 96.0 * source.CompositionTarget.TransformToDevice.M11;
-                dpiY = 96.0 * source.CompositionTarget.TransformToDevice.M22;
+                dpiX = ScreenDpi * source.CompositionTarget.TransformToDevice.M11;
+                dpiY = ScreenDpi * source.CompositionTarget.TransformToDevice.M22;
             }
 
             if (Math.Abs(dpiX - dpiY) > 1e-10) return;
 
             var dpi = dpiX * scalingFactor;
-            var scale = dpi / 96.0;
+            var scale = dpi / ScreenDpi;
             var renderBitmap =
                 new RenderTargetBitmap(
                     (int)(presenter.ActualWidth * scale),
