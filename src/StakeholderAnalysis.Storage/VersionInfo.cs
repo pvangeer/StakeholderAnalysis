@@ -35,11 +35,11 @@ namespace StakeholderAnalysis.Storage
             }
         }
 
-        public static int Year => 23;
+        public static int Year => 25;
 
-        public static int MajorVersion => 2;
+        public static int MajorVersion => 1;
 
-        public static int MinorVersion => 5;
+        public static int MinorVersion => 1;
 
         public string DateCreated { get; set; }
 
