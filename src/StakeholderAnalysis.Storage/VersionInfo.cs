@@ -39,7 +39,7 @@ namespace StakeholderAnalysis.Storage
 
         public static int MajorVersion => 1;
 
-        public static int MinorVersion => 1;
+        public static int MinorVersion => 2;
 
         public string DateCreated { get; set; }
 
