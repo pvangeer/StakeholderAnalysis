@@ -1,14 +1,10 @@
-﻿using System.Collections.ObjectModel;
-using System.ComponentModel;
+﻿using System.ComponentModel;
 using System.Diagnostics;
-using System.Linq;
 using System.Windows;
 using System.Windows.Input;
-using StakeholderAnalysis.Data.Diagrams.OnionDiagrams;
 using StakeholderAnalysis.Gui;
 using StakeholderAnalysis.Storage;
 using StakeholderAnalysis.Visualization.Commands;
-using StakeholderAnalysis.Visualization.ViewModels.DocumentViews.OnionDiagramView;
 
 namespace StakeholderAnalysis.Visualization.ViewModels.Ribbon
 {
@@ -16,7 +12,6 @@ namespace StakeholderAnalysis.Visualization.ViewModels.Ribbon
     {
         private readonly StakeholderAnalysisGui gui;
         private RelayCommand saveCanvasCommand;
-        private StakeholderConnectionGroupSelection stakeholderConnectionGroupSelection;
 
         public RibbonViewModel(ViewModelFactory factory, StakeholderAnalysisGui guiInput) : base(factory)
         {
@@ -26,9 +21,6 @@ namespace StakeholderAnalysis.Visualization.ViewModels.Ribbon
                 gui.ShouldSaveOpenChanges = ShouldSaveOpenChanges;
                 gui.ShouldMigrateProject = ShouldMigrateProject;
                 gui.PropertyChanged += GuiPropertyChanged;
-                gui.ViewManager.PropertyChanged += ViewManagerPropertyChanged;
-                gui.ViewManager.PropertyChanged += ViewManagerPropertyChanged;
-                SetCurrentSelectedDiagramAndGroups();
             }
 
             ViewManagerViewModel = ViewModelFactory.CreateViewManagerViewModel();
@@ -90,103 +82,9 @@ namespace StakeholderAnalysis.Visualization.ViewModels.Ribbon
 
         public ICommand EscapeCommand => CommandFactory.CreateEscapeCommand();
 
-        public ICommand AddOnionRingCommand =>
-            CommandFactory.CreateAddOnionRingCommand(stakeholderConnectionGroupSelection?.OnionDiagram);
-
-        public double Asymmetry
-        {
-            get => stakeholderConnectionGroupSelection?.OnionDiagram?.Asymmetry ?? 0.0;
-            set
-            {
-                if (stakeholderConnectionGroupSelection?.OnionDiagram != null)
-                {
-                    stakeholderConnectionGroupSelection.OnionDiagram.Asymmetry = value;
-                    stakeholderConnectionGroupSelection.OnionDiagram.OnPropertyChanged();
-                }
-            }
-        }
-
-        public double Orientation
-        {
-            get => stakeholderConnectionGroupSelection?.OnionDiagram?.Orientation ?? 180.0;
-            set
-            {
-                if (stakeholderConnectionGroupSelection?.OnionDiagram != null)
-                {
-                    stakeholderConnectionGroupSelection.OnionDiagram.Orientation = value;
-                    stakeholderConnectionGroupSelection.OnionDiagram.OnPropertyChanged();
-                }
-            }
-        }
-
-        public ObservableCollection<StakeholderConnectionGroup> StakeholderConnectionGroups =>
-            stakeholderConnectionGroupSelection?.OnionDiagram?.ConnectionGroups;
-
-        public StakeholderConnectionGroup SelectedStakeholderConnectionGroup
-        {
-            get => stakeholderConnectionGroupSelection?.StakeholderConnectionGroup;
-            set
-            {
-                if (stakeholderConnectionGroupSelection == null || value == null) return;
-
-                stakeholderConnectionGroupSelection.StakeholderConnectionGroup = value;
-                stakeholderConnectionGroupSelection.OnPropertyChanged(nameof(StakeholderConnectionGroupSelection
-                    .StakeholderConnectionGroup));
-            }
-        }
-
         private void OnExecuteHyperlink(object obj)
         {
             Process.Start((string)obj);
-        }
-
-        private void SetCurrentSelectedDiagramAndGroups()
-        {
-            var selectedOnionDiagram = gui?.ViewManager?.ActiveDocument?.ViewModel is OnionDiagramViewModel viewModel
-                ? viewModel.GetDiagram()
-                : null;
-
-            if (stakeholderConnectionGroupSelection != null)
-            {
-                stakeholderConnectionGroupSelection.PropertyChanged -=
-                    StakeholderConnectionGroupSelectionPropertyChanged;
-                stakeholderConnectionGroupSelection.OnionDiagram.PropertyChanged += OnionDiagramPropertyChanged;
-            }
-
-            stakeholderConnectionGroupSelection = null;
-            OnPropertyChanged(nameof(StakeholderConnectionGroups));
-            OnPropertyChanged(nameof(SelectedStakeholderConnectionGroup));
-
-            stakeholderConnectionGroupSelection =
-                gui?.SelectedStakeholderGroupRegister?.SelectedStakeholderConnectionGroups?.FirstOrDefault(g =>
-                    g.OnionDiagram == selectedOnionDiagram);
-
-            if (stakeholderConnectionGroupSelection != null)
-            {
-                stakeholderConnectionGroupSelection.PropertyChanged +=
-                    StakeholderConnectionGroupSelectionPropertyChanged;
-                stakeholderConnectionGroupSelection.OnionDiagram.PropertyChanged += OnionDiagramPropertyChanged;
-            }
-
-            OnPropertyChanged(nameof(Asymmetry));
-            OnPropertyChanged(nameof(Orientation));
-            OnPropertyChanged(nameof(AddOnionRingCommand));
-            OnPropertyChanged(nameof(StakeholderConnectionGroups));
-            OnPropertyChanged(nameof(SelectedStakeholderConnectionGroup));
-        }
-
-        private void OnionDiagramPropertyChanged(object sender, PropertyChangedEventArgs e)
-        {
-            if (e.PropertyName == nameof(OnionDiagram.Asymmetry))
-                OnPropertyChanged(nameof(Asymmetry));
-            if (e.PropertyName == nameof(OnionDiagram.Orientation))
-                OnPropertyChanged(nameof(Orientation));
-        }
-
-        private void StakeholderConnectionGroupSelectionPropertyChanged(object sender, PropertyChangedEventArgs e)
-        {
-            if (e.PropertyName == nameof(StakeholderConnectionGroupSelection.StakeholderConnectionGroup))
-                OnPropertyChanged(nameof(SelectedStakeholderConnectionGroup));
         }
 
         private void GuiPropertyChanged(object sender, PropertyChangedEventArgs e)
@@ -197,7 +95,6 @@ namespace StakeholderAnalysis.Visualization.ViewModels.Ribbon
                     OnPropertyChanged(nameof(IsMagnifierActive));
                     break;
                 case nameof(StakeholderAnalysisGui.Analysis):
-                    SetCurrentSelectedDiagramAndGroups();
                     OnPropertyChanged(nameof(AddStakeholdersCommand));
                     break;
                 case nameof(StakeholderAnalysisGui.IsProjectExplorerVisible):
@@ -205,16 +102,6 @@ namespace StakeholderAnalysis.Visualization.ViewModels.Ribbon
                     break;
                 case nameof(StakeholderAnalysisGui.IsPropertiesVisible):
                     OnPropertyChanged(nameof(IsPropertiesVisible));
-                    break;
-            }
-        }
-
-        private void ViewManagerPropertyChanged(object sender, PropertyChangedEventArgs e)
-        {
-            switch (e.PropertyName)
-            {
-                case nameof(gui.ViewManager.ActiveDocument):
-                    SetCurrentSelectedDiagramAndGroups();
                     break;
             }
         }

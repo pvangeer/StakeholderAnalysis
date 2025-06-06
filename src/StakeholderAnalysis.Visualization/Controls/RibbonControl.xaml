@@ -3,11 +3,8 @@
              xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
-             xmlns:local="clr-namespace:StakeholderAnalysis.Visualization.Controls"
              xmlns:fluent="urn:fluent-ribbon"
              xmlns:viewModels="clr-namespace:StakeholderAnalysis.Visualization.ViewModels"
-             xmlns:onionDiagrams="clr-namespace:StakeholderAnalysis.Data.Diagrams.OnionDiagrams;assembly=StakeholderAnalysis.Data"
-             xmlns:ribbon="clr-namespace:StakeholderAnalysis.Visualization.Converters.Ribbon"
              mc:Ignorable="d"
              d:DesignHeight="450" d:DesignWidth="800">
 
@@ -21,8 +18,6 @@
                 <ResourceDictionary
                     Source="/StakeholderAnalysis.Visualization;Component/DataTemplates/AboutInfoDataTemplate.xaml" />
             </ResourceDictionary.MergedDictionaries>
-
-            <ribbon:IsSelectedViewTypeToVisibilityConverter x:Key="IsSelectedViewInfoToVisibilityConverter" />
         </ResourceDictionary>
     </UserControl.Resources>
 
@@ -78,21 +73,6 @@
             </fluent:Backstage>
         </fluent:Ribbon.Menu>
 
-        <fluent:Ribbon.ContextualGroups>
-            <fluent:RibbonContextualTabGroup
-                x:Name="onionGroup"
-                Header="Ui-diagram"
-                Background="{StaticResource Deltares.Brushes.DarkGreen}"
-                Foreground="White">
-                <fluent:RibbonContextualTabGroup.Visibility>
-                    <Binding
-                        Path="RibbonViewModel.ViewManagerViewModel.ActiveDocument"
-                        Converter="{StaticResource IsSelectedViewInfoToVisibilityConverter}"
-                        UpdateSourceTrigger="PropertyChanged" />
-                </fluent:RibbonContextualTabGroup.Visibility>
-            </fluent:RibbonContextualTabGroup>
-        </fluent:Ribbon.ContextualGroups>
-
         <fluent:RibbonTabItem Header="Start" Height="30">
             <fluent:RibbonGroupBox Header="Beeld">
                 <fluent:ToggleButton
@@ -125,74 +105,6 @@
                     LargeIcon="pack://application:,,,/StakeholderAnalysis.Visualization;component/Resources/Operations/plus.png" />
             </fluent:RibbonGroupBox>
 
-        </fluent:RibbonTabItem>
-
-        <fluent:RibbonTabItem Header="Ui-diagram" Group="{Binding Source={x:Reference onionGroup}}">
-            <fluent:RibbonGroupBox Header="Ringen">
-                <fluent:Button
-                    Header="Ring toevoegen"
-                    Command="{Binding RibbonViewModel.AddOnionRingCommand}"
-                    Size="Middle"
-                    Icon="pack://application:,,,/StakeholderAnalysis.Visualization;component/Resources/Operations/plus.png" />
-                <fluent:Spinner
-                    Value="{Binding RibbonViewModel.Asymmetry}"
-                    Header="Asymmetrie"
-                    Format="0.#####"
-                    Minimum="0.0"
-                    Maximum="1.0"
-                    Increment="0.1" />
-                <StackPanel Orientation="Vertical" Margin="5,5,5,1">
-                    <local:RotaryControl
-                        Value="{Binding RibbonViewModel.Orientation, Mode=TwoWay}"
-                        FontBrush="{StaticResource Deltares.Brushes.Foreground}"
-                        FontSize="28"
-                        Foreground="{StaticResource Deltares.Brushes.Foreground}"
-                        MinimumValue="0"
-                        NumberOfMajorTicks="9"
-                        MajorTickIncrement="45"
-                        MajorTickBrush="White"
-                        NumberOfMinorTicks="6"
-                        MinorTickBrush="White"
-                        OuterDialFill="{StaticResource Deltares.Brushes.LightBlue}"
-                        OuterDialBorder="Transparent"
-                        OuterDialBorderThickness="1"
-                        InnerDialRadius="60"
-                        StartAngleInDegrees="0"
-                        EndAngleInDegrees="360"
-                        Background="Transparent">
-                        <local:RotaryControl.PointerFill>
-                            <LinearGradientBrush EndPoint="0.5,0" StartPoint="0.5,1">
-                                <GradientStop Color="{StaticResource Deltares.Colors.Blue}" Offset="0" />
-                                <GradientStop Color="#BBBBBB" Offset="1.0" />
-                            </LinearGradientBrush>
-                        </local:RotaryControl.PointerFill>
-                        <local:RotaryControl.LayoutTransform>
-                            <ScaleTransform ScaleX="0.26" ScaleY="0.26" />
-                        </local:RotaryControl.LayoutTransform>
-                    </local:RotaryControl>
-                    <TextBlock
-                        Text="Orientatie"
-                        Margin="5,1,5,1" />
-                </StackPanel>
-            </fluent:RibbonGroupBox>
-
-            <fluent:RibbonGroupBox Header="Verbindingsgroepen">
-                <fluent:ComboBox
-                    IsEditable="False"
-                    ItemsSource="{Binding RibbonViewModel.StakeholderConnectionGroups}"
-                    SelectedItem="{Binding RibbonViewModel.SelectedStakeholderConnectionGroup}">
-                    <ComboBox.ItemTemplate>
-                        <DataTemplate DataType="{x:Type onionDiagrams:StakeholderConnectionGroup}">
-                            <Border BorderThickness="0 0 0 3">
-                                <Border.BorderBrush>
-                                    <SolidColorBrush Color="{Binding StrokeColor}" />
-                                </Border.BorderBrush>
-                                <TextBlock Text="{Binding Name}" />
-                            </Border>
-                        </DataTemplate>
-                    </ComboBox.ItemTemplate>
-                </fluent:ComboBox>
-            </fluent:RibbonGroupBox>
         </fluent:RibbonTabItem>
     </fluent:Ribbon>
 </UserControl>

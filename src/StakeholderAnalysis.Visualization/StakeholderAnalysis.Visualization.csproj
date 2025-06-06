@@ -76,6 +76,7 @@
     <Compile Include="Converters\Diagrams\StakeholderTable\StakeholderTypesToMenuItemsConverter.cs" />
     <Compile Include="StakeholderTypeToNameConverter.cs" />
     <Compile Include="Converters\MainContentPresenter\ToCloseViewCommandInputConverter.cs" />
+    <Compile Include="StrokeThicknessToHitTestWidthConverter.cs" />
     <Compile Include="ViewModels\DocumentViews\IDiagramViewModel.cs" />
     <Compile Include="Commands\Diagrams\RemoveSelectedStakeholderCommand.cs" />
     <Compile Include="ViewModels\DocumentViews\StakeholderTableView\StakeholderDetailsViewModel.cs" />
@@ -133,7 +134,6 @@
       <DependentUpon>SelectStakeholdersDialog.xaml</DependentUpon>
     </Compile>
     <Compile Include="Converters\MainContentPresenter\IsProneToExportConverter.cs" />
-    <Compile Include="Converters\Ribbon\IsSelectedViewTypeToVisibilityConverter.cs" />
     <Compile Include="Converters\Diagrams\OnionDiagram\PercentageToCanvasLeftValueConverter.cs" />
     <Compile Include="Converters\Diagrams\OnionDiagram\PercentageToCanvasTopValueConverter.cs" />
     <Compile Include="Converters\Diagrams\PercentageToDimensionConverter.cs" />
