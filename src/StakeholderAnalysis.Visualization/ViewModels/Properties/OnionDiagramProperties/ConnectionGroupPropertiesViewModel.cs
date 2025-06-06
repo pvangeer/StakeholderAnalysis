@@ -1,7 +1,10 @@
 ﻿using System.Collections.ObjectModel;
 using System.ComponentModel;
+using System.Linq;
 using System.Windows.Input;
+using StakeholderAnalysis.Data;
 using StakeholderAnalysis.Data.Diagrams.OnionDiagrams;
+using StakeholderAnalysis.Gui;
 using StakeholderAnalysis.Visualization.ViewModels.TreeView;
 
 namespace StakeholderAnalysis.Visualization.ViewModels.Properties.OnionDiagramProperties
@@ -11,14 +14,23 @@ namespace StakeholderAnalysis.Visualization.ViewModels.Properties.OnionDiagramPr
         private readonly StakeholderConnectionGroup connectionGroup;
         private readonly OnionDiagram diagram;
         private bool isExpanded;
-        private bool isVisible;
+        private readonly StakeholderConnectionGroupSelection connectionGroupSelection;
 
         public ConnectionGroupPropertiesViewModel(ViewModelFactory factory, StakeholderConnectionGroup connectionGroup,
-            OnionDiagram selectedOnionDiagram) : base(factory)
+            OnionDiagram selectedOnionDiagram, StakeholderAnalysisGui gui) : base(factory)
         {
             diagram = selectedOnionDiagram;
             this.connectionGroup = connectionGroup;
             connectionGroup.PropertyChanged += ConnectionGroupPropertyChanged;
+
+            if (gui != null)
+            {
+                this.connectionGroupSelection = gui.SelectedStakeholderGroupRegister.SelectedStakeholderConnectionGroups.FirstOrDefault(g => g.OnionDiagram == diagram);
+                if (connectionGroupSelection != null)
+                {
+                    connectionGroupSelection.PropertyChanged += OnionDiagramSelectedConnectionGroupChanged;
+                }
+            }
 
             Items = new ObservableCollection<ITreeNodeViewModel>
             {
@@ -37,15 +49,21 @@ namespace StakeholderAnalysis.Visualization.ViewModels.Properties.OnionDiagramPr
             ContextMenuItems = new ObservableCollection<ContextMenuItemViewModel>();
         }
 
+        private void OnionDiagramSelectedConnectionGroupChanged(object sender, PropertyChangedEventArgs e)
+        {
+            OnPropertyChanged(nameof(IsVisible));
+        }
+
         public bool IsVisible
         {
-            get => connectionGroup.Visible;
+            get => connectionGroupSelection.StakeholderConnectionGroup == connectionGroup;
             set
             {
-                if (value == connectionGroup.Visible)
+                if (value == false)
                     return;
-                connectionGroup.Visible = value;
-                connectionGroup.OnPropertyChanged(nameof(StakeholderConnectionGroup.Visible));
+
+                connectionGroupSelection.StakeholderConnectionGroup = connectionGroup;
+                connectionGroupSelection.OnPropertyChanged(nameof(StakeholderConnectionGroupSelection.StakeholderConnectionGroup));
             }
         }
 
@@ -82,7 +100,9 @@ namespace StakeholderAnalysis.Visualization.ViewModels.Properties.OnionDiagramPr
 
         public ICommand RemoveItemCommand => CommandFactory.CreateCanAlwaysExecuteActionCommand(p =>
         {
-            diagram.ConnectionGroups.Remove(connectionGroup);
+            AnalysisServices.RemoveStakeholderConnectionGroupFromOnionDiagram(diagram, connectionGroup);
+            connectionGroupSelection.StakeholderConnectionGroup = null;
+            connectionGroupSelection.OnPropertyChanged(nameof(StakeholderConnectionGroupSelection.StakeholderConnectionGroup));
         });
 
         public bool CanAdd => false;

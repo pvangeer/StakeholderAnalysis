@@ -120,7 +120,7 @@ namespace StakeholderAnalysis.Visualization.ViewModels
         public ConnectionGroupPropertiesViewModel CreateConnectionGroupPropertiesViewModel(
             StakeholderConnectionGroup connectionGroup, OnionDiagram selectedOnionDiagram)
         {
-            return new ConnectionGroupPropertiesViewModel(this, connectionGroup, selectedOnionDiagram);
+            return new ConnectionGroupPropertiesViewModel(this, connectionGroup, selectedOnionDiagram, gui);
         }
 
         public ProjectExplorerForceFieldDiagramsViewModel CreateProjectExplorerForceFieldDiagramsViewModel()

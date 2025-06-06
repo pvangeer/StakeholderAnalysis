@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Linq;
 using StakeholderAnalysis.Data.Diagrams;
+using StakeholderAnalysis.Data.Diagrams.OnionDiagrams;
 
 namespace StakeholderAnalysis.Data
 {
@@ -33,6 +34,16 @@ namespace StakeholderAnalysis.Data
                              .Where(s => s.Stakeholder == stakeholder).ToArray())
                     attitudeImpactDiagram.Stakeholders.Remove(attitudeImpactDiagramStakeholder);
             }
+        }
+
+        public static void RemoveStakeholderConnectionGroupFromOnionDiagram(OnionDiagram diagram,
+            StakeholderConnectionGroup connectionGroup)
+        {
+            foreach (var stakeholderConnection in diagram.Connections.Where(c => c.StakeholderConnectionGroup == connectionGroup).ToList())
+            {
+                diagram.Connections.Remove(stakeholderConnection);
+            }
+            diagram.ConnectionGroups.Remove(connectionGroup);
         }
 
         public static void AddStakeholderToDiagram(IStakeholderDiagram diagram, Stakeholder stakeholder)

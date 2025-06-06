@@ -98,7 +98,7 @@ namespace StakeholderAnalysis.Visualization.Commands
 
         public ICommand CreateAddConnectionGroupCommand(OnionDiagram selectedOnionDiagram)
         {
-            return new AddConnectionGroupCommand(selectedOnionDiagram);
+            return new AddConnectionGroupCommand(selectedOnionDiagram, gui);
         }
 
         public ICommand CreateToggleIsExpandedCommand(IExpandable expandableContentViewModel)
